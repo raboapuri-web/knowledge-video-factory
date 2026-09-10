@@ -1,0 +1,34 @@
+name: V22 Cinematic JSX Hotfix
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v22-cinematic-jsx-hotfix.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix missing wrappers and push
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('v22-emperor-doom-cinematic/src/scenes-cinematic.tsx')
+          s=p.read_text(encoding='utf-8')
+          old1="{Array.from({length:walk?8:5}).map((_,i)=><Human key={i} x={250+i*220} y={890} s={.75+(i%3)*.07} hero={walk&&i===1}/>)}</Camera>"
+          new1="{Array.from({length:walk?8:5}).map((_,i)=><Human key={i} x={250+i*220} y={890} s={.75+(i%3)*.07} hero={walk&&i===1}/>)}</div></Camera>"
+          old2="{noBrake&&<div style={{position:'absolute',left:1190,top:300,fontSize:72,fontWeight:900,color:C.red,transform:`rotate(${mix(p,-3,2)}deg)`}}>NO BRAKES</div>}</Camera>"
+          new2="{noBrake&&<div style={{position:'absolute',left:1190,top:300,fontSize:72,fontWeight:900,color:C.red,transform:`rotate(${mix(p,-3,2)}deg)`}}>NO BRAKES</div>}</div></Camera>"
+          if old1 not in s: raise SystemExit('OrderedCity pattern not found')
+          if old2 not in s: raise SystemExit('Road pattern not found')
+          s=s.replace(old1,new1).replace(old2,new2)
+          p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add v22-emperor-doom-cinematic/src/scenes-cinematic.tsx
+          git commit -m 'Fix V22 cinematic JSX wrappers'
+          git push
