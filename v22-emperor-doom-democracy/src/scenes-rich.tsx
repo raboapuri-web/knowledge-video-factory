@@ -50,22 +50,104 @@ const DoomBust=({p,x=1490,y=475,s=1}:{p:number;x?:number;y?:number;s?:number})=>
   <div style={{position:'absolute',left:'39%',top:'64%',width:'22%',height:'2%',background:'#2c3331'}}/>
 </div>;
 
-const CutFx=({p}:{p:number})=>{const raw=(p*3)%1;const edge=Math.min(raw,1-raw);const flash=clamp((.035-edge)/.035);return <><AbsoluteFill style={{background:`rgba(225,238,231,${flash*.12})`,mixBlendMode:'screen',pointerEvents:'none'}}/><div style={{position:'absolute',left:lerp(raw,-480,2100),top:-200,width:180,height:1500,background:'linear-gradient(90deg,transparent,rgba(214,230,221,.12),transparent)',transform:'rotate(17deg)',filter:'blur(18px)',pointerEvents:'none'}}/></>};
+const CutFx=({p}:{p:number})=>{
+  const raw=(p*3)%1;
+  const edge=Math.min(raw,1-raw);
+  const flash=clamp((.035-edge)/.035);
+  return <><AbsoluteFill style={{background:`rgba(225,238,231,${flash*.12})`,mixBlendMode:'screen',pointerEvents:'none'}}/><div style={{position:'absolute',left:lerp(raw,-480,2100),top:-200,width:180,height:1500,background:'linear-gradient(90deg,transparent,rgba(214,230,221,.12),transparent)',transform:'rotate(17deg)',filter:'blur(18px)',pointerEvents:'none'}}/></>;
+};
+
 const FilmGrain=({p}:{p:number})=><AbsoluteFill style={{pointerEvents:'none',opacity:.055,backgroundImage:'radial-gradient(circle,rgba(255,255,255,.72) 0 1px,transparent 1.3px)',backgroundSize:`${18+(Math.floor(p*90)%3)}px ${19+(Math.floor(p*70)%3)}px`,mixBlendMode:'soft-light'}}/>;
-const DepthParticles=({p,kind='dust'}:{p:number;kind?:'dust'|'speed'|'data'})=><AbsoluteFill style={{pointerEvents:'none',overflow:'hidden'}}>{Array.from({length:kind==='speed'?24:16}).map((_,i)=>{const x=(i*149)%1920,y=(i*97)%1080,move=kind==='speed'?lerp(p,-260,640):lerp(p,-22,28);return <div key={i} style={{position:'absolute',left:x+move*(.35+(i%5)*.14),top:y+(kind==='data'?Math.sin(p*7+i)*10:0),width:kind==='speed'?80+(i%4)*65:2+(i%3),height:kind==='speed'?2:2+(i%3),borderRadius:3,background:kind==='data'?'rgba(122,165,191,.35)':'rgba(232,230,218,.26)',opacity:.16+(i%5)*.06,filter:kind==='speed'?'blur(1px)':'none'}}/>})}</AbsoluteFill>;
 
-const EarthScene=({visual,p}:{visual:string;p:number})=>{const shot=Math.min(2,Math.floor(p*3));const q=clamp(p*3-shot);const controlled=/kneels|prism|consent/.test(visual);const united=/latveria|united|doom-2025|welcome/.test(visual);const night=/world-kneels|doom-2025|united|data-world-map/.test(visual);const earthX=shot===0?960:shot===1?720:1020;const earthY=shot===2?560:510;const earthSize=shot===0?690:shot===1?930:820;return <AbsoluteFill style={{background:C.bg,overflow:'hidden'}}><Stars p={p}/><div style={{position:'absolute',inset:0,transform:`scale(${lerp(q,shot===1?1.03:1,shot===1?1.085:1.04)}) translate(${shot===1?'-2%':'0'},${shot===2?'1%':'0'})`}}><EarthGlobe p={p} x={earthX} y={earthY} size={earthSize} controlled={controlled} united={united} night={night}/></div>{shot===0&&<><div style={{position:'absolute',left:195,top:155,width:460,height:2,background:'linear-gradient(90deg,transparent,rgba(140,202,230,.65),transparent)'}}/><div style={{position:'absolute',left:190,top:165,width:310,height:2,background:'rgba(210,230,238,.15)'}}/></>}{shot===1&&united&&<DoomBust p={q} x={1520} y={485} s={1.06}/>} {shot===2&&<><DoomBust p={q} x={1510} y={500} s={.92}/><div style={{position:'absolute',left:180,top:725,width:920,height:2,background:`linear-gradient(90deg,transparent,${controlled?C.red:C.gold},transparent)`,opacity:.6}}/></>}{controlled&&<div style={{position:'absolute',left:960,top:520,width:1140,height:1140,transform:'translate(-50%,-50%)',borderRadius:'50%',border:'3px solid rgba(190,65,75,.28)',boxShadow:'0 0 60px rgba(190,65,75,.18)',opacity:.55+.25*Math.sin(p*20)}}/><DepthParticles p={p} kind="dust"/><CutFx p={p}/><FilmGrain p={p}/><AbsoluteFill style={{background:'radial-gradient(ellipse at 50% 47%,transparent 33%,rgba(0,0,0,.20) 68%,rgba(0,0,0,.75) 100%)'}}/></AbsoluteFill>};
+const DepthParticles=({p,kind='dust'}:{p:number;kind?:'dust'|'speed'|'data'})=><AbsoluteFill style={{pointerEvents:'none',overflow:'hidden'}}>
+  {Array.from({length:kind==='speed'?24:16}).map((_,i)=>{const x=(i*149)%1920,y=(i*97)%1080,move=kind==='speed'?lerp(p,-260,640):lerp(p,-22,28);return <div key={i} style={{position:'absolute',left:x+move*(.35+(i%5)*.14),top:y+(kind==='data'?Math.sin(p*7+i)*10:0),width:kind==='speed'?80+(i%4)*65:2+(i%3),height:kind==='speed'?2:2+(i%3),borderRadius:3,background:kind==='data'?'rgba(122,165,191,.35)':'rgba(232,230,218,.26)',opacity:.16+(i%5)*.06,filter:kind==='speed'?'blur(1px)':'none'}}/>})}
+</AbsoluteFill>;
 
-const PrismScene=({visual,p}:{visual:string;p:number})=>{const shot=Math.min(2,Math.floor(p*3));const q=clamp(p*3-shot);const broken=visual.includes('break');return <AbsoluteFill style={{background:'radial-gradient(circle at 48% 44%,#20102c,#050507 60%,#020202)'}}><div style={{position:'absolute',left:shot===1?960:610,top:500,width:shot===1?360:300,height:shot===1?650:560,transform:`translate(-50%,-50%) rotate(${lerp(q,-5,5)}deg)`,clipPath:'polygon(50% 0,94% 18%,78% 100%,22% 100%,6% 18%)',background:'linear-gradient(120deg,#c281e0,#69337d 40%,#2b1236 75%)',boxShadow:'0 0 90px rgba(160,81,198,.46)',opacity:broken?lerp(q,1,.08):1}}/>{Array.from({length:12}).map((_,i)=><div key={i} style={{position:'absolute',left:960,top:515,width:broken?lerp(q,40,520):lerp(q,80,850),height:3,background:i%3===0?'rgba(221,153,246,.8)':'rgba(132,84,184,.6)',transformOrigin:'0 50%',transform:`rotate(${i*30+lerp(p,0,18)}deg) translateX(${shot===2?140:0}px)`,opacity:.35+(i%4)*.12}}/>)}{shot===2&&<EarthGlobe p={p} x={1460} y={515} size={520} controlled/>}{shot===0&&<DoomBust p={q} x={1455} y={470} s={.95}/>}<CutFx p={p}/><FilmGrain p={p}/><AbsoluteFill style={{background:'radial-gradient(ellipse,transparent 30%,rgba(0,0,0,.72) 100%)'}}/></AbsoluteFill>};
+const EarthScene=({visual,p}:{visual:string;p:number})=>{
+  const shot=Math.min(2,Math.floor(p*3));const q=clamp(p*3-shot);
+  const controlled=/kneels|prism|consent/.test(visual);
+  const united=/latveria|united|doom-2025|welcome/.test(visual);
+  const night=/world-kneels|doom-2025|united|data-world-map/.test(visual);
+  const earthX=shot===0?960:shot===1?720:1020;
+  const earthY=shot===2?560:510;
+  const earthSize=shot===0?690:shot===1?930:820;
+  return <AbsoluteFill style={{background:C.bg,overflow:'hidden'}}>
+    <Stars p={p}/>
+    <div style={{position:'absolute',inset:0,transform:`scale(${lerp(q,shot===1?1.03:1,shot===1?1.085:1.04)}) translate(${shot===1?'-2%':'0'},${shot===2?'1%':'0'})`}}>
+      <EarthGlobe p={p} x={earthX} y={earthY} size={earthSize} controlled={controlled} united={united} night={night}/>
+    </div>
+    {shot===0&&<><div style={{position:'absolute',left:195,top:155,width:460,height:2,background:'linear-gradient(90deg,transparent,rgba(140,202,230,.65),transparent)'}}/><div style={{position:'absolute',left:190,top:165,width:310,height:2,background:'rgba(210,230,238,.15)'}}/></>}
+    {shot===1&&united&&<DoomBust p={q} x={1520} y={485} s={1.06}/>} 
+    {shot===2&&<><DoomBust p={q} x={1510} y={500} s={.92}/><div style={{position:'absolute',left:180,top:725,width:920,height:2,background:`linear-gradient(90deg,transparent,${controlled?C.red:C.gold},transparent)`,opacity:.6}}/></>}
+    {controlled&&<div style={{position:'absolute',left:960,top:520,width:1140,height:1140,transform:'translate(-50%,-50%)',borderRadius:'50%',border:'3px solid rgba(190,65,75,.28)',boxShadow:'0 0 60px rgba(190,65,75,.18)',opacity:.55+.25*Math.sin(p*20)}}/>}
+    <DepthParticles p={p} kind="dust"/><CutFx p={p}/><FilmGrain p={p}/>
+    <AbsoluteFill style={{background:'radial-gradient(ellipse at 50% 47%,transparent 33%,rgba(0,0,0,.20) 68%,rgba(0,0,0,.75) 100%)'}}/>
+  </AbsoluteFill>;
+};
 
-const HeroScene=({visual,p}:{visual:string;p:number})=>{const shot=Math.min(2,Math.floor(p*3));const q=clamp(p*3-shot);return <AbsoluteFill style={{background:'linear-gradient(180deg,#101719,#040606)',overflow:'hidden'}}><div style={{position:'absolute',left:shot===0?230:shot===1?80:460,top:170,width:shot===0?1460:shot===1?1760:1000,height:700,transform:`perspective(1200px) rotateY(${shot===1?lerp(q,-7,2):lerp(q,2,-2)}deg)`,background:'linear-gradient(180deg,rgba(38,55,58,.92),rgba(10,14,15,.96))',clipPath:shot===2?'polygon(7% 0,100% 0,92% 100%,0 100%)':'none',border:'1px solid rgba(135,165,170,.18)'}}>{Array.from({length:shot===1?8:5}).map((_,i)=><div key={i} style={{position:'absolute',left:100+i*190,top:240+(i%2)*34,width:105,height:270,background:i===2?'linear-gradient(180deg,#466f82,#193341)':'linear-gradient(180deg,#2d454e,#101d21)',clipPath:'polygon(50% 0,76% 17%,86% 58%,69% 100%,31% 100%,14% 58%,24% 17%)',filter:i===2?'drop-shadow(0 0 24px rgba(100,160,190,.25))':'none',transform:`translateY(${Math.sin(p*8+i)*5}px) scale(${shot===0?.88:1})`}}/>)} </div>{shot===2&&<><EarthGlobe p={p} x={520} y={510} size={650}/><DoomBust p={q} x={1510} y={485} s={1.06}/></>}{visual.includes('idle')&&<div style={{position:'absolute',left:790,top:770,width:340,height:12,background:'rgba(212,173,99,.46)',transform:`scaleX(${lerp(q,.1,1)})`}}/>}<DepthParticles p={p} kind={shot===1?'speed':'dust'}/><CutFx p={p}/><FilmGrain p={p}/><AbsoluteFill style={{background:'radial-gradient(ellipse at 50% 44%,transparent 26%,rgba(0,0,0,.72) 100%)'}}/></AbsoluteFill>};
+const PrismScene=({visual,p}:{visual:string;p:number})=>{
+  const shot=Math.min(2,Math.floor(p*3));const q=clamp(p*3-shot);const broken=visual.includes('break');
+  return <AbsoluteFill style={{background:'radial-gradient(circle at 48% 44%,#20102c,#050507 60%,#020202)'}}>
+    <div style={{position:'absolute',left:shot===1?960:610,top:500,width:shot===1?360:300,height:shot===1?650:560,transform:`translate(-50%,-50%) rotate(${lerp(q,-5,5)}deg)`,clipPath:'polygon(50% 0,94% 18%,78% 100%,22% 100%,6% 18%)',background:'linear-gradient(120deg,#c281e0,#69337d 40%,#2b1236 75%)',boxShadow:'0 0 90px rgba(160,81,198,.46)',opacity:broken?lerp(q,1,.08):1}}/>
+    {Array.from({length:12}).map((_,i)=><div key={i} style={{position:'absolute',left:960,top:515,width:broken?lerp(q,40,520):lerp(q,80,850),height:3,background:i%3===0?'rgba(221,153,246,.8)':'rgba(132,84,184,.6)',transformOrigin:'0 50%',transform:`rotate(${i*30+lerp(p,0,18)}deg) translateX(${shot===2?140:0}px)`,opacity:.35+(i%4)*.12}}/>)}
+    {shot===2&&<EarthGlobe p={p} x={1460} y={515} size={520} controlled/>}
+    {shot===0&&<DoomBust p={q} x={1455} y={470} s={.95}/>} 
+    <CutFx p={p}/><FilmGrain p={p}/><AbsoluteFill style={{background:'radial-gradient(ellipse,transparent 30%,rgba(0,0,0,.72) 100%)'}}/>
+  </AbsoluteFill>;
+};
 
-const GovernanceOverlay=({visual,p}:{visual:string;p:number})=>{const shot=Math.min(2,Math.floor(p*3));const q=clamp(p*3-shot);const info=/information|news-filter|bright-report|dictator-deaf|alarms|feedback|silent-palace/.test(visual);const speed=/company|ceo|centralized|project|speed|crisis|emergency|temporary|car-|long-road|doom-decides/.test(visual);const democracy=/popper|democracy|replace|insurance|distributed|election|institutional|failure|voter|messy|short-term|not-optimal|slow-because|good-king/.test(visual);return <AbsoluteFill style={{pointerEvents:'none'}}>{speed&&<><DepthParticles p={p} kind="speed"/>{shot===1&&Array.from({length:6}).map((_,i)=><div key={i} style={{position:'absolute',left:180+i*270,top:180+i%2*490,width:2,height:690,background:'linear-gradient(180deg,transparent,rgba(212,173,99,.23),transparent)',transform:`skewX(-18deg) translateX(${lerp(q,-140,180)}px)`}}/>)}</>}{info&&<><DepthParticles p={p} kind="data"/>{Array.from({length:shot===2?11:6}).map((_,i)=><div key={i} style={{position:'absolute',left:90+(i*167)%1640,top:130+(i*119)%700,width:150+(i%4)*40,height:75+(i%3)*18,background:'rgba(230,235,230,.035)',border:'1px solid rgba(150,180,170,.13)',transform:`translateY(${lerp(q,22,-18)}px) rotate(${(i%5)-2}deg)`}}/>)}</>}{democracy&&<svg width="1920" height="1080" style={{position:'absolute',inset:0,opacity:.34}}>{Array.from({length:14}).map((_,i)=>{const x=160+(i*131)%1620,y=160+(i*83)%710;const x2=160+((i+3)*131)%1620,y2=160+((i+3)*83)%710;return <line key={i} x1={x} y1={y} x2={x2} y2={y2} stroke={i%3===0?C.gold:C.blue} strokeWidth="2" strokeDasharray="6 12" strokeDashoffset={-lerp(p,0,55)}/>})}</svg>}</AbsoluteFill>};
+const HeroScene=({visual,p}:{visual:string;p:number})=>{
+  const shot=Math.min(2,Math.floor(p*3));const q=clamp(p*3-shot);
+  return <AbsoluteFill style={{background:'linear-gradient(180deg,#101719,#040606)',overflow:'hidden'}}>
+    <div style={{position:'absolute',left:shot===0?230:shot===1?80:460,top:170,width:shot===0?1460:shot===1?1760:1000,height:700,transform:`perspective(1200px) rotateY(${shot===1?lerp(q,-7,2):lerp(q,2,-2)}deg)`,background:'linear-gradient(180deg,rgba(38,55,58,.92),rgba(10,14,15,.96))',clipPath:shot===2?'polygon(7% 0,100% 0,92% 100%,0 100%)':'none',border:'1px solid rgba(135,165,170,.18)'}}>
+      {Array.from({length:shot===1?8:5}).map((_,i)=><div key={i} style={{position:'absolute',left:100+i*190,top:240+(i%2)*34,width:105,height:270,background:i===2?'linear-gradient(180deg,#466f82,#193341)':'linear-gradient(180deg,#2d454e,#101d21)',clipPath:'polygon(50% 0,76% 17%,86% 58%,69% 100%,31% 100%,14% 58%,24% 17%)',filter:i===2?'drop-shadow(0 0 24px rgba(100,160,190,.25))':'none',transform:`translateY(${Math.sin(p*8+i)*5}px) scale(${shot===0?.88:1})`}}/>)}
+    </div>
+    {shot===2&&<><EarthGlobe p={p} x={520} y={510} size={650}/><DoomBust p={q} x={1510} y={485} s={1.06}/></>}
+    {visual.includes('idle')&&<div style={{position:'absolute',left:790,top:770,width:340,height:12,background:'rgba(212,173,99,.46)',transform:`scaleX(${lerp(q,.1,1)})`}}/>}
+    <DepthParticles p={p} kind={shot===1?'speed':'dust'}/><CutFx p={p}/><FilmGrain p={p}/>
+    <AbsoluteFill style={{background:'radial-gradient(ellipse at 50% 44%,transparent 26%,rgba(0,0,0,.72) 100%)'}}/>
+  </AbsoluteFill>;
+};
 
-const GenericRichScene=({visual,p}:{visual:string;p:number})=>{const shot=Math.min(2,Math.floor(p*3));const q=clamp(p*3-shot);const cams=[{s:1.02,x:-1.2,y:0,r:-.15},{s:1.13,x:2.2,y:-1.1,r:.25},{s:1.065,x:-2.4,y:.7,r:-.25}][shot];return <AbsoluteFill style={{background:C.bg,overflow:'hidden'}}><div style={{position:'absolute',inset:-45,transform:`scale(${cams.s+lerp(q,0,.018)}) translate(${cams.x}%,${cams.y}%) rotate(${cams.r}deg)`,filter:shot===1?'contrast(1.06) saturate(1.04)':'contrast(1.02)'}}><SceneArt visual={visual} p={p}/></div><GovernanceOverlay visual={visual} p={p}/>{shot===2&&/doom|dictator|king|self-judges|final-mask/.test(visual)&&<DoomBust p={q} x={1545} y={470} s={.72}/>}<CutFx p={p}/><FilmGrain p={p}/><AbsoluteFill style={{background:'linear-gradient(180deg,rgba(0,0,0,.10),transparent 25%,transparent 70%,rgba(0,0,0,.25))'}}/></AbsoluteFill>};
+const GovernanceOverlay=({visual,p}:{visual:string;p:number})=>{
+  const shot=Math.min(2,Math.floor(p*3));const q=clamp(p*3-shot);
+  const info=/information|news-filter|bright-report|dictator-deaf|alarms|feedback|silent-palace/.test(visual);
+  const speed=/company|ceo|centralized|project|speed|crisis|emergency|temporary|car-|long-road|doom-decides/.test(visual);
+  const democracy=/popper|democracy|replace|insurance|distributed|election|institutional|failure|voter|messy|short-term|not-optimal|slow-because|good-king/.test(visual);
+  return <AbsoluteFill style={{pointerEvents:'none'}}>
+    {speed&&<><DepthParticles p={p} kind="speed"/>{shot===1&&Array.from({length:6}).map((_,i)=><div key={i} style={{position:'absolute',left:180+i*270,top:180+i%2*490,width:2,height:690,background:'linear-gradient(180deg,transparent,rgba(212,173,99,.23),transparent)',transform:`skewX(-18deg) translateX(${lerp(q,-140,180)}px)`}}/>)}</>}
+    {info&&<><DepthParticles p={p} kind="data"/>{Array.from({length:shot===2?11:6}).map((_,i)=><div key={i} style={{position:'absolute',left:90+(i*167)%1640,top:130+(i*119)%700,width:150+(i%4)*40,height:75+(i%3)*18,background:'rgba(230,235,230,.035)',border:'1px solid rgba(150,180,170,.13)',transform:`translateY(${lerp(q,22,-18)}px) rotate(${(i%5)-2}deg)`}}/>)}</>}
+    {democracy&&<svg width="1920" height="1080" style={{position:'absolute',inset:0,opacity:.34}}>
+      {Array.from({length:14}).map((_,i)=>{const x=160+(i*131)%1620,y=160+(i*83)%710;const x2=160+((i+3)*131)%1620,y2=160+((i+3)*83)%710;return <line key={i} x1={x} y1={y} x2={x2} y2={y2} stroke={i%3===0?C.gold:C.blue} strokeWidth="2" strokeDasharray="6 12" strokeDashoffset={-lerp(p,0,55)}/>})}
+    </svg>}
+  </AbsoluteFill>;
+};
+
+const GenericRichScene=({visual,p}:{visual:string;p:number})=>{
+  const shot=Math.min(2,Math.floor(p*3));const q=clamp(p*3-shot);
+  const cams=[
+    {s:1.02,x:-1.2,y:0,r:-.15},
+    {s:1.13,x:2.2,y:-1.1,r:.25},
+    {s:1.065,x:-2.4,y:.7,r:-.25},
+  ][shot];
+  return <AbsoluteFill style={{background:C.bg,overflow:'hidden'}}>
+    <div style={{position:'absolute',inset:-45,transform:`scale(${cams.s+lerp(q,0,.018)}) translate(${cams.x}%,${cams.y}%) rotate(${cams.r}deg)`,filter:shot===1?'contrast(1.06) saturate(1.04)':'contrast(1.02)'}}>
+      <SceneArt visual={visual} p={p}/>
+    </div>
+    <GovernanceOverlay visual={visual} p={p}/>
+    {shot===2&&/doom|dictator|king|self-judges|final-mask/.test(visual)&&<DoomBust p={q} x={1545} y={470} s={.72}/>} 
+    <CutFx p={p}/><FilmGrain p={p}/>
+    <AbsoluteFill style={{background:'linear-gradient(180deg,rgba(0,0,0,.10),transparent 25%,transparent 70%,rgba(0,0,0,.25))'}}/>
+  </AbsoluteFill>;
+};
 
 const earthRe=/peace-news|economy-stable|world-kneels|doom-fixes-world|world-latveria|global-move-joke|freedom-returns|data-world-map|doom-2025|united-latveria|people-welcome-doom|same-question-again|doom-clean-world|marathon-state/;
 const prismRe=/purple-man-capture|psychoprism-wave|consent-erased|prism-breaks/;
 const heroRe=/wonderman-dilemma|wonderman-observes|heroes-idle|wonderman-chooses|avengers-awaken|avengers-object|wonderman-final-look|right-to-fail|freedom-mess/;
 
-export const SceneArtRich=({visual,p}:{visual:string;p:number})=>{if(earthRe.test(visual))return <EarthScene visual={visual} p={p}/>;if(prismRe.test(visual))return <PrismScene visual={visual} p={p}/>;if(heroRe.test(visual))return <HeroScene visual={visual} p={p}/>;return <GenericRichScene visual={visual} p={p}/>;};
+export const SceneArtRich=({visual,p}:{visual:string;p:number})=>{
+  if(earthRe.test(visual))return <EarthScene visual={visual} p={p}/>;
+  if(prismRe.test(visual))return <PrismScene visual={visual} p={p}/>;
+  if(heroRe.test(visual))return <HeroScene visual={visual} p={p}/>;
+  return <GenericRichScene visual={visual} p={p}/>;
+};
