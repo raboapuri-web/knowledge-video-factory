@@ -1,0 +1,191 @@
+name: V24 Self Esteem Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v24-self-esteem-production.yml'
+      - 'v24-self-esteem/**'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    defaults:
+      run:
+        working-directory: v24-self-esteem
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install audio tools and Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+      - name: Type check before expensive narration generation
+        run: npm run check
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then echo 'VOICEVOX ready'; exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox || true
+          exit 1
+      - name: Generate measured narration
+        run: node scripts/generate-voicevox.mjs
+      - name: Plan short render segments
+        id: plan
+        run: |
+          MATRIX="$(node scripts/plan-segments.mjs)"
+          echo "$MATRIX"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+      - name: Upload prepared timing and narration
+        uses: actions/upload-artifact@v4
+        with:
+          name: v24-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: |
+            v24-self-esteem/src/sync-timing.json
+            v24-self-esteem/public/audio/narration.m4a
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    defaults:
+      run:
+        working-directory: v24-self-esteem
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+      - name: Download measured timing
+        uses: actions/download-artifact@v4
+        with:
+          name: v24-prepared
+          path: v24-self-esteem
+      - name: Render segment ${{ matrix.id }}
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out
+          npx remotion render src/index.ts V24SelfEsteem "out/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 \
+            --crf=20 \
+            --concurrency=2 \
+            --log=warn
+          test -s "out/segment-${{ matrix.id }}.mp4"
+      - name: Upload segment ${{ matrix.id }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: v24-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v24-self-esteem/out/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    defaults:
+      run:
+        working-directory: v24-self-esteem
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Download narration and timing
+        uses: actions/download-artifact@v4
+        with:
+          name: v24-prepared
+          path: v24-self-esteem
+      - name: Download all rendered segments
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v24-segment-*
+          path: v24-self-esteem/parts
+          merge-multiple: true
+      - name: Generate BGM only
+        run: node scripts/generate-bgm.mjs
+      - name: Concatenate segments without re-encoding
+        run: |
+          mkdir -p out
+          find parts -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do
+            printf "file '%s'\n" "$(realpath "$f")"
+          done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+      - name: Mix narration and BGM
+        run: |
+          ffmpeg -y -loglevel error \
+            -i out/video-only.mp4 \
+            -i public/audio/narration.m4a \
+            -i public/audio/bgm.m4a \
+            -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.082[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" \
+            -map 0:v:0 -map "[a]" \
+            -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest \
+            out/v24-self-esteem-final.mp4
+      - name: Verify production duration
+        run: |
+          test -s out/v24-self-esteem-final.mp4
+          ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 out/v24-self-esteem-final.mp4
+          python3 - <<'PY'
+          import subprocess
+          d=float(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','default=noprint_wrappers=1:nokey=1','out/v24-self-esteem-final.mp4']).decode().strip())
+          assert 600 <= d <= 2100, f'Unexpected production duration: {d:.2f}s'
+          PY
+      - name: Create QA contact sheet
+        run: |
+          ffmpeg -y -loglevel error -i out/v24-self-esteem-final.mp4 \
+            -vf "fps=1/20,scale=240:135,tile=8x8" \
+            -frames:v 1 -q:v 2 out/v24-self-esteem-contact-sheet.jpg
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO_NAME="knowledge-video-v24-self-esteem-${GITHUB_RUN_ID}.mp4"
+          cp out/v24-self-esteem-final.mp4 "out/${VIDEO_NAME}"
+          TAG="v24-self-esteem-${GITHUB_RUN_ID}"
+          gh release create "$TAG" \
+            "out/${VIDEO_NAME}" \
+            out/v24-self-esteem-contact-sheet.jpg \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V24 Self Esteem Production ${GITHUB_RUN_ID}" \
+            --notes "Production video: why someone outside conventional beauty standards can have steadier self-esteem. 58 long-form narration beats with rapidly changing izakaya, soccer, home, salon, social-feed, members-bar, office, dating-app, bathroom, camp, school-festival, friendship, ramen, mirror and belonging scenes; sociometer, contingent self-worth, social comparison, self-concept clarity and self-efficacy visualizations; measured VOICEVOX timing; narration + BGM only; no SFX; parallel segmented rendering and QA contact sheet."
