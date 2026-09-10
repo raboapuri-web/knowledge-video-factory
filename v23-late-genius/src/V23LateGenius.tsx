@@ -2,7 +2,7 @@ import React from 'react';
 import {useCurrentFrame,useVideoConfig} from 'remotion';
 import scriptData from './script-data.json';
 import {getActiveBeatAtSeconds} from './timing';
-import {ArchiveScene,CaptionLayer,HospitalScene,InnovationScene,IntelligenceScene,JungTrainScene,KnowledgeNetwork,KnowledgeNetwork as _unused,LectureScene,NetworkScene,OfficeNightScene,OldPainterScene,PersonaScene,PromotionScene,StationScene,SurgeryScene,WriterScene,YoungGeniusScene,type Beat} from './scenes';
+import {ArchiveScene,CaptionLayer,HospitalScene,InnovationScene,IntelligenceScene,JungTrainScene,LectureScene,NetworkScene,OfficeNightScene,OldPainterScene,PersonaScene,PromotionScene,StationScene,SurgeryScene,WriterScene,YoungGeniusScene,type Beat} from './scenes';
 
 const beats=scriptData.beats as Beat[];
 
