@@ -1,0 +1,180 @@
+name: V22 Emperor Doom Cinematic Fast Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v22-emperor-doom-cinematic-fast-production.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    defaults:
+      run:
+        working-directory: v22-emperor-doom-cinematic
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: |
+          cp ../v15-chiikawa/package.json package.json
+          cp ../v15-chiikawa/tsconfig.json tsconfig.json
+          npm install
+      - name: Download original measured V22 audio master
+        uses: actions/download-artifact@v4
+        with:
+          name: v22-prepared
+          path: original-v22-prepared
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 34461679209
+      - name: Reuse timing and narration
+        run: |
+          mkdir -p public/audio
+          if [ -f ../original-v22-prepared/src/sync-timing.json ]; then
+            cp ../original-v22-prepared/src/sync-timing.json src/sync-timing.json
+            cp ../original-v22-prepared/public/audio/narration.m4a public/audio/narration.m4a
+          elif [ -f ../original-v22-prepared/v22-emperor-doom-democracy/src/sync-timing.json ]; then
+            cp ../original-v22-prepared/v22-emperor-doom-democracy/src/sync-timing.json src/sync-timing.json
+            cp ../original-v22-prepared/v22-emperor-doom-democracy/public/audio/narration.m4a public/audio/narration.m4a
+          else
+            echo 'Prepared artifact layout:'
+            find ../original-v22-prepared -maxdepth 5 -type f -print
+            exit 1
+          fi
+          test -s src/sync-timing.json
+          test -s public/audio/narration.m4a
+          node -e "const s=require('./src/sync-timing.json'); if(!s.beats||s.beats.length!==108) throw new Error('Expected 108 measured beats'); console.log('Measured duration',s.durationSeconds)"
+      - name: Validate cinematic code
+        run: |
+          npx tsc --noEmit
+          python3 - <<'PY'
+          import re
+          s=open('src/scenes-cinematic.tsx',encoding='utf-8').read()
+          assert len(re.findall(r"\{id:'s\d+'",s))==37
+          assert 'p*3' not in s
+          print('37 long-form scenes validated; no micro-cut splitter')
+          PY
+      - name: Plan parallel segments
+        id: plan
+        run: |
+          MATRIX=$(node --input-type=module <<'NODE'
+          import fs from 'node:fs';const s=JSON.parse(fs.readFileSync('src/sync-timing.json','utf8')),fps=30,target=118,max=145;let start=0,startSec=0,last=-1;const seg=[];for(let i=0;i<s.beats.length;i++){const b=s.beats[i],isLast=i===s.beats.length-1,elapsed=b.end-startSec,nextToo=!isLast&&(s.beats[i+1].end-startSec)>max;if(isLast||elapsed>=target||nextToo){const end=isLast?Math.ceil(s.durationSeconds*fps)-1:Math.max(start,Math.round(b.end*fps)-1);seg.push({id:String(seg.length).padStart(2,'0'),start,end});last=end;start=end+1;startSec=(end+1)/fps}}if(last<Math.ceil(s.durationSeconds*fps)-1)seg.push({id:String(seg.length).padStart(2,'0'),start:last+1,end:Math.ceil(s.durationSeconds*fps)-1});console.log(JSON.stringify({include:seg}));
+          NODE
+          )
+          echo "$MATRIX"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v22-cinematic-fast-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: |
+            v22-emperor-doom-cinematic/src/sync-timing.json
+            v22-emperor-doom-cinematic/public/audio/narration.m4a
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    defaults:
+      run:
+        working-directory: v22-emperor-doom-cinematic
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install runtime
+        run: |
+          sudo rm -rf /var/lib/apt/lists/*
+          sudo apt-get update -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=-
+          sudo apt-get install -y -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=- fonts-noto-cjk
+          fc-cache -f
+          cp ../v15-chiikawa/package.json package.json
+          cp ../v15-chiikawa/tsconfig.json tsconfig.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - uses: actions/download-artifact@v4
+        with:
+          name: v22-cinematic-fast-prepared
+          path: v22-emperor-doom-cinematic
+      - name: Render cinematic segment ${{ matrix.id }}
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V22EmperorDoomCinematic "out/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 --crf=18 --concurrency=2 --log=warn
+          test -s "out/segment-${{ matrix.id }}.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v22-cinematic-fast-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v22-emperor-doom-cinematic/out/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: v22-emperor-doom-cinematic
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg
+        run: |
+          sudo rm -rf /var/lib/apt/lists/*
+          sudo apt-get update -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=-
+          sudo apt-get install -y -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=- ffmpeg
+      - uses: actions/download-artifact@v4
+        with:
+          name: v22-cinematic-fast-prepared
+          path: v22-emperor-doom-cinematic
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v22-cinematic-fast-segment-*
+          path: v22-emperor-doom-cinematic/parts
+          merge-multiple: true
+      - name: Generate restrained cinematic BGM
+        run: |
+          mkdir -p public/audio
+          D=$(node -e "const s=require('./src/sync-timing.json');console.log(Math.ceil(s.durationSeconds+2))")
+          FO=$((D-10))
+          ffmpeg -y -loglevel error -f lavfi -i "sine=frequency=42:duration=${D}" -f lavfi -i "sine=frequency=63:duration=${D}" -f lavfi -i "sine=frequency=84:duration=${D}" -f lavfi -i "anoisesrc=color=brown:duration=${D}:amplitude=0.006" -filter_complex "[0:a]volume=0.007,lowpass=f=120[a0];[1:a]volume=0.0025,lowpass=f=180[a1];[2:a]volume=0.0011,lowpass=f=240[a2];[3:a]lowpass=f=300,highpass=f=32,volume=0.18[a3];[a0][a1][a2][a3]amix=inputs=4,afade=t=in:st=0:d=6,afade=t=out:st=${FO}:d=10" -c:a aac -b:a 128k -ar 48000 public/audio/bgm.m4a
+      - name: Concatenate segments
+        run: |
+          mkdir -p out
+          find parts -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+      - name: Mix narration and BGM
+        run: |
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.070[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v22-cinematic-final.mp4
+      - name: Verify and create QA sheet
+        run: |
+          test -s out/v22-cinematic-final.mp4
+          ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v22-cinematic-final.mp4
+          ffmpeg -y -loglevel error -i out/v22-cinematic-final.mp4 -vf "fps=1/25,scale=320:180,tile=8x5" -frames:v 1 -q:v 2 out/v22-cinematic-contact-sheet.jpg
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO="knowledge-video-v22-emperor-doom-cinematic-${GITHUB_RUN_ID}.mp4"
+          cp out/v22-cinematic-final.mp4 "out/${VIDEO}"
+          TAG="v22-emperor-doom-cinematic-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out/${VIDEO}" out/v22-cinematic-contact-sheet.jpg --repo "$GITHUB_REPOSITORY" --title "V22 Emperor Doom Cinematic ${GITHUB_RUN_ID}" --notes "Full visual rebuild from scratch: 37 long-form cinematic scenes instead of micro-cuts. Original measured V22 narration sync reused exactly. Slow camera movement, restrained transitions, realistic Earth, persistent visual metaphors, and calmer political-philosophy sequences. Aoyama Ryusei Normal. Narration plus restrained BGM only."
