@@ -1,0 +1,186 @@
+name: V22 Emperor Doom Rich Fast
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v22-emperor-doom-rich-fast.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    defaults:
+      run:
+        working-directory: v22-emperor-doom-democracy
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install runtime
+        run: |
+          sudo rm -rf /var/lib/apt/lists/*
+          sudo apt-get update -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=-
+          sudo apt-get install -y -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=- fonts-noto-cjk
+          fc-cache -f
+          cp ../v15-chiikawa/package.json package.json
+          cp ../v15-chiikawa/tsconfig.json tsconfig.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - name: Reuse original measured V22 narration
+        uses: actions/download-artifact@v4
+        with:
+          name: v22-prepared
+          path: v22-emperor-doom-democracy
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 34461679209
+      - name: Validate rich scene system
+        run: |
+          python3 - <<'PY'
+          import json
+          src=json.load(open('src/script-data.json',encoding='utf-8'))
+          timing=json.load(open('src/sync-timing.json',encoding='utf-8'))
+          scene=open('src/scenes-rich.tsx',encoding='utf-8').read()
+          if len(src['beats'])!=108: raise SystemExit('Expected 108 narration beats')
+          if len(timing.get('beats',[]))!=108: raise SystemExit('Measured timing artifact missing beats')
+          missing=[b['visual'] for b in src['beats'] if f"'{b['visual']}'" not in scene]
+          if missing: raise SystemExit(f'Missing rich visuals: {missing}')
+          for token in ['EarthGlobe','Continents','night&&Array.from','CutFx','GovernanceOverlay','p*3']:
+            if token not in scene: raise SystemExit(f'Missing rich feature: {token}')
+          print('108 beats / ~324 micro-shots / original measured narration reused')
+          PY
+      - name: Type check rich composition
+        run: npx tsc --noEmit
+      - name: Plan parallel segments
+        id: plan
+        run: |
+          MATRIX=$(node --input-type=module <<'NODE'
+          import fs from 'node:fs';const s=JSON.parse(fs.readFileSync('src/sync-timing.json','utf8')),fps=30,target=118,max=145;let start=0,startSec=0,last=-1;const seg=[];for(let i=0;i<s.beats.length;i++){const b=s.beats[i],isLast=i===s.beats.length-1,elapsed=b.end-startSec,nextToo=!isLast&&(s.beats[i+1].end-startSec)>max;if(isLast||elapsed>=target||nextToo){const end=isLast?Math.ceil(s.durationSeconds*fps)-1:Math.max(start,Math.round(b.end*fps)-1);seg.push({id:String(seg.length).padStart(2,'0'),start,end});last=end;start=end+1;startSec=(end+1)/fps}}if(last<Math.ceil(s.durationSeconds*fps)-1)seg.push({id:String(seg.length).padStart(2,'0'),start:last+1,end:Math.ceil(s.durationSeconds*fps)-1});console.log(JSON.stringify({include:seg}));
+          NODE
+          )
+          echo "$MATRIX"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+      - name: Upload rich prepared
+        uses: actions/upload-artifact@v4
+        with:
+          name: v22-rich-fast-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: |
+            v22-emperor-doom-democracy/src/sync-timing.json
+            v22-emperor-doom-democracy/public/audio/narration.m4a
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    defaults:
+      run:
+        working-directory: v22-emperor-doom-democracy
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install runtime
+        run: |
+          sudo rm -rf /var/lib/apt/lists/*
+          sudo apt-get update -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=-
+          sudo apt-get install -y -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=- fonts-noto-cjk
+          fc-cache -f
+          cp ../v15-chiikawa/package.json package.json
+          cp ../v15-chiikawa/tsconfig.json tsconfig.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - uses: actions/download-artifact@v4
+        with:
+          name: v22-rich-fast-prepared
+          path: v22-emperor-doom-democracy
+      - name: Render rich segment ${{ matrix.id }}
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out-rich
+          npx remotion render src/index-rich.tsx V22EmperorDoomDemocracyRich "out-rich/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 --crf=18 --concurrency=2 --log=warn
+          test -s "out-rich/segment-${{ matrix.id }}.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v22-rich-fast-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v22-emperor-doom-democracy/out-rich/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    defaults:
+      run:
+        working-directory: v22-emperor-doom-democracy
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg
+        run: |
+          sudo rm -rf /var/lib/apt/lists/*
+          sudo apt-get update -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=-
+          sudo apt-get install -y -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=- ffmpeg
+      - uses: actions/download-artifact@v4
+        with:
+          name: v22-rich-fast-prepared
+          path: v22-emperor-doom-democracy
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v22-rich-fast-segment-*
+          path: v22-emperor-doom-democracy/parts-rich
+          merge-multiple: true
+      - name: Generate restrained cinematic BGM
+        run: |
+          mkdir -p public/audio
+          D=$(node -e "const s=require('./src/sync-timing.json');console.log(Math.ceil(s.durationSeconds+2))")
+          FO=$((D-10))
+          ffmpeg -y -loglevel error \
+            -f lavfi -i "sine=frequency=42:duration=${D}" \
+            -f lavfi -i "sine=frequency=63:duration=${D}" \
+            -f lavfi -i "sine=frequency=84:duration=${D}" \
+            -f lavfi -i "anoisesrc=color=brown:duration=${D}:amplitude=0.007" \
+            -filter_complex "[0:a]volume=0.008,lowpass=f=120[a0];[1:a]volume=0.0028,lowpass=f=180[a1];[2:a]volume=0.0013,lowpass=f=240[a2];[3:a]lowpass=f=300,highpass=f=32,volume=0.2[a3];[a0][a1][a2][a3]amix=inputs=4,afade=t=in:st=0:d=5,afade=t=out:st=${FO}:d=10" \
+            -c:a aac -b:a 128k -ar 48000 public/audio/bgm-rich.m4a
+      - name: Concatenate rich segments
+        run: |
+          mkdir -p out-rich
+          find parts-rich -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do printf "file '%s'\n" "$(realpath "$f")"; done > out-rich/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out-rich/concat.txt -c copy out-rich/video-only.mp4
+      - name: Mix narration and BGM
+        run: |
+          ffmpeg -y -loglevel error -i out-rich/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm-rich.m4a \
+            -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.076[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" \
+            -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out-rich/v22-rich-final.mp4
+      - name: Verify and create dense QA sheet
+        run: |
+          test -s out-rich/v22-rich-final.mp4
+          ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out-rich/v22-rich-final.mp4
+          ffmpeg -y -loglevel error -i out-rich/v22-rich-final.mp4 -vf "fps=1/20,scale=300:169,tile=8x6" -frames:v 1 -q:v 2 out-rich/v22-rich-contact-sheet.jpg
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO="knowledge-video-v22-emperor-doom-rich-${GITHUB_RUN_ID}.mp4"
+          cp out-rich/v22-rich-final.mp4 "out-rich/${VIDEO}"
+          TAG="v22-emperor-doom-rich-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out-rich/${VIDEO}" out-rich/v22-rich-contact-sheet.jpg \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V22 Emperor Doom Rich ${GITHUB_RUN_ID}" \
+            --notes "Visual-only rich rebuild using the original V22 measured narration. 108 narration beats expanded to roughly 324 internal micro-shots. Earth rebuilt with ocean, continental masses, cloud systems, atmospheric glow, night shading, city lights and control-network overlays. Aoyama Ryusei Normal. Narration plus restrained BGM."
