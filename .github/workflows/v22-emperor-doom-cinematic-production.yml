@@ -1,0 +1,207 @@
+name: V22 Emperor Doom Cinematic Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v22-emperor-doom-cinematic-production.yml'
+      - 'v22-emperor-doom-cinematic/**'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    defaults:
+      run:
+        working-directory: v22-emperor-doom-cinematic
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: |
+          sudo rm -rf /var/lib/apt/lists/*
+          sudo apt-get update -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=-
+          sudo apt-get install -y -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=- ffmpeg fonts-noto-cjk
+          fc-cache -f
+          cp ../v15-chiikawa/package.json package.json
+          cp ../v15-chiikawa/tsconfig.json tsconfig.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - name: Validate cinematic scene plan
+        run: |
+          python3 - <<'PY'
+          import re,json
+          s=open('src/scenes-cinematic.tsx',encoding='utf-8').read()
+          scenes=re.findall(r"\{id:'s\d+'",s)
+          if len(scenes)!=37: raise SystemExit(f'Expected 37 cinematic scenes, got {len(scenes)}')
+          if 'p*3' in s: raise SystemExit('Micro-shot splitter must not exist in cinematic version')
+          for token in ['Earth','InfoTower','ThroneExit','OrderedCity','Aftermath','CinematicArt']:
+            if token not in s: raise SystemExit(f'Missing cinematic system: {token}')
+          src=json.load(open('../v22-emperor-doom-democracy/src/script-data.json',encoding='utf-8'))
+          voice=json.load(open('../v22-emperor-doom-democracy/src/speech-data.json',encoding='utf-8'))
+          if [b['id'] for b in src['beats']] != [b['id'] for b in voice['beats']]: raise SystemExit('Narration IDs mismatch')
+          print(f'Validated 37 long-form cinematic scenes / {len(src["beats"])} narration beats')
+          PY
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version >/dev/null && exit 0; sleep 2; done
+          docker logs voicevox || true
+          exit 1
+      - name: Generate measured narration
+        run: |
+          mkdir -p public/audio .voice-tmp
+          cat > /tmp/v22cinematicvoice.mjs <<'NODE'
+          import fs from 'node:fs';import path from 'node:path';import {execFileSync} from 'node:child_process';
+          const root=process.cwd();
+          const script=JSON.parse(fs.readFileSync('../v22-emperor-doom-democracy/src/script-data.json','utf8'));
+          const voice=JSON.parse(fs.readFileSync('../v22-emperor-doom-democracy/src/speech-data.json','utf8'));
+          const vm=new Map(voice.beats.map(b=>[b.id,b.speech]));
+          const base='http://127.0.0.1:50021';
+          const speakers=await fetch(`${base}/speakers`).then(r=>r.json());
+          const sp=speakers.find(s=>s.name==='青山龍星')??speakers[0];
+          const st=sp.styles.find(s=>s.name==='ノーマル')??sp.styles[0];
+          console.log(`VOICEVOX ${sp.name}/${st.name}/${st.id}`);
+          let cursor=0;const timings=[],files=[];
+          for(let i=0;i<script.beats.length;i++){
+            const b=script.beats[i],text=vm.get(b.id);if(!text)throw new Error(`missing speech ${b.id}`);
+            const q=await fetch(`${base}/audio_query?speaker=${st.id}&text=${encodeURIComponent(text)}`,{method:'POST'}).then(r=>r.json());
+            q.speedScale=1.01;q.pitchScale=-.035;q.intonationScale=.84;q.prePhonemeLength=.10;q.postPhonemeLength=.12;
+            const wav=Buffer.from(await fetch(`${base}/synthesis?speaker=${st.id}`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(q)}).then(r=>r.arrayBuffer()));
+            const raw=path.join(root,'.voice-tmp',`b-${String(i).padStart(3,'0')}.wav`),pad=path.join(root,'.voice-tmp',`b-${String(i).padStart(3,'0')}-p.wav`);
+            fs.writeFileSync(raw,wav);execFileSync('ffmpeg',['-y','-loglevel','error','-i',raw,'-af','apad=pad_dur=0.18',pad]);
+            const d=Number(execFileSync('ffprobe',['-v','error','-show_entries','format=duration','-of','default=nw=1:nk=1',pad],{encoding:'utf8'}).trim());
+            timings.push({id:b.id,index:i,start:cursor,end:cursor+d});cursor+=d;files.push(pad);
+          }
+          const list=path.join(root,'.voice-tmp/list.txt');fs.writeFileSync(list,files.map(f=>`file '${f}'`).join('\n'));
+          const joined=path.join(root,'.voice-tmp/narration.wav');execFileSync('ffmpeg',['-y','-loglevel','error','-f','concat','-safe','0','-i',list,'-c','copy',joined]);
+          const measured=Number(execFileSync('ffprobe',['-v','error','-show_entries','format=duration','-of','default=nw=1:nk=1',joined],{encoding:'utf8'}).trim());
+          fs.writeFileSync('src/sync-timing.json',JSON.stringify({durationSeconds:measured+.3,beats:timings},null,2));
+          execFileSync('ffmpeg',['-y','-loglevel','error','-i',joined,'-c:a','aac','-b:a','160k','-ar','48000','public/audio/narration.m4a']);
+          console.log(`Narration duration: ${measured.toFixed(2)}s`);
+          NODE
+          node /tmp/v22cinematicvoice.mjs
+      - name: Type check cinematic composition
+        run: npx tsc --noEmit
+      - name: Plan parallel segments
+        id: plan
+        run: |
+          MATRIX=$(node --input-type=module <<'NODE'
+          import fs from 'node:fs';const s=JSON.parse(fs.readFileSync('src/sync-timing.json','utf8')),fps=30,target=118,max=145;let start=0,startSec=0,last=-1;const seg=[];for(let i=0;i<s.beats.length;i++){const b=s.beats[i],isLast=i===s.beats.length-1,elapsed=b.end-startSec,nextToo=!isLast&&(s.beats[i+1].end-startSec)>max;if(isLast||elapsed>=target||nextToo){const end=isLast?Math.ceil(s.durationSeconds*fps)-1:Math.max(start,Math.round(b.end*fps)-1);seg.push({id:String(seg.length).padStart(2,'0'),start,end});last=end;start=end+1;startSec=(end+1)/fps}}if(last<Math.ceil(s.durationSeconds*fps)-1)seg.push({id:String(seg.length).padStart(2,'0'),start:last+1,end:Math.ceil(s.durationSeconds*fps)-1});console.log(JSON.stringify({include:seg}));
+          NODE
+          )
+          echo "$MATRIX"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v22-cinematic-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: |
+            v22-emperor-doom-cinematic/src/sync-timing.json
+            v22-emperor-doom-cinematic/public/audio/narration.m4a
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    defaults:
+      run:
+        working-directory: v22-emperor-doom-cinematic
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install runtime
+        run: |
+          sudo rm -rf /var/lib/apt/lists/*
+          sudo apt-get update -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=-
+          sudo apt-get install -y -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=- fonts-noto-cjk
+          fc-cache -f
+          cp ../v15-chiikawa/package.json package.json
+          cp ../v15-chiikawa/tsconfig.json tsconfig.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - uses: actions/download-artifact@v4
+        with:
+          name: v22-cinematic-prepared
+          path: v22-emperor-doom-cinematic
+      - name: Render cinematic segment ${{ matrix.id }}
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V22EmperorDoomCinematic "out/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 --crf=18 --concurrency=2 --log=warn
+          test -s "out/segment-${{ matrix.id }}.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v22-cinematic-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v22-emperor-doom-cinematic/out/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: v22-emperor-doom-cinematic
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg
+        run: |
+          sudo rm -rf /var/lib/apt/lists/*
+          sudo apt-get update -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=-
+          sudo apt-get install -y -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/ubuntu.sources -o Dir::Etc::sourceparts=- ffmpeg
+      - uses: actions/download-artifact@v4
+        with:
+          name: v22-cinematic-prepared
+          path: v22-emperor-doom-cinematic
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v22-cinematic-segment-*
+          path: v22-emperor-doom-cinematic/parts
+          merge-multiple: true
+      - name: Generate restrained cinematic BGM
+        run: |
+          mkdir -p public/audio
+          D=$(node -e "const s=require('./src/sync-timing.json');console.log(Math.ceil(s.durationSeconds+2))")
+          FO=$((D-10))
+          ffmpeg -y -loglevel error -f lavfi -i "sine=frequency=42:duration=${D}" -f lavfi -i "sine=frequency=63:duration=${D}" -f lavfi -i "sine=frequency=84:duration=${D}" -f lavfi -i "anoisesrc=color=brown:duration=${D}:amplitude=0.006" -filter_complex "[0:a]volume=0.007,lowpass=f=120[a0];[1:a]volume=0.0025,lowpass=f=180[a1];[2:a]volume=0.0011,lowpass=f=240[a2];[3:a]lowpass=f=300,highpass=f=32,volume=0.18[a3];[a0][a1][a2][a3]amix=inputs=4,afade=t=in:st=0:d=6,afade=t=out:st=${FO}:d=10" -c:a aac -b:a 128k -ar 48000 public/audio/bgm.m4a
+      - name: Concatenate segments
+        run: |
+          mkdir -p out
+          find parts -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+      - name: Mix narration and BGM
+        run: |
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.070[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v22-cinematic-final.mp4
+      - name: Verify and create QA sheet
+        run: |
+          test -s out/v22-cinematic-final.mp4
+          ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v22-cinematic-final.mp4
+          ffmpeg -y -loglevel error -i out/v22-cinematic-final.mp4 -vf "fps=1/25,scale=320:180,tile=8x5" -frames:v 1 -q:v 2 out/v22-cinematic-contact-sheet.jpg
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO="knowledge-video-v22-emperor-doom-cinematic-${GITHUB_RUN_ID}.mp4"
+          cp out/v22-cinematic-final.mp4 "out/${VIDEO}"
+          TAG="v22-emperor-doom-cinematic-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out/${VIDEO}" out/v22-cinematic-contact-sheet.jpg --repo "$GITHUB_REPOSITORY" --title "V22 Emperor Doom Cinematic ${GITHUB_RUN_ID}" --notes "Full visual rebuild from scratch. 37 long-form cinematic scenes across the 15m40s narration instead of narration-beat micro-cuts. Slow camera movement, restrained dissolves, persistent visual ideas, realistic Earth treatment, original Emperor Doom narrative arc, and calmer political-philosophy visualizations. Aoyama Ryusei Normal with measured-audio master sync. Narration plus restrained BGM only."
