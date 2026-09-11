@@ -21,7 +21,7 @@ const bathroom=new Set(['morning_bathroom','beauty_labor_clock','subject_count']
 const izakaya=new Set(['izakaya_group','izakaya_assertive']);
 const algorithm=new Set(['algorithm_feed','algorithm_learning','market_loop']);
 const department=new Set(['department_cosmetics','father_memory','couple_meet','final_walk']);
-const theory=new Set(['masculinity_old_new','evaluation_shift','hybrid_matrix','one_axis_to_multi','evaluation_columns','safety_package','soft_hard_balance','history_layers','multi_axis_final','weights_rebalance','final_statement']);
+const theory=new Set(['masculinity_old_new','evaluation_shift','one_axis_to_multi','evaluation_columns','safety_package','soft_hard_balance','history_layers','multi_axis_final','weights_rebalance','final_statement']);
 
 const Visual=({beat,p}:{beat:Beat;p:number})=>{
  const v=beat.visual;
@@ -41,6 +41,7 @@ const Visual=({beat,p}:{beat:Beat;p:number})=>{
  if(izakaya.has(v)) return <IzakayaScene beat={beat} p={p} mode={v}/>;
  if(algorithm.has(v)) return <AlgorithmScene beat={beat} p={p} mode={v}/>;
  if(department.has(v)) return <DepartmentScene beat={beat} p={p} mode={v}/>;
+ if(v==='hybrid_matrix') return <TheoryScene beat={beat} p={p} mode="soft_hard_balance"/>;
  if(theory.has(v)) return <TheoryScene beat={beat} p={p} mode={v}/>;
  return <TheoryScene beat={beat} p={p} mode="evaluation_shift"/>;
 };
