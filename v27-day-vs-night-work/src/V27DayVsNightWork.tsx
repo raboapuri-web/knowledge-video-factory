@@ -1,0 +1,67 @@
+import React from 'react';
+import {useCurrentFrame,useVideoConfig} from 'remotion';
+import scriptData from './script-data.json';
+import {getActiveBeatAtSeconds} from './timing';
+import {BackstageScene,BossesScene,CafeWorkScene,CaptionLayer,CircadianScene,CostLedgerScene,CostStackScene,DawnScene,DayTrainScene,DiaryScene,EffectiveHourlyScene,FactoryScene,FarmScene,FamilyScene,FinalCityScene,GinzaScene,IncomeScene,LoungeScene,NightTaxiScene,NewCustomerScene,OfficeScene,PainExamplesScene,ParallelScene,RestaurantScene,ShadowWorkScene,ShowaScene,SkillScene,TheoryScene,WeddingScene,type Beat} from './scenes';
+
+const beats=scriptData.beats as Beat[];
+const dayTrain=new Set(['day_train_intro','day_phone_story']);
+const nightTaxi=new Set(['night_taxi_intro','night_taxi_phone']);
+const farm=new Set(['farm_dawn','farm_tasks']);
+const factory=new Set(['factory_gate','factory_clockwork']);
+const showa=new Set(['showa_apartment','showa_commute']);
+const ginza=new Set(['ginza_cafe','ginza_club']);
+const office=new Set(['office_calendar','office_reprimand','payday_office','known_boss','office_introvert']);
+const lounge=new Set(['lounge_idle','lounge_customer','emotion_switchboard','club_local_status','senior_hostess']);
+const backstage=new Set(['backstage_mask','newcomer_mirror']);
+const theory=new Set(['latent_functions','demand_control','emotion_comparison','social_clock','stability_insurance','freedom_trade','identity_labels','person_job_fit']);
+const income=new Set(['income_dashboard','income_wave','precarity_bridge']);
+const cafeWork=new Set(['day_cafe_freedom','customer_messages']);
+const diary=new Set(['time_diary_day','time_diary_night']);
+const restaurant=new Set(['family_restaurant_compare','final_restaurant']);
+const skill=new Set(['skill_transfer','future_self']);
+const costStack=new Set(['day_cost_stack','night_cost_stack','not_binary','pain_currency']);
+const parallel=new Set(['parallel_morning_night','clocks_exchange']);
+const finalCity=new Set(['final_split_city','final_statement']);
+
+const Visual=({beat,p}:{beat:Beat;p:number})=>{
+  const v=beat.visual;
+  if(dayTrain.has(v)) return <DayTrainScene beat={beat} p={p} mode={v}/>;
+  if(nightTaxi.has(v)) return <NightTaxiScene beat={beat} p={p} mode={v}/>;
+  if(v==='cost_ledger') return <CostLedgerScene beat={beat} p={p} mode={v}/>;
+  if(farm.has(v)) return <FarmScene beat={beat} p={p} mode={v}/>;
+  if(factory.has(v)) return <FactoryScene beat={beat} p={p} mode={v}/>;
+  if(showa.has(v)) return <ShowaScene beat={beat} p={p} mode={v}/>;
+  if(theory.has(v)) return <TheoryScene beat={beat} p={p} mode={v}/>;
+  if(ginza.has(v)) return <GinzaScene beat={beat} p={p} mode={v}/>;
+  if(office.has(v)) return <OfficeScene beat={beat} p={p} mode={v}/>;
+  if(lounge.has(v)) return <LoungeScene beat={beat} p={p} mode={v}/>;
+  if(backstage.has(v)) return <BackstageScene beat={beat} p={p} mode={v}/>;
+  if(v==='convenience_dawn') return <DawnScene beat={beat} p={p} mode={v}/>;
+  if(v==='bedroom_blackout') return <BedroomScene beat={beat} p={p} mode={v}/>;
+  if(v==='circadian_clock') return <CircadianScene beat={beat} p={p} mode={v}/>;
+  if(v==='wedding_morning') return <WeddingScene beat={beat} p={p} mode={v}/>;
+  if(income.has(v)) return <IncomeScene beat={beat} p={p} mode={v}/>;
+  if(cafeWork.has(v)) return <CafeWorkScene beat={beat} p={p} mode={v}/>;
+  if(v==='shadow_work') return <ShadowWorkScene beat={beat} p={p} mode={v}/>;
+  if(diary.has(v)) return <DiaryScene beat={beat} p={p} mode={v}/>;
+  if(restaurant.has(v)) return <RestaurantScene beat={beat} p={p} mode={v}/>;
+  if(v==='effective_hourly') return <EffectiveHourlyScene beat={beat} p={p} mode={v}/>;
+  if(v==='new_customer_scan') return <NewCustomerScene beat={beat} p={p} mode={v}/>;
+  if(v==='bosses_rotating') return <BossesScene beat={beat} p={p} mode={v}/>;
+  if(v==='family_visit') return <FamilyScene beat={beat} p={p} mode={v}/>;
+  if(skill.has(v)) return <SkillScene beat={beat} p={p} mode={v}/>;
+  if(costStack.has(v)) return <CostStackScene beat={beat} p={p} mode={v}/>;
+  if(parallel.has(v)) return <ParallelScene beat={beat} p={p} mode={v}/>;
+  if(v==='pain_examples') return <PainExamplesScene beat={beat} p={p} mode={v}/>;
+  if(finalCity.has(v)) return <FinalCityScene beat={beat} p={p} mode={v}/>;
+  return <TheoryScene beat={beat} p={p} mode="latent_functions"/>;
+};
+
+export const V27DayVsNightWork:React.FC=()=>{
+  const frame=useCurrentFrame();
+  const {fps}=useVideoConfig();
+  const active=getActiveBeatAtSeconds(frame/fps);
+  const beat=beats[active.index]??beats[0];
+  return <><Visual beat={beat} p={active.progress}/><CaptionLayer beat={beat} p={active.progress}/></>;
+};
