@@ -2,7 +2,7 @@ import React from 'react';
 import {useCurrentFrame,useVideoConfig} from 'remotion';
 import scriptData from './script-data.json';
 import {getActiveBeatAtSeconds} from './timing';
-import {BackstageScene,BossesScene,CafeWorkScene,CaptionLayer,CircadianScene,CostLedgerScene,CostStackScene,DawnScene,DayTrainScene,DiaryScene,EffectiveHourlyScene,FactoryScene,FarmScene,FamilyScene,FinalCityScene,GinzaScene,IncomeScene,LoungeScene,NightTaxiScene,NewCustomerScene,OfficeScene,PainExamplesScene,ParallelScene,RestaurantScene,ShadowWorkScene,ShowaScene,SkillScene,TheoryScene,WeddingScene,type Beat} from './scenes';
+import {BackstageScene,BedroomScene,BossesScene,CafeWorkScene,CaptionLayer,CircadianScene,CostLedgerScene,CostStackScene,DawnScene,DayTrainScene,DiaryScene,EffectiveHourlyScene,FactoryScene,FarmScene,FamilyScene,FinalCityScene,GinzaScene,IncomeScene,LoungeScene,NightTaxiScene,NewCustomerScene,OfficeScene,PainExamplesScene,ParallelScene,RestaurantScene,ShadowWorkScene,ShowaScene,SkillScene,TheoryScene,WeddingScene,type Beat} from './scenes';
 
 const beats=scriptData.beats as Beat[];
 const dayTrain=new Set(['day_train_intro','day_phone_story']);
