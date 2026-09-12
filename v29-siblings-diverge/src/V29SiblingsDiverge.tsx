@@ -2,7 +2,7 @@ import React from 'react';
 import {useCurrentFrame,useVideoConfig} from 'remotion';
 import scriptData from './script-data.json';
 import {getActiveBeatAtSeconds} from './timing';
-import {BirthdayScene,BrothersScene,GeneticsScene,HistoryScene,LabScene,LivingRoomScene,SchoolScene,FeedbackScene,CareerScene,TwinScene,FinalScene,CaptionLayer,type Beat} from './scenes';
+import {BirthdayScene,BrothersScene,GeneticsScene,HistoryScene,LabScene,LivingRoomScene,SchoolScene,FeedbackScene,CareerScene,TwinScene,FinalScene,CaptionLayer,type Beat} from './scenes-fixed';
 
 const beats=scriptData.beats as Beat[];
 const birthday=new Set(['birthday_table','birthday_afterparty','final_home']);
