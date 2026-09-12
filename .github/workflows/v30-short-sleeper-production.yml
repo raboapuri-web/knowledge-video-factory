@@ -32,14 +32,19 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm run check
-      - name: Validate production architecture
+      - name: Validate production architecture and visual coverage
         run: |
           node - <<'NODE'
           const s=require('./src/script-data.json');
           if(s.beats.length<30) throw new Error(`Need >=30 beats, got ${s.beats.length}`);
-          const unique=new Set(s.beats.map(b=>b.visual));
-          if(unique.size<12) throw new Error(`Need >=12 semantic visual scenes, got ${unique.size}`);
-          console.log(`V30: ${s.beats.length} narration beats / ${unique.size} semantic scenes`);
+          const supported=new Set(['night_search','time_hack','genes','adaptation_trap','study','broken_gauge','circadian','server','hustle','quality','debt','equation','evolution','ending']);
+          const used=[...new Set(s.beats.map(b=>b.visual))];
+          const missing=used.filter(v=>!supported.has(v));
+          if(missing.length) throw new Error(`Unsupported visual keys: ${missing.join(', ')}`);
+          if(used.length<12) throw new Error(`Need >=12 semantic visual scenes, got ${used.length}`);
+          const ids=s.beats.map(b=>b.id);
+          if(new Set(ids).size!==ids.length) throw new Error('Duplicate beat ids detected');
+          console.log(`V30: ${s.beats.length} narration beats / ${used.length} covered semantic scenes / 0 fallback scenes`);
           NODE
       - name: Start VOICEVOX
         run: |
@@ -103,6 +108,7 @@ jobs:
         with:
           name: v30-segment-${{ matrix.id }}
           retention-days: 1
+          if-no-files-found: error
           path: v30-short-sleeper/out/segment-${{ matrix.id }}.mp4
 
   finalize:
@@ -143,7 +149,7 @@ jobs:
             -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v30-short-sleeper-final.mp4
       - name: Create QA contact sheet
         run: |
-          ffmpeg -y -loglevel error -i out/v30-short-sleeper-final.mp4 -vf "fps=1/22,scale=240:135,tile=8x8" -frames:v 1 -q:v 2 out/v30-short-sleeper-contact-sheet.jpg
+          ffmpeg -y -loglevel error -i out/v30-short-sleeper-final.mp4 -vf "fps=1/18,scale=240:135,tile=8x8" -frames:v 1 -q:v 2 out/v30-short-sleeper-contact-sheet.jpg
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
@@ -154,4 +160,4 @@ jobs:
           gh release create "$TAG" "out/${VIDEO_NAME}" out/v30-short-sleeper-contact-sheet.jpg \
             --repo "$GITHUB_REPOSITORY" \
             --title "V30 Short Sleeper Production ${GITHUB_RUN_ID}" \
-            --notes "Full production: 人間は後天的にショートスリーパーになれるのか？ Academic-rich version. Genetics of natural short sleepers, chronic sleep restriction, metacognition, circadian/homeostatic interaction, sleep as offline processing, survivor bias, sleep-quality myth, cognitive usable-time model, and evolutionary paradox. VOICEVOX Aoyama Ryusei Normal; cinematic semantic animation; narration + restrained BGM; segmented parallel rendering."
+            --notes "Corrected production: all script visual keys are strictly validated and every beat is rendered through a real Remotion scene with no text-only fallback. Rich semantic animation, measured VOICEVOX timing, narration + restrained BGM, segmented parallel rendering and QA contact sheet."
