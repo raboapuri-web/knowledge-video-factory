@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 
 const here=path.dirname(fileURLToPath(import.meta.url));
@@ -15,10 +16,11 @@ if(!fs.existsSync(scriptPath)) fail.push('src/script-data.json is missing');
 const script=fs.existsSync(scriptPath)?readJson(scriptPath):{beats:[]};
 const beats=script.beats||[];
 
-const registryPath=path.join(repoRoot,'shared/production-rules/visual-template-registry.json');
-const voiceRulesPath=path.join(repoRoot,'shared/production-rules/voice-pronunciation.json');
-const registry=readJson(registryPath);
-const voiceRules=readJson(voiceRulesPath);
+const registry=readJson(path.join(repoRoot,'shared/production-rules/visual-template-registry.json'));
+const voiceRules=readJson(path.join(repoRoot,'shared/production-rules/voice-pronunciation.json'));
+const qaRules=readJson(path.join(repoRoot,'shared/production-rules/qa-rules.json'));
+const prePolicy=readJson(path.join(repoRoot,'shared/production-rules/preproduction-policy.json'));
+const syncManifest=readJson(path.join(repoRoot,'shared/production-rules/sync-manifest.json'));
 const knownTemplates=new Set((registry.templates||[]).filter(t=>t.status==='active').map(t=>t.id));
 
 const sceneKeys=beats.map(b=>b.template_id||b.visual).filter(Boolean);
@@ -31,11 +33,26 @@ for(const beat of beats){
 }
 
 const manifestPath=path.join(videoRoot,'production-manifest.json');
+let manifest=null;
 if(fs.existsSync(manifestPath)){
-  const manifest=readJson(manifestPath);
-  if(Number(manifest.productionSystemVersion||0)<1) fail.push('QA-REG-01: productionSystemVersion must be >=1');
+  manifest=readJson(manifestPath);
+  const systemVersion=Number(manifest.productionSystemVersion||0);
+  if(systemVersion<1) fail.push('QA-REG-01: productionSystemVersion must be >=1');
   if(Number(manifest.visualRegistryVersion||0)!==Number(registry.version)) fail.push(`QA-REG-02: visualRegistryVersion ${manifest.visualRegistryVersion} does not match registry ${registry.version}`);
   if(Number(manifest.voiceDictionaryVersion||0)!==Number(voiceRules.version)) fail.push(`QA-REG-02: voiceDictionaryVersion ${manifest.voiceDictionaryVersion} does not match dictionary ${voiceRules.version}`);
+  if(systemVersion>=2){
+    if(Number(manifest.qaRulesVersion||0)!==Number(qaRules.version)) fail.push(`QA-REG-02: qaRulesVersion ${manifest.qaRulesVersion} does not match QA registry ${qaRules.version}`);
+    if(Number(manifest.preproductionPolicyVersion||0)!==Number(prePolicy.version)) fail.push(`QA-REG-02: preproductionPolicyVersion ${manifest.preproductionPolicyVersion} does not match policy ${prePolicy.version}`);
+    if(Number(manifest.syncManifestVersion||0)!==Number(syncManifest.version)) fail.push(`QA-REG-02: syncManifestVersion ${manifest.syncManifestVersion} does not match sync manifest ${syncManifest.version}`);
+    if(manifest.requiresPreproductionPlan!==true) fail.push('QA-PLAN-01: requiresPreproductionPlan must be true for Production System v2+');
+    if(phase==='pre'){
+      try{
+        execFileSync(process.execPath,[path.join(repoRoot,'shared/qa/validate-preproduction.mjs'),videoRoot],{stdio:'inherit'});
+      }catch{
+        fail.push('QA-PLAN-01/02/03/04: preproduction plan validation failed');
+      }
+    }
+  }
   if(manifest.sharedVoiceGenerator!==true) fail.push('QA-VOICE-01: production manifest must require sharedVoiceGenerator=true');
 }else{
   warn.push('No production-manifest.json. Legacy videos may pass, but all new videos should include one.');
@@ -59,7 +76,7 @@ if(phase==='post'){
   if(!fs.existsSync(reportPath)) warn.push('QA-VOICE-02: pronunciation-report.json missing after voice generation');
 }
 
-console.log(`Production QA (${phase}): beats=${beats.length}, uniqueScenes=${unique.size}, sharedTemplatesUsed=${beats.filter(b=>b.template_id).length}`);
+console.log(`Production QA (${phase}): beats=${beats.length}, uniqueScenes=${unique.size}, sharedTemplatesUsed=${beats.filter(b=>b.template_id).length}, systemVersion=${manifest?.productionSystemVersion||'legacy'}`);
 for(const w of warn) console.warn(`WARNING: ${w}`);
 if(fail.length){for(const e of fail) console.error(`ERROR: ${e}`);process.exit(1);}
 console.log('Production QA passed');
