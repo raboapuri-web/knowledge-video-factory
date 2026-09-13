@@ -1,10 +1,10 @@
 {
   "productionSystemVersion": 2,
   "visualRegistryVersion": 4,
-  "voiceDictionaryVersion": 3,
+  "voiceDictionaryVersion": 4,
   "qaRulesVersion": 3,
   "preproductionPolicyVersion": 1,
-  "syncManifestVersion": 6,
+  "syncManifestVersion": 7,
   "requiresPreproductionPlan": true,
   "sharedVoiceGenerator": true,
   "videoId": "V40-flynn-effect",
