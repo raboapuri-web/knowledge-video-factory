@@ -39,12 +39,12 @@
       "id": "VR-0004",
       "enabled": true,
       "target": "身体",
-      "mode": "phrase",
+      "mode": "standalone",
       "wrongReading": "しんたい",
       "correctReading": "からだ",
       "replacement": "からだ",
       "priority": 100,
-      "note": "身体という語を通常のナレーションで読む場合。身体的など派生語は別ルール化する。"
+      "note": "身体という語を単体名詞として読む場合。身体的などの複合語には適用しない。"
     }
   ]
 }
