@@ -33,6 +33,8 @@ jobs:
       - run: npm install
       - name: Expose V38 dependencies to shared tools
         run: ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Apply V38 renderer syntax patch
+        run: node scripts/fix-renderer.mjs
       - name: V38 story and architecture guard
         run: |
           node - <<'NODE'
@@ -108,6 +110,8 @@ jobs:
       - run: npm install
       - name: Expose V38 dependencies to shared tools
         run: ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Apply V38 renderer syntax patch
+        run: node scripts/fix-renderer.mjs
       - uses: actions/download-artifact@v4
         with:
           name: v38-prepared
