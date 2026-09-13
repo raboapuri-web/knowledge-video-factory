@@ -4,7 +4,7 @@
   "voiceDictionaryVersion": 1,
   "qaRulesVersion": 2,
   "preproductionPolicyVersion": 1,
-  "syncManifestVersion": 1,
+  "syncManifestVersion": 2,
   "sharedVoiceGenerator": true,
   "sceneMode": "hybrid",
   "requiresPreproductionPlan": true
