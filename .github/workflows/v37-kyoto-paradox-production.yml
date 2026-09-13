@@ -1,0 +1,183 @@
+name: V37 Kyoto Paradox Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v37-kyoto-paradox-production.yml'
+      - 'v37-kyoto-paradox/**'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    defaults:
+      run:
+        working-directory: v37-kyoto-paradox
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install audio tools and Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - name: Expose V37 dependencies to shared tools
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Production QA pre
+        working-directory: .
+        run: node shared/qa/validate-video.mjs v37-kyoto-paradox pre
+      - name: Pronunciation regression tests
+        working-directory: .
+        run: node shared/voice/test-pronunciation.mjs
+      - run: npm run check
+      - name: Validate V37 visual coverage
+        run: |
+          node - <<'NODE'
+          const s=require('./src/script-data.json');
+          if(s.beats.length!==48) throw new Error(`Expected 48 beats, got ${s.beats.length}`);
+          const used=[...new Set(s.beats.map(b=>b.visual))];
+          if(used.length<40) throw new Error(`Need >=40 distinct visual keys, got ${used.length}`);
+          if(new Set(s.beats.map(b=>b.id)).size!==s.beats.length) throw new Error('Duplicate beat ids');
+          if(s.beats.some(b=>/^(fallback|default)$/i.test(b.visual))) throw new Error('Fallback/default visual found');
+          console.log(`V37 architecture: ${s.beats.length} beats / ${used.length} visual keys / scene-complete QA enabled`);
+          NODE
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox || true
+          exit 1
+      - run: node scripts/generate-voicevox.mjs
+      - name: Production QA post
+        working-directory: .
+        run: node shared/qa/validate-video.mjs v37-kyoto-paradox post
+      - id: plan
+        run: |
+          MATRIX="$(node scripts/plan-segments.mjs)"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v37-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: |
+            v37-kyoto-paradox/src/sync-timing.json
+            v37-kyoto-paradox/public/audio/narration.m4a
+            v37-kyoto-paradox/public/audio/pronunciation-report.json
+            v37-kyoto-paradox/qa/preproduction-summary.json
+            v37-kyoto-paradox/qa/preproduction-summary.md
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    defaults:
+      run:
+        working-directory: v37-kyoto-paradox
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - name: Expose V37 dependencies to shared tools
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - uses: actions/download-artifact@v4
+        with:
+          name: v37-prepared
+          path: v37-kyoto-paradox
+      - name: Render segment
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out
+          npx remotion render src/index.ts V37KyotoParadox "out/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v37-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v37-kyoto-paradox/out/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    defaults:
+      run:
+        working-directory: v37-kyoto-paradox
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg and Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v37-prepared
+          path: v37-kyoto-paradox
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v37-segment-*
+          path: v37-kyoto-paradox/parts
+          merge-multiple: true
+      - run: node scripts/generate-bgm.mjs
+      - name: Concatenate segments
+        run: |
+          mkdir -p out
+          find parts -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+      - name: Mix narration and BGM
+        run: |
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a \
+            -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.05[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" \
+            -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v37-kyoto-paradox-final.mp4
+      - name: Create scene-complete QA contact sheet
+        working-directory: .
+        run: node shared/qa/generate-scene-contact-sheet.mjs v37-kyoto-paradox v37-kyoto-paradox/out/v37-kyoto-paradox-final.mp4 v37-kyoto-paradox/out/v37-kyoto-paradox-scene-contact-sheet.jpg
+      - name: Verify QA sheet source count
+        run: |
+          node - <<'NODE'
+          const s=require('./src/sync-timing.json');
+          if((s.beats||[]).length!==48) throw new Error(`QA requires 48 measured scenes, got ${(s.beats||[]).length}`);
+          NODE
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO_NAME="knowledge-video-v37-kyoto-paradox-${GITHUB_RUN_ID}.mp4"
+          cp out/v37-kyoto-paradox-final.mp4 "out/${VIDEO_NAME}"
+          TAG="v37-kyoto-paradox-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out/${VIDEO_NAME}" out/v37-kyoto-paradox-scene-contact-sheet.jpg public/audio/pronunciation-report.json qa/preproduction-summary.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V37 Kyoto Paradox Production ${GITHUB_RUN_ID}" \
+            --notes "Full production: なぜ京都人は、笑顔のまま人を排除できるのか？【語用論×ポライトネス理論】. 48 measured narration beats, 40+ distinct visual keys, shared pronunciation dictionary v3, 青山龍星 VOICEVOX, synchronized subtitles, restrained dark BGM, segmented parallel rendering, and a scene-complete 48-frame QA contact sheet."
