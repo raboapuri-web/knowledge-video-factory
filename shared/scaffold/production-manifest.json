@@ -2,6 +2,7 @@
   "productionSystemVersion": 2,
   "visualRegistryVersion": 1,
   "voiceDictionaryVersion": 1,
+  "qaRulesVersion": 2,
   "preproductionPolicyVersion": 1,
   "syncManifestVersion": 1,
   "sharedVoiceGenerator": true,
