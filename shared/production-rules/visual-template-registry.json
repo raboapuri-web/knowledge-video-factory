@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "updatedAt": "2026-09-13",
   "policy": {
     "rule": "Reusable motion patterns live in shared/remotion-templates and are called by templateId + params. Do not copy a registered template back into a per-video scenes.tsx.",
@@ -24,6 +24,11 @@
     {"id":"extreme_value_pool","status":"active","component":"ExtremeValuePool","file":"shared/remotion-templates/v34-dating.tsx","replaceable":["headline","poolSize","highlightedTop","expectedMax","label"],"source":"V34","use":"母集団増加と極端値・上位観測"},
     {"id":"opportunity_cost_fan","status":"active","component":"OpportunityCostFan","file":"shared/remotion-templates/v34-dating.tsx","replaceable":["headline","options","selected"],"source":"V34","use":"選択に伴う他の可能性の放棄"},
     {"id":"two_sided_match_market","status":"active","component":"TwoSidedMatchMarket","file":"shared/remotion-templates/v34-dating.tsx","replaceable":["headline","left","right","matches"],"source":"V34","use":"恋愛・採用など相互選択市場"},
-    {"id":"real_vs_possible_partner","status":"active","component":"RealVsPossiblePartner","file":"shared/remotion-templates/v34-dating.tsx","replaceable":["headline","realLabel","possibleLabel","flaws","dreams"],"source":"V34","use":"現実の選択肢と未知の理想化候補の比較"}
+    {"id":"real_vs_possible_partner","status":"active","component":"RealVsPossiblePartner","file":"shared/remotion-templates/v34-dating.tsx","replaceable":["headline","realLabel","possibleLabel","flaws","dreams"],"source":"V34","use":"現実の選択肢と未知の理想化候補の比較"},
+    {"id":"moral_dual_meter","status":"active","component":"MoralDualMeter","file":"shared/remotion-templates/v35-villain.tsx","replaceable":["headline","moral","appeal","leftLabel","rightLabel"],"source":"V35","use":"道徳評価と魅力評価など二軸が乖離する構造"},
+    {"id":"safe_danger_glass","status":"active","component":"SafeDangerGlass","file":"shared/remotion-templates/v35-villain.tsx","replaceable":["headline","dangerLabel","safeLabel"],"source":"V35","use":"危険を安全な距離から観察する構造"},
+    {"id":"dominance_prestige_ladder","status":"active","component":"DominancePrestigeLadder","file":"shared/remotion-templates/v35-villain.tsx","replaceable":["headline","dominance","prestige"],"source":"V35","use":"支配と威信など地位獲得経路の比較"},
+    {"id":"forbidden_self_mirror","status":"active","component":"ForbiddenSelfMirror","file":"shared/remotion-templates/v35-villain.tsx","replaceable":["headline","realLabel","fictionLabel"],"source":"V35","use":"現実では脅威だがフィクションでは安全に同一化できる比較"},
+    {"id":"prediction_uncertainty","status":"active","component":"PredictionUncertainty","file":"shared/remotion-templates/v35-villain.tsx","replaceable":["headline","hero","villain"],"source":"V35","use":"予測可能性と不確実性の対比・注意喚起"}
   ]
 }
