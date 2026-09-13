@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "cases": [
     {"input":"金。","expected":"かね。"},
     {"input":"金を払う。","expected":"かねを払う。"},
@@ -29,6 +29,9 @@
     {"input":"表。","expected":"おもて。"},
     {"input":"表を見る。","expected":"おもてを見る。"},
     {"input":"表では、おめでとうと言う。","expected":"おもてでは、おめでとうと言う。"},
-    {"input":"表面と表現。","expected":"表面と表現。"}
+    {"input":"表面と表現。","expected":"表面と表現。"},
+    {"input":"標準偏差で表す。","expected":"標準偏差で表す。"},
+    {"input":"影響が強く表れた。","expected":"影響が強く表れた。"},
+    {"input":"考えを表した。","expected":"考えを表した。"}
   ]
 }
