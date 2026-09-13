@@ -7,15 +7,58 @@
   "scenes": [
     {
       "id": "S01",
-      "summary": "",
+      "summary": "導入の問い",
       "sceneType": "semantic",
       "templateSource": "Existing",
       "templateId": "thesis_reveal",
-      "newTemplateName": null,
-      "proposedTemplateId": null,
+      "reusable": false,
+      "params": {"text":""},
+      "visualIntent": "問いを一発で提示",
+      "estimatedSeconds": 7
+    },
+    {
+      "id": "S02",
+      "summary": "母集団や普及の可視化",
+      "sceneType": "data-motion",
+      "templateSource": "Existing",
+      "templateId": "crowd_grid",
+      "reusable": false,
+      "params": {"count":16,"highlight":2},
+      "visualIntent": "多数化や均質化を直感表示",
+      "estimatedSeconds": 8
+    },
+    {
+      "id": "S03",
+      "summary": "この動画固有の新しい因果表現A",
+      "sceneType": "custom",
+      "templateSource": "New",
+      "newTemplateName": "新規候補A",
+      "proposedTemplateId": "new_candidate_a",
+      "reusable": true,
+      "params": {},
+      "visualIntent": "新しいvisual grammarを作る",
+      "estimatedSeconds": 9
+    },
+    {
+      "id": "S04",
+      "summary": "この動画固有の新しい因果表現B",
+      "sceneType": "custom",
+      "templateSource": "New",
+      "newTemplateName": "新規候補B",
+      "proposedTemplateId": "new_candidate_b",
+      "reusable": true,
+      "params": {},
+      "visualIntent": "別の再利用可能モーションを作る",
+      "estimatedSeconds": 9
+    },
+    {
+      "id": "S05",
+      "summary": "一回限りの固有演出",
+      "sceneType": "one-off",
+      "templateSource": "One-off",
       "reusable": false,
       "params": {},
-      "visualIntent": "",
+      "visualIntent": "テーマ固有でテンプレ化しない",
       "estimatedSeconds": 8
     }
   ]
