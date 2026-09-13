@@ -1,0 +1,22 @@
+{
+  "videoId": "VXX",
+  "title": "",
+  "policyVersion": 1,
+  "visualRegistryVersion": 1,
+  "reviewedBeforeImplementation": false,
+  "scenes": [
+    {
+      "id": "S01",
+      "summary": "",
+      "sceneType": "semantic",
+      "templateSource": "Existing",
+      "templateId": "thesis_reveal",
+      "newTemplateName": null,
+      "proposedTemplateId": null,
+      "reusable": false,
+      "params": {},
+      "visualIntent": "",
+      "estimatedSeconds": 8
+    }
+  ]
+}
