@@ -1,0 +1,14 @@
+{
+  "productionSystemVersion":2,
+  "voiceDictionaryVersion":2,
+  "visualTemplateRegistryVersion":4,
+  "visualRegistryVersion":4,
+  "qaRulesVersion":3,
+  "preproductionPolicyVersion":1,
+  "syncManifestVersion":5,
+  "requiresSharedVoiceGenerator":true,
+  "sharedVoiceGenerator":true,
+  "requiresPreproductionPlan":true,
+  "sceneMode":"hybrid",
+  "policy":{"noGenericFallback":true,"contactSheetRequired":true,"sceneCompleteContactSheetRequired":true,"measuredVoiceTimingRequired":true,"maxExistingTemplateShare":0.2,"maxConsecutiveSameRegisteredTemplate":2,"preproductionHumanReviewRequired":true}
+}
