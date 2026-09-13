@@ -1,0 +1,169 @@
+name: V33 Beauty Equality Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v33-beauty-equality-production.yml'
+      - 'v33-beauty-equality/**'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    defaults:
+      run:
+        working-directory: v33-beauty-equality
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install audio tools and Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run check
+      - name: Validate production architecture and visual coverage
+        run: |
+          node - <<'NODE'
+          const s=require('./src/script-data.json');
+          if(s.beats.length<50) throw new Error(`Need >=50 beats, got ${s.beats.length}`);
+          const supported=new Set([
+            'future_city','beauty_floor','new_axes','thesis_reveal','two_values','height_context','scarcity_dilution','positional_good',
+            'selection_machine','micro_features','social_compare','moving_average','decimal_ranking','dating_grid','app_filters','minimum_standard',
+            'floor_ceiling','red_queen','treadmill','future_2050','zoomed_flaws','ranking_desire','metric_migration','credential_parallel',
+            'god_upgrade','ranking_reborn','imperfection_luxury','status_cycle','global_feed','not_necessarily_hell','tiny_gap_big_meaning',
+            'bottom_rank','metric_escape','individuality_return','ending_question','ending_black'
+          ]);
+          const used=[...new Set(s.beats.map(b=>b.visual))];
+          const missing=used.filter(v=>!supported.has(v));
+          if(missing.length) throw new Error(`Unsupported visual keys: ${missing.join(', ')}`);
+          if(used.length<34) throw new Error(`Need >=34 semantic visual scenes, got ${used.length}`);
+          const ids=s.beats.map(b=>b.id);
+          if(new Set(ids).size!==ids.length) throw new Error('Duplicate beat ids detected');
+          console.log(`V33: ${s.beats.length} narration beats / ${used.length} covered semantic scenes / 0 fallback scenes`);
+          NODE
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox || true
+          exit 1
+      - run: node scripts/generate-voicevox.mjs
+      - id: plan
+        run: |
+          MATRIX="$(node scripts/plan-segments.mjs)"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v33-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: |
+            v33-beauty-equality/src/sync-timing.json
+            v33-beauty-equality/public/audio/narration.m4a
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    defaults:
+      run:
+        working-directory: v33-beauty-equality
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - uses: actions/download-artifact@v4
+        with:
+          name: v33-prepared
+          path: v33-beauty-equality
+      - name: Render segment
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out
+          npx remotion render src/index.ts V33BeautyEquality "out/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 --crf=19 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v33-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v33-beauty-equality/out/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    defaults:
+      run:
+        working-directory: v33-beauty-equality
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v33-prepared
+          path: v33-beauty-equality
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v33-segment-*
+          path: v33-beauty-equality/parts
+          merge-multiple: true
+      - run: node scripts/generate-bgm.mjs
+      - name: Concatenate segments
+        run: |
+          mkdir -p out
+          find parts -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+      - name: Mix narration and BGM
+        run: |
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a \
+            -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.058[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" \
+            -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v33-beauty-equality-final.mp4
+      - name: Create QA contact sheet
+        run: |
+          ffmpeg -y -loglevel error -i out/v33-beauty-equality-final.mp4 -vf "fps=1/18,scale=240:135,tile=8x8" -frames:v 1 -q:v 2 out/v33-beauty-equality-contact-sheet.jpg
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO_NAME="knowledge-video-v33-beauty-equality-${GITHUB_RUN_ID}.mp4"
+          cp out/v33-beauty-equality-final.mp4 "out/${VIDEO_NAME}"
+          TAG="v33-beauty-equality-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out/${VIDEO_NAME}" out/v33-beauty-equality-contact-sheet.jpg \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V33 Beauty Equality Production ${GITHUB_RUN_ID}" \
+            --notes "Full production: もし全員が美男美女になると、世界はさらに残酷な選別を始めるのか？ 55 narration beats, 36 strictly validated semantic Remotion scenes, measured 青山龍星 VOICEVOX timing, positional-goods / social-comparison / dating-market / Red-Queen animations, synchronized subtitles, restrained dark BGM, segmented parallel rendering and QA contact sheet."
