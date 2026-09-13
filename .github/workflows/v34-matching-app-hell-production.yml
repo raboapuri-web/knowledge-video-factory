@@ -35,6 +35,8 @@ jobs:
         with:
           node-version: 20
       - run: npm install
+      - name: Expose V34 dependencies to shared templates
+        run: ln -sfn "$PWD/node_modules" ../node_modules
       - name: Validate approved preproduction plan
         working-directory: .
         run: node shared/qa/validate-preproduction.mjs v34-matching-app-hell render
@@ -109,6 +111,8 @@ jobs:
         with:
           node-version: 20
       - run: npm install
+      - name: Expose V34 dependencies to shared templates
+        run: ln -sfn "$PWD/node_modules" ../node_modules
       - uses: actions/download-artifact@v4
         with:
           name: v34-prepared
