@@ -2,7 +2,7 @@ import React from 'react';
 import {AbsoluteFill,interpolate,useCurrentFrame,useVideoConfig} from 'remotion';
 import scriptData from './script-data.json';
 import {getActiveBeatAtSeconds} from './timing';
-import {RichScene,type Beat} from './scenes';
+import {RichSceneV33,type Beat} from './scenes-v33';
 
 const beats=scriptData.beats as Beat[];
 const font='"Noto Sans CJK JP",sans-serif';
@@ -39,5 +39,5 @@ export const V33BeautyEquality:React.FC=()=>{
   const prev=beats[Math.max(0,active.index-1)]??beat;
   const changed=active.index===0||prev.visual!==beat.visual;
   const fade=changed?interpolate(active.progress,[0,.07],[0,1],{extrapolateLeft:'clamp',extrapolateRight:'clamp'}):1;
-  return <AbsoluteFill style={{background:'#030507'}}><AbsoluteFill style={{opacity:fade}}><RichScene beat={beat}/></AbsoluteFill><Subtitle beat={beat} progress={active.progress} fade={Math.min(1,fade+.22)}/></AbsoluteFill>;
+  return <AbsoluteFill style={{background:'#030507'}}><AbsoluteFill style={{opacity:fade}}><RichSceneV33 beat={beat}/></AbsoluteFill><Subtitle beat={beat} progress={active.progress} fade={Math.min(1,fade+.22)}/></AbsoluteFill>;
 };
