@@ -22,11 +22,12 @@ export const applyPronunciationRules=(text,rules=loadPronunciationRules())=>{
     const before=out;
     if(rule.mode==='standalone'){
       // A standalone rule targets an independent lexical item, not a compound,
-      // numeric counter, or inflected word stem. Some one-character rules (e.g. 上)
-      // also opt out when preceded by kana so 「年収も上がった」「積み上がる」
-      // cannot be mistaken for an isolated token.
+      // numeric counter, or inflected word stem. Rules may opt out when preceded
+      // by kana (e.g. 上 in 積み上がる), and may also list kana that must not
+      // immediately follow the target (e.g. 表す/表れる must not become おもてす/おもてれる).
       const leftChars=`${kanji}${digits}${rule.disallowPrecedingKana?kana:''}`;
-      const re=new RegExp(`(?<![${leftChars}])${escapeRegExp(rule.target)}(?![${kanji}])`,'g');
+      const rightExtra=rule.disallowFollowingKanaChars?escapeRegExp(rule.disallowFollowingKanaChars):'';
+      const re=new RegExp(`(?<![${leftChars}])${escapeRegExp(rule.target)}(?![${kanji}${rightExtra}])`,'g');
       out=out.replace(re,rule.replacement);
     }else if(rule.mode==='phrase'){
       out=out.split(rule.target).join(rule.replacement);
