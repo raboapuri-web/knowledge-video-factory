@@ -10,6 +10,7 @@ on:
       - 'shared/remotion-templates/v34-dating.tsx'
       - 'shared/production-rules/visual-template-registry.json'
       - 'shared/production-rules/voice-pronunciation.json'
+      - 'shared/voice/**'
       - 'shared/qa/validate-preproduction.mjs'
 
 permissions:
@@ -40,6 +41,9 @@ jobs:
       - name: Validate approved preproduction plan
         working-directory: .
         run: node shared/qa/validate-preproduction.mjs v34-matching-app-hell render
+      - name: Pronunciation regression tests
+        working-directory: .
+        run: node shared/voice/test-pronunciation.mjs
       - run: npm run check
       - name: Validate V34 visual coverage
         run: |
@@ -181,4 +185,4 @@ jobs:
           gh release create "$TAG" "out/${VIDEO_NAME}" out/v34-matching-app-hell-contact-sheet.jpg public/audio/pronunciation-report.json qa/preproduction-summary.json \
             --repo "$GITHUB_REPOSITORY" \
             --title "V34 Matching App Hell Production ${GITHUB_RUN_ID}" \
-            --notes "Full production: なぜマッチングアプリは『モテる人』の恋愛も地獄にするのか【統計学×進化心理学】. 48 measured narration beats, 40+ distinct visual keys, 5 newly registered reusable Remotion templates, many one-off cinematic scenes, shared pronunciation dictionary, 青山龍星 VOICEVOX, synchronized subtitles, restrained dark BGM, segmented parallel rendering and QA contact sheet."
+            --notes "Full production: なぜマッチングアプリは『モテる人』の恋愛も地獄にするのか【統計学×進化心理学】. 48 measured narration beats, 40+ distinct visual keys, 5 newly registered reusable Remotion templates, many one-off cinematic scenes, shared pronunciation dictionary with regression tests, 青山龍星 VOICEVOX, synchronized subtitles, restrained dark BGM, segmented parallel rendering and QA contact sheet."
