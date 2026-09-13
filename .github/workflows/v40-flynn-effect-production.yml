@@ -44,7 +44,7 @@ jobs:
           if(used.length!==60) throw new Error(`Expected 60 distinct visual keys, got ${used.length}`);
           if(new Set(s.beats.map(b=>b.id)).size!==60) throw new Error('Duplicate beat ids');
           const all=s.beats.map(b=>b.narration).join('\n');
-          for(const phrase of ['フリン効果','流動性知能','結晶性知能','測定不変性','一般知能','ノルウェー','社会が変われば']) {
+          for(const phrase of ['フリン効果','流動性知能','結晶性能力','測定不変性','一般知能','ノルウェー','社会が変われば']) {
             if(!all.includes(phrase)) throw new Error(`Missing narrative anchor: ${phrase}`);
           }
           const renderer=fs.readFileSync('./src/scenes-v40.tsx','utf8');
