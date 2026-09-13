@@ -23,6 +23,22 @@ const prePolicy=readJson(path.join(repoRoot,'shared/production-rules/preproducti
 const syncManifest=readJson(path.join(repoRoot,'shared/production-rules/sync-manifest.json'));
 const knownTemplates=new Set((registry.templates||[]).filter(t=>t.status==='active').map(t=>t.id));
 
+// QA-SYNC-LEDGER: the recorded human-ledger version and GitHub runtime version must agree,
+// and the recorded GitHub version must equal the actual runtime JSON version.
+const expectedResources={
+  'voice-rules':voiceRules.version,
+  'visual-template-registry':registry.version,
+  'qa-rules':qaRules.version,
+  'preproduction-policy':prePolicy.version,
+  'sync-manifest':syncManifest.version
+};
+for(const [stableId,actualVersion] of Object.entries(expectedResources)){
+  const row=(syncManifest.resources||[]).find(r=>r.stableId===stableId);
+  if(!row){fail.push(`QA-SYNC-LEDGER: sync-manifest missing stableId '${stableId}'`);continue;}
+  if(Number(row.githubVersion)!==Number(actualVersion)) fail.push(`QA-SYNC-LEDGER: ${stableId} recorded githubVersion ${row.githubVersion} != actual ${actualVersion}`);
+  if(Number(row.sheetVersion)!==Number(row.githubVersion)) fail.push(`QA-SYNC-LEDGER: ${stableId} sheetVersion ${row.sheetVersion} != githubVersion ${row.githubVersion}`);
+}
+
 const sceneKeys=beats.map(b=>b.template_id||b.visual).filter(Boolean);
 const unique=new Set(sceneKeys);
 if(beats.length>=40&&unique.size<30) fail.push(`QA-VIS-01: long-form video has only ${unique.size} unique scene keys for ${beats.length} beats; need >=30`);
@@ -47,7 +63,7 @@ if(fs.existsSync(manifestPath)){
     if(manifest.requiresPreproductionPlan!==true) fail.push('QA-PLAN-01: requiresPreproductionPlan must be true for Production System v2+');
     if(phase==='pre'){
       try{
-        execFileSync(process.execPath,[path.join(repoRoot,'shared/qa/validate-preproduction.mjs'),videoRoot],{stdio:'inherit'});
+        execFileSync(process.execPath,[path.join(repoRoot,'shared/qa/validate-preproduction.mjs'),videoRoot,'render'],{stdio:'inherit'});
       }catch{
         fail.push('QA-PLAN-01/02/03/04: preproduction plan validation failed');
       }
