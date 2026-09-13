@@ -10,6 +10,7 @@
 - 個別動画で同じ語を `speech` 手修正するだけで終わらせない。
 - 新規動画の `scripts/generate-voicevox.mjs` は、個別実装ではなく `shared/voice/generate-voicevox.mjs` を呼ぶ薄いwrapperにする。
 - 変換結果は `public/audio/pronunciation-report.json` に残す。
+- 辞書追加後は `node shared/voice/test-pronunciation.mjs` を実行し、正常系と複合語の例外系を固定する。
 
 ## 2. 映像テンプレート
 
@@ -67,6 +68,7 @@ V34以降の新規動画には以下を置く。
 新規動画は最低限以下を実行する。
 
 ```bash
+node ../shared/voice/test-pronunciation.mjs
 node ../shared/qa/validate-video.mjs . pre
 node scripts/generate-voicevox.mjs
 node ../shared/qa/validate-video.mjs . post
