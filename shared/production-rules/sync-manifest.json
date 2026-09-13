@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "updatedAt": "2026-09-13",
   "purpose": "Keep the human spreadsheet ledger and GitHub runtime rules aligned by stable_id and version.",
   "humanLedger": {
@@ -13,10 +13,10 @@
   },
   "resources": [
     {"resourceType":"voice_dictionary","stableId":"voice-rules","sheet":"Voice_Dictionary","githubPath":"shared/production-rules/voice-pronunciation.json","sheetVersion":2,"githubVersion":2},
-    {"resourceType":"visual_templates","stableId":"visual-template-registry","sheet":"Visual_Templates","githubPath":"shared/production-rules/visual-template-registry.json","sheetVersion":3,"githubVersion":3},
-    {"resourceType":"qa_rules","stableId":"qa-rules","sheet":"QA_Rules","githubPath":"shared/production-rules/qa-rules.json","sheetVersion":2,"githubVersion":2},
+    {"resourceType":"visual_templates","stableId":"visual-template-registry","sheet":"Visual_Templates","githubPath":"shared/production-rules/visual-template-registry.json","sheetVersion":4,"githubVersion":4},
+    {"resourceType":"qa_rules","stableId":"qa-rules","sheet":"QA_Rules","githubPath":"shared/production-rules/qa-rules.json","sheetVersion":3,"githubVersion":3},
     {"resourceType":"preproduction_policy","stableId":"preproduction-policy","sheet":"Preproduction_Plan","githubPath":"shared/production-rules/preproduction-policy.json","sheetVersion":1,"githubVersion":1},
-    {"resourceType":"sync_manifest","stableId":"sync-manifest","sheet":"Sync_Control","githubPath":"shared/production-rules/sync-manifest.json","sheetVersion":4,"githubVersion":4}
+    {"resourceType":"sync_manifest","stableId":"sync-manifest","sheet":"Sync_Control","githubPath":"shared/production-rules/sync-manifest.json","sheetVersion":5,"githubVersion":5}
   ],
   "driftRule": "If any stableId/version differs between the human ledger and runtime registry, new production is BLOCKED until reconciled."
 }
