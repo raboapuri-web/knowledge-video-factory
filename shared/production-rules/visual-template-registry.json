@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "updatedAt": "2026-09-13",
   "policy": {
     "rule": "Reusable motion patterns live in shared/remotion-templates and are called by templateId + params. Do not copy a registered template back into a per-video scenes.tsx.",
@@ -29,6 +29,11 @@
     {"id":"safe_danger_glass","status":"active","component":"SafeDangerGlass","file":"shared/remotion-templates/v35-villain.tsx","replaceable":["headline","dangerLabel","safeLabel"],"source":"V35","use":"危険を安全な距離から観察する構造"},
     {"id":"dominance_prestige_ladder","status":"active","component":"DominancePrestigeLadder","file":"shared/remotion-templates/v35-villain.tsx","replaceable":["headline","dominance","prestige"],"source":"V35","use":"支配と威信など地位獲得経路の比較"},
     {"id":"forbidden_self_mirror","status":"active","component":"ForbiddenSelfMirror","file":"shared/remotion-templates/v35-villain.tsx","replaceable":["headline","realLabel","fictionLabel"],"source":"V35","use":"現実では脅威だがフィクションでは安全に同一化できる比較"},
-    {"id":"prediction_uncertainty","status":"active","component":"PredictionUncertainty","file":"shared/remotion-templates/v35-villain.tsx","replaceable":["headline","hero","villain"],"source":"V35","use":"予測可能性と不確実性の対比・注意喚起"}
+    {"id":"prediction_uncertainty","status":"active","component":"PredictionUncertainty","file":"shared/remotion-templates/v35-villain.tsx","replaceable":["headline","hero","villain"],"source":"V35","use":"予測可能性と不確実性の対比・注意喚起"},
+    {"id":"comparison_mirror","status":"active","component":"ComparisonMirror","file":"shared/remotion-templates/v36-frenemy.tsx","replaceable":["headline","selfLabel","friendLabel","selfValue","friendValue"],"source":"V36","use":"近い相手を自己評価の鏡として比較する構造"},
+    {"id":"reference_group_scale","status":"active","component":"ReferenceGroupScale","file":"shared/remotion-templates/v36-frenemy.tsx","replaceable":["headline","value","lowPeer","highPeer"],"source":"V36","use":"同じ絶対値でも参照集団によって意味が変わる比較"},
+    {"id":"friend_enemy_blend","status":"active","component":"FriendEnemyBlend","file":"shared/remotion-templates/v36-frenemy.tsx","replaceable":["headline","friend","enemy","result"],"source":"V36","use":"好意と敵意が同一人物・関係に同居する構造"},
+    {"id":"ambivalence_switchboard","status":"active","component":"AmbivalenceSwitchboard","file":"shared/remotion-templates/v36-frenemy.tsx","replaceable":["headline","positive","negative"],"source":"V36","use":"援助と加害など相反する行動が同時に生じる構造"},
+    {"id":"highlight_feed","status":"active","component":"HighlightFeed","file":"shared/remotion-templates/v36-frenemy.tsx","replaceable":["headline","items","selfLabel"],"source":"V36","use":"他者のハイライトと自分の日常を不公平に比較するSNS構造"}
   ]
 }
