@@ -1,0 +1,12 @@
+{
+  "productionSystemVersion": 2,
+  "visualRegistryVersion": 4,
+  "voiceDictionaryVersion": 3,
+  "qaRulesVersion": 3,
+  "preproductionPolicyVersion": 1,
+  "syncManifestVersion": 6,
+  "requiresPreproductionPlan": true,
+  "sharedVoiceGenerator": true,
+  "videoId": "V40-flynn-effect",
+  "title": "人類のIQは100年前と比べて上がっているのか？【フリン効果×認知科学】"
+}
