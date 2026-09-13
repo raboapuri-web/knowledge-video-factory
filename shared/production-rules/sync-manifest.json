@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "updatedAt": "2026-09-13",
   "purpose": "Keep the human spreadsheet ledger and GitHub runtime rules aligned by stable_id and version.",
   "humanLedger": {
@@ -30,8 +30,8 @@
       "stableId": "qa-rules",
       "sheet": "QA_Rules",
       "githubPath": "shared/production-rules/qa-rules.json",
-      "sheetVersion": 1,
-      "githubVersion": 1
+      "sheetVersion": 2,
+      "githubVersion": 2
     },
     {
       "resourceType": "preproduction_policy",
@@ -40,6 +40,14 @@
       "githubPath": "shared/production-rules/preproduction-policy.json",
       "sheetVersion": 1,
       "githubVersion": 1
+    },
+    {
+      "resourceType": "sync_manifest",
+      "stableId": "sync-manifest",
+      "sheet": "Sync_Control",
+      "githubPath": "shared/production-rules/sync-manifest.json",
+      "sheetVersion": 2,
+      "githubVersion": 2
     }
   ],
   "driftRule": "If any stableId/version differs between the human ledger and runtime registry, new production is BLOCKED until reconciled."
