@@ -2,7 +2,7 @@ import React from 'react';
 import {AbsoluteFill,interpolate,useCurrentFrame,useVideoConfig} from 'remotion';
 import scriptData from './script-data.json';
 import {getActiveBeatAtSeconds} from './timing';
-import {RichSceneV37,type Beat} from './scenes-v37-render';
+import {RichSceneV37,type Beat} from './scenes-v37-1';
 
 const beats=scriptData.beats as Beat[];
 const font='"Noto Sans CJK JP",sans-serif';
