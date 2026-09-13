@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "updatedAt": "2026-09-13",
   "rules": [
     {"id":"QA-VIS-01","enabled":true,"category":"visual","rule":"Long-form videos must maintain semantic scene diversity","condition":"for beats>=40, unique scene keys >= 30","severity":"error"},
@@ -17,6 +17,7 @@
     {"id":"QA-SUB-01","enabled":true,"category":"subtitle","rule":"Subtitle chunks remain compact","condition":"target <= 30 Japanese characters per chunk","severity":"warning"},
     {"id":"QA-REG-01","enabled":true,"category":"regression","rule":"Registered shared templates and pronunciation rules must not be copied back into per-video implementations","condition":"video manifest declares shared production system version","severity":"error"},
     {"id":"QA-REG-02","enabled":true,"category":"regression","rule":"Video records rule registry versions used for production","condition":"manifest versions match current shared registries/policies","severity":"error"},
-    {"id":"QA-REL-01","enabled":true,"category":"release","rule":"QA contact sheet is required before release","condition":"contact-sheet asset exists","severity":"error"}
+    {"id":"QA-REL-01","enabled":true,"category":"release","rule":"QA contact sheet is required before release","condition":"contact-sheet asset exists","severity":"error"},
+    {"id":"QA-REL-02","enabled":true,"category":"release","rule":"Primary QA contact sheet must contain at least one sampled frame from every measured narration beat/scene","condition":"scene contact sheet frame count equals sync-timing beat count","severity":"error"}
   ]
 }
