@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "updatedAt": "2026-09-13",
   "rules": [
     {
@@ -67,7 +67,8 @@
       "correctReading": "おもて",
       "replacement": "おもて",
       "priority": 100,
-      "note": "表が一文字で独立して使われる場合のみ。表面・表現・図表などの複合語には適用しない。"
+      "disallowFollowingKanaChars": "さしすせそれわ",
+      "note": "表が一文字で独立して使われる場合のみ。表面・表現・図表などの複合語、および表す・表した・表れる等の動詞語幹には適用しない。"
     }
   ]
 }
