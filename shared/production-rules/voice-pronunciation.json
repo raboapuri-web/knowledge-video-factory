@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "updatedAt": "2026-09-13",
   "rules": [
     {
@@ -45,6 +45,28 @@
       "replacement": "からだ",
       "priority": 100,
       "note": "身体という語を単体名詞として読む場合。身体的などの複合語には適用しない。"
+    },
+    {
+      "id": "VR-0005",
+      "enabled": true,
+      "target": "上",
+      "mode": "standalone",
+      "wrongReading": "じょう",
+      "correctReading": "せい",
+      "replacement": "せい",
+      "priority": 100,
+      "note": "上が一文字で独立して使われる場合のみ。上司・上位・以上などの複合語には適用しない。"
+    },
+    {
+      "id": "VR-0006",
+      "enabled": true,
+      "target": "表",
+      "mode": "standalone",
+      "wrongReading": "ひょう",
+      "correctReading": "おもて",
+      "replacement": "おもて",
+      "priority": 100,
+      "note": "表が一文字で独立して使われる場合のみ。表面・表現・図表などの複合語には適用しない。"
     }
   ]
 }
