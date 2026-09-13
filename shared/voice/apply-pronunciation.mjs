@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 const here=path.dirname(fileURLToPath(import.meta.url));
 const defaultDictionaryPath=path.resolve(here,'../production-rules/voice-pronunciation.json');
 const kanji='一-龯々〆ヵヶ';
+const digits='0-9０-９';
 
 const escapeRegExp=(s)=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 
@@ -19,7 +20,11 @@ export const applyPronunciationRules=(text,rules=loadPronunciationRules())=>{
   for(const rule of rules){
     const before=out;
     if(rule.mode==='standalone'){
-      const re=new RegExp(`(?<![${kanji}])${escapeRegExp(rule.target)}(?![${kanji}])`,'g');
+      // A standalone pronunciation rule is for an independent lexical token, not
+      // a suffix/counter.  In particular, 人 must become ひと in 「人は」 but must
+      // remain untouched in Arabic-number counters such as 「5人」「100人」 so
+      // VOICEVOX can read them as ごにん / ひゃくにん rather than ごひと.
+      const re=new RegExp(`(?<![${kanji}${digits}])${escapeRegExp(rule.target)}(?![${kanji}])`,'g');
       out=out.replace(re,rule.replacement);
     }else if(rule.mode==='phrase'){
       out=out.split(rule.target).join(rule.replacement);
