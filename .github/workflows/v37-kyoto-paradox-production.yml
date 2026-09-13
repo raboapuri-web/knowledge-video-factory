@@ -1,4 +1,4 @@
-name: V37 Kyoto Paradox Production
+name: V37.1 Kyoto Paradox Production
 
 on:
   workflow_dispatch:
@@ -33,6 +33,20 @@ jobs:
       - run: npm install
       - name: Expose V37 dependencies to shared tools
         run: ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Apply V37.1 wristwatch revision
+        run: node scripts/apply-v371.mjs
+      - name: V37.1 motif guard
+        run: |
+          node - <<'NODE'
+          const s=require('./src/script-data.json');
+          const text=s.beats.map(b=>b.narration).join('\n');
+          if(/壁に掛かった時計|壁の時計/.test(text)) throw new Error('Wall-clock motif remains');
+          for(const id of ['S02','S03','S06','S13','S15','S17','S19','S30','S47']){
+            const b=s.beats.find(x=>x.id===id);
+            if(!b||!b.narration.includes('腕時計')) throw new Error(`${id} must use wristwatch motif`);
+          }
+          console.log('V37.1 motif guard passed: wristwatch motif is consistent');
+          NODE
       - name: Production QA pre
         working-directory: .
         run: node shared/qa/validate-video.mjs v37-kyoto-paradox pre
@@ -40,7 +54,7 @@ jobs:
         working-directory: .
         run: node shared/voice/test-pronunciation.mjs
       - run: npm run check
-      - name: Validate V37 visual coverage
+      - name: Validate V37.1 visual coverage
         run: |
           node - <<'NODE'
           const s=require('./src/script-data.json');
@@ -49,7 +63,7 @@ jobs:
           if(used.length<40) throw new Error(`Need >=40 distinct visual keys, got ${used.length}`);
           if(new Set(s.beats.map(b=>b.id)).size!==s.beats.length) throw new Error('Duplicate beat ids');
           if(s.beats.some(b=>/^(fallback|default)$/i.test(b.visual))) throw new Error('Fallback/default visual found');
-          console.log(`V37 architecture: ${s.beats.length} beats / ${used.length} visual keys / scene-complete QA enabled`);
+          console.log(`V37.1 architecture: ${s.beats.length} beats / ${used.length} visual keys / scene-complete QA enabled`);
           NODE
       - name: Start VOICEVOX
         run: |
@@ -71,15 +85,17 @@ jobs:
           echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v4
         with:
-          name: v37-prepared
+          name: v37-1-prepared
           retention-days: 1
           if-no-files-found: error
           path: |
+            v37-kyoto-paradox/src/script-data.json
             v37-kyoto-paradox/src/sync-timing.json
             v37-kyoto-paradox/public/audio/narration.m4a
             v37-kyoto-paradox/public/audio/pronunciation-report.json
             v37-kyoto-paradox/qa/preproduction-summary.json
             v37-kyoto-paradox/qa/preproduction-summary.md
+            v37-kyoto-paradox/V37_1_IMPLEMENTATION.md
 
   render:
     needs: prepare
@@ -107,7 +123,7 @@ jobs:
         run: ln -sfn "$PWD/node_modules" ../node_modules
       - uses: actions/download-artifact@v4
         with:
-          name: v37-prepared
+          name: v37-1-prepared
           path: v37-kyoto-paradox
       - name: Render segment
         env:
@@ -119,7 +135,7 @@ jobs:
             --codec=h264 --crf=18 --concurrency=2 --log=warn
       - uses: actions/upload-artifact@v4
         with:
-          name: v37-segment-${{ matrix.id }}
+          name: v37-1-segment-${{ matrix.id }}
           retention-days: 1
           if-no-files-found: error
           path: v37-kyoto-paradox/out/segment-${{ matrix.id }}.mp4
@@ -143,11 +159,11 @@ jobs:
           node-version: 20
       - uses: actions/download-artifact@v4
         with:
-          name: v37-prepared
+          name: v37-1-prepared
           path: v37-kyoto-paradox
       - uses: actions/download-artifact@v4
         with:
-          pattern: v37-segment-*
+          pattern: v37-1-segment-*
           path: v37-kyoto-paradox/parts
           merge-multiple: true
       - run: node scripts/generate-bgm.mjs
@@ -160,10 +176,10 @@ jobs:
         run: |
           ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a \
             -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.05[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" \
-            -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v37-kyoto-paradox-final.mp4
+            -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v37-1-kyoto-paradox-final.mp4
       - name: Create scene-complete QA contact sheet
         working-directory: .
-        run: node shared/qa/generate-scene-contact-sheet.mjs v37-kyoto-paradox v37-kyoto-paradox/out/v37-kyoto-paradox-final.mp4 v37-kyoto-paradox/out/v37-kyoto-paradox-scene-contact-sheet.jpg
+        run: node shared/qa/generate-scene-contact-sheet.mjs v37-kyoto-paradox v37-kyoto-paradox/out/v37-1-kyoto-paradox-final.mp4 v37-kyoto-paradox/out/v37-1-kyoto-paradox-scene-contact-sheet.jpg
       - name: Verify QA sheet source count
         run: |
           node - <<'NODE'
@@ -174,10 +190,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          VIDEO_NAME="knowledge-video-v37-kyoto-paradox-${GITHUB_RUN_ID}.mp4"
-          cp out/v37-kyoto-paradox-final.mp4 "out/${VIDEO_NAME}"
-          TAG="v37-kyoto-paradox-${GITHUB_RUN_ID}"
-          gh release create "$TAG" "out/${VIDEO_NAME}" out/v37-kyoto-paradox-scene-contact-sheet.jpg public/audio/pronunciation-report.json qa/preproduction-summary.json \
+          VIDEO_NAME="knowledge-video-v37-1-kyoto-paradox-${GITHUB_RUN_ID}.mp4"
+          cp out/v37-1-kyoto-paradox-final.mp4 "out/${VIDEO_NAME}"
+          TAG="v37-1-kyoto-paradox-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out/${VIDEO_NAME}" out/v37-1-kyoto-paradox-scene-contact-sheet.jpg public/audio/pronunciation-report.json qa/preproduction-summary.json V37_1_IMPLEMENTATION.md \
             --repo "$GITHUB_REPOSITORY" \
-            --title "V37 Kyoto Paradox Production ${GITHUB_RUN_ID}" \
-            --notes "Full production: なぜ京都人は、笑顔のまま人を排除できるのか？【語用論×ポライトネス理論】. 48 measured narration beats, 40+ distinct visual keys, shared pronunciation dictionary v3, 青山龍星 VOICEVOX, synchronized subtitles, restrained dark BGM, segmented parallel rendering, and a scene-complete 48-frame QA contact sheet."
+            --title "V37.1 Kyoto Paradox Production ${GITHUB_RUN_ID}" \
+            --notes "Revised production: 腕時計モチーフへ全面統一し、48シーンの視覚構成を再設計。同一和室・同一説明画面の反復を削減。青山龍星VOICEVOX、同期字幕、ダークBGM、分割並列レンダー、48シーン完全QA。"
