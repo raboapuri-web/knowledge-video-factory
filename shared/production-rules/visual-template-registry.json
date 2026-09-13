@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "updatedAt": "2026-09-13",
   "policy": {
     "rule": "Reusable motion patterns live in shared/remotion-templates and are called by templateId + params. Do not copy a registered template back into a per-video scenes.tsx.",
@@ -19,6 +19,11 @@
     {"id":"decimal_ranking","status":"active","component":"DecimalRanking","replaceable":["headline","scores"],"source":"V33","use":"微細差の巨大化"},
     {"id":"red_queen_treadmill","status":"active","component":"RedQueenTreadmill","replaceable":["headline","actors","labels"],"source":"V33","use":"終わらない相対競争"},
     {"id":"split_world","status":"active","component":"SplitWorld","replaceable":["headline","real","alternate"],"source":"V32","use":"反実仮想・分岐"},
-    {"id":"moving_goalpost","status":"active","component":"MovingGoalpost","replaceable":["headline","goal","distance"],"source":"V32","use":"達成しても基準が逃げる"}
+    {"id":"moving_goalpost","status":"active","component":"MovingGoalpost","replaceable":["headline","goal","distance"],"source":"V32","use":"達成しても基準が逃げる"},
+    {"id":"swipe_stream","status":"active","component":"SwipeStream","file":"shared/remotion-templates/v34-dating.tsx","replaceable":["headline","profiles","velocity","emphasis"],"source":"V34","use":"無限候補・SNS/求人/商品など連続探索"},
+    {"id":"extreme_value_pool","status":"active","component":"ExtremeValuePool","file":"shared/remotion-templates/v34-dating.tsx","replaceable":["headline","poolSize","highlightedTop","expectedMax","label"],"source":"V34","use":"母集団増加と極端値・上位観測"},
+    {"id":"opportunity_cost_fan","status":"active","component":"OpportunityCostFan","file":"shared/remotion-templates/v34-dating.tsx","replaceable":["headline","options","selected"],"source":"V34","use":"選択に伴う他の可能性の放棄"},
+    {"id":"two_sided_match_market","status":"active","component":"TwoSidedMatchMarket","file":"shared/remotion-templates/v34-dating.tsx","replaceable":["headline","left","right","matches"],"source":"V34","use":"恋愛・採用など相互選択市場"},
+    {"id":"real_vs_possible_partner","status":"active","component":"RealVsPossiblePartner","file":"shared/remotion-templates/v34-dating.tsx","replaceable":["headline","realLabel","possibleLabel","flaws","dreams"],"source":"V34","use":"現実の選択肢と未知の理想化候補の比較"}
   ]
 }
