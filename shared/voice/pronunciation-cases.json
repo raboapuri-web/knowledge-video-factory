@@ -1,0 +1,15 @@
+{
+  "cases": [
+    {"input":"金。","expected":"かね。"},
+    {"input":"金を払う。","expected":"かねを払う。"},
+    {"input":"金属は硬い。","expected":"金属は硬い。"},
+    {"input":"高級車を買う。","expected":"こうきゅうしゃを買う。"},
+    {"input":"高級車市場が伸びる。","expected":"こうきゅうしゃ市場が伸びる。"},
+    {"input":"人。","expected":"ひと。"},
+    {"input":"人を選ぶ。","expected":"ひとを選ぶ。"},
+    {"input":"日本人。","expected":"日本人。"},
+    {"input":"身体。","expected":"からだ。"},
+    {"input":"身体を鍛える。","expected":"からだを鍛える。"},
+    {"input":"身体的な特徴。","expected":"身体的な特徴。"}
+  ]
+}
