@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-13",
+  "policy": {
+    "rule": "Reusable motion patterns live in shared/remotion-templates and are called by templateId + params. Do not copy a registered template back into a per-video scenes.tsx.",
+    "newTemplateThreshold": "Promote a custom scene when it can be reused by changing only text, numbers, list items, emphasis, colors or counts."
+  },
+  "templates": [
+    {"id":"crowd_grid","status":"active","component":"CrowdGrid","replaceable":["headline","count","highlight"],"source":"V33","use":"普及・均質化・多数派"},
+    {"id":"threshold_floor","status":"active","component":"ThresholdFloor","replaceable":["headline","label","from","to"],"source":"V33","use":"加点→最低条件"},
+    {"id":"metric_axes","status":"active","component":"MetricAxes","replaceable":["headline","items"],"source":"V33","use":"評価軸の増殖・移動"},
+    {"id":"thesis_reveal","status":"active","component":"ThesisReveal","replaceable":["text","emphasis"],"source":"V32/V33","use":"核心命題"},
+    {"id":"dual_compare","status":"active","component":"DualCompare","replaceable":["headline","left","right"],"source":"V33","use":"対立概念"},
+    {"id":"context_bar","status":"active","component":"ContextBar","replaceable":["headline","leftAvg","rightAvg","value","unit"],"source":"V33","use":"同一値の文脈差"},
+    {"id":"scarcity_dilution","status":"active","component":"ScarcityDilution","replaceable":["headline","total","from","to","label"],"source":"V33","use":"希少性の希釈"},
+    {"id":"positional_cards","status":"active","component":"PositionalCards","replaceable":["headline","items"],"source":"V33","use":"位置財・地位競争"},
+    {"id":"orbit_labels","status":"active","component":"OrbitLabels","replaceable":["headline","center","items"],"source":"V32/V33","use":"細分化・周辺要因"},
+    {"id":"average_shift","status":"active","component":"AverageShift","replaceable":["headline","oldAvg","newAvg","subject"],"source":"V33","use":"平均上昇・基準移動"},
+    {"id":"decimal_ranking","status":"active","component":"DecimalRanking","replaceable":["headline","scores"],"source":"V33","use":"微細差の巨大化"},
+    {"id":"red_queen_treadmill","status":"active","component":"RedQueenTreadmill","replaceable":["headline","actors","labels"],"source":"V33","use":"終わらない相対競争"},
+    {"id":"split_world","status":"active","component":"SplitWorld","replaceable":["headline","real","alternate"],"source":"V32","use":"反実仮想・分岐"},
+    {"id":"moving_goalpost","status":"active","component":"MovingGoalpost","replaceable":["headline","goal","distance"],"source":"V32","use":"達成しても基準が逃げる"}
+  ]
+}
