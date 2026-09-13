@@ -3,10 +3,13 @@
   "updatedAt": "2026-09-13",
   "purpose": "Keep the human spreadsheet ledger and GitHub runtime rules aligned by stable_id and version.",
   "humanLedger": {
-    "fileName": "knowledge_video_production_rules.xlsx",
+    "fileName": "knowledge_video_production_rules",
     "libraryFileId": "libfile_48e2f4256d288191aac0bd017386baa0",
-    "driveStatus": "pending-user-connection",
-    "driveSpreadsheetId": null
+    "driveStatus": "connected",
+    "driveSpreadsheetId": "14wEIcfekoFw9wUqVFKbemVgi-awa4ovpx2D3aatg_1U",
+    "driveSpreadsheetUrl": "https://docs.google.com/spreadsheets/d/14wEIcfekoFw9wUqVFKbemVgi-awa4ovpx2D3aatg_1U/edit",
+    "driveFolderId": "1FS2OgREmxq2cOXmlS2OX7IpWwts0nPP_",
+    "driveFolderUrl": "https://drive.google.com/drive/folders/1FS2OgREmxq2cOXmlS2OX7IpWwts0nPP_"
   },
   "resources": [
     {
