@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "updatedAt": "2026-09-13",
   "rules": [
     {
@@ -55,7 +55,8 @@
       "correctReading": "せい",
       "replacement": "せい",
       "priority": 100,
-      "note": "上が一文字で独立して使われる場合のみ。上司・上位・以上などの複合語には適用しない。"
+      "disallowPrecedingKana": true,
+      "note": "上が一文字で独立して使われる場合のみ。上司・上位・以上などの複合語、および年収も上がった・積み上がる等の語幹には適用しない。"
     },
     {
       "id": "VR-0006",
