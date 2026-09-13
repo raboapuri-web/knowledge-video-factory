@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-13",
+  "items": [
+    {"id":"FB-0001","category":"voice","issue":"金を単体で『きん』と読む","resolution":"standalone時は『かね』へ変換","promotedTo":"VR-0001","status":"resolved"},
+    {"id":"FB-0002","category":"voice","issue":"高級車を『こうきゅうぐるま』と読む","resolution":"『こうきゅうしゃ』へ変換","promotedTo":"VR-0002","status":"resolved"},
+    {"id":"FB-0003","category":"voice","issue":"人を単体で『じん』と読む","resolution":"standalone時は『ひと』へ変換","promotedTo":"VR-0003","status":"resolved"},
+    {"id":"FB-0004","category":"voice","issue":"身体を『しんたい』と読む","resolution":"『からだ』へ変換","promotedTo":"VR-0004","status":"resolved"},
+    {"id":"FB-0005","category":"visual","issue":"MatchingGrid内の顔要素がabsolute座標で重なる可能性","resolution":"グリッドセル相対配置へ変更","promotedTo":"layout rule","status":"resolved"},
+    {"id":"FB-0006","category":"visual","issue":"四角枠・同一レイアウトが反復し、テンプレ感が強い","resolution":"semantic sceneの種類とテンプレ資産を増やす","promotedTo":"QA-VIS-01","status":"resolved"},
+    {"id":"FB-0007","category":"sync","issue":"ナレーションと映像の話題がずれる","resolution":"VOICEVOX実測尺からbeat timingを生成する","promotedTo":"QA-SYNC-01","status":"resolved"}
+  ]
+}
