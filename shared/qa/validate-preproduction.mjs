@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 const here=path.dirname(fileURLToPath(import.meta.url));
 const repoRoot=path.resolve(here,'../..');
 const videoRoot=path.resolve(process.argv[2]||'.');
+const stage=process.argv[3]||'plan';
 const policy=JSON.parse(fs.readFileSync(path.join(repoRoot,'shared/production-rules/preproduction-policy.json'),'utf8'));
 const registry=JSON.parse(fs.readFileSync(path.join(repoRoot,'shared/production-rules/visual-template-registry.json'),'utf8'));
 const planPath=path.join(videoRoot,'preproduction-plan.json');
@@ -19,6 +20,7 @@ if(!fs.existsSync(planPath)){
 const plan=JSON.parse(fs.readFileSync(planPath,'utf8'));
 const scenes=Array.isArray(plan.scenes)?plan.scenes:[];
 if(!scenes.length) fail.push('Preproduction plan has no scenes.');
+if(plan.reviewedBeforeImplementation!==true&&stage==='render') fail.push('Preproduction plan must be reviewedBeforeImplementation=true before render.');
 
 const activeTemplates=new Set((registry.templates||[]).filter(t=>t.status==='active').map(t=>t.id));
 const allowedSources=new Set(policy.sceneClassification||[]);
@@ -35,7 +37,10 @@ for(const scene of scenes){
   }
   if(scene.templateSource==='New'){
     if(!scene.newTemplateName) fail.push(`${scene.id||'unknown'} New scene requires newTemplateName`);
-    if(scene.reusable===true&&!scene.proposedTemplateId) fail.push(`${scene.id||'unknown'} reusable New scene requires proposedTemplateId before render`);
+    if(scene.reusable===true&&!scene.proposedTemplateId) fail.push(`${scene.id||'unknown'} reusable New scene requires proposedTemplateId`);
+    if(stage==='render'&&scene.reusable===true&&scene.proposedTemplateId&&!activeTemplates.has(scene.proposedTemplateId)){
+      fail.push(`${scene.id||'unknown'} reusable New template '${scene.proposedTemplateId}' must be registered active before render`);
+    }
   }
 }
 
@@ -67,12 +72,20 @@ const targetMax=Number(policy.diversity.newTemplateCandidateTargetMax||999);
 if(newCandidates.length<targetMin) warn.push(`Only ${newCandidates.length} reusable new-template candidates; target is ${targetMin}-${targetMax}.`);
 if(newCandidates.length>targetMax) warn.push(`${newCandidates.length} reusable new-template candidates may indicate over-templating; target is ${targetMin}-${targetMax}.`);
 
+const candidateRows=newCandidates.map(s=>({
+  sceneId:s.id,
+  proposedTemplateId:s.proposedTemplateId||null,
+  name:s.newTemplateName,
+  registered:s.proposedTemplateId?activeTemplates.has(s.proposedTemplateId):false
+}));
 const summary={
+  stage,
   videoId:plan.videoId||path.basename(videoRoot),
+  title:plan.title||'',
   totalScenes:scenes.length,
   uniqueSceneKeys,
   existingTemplateUsage:Object.fromEntries([...counts.entries()].sort((a,b)=>b[1]-a[1])),
-  newTemplateCandidates:newCandidates.map(s=>({sceneId:s.id,proposedTemplateId:s.proposedTemplateId||null,name:s.newTemplateName})),
+  newTemplateCandidates:candidateRows,
   oneOffScenes:scenes.filter(s=>s.templateSource==='One-off').map(s=>s.id),
   warnings:warn,
   errors:fail
@@ -81,7 +94,31 @@ const summary={
 const outDir=path.join(videoRoot,'qa');
 fs.mkdirSync(outDir,{recursive:true});
 fs.writeFileSync(path.join(outDir,'preproduction-summary.json'),JSON.stringify(summary,null,2));
+const md=[
+  `# Preproduction Review — ${summary.videoId}`,
+  '',
+  `- Title: ${summary.title||'(untitled)'}`,
+  `- Stage: ${stage}`,
+  `- Scenes: ${summary.totalScenes}`,
+  `- Unique scene keys: ${summary.uniqueSceneKeys}`,
+  '',
+  '## Existing template usage',
+  ...Object.entries(summary.existingTemplateUsage).map(([id,count])=>`- ${id}: ${count} scene(s) / ${summary.totalScenes} (${Math.round(Number(count)/summary.totalScenes*100)}%)`),
+  '',
+  '## New reusable template candidates',
+  ...(candidateRows.length?candidateRows.map(c=>`- ${c.sceneId}: ${c.name} -> ${c.proposedTemplateId||'(no id)'} [${c.registered?'registered':'not registered'}]`):['- none']),
+  '',
+  '## One-off scenes',
+  ...(summary.oneOffScenes.length?summary.oneOffScenes.map(id=>`- ${id}`):['- none']),
+  '',
+  '## Warnings',
+  ...(warn.length?warn.map(x=>`- ${x}`):['- none']),
+  '',
+  '## Errors',
+  ...(fail.length?fail.map(x=>`- ${x}`):['- none'])
+].join('\n');
+fs.writeFileSync(path.join(outDir,'preproduction-summary.md'),md);
 console.log(JSON.stringify(summary,null,2));
 for(const w of warn) console.warn(`WARNING: ${w}`);
 if(fail.length){for(const e of fail) console.error(`ERROR: ${e}`);process.exit(1);}
-console.log('Preproduction QA passed');
+console.log(`Preproduction QA passed (${stage})`);
