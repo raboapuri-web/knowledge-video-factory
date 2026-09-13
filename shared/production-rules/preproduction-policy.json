@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-13",
+  "requiredForProductionSystemVersion": 2,
+  "humanLedger": {
+    "workbook": "knowledge_video_production_rules.xlsx",
+    "sheet": "Preproduction_Plan"
+  },
+  "sceneClassification": ["Existing", "New", "One-off"],
+  "requiredSceneFields": [
+    "id",
+    "summary",
+    "sceneType",
+    "templateSource",
+    "visualIntent",
+    "estimatedSeconds"
+  ],
+  "diversity": {
+    "maxExistingTemplateShare": 0.2,
+    "maxConsecutiveSameTemplate": 2,
+    "longFormBeatThreshold": 40,
+    "minUniqueSceneKeysForLongForm": 30,
+    "newTemplateCandidateTargetMin": 2,
+    "newTemplateCandidateTargetMax": 5,
+    "newTemplateCandidateTargetSeverity": "warning"
+  },
+  "promotionPolicy": {
+    "registerBeforeRenderWhenReusable": true,
+    "reusableDefinition": "A scene is reusable when a future video can use the same motion/component by changing only text, numbers, lists, counts, colors, emphasis, labels or other props.",
+    "oneOffDefinition": "A scene may remain one-off when its composition is tightly coupled to one script beat and abstraction would reduce clarity or quality."
+  },
+  "requiredReviewOutput": [
+    "scenePlan",
+    "existingTemplateUsage",
+    "newTemplateCandidates",
+    "oneOffScenes",
+    "diversityMetrics",
+    "warnings"
+  ]
+}
