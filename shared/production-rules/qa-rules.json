@@ -1,16 +1,22 @@
 {
-  "version": 1,
+  "version": 2,
   "updatedAt": "2026-09-13",
   "rules": [
     {"id":"QA-VIS-01","enabled":true,"category":"visual","rule":"Long-form videos must maintain semantic scene diversity","condition":"for beats>=40, unique scene keys >= 30","severity":"error"},
     {"id":"QA-VIS-02","enabled":true,"category":"visual","rule":"Fallback/default scenes are forbidden in production","condition":"fallback/default count = 0","severity":"error"},
     {"id":"QA-VIS-03","enabled":true,"category":"layout","rule":"Grid children use parent-relative layout; do not reuse global absolute coordinates inside repeated cells","condition":"manual review or template-level enforcement","severity":"error"},
+    {"id":"QA-PLAN-01","enabled":true,"category":"preproduction","rule":"Production System v2+ requires a reviewed preproduction-plan.json before implementation/render","condition":"preproduction-plan.json exists and passes shared/qa/validate-preproduction.mjs","severity":"error"},
+    {"id":"QA-PLAN-02","enabled":true,"category":"preproduction","rule":"One existing template must not dominate a single video","condition":"each existing template <= 20% of all planned scenes","severity":"error"},
+    {"id":"QA-PLAN-03","enabled":true,"category":"preproduction","rule":"Do not repeat the same registered template three scenes in a row","condition":"max consecutive same template = 2","severity":"error"},
+    {"id":"QA-PLAN-04","enabled":true,"category":"preproduction","rule":"Every scene is classified Existing, New or One-off; reusable New scenes are proposed for registry promotion before render","condition":"all scenes classified and reusable New scenes have proposedTemplateId","severity":"error"},
+    {"id":"QA-PLAN-05","enabled":true,"category":"preproduction","rule":"Each production should actively look for new reusable visual grammar without forcing one-off scenes into templates","condition":"target 2-5 reusable New template candidates; outside range is warning","severity":"warning"},
+    {"id":"QA-SYNC-LEDGER","enabled":true,"category":"regression","rule":"Human spreadsheet ledger and GitHub runtime registries must match stable_id/version before a new production starts","condition":"sync-manifest reports no known drift","severity":"error"},
     {"id":"QA-SYNC-01","enabled":true,"category":"sync","rule":"Every beat must have measured VOICEVOX start/end timing","condition":"sync-timing beats count equals script beats count","severity":"error"},
     {"id":"QA-VOICE-01","enabled":true,"category":"voice","rule":"Shared pronunciation dictionary is applied immediately before VOICEVOX synthesis","condition":"shared/voice/generate-voicevox.mjs is used","severity":"error"},
     {"id":"QA-VOICE-02","enabled":true,"category":"voice","rule":"Pronunciation substitutions are logged as an artifact","condition":"public/audio/pronunciation-report.json exists after voice generation","severity":"warning"},
     {"id":"QA-SUB-01","enabled":true,"category":"subtitle","rule":"Subtitle chunks remain compact","condition":"target <= 30 Japanese characters per chunk","severity":"warning"},
     {"id":"QA-REG-01","enabled":true,"category":"regression","rule":"Registered shared templates and pronunciation rules must not be copied back into per-video implementations","condition":"video manifest declares shared production system version","severity":"error"},
-    {"id":"QA-REG-02","enabled":true,"category":"regression","rule":"Video records rule registry versions used for production","condition":"manifest includes visualRegistryVersion and voiceDictionaryVersion","severity":"error"},
+    {"id":"QA-REG-02","enabled":true,"category":"regression","rule":"Video records rule registry versions used for production","condition":"manifest versions match current shared registries/policies","severity":"error"},
     {"id":"QA-REL-01","enabled":true,"category":"release","rule":"QA contact sheet is required before release","condition":"contact-sheet asset exists","severity":"error"}
   ]
 }
