@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "cases": [
     {"input":"金。","expected":"かね。"},
     {"input":"金を払う。","expected":"かねを払う。"},
@@ -19,6 +19,12 @@
     {"input":"恋人より美しい人もいる。","expected":"恋人より美しいひともいる。"},
     {"input":"身体。","expected":"からだ。"},
     {"input":"身体を鍛える。","expected":"からだを鍛える。"},
-    {"input":"身体的な特徴。","expected":"身体的な特徴。"}
+    {"input":"身体的な特徴。","expected":"身体的な特徴。"},
+    {"input":"上。","expected":"せい。"},
+    {"input":"上は重要である。","expected":"せいは重要である。"},
+    {"input":"上司と上位層。","expected":"上司と上位層。"},
+    {"input":"表。","expected":"おもて。"},
+    {"input":"表を見る。","expected":"おもてを見る。"},
+    {"input":"表面と表現。","expected":"表面と表現。"}
   ]
 }
