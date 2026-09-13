@@ -1,0 +1,11 @@
+import React from 'react';
+import {AbsoluteFill,interpolate,useCurrentFrame,useVideoConfig} from 'remotion';
+import scriptData from './script-data.json';
+import {getActiveBeatAtSeconds} from './timing';
+import {RichSceneV40,type Beat} from './scenes-v40';
+
+const beats=scriptData.beats as Beat[];
+const font='"Noto Sans CJK JP",sans-serif';
+const splitSubtitle=(text:string)=>{const safe=text.replace(/\\n/g,'\n');const sentences=(safe.match(/[^。！？]+[。！？]?/g)??[safe]).map(s=>s.trim()).filter(Boolean);const chunks:string[]=[];for(const sentence of sentences){if(sentence.length<=31){chunks.push(sentence);continue;}const parts=sentence.split(/(?<=[、，])/).map(s=>s.trim()).filter(Boolean);let buf='';for(const part of parts){if((buf+part).length>31&&buf){chunks.push(buf);buf=part;}else buf+=part;}if(buf)chunks.push(buf);}return chunks.length?chunks:[safe];};
+const Subtitle=({beat,progress,fade}:{beat:Beat;progress:number;fade:number})=>{const chunks=splitSubtitle(beat.narration);const lengths=chunks.map(c=>Math.max(1,c.length));const total=lengths.reduce((a,b)=>a+b,0);const target=Math.max(0,Math.min(total-.001,progress*total));let cursor=0,index=0;for(let i=0;i<chunks.length;i++){cursor+=lengths[i];if(target<cursor){index=i;break;}}const text=chunks[index]??chunks[chunks.length-1];return <div style={{position:'absolute',left:90,right:90,bottom:34,opacity:fade,display:'flex',justifyContent:'center',pointerEvents:'none'}}><div style={{maxWidth:1660,padding:'14px 34px 17px',borderRadius:16,background:'rgba(2,4,7,.9)',border:'1px solid rgba(240,244,250,.14)',boxShadow:'0 16px 50px rgba(0,0,0,.58)',fontFamily:font,fontWeight:850,fontSize:37,lineHeight:1.42,textAlign:'center',letterSpacing:.15,color:'#f5f4ef',textShadow:'0 3px 14px rgba(0,0,0,.95)',whiteSpace:'pre-line'}}>{text}</div></div>;};
+export const V40FlynnEffect:React.FC=()=>{const frame=useCurrentFrame();const {fps}=useVideoConfig();const active=getActiveBeatAtSeconds(frame/fps);const beat=beats[active.index]??beats[0];const fade=interpolate(active.progress,[0,.045],[0,1],{extrapolateLeft:'clamp',extrapolateRight:'clamp'});return <AbsoluteFill style={{background:'#050609'}}><AbsoluteFill style={{opacity:fade}}><RichSceneV40 beat={beat}/></AbsoluteFill><Subtitle beat={beat} progress={active.progress} fade={Math.min(1,fade+.3)}/></AbsoluteFill>;};
