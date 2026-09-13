@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-13",
+  "rules": [
+    {
+      "id": "VR-0001",
+      "enabled": true,
+      "target": "金",
+      "mode": "standalone",
+      "wrongReading": "きん",
+      "correctReading": "かね",
+      "replacement": "かね",
+      "priority": 100,
+      "note": "単体名詞として金を指す場合のみ。金属・黄金などの複合語には適用しない。"
+    },
+    {
+      "id": "VR-0002",
+      "enabled": true,
+      "target": "高級車",
+      "mode": "phrase",
+      "wrongReading": "こうきゅうぐるま",
+      "correctReading": "こうきゅうしゃ",
+      "replacement": "こうきゅうしゃ",
+      "priority": 100,
+      "note": "語句全体へ適用。"
+    },
+    {
+      "id": "VR-0003",
+      "enabled": true,
+      "target": "人",
+      "mode": "standalone",
+      "wrongReading": "じん",
+      "correctReading": "ひと",
+      "replacement": "ひと",
+      "priority": 100,
+      "note": "単体名詞としての人のみ。日本人・人類・人口などの複合語には適用しない。"
+    },
+    {
+      "id": "VR-0004",
+      "enabled": true,
+      "target": "身体",
+      "mode": "phrase",
+      "wrongReading": "しんたい",
+      "correctReading": "からだ",
+      "replacement": "からだ",
+      "priority": 100,
+      "note": "身体という語を通常のナレーションで読む場合。身体的など派生語は別ルール化する。"
+    }
+  ]
+}
