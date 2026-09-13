@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-13",
+  "rules": [
+    {"id":"QA-VIS-01","enabled":true,"category":"visual","rule":"Long-form videos must maintain semantic scene diversity","condition":"for beats>=40, unique scene keys >= 30","severity":"error"},
+    {"id":"QA-VIS-02","enabled":true,"category":"visual","rule":"Fallback/default scenes are forbidden in production","condition":"fallback/default count = 0","severity":"error"},
+    {"id":"QA-VIS-03","enabled":true,"category":"layout","rule":"Grid children use parent-relative layout; do not reuse global absolute coordinates inside repeated cells","condition":"manual review or template-level enforcement","severity":"error"},
+    {"id":"QA-SYNC-01","enabled":true,"category":"sync","rule":"Every beat must have measured VOICEVOX start/end timing","condition":"sync-timing beats count equals script beats count","severity":"error"},
+    {"id":"QA-VOICE-01","enabled":true,"category":"voice","rule":"Shared pronunciation dictionary is applied immediately before VOICEVOX synthesis","condition":"shared/voice/generate-voicevox.mjs is used","severity":"error"},
+    {"id":"QA-VOICE-02","enabled":true,"category":"voice","rule":"Pronunciation substitutions are logged as an artifact","condition":"public/audio/pronunciation-report.json exists after voice generation","severity":"warning"},
+    {"id":"QA-SUB-01","enabled":true,"category":"subtitle","rule":"Subtitle chunks remain compact","condition":"target <= 30 Japanese characters per chunk","severity":"warning"},
+    {"id":"QA-REG-01","enabled":true,"category":"regression","rule":"Registered shared templates and pronunciation rules must not be copied back into per-video implementations","condition":"video manifest declares shared production system version","severity":"error"},
+    {"id":"QA-REG-02","enabled":true,"category":"regression","rule":"Video records rule registry versions used for production","condition":"manifest includes visualRegistryVersion and voiceDictionaryVersion","severity":"error"},
+    {"id":"QA-REL-01","enabled":true,"category":"release","rule":"QA contact sheet is required before release","condition":"contact-sheet asset exists","severity":"error"}
+  ]
+}
