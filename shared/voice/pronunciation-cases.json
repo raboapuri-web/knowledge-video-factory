@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "cases": [
     {"input":"金。","expected":"かね。"},
     {"input":"金を払う。","expected":"かねを払う。"},
@@ -23,8 +23,12 @@
     {"input":"上。","expected":"せい。"},
     {"input":"上は重要である。","expected":"せいは重要である。"},
     {"input":"上司と上位層。","expected":"上司と上位層。"},
+    {"input":"年収も上がった。","expected":"年収も上がった。"},
+    {"input":"積み上がっている。","expected":"積み上がっている。"},
+    {"input":"自分より上にいる。","expected":"自分より上にいる。"},
     {"input":"表。","expected":"おもて。"},
     {"input":"表を見る。","expected":"おもてを見る。"},
+    {"input":"表では、おめでとうと言う。","expected":"おもてでは、おめでとうと言う。"},
     {"input":"表面と表現。","expected":"表面と表現。"}
   ]
 }
