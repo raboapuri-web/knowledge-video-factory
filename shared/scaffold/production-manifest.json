@@ -1,7 +1,10 @@
 {
-  "productionSystemVersion": 1,
+  "productionSystemVersion": 2,
   "visualRegistryVersion": 1,
   "voiceDictionaryVersion": 1,
+  "preproductionPolicyVersion": 1,
+  "syncManifestVersion": 1,
   "sharedVoiceGenerator": true,
-  "sceneMode": "hybrid"
+  "sceneMode": "hybrid",
+  "requiresPreproductionPlan": true
 }
