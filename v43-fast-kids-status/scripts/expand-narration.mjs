@@ -5,6 +5,10 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const file=path.join(root,'src/script-data.json');
 const data=JSON.parse(fs.readFileSync(file,'utf8'));
+if(data.longFormExpanded===true){
+  console.log('V43 long-form narration already expanded');
+  process.exit(0);
+}
 
 const add={
 S06:' ここでいう地位とは、単に女子から恋愛的に好かれることではない。誰の名前が先に挙がるか、誰が遊びへ誘われるか、誰の発言に周囲が耳を傾けるかという、子ども集団の内部で生まれる小さな序列まで含んでいる。足の速さは、その序列へ接続しやすい能力だったのである。',
@@ -37,5 +41,6 @@ S62:' だからこの話の核心は懐かしい運動会の思い出ではな�
 for(const beat of data.beats){
   if(add[beat.id]) beat.narration += add[beat.id];
 }
+data.longFormExpanded=true;
 fs.writeFileSync(file,JSON.stringify(data,null,2)+'\n');
 console.log(`Expanded narration for ${Object.keys(add).length} beats`);
