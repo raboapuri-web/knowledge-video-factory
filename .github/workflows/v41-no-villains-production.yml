@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/v41-no-villains-production.yml'
       - 'v41-no-villains/bootstrap.mjs'
+      - 'v41-no-villains/materialize.mjs'
 
 permissions:
   contents: write
@@ -26,7 +27,7 @@ jobs:
         with:
           node-version: 20
       - name: Materialize V41 production project
-        run: node bootstrap.mjs
+        run: node materialize.mjs
       - name: Install audio tools and Japanese fonts
         run: |
           sudo apt-get update
@@ -121,7 +122,7 @@ jobs:
         with:
           node-version: 20
       - name: Materialize V41 production project
-        run: node bootstrap.mjs
+        run: node materialize.mjs
       - name: Install Japanese font
         run: |
           sudo apt-get update
@@ -160,7 +161,7 @@ jobs:
         with:
           node-version: 20
       - name: Materialize V41 production project
-        run: node bootstrap.mjs
+        run: node materialize.mjs
       - name: Install ffmpeg and Japanese font
         run: |
           sudo apt-get update
