@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const sync=JSON.parse(fs.readFileSync(path.join(root,'src/sync-timing.json'),'utf8'));
+const out=path.join(root,'public/audio');fs.mkdirSync(out,{recursive:true});
+const d=Math.ceil(sync.durationSeconds+2),fadeOut=Math.max(0,d-12);
+execFileSync('ffmpeg',['-y','-loglevel','error','-f','lavfi','-i',`sine=frequency=34:duration=${d}`,'-f','lavfi','-i',`sine=frequency=52:duration=${d}`,'-f','lavfi','-i',`anoisesrc=color=brown:duration=${d}:amplitude=0.006`,'-filter_complex',`[0:a]volume=0.0032,lowpass=f=130[a0];[1:a]volume=0.0011,lowpass=f=200[a1];[2:a]lowpass=f=650,highpass=f=30,volume=0.092[a2];[a0][a1][a2]amix=inputs=3,afade=t=in:st=0:d=8,afade=t=out:st=${fadeOut}:d=12,acompressor=threshold=-25dB:ratio=2.1:attack=35:release=520`,'-c:a','aac','-b:a','128k','-ar','48000',path.join(out,'bgm.m4a')]);
+console.log(`BGM ready: ${d}s`);
