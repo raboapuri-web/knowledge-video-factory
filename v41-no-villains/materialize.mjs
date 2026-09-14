@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {pathToFileURL,fileURLToPath} from 'node:url';
+const here=path.dirname(fileURLToPath(import.meta.url));
+const src=path.join(here,'bootstrap.mjs');
+const dst=path.join(here,'bootstrap-fixed.mjs');
+let s=fs.readFileSync(src,'utf8');
+s=s.replace('width:\`${Math.round(63*pulse)}%\`',"width:(String(Math.round(63*pulse))+'%')");
+fs.writeFileSync(dst,s);
+await import(pathToFileURL(dst).href+'?v='+Date.now());
