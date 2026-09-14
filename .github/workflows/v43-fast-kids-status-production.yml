@@ -40,11 +40,11 @@ jobs:
           node - <<'NODE'
           const fs=require('fs');
           const s=require('./src/script-data.json');
-          if(s.beats.length!==60) throw new Error(`Expected 60 beats, got ${s.beats.length}`);
+          if(s.beats.length!==62) throw new Error(`Expected 62 beats, got ${s.beats.length}`);
           const visualKeys=s.beats.map(b=>b.visual);
           const used=[...new Set(visualKeys)];
-          if(used.length!==60) throw new Error(`Expected 60 distinct visual keys, got ${used.length}`);
-          if(new Set(s.beats.map(b=>b.id)).size!==60) throw new Error('Duplicate beat ids');
+          if(used.length!==62) throw new Error(`Expected 62 distinct visual keys, got ${used.length}`);
+          if(new Set(s.beats.map(b=>b.id)).size!==62) throw new Error('Duplicate beat ids');
           const all=s.beats.map(b=>b.narration).join('\n');
           for(const phrase of ['小学校','運動会','社会的地位','社会的比較','累積的優位']) {
             if(!all.includes(phrase)) throw new Error(`Missing narrative anchor: ${phrase}`);
@@ -52,8 +52,8 @@ jobs:
           const renderer=fs.readFileSync('./src/scenes.tsx','utf8');
           const cases=[...renderer.matchAll(/case\s+(\d+)\s*:/g)].map(m=>Number(m[1]));
           const caseSet=new Set(cases);
-          if(caseSet.size!==60) throw new Error(`Renderer requires 60 explicit scene cases, got ${caseSet.size}`);
-          for(let i=1;i<=60;i++) if(!caseSet.has(i)) throw new Error(`Missing explicit renderer case ${i}`);
+          if(caseSet.size!==62) throw new Error(`Renderer requires 62 explicit scene cases, got ${caseSet.size}`);
+          for(let i=1;i<=62;i++) if(!caseSet.has(i)) throw new Error(`Missing explicit renderer case ${i}`);
           console.log(`V43 architecture: ${s.beats.length} beats / ${used.length} unique visual keys / ${caseSet.size} explicit render cases`);
           NODE
       - name: Production QA pre
@@ -81,7 +81,7 @@ jobs:
           console.log(`Measured duration: ${s.durationSeconds}s`);
           if(s.durationSeconds<900) throw new Error(`V43 is shorter than 15 minutes: ${s.durationSeconds}s`);
           if(s.durationSeconds>1230) throw new Error(`V43 is longer than 20m30s: ${s.durationSeconds}s`);
-          if((s.beats||[]).length!==60) throw new Error(`Expected 60 measured scenes, got ${(s.beats||[]).length}`);
+          if((s.beats||[]).length!==62) throw new Error(`Expected 62 measured scenes, got ${(s.beats||[]).length}`);
           NODE
       - name: Production QA post
         working-directory: .
@@ -190,7 +190,7 @@ jobs:
         run: |
           node - <<'NODE'
           const s=require('./src/sync-timing.json');
-          if((s.beats||[]).length!==60) throw new Error(`QA requires 60 measured scenes, got ${(s.beats||[]).length}`);
+          if((s.beats||[]).length!==62) throw new Error(`QA requires 62 measured scenes, got ${(s.beats||[]).length}`);
           NODE
       - name: Publish GitHub Release
         env:
@@ -202,4 +202,4 @@ jobs:
           gh release create "$TAG" "out/${VIDEO_NAME}" out/v43-fast-kids-status-scene-contact-sheet.jpg public/audio/pronunciation-report.json qa/preproduction-summary.json IMPLEMENTATION_PLAN.md src/script-data.json \
             --repo "$GITHUB_REPOSITORY" \
             --title "V43 Fast Kids Status Production ${GITHUB_RUN_ID}" \
-            --notes "60-scene long-form Remotion production on why fast runners gained status in elementary school. Every scene uses a distinct visual key and explicit renderer case, covering sports day, playground games, classroom comparison, the history of Japanese school athletics, peer status, cumulative advantage, social comparison, team selection, changing status currencies with age, and the final empty-schoolyard synthesis. Measured 青山龍星 narration, synchronized subtitles, dark ambient BGM, segmented rendering, and one QA frame per scene."
+            --notes "62-scene long-form Remotion production on why fast runners gained status in elementary school. Every scene uses a distinct visual key and explicit renderer case, covering sports day, playground games, classroom comparison, the history of Japanese school athletics, peer status, cumulative advantage, social comparison, team selection, changing status currencies with age, and the final empty-schoolyard synthesis. Measured 青山龍星 narration, synchronized subtitles, dark ambient BGM, segmented rendering, and one QA frame per scene."
