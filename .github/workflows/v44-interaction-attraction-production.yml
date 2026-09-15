@@ -1,0 +1,205 @@
+name: V44 Interaction Attraction Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v44-interaction-attraction-production.yml'
+      - 'v44-interaction-attraction/**'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    defaults:
+      run:
+        working-directory: v44-interaction-attraction
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install audio tools and Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - name: Expose V44 dependencies to shared tools
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Build preproduction plan
+        run: node scripts/build-preproduction.mjs
+      - name: V44 story and visual-diversity guard
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=require('./src/script-data.json');
+          if(s.beats.length!==62) throw new Error(`Expected 62 beats, got ${s.beats.length}`);
+          const visualKeys=s.beats.map(b=>b.visual);
+          const used=[...new Set(visualKeys)];
+          if(used.length!==62) throw new Error(`Expected 62 distinct visual keys, got ${used.length}`);
+          if(new Set(s.beats.map(b=>b.id)).size!==62) throw new Error('Duplicate beat ids');
+          const all=s.beats.map(b=>b.narration).join('\n');
+          for(const phrase of ['外見','相互作用','ユーモア','社会的地位','スピードデーティング','採点']) {
+            if(!all.includes(phrase)) throw new Error(`Missing narrative anchor: ${phrase}`);
+          }
+          const renderer=fs.readFileSync('./src/scenes.tsx','utf8');
+          const cases=[...renderer.matchAll(/case\s+(\d+)\s*:/g)].map(m=>Number(m[1]));
+          const caseSet=new Set(cases);
+          if(caseSet.size!==62) throw new Error(`Renderer requires 62 explicit scene cases, got ${caseSet.size}`);
+          for(let i=1;i<=62;i++) if(!caseSet.has(i)) throw new Error(`Missing explicit renderer case ${i}`);
+          console.log(`V44 architecture: ${s.beats.length} beats / ${used.length} unique visual keys / ${caseSet.size} explicit render cases`);
+          NODE
+      - name: Production QA pre
+        working-directory: .
+        run: node shared/qa/validate-video.mjs v44-interaction-attraction pre
+      - name: Pronunciation regression tests
+        working-directory: .
+        run: node shared/voice/test-pronunciation.mjs
+      - run: npm run check
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox || true
+          exit 1
+      - run: node scripts/generate-voicevox.mjs
+      - name: Duration guard
+        run: |
+          node - <<'NODE'
+          const s=require('./src/sync-timing.json');
+          console.log(`Measured duration: ${s.durationSeconds}s`);
+          if(s.durationSeconds<900) throw new Error(`V44 is shorter than 15 minutes: ${s.durationSeconds}s`);
+          if(s.durationSeconds>1230) throw new Error(`V44 is longer than 20m30s: ${s.durationSeconds}s`);
+          if((s.beats||[]).length!==62) throw new Error(`Expected 62 measured scenes, got ${(s.beats||[]).length}`);
+          NODE
+      - name: Production QA post
+        working-directory: .
+        run: node shared/qa/validate-video.mjs v44-interaction-attraction post
+      - id: plan
+        run: |
+          MATRIX="$(node scripts/plan-segments.mjs)"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v44-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: |
+            v44-interaction-attraction/src/script-data.json
+            v44-interaction-attraction/src/sync-timing.json
+            v44-interaction-attraction/public/audio/narration.m4a
+            v44-interaction-attraction/public/audio/pronunciation-report.json
+            v44-interaction-attraction/qa/preproduction-summary.json
+            v44-interaction-attraction/qa/preproduction-summary.md
+            v44-interaction-attraction/preproduction-plan.json
+            v44-interaction-attraction/IMPLEMENTATION_PLAN.md
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    defaults:
+      run:
+        working-directory: v44-interaction-attraction
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - uses: actions/download-artifact@v4
+        with:
+          name: v44-prepared
+          path: v44-interaction-attraction
+      - name: Render segment
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V44InteractionAttraction "out/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v44-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v44-interaction-attraction/out/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    defaults:
+      run:
+        working-directory: v44-interaction-attraction
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg and Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v44-prepared
+          path: v44-interaction-attraction
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v44-segment-*
+          path: v44-interaction-attraction/parts
+          merge-multiple: true
+      - run: node scripts/generate-bgm.mjs
+      - name: Concatenate segments
+        run: |
+          mkdir -p out
+          find parts -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+      - name: Mix narration and BGM
+        run: |
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a \
+            -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.05[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" \
+            -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v44-interaction-attraction-final.mp4
+      - name: Create scene-complete QA contact sheet
+        working-directory: .
+        run: node shared/qa/generate-scene-contact-sheet.mjs v44-interaction-attraction v44-interaction-attraction/out/v44-interaction-attraction-final.mp4 v44-interaction-attraction/out/v44-interaction-attraction-scene-contact-sheet.jpg
+      - name: Verify QA sheet source count
+        run: |
+          node - <<'NODE'
+          const s=require('./src/sync-timing.json');
+          if((s.beats||[]).length!==62) throw new Error(`QA requires 62 measured scenes, got ${(s.beats||[]).length}`);
+          NODE
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO_NAME="knowledge-video-v44-interaction-attraction-${GITHUB_RUN_ID}.mp4"
+          cp out/v44-interaction-attraction-final.mp4 "out/${VIDEO_NAME}"
+          TAG="v44-interaction-attraction-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out/${VIDEO_NAME}" out/v44-interaction-attraction-scene-contact-sheet.jpg public/audio/pronunciation-report.json qa/preproduction-summary.json IMPLEMENTATION_PLAN.md src/script-data.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V44 Interaction Attraction Production ${GITHUB_RUN_ID}" \
+            --notes "62-scene long-form Remotion production on why some men who are not strong in face-only evaluation become attractive through interaction. Every scene has a distinct visual key and explicit renderer case, covering late-night bar interaction, attractiveness halo research, static-vs-dynamic face information, Westgate proximity, repeated exposure, humor, reciprocal liking, selective interest, home-field social status, social proof, dating-app information bottlenecks, speed dating, and the final scoring-rubric rewrite. Measured 青山龍星 narration, synchronized subtitles, dark ambient BGM, segmented rendering, and one QA frame per scene."
