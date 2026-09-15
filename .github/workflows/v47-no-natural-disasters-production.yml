@@ -1,0 +1,206 @@
+name: V47 No Natural Disasters Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v47-no-natural-disasters-production.yml'
+      - 'shared/bootstrap/v47-no-natural-disasters.mjs'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Materialize V47 production
+        run: node shared/bootstrap/v47-no-natural-disasters.mjs
+      - name: Install audio tools and Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install V47 dependencies
+        working-directory: v47-no-natural-disasters
+        run: npm install
+      - name: Expose V47 dependencies to shared tools
+        working-directory: v47-no-natural-disasters
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Build preproduction plan
+        working-directory: v47-no-natural-disasters
+        run: node scripts/build-preproduction.mjs
+      - name: V47 story and visual-diversity guard
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=require('./v47-no-natural-disasters/src/script-data.json');
+          if(s.beats.length!==72) throw new Error(`Expected 72 beats, got ${s.beats.length}`);
+          const keys=s.beats.map(b=>b.visual);
+          if(new Set(keys).size!==72) throw new Error(`Expected 72 distinct visual keys, got ${new Set(keys).size}`);
+          if(new Set(s.beats.map(b=>b.id)).size!==72) throw new Error('Duplicate beat ids');
+          const all=s.beats.map(b=>b.narration).join('\n');
+          for(const phrase of ['洪水','台風','火災','火山','地震','撹乱','ハザード','プレート']) {
+            if(!all.includes(phrase)) throw new Error(`Missing narrative anchor: ${phrase}`);
+          }
+          const renderer=fs.readFileSync('./v47-no-natural-disasters/src/scenes.tsx','utf8');
+          const cases=[...renderer.matchAll(/case\s+(\d+)\s*:/g)].map(m=>Number(m[1]));
+          const set=new Set(cases);
+          if(set.size!==72) throw new Error(`Renderer requires 72 explicit scene cases, got ${set.size}`);
+          for(let i=1;i<=72;i++) if(!set.has(i)) throw new Error(`Missing explicit renderer case ${i}`);
+          console.log(`V47 architecture: ${s.beats.length} beats / ${new Set(keys).size} visual keys / ${set.size} render cases`);
+          NODE
+      - name: Production QA pre
+        run: node shared/qa/validate-video.mjs v47-no-natural-disasters pre
+      - name: Pronunciation regression tests
+        run: node shared/voice/test-pronunciation.mjs
+      - name: TypeScript check
+        working-directory: v47-no-natural-disasters
+        run: npm run check
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox || true
+          exit 1
+      - name: Generate measured narration
+        working-directory: v47-no-natural-disasters
+        run: node scripts/generate-voicevox.mjs
+      - name: Duration guard
+        run: |
+          node - <<'NODE'
+          const s=require('./v47-no-natural-disasters/src/sync-timing.json');
+          console.log(`Measured duration: ${s.durationSeconds}s`);
+          if(s.durationSeconds<900) throw new Error(`V47 is shorter than 15 minutes: ${s.durationSeconds}s`);
+          if(s.durationSeconds>1350) throw new Error(`V47 is longer than 22m30s: ${s.durationSeconds}s`);
+          if((s.beats||[]).length!==72) throw new Error(`Expected 72 measured scenes, got ${(s.beats||[]).length}`);
+          NODE
+      - name: Production QA post
+        run: node shared/qa/validate-video.mjs v47-no-natural-disasters post
+      - id: plan
+        working-directory: v47-no-natural-disasters
+        run: |
+          MATRIX="$(node scripts/plan-segments.mjs)"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+      - name: Pack prepared V47
+        run: tar --exclude='v47-no-natural-disasters/node_modules' -czf v47-prepared.tar.gz v47-no-natural-disasters
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v47-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: v47-prepared.tar.gz
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v47-prepared
+          path: .
+      - run: tar -xzf v47-prepared.tar.gz
+      - name: Install V47 dependencies
+        working-directory: v47-no-natural-disasters
+        run: npm install
+      - name: Render segment
+        working-directory: v47-no-natural-disasters
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V47NoNaturalDisasters "out/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v47-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v47-no-natural-disasters/out/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg and Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v47-prepared
+          path: .
+      - run: tar -xzf v47-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v47-segment-*
+          path: v47-no-natural-disasters/parts
+          merge-multiple: true
+      - name: Generate BGM
+        working-directory: v47-no-natural-disasters
+        run: node scripts/generate-bgm.mjs
+      - name: Concatenate segments
+        working-directory: v47-no-natural-disasters
+        run: |
+          mkdir -p out
+          find parts -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+      - name: Mix narration and BGM
+        working-directory: v47-no-natural-disasters
+        run: |
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a \
+            -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.05[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" \
+            -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v47-no-natural-disasters-final.mp4
+      - name: Create scene-complete QA contact sheet
+        run: node shared/qa/generate-scene-contact-sheet.mjs v47-no-natural-disasters v47-no-natural-disasters/out/v47-no-natural-disasters-final.mp4 v47-no-natural-disasters/out/v47-no-natural-disasters-scene-contact-sheet.jpg
+      - name: Verify QA sheet source count
+        run: |
+          node - <<'NODE'
+          const s=require('./v47-no-natural-disasters/src/sync-timing.json');
+          if((s.beats||[]).length!==72) throw new Error(`QA requires 72 measured scenes, got ${(s.beats||[]).length}`);
+          NODE
+      - name: Publish GitHub Release
+        working-directory: v47-no-natural-disasters
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO_NAME="knowledge-video-v47-no-natural-disasters-${GITHUB_RUN_ID}.mp4"
+          cp out/v47-no-natural-disasters-final.mp4 "out/${VIDEO_NAME}"
+          TAG="v47-no-natural-disasters-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out/${VIDEO_NAME}" out/v47-no-natural-disasters-scene-contact-sheet.jpg public/audio/pronunciation-report.json qa/preproduction-summary.json IMPLEMENTATION_PLAN.md src/script-data.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V47 No Natural Disasters Production ${GITHUB_RUN_ID}" \
+            --notes "72-scene long-form Remotion production on the consequences of removing floods, typhoons, natural wildfire, eruptions and strong earthquakes themselves rather than merely preventing human disaster. The film moves through a future zero-disaster Tokyo, the Nile, floodplain ecology, typhoon rainfall and ocean mixing, forest disturbance, fire ecology, volcanic soils and land creation, earthquake versus plate motion, mountain building, future biodiversity loss, and resilience-based disaster reduction. Every scene has a distinct visual key and explicit renderer case, measured 青山龍星 narration, synchronized subtitles, BGM, segmented rendering, and one QA frame per scene."
