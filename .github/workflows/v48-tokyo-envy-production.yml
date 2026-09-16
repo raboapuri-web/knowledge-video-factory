@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/v48-tokyo-envy-production.yml'
       - 'shared/bootstrap/v48-tokyo-envy.mjs'
+      - 'shared/bootstrap/v48-tokyo-envy-runner.mjs'
 
 permissions:
   contents: write
@@ -27,7 +28,7 @@ jobs:
           ref: main
           path: template-assets
       - name: Materialize V48 production
-        run: node shared/bootstrap/v48-tokyo-envy.mjs
+        run: node shared/bootstrap/v48-tokyo-envy-runner.mjs
       - name: Install audio tools and Japanese fonts
         run: |
           sudo apt-get update
