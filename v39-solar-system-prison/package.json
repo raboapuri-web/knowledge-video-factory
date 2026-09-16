@@ -1,0 +1,8 @@
+{
+  "name":"v39-solar-system-prison-production",
+  "version":"1.0.0",
+  "private":true,
+  "scripts":{"check":"tsc --noEmit","build-content":"node scripts/build-content.mjs","render":"remotion render src/index.ts V39SolarSystem out/full.mp4"},
+  "dependencies":{"@remotion/cli":"^4.0.0","react":"^18.3.1","react-dom":"^18.3.1","remotion":"^4.0.0"},
+  "devDependencies":{"@types/node":"^22.0.0","@types/react":"^18.3.0","@types/react-dom":"^18.3.0","typescript":"^5.7.0"}
+}
