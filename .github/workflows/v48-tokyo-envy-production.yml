@@ -1,0 +1,209 @@
+name: V48 Tokyo Envy Cinematic Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v48-tokyo-envy-production.yml'
+      - 'shared/bootstrap/v48-tokyo-envy.mjs'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - name: Checkout production repository
+        uses: actions/checkout@v4
+      - name: Checkout SVG and character template library
+        uses: actions/checkout@v4
+        with:
+          repository: raboapuri-web/test
+          ref: main
+          path: template-assets
+      - name: Materialize V48 production
+        run: node shared/bootstrap/v48-tokyo-envy.mjs
+      - name: Install audio tools and Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install V48 dependencies
+        working-directory: v48-tokyo-envy
+        run: npm install
+      - name: Expose dependencies to shared tools
+        working-directory: v48-tokyo-envy
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Build preproduction plan
+        working-directory: v48-tokyo-envy
+        run: node scripts/build-preproduction.mjs
+      - name: Story, asset and scene architecture guard
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=require('./v48-tokyo-envy/src/script-data.json');
+          const d=require('./v48-tokyo-envy/src/scene-data.json');
+          const n=s.beats.length;
+          if(n<45||n>70) throw new Error(`Unexpected beat count ${n}`);
+          if(d.length!==n) throw new Error(`Scene data mismatch ${d.length}/${n}`);
+          if(new Set(s.beats.map(b=>b.visual)).size!==n) throw new Error('Every beat must have a distinct visual key');
+          const phases=new Set(d.map(x=>x.phase));
+          const required=['baba_room','tokyo_wonder','tokyo_icons','first_job','young_wedding','ebisu_move','negative_reflex','city_roast','roppongi_work','toyosu_visit','toyosu_deflect','seen_through','price_search','meguro_home','hometown_house','friends_dinner','shinjuku_night','instagram_scroll','quiet_meguro','realization','nakame_memory','ebisu_students','final_lookback'];
+          for(const p of required) if(!phases.has(p)) throw new Error(`Missing story phase ${p}`);
+          const assets=['BG_meguro_1ldk_night.svg','BG_shizuoka_suburban_house_yard_day.svg','BG_yokohama_hotel_wedding_reception.svg','BG_yurakucho_station_platform_night.svg','PROP_minivan_white_angled.svg','PROP_small_dog.svg','PROP_small_vinyl_pool.svg'];
+          for(const a of assets){
+            const found=fs.existsSync(`./v48-tokyo-envy/public/assets/backgrounds/${a}`)||fs.existsSync(`./v48-tokyo-envy/public/assets/props/${a}`);
+            if(!found) throw new Error(`Missing template asset ${a}`);
+          }
+          const all=s.beats.map(b=>b.narration).join('\n');
+          for(const phrase of ['羨ましい','東京に長く住むと','豊洲って液状化','お前、そういうこと言うと思った','目黒','少し羨ましかった']) if(!all.includes(phrase)) throw new Error(`Missing narrative anchor: ${phrase}`);
+          console.log(`V48 architecture: ${n} beats / ${phases.size} phases / template assets present`);
+          NODE
+      - name: Production QA pre
+        run: node shared/qa/validate-video.mjs v48-tokyo-envy pre
+      - name: Pronunciation regression tests
+        run: node shared/voice/test-pronunciation.mjs
+      - name: TypeScript check
+        working-directory: v48-tokyo-envy
+        run: npm run check
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox || true
+          exit 1
+      - name: Generate measured narration
+        working-directory: v48-tokyo-envy
+        run: node scripts/generate-voicevox.mjs
+      - name: Duration guard
+        run: |
+          node - <<'NODE'
+          const s=require('./v48-tokyo-envy/src/sync-timing.json');
+          console.log(`Measured duration: ${s.durationSeconds}s / ${(s.beats||[]).length} beats`);
+          if(s.durationSeconds<360) throw new Error(`V48 is unexpectedly short: ${s.durationSeconds}s`);
+          if(s.durationSeconds>1200) throw new Error(`V48 is unexpectedly long: ${s.durationSeconds}s`);
+          if((s.beats||[]).length<45) throw new Error('Measured scene count is too low');
+          NODE
+      - name: Production QA post
+        run: node shared/qa/validate-video.mjs v48-tokyo-envy post
+      - id: plan
+        working-directory: v48-tokyo-envy
+        run: |
+          MATRIX="$(node scripts/plan-segments.mjs)"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+      - name: Pack prepared V48
+        run: tar --exclude='v48-tokyo-envy/node_modules' -czf v48-prepared.tar.gz v48-tokyo-envy
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v48-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: v48-prepared.tar.gz
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v48-prepared
+          path: .
+      - run: tar -xzf v48-prepared.tar.gz
+      - name: Install V48 dependencies
+        working-directory: v48-tokyo-envy
+        run: npm install
+      - name: Render segment
+        working-directory: v48-tokyo-envy
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V48TokyoEnvy "out/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v48-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v48-tokyo-envy/out/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg and Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v48-prepared
+          path: .
+      - run: tar -xzf v48-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v48-segment-*
+          path: v48-tokyo-envy/parts
+          merge-multiple: true
+      - name: Generate BGM
+        working-directory: v48-tokyo-envy
+        run: node scripts/generate-bgm.mjs
+      - name: Concatenate segments
+        working-directory: v48-tokyo-envy
+        run: |
+          mkdir -p out
+          find parts -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+      - name: Mix narration and BGM
+        working-directory: v48-tokyo-envy
+        run: |
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a \
+            -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.045[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" \
+            -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v48-tokyo-envy-final.mp4
+      - name: Create scene-complete QA contact sheet
+        run: node shared/qa/generate-scene-contact-sheet.mjs v48-tokyo-envy v48-tokyo-envy/out/v48-tokyo-envy-final.mp4 v48-tokyo-envy/out/v48-tokyo-envy-scene-contact-sheet.jpg
+      - name: Publish GitHub Release
+        working-directory: v48-tokyo-envy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO_NAME="knowledge-video-v48-tokyo-envy-${GITHUB_RUN_ID}.mp4"
+          cp out/v48-tokyo-envy-final.mp4 "out/${VIDEO_NAME}"
+          TAG="v48-tokyo-envy-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out/${VIDEO_NAME}" out/v48-tokyo-envy-scene-contact-sheet.jpg public/audio/pronunciation-report.json qa/preproduction-summary.json IMPLEMENTATION_PLAN.md src/script-data.json src/scene-data.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V48 Tokyo Envy Cinematic Production ${GITHUB_RUN_ID}" \
+            --notes "Cinematic Remotion adaptation of 東京で10年暮らしたら、羨ましいと言えなくなった。. Built on the V46 measured-narration/segmented-render pipeline, using the raboapuri-web/test SVG and character library plus procedural Remotion scenes. No generated images. Story phases contain internal multi-shot camera movement, character blocking, phone/search/LINE/Instagram UI, transit, city criticism, Toyosu/Meguro/home contrast and the final Ebisu look-back."
