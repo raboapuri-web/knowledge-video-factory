@@ -1,0 +1,217 @@
+name: V49 Friends Cinematic Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v49-friends-production.yml'
+      - 'shared/bootstrap/v49-friends.mjs'
+      - 'shared/v49/**'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - name: Checkout production repository
+        uses: actions/checkout@v4
+      - name: Checkout SVG and character template library
+        uses: actions/checkout@v4
+        with:
+          repository: raboapuri-web/test
+          ref: main
+          path: template-assets
+      - name: Materialize V49 production
+        run: node shared/bootstrap/v49-friends.mjs
+      - name: Install audio tools and Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install V49 dependencies
+        working-directory: v49-friends
+        run: npm install
+      - name: Expose dependencies to shared tools
+        working-directory: v49-friends
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Build preproduction plan
+        working-directory: v49-friends
+        run: node scripts/build-preproduction.mjs
+      - name: Story and asset guard
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=require('./v49-friends/src/script-data.json');
+          const d=require('./v49-friends/src/scene-data.json');
+          const n=s.beats.length;
+          if(!s.beats[0].narration.startsWith('三十五歳になって、友達が減った。')) throw new Error('Wrong canonical script loaded');
+          if(n<45||n>90) throw new Error(`Unexpected beat count ${n}`);
+          if(d.length!==n) throw new Error(`Scene data mismatch ${d.length}/${n}`);
+          if(new Set(s.beats.map(b=>b.visual)).size!==n) throw new Error('Every beat must have a distinct visual key');
+          const phases=new Set(d.map(x=>x.phase));
+          const required=['present_lonely','busy_excuse','baba_youth','career_start','mori_transfer','shirokane_defense','wedding_measure','own_transfer','kobayashi_house','different_game','avoidance','side_light','juniors_safe','meguro_buy','yurakucho_talk','screentime_alibi','spring_invite','no_grading','showwindow','backroom','return_baba','stairs_down','reunion','acceptance','walk_home','rotary_goodbye','revision_history','final_archive'];
+          for(const p of required) if(!phases.has(p)) throw new Error(`Missing phase ${p}`);
+          const assets=['BG_meguro_1ldk_night.svg','BG_takadanobaba_basement_izakaya.svg','BG_takadanobaba_izakaya_stairs.svg','BG_takadanobaba_rotary_night.svg','BG_sangenjaya_street_night.svg','BG_yokohama_hotel_wedding_reception.svg','BG_shizuoka_suburban_house_yard_day.svg','BG_yurakucho_yakitori_night.svg','BG_yurakucho_station_platform_night.svg','BG_storefront_showwindow_night.svg','PROP_taxi_black_split.svg','PROP_izakaya_beer_edamame_table.svg','PROP_minivan_white_angled.svg','PROP_small_dog.svg','PROP_small_vinyl_pool.svg'];
+          for(const a of assets){
+            const found=fs.existsSync(`./v49-friends/public/assets/backgrounds/${a}`)||fs.existsSync(`./v49-friends/public/assets/props/${a}`);
+            if(!found) throw new Error(`Missing template asset ${a}`);
+          }
+          console.log(`V49 architecture: ${n} beats / ${phases.size} phases / canonical script and assets verified`);
+          NODE
+      - name: Production QA pre
+        run: node shared/qa/validate-video.mjs v49-friends pre
+      - name: Pronunciation regression tests
+        run: node shared/voice/test-pronunciation.mjs
+      - name: TypeScript check
+        working-directory: v49-friends
+        run: npm run check
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox || true
+          exit 1
+      - name: Generate measured narration
+        working-directory: v49-friends
+        run: node scripts/generate-voicevox.mjs
+      - name: Duration guard
+        run: |
+          node - <<'NODE'
+          const s=require('./v49-friends/src/sync-timing.json');
+          console.log(`Measured duration: ${s.durationSeconds}s / ${(s.beats||[]).length} beats`);
+          if(s.durationSeconds<480) throw new Error(`V49 is unexpectedly short: ${s.durationSeconds}s`);
+          if(s.durationSeconds>1500) throw new Error(`V49 is unexpectedly long: ${s.durationSeconds}s`);
+          NODE
+      - name: Production QA post
+        run: node shared/qa/validate-video.mjs v49-friends post
+      - id: plan
+        working-directory: v49-friends
+        run: |
+          MATRIX="$(node scripts/plan-segments.mjs)"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+      - name: Pack prepared V49
+        run: tar --exclude='v49-friends/node_modules' -czf v49-prepared.tar.gz v49-friends
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v49-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: v49-prepared.tar.gz
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v49-prepared
+          path: .
+      - run: tar -xzf v49-prepared.tar.gz
+      - name: Install V49 dependencies
+        working-directory: v49-friends
+        run: npm install
+      - name: Render segment
+        working-directory: v49-friends
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V49Friends "out/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v49-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v49-friends/out/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg and Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v49-prepared
+          path: .
+      - run: tar -xzf v49-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v49-segment-*
+          path: v49-friends/parts
+          merge-multiple: true
+      - name: Generate BGM
+        working-directory: v49-friends
+        run: node scripts/generate-bgm.mjs
+      - name: Concatenate segments
+        working-directory: v49-friends
+        run: |
+          mkdir -p out
+          find parts -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+      - name: Mix narration and BGM
+        working-directory: v49-friends
+        run: |
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a \
+            -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.045[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" \
+            -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v49-friends-final.mp4
+      - name: Create scene-complete QA contact sheet
+        run: node shared/qa/generate-scene-contact-sheet.mjs v49-friends v49-friends/out/v49-friends-final.mp4 v49-friends/out/v49-friends-scene-contact-sheet.jpg
+      - name: Create scene table
+        working-directory: v49-friends
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'); const s=require('./src/script-data.json'); const d=require('./src/scene-data.json'); const t=require('./src/sync-timing.json');
+          let out='# V49 Scene Table\n\n| Scene | Time | Phase | Narration |\n|---|---:|---|---|\n';
+          for(let i=0;i<s.beats.length;i++){const b=s.beats[i],m=d[i],z=(t.beats||[])[i]||{};const st=Number(z.start||0).toFixed(1),en=Number(z.end||0).toFixed(1);out+=`| ${b.id} | ${st}-${en}s | ${m.phase} | ${b.narration.replace(/\|/g,'／').replace(/\n/g,' ')} |\n`;}
+          fs.writeFileSync('out/v49-friends-scene-table.md',out);
+          NODE
+      - name: Publish GitHub Release
+        working-directory: v49-friends
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO_NAME="knowledge-video-v49-friends-${GITHUB_RUN_ID}.mp4"
+          cp out/v49-friends-final.mp4 "out/${VIDEO_NAME}"
+          TAG="v49-friends-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out/${VIDEO_NAME}" out/v49-friends-scene-contact-sheet.jpg out/v49-friends-scene-table.md public/audio/pronunciation-report.json qa/preproduction-summary.json IMPLEMENTATION_PLAN.md src/script-data.json src/scene-data.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V49 Friends Cinematic Production ${GITHUB_RUN_ID}" \
+            --notes "Correct production for 東京で友達が減ったのは、忙しくなったからじゃなかった。. Canonical script begins with 三十五歳になって、友達が減った。. Built on the V46 measured-narration and segmented-render pipeline. Uses the raboapuri-web/test SVG/character library, small synchronized bottom subtitles, semantic scene splitting, story-specific Remotion animation, a full scene QA contact sheet and scene table."
