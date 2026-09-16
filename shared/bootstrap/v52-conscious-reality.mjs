@@ -9,8 +9,10 @@ fs.rmSync(target,{recursive:true,force:true});
 fs.cpSync(source,target,{recursive:true});
 
 const title='なぜあなたが見ている世界は「本当の世界」ではないのか？【脳科学×意識】';
-const script=fs.readFileSync(path.join(root,'shared/v52/conscious-reality-script.txt'),'utf8').trim();
+const rawScript=fs.readFileSync(path.join(root,'shared/v52/conscious-reality-script.txt'),'utf8').trim();
+const script=rawScript.replaceAll('白と金','白と金色').replaceAll('上げた手だけが','挙げた手だけが');
 if(!script.startsWith('朝、六時四十七分。')) throw new Error('Wrong V52 canonical script loaded');
+if(script.includes('白と金')||script.includes('上げた手だけが')) throw new Error('Unsafe V52 pronunciation phrase remains');
 fs.writeFileSync(path.join(target,'script.txt'),script+'\n');
 
 const phaseStarts=[
