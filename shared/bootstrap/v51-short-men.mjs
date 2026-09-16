@@ -60,6 +60,13 @@ fs.writeFileSync(path.join(target,'src/sync-timing.json'),JSON.stringify({durati
 fs.writeFileSync(path.join(target,'production-manifest.json'),JSON.stringify({productionSystemVersion:2,visualRegistryVersion:4,voiceDictionaryVersion:4,qaRulesVersion:3,preproductionPolicyVersion:1,syncManifestVersion:7,requiresPreproductionPlan:true,sharedVoiceGenerator:true,videoId:'V51-short-men',title},null,2));
 fs.copyFileSync(path.join(root,'shared/v51/index.tsx'),path.join(target,'src/index.tsx'));
 fs.copyFileSync(path.join(root,'shared/v51/scenes.tsx'),path.join(target,'src/scenes.tsx'));
+const scenesPath=path.join(target,'src/scenes.tsx');
+let scenes=fs.readFileSync(scenesPath,'utf8');
+scenes=scenes
+  .replace('opacity={i===1?.28:.68}','opacity={i===1 ? .28 : .68}')
+  .replace('opacity={i<4?.3:1}','opacity={i<4 ? .3 : 1}')
+  .replace("kind==='wide'?.99:1.025","kind==='wide' ? .99 : 1.025");
+fs.writeFileSync(scenesPath,scenes);
 fs.copyFileSync(path.join(root,'shared/v51/SOURCES.md'),path.join(target,'SOURCES.md'));
 fs.writeFileSync(path.join(target,'IMPLEMENTATION_PLAN.md'),`# V51 Short Men — Production Architecture\n\n- Theme: ${title}\n- Canonical script: ${beats.length} narration scenes across ${new Set(beats.map(b=>b.phase)).size} semantic phases.\n- Every narration scene has a distinct visual key and a scene-specific variant; backgrounds use scene number + phase + local variant so no beat receives an identical background state.\n- The renderer uses distinct visual languages for app UI, Victorian study, sexual-selection diagram, genome lab, Galton scatter plots, relative-height couples, multivariate mate choice, selection mathematics, rainforest life-history, body-size tradeoffs, Dutch historical records, growth environment, constrained matching market, artificial-selection dystopia, realistic allele-frequency drift, station crowd, and final synthesis.\n- Motion design includes parallax camera drift, moving foreground silhouettes, animated distributions, genome tiles, recombination cards, population-frequency dots, layered rainforest depth, timeline growth, matching arrows, and multi-generation distribution shifts.\n- VOICEVOX timing is measured before rendering; final video is rendered in segments, concatenated, mixed with BGM, and audited with a scene-complete contact sheet.\n- Bottom subtitles remain small and narration-led; explanatory screen labels are kept minimal.\n`);
 console.log(`V51 materialized: ${beats.length} scenes / ${new Set(beats.map(b=>b.phase)).size} phases`);
