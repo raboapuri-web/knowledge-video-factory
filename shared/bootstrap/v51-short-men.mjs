@@ -64,6 +64,7 @@ const scenesPath=path.join(target,'src/scenes.tsx');
 let scenes=fs.readFileSync(scenesPath,'utf8');
 scenes=scenes
   .replace('opacity={i===1?.28:.68}','opacity={i===1 ? .28 : .68}')
+  .replace('opacity=.7','opacity={.7}')
   .replace('opacity={i<4?.3:1}','opacity={i<4 ? .3 : 1}')
   .replace("kind==='wide'?.99:1.025","kind==='wide' ? .99 : 1.025");
 fs.writeFileSync(scenesPath,scenes);
