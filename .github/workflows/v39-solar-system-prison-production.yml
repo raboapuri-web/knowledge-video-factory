@@ -1,0 +1,193 @@
+name: V39 Solar System Prison Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v39-solar-system-prison-production.yml'
+      - 'v39-solar-system-prison/**'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 80
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    defaults:
+      run:
+        working-directory: v39-solar-system-prison
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install audio tools and Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - name: Expose V39 dependencies to shared tools
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Build V39 script and preproduction plan
+        run: node scripts/build-content.mjs
+      - name: V39 story, scene and background architecture guard
+        run: |
+          node - <<'NODE'
+          const s=require('./src/script-data.json');
+          if(s.beats.length!==72) throw new Error(`Expected 72 beats, got ${s.beats.length}`);
+          const visuals=[...new Set(s.beats.map(b=>b.visual))];
+          if(visuals.length!==72) throw new Error(`Expected 72 distinct visual keys, got ${visuals.length}`);
+          const bgs=[...new Set(s.beats.map(b=>b.bg))];
+          if(bgs.length<30) throw new Error(`Expected >=30 background groups, got ${bgs.length}`);
+          for(const bg of bgs){const idx=s.beats.map((b,i)=>b.bg===bg?i:-1).filter(i=>i>=0);for(let j=1;j<idx.length;j++)if(idx[j]!==idx[j-1]+1)throw new Error(`Background ${bg} reused non-consecutively`);if(idx.length>3)throw new Error(`Background ${bg} reused for ${idx.length} consecutive scenes; max 3`);}
+          const all=s.beats.map(b=>b.narration).join('\n');
+          for(const phrase of ['オールトの雲','プロキシマ・ケンタウリ','ツィオルコフスキー','世代宇宙船','小さな文明']) if(!all.includes(phrase)) throw new Error(`Missing narrative anchor: ${phrase}`);
+          console.log(`V39 architecture: ${s.beats.length} scenes / ${visuals.length} visual keys / ${bgs.length} background groups`);
+          NODE
+      - name: Production QA pre
+        working-directory: .
+        run: node shared/qa/validate-video.mjs v39-solar-system-prison pre
+      - name: Pronunciation regression tests
+        working-directory: .
+        run: node shared/voice/test-pronunciation.mjs
+      - name: TypeScript check
+        run: npm run check
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox || true
+          exit 1
+      - name: Generate measured narration
+        run: node scripts/generate-voicevox.mjs
+      - name: Production QA post
+        working-directory: .
+        run: node shared/qa/validate-video.mjs v39-solar-system-prison post
+      - id: plan
+        run: |
+          MATRIX="$(node scripts/plan-segments.mjs)"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v39-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: |
+            v39-solar-system-prison/src/script-data.json
+            v39-solar-system-prison/src/sync-timing.json
+            v39-solar-system-prison/preproduction-plan.json
+            v39-solar-system-prison/public/audio/narration.m4a
+            v39-solar-system-prison/public/audio/pronunciation-report.json
+            v39-solar-system-prison/qa/preproduction-summary.json
+            v39-solar-system-prison/qa/preproduction-summary.md
+            v39-solar-system-prison/V39_IMPLEMENTATION.md
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    defaults:
+      run:
+        working-directory: v39-solar-system-prison
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - name: Expose V39 dependencies to shared tools
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - uses: actions/download-artifact@v4
+        with:
+          name: v39-prepared
+          path: v39-solar-system-prison
+      - name: Render segment
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out
+          npx remotion render src/index.ts V39SolarSystem "out/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v39-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v39-solar-system-prison/out/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    defaults:
+      run:
+        working-directory: v39-solar-system-prison
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg and Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v39-prepared
+          path: v39-solar-system-prison
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v39-segment-*
+          path: v39-solar-system-prison/parts
+          merge-multiple: true
+      - run: node scripts/generate-bgm.mjs
+      - name: Concatenate segments
+        run: |
+          mkdir -p out
+          find parts -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+      - name: Mix narration and BGM
+        run: |
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a \
+            -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.045[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" \
+            -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v39-solar-system-prison-final.mp4
+      - name: Create 72-scene QA contact sheet
+        working-directory: .
+        run: node shared/qa/generate-scene-contact-sheet.mjs v39-solar-system-prison v39-solar-system-prison/out/v39-solar-system-prison-final.mp4 v39-solar-system-prison/out/v39-solar-system-prison-scene-contact-sheet.jpg
+      - name: Verify QA scene count
+        run: |
+          node - <<'NODE'
+          const s=require('./src/sync-timing.json');
+          if((s.beats||[]).length!==72) throw new Error(`QA requires 72 measured scenes, got ${(s.beats||[]).length}`);
+          NODE
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO_NAME="knowledge-video-v39-solar-system-prison-${GITHUB_RUN_ID}.mp4"
+          cp out/v39-solar-system-prison-final.mp4 "out/${VIDEO_NAME}"
+          TAG="v39-solar-system-prison-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out/${VIDEO_NAME}" out/v39-solar-system-prison-scene-contact-sheet.jpg public/audio/pronunciation-report.json qa/preproduction-summary.json preproduction-plan.json V39_IMPLEMENTATION.md \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V39 Solar System Prison Production ${GITHUB_RUN_ID}" \
+            --notes "72-scene Remotion production. Script-specific astronomy animation, 30+ static continuity background groups, animated foreground-only continuity scenes, measured 青山龍星 VOICEVOX timing, synchronized subtitles, dark-space BGM, parallel segmented rendering, and scene-complete QA."
