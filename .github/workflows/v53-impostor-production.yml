@@ -1,0 +1,92 @@
+name: V53 Impostor Production
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/v53-impostor-production.yml','shared/bootstrap/v53-impostor.mjs','shared/v53/**']
+permissions: {contents: write}
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    outputs: {matrix: '${{ steps.plan.outputs.matrix }}'}
+    steps:
+      - uses: actions/checkout@v4
+      - run: node shared/bootstrap/v53-impostor.mjs
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - working-directory: v53-impostor
+        run: npm install
+      - working-directory: v53-impostor
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - working-directory: v53-impostor
+        run: node scripts/build-preproduction.mjs
+      - name: Fine scene guard
+        run: |
+          node - <<'NODE'
+          const s=require('./v53-impostor/src/script-data.json'),d=require('./v53-impostor/src/scene-data.json');const n=s.beats.length;if(n<90||n>135)throw Error(`scene count ${n}`);if(d.length!==n)throw Error('mismatch');if(new Set(s.beats.map(x=>x.visual)).size!==n)throw Error('visual reuse');const g={};let seen=new Set(),prev='';for(const x of d){g[x.bgGroup]=(g[x.bgGroup]||0)+1;if(x.bgGroup!==prev&&seen.has(x.bgGroup))throw Error('nonconsecutive bg reuse');seen.add(x.bgGroup);prev=x.bgGroup;}for(const [k,v] of Object.entries(g))if(v>2)throw Error(`bg ${k} ${v}`);if(Object.keys(g).length<45)throw Error('too few backgrounds');console.log(`${n} scenes / ${Object.keys(g).length} backgrounds`);
+          NODE
+      - working-directory: v53-impostor
+        run: npm run check
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; exit 1
+      - working-directory: v53-impostor
+        run: node scripts/generate-voicevox.mjs
+      - id: plan
+        working-directory: v53-impostor
+        run: echo "matrix=$(node scripts/plan-segments.mjs)" >> "$GITHUB_OUTPUT"
+      - run: tar --exclude='v53-impostor/node_modules' -czf v53-prepared.tar.gz v53-impostor
+      - uses: actions/upload-artifact@v4
+        with: {name: v53-prepared, path: v53-prepared.tar.gz, retention-days: 1}
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v53-prepared}
+      - run: tar -xzf v53-prepared.tar.gz
+      - working-directory: v53-impostor
+        run: npm install
+      - working-directory: v53-impostor
+        run: mkdir -p out && npx remotion render src/index.tsx V53Impostor "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with: {name: 'v53-segment-${{ matrix.id }}', path: 'v53-impostor/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
+  finalize:
+    needs: [prepare,render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v53-prepared}
+      - run: tar -xzf v53-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'v53-segment-*', path: v53-impostor/parts, merge-multiple: true}
+      - working-directory: v53-impostor
+        run: node scripts/generate-bgm.mjs
+      - working-directory: v53-impostor
+        run: |
+          mkdir -p out; find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.042[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v53-final.mp4
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v53-impostor v53-impostor/out/v53-final.mp4 v53-impostor/out/v53-contact-sheet.jpg
+      - working-directory: v53-impostor
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG="v53-impostor-${GITHUB_RUN_ID}"; NAME="knowledge-video-v53-impostor-${GITHUB_RUN_ID}.mp4"; cp out/v53-final.mp4 "out/$NAME"; gh release create "$TAG" "out/$NAME" out/v53-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md --repo "$GITHUB_REPOSITORY" --title "V53 Impostor Production ${GITHUB_RUN_ID}" --notes "Fine-scene Remotion production with measured VOICEVOX narration and scene-complete QA."
