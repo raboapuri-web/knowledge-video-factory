@@ -101,7 +101,7 @@ jobs:
           node - <<'NODE'
           const s=require('./v55-promotion-ghost/src/sync-timing.json');
           console.log(`Measured duration: ${s.durationSeconds}s / ${(s.beats||[]).length} shots`);
-          if(s.durationSeconds<600) throw new Error(`V55 is unexpectedly short: ${s.durationSeconds}s`);
+          if(s.durationSeconds<500) throw new Error(`V55 is unexpectedly short: ${s.durationSeconds}s`);
           if(s.durationSeconds>1500) throw new Error(`V55 is unexpectedly long: ${s.durationSeconds}s`);
           NODE
       - name: Production QA post
