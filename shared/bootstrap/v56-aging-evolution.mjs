@@ -90,7 +90,13 @@ scenes=scenes
 fs.writeFileSync(path.join(target,'src/scenes.tsx'),scenes);
 
 fs.copyFileSync(path.join(root,'shared/v56/SOURCES.md'),path.join(target,'SOURCES.md'));
-fs.copyFileSync(path.join(root,'shared/v52/generate-bgm.mjs'),path.join(target,'scripts/generate-bgm.mjs'));
+{
+  let bgm=fs.readFileSync(path.join(root,'shared/v52/generate-bgm.mjs'),'utf8');
+  bgm=bgm
+    .replace("const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..','..','v52-conscious-reality');","const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');")
+    .replace('V52 BGM ready','V56 BGM ready');
+  fs.writeFileSync(path.join(target,'scripts/generate-bgm.mjs'),bgm);
+}
 fs.writeFileSync(path.join(target,'scripts/generate-voicevox.mjs'),`import path from 'node:path';\nimport {fileURLToPath} from 'node:url';\nimport {generateVoicevox} from '../../shared/voice/generate-voicevox.mjs';\nconst here=path.dirname(fileURLToPath(import.meta.url));const root=path.resolve(here,'..');\nawait generateVoicevox(root,{speaker:'青山龍星',style:'ノーマル',speed:1.20,pitchScale:-0.028,intonationScale:0.84});\n`);
 
 fs.writeFileSync(path.join(target,'V56_IMPLEMENTATION.md'),`# V56 Aging Evolution — Production Architecture
