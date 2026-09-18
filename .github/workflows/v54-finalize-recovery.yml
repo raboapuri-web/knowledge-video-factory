@@ -1,0 +1,59 @@
+name: V54 Finalize Recovery
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/v54-finalize-recovery.yml']
+  workflow_dispatch:
+permissions: {contents: write}
+jobs:
+  finalize-recovery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with:
+          name: v54-prepared
+          path: .
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 35248373224
+      - run: tar -xzf v54-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: 'v54-segment-*'
+          path: v54-ai-work-paradox/parts
+          merge-multiple: true
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 35248373224
+      - working-directory: v54-ai-work-paradox
+        run: node scripts/generate-bgm.mjs
+      - name: Assemble and validate final video
+        working-directory: v54-ai-work-paradox
+        run: |
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          echo "segments=$(wc -l < out/concat.txt)"
+          test "$(wc -l < out/concat.txt)" -eq 8
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v54-final.mp4
+          test -s out/v54-final.mp4
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of csv=p=0 out/v54-final.mp4 | head -1)
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of csv=p=0 out/v54-final.mp4 | head -1)
+          DUR=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v54-final.mp4)
+          echo "final_width=$W final_height=$H duration=$DUR"
+          test "$W" = "1920"
+          test "$H" = "1080"
+          awk -v d="$DUR" 'BEGIN { exit !(d > 600) }'
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v54-ai-work-paradox v54-ai-work-paradox/out/v54-final.mp4 v54-ai-work-paradox/out/v54-contact-sheet.jpg
+      - working-directory: v54-ai-work-paradox
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG="v54-ai-work-paradox-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v54-ai-work-paradox-${GITHUB_RUN_ID}.mp4"
+          cp out/v54-final.mp4 "out/$NAME"
+          gh release create "$TAG" "out/$NAME" out/v54-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V54_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V54 AI Work Paradox Production ${GITHUB_RUN_ID}" --notes "Recovered finalization from successful V54 8-way render run 35248373224. 190 micro-scenes, 97 non-reused continuity backgrounds, static shared backgrounds, semantic foreground animation, measured VOICEVOX narration and scene-complete contact-sheet QA."
