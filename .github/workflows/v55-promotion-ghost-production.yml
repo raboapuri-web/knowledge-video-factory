@@ -1,0 +1,230 @@
+name: V55 Promotion Ghost Cinematic Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v55-promotion-ghost-production.yml'
+      - 'shared/bootstrap/v55-promotion-ghost.mjs'
+      - 'shared/v55/**'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - name: Checkout production repository
+        uses: actions/checkout@v4
+      - name: Checkout SVG and character template library
+        uses: actions/checkout@v4
+        with:
+          repository: raboapuri-web/test
+          ref: main
+          path: template-assets
+      - name: Materialize V55 production
+        run: node shared/bootstrap/v55-promotion-ghost.mjs
+      - name: Install audio tools and Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install V55 dependencies
+        working-directory: v55-promotion-ghost
+        run: npm install
+      - name: Expose dependencies to shared tools
+        working-directory: v55-promotion-ghost
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Build preproduction plan
+        working-directory: v55-promotion-ghost
+        run: node scripts/build-preproduction.mjs
+      - name: Story, continuity and asset guard
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=require('./v55-promotion-ghost/src/script-data.json');
+          const d=require('./v55-promotion-ghost/src/scene-data.json');
+          const n=s.beats.length;
+          if(!s.beats[0].narration.startsWith('三十五歳の誕生日から、二週間が経った火曜日。')) throw new Error('Wrong V55 canonical script');
+          if(n<75||n>155) throw new Error(`Unexpected V55 shot count ${n}`);
+          if(d.length!==n) throw new Error(`Scene data mismatch ${d.length}/${n}`);
+          if(new Set(s.beats.map(b=>b.id)).size!==n) throw new Error('Duplicate shot IDs');
+          if(new Set(s.beats.map(b=>b.visual)).size!==n) throw new Error('Each narration shot must have a distinct visual key');
+          const requiredPhases=['promotion_meeting','promotion_reaction','misaki_search','nakano_life','ebisu_first_date','future_talk','shinagawa_transfer','sancha_move','wallet_birthday','gotanda_breakup','after_breakup','meguro_home','promotion_night','ebisu_walk','meguro_midnight','line_history','unsent_message','proof_witness','delete_silence','next_morning','final_realization'];
+          const phases=new Set(d.map(x=>x.phase));
+          for(const p of requiredPhases) if(!phases.has(p)) throw new Error(`Missing phase ${p}`);
+          const assets=[
+            'BG_shibuya_office_23f_meeting_day.svg','BG_nakano_shinbashi_1k_night.svg','BG_ebisu_restaurant_night.svg',
+            'BG_sangenjaya_1k_night.svg','BG_gotanda_cafe_day.svg','BG_ebisu_west_rotary_night.svg','BG_ebisu_meguro_walk_night.svg',
+            'BG_meguro_1ldk_night.svg','PROP_moving_boxes_stack.svg'
+          ];
+          for(const a of assets){
+            const found=fs.existsSync(`./v55-promotion-ghost/public/assets/backgrounds/${a}`)||fs.existsSync(`./v55-promotion-ghost/public/assets/props/${a}`);
+            if(!found) throw new Error(`Missing V55 template asset ${a}`);
+          }
+          const idx=fs.readFileSync('./v55-promotion-ghost/src/index.tsx','utf8');
+          if(!idx.includes('phaseProgress')) throw new Error('Continuity clock missing');
+          const renderer=fs.readFileSync('./v55-promotion-ghost/src/scenes.tsx','utf8');
+          for(const p of requiredPhases) if(!renderer.includes(`case '${p}'`)) throw new Error(`Renderer missing phase ${p}`);
+          console.log(`V55 architecture: ${n} shots / ${phases.size} phases / continuous phase clock / assets verified`);
+          NODE
+      - name: Production QA pre
+        run: node shared/qa/validate-video.mjs v55-promotion-ghost pre
+      - name: Pronunciation regression tests
+        run: node shared/voice/test-pronunciation.mjs
+      - name: TypeScript check
+        working-directory: v55-promotion-ghost
+        run: npm run check
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox || true
+          exit 1
+      - name: Generate measured narration
+        working-directory: v55-promotion-ghost
+        run: node scripts/generate-voicevox.mjs
+      - name: Duration guard
+        run: |
+          node - <<'NODE'
+          const s=require('./v55-promotion-ghost/src/sync-timing.json');
+          console.log(`Measured duration: ${s.durationSeconds}s / ${(s.beats||[]).length} shots`);
+          if(s.durationSeconds<600) throw new Error(`V55 is unexpectedly short: ${s.durationSeconds}s`);
+          if(s.durationSeconds>1500) throw new Error(`V55 is unexpectedly long: ${s.durationSeconds}s`);
+          NODE
+      - name: Production QA post
+        run: node shared/qa/validate-video.mjs v55-promotion-ghost post
+      - id: plan
+        working-directory: v55-promotion-ghost
+        run: |
+          MATRIX="$(node scripts/plan-segments.mjs)"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+      - name: Pack prepared V55
+        run: tar --exclude='v55-promotion-ghost/node_modules' -czf v55-prepared.tar.gz v55-promotion-ghost
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v55-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: v55-prepared.tar.gz
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v55-prepared
+          path: .
+      - run: tar -xzf v55-prepared.tar.gz
+      - name: Install V55 dependencies
+        working-directory: v55-promotion-ghost
+        run: npm install
+      - name: Render segment
+        working-directory: v55-promotion-ghost
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V55PromotionGhost "out/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v55-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v55-promotion-ghost/out/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg and Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v55-prepared
+          path: .
+      - run: tar -xzf v55-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v55-segment-*
+          path: v55-promotion-ghost/parts
+          merge-multiple: true
+      - name: Generate BGM
+        working-directory: v55-promotion-ghost
+        run: node scripts/generate-bgm.mjs
+      - name: Concatenate segments
+        working-directory: v55-promotion-ghost
+        run: |
+          mkdir -p out
+          find parts -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+      - name: Mix narration and BGM
+        working-directory: v55-promotion-ghost
+        run: |
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a \
+            -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.045[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" \
+            -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v55-promotion-ghost-final.mp4
+      - name: Create scene-complete QA contact sheet
+        run: node shared/qa/generate-scene-contact-sheet.mjs v55-promotion-ghost v55-promotion-ghost/out/v55-promotion-ghost-final.mp4 v55-promotion-ghost/out/v55-promotion-ghost-contact-sheet.jpg
+      - name: Create shot table
+        working-directory: v55-promotion-ghost
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'); const s=require('./src/script-data.json'); const d=require('./src/scene-data.json'); const t=require('./src/sync-timing.json');
+          let out='# V55 Shot Table\n\n| Shot | Time | Phase | Kind | Narration |\n|---|---:|---|---|---|\n';
+          for(let i=0;i<s.beats.length;i++){
+            const b=s.beats[i],m=d[i],z=(t.beats||[])[i]||{};
+            const st=Number(z.start||0).toFixed(1),en=Number(z.end||0).toFixed(1);
+            out+=`| ${b.id} | ${st}-${en}s | ${m.phase} | ${m.shotKind} | ${b.narration.replace(/\|/g,'／').replace(/\n/g,' ')} |\n`;
+          }
+          fs.writeFileSync('out/v55-promotion-ghost-shot-table.md',out);
+          NODE
+      - name: Publish GitHub Release
+        working-directory: v55-promotion-ghost
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO_NAME="knowledge-video-v55-promotion-ghost-${GITHUB_RUN_ID}.mp4"
+          cp out/v55-promotion-ghost-final.mp4 "out/${VIDEO_NAME}"
+          TAG="v55-promotion-ghost-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out/${VIDEO_NAME}" out/v55-promotion-ghost-contact-sheet.jpg out/v55-promotion-ghost-shot-table.md public/audio/pronunciation-report.json qa/preproduction-summary.json IMPLEMENTATION_PLAN.md src/script-data.json src/scene-data.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V55 Promotion Ghost Cinematic Production ${GITHUB_RUN_ID}" \
+            --notes "Original Tokyo short-fiction production: 昇進した日に、一番連絡したかった相手はもう他人だった。 Built on the V46 measured-narration and segmented-render pipeline, with continuous same-location scene clocks, fine shot splitting, reusable SVG backgrounds from raboapuri-web/test, story-specific Remotion animation, synchronized bottom subtitles, full QA contact sheet and shot table."
