@@ -75,6 +75,7 @@ beats.forEach((b,i)=>{
   b.shotKind=['wide','mid','detail','insert','reaction','over-shoulder','foreground','symbolic'][local%8];
 });
 if(beats.length<95||beats.length>230) throw new Error('Unexpected V58 shot count: '+beats.length);
+if(!beats.some(b=>b.phase==='final_letter')) throw new Error('Final letter phase missing in generated beats');
 
 fs.writeFileSync(path.join(target,'src/script-data.json'),JSON.stringify({videoId:'V58-haikei-highschool',title,beats},null,2));
 fs.writeFileSync(path.join(target,'src/scene-data.json'),JSON.stringify(beats.map(({id,phase,visual,localIndex,variant,shotKind})=>({id,phase,visual,localIndex,variant,shotKind})),null,2));
