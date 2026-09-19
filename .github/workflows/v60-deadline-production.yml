@@ -39,9 +39,9 @@ jobs:
       - id: plan
         working-directory: v60-deadline-paradox
         run: echo "matrix=$(node scripts/plan-segments.mjs)" >> "$GITHUB_OUTPUT"
-      - run: tar --exclude='v60-deadline-paradox/node_modules' -czf v54-prepared.tar.gz v60-deadline-paradox
+      - run: tar --exclude='v60-deadline-paradox/node_modules' -czf v60-prepared.tar.gz v60-deadline-paradox
       - uses: actions/upload-artifact@v4
-        with: {name: v54-prepared, path: v54-prepared.tar.gz, retention-days: 1}
+        with: {name: v60-prepared, path: v60-prepared.tar.gz, retention-days: 1}
   render:
     needs: prepare
     runs-on: ubuntu-24.04
@@ -56,14 +56,14 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: 20}
       - uses: actions/download-artifact@v4
-        with: {name: v54-prepared}
-      - run: tar -xzf v54-prepared.tar.gz
+        with: {name: v60-prepared}
+      - run: tar -xzf v60-prepared.tar.gz
       - working-directory: v60-deadline-paradox
         run: npm install
       - working-directory: v60-deadline-paradox
         run: mkdir -p out && npx remotion render src/index.tsx V60DeadlineParadox "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
       - uses: actions/upload-artifact@v4
-        with: {name: 'v54-segment-${{ matrix.id }}', path: 'v60-deadline-paradox/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
+        with: {name: 'v60-segment-${{ matrix.id }}', path: 'v60-deadline-paradox/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
   finalize:
     needs: [prepare,render]
     runs-on: ubuntu-24.04
@@ -74,10 +74,10 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: 20}
       - uses: actions/download-artifact@v4
-        with: {name: v54-prepared}
-      - run: tar -xzf v54-prepared.tar.gz
+        with: {name: v60-prepared}
+      - run: tar -xzf v60-prepared.tar.gz
       - uses: actions/download-artifact@v4
-        with: {pattern: 'v54-segment-*', path: v60-deadline-paradox/parts, merge-multiple: true}
+        with: {pattern: 'v60-segment-*', path: v60-deadline-paradox/parts, merge-multiple: true}
       - working-directory: v60-deadline-paradox
         run: node scripts/generate-bgm.mjs
       - working-directory: v60-deadline-paradox

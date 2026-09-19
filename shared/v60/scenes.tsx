@@ -1,6 +1,6 @@
 import React from 'react';
 import data from './scene-data.json';
-type M={id:string;phase:string;variant:number;narration:string;bgGroup:string;bgSeed:number;shotKind:string};
+type M={id:string;phase:string;variant:number;narration:string;bgGroup:string;bgSeed:number;shotKind:string;visual:string};
 const beats=data as M[];
 const W=1920,H=1080;
 const gold='#ddb57a',red='#db7777',cyan='#7ac4ca',paper='#e8e4db',slate='#71818f';
