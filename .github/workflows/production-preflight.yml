@@ -76,6 +76,10 @@ jobs:
         working-directory: ${{ steps.dir.outputs.target }}
         run: npm run check
 
+      - name: Build preproduction plan
+        working-directory: ${{ steps.dir.outputs.target }}
+        run: node scripts/build-preproduction.mjs
+
       - name: Production QA pre
         run: node shared/qa/validate-video.mjs "${{ steps.dir.outputs.target }}" pre
 
