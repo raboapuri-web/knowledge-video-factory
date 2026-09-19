@@ -39,22 +39,19 @@ const phaseStarts=[
  ['leave_and_resign','一週間後、病院へ行った。'],
  ['mother_call','その日の夕方。'],
  ['packing','それから、大井町の部屋を解約した。'],
- ['return_train','高校生の君へ。'],
+ ['return_train','君なら、今の僕をどう見るだろう。'],
  ['tunnel_return','新幹線は、高崎を過ぎた。'],
  ['niigata_arrival','新潟駅に着いたら、外はたぶん寒い。'],
- ['final_letter','拝啓、高校生の君へ。']
+
 ];
 
 const paras=script.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
 let phase='train_departure';
-let finalHitCount=0;
+let salutationCount=0;
 const raw=[];
 for(const p of paras){
-  if(p==='拝啓、高校生の君へ。'){
-    finalHitCount++;
-    if(finalHitCount>=4) phase='final_letter';
-  }
-  const hit=phaseStarts.find(([name,start])=>name!=='final_letter' && p.startsWith(start));
+  if(p==='拝啓、高校生の君へ。') { salutationCount++; if(salutationCount>=2) phase='final_letter'; }
+  const hit=phaseStarts.find(([,start])=>p.startsWith(start));
   if(hit) phase=hit[0];
   raw.push({phase,text:p});
 }
