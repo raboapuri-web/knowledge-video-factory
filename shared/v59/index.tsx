@@ -61,6 +61,6 @@ const ScenePreview=()=>{const frame=useCurrentFrame();return <AbsoluteFill style
 
 const Root=()=>{
   const duration=Math.max(30,Math.ceil(Number(sync.durationSeconds||1080)*30));
-  return <Composition id='V59SpiritualBelief' component={V59} durationInFrames={duration} fps={30} width={1920} height={1080}/>;
+  return <><Composition id='V59Dimensions' component={V59} durationInFrames={duration} fps={30} width={1920} height={1080}/><Composition id='V59ScenePreview' component={ScenePreview} durationInFrames={beats.length*20} fps={30} width={1920} height={1080}/></>;
 };
 registerRoot(Root);
