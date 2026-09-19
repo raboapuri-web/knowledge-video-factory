@@ -1,0 +1,230 @@
+name: V58 Haikei Highschool Cinematic Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v58-haikei-highschool-production.yml'
+      - 'shared/bootstrap/v58-haikei-highschool.mjs'
+      - 'shared/v58/**'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - name: Checkout production repository
+        uses: actions/checkout@v4
+      - name: Checkout SVG and character template library
+        uses: actions/checkout@v4
+        with:
+          repository: raboapuri-web/test
+          ref: main
+          path: template-assets
+      - name: Materialize V58 production
+        run: node shared/bootstrap/v58-haikei-highschool.mjs
+      - name: Install audio tools and Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install V58 dependencies
+        working-directory: v58-haikei-highschool
+        run: npm install
+      - name: Expose dependencies to shared tools
+        working-directory: v58-haikei-highschool
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Build preproduction plan
+        working-directory: v58-haikei-highschool
+        run: node scripts/build-preproduction.mjs
+      - name: Story continuity and asset guard
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=require('./v58-haikei-highschool/src/script-data.json');
+          const d=require('./v58-haikei-highschool/src/scene-data.json');
+          const n=s.beats.length;
+          if(!s.beats[0].narration.startsWith('拝啓、高校生の君へ。')) throw new Error('Wrong canonical script');
+          if(n<95||n>230) throw new Error(`Unexpected V58 shot count ${n}`);
+          if(d.length!==n) throw new Error('Scene data mismatch');
+          if(new Set(s.beats.map(b=>b.id)).size!==n) throw new Error('Duplicate shot IDs');
+          if(new Set(s.beats.map(b=>b.visual)).size!==n) throw new Error('Visual keys must be unique');
+          const requiredPhases=['train_departure','niigata_memory','niigata_station','college_montage','roppongi_club','job_entry','first_year','misalignment','powerpoint','sano_gap','office_isolation','evaluation','ooimachi_sunday','restroom','walkway_break','leave_and_resign','mother_call','packing','return_train','tunnel_return','niigata_arrival','final_letter'];
+          const phases=new Set(d.map(x=>x.phase));
+          for(const p of requiredPhases) if(!phases.has(p)) throw new Error(`Missing phase ${p}`);
+          const assets=[
+            'BG_joetsu_shinkansen_interior.svg','BG_niigata_wet_road_winter.svg','BG_niigata_station_platform_winter.svg',
+            'BG_roppongi_club_night.svg','BG_shinagawa_office_day.svg','BG_shinagawa_walkway_morning.svg',
+            'BG_office_restroom.svg','BG_ooimachi_1k_night.svg','BG_nakano_shinbashi_1k_night.svg'
+          ];
+          for(const a of assets) if(!fs.existsSync('./v58-haikei-highschool/public/assets/backgrounds/'+a)) throw new Error(`Missing V58 asset ${a}`);
+          const idx=fs.readFileSync('./v58-haikei-highschool/src/index.tsx','utf8');
+          if(!idx.includes('phaseProgress')) throw new Error('Continuous phase clock missing');
+          const renderer=fs.readFileSync('./v58-haikei-highschool/src/scenes.tsx','utf8');
+          for(const p of requiredPhases) if(!renderer.includes(`case '${p}'`)) throw new Error(`Renderer missing phase ${p}`);
+          for(const anchor of ['びちゃ。','カツ。','小川さんってさ','そこじゃない','透明な胃液','部屋、片付けとくね']) {
+            if(!s.beats.some(b=>b.narration.includes(anchor))) throw new Error(`Missing narrative anchor: ${anchor}`);
+          }
+          console.log(`V58 architecture: ${n} shots / ${phases.size} phases / continuous phase clock / assets verified`);
+          NODE
+      - name: Production QA pre
+        run: node shared/qa/validate-video.mjs v58-haikei-highschool pre
+      - name: Pronunciation regression tests
+        run: node shared/voice/test-pronunciation.mjs
+      - name: TypeScript check
+        working-directory: v58-haikei-highschool
+        run: npm run check
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox || true
+          exit 1
+      - name: Generate measured narration
+        working-directory: v58-haikei-highschool
+        run: node scripts/generate-voicevox.mjs
+      - name: Duration guard
+        run: |
+          node - <<'NODE'
+          const s=require('./v58-haikei-highschool/src/sync-timing.json');
+          console.log(`Measured duration: ${s.durationSeconds}s / ${(s.beats||[]).length} shots`);
+          if(s.durationSeconds<700) throw new Error(`V58 is unexpectedly short: ${s.durationSeconds}s`);
+          if(s.durationSeconds>1800) throw new Error(`V58 is unexpectedly long: ${s.durationSeconds}s`);
+          NODE
+      - name: Production QA post
+        run: node shared/qa/validate-video.mjs v58-haikei-highschool post
+      - id: plan
+        working-directory: v58-haikei-highschool
+        run: |
+          MATRIX="$(node scripts/plan-segments.mjs)"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+      - name: Pack prepared V58
+        run: tar --exclude='v58-haikei-highschool/node_modules' -czf v58-prepared.tar.gz v58-haikei-highschool
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v58-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: v58-prepared.tar.gz
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v58-prepared
+          path: .
+      - run: tar -xzf v58-prepared.tar.gz
+      - name: Install V58 dependencies
+        working-directory: v58-haikei-highschool
+        run: npm install
+      - name: Render segment
+        working-directory: v58-haikei-highschool
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V58HaikeiHighschool "out/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v58-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v58-haikei-highschool/out/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg and Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v58-prepared
+          path: .
+      - run: tar -xzf v58-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v58-segment-*
+          path: v58-haikei-highschool/parts
+          merge-multiple: true
+      - name: Generate BGM
+        working-directory: v58-haikei-highschool
+        run: node scripts/generate-bgm.mjs
+      - name: Concatenate segments
+        working-directory: v58-haikei-highschool
+        run: |
+          mkdir -p out
+          find parts -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+      - name: Mix narration and BGM
+        working-directory: v58-haikei-highschool
+        run: |
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a \
+            -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.043[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" \
+            -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v58-haikei-highschool-final.mp4
+      - name: Create scene-complete QA contact sheet
+        run: node shared/qa/generate-scene-contact-sheet.mjs v58-haikei-highschool v58-haikei-highschool/out/v58-haikei-highschool-final.mp4 v58-haikei-highschool/out/v58-haikei-highschool-contact-sheet.jpg
+      - name: Create shot table
+        working-directory: v58-haikei-highschool
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'); const s=require('./src/script-data.json'); const d=require('./src/scene-data.json'); const t=require('./src/sync-timing.json');
+          let out='# V58 Shot Table\n\n| Shot | Time | Phase | Kind | Narration |\n|---|---:|---|---|---|\n';
+          for(let i=0;i<s.beats.length;i++){
+            const b=s.beats[i],m=d[i],z=(t.beats||[])[i]||{};
+            const st=Number(z.start||0).toFixed(1),en=Number(z.end||0).toFixed(1);
+            out+=`| ${b.id} | ${st}-${en}s | ${m.phase} | ${m.shotKind} | ${b.narration.replace(/\|/g,'／').replace(/\n/g,' ')} |\n`;
+          }
+          fs.writeFileSync('out/v58-haikei-highschool-shot-table.md',out);
+          NODE
+      - name: Publish GitHub Release
+        working-directory: v58-haikei-highschool
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO_NAME="knowledge-video-v58-haikei-highschool-${GITHUB_RUN_ID}.mp4"
+          cp out/v58-haikei-highschool-final.mp4 "out/${VIDEO_NAME}"
+          TAG="v58-haikei-highschool-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out/${VIDEO_NAME}" out/v58-haikei-highschool-contact-sheet.jpg out/v58-haikei-highschool-shot-table.md public/audio/pronunciation-report.json qa/preproduction-summary.json IMPLEMENTATION_PLAN.md src/script-data.json src/scene-data.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V58 拝啓、高校生の僕へ ${GITHUB_RUN_ID}" \
+            --notes "Original short-fiction production built on V46. Continuous same-location scene clocks, fine-grained shots, reusable SVG assets, concrete company-life animation, synchronized subtitles, and the delayed wet-Niigata / dry-Shinagawa asphalt motif."
