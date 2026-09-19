@@ -50,9 +50,9 @@ let phase='train_departure';
 let salutationCount=0;
 const raw=[];
 for(const p of paras){
-  if(p==='拝啓、高校生の君へ。') { salutationCount++; if(salutationCount>=2) phase='final_letter'; }
   const hit=phaseStarts.find(([,start])=>p.startsWith(start));
   if(hit) phase=hit[0];
+  if(p==='拝啓、高校生の君へ。') { salutationCount++; if(salutationCount>=2) phase='final_letter'; }
   raw.push({phase,text:p});
 }
 
