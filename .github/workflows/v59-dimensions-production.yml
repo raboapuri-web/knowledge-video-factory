@@ -128,14 +128,14 @@ jobs:
           echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
 
       - name: Pack prepared V59
-        run: tar --exclude='v59-dimensions/node_modules' -czf v57-prepared.tar.gz v59-dimensions
+        run: tar --exclude='v59-dimensions/node_modules' -czf v59-prepared.tar.gz v59-dimensions
 
       - uses: actions/upload-artifact@v4
         with:
-          name: v57-prepared
+          name: v59-prepared
           retention-days: 1
           if-no-files-found: error
-          path: v57-prepared.tar.gz
+          path: v59-prepared.tar.gz
 
   render:
     needs: prepare
@@ -157,9 +157,9 @@ jobs:
           node-version: 20
       - uses: actions/download-artifact@v4
         with:
-          name: v57-prepared
+          name: v59-prepared
           path: .
-      - run: tar -xzf v57-prepared.tar.gz
+      - run: tar -xzf v59-prepared.tar.gz
       - name: Install V59 dependencies
         working-directory: v59-dimensions
         run: npm install
@@ -174,7 +174,7 @@ jobs:
             --codec=h264 --crf=18 --concurrency=2 --log=warn
       - uses: actions/upload-artifact@v4
         with:
-          name: v57-segment-${{ matrix.id }}
+          name: v59-segment-${{ matrix.id }}
           retention-days: 1
           if-no-files-found: error
           path: v59-dimensions/out/segment-${{ matrix.id }}.mp4
@@ -195,12 +195,12 @@ jobs:
           node-version: 20
       - uses: actions/download-artifact@v4
         with:
-          name: v57-prepared
+          name: v59-prepared
           path: .
-      - run: tar -xzf v57-prepared.tar.gz
+      - run: tar -xzf v59-prepared.tar.gz
       - uses: actions/download-artifact@v4
         with:
-          pattern: v57-segment-*
+          pattern: v59-segment-*
           path: v59-dimensions/parts
           merge-multiple: true
 
