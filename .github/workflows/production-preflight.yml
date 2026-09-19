@@ -1,0 +1,115 @@
+name: Production Preflight
+
+on:
+  push:
+    branches:
+      - 'production/**'
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Detect production target
+        id: target
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHANGED="$(git diff --name-only HEAD^ HEAD || true)"
+          VID="$(printf '%s\n' "$CHANGED" | sed -n 's#^shared/v\([0-9][0-9]*\)/.*#v\1#p' | head -n1)"
+          if [ -z "$VID" ]; then
+            VID="$(printf '%s\n' "$CHANGED" | sed -n 's#^shared/bootstrap/\(v[0-9][0-9]*\)-.*#\1#p' | head -n1)"
+          fi
+          if [ -z "$VID" ]; then
+            BRANCH="${GITHUB_REF_NAME##*/}"
+            VID="$(printf '%s' "$BRANCH" | sed -n 's/^v\([0-9][0-9]*\).*/v\1/p')"
+          fi
+          if [ -z "$VID" ]; then
+            echo "Unable to infer video id from changed files or branch name"
+            printf '%s\n' "$CHANGED"
+            exit 1
+          fi
+          BOOTSTRAP="$(find shared/bootstrap -maxdepth 1 -type f -name "${VID}-*.mjs" | sort | tail -n1)"
+          if [ -z "$BOOTSTRAP" ]; then
+            echo "No bootstrap found for $VID"
+            exit 1
+          fi
+          echo "vid=$VID" >> "$GITHUB_OUTPUT"
+          echo "bootstrap=$BOOTSTRAP" >> "$GITHUB_OUTPUT"
+          echo "Detected $VID using $BOOTSTRAP"
+
+      - name: Materialize production
+        run: node "${{ steps.target.outputs.bootstrap }}"
+
+      - name: Resolve target directory
+        id: dir
+        shell: bash
+        run: |
+          set -euo pipefail
+          BOOTSTRAP="${{ steps.target.outputs.bootstrap }}"
+          TARGET="$(grep -o "target=path.join(root,'[^']*')" "$BOOTSTRAP" | sed "s/.*root,'\([^']*\)'.*/\1/" | head -n1)"
+          if [ -z "$TARGET" ] || [ ! -d "$TARGET" ]; then
+            echo "Unable to resolve materialized target directory"
+            exit 1
+          fi
+          echo "target=$TARGET" >> "$GITHUB_OUTPUT"
+          echo "Target: $TARGET"
+
+      - name: Install dependencies
+        working-directory: ${{ steps.dir.outputs.target }}
+        run: npm install
+
+      - name: Expose dependencies to shared tools
+        working-directory: ${{ steps.dir.outputs.target }}
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+
+      - name: TypeScript check
+        working-directory: ${{ steps.dir.outputs.target }}
+        run: npm run check
+
+      - name: Production QA pre
+        run: node shared/qa/validate-video.mjs "${{ steps.dir.outputs.target }}" pre
+
+      - name: Pronunciation regression
+        run: node shared/voice/test-pronunciation.mjs
+
+      - name: Generated-path sanity checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          TARGET="${{ steps.dir.outputs.target }}"
+          test -f "$TARGET/src/script-data.json"
+          test -f "$TARGET/src/scene-data.json"
+          test -f "$TARGET/src/sync-timing.json"
+          test -f "$TARGET/scripts/generate-voicevox.mjs"
+          test -f "$TARGET/scripts/generate-bgm.mjs"
+          if grep -R "v52-conscious-reality/src/sync-timing.json" "$TARGET/scripts" >/dev/null 2>&1; then
+            echo "Stale V52 BGM path detected"
+            exit 1
+          fi
+          node - "$TARGET" <<'NODE'
+          const fs=require('fs');
+          const path=require('path');
+          const t=process.argv[2];
+          const s=JSON.parse(fs.readFileSync(path.join(t,'src/script-data.json'),'utf8'));
+          const d=JSON.parse(fs.readFileSync(path.join(t,'src/scene-data.json'),'utf8'));
+          if(!Array.isArray(s.beats)||s.beats.length<40) throw new Error('Too few narration beats');
+          if(d.length!==s.beats.length) throw new Error('scene-data/script-data length mismatch');
+          if(new Set(s.beats.map(x=>x.visual)).size!==s.beats.length) throw new Error('Duplicate visual keys');
+          const seen=new Set();let prev='';
+          for(const x of d){
+            if(!x.bgGroup) throw new Error('Missing bgGroup');
+            if(x.bgGroup!==prev&&seen.has(x.bgGroup)) throw new Error('Non-consecutive background reuse: '+x.bgGroup);
+            seen.add(x.bgGroup);prev=x.bgGroup;
+          }
+          console.log('Generated-path and scene-structure sanity checks passed');
+          NODE
