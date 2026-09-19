@@ -57,6 +57,8 @@ const V59=()=>{
   </AbsoluteFill>;
 };
 
+const ScenePreview=()=>{const frame=useCurrentFrame();return <AbsoluteFill style={{background:'#03070c'}}><SceneVisual n={Math.min(beats.length,Math.floor(frame/20)+1)} progress={(frame%20)/20}/></AbsoluteFill>;};
+
 const Root=()=>{
   const duration=Math.max(30,Math.ceil(Number(sync.durationSeconds||1080)*30));
   return <Composition id='V59SpiritualBelief' component={V59} durationInFrames={duration} fps={30} width={1920} height={1080}/>;
