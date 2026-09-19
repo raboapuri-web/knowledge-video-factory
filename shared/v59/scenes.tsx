@@ -40,13 +40,12 @@ const i=m.variant%4;return <Set m={m} tag={underground?'地下二階・もう一
 <Clock x={845+(i===2?45:0)} y={298} p={p} t={underground?'B2':'19:00'} r={85}/>
 <Human x={230+(i*95)+p*100} y={810} z={.83} coat='#cfc7bd' arm={15*Math.sin(p*7)}/><Human x={1330-(exit?p*220:0)} y={810} z={.85} coat='#a5b7cb'/>
 {i===1&&<Phone x={1290} y={370} p={p}/>}
-{i===2&&<Panel x={150} y={290} w={420} h={170} s={underground?'同じ地図上の位置でも
-高さが違う':'駅構内には
-別の階がある'} p={appear(p)}/>}
+{i===2&&<Panel x={150} y={290} w={420} h={170} s={underground?'同じ地図上の位置でも\n高さが違う':'駅構内には\n別の階がある'} p={appear(p)}/>}
 {i===3&&<div style={{position:'absolute',left:570,top:590,width:650,height:8,background:'#f1b769',transformOrigin:'left',transform:'scaleX('+appear(p,.12,.73)+')'}}/>}
 </Set>};
 const Axes=({p,mode='3',originX=920,originY=550,scale=1}:{p:number;mode?:string;originX?:number;originY?:number;scale?:number})=>{
-const lines=[{dx:430,dy:0,c:'#efae65',s:'x / 左右'},{dx:-225,dy:260,c:'#7fd1c5',s:'y / 前後'},{dx:0,dy:-355,c:'#91b5ef',s:'z / 高さ'}];
+const lines=[{dx:430,dy:0,c:'#efae65',s:'x / 左右'},{dx:-225,dy:260,c:'#7fd1c5',s:'y / 前後'}];
+if(mode!=='2')lines.push({dx:0,dy:-355,c:'#91b5ef',s:'z / 高さ'});
 if(mode==='4t')lines.push({dx:235,dy:-215,c:'#e88dc0',s:'t / 時間'});
 if(mode==='5')lines.push({dx:-370,dy:-190,c:'#dbc18d',s:'w / 追加方向'});
 return <svg viewBox='0 0 1920 1080' style={{position:'absolute',inset:0,transform:'scale('+scale+')'}}>
@@ -86,7 +85,7 @@ const StationSlice=({m,p}:{m:M;p:number})=><Set m={m} tag='地図には載らな
 <div style={{position:'absolute',left:200,top:180,width:1500,height:690,border:'5px solid #dbe5e977',background:'linear-gradient(#9fa2a539,#233d51aa)',borderRadius:24}}/>
 {[-2,-1,0,1,2].map((k,i)=><div key={k} style={{position:'absolute',left:310,top:285+i*105,width:1230,height:7,background:i===2?'#f2c36f':'#e9eff166'}}/>)}
 <Human x={620} y={575} z={.53} coat='#e6ccb2'/><Human x={1210} y={785} z={.53} coat='#a9bedd'/>
-<Label x={350} y={250} s='地上 0階' size={30}/><Label x={360} y={585} s='地下 2階' size={30}/><path style={{position:'absolute',left:995,top:440,height:230,borderLeft:'7px dashed #eec476',opacity:appear(p)}}/>
+<Label x={350} y={250} s='地上 0階' size={30}/><Label x={360} y={585} s='地下 2階' size={30}/><div style={{position:'absolute',left:995,top:440,height:230,borderLeft:'7px dashed #eec476',opacity:appear(p)}}/>
 <Panel x={700} y={130} s='同じ平面座標でも階が違う' w={650} p={appear(p)}/></Set>;
 const Rail=({m,p,flat=false}:{m:M;p:number;flat?:boolean})=><Set m={m} tag={flat?'二次元 ― 回り込める':'一次元 ― 前後だけ'}>
 <div style={{position:'absolute',left:125,top:565,width:1600,height:20,background:'#bdc4c8',boxShadow:'0 18px 26px #0007'}}/>
@@ -96,8 +95,7 @@ const Rail=({m,p,flat=false}:{m:M;p:number;flat?:boolean})=><Set m={m} tag={flat
 </div>)}
 {flat?<Axes p={p} originX={460} originY={760} mode='2' scale={.58}/>:<Label x={530} y={240} s='横へ逃げられない' size={57}/>}</Set>;
 const StationDiagram=({m,p}:{m:M;p:number})=><Set m={m} tag='空間座標 + 時刻'>
-<Axes p={p} mode='4t'/><Panel x={120} y={300} s='左右 x ・ 前後 y
-高さ z ・ 時刻 t' w={480} h={235} p={appear(p)}/><Clock x={1460} y={320} t={m.variant%2?'19:10':'19:00'} p={p} r={75}/></Set>;
+<Axes p={p} mode='4t'/><Panel x={120} y={300} s='左右 x ・ 前後 y\n高さ z ・ 時刻 t' w={480} h={235} p={appear(p)}/><Clock x={1460} y={320} t={m.variant%2?'19:10':'19:00'} p={p} r={75}/></Set>;
 const Train=({m,p}:{m:M;p:number})=>{
 const x=90+(m.variant%3)*65;return <Set m={m} tag='1905年 ― 特殊相対性理論'>
 <div style={{position:'absolute',left:0,right:0,bottom:200,height:15,background:'#c8d1d177'}}/>
@@ -125,8 +123,7 @@ const Hose=({m,p}:{m:M;p:number})=><Set m={m} tag='1926年 ― 丸められた�
 <circle cx={580+500*appear(p,.18,.82)} cy={560-46*Math.sin(p*5)} r='15' fill='#181d22' stroke='#eee' strokeWidth='4'/>
 </svg>
 <Label x={350} y={210} s='遠くでは一本の線。近づくと周回方向がある。' size={43} w={1310}/>
-{m.variant%3===1&&<Panel x={1180} y={760} s='非常に小さい方向は
-日常の尺度で見分けにくい' w={520} h={175} p={appear(p)}/>}
+{m.variant%3===1&&<Panel x={1180} y={760} s='非常に小さい方向は\n日常の尺度で見分けにくい' w={520} h={175} p={appear(p)}/>}
 </Set>;
 const Collider=({m,p}:{m:M;p:number})=><Set m={m} tag='追加次元の検証 ― 粒子加速器'>
 <svg viewBox='0 0 1920 1080' style={{position:'absolute',inset:0}}>
@@ -138,11 +135,9 @@ const Collider=({m,p}:{m:M;p:number})=><Set m={m} tag='追加次元の検証 ―
 </svg><Label x={440} y={145} s='仮説ごとの予測を観測と照合する' size={48} w={1250}/></Set>;
 const Compare=({m,p,typ}:{m:M;p:number;typ:'space'|'time'|'five'|'summary'})=><Set m={m} tag='三次元・四次元・五次元を説明する'>
 {typ==='summary'?<><Cube x={150} y={310} s={230} p={p}/><Clock x={875} y={400} r={95} p={p}/><Hyper p={p} x={1190} y={280} size={450}/>{['3次元：場所','4次元時空：場所＋時間','5次元時空：さらに1座標'].map((t,i)=><Panel key={t} x={55+i*610} y={780} w={550} h={126} s={t} p={appear(p,.1+i*.12,.42+i*.12)}/>)}</>:
-typ==='space'?<><Axes p={p} mode='3'/><Cube x={360} y={400} s={260} p={p}/><Panel x={1160} y={420} s='左右・前後・上下
-3つの独立した位置情報' w={540} h={190} p={appear(p)}/></>:
+typ==='space'?<><Axes p={p} mode='3'/><Cube x={360} y={400} s={260} p={p}/><Panel x={1160} y={420} s='左右・前後・上下\n3つの独立した位置情報' w={540} h={190} p={appear(p)}/></>:
 typ==='time'?<><Axes p={p} mode='4t'/><Clock x={1370} y={450} p={p} r={110}/><Panel x={180} y={700} s='出来事には「どこで」に加え「いつ」が必要' w={800} h={135} p={appear(p)}/></>:
-<><Axes p={p} mode='5'/><Panel x={150} y={680} s='追加の空間座標を仮定する
-実在は未確認' w={720} h={165} p={appear(p)}/></>}
+<><Axes p={p} mode='5'/><Panel x={150} y={680} s='追加の空間座標を仮定する\n実在は未確認' w={720} h={165} p={appear(p)}/></>}
 </Set>;
 const Phase=({m,p}:{m:M;p:number})=>{
 const v=m.variant%4;switch(m.phase){
@@ -156,35 +151,27 @@ case 'axes':return <Set m={m} tag='独立した座標'><Axes p={p} mode={v===3?'
 case 'flatland_book':return <Set m={m} tag='1884年 ― E. A. アボット『フラットランド』'><div style={{position:'absolute',left:440,top:210,width:1000,height:680,background:'#cbb88f',border:'18px solid #654c36',transform:'perspective(800px) rotateY('+(-14+15*p)+'deg)',boxShadow:'0 30px 100px #000b'}}/><Label x={660} y={350} s='FLATLAND' size={105} color='#3e3429' w={650}/><Label x={660} y={520} s='A ROMANCE OF MANY DIMENSIONS' size={40} color='#3e3429' w={650}/></Set>;
 case 'flatland_house':return <Flatland m={m} p={p} mode={v>=2?'lift':'house'}/>;
 case 'sphere_section':return <Set m={m} tag='球の断面 ― 点 → 円 → 点'><svg viewBox='0 0 1920 1080' style={{position:'absolute',inset:0}}><ellipse cx='980' cy='640' rx='620' ry='170' fill='#74afc12c' stroke='#a4dce477' strokeWidth='5'/><circle cx='980' cy={550+180*Math.sin(p*5)} r='300' fill='#9abdd741' stroke='#b0dff0' strokeWidth='6'/><ellipse cx='980' cy='640' rx={300*Math.sqrt(Math.max(.01,1-Math.pow(2*p-1,2)))} ry={100*Math.sqrt(Math.max(.01,1-Math.pow(2*p-1,2)))} fill='#e6b57088' stroke='#f2ce8e' strokeWidth='7'/></svg><Label x={420} y={175} s={v%2?'見えていたのは球全体ではない':'断面が大きくなり、小さくなる'} size={49}/></Set>;
-case 'fourth_thought':return <Set m={m} tag='四番目の空間方向 ― 思考実験'><Cube x={350} y={280} s={360} p={p}/><div style={{position:'absolute',left:860,top:540,width:66,height:66,borderRadius:40,background:'#e26061',boxShadow:'0 0 65px #ec6d73',transform:'translate('+Math.round(480*appear(p,.17,.8))+'px,'+Math.round(-190*Math.sin(p*Math.PI))+'px)'}}/><Panel x={1110} y={180} s='金庫の壁を通らず
-別の空間方向を使う' w={570} h={155} p={appear(p)}/></Set>;
+case 'fourth_thought':return <Set m={m} tag='四番目の空間方向 ― 思考実験'><Cube x={350} y={280} s={360} p={p}/><div style={{position:'absolute',left:860,top:540,width:66,height:66,borderRadius:40,background:'#e26061',boxShadow:'0 0 65px #ec6d73',transform:'translate('+Math.round(480*appear(p,.17,.8))+'px,'+Math.round(-190*Math.sin(p*Math.PI))+'px)'}}/><Panel x={1110} y={180} s='金庫の壁を通らず\n別の空間方向を使う' w={570} h={155} p={appear(p)}/></Set>;
 case 'riemann':return <Set m={m} tag='1854年 ― リーマンの幾何学'><div style={{position:'absolute',left:290,top:190,width:1290,height:660,background:'#1b3026',border:'20px solid #5f4732',boxShadow:'0 28px 75px #0008'}}/><Axes p={p} originX={900} originY={580} mode={v>=2?'5':'3'} scale={.85}/><Label x={420} y={275} s='座標を増やして空間を定義する' size={48}/></Set>;
 case 'dimension_build':return <Set m={m} tag='線分 → 正方形 → 立方体 → 4次元立方体'><svg viewBox='0 0 1920 1080' style={{position:'absolute',inset:0}}><line x1='250' y1='610' x2='470' y2='610' stroke='#d4b270' strokeWidth='12'/><rect x='540' y='500' width='240' height='240' fill='#7dd1c322' stroke='#7dd1c3' strokeWidth='9' opacity={appear(p,.12,.36)}/></svg><Cube x={780} y={375} s={230} p={p}/><Hyper p={p} x={1230} y={350} size={340}/></Set>;
-case 'tesseract':return <Set m={m} tag='テッセラクト ― 4次元立方体の投影'><Hyper p={p} x={350+(v%2)*95} y={135} size={800}/>{v>=2?<Panel x={1220} y={400} w={510} h={200} s='頂点16 / 辺32
-立方体状の境界8' p={appear(p)}/>:<Label x={1280} y={330} s='投影図は本体ではない' size={42} w={520}/>}</Set>;
+case 'tesseract':return <Set m={m} tag='テッセラクト ― 4次元立方体の投影'><Hyper p={p} x={350+(v%2)*95} y={135} size={800}/>{v>=2?<Panel x={1220} y={400} w={510} h={200} s='頂点16 / 辺32\n立方体状の境界8' p={appear(p)}/>:<Label x={1280} y={330} s='投影図は本体ではない' size={42} w={520}/>}</Set>;
 case 'four_dimensions':return <Set m={m} tag='同じ「4次元」でも意味は異なる'><Hyper p={p} x={140} y={220} size={620}/><Clock x={1380} y={390} p={p} r={120}/><Panel x={140} y={770} s='数学：空間が4方向' w={700} p={appear(p)}/><Panel x={1080} y={770} s='物理：空間3＋時間1' w={700} p={appear(p)}/></Set>;
 case 'time_station':return <StationDiagram m={m} p={p}/>;
-case 'einstein':return <Set m={m} tag='1905年 ― アインシュタイン'><div style={{position:'absolute',left:240,top:200,width:1430,height:600,background:'#c1ab87',border:'15px solid #5a4634',boxShadow:'0 28px 85px #000b'}}/><Clock x={420} y={300} p={p} r={125}/><Axes p={p} mode='4t' originX={1190} originY={620} scale={.65}/><Label x={880} y={285} s='時間と空間は
-観測者の運動に依存する' size={53} w={760} color='#292e34'/></Set>;
+case 'einstein':return <Set m={m} tag='1905年 ― アインシュタイン'><div style={{position:'absolute',left:240,top:200,width:1430,height:600,background:'#c1ab87',border:'15px solid #5a4634',boxShadow:'0 28px 85px #000b'}}/><Clock x={420} y={300} p={p} r={125}/><Axes p={p} mode='4t' originX={1190} originY={620} scale={.65}/><Label x={880} y={285} s='時間と空間は\n観測者の運動に依存する' size={53} w={760} color='#292e34'/></Set>;
 case 'train':return <Train m={m} p={p}/>;
-case 'simultaneity':return <Set m={m} tag='遠くの出来事は、誰にとって同時か'><Worldline m={m} p={p}/><Panel x={1100} y={220} w={600} h={160} s='ホームの同時線と
-車内の同時線は異なる' p={appear(p)}/></Set>;
-case 'minkowski':return <Set m={m} tag='1908年 ― ミンコフスキー'><Axes p={p} mode='4t' originX={1010} originY={690}/><Panel x={230} y={270} w={570} h={200} s='空間と時間を
-一つの時空として扱う' p={appear(p)}/></Set>;
+case 'simultaneity':return <Set m={m} tag='遠くの出来事は、誰にとって同時か'><Worldline m={m} p={p}/><Panel x={1100} y={220} w={600} h={160} s='ホームの同時線と\n車内の同時線は異なる' p={appear(p)}/></Set>;
+case 'minkowski':return <Set m={m} tag='1908年 ― ミンコフスキー'><Axes p={p} mode='4t' originX={1010} originY={690}/><Panel x={230} y={270} w={570} h={200} s='空間と時間を\n一つの時空として扱う' p={appear(p)}/></Set>;
 case 'worldline':return <Worldline m={m} p={p}/>;
 case 'lightcone':return <Worldline m={m} p={p} cone/>;
 case 'gps':return <Gps m={m} p={p}/>;
 case 'four_compare':return <Compare m={m} p={p} typ={v%2?'space':'time'}/>;
-case 'fifth_geometry':return <Set m={m} tag='第5の座標を数学で追加する'><Hyper p={p} x={230} y={155} size={800} fifth/><Panel x={1220} y={360} w={530} h={210} s='5次元立方体
-頂点32個' p={appear(p)}/></Set>;
+case 'fifth_geometry':return <Set m={m} tag='第5の座標を数学で追加する'><Hyper p={p} x={230} y={155} size={800} fifth/><Panel x={1220} y={360} w={530} h={210} s='5次元立方体\n頂点32個' p={appear(p)}/></Set>;
 case 'fifth_types':return <Compare m={m} p={p} typ='five'/>;
-case 'kaluza':return <Set m={m} tag='1921年 ― カルツァの5次元'><div style={{position:'absolute',left:220,top:185,width:1480,height:680,background:'#1a312b',border:'18px solid #644d38'}}/><Axes p={p} mode='5' originX={1060} originY={570} scale={.88}/><Label x={360} y={280} s='重力 + 電磁気
-高次元の幾何学に統合できるか？' size={46} w={620}/></Set>;
+case 'kaluza':return <Set m={m} tag='1921年 ― カルツァの5次元'><div style={{position:'absolute',left:220,top:185,width:1480,height:680,background:'#1a312b',border:'18px solid #644d38'}}/><Axes p={p} mode='5' originX={1060} originY={570} scale={.88}/><Label x={360} y={280} s='重力 + 電磁気\n高次元の幾何学に統合できるか？' size={46} w={620}/></Set>;
 case 'klein_hose':return <Hose m={m} p={p}/>;
 case 'compactification':return <Set m={m} tag='コンパクト化 ― 見えないほど小さな方向'><svg viewBox='0 0 1920 1080' style={{position:'absolute',inset:0}}>{Array.from({length:10}).map((_,i)=><ellipse key={i} cx={280+i*145} cy='560' rx={80-(i*5)} ry={135-i*9} fill='none' stroke={i%2?'#e2c08d':'#88ced6'} strokeWidth='6' opacity={appear(p,.05+i*.05,.25+i*.06)}/>)}</svg><Label x={360} y={245} s='遠くの「線」の中に、閉じた方向があるかもしれない' size={49} w={1250}/></Set>;
 case 'collider':return <Collider m={m} p={p}/>;
-case 'evidence':return <Set m={m} tag='数学的に定義できる ≠ 実在する'><Hyper p={p} x={200} y={225} size={590}/><Panel x={1000} y={250} w={680} h={215} s='観測で支持：4次元時空
-追加空間次元：実在は未確認' p={appear(p)}/></Set>;
+case 'evidence':return <Set m={m} tag='数学的に定義できる ≠ 実在する'><Hyper p={p} x={200} y={225} size={590}/><Panel x={1000} y={250} w={680} h={215} s='観測で支持：4次元時空\n追加空間次元：実在は未確認' p={appear(p)}/></Set>;
 case 'misconceptions':return <Set m={m} tag='5次元は未来を選べる？'><Clock x={350} y={400} p={p} r={130}/><Hyper p={p} x={860} y={280} size={580}/><Panel x={570} y={750} w={760} h={125} s='座標が増えるだけでは、時間旅行は導かれない' p={appear(p)}/></Set>;
 case 'return_station':return <Station m={m} p={p} exit/>;
 case 'teach':return <Compare m={m} p={p} typ={v%3===0?'space':v%3===1?'time':'five'}/>;
