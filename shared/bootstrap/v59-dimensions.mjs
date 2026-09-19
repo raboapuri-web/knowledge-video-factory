@@ -56,7 +56,7 @@ const phaseStarts=[
 ];
 
 const paras=script.split(/\n+/).map(s=>s.trim()).filter(Boolean);
-let phase='opening_room';
+let phase='station';
 const chunks=[];
 for(const para of paras){
   for(const [p,start] of phaseStarts){if(para.startsWith(start)) phase=p;}
@@ -92,13 +92,13 @@ for(const [g,c] of groups) if(c>2) throw new Error(`Background group ${g} used $
 const seen=new Set();let prev='';
 for(const b of beats){if(b.bgGroup!==prev&&seen.has(b.bgGroup)) throw new Error(`Background reused non-consecutively: ${b.bgGroup}`);seen.add(b.bgGroup);prev=b.bgGroup;}
 
-fs.writeFileSync(path.join(target,'src/script-data.json'),JSON.stringify({videoId:'V59-spiritual-belief',title,beats},null,2));
+fs.writeFileSync(path.join(target,'src/script-data.json'),JSON.stringify({videoId:'V59-dimensions',title,beats},null,2));
 fs.writeFileSync(path.join(target,'src/scene-data.json'),JSON.stringify(beats.map(({id,phase,variant,shotKind,visual,bgGroup,bgSeed})=>({id,phase,variant,shotKind,visual,bgGroup,bgSeed})),null,2));
 fs.writeFileSync(path.join(target,'src/sync-timing.json'),JSON.stringify({durationSeconds:1200,beats:[]},null,2));
 fs.writeFileSync(path.join(target,'production-manifest.json'),JSON.stringify({
   productionSystemVersion:2,visualRegistryVersion:4,voiceDictionaryVersion:4,qaRulesVersion:3,
   preproductionPolicyVersion:1,syncManifestVersion:7,requiresPreproductionPlan:true,sharedVoiceGenerator:true,
-  videoId:'V59-spiritual-belief',title,sceneMode:'hybrid',
+  videoId:'V59-dimensions',title,sceneMode:'hybrid',
   policy:{noGenericFallback:true,contactSheetRequired:true,sceneCompleteContactSheetRequired:true,measuredVoiceTimingRequired:true,maxExistingTemplateShare:0.2,maxConsecutiveSameRegisteredTemplate:2,preproductionHumanReviewRequired:true}
 },null,2));
 
