@@ -96,7 +96,7 @@ const Thinking=({m,p}:{m:Scene;p:number})=>{const t=m.narration;return <g><Actor
  {match(t,/怒|失敗|安全|主体|提案|報告/)&&<g><Ring x={370} y={460} p={p} color={C.red} r={155}/><path d="M650 215 Q1010 65 1430 215" stroke={C.red} strokeWidth="8" fill="none" opacity=".6"/></g>}
  </g>};
 const Checkpoint=({m,p,good}:{m:Scene;p:number;good:boolean})=>{const t=m.narration;return <g><Actor x={300} y={480} s={.73} stress={!good}/><Actor x={1500} y={440} s={.71} role="boss"/><Laptop x={755} y={315} s={.88} mode={match(t,/水曜日|月曜日|金曜日/)?'calendar':'proposal'} p={p}/>
- {[0,1,2,3,4].map((_,i)=><g key={i}><Box x={510+i*244} y={790} w={214} h={80} fill={i===2?C.gold:C.wall2} o={good?(i===2?.9:.6):(i<=Math.floor(p*5)?C.red===C.red?.72:.5:.2)} r={8}/>{i===2&&good&&<Ring x={617+i*244} y={831} r={76} p={p} color={C.teal}/>}</g>)}
+ {[0,1,2,3,4].map((_,i)=><g key={i}><Box x={510+i*244} y={790} w={214} h={80} fill={i===2?C.gold:C.wall2} o={good?(i===2?.9:.6):(i<=Math.floor(p*5)?.72:.2)} r={8}/>{i===2&&good&&<Ring x={617+i*244} y={831} r={76} p={p} color={C.teal}/>}</g>)}
  {good&&match(t,/修正|納期|方向|資料|部分/)&&<g><Page x={1410} y={700} s={.55} stamp={p>.4}/><Arrow x={1360} y={430} X={1220} Y={420} p={p} color={C.teal}/></g>}
  {!good&&match(t,/違う|間違|赤|修正|完成/)&&<g>{Array.from({length:5},(_,i)=><Trace key={i} x={720+i*70} y={230} X={900+i*70} Y={650} stroke={C.red} sw={12} p={p} o={.82}/>)}</g>}
  </g>};
