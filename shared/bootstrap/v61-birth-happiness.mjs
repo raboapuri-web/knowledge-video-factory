@@ -40,7 +40,7 @@ const beats=chunks.map((item,i)=>{
     id:`S${String(i+1).padStart(3,'0')}`,
     narration:item.narration,phase:item.phase,variant:local,
     shotKind:['wide','mid','detail','insert','diagram','macro','reaction','tracking'][local%8],
-    visual:`v59_${String(i+1).padStart(3,'0')}_${item.phase}`,
+    visual:`v61_${String(i+1).padStart(3,'0')}_${item.phase}`,
     bgGroup,bgSeed:bgCounter
   };
 });
@@ -52,13 +52,13 @@ for(const [g,c] of groups) if(c>2) throw new Error(`Background group ${g} used $
 const seen=new Set();let prev='';
 for(const b of beats){if(b.bgGroup!==prev&&seen.has(b.bgGroup)) throw new Error(`Background reused non-consecutively: ${b.bgGroup}`);seen.add(b.bgGroup);prev=b.bgGroup;}
 
-fs.writeFileSync(path.join(target,'src/script-data.json'),JSON.stringify({videoId:'V61-dimensions',title,beats},null,2));
+fs.writeFileSync(path.join(target,'src/script-data.json'),JSON.stringify({videoId:'V61-birth-happiness',title,beats},null,2));
 fs.writeFileSync(path.join(target,'src/scene-data.json'),JSON.stringify(beats.map(({id,phase,variant,shotKind,visual,bgGroup,bgSeed})=>({id,phase,variant,shotKind,visual,bgGroup,bgSeed})),null,2));
 fs.writeFileSync(path.join(target,'src/sync-timing.json'),JSON.stringify({durationSeconds:1200,beats:[]},null,2));
 fs.writeFileSync(path.join(target,'production-manifest.json'),JSON.stringify({
   productionSystemVersion:2,visualRegistryVersion:4,voiceDictionaryVersion:4,qaRulesVersion:3,
   preproductionPolicyVersion:1,syncManifestVersion:7,requiresPreproductionPlan:true,sharedVoiceGenerator:true,
-  videoId:'V61-dimensions',title,sceneMode:'hybrid',
+  videoId:'V61-birth-happiness',title,sceneMode:'hybrid',
   policy:{noGenericFallback:true,contactSheetRequired:true,sceneCompleteContactSheetRequired:true,measuredVoiceTimingRequired:true,maxExistingTemplateShare:0.2,maxConsecutiveSameRegisteredTemplate:2,preproductionHumanReviewRequired:true}
 },null,2));
 
