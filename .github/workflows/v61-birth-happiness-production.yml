@@ -258,4 +258,4 @@ jobs:
           gh release create "$TAG" "out/${VIDEO_NAME}" out/v61-birth-happiness-contact-sheet.jpg out/v61-birth-happiness-scene-table.md public/audio/pronunciation-report.json qa/preproduction-summary.json preproduction-plan.json SOURCES.md V61_IMPLEMENTATION.md src/script-data.json src/scene-data.json \
             --repo "$GITHUB_REPOSITORY" \
             --title "V61 Birth Happiness Production ${GITHUB_RUN_ID}" \
-            --notes "二〇二六年生まれの幸福を考える【幸福の経済学×出生の偶然×ケイパビリティ】。四つの病院の出産、成人の幸福度と子どもの幸福の比較、学校と家庭の条件、四つの出生扉、ロールズの無知のヴェール、センの実現可能な生き方、2036年と2046年の子どもたち、失敗後の分岐する人生を台本連動アニメーションとして制作。VOICEVOXの実測同期・字幕・BGM・全127シーンQA。二〇二六年の国際統計は出生児の将来予測として扱わない。"
+            --notes "二〇二六年生まれの幸福を考える【幸福の経済学×出生の偶然×ケイパビリティ】。四つの病院の出産、成人の幸福度と子どもの幸福の比較、学校と家庭の条件、四つの出生扉、ロールズの無知のヴェール、センの実現可能な生き方、2036年と2046年の子どもたち、失敗後の分岐する人生を台本連動アニメーションとして制作。VOICEVOXの実測同期・字幕・BGM・全132シーンQA。二〇二六年の国際統計は出生児の将来予測として扱わない。"
