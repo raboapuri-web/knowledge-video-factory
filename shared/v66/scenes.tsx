@@ -29,7 +29,7 @@ const Actor=({x,y=580,s=1,p=0,enemy=false,back=false,lean=0,shield=true,fallen=f
  <path d="M132 -240 l-18 48 h35Z" fill="#d6d8cc"/>
  </g>;
 };
-const Row=({x=400,y=560,count=6,step=174,p=0,enemy=false,back=false,gap=-1,move=0,scale=.55,fallen=-1,walking=false}:{x?:number;y?:number;count?:number;step?:number;p?:number;enemy?:boolean;back?:boolean;gap?:number;move?:number;scale?:number;fallen?:number;walking?:boolean})=><g>{Array.from({length:count},(_,i)=>i===gap?null:<Actor key={i} x={x+i*step+move} y={y+(i%2)*5} s={scale} enemy={enemy} back={back} p={p} fallen={i===fallen} walking={walking}/>)}</g>;
+const Row=({x=400,y=560,count=6,step=174,p=0,enemy=false,back=false,gap=-1,move=0,scale=.55,fallen=-1,walking=false,shield=true}:{x?:number;y?:number;count?:number;step?:number;p?:number;enemy?:boolean;back?:boolean;gap?:number;move?:number;scale?:number;fallen?:number;walking?:boolean;shield?:boolean})=><g>{Array.from({length:count},(_,i)=>i===gap?null:<Actor key={i} x={x+i*step+move} y={y+(i%2)*5} s={scale} enemy={enemy} back={back} p={p} fallen={i===fallen} walking={walking} shield={shield}/>)}</g>;
 type World='mantinea'|'collision'|'analysis'|'overhead'|'retreat'|'march'|'sparta'|'poetry'|'thermopylae';
 const worldOf=(ph:string):World=>{
  if(ph.startsWith('aristodemos'))return 'sparta';
