@@ -5,10 +5,11 @@ import sceneData from './scene-data.json';
 import sync from './sync-timing.json';
 import {SceneVisual} from './scenes';
 
-type Beat={id:string;phase:string;location:string;visual:string;localIndex:number;narration:string};
+type Beat={id:string;phase:string;location:string;visual:string;localIndex:number;shotKind:string;narration:string};
+type SceneMeta=Omit<Beat,'narration'>;
 type Timing={index:number;start:number;end:number};
 const beats=scriptData.beats as Beat[];
-const scenes=sceneData as Beat[];
+const scenes=sceneData as SceneMeta[];
 const timings=(sync.beats||[]) as Timing[];
 const clamp=(n:number)=>Math.min(1,Math.max(0,n));
 const font='"Noto Sans JP",sans-serif';
