@@ -7,7 +7,7 @@ on:
     paths:
       - '.github/workflows/v61-birth-happiness-production.yml'
       - 'shared/bootstrap/v61-birth-happiness.mjs'
-      - 'shared/v59/**'
+      - 'shared/v61/**'
 
 permissions:
   contents: write
@@ -66,10 +66,10 @@ jobs:
             seen.add(x.bgGroup); prev=x.bgGroup;
           }
           for(const [g,c] of Object.entries(counts)) if(c>2) throw new Error(`Background ${g} used ${c} scenes; max 2`);
-          const required=['birth_finland','birth_netherlands','birth_costarica','birth_japan','opening_question','finland_cafe','world_happiness','adult_baby_contrast','unicef_intro','child_school','unicef_dimensions','child_health_history','hospital_modern','survival_choice','japan_classroom','school_alternative','same_country_two_homes','inequality_home','inequality_data','four_doors','veil_of_ignorance','second_question','costarica_street','costarica_contrast','finland_return','future_uncertainty','sen_intro','capabilities','path_student','path_worker','path_health','path_core','four_adults','metrics_recap','answer_reversal','possibility','return_four_births','life_not_fixed','final_line'];
+          const required=['birth_finland','birth_netherlands','birth_costarica','birth_japan','opening_question','finland_cafe','world_happiness','adult_baby_contrast','unicef_intro','child_school','unicef_dimensions','child_health_history','hospital_modern','survival_choice','japan_classroom','school_alternative','same_country_two_homes','inequality_home','inequality_data','four_doors','veil_of_ignorance','second_question','costarica_street','costarica_contrast','finland_return','future_2036','future_2046','future_uncertainty','sen_intro','capabilities','path_student','path_worker','path_health','path_core','four_adults','metrics_recap','answer_reversal','possibility','return_four_births','life_not_fixed','final_line'];
           const phases=new Set(d.map(x=>x.phase));
           for(const p of required) if(!phases.has(p)) throw new Error(`Missing semantic phase ${p}`);
-          const code=fs.readFileSync('./shared/v59/scenes.tsx','utf8');
+          const code=fs.readFileSync('./shared/v61/scenes.tsx','utf8');
           for(const p of required) if(!code.includes(`case '${p}'`)) throw new Error(`Renderer missing phase ${p}`);
           if(code.includes('useCurrentFrame')) throw new Error('Scene renderer backgrounds must not use global frame motion');
           console.log(`V61 architecture: ${n} scenes / ${phases.size} phases / ${groups.length} background groups / sequential-only max2`);
