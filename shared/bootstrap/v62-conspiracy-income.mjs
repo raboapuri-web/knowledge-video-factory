@@ -47,11 +47,11 @@ if(beats.length<120||group<65)throw new Error('Scenes/backgrounds insufficient '
 fs.writeFileSync(path.join(target,'script.txt'),script.replace(/\[\[[a-z_]+\]\]\s*/g,'')+'\n');
 fs.writeFileSync(path.join(target,'src/script-data.json'),JSON.stringify({videoId:'V62-conspiracy-income',title:'なぜ、低年収ほど陰謀論にハマりやすいのか？【相対的剥奪×社会心理学】',beats},null,2));
 fs.writeFileSync(path.join(target,'src/scene-data.json'),JSON.stringify(beats,null,2));
-fs.writeFileSync(path.join(target,'src/sync-timing.json'),JSON.stringify({durationSeconds:1000,beats:[]}));
-for(const n of ['index.tsx','scenes.tsx'])fs.copyFileSync(path.join(root,'shared/v60',n),path.join(target,'src',n));
+fs.writeFileSync(path.join(target,'src/sync-timing.json'),JSON.stringify({durationSeconds:1100,beats:[]}));
+for(const n of ['index.tsx','scenes.tsx'])fs.copyFileSync(path.join(root,'shared/v62',n),path.join(target,'src',n));
 for(const n of ['generate-bgm.mjs','plan-segments.mjs'])fs.copyFileSync(path.join(root,'shared/v53',n),path.join(target,'scripts',n));
 fs.writeFileSync(path.join(target,'scripts/build-preproduction.mjs'),"import fs from 'node:fs';import path from 'node:path';const root=path.resolve(import.meta.dirname,'..');const s=JSON.parse(fs.readFileSync(path.join(root,'src/script-data.json'),'utf8'));fs.mkdirSync(path.join(root,'qa'),{recursive:true});fs.writeFileSync(path.join(root,'preproduction-plan.json'),JSON.stringify({videoId:s.videoId,scenes:s.beats},null,2));fs.writeFileSync(path.join(root,'qa/preproduction-summary.json'),JSON.stringify({videoId:s.videoId,sceneCount:s.beats.length,approved:true},null,2));console.log('preproduction scenes '+s.beats.length);");
 fs.writeFileSync(path.join(target,'scripts/generate-voicevox.mjs'),"import path from 'node:path';import {fileURLToPath} from 'node:url';import {generateVoicevox} from '../../shared/voice/generate-voicevox.mjs';const here=path.dirname(fileURLToPath(import.meta.url));await generateVoicevox(path.resolve(here,'..'),{speaker:'青山龍星',style:'ノーマル',speed:1.06,pitchScale:-0.026,intonationScale:0.86});");
-fs.copyFileSync(path.join(root,'shared/v60/SOURCES.md'),path.join(target,'SOURCES.md'));
+fs.copyFileSync(path.join(root,'shared/v62/SOURCES.md'),path.join(target,'SOURCES.md'));
 fs.writeFileSync(path.join(target,'production-manifest.json'),JSON.stringify({productionSystemVersion:3,videoId:'V62-conspiracy-income',title:'Conspiracy Income',sceneMode:'micro-semantic',requiresPreproductionPlan:true,policy:{noGenericFallback:true,noNonconsecutiveBackgroundReuse:true,staticBackgroundWithinContinuityGroup:true,meaningfulForegroundMutation:true,contactSheetRequired:true,sceneCompleteContactSheetRequired:true,measuredVoiceTimingRequired:true,maxConsecutiveSameBackground:2,minBackgroundGroups:65,minScenes:120}},null,2));
 console.log('V62: '+beats.length+' scenes / '+group+' backgrounds');
