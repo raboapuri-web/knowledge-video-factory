@@ -1,0 +1,261 @@
+name: V61 Birth Happiness Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v61-birth-happiness-production.yml'
+      - 'shared/bootstrap/v61-birth-happiness.mjs'
+      - 'shared/v61/**'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Materialize V61 production
+        run: node shared/bootstrap/v61-birth-happiness.mjs
+
+      - name: Install audio tools and Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install V61 dependencies
+        working-directory: v61-birth-happiness
+        run: npm install
+
+      - name: Expose dependencies to shared tools
+        working-directory: v61-birth-happiness
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+
+      - name: Build preproduction plan
+        working-directory: v61-birth-happiness
+        run: node scripts/build-preproduction.mjs
+
+      - name: Story, fine-scene and static-background guard
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=require('./v61-birth-happiness/src/script-data.json');
+          const d=require('./v61-birth-happiness/src/scene-data.json');
+          const n=s.beats.length;
+          if(!s.beats[0].narration.startsWith('二〇二六年。')) throw new Error('Wrong canonical V61 script loaded');
+          if(n<120||n>160) throw new Error(`Unexpected V61 scene count ${n}`);
+          if(d.length!==n) throw new Error(`Scene data mismatch ${d.length}/${n}`);
+          if(new Set(s.beats.map(b=>b.visual)).size!==n) throw new Error('Every V61 scene must have a distinct visual key');
+          const groups=[...new Set(d.map(x=>x.bgGroup))];
+          if(groups.length<75) throw new Error(`Need at least 75 background groups, got ${groups.length}`);
+          const seen=new Set(); let prev=''; const counts={};
+          for(const x of d){
+            counts[x.bgGroup]=(counts[x.bgGroup]||0)+1;
+            if(x.bgGroup!==prev&&seen.has(x.bgGroup)) throw new Error(`Background reused non-consecutively: ${x.bgGroup}`);
+            seen.add(x.bgGroup); prev=x.bgGroup;
+          }
+          for(const [g,c] of Object.entries(counts)) if(c>2) throw new Error(`Background ${g} used ${c} scenes; max 2`);
+          const required=['birth_finland','birth_netherlands','birth_costarica','birth_japan','opening_question','finland_cafe','world_happiness','adult_baby_contrast','unicef_intro','child_school','unicef_dimensions','child_health_history','hospital_modern','survival_choice','japan_classroom','school_alternative','same_country_two_homes','inequality_home','inequality_data','four_doors','veil_of_ignorance','second_question','costarica_street','costarica_contrast','finland_return','future_2036','future_2046','future_uncertainty','sen_intro','capabilities','path_student','path_worker','path_health','path_core','four_adults','metrics_recap','answer_reversal','possibility','return_four_births','life_not_fixed','final_line'];
+          const phases=new Set(d.map(x=>x.phase));
+          for(const p of required) if(!phases.has(p)) throw new Error(`Missing semantic phase ${p}`);
+          const code=fs.readFileSync('./shared/v61/scenes.tsx','utf8');
+          for(const p of required) if(!code.includes(`case '${p}'`)) throw new Error(`Renderer missing phase ${p}`);
+          if(code.includes('useCurrentFrame')) throw new Error('Scene renderer backgrounds must not use global frame motion');
+          console.log(`V61 architecture: ${n} scenes / ${phases.size} phases / ${groups.length} background groups / sequential-only max2`);
+          NODE
+
+      - name: Production QA pre
+        run: node shared/qa/validate-video.mjs v61-birth-happiness pre
+
+      - name: Pronunciation regression tests
+        run: node shared/voice/test-pronunciation.mjs
+
+      - name: TypeScript check
+        working-directory: v61-birth-happiness
+        run: npm run check
+
+      - name: Hospital, world-data and decision-tree visual render smoke test
+        working-directory: v61-birth-happiness
+        run: |
+          mkdir -p out/preview
+          for FRAME in 9 310 710 1110 1510 1910 2310; do
+            npx remotion still src/index.tsx V61ScenePreview "out/preview/frame-${FRAME}.png" --frame="$FRAME" --log=error
+          done
+          test "$(find out/preview -name '*.png' | wc -l)" -eq 7
+
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox || true
+          exit 1
+
+      - name: Generate measured narration
+        working-directory: v61-birth-happiness
+        run: node scripts/generate-voicevox.mjs
+
+      - name: Duration guard
+        run: |
+          node - <<'NODE'
+          const s=require('./v61-birth-happiness/src/sync-timing.json');
+          console.log(`Measured duration: ${s.durationSeconds}s / ${(s.beats||[]).length} scenes`);
+          if(s.durationSeconds<900) throw new Error(`V61 unexpectedly short: ${s.durationSeconds}s; expand academically instead of relaxing the gate`);
+          if(s.durationSeconds>1500) throw new Error(`V61 unexpectedly long: ${s.durationSeconds}s`);
+          NODE
+
+      - name: Production QA post
+        run: node shared/qa/validate-video.mjs v61-birth-happiness post
+
+      - id: plan
+        working-directory: v61-birth-happiness
+        run: |
+          MATRIX="$(node scripts/plan-segments.mjs)"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+
+      - name: Pack prepared V61
+        run: tar --exclude='v61-birth-happiness/node_modules' -czf v61-prepared.tar.gz v61-birth-happiness
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v61-prepared
+          retention-days: 1
+          if-no-files-found: error
+          path: v61-prepared.tar.gz
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 95
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v61-prepared
+          path: .
+      - run: tar -xzf v61-prepared.tar.gz
+      - name: Install V61 dependencies
+        working-directory: v61-birth-happiness
+        run: npm install
+      - name: Render segment
+        working-directory: v61-birth-happiness
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V61BirthHappiness "out/segment-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v61-segment-${{ matrix.id }}
+          retention-days: 1
+          if-no-files-found: error
+          path: v61-birth-happiness/out/segment-${{ matrix.id }}.mp4
+
+  finalize:
+    needs: [prepare, render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg and Japanese font
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v61-prepared
+          path: .
+      - run: tar -xzf v61-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v61-segment-*
+          path: v61-birth-happiness/parts
+          merge-multiple: true
+
+      - name: Generate BGM
+        working-directory: v61-birth-happiness
+        run: node scripts/generate-bgm.mjs
+
+      - name: Concatenate segments
+        working-directory: v61-birth-happiness
+        run: |
+          mkdir -p out
+          find parts -maxdepth 1 -name 'segment-*.mp4' -print | sort -V | while read -r f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+
+      - name: Mix narration and BGM
+        working-directory: v61-birth-happiness
+        run: |
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a \
+            -filter_complex "[1:a]volume=1.0[vo];[2:a]volume=0.042[bg];[vo][bg]amix=inputs=2:duration=longest:dropout_transition=2[a]" \
+            -map 0:v:0 -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/v61-birth-happiness-final.mp4
+
+      - name: Create scene-complete QA contact sheet
+        run: node shared/qa/generate-scene-contact-sheet.mjs v61-birth-happiness v61-birth-happiness/out/v61-birth-happiness-final.mp4 v61-birth-happiness/out/v61-birth-happiness-contact-sheet.jpg
+
+      - name: Verify QA scene count
+        run: |
+          node - <<'NODE'
+          const s=require('./v61-birth-happiness/src/sync-timing.json');
+          if((s.beats||[]).length<120) throw new Error(`QA scene count too low: ${(s.beats||[]).length}`);
+          console.log(`QA sheet sourced from ${(s.beats||[]).length} measured scenes`);
+          NODE
+
+      - name: Create V61 scene table
+        working-directory: v61-birth-happiness
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'); const s=require('./src/script-data.json'); const d=require('./src/scene-data.json'); const t=require('./src/sync-timing.json');
+          let out='# V61 Scene Table\n\n| Scene | Time | Phase | Shot | Background | Narration |\n|---|---:|---|---|---|---|\n';
+          for(let i=0;i<s.beats.length;i++){
+            const b=s.beats[i],m=d[i],z=(t.beats||[])[i]||{};
+            const st=Number(z.start||0).toFixed(1),en=Number(z.end||0).toFixed(1);
+            out+=`| ${b.id} | ${st}-${en}s | ${m.phase} | ${m.shotKind||''} | ${m.bgGroup} | ${b.narration.replace(/\|/g,'／').replace(/\n/g,' ')} |\n`;
+          }
+          fs.writeFileSync('out/v61-birth-happiness-scene-table.md',out);
+          NODE
+
+      - name: Publish GitHub Release
+        working-directory: v61-birth-happiness
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VIDEO_NAME="knowledge-video-v61-birth-happiness-${GITHUB_RUN_ID}.mp4"
+          cp out/v61-birth-happiness-final.mp4 "out/${VIDEO_NAME}"
+          TAG="v61-birth-happiness-${GITHUB_RUN_ID}"
+          gh release create "$TAG" "out/${VIDEO_NAME}" out/v61-birth-happiness-contact-sheet.jpg out/v61-birth-happiness-scene-table.md public/audio/pronunciation-report.json qa/preproduction-summary.json preproduction-plan.json SOURCES.md V61_IMPLEMENTATION.md src/script-data.json src/scene-data.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V61 Birth Happiness Production ${GITHUB_RUN_ID}" \
+            --notes "二〇二六年生まれの幸福を考える【幸福の経済学×出生の偶然×ケイパビリティ】。四つの病院の出産、成人の幸福度と子どもの幸福の比較、学校と家庭の条件、四つの出生扉、ロールズの無知のヴェール、センの実現可能な生き方、2036年と2046年の子どもたち、失敗後の分岐する人生を台本連動アニメーションとして制作。VOICEVOXの実測同期・字幕・BGM・全132シーンQA。二〇二六年の国際統計は出生児の将来予測として扱わない。"
