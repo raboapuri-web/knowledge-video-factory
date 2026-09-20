@@ -1,0 +1,54 @@
+name: V60 Release Recovery
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/v60-release-recovery.yml']
+  workflow_dispatch:
+permissions: {contents: write}
+jobs:
+  recover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/download-artifact@v4
+        with:
+          name: v60-prepared
+          path: .
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 35452793382
+      - run: tar -xzf v60-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: 'v60-segment-*'
+          path: v60-deadline-paradox/parts
+          merge-multiple: true
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 35452793382
+      - working-directory: v60-deadline-paradox
+        run: node scripts/generate-bgm.mjs
+      - working-directory: v60-deadline-paradox
+        run: |
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          test "$(wc -l < out/concat.txt)" -eq 8
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v60-final.mp4
+          test -s out/v60-final.mp4
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v60-final.mp4 | head -1)" = "1920"
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v60-final.mp4 | head -1)" = "1080"
+          DUR=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v60-final.mp4)
+          echo "V60 final duration=$DUR"
+          awk -v d="$DUR" 'BEGIN { exit !(d > 600) }'
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v60-deadline-paradox v60-deadline-paradox/out/v60-final.mp4 v60-deadline-paradox/out/v60-contact-sheet.jpg
+      - working-directory: v60-deadline-paradox
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG="v60-deadline-paradox-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v60-deadline-paradox-${GITHUB_RUN_ID}.mp4"
+          cp out/v60-final.mp4 "out/$NAME"
+          cp ../shared/v60/V60_PRODUCTION_SPEC.md V60_PRODUCTION_SPEC.md
+          gh release create "$TAG" "out/$NAME" out/v60-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V60_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V60 Deadline Paradox Production ${GITHUB_RUN_ID}" --notes "V60 final video from successful 8-way render 35452793382: 190 fine scenes, 100 continuity background groups, narration-synced VOICEVOX and full-scene contact-sheet QA."
