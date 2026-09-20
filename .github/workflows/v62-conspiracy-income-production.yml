@@ -1,0 +1,99 @@
+name: V62 Conspiracy Income Production
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/v62-conspiracy-income-production.yml','shared/bootstrap/v62-conspiracy-income.mjs','shared/v60/**']
+permissions: {contents: write}
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    outputs: {matrix: '${{ steps.plan.outputs.matrix }}'}
+    steps:
+      - uses: actions/checkout@v4
+      - run: node shared/bootstrap/v62-conspiracy-income.mjs
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - working-directory: v62-conspiracy-income
+        run: npm install
+      - working-directory: v62-conspiracy-income
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - working-directory: v62-conspiracy-income
+        run: node scripts/build-preproduction.mjs
+      - name: Fine scene and static-background guard
+        run: |
+          node - <<'NODE'
+          const s=require('./v62-conspiracy-income/src/script-data.json'),d=require('./v62-conspiracy-income/src/scene-data.json');const n=s.beats.length;if(n<120||n>185)throw Error(`scene count ${n}`);if(d.length!==n)throw Error('scene mismatch');if(new Set(s.beats.map(x=>x.visual)).size!==n)throw Error('visual key reuse');const g={},seen=new Set();let prev='';for(const x of d){g[x.bgGroup]=(g[x.bgGroup]||0)+1;if(x.bgGroup!==prev&&seen.has(x.bgGroup))throw Error(`nonconsecutive background reuse ${x.bgGroup}`);seen.add(x.bgGroup);prev=x.bgGroup;}for(const [k,v] of Object.entries(g))if(v>2)throw Error(`background ${k} used ${v} scenes`);if(Object.keys(g).length<65)throw Error(`too few backgrounds ${Object.keys(g).length}`);const phases=new Set(d.map(x=>x.phase));if(phases.size!==19)throw Error(`Missing narrative worlds ${phases.size}/19`);const code=require('fs').readFileSync('./shared/v62/scenes.tsx','utf8');for(const p of phases)if(!code.includes(p+':'))throw Error(`Renderer missing phase ${p}`);console.log(`${n} micro-scenes / ${Object.keys(g).length} unique continuity backgrounds / ${phases.size} story worlds`);
+          NODE
+      - working-directory: v62-conspiracy-income
+        run: npm run check
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; exit 1
+      - working-directory: v62-conspiracy-income
+        run: node scripts/generate-voicevox.mjs
+      - id: plan
+        working-directory: v62-conspiracy-income
+        run: echo "matrix=$(node scripts/plan-segments.mjs)" >> "$GITHUB_OUTPUT"
+      - run: tar --exclude='v62-conspiracy-income/node_modules' -czf v62-prepared.tar.gz v62-conspiracy-income
+      - uses: actions/upload-artifact@v4
+        with: {name: v62-prepared, path: v62-prepared.tar.gz, retention-days: 1}
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v62-prepared}
+      - run: tar -xzf v62-prepared.tar.gz
+      - working-directory: v62-conspiracy-income
+        run: npm install
+      - working-directory: v62-conspiracy-income
+        run: mkdir -p out && npx remotion render src/index.tsx V62ConspiracyIncome "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with: {name: 'v62-segment-${{ matrix.id }}', path: 'v62-conspiracy-income/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
+  finalize:
+    needs: [prepare,render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v62-prepared}
+      - run: tar -xzf v62-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'v62-segment-*', path: v62-conspiracy-income/parts, merge-multiple: true}
+      - working-directory: v62-conspiracy-income
+        run: node scripts/generate-bgm.mjs
+      - working-directory: v62-conspiracy-income
+        run: |
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v62-final.mp4
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v62-final.mp4 | head -1)" = '1920'
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v62-final.mp4 | head -1)" = '1080'
+          test "$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v62-final.mp4 | cut -d. -f1)" -gt 600
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v62-conspiracy-income v62-conspiracy-income/out/v62-final.mp4 v62-conspiracy-income/out/v62-contact-sheet.jpg
+      - working-directory: v62-conspiracy-income
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG="v62-conspiracy-income-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v62-conspiracy-income-${GITHUB_RUN_ID}.mp4"
+          cp out/v62-final.mp4 "out/$NAME"
+          gh release create "$TAG" "out/$NAME" out/v62-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V62_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V62 Conspiracy Income Production ${GITHUB_RUN_ID}" --notes "Conspiracy and income academic documentary with 19 narrative animation worlds, original vector scenes, non-reused continuity backgrounds, narration-synced VOICEVOX, human-readable subtitles and 8-segment render."
