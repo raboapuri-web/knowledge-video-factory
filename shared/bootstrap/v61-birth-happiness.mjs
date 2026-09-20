@@ -11,7 +11,7 @@ fs.cpSync(source,target,{recursive:true});
 const title='2026年はどの国で生まれるのが一番幸せなのか？【幸福の経済学×出生の偶然×ケイパビリティ】';
 const rawScript=fs.readFileSync(path.join(root,'shared/v61/birth-happiness-script.txt'),'utf8').trim();
 if(!rawScript.startsWith('[[birth_finland]]')) throw new Error('Wrong V61 canonical script loaded');
-const phaseRe=/\[\[([a-z_]+)\]\]\s*([\s\S]*?)(?=\n\s*\[\[|$)/g;
+const phaseRe=/\[\[([a-z0-9_]+)\]\]\s*([\s\S]*?)(?=\n\s*\[\[|$)/g;
 const chunks=[];
 const narration=[];
 for(const match of rawScript.matchAll(phaseRe)){
