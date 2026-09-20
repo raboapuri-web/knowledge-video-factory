@@ -81,7 +81,7 @@ const Authority=({m,p,car=false}:{m:Scene;p:number;car?:boolean})=>{
  const t=m.narration;
  if(car)return <g><path d="M460 640 Q520 440 850 445 H1180 Q1440 465 1520 655 L1590 795 H400Z" fill="#647f8b"/><path d="M490 575 Q900 325 1440 575" stroke="#d4e0df" strokeWidth="28" fill="none"/><circle cx="670" cy="795" r="125" fill="#172733" stroke="#9fb6bc" strokeWidth="40"/><circle cx="1340" cy="795" r="125" fill="#172733" stroke="#9fb6bc" strokeWidth="40"/>
  <Actor x={790} y={330} s={.49} stress/><Actor x={1180} y={285} s={.57} role="boss"/>
- <circle cx={mix(850,1190,p)} cy={495} r="91" fill="none" stroke={C.gold} strokeWidth="20"/><Trace x={850} y={495} X={1165} Y={455} stroke={C.red} sw={17} p={p}/><Trace x={1225} y={470} X={1440} Y={500} stroke={C.red} sw={17} p={p}/>
+ <circle cx={tween(850,1190,p)} cy={495} r="91" fill="none" stroke={C.gold} strokeWidth="20"/><Trace x={850} y={495} X={1165} Y={455} stroke={C.red} sw={17} p={p}/><Trace x={1225} y={470} X={1440} Y={500} stroke={C.red} sw={17} p={p}/>
  {match(t,/事故|運転|責め|曲がれ|止まれ/)&&<Ring x={930} y={575} p={p} r={170} color={C.red}/>}</g>;
  return <g><Actor x={340} y={510} s={.7} stress/><Actor x={1540} y={480} s={.7} role="boss"/><Laptop x={730} y={295} s={.9} mode="proposal" p={p}/>{[0,1,2,3].map((_,i)=>{const x=540+i*310;return <g key={i}><Box x={x} y={740} w={224} h={96} fill={i===0?C.teal:i<=Math.floor(p*4)?C.red:C.wall2} o={.68} r={14}/>{i>0&&<Trace x={x-70} y={780} X={x-25} Y={780} stroke={C.gold} p={p} sw={11}/>}</g>})}
  {match(t,/予算|承認|契約|他部署|決め|権限/)&&<g><Page x={1060} y={660} s={.48} stamp={p>.55}/><Ring x={1560} y={520} p={p} r={105} color={C.red}/></g>}</g>;
