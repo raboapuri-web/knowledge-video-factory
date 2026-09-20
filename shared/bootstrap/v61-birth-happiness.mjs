@@ -26,7 +26,7 @@ for(const match of rawScript.matchAll(phaseRe)){
  }
  if(buf)chunks.push({phase,narration:buf});
 }
-if(narration.length!==39)throw new Error('V61 must include exactly 39 narrative phases: '+narration.length);
+if(narration.length!==41)throw new Error('V61 must include exactly 41 narrative phases: '+narration.length);
 fs.writeFileSync(path.join(target,'script.txt'),narration.join('\n\n')+'\n');
 
 const phaseCounts=new Map();
