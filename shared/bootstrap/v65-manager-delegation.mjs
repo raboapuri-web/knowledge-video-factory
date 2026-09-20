@@ -17,7 +17,7 @@ for(const hit of script.matchAll(phaseRe)){
   if(s)units.push({phase,narration:s});
  }
 }
-if(units.length<120)throw new Error('Source too short: '+units.length);
+if(units.length<105)throw new Error('Source too short: '+units.length);
 while(units.length>185){
  let best=-1,score=Infinity;
  for(let i=0;i<units.length-1;i++){
@@ -39,7 +39,7 @@ const beats=units.map((u,i)=>{
  counters[u.phase]=variant+1;
  inPhase++;
  return {id:'S'+String(i+1).padStart(3,'0'),phase:u.phase,variant,narration:u.narration,
- visual:'v62-'+String(i+1).padStart(3,'0')+'-'+u.phase,
+ visual:'v65-'+String(i+1).padStart(3,'0')+'-'+u.phase,
  shotKind:['establish','reaction','detail','point-of-view','diagram','overhead','cutaway','macro'][variant%8],
  bgGroup:'B'+String(group).padStart(3,'0'),bgSeed:group};
 });
