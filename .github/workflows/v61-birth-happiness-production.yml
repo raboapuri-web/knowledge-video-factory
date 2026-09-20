@@ -85,7 +85,7 @@ jobs:
         working-directory: v61-birth-happiness
         run: npm run check
 
-      - name: Geometry and timeline render smoke test
+      - name: Hospital, world-data and decision-tree visual render smoke test
         working-directory: v61-birth-happiness
         run: |
           mkdir -p out/preview
@@ -128,14 +128,14 @@ jobs:
           echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
 
       - name: Pack prepared V61
-        run: tar --exclude='v61-birth-happiness/node_modules' -czf v59-prepared.tar.gz v61-birth-happiness
+        run: tar --exclude='v61-birth-happiness/node_modules' -czf v61-prepared.tar.gz v61-birth-happiness
 
       - uses: actions/upload-artifact@v4
         with:
-          name: v59-prepared
+          name: v61-prepared
           retention-days: 1
           if-no-files-found: error
-          path: v59-prepared.tar.gz
+          path: v61-prepared.tar.gz
 
   render:
     needs: prepare
@@ -157,9 +157,9 @@ jobs:
           node-version: 20
       - uses: actions/download-artifact@v4
         with:
-          name: v59-prepared
+          name: v61-prepared
           path: .
-      - run: tar -xzf v59-prepared.tar.gz
+      - run: tar -xzf v61-prepared.tar.gz
       - name: Install V61 dependencies
         working-directory: v61-birth-happiness
         run: npm install
@@ -169,12 +169,12 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=4096
         run: |
           mkdir -p out
-          npx remotion render src/index.tsx V61Birth Happiness "out/segment-${{ matrix.id }}.mp4" \
+          npx remotion render src/index.tsx V61BirthHappiness "out/segment-${{ matrix.id }}.mp4" \
             --frames=${{ matrix.start }}-${{ matrix.end }} \
             --codec=h264 --crf=18 --concurrency=2 --log=warn
       - uses: actions/upload-artifact@v4
         with:
-          name: v59-segment-${{ matrix.id }}
+          name: v61-segment-${{ matrix.id }}
           retention-days: 1
           if-no-files-found: error
           path: v61-birth-happiness/out/segment-${{ matrix.id }}.mp4
@@ -195,12 +195,12 @@ jobs:
           node-version: 20
       - uses: actions/download-artifact@v4
         with:
-          name: v59-prepared
+          name: v61-prepared
           path: .
-      - run: tar -xzf v59-prepared.tar.gz
+      - run: tar -xzf v61-prepared.tar.gz
       - uses: actions/download-artifact@v4
         with:
-          pattern: v59-segment-*
+          pattern: v61-segment-*
           path: v61-birth-happiness/parts
           merge-multiple: true
 
