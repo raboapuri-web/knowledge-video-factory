@@ -115,7 +115,7 @@ const Game=({m,p}:{m:M;p:number})=>{const t=m.narration;return <g>
  </g>};
 const Anxiety=({m,p}:{m:M;p:number})=>{const t=m.narration;return <g>
  <Person x={845} y={550} s={.83} stress/><Screen x={1250} y={405} w={315} h={455} mode="video" p={p}/>
- {Array.from({length:10},(_,i)=>{const a=(i*3.3+1)*.46;const x=960+Math.cos(a)*(240+i*67),y=490+Math.sin(a)*(170+i*43);return <g key={i} opacity={has(t,/不安|信じ|恐ろ|支配|全て|何も/)?.25+.72*p:.22}>{line(x,y,940,505,c.red,4,p)}<circle cx={x} cy={y} r={13+i%3*5} fill={c.red}/></g>})}
+ {Array.from({length:10},(_,i)=>{const a=(i*3.3+1)*.46;const x=960+Math.cos(a)*(240+i*67),y=490+Math.sin(a)*(170+i*43);return <g key={i} opacity={has(t,/不安|信じ|恐ろ|支配|全て|何も/)?(.25+.72*p):.22}>{line(x,y,940,505,c.red,4,p)}<circle cx={x} cy={y} r={13+i%3*5} fill={c.red}/></g>})}
  {has(t,/安心|理解|無力感|コントロール/)&&<g><circle cx="940" cy="490" r={150+130*p} fill="none" stroke={c.gold} strokeWidth="8" opacity=".32"/></g>}
  </g>};
 const Wealth=({m,p}:{m:M;p:number})=>{const t=m.narration;return <g><Graph x={550} y={245} p={p}/>
