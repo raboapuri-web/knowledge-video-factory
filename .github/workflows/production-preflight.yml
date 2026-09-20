@@ -101,6 +101,29 @@ jobs:
           done
           test "$(find out/preflight-preview -type f -name '*.png' | wc -l)" -ge 35
 
+      - name: Render all V63 narrative phases before full production
+        if: steps.target.outputs.vid == 'v63'
+        working-directory: ${{ steps.dir.outputs.target }}
+        run: |
+          mkdir -p out/preflight-preview
+          FRAMES="$(node - <<'NODE'
+          const data=require('./src/scene-data.json');
+          const seen=new Set(),frames=[];
+          for(let i=0;i<data.length;i++){
+            if(!seen.has(data[i].phase)){
+              seen.add(data[i].phase);
+              frames.push(i*20+10);
+            }
+          }
+          if(seen.size!==35) throw new Error('V63 expected 35 historical narrative phases, got '+seen.size);
+          console.log(frames.join(' '));
+          NODE
+          )"
+          for FRAME in $FRAMES; do
+            npx remotion still src/index.tsx V63ScenePreview "out/preflight-preview/scene-$FRAME.png" --frame="$FRAME" --log=error
+          done
+          test "$(find out/preflight-preview -type f -name '*.png' | wc -l)" -eq 35
+
       - name: Build preproduction plan
         working-directory: ${{ steps.dir.outputs.target }}
         run: node scripts/build-preproduction.mjs
