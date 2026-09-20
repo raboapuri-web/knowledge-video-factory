@@ -39,7 +39,7 @@ const beats=units.map((u,i)=>{
  counters[u.phase]=variant+1;
  inPhase++;
  return {id:'S'+String(i+1).padStart(3,'0'),phase:u.phase,variant,narration:u.narration,
- visual:'v60-'+String(i+1).padStart(3,'0')+'-'+u.phase,
+ visual:'v62-'+String(i+1).padStart(3,'0')+'-'+u.phase,
  shotKind:['establish','reaction','detail','point-of-view','diagram','overhead','cutaway','macro'][variant%8],
  bgGroup:'B'+String(group).padStart(3,'0'),bgSeed:group};
 });
@@ -53,5 +53,6 @@ for(const n of ['generate-bgm.mjs','plan-segments.mjs'])fs.copyFileSync(path.joi
 fs.writeFileSync(path.join(target,'scripts/build-preproduction.mjs'),"import fs from 'node:fs';import path from 'node:path';const root=path.resolve(import.meta.dirname,'..');const s=JSON.parse(fs.readFileSync(path.join(root,'src/script-data.json'),'utf8'));fs.mkdirSync(path.join(root,'qa'),{recursive:true});fs.writeFileSync(path.join(root,'preproduction-plan.json'),JSON.stringify({videoId:s.videoId,scenes:s.beats},null,2));fs.writeFileSync(path.join(root,'qa/preproduction-summary.json'),JSON.stringify({videoId:s.videoId,sceneCount:s.beats.length,approved:true},null,2));console.log('preproduction scenes '+s.beats.length);");
 fs.writeFileSync(path.join(target,'scripts/generate-voicevox.mjs'),"import path from 'node:path';import {fileURLToPath} from 'node:url';import {generateVoicevox} from '../../shared/voice/generate-voicevox.mjs';const here=path.dirname(fileURLToPath(import.meta.url));await generateVoicevox(path.resolve(here,'..'),{speaker:'青山龍星',style:'ノーマル',speed:1.06,pitchScale:-0.026,intonationScale:0.86});");
 fs.copyFileSync(path.join(root,'shared/v62/SOURCES.md'),path.join(target,'SOURCES.md'));
+fs.copyFileSync(path.join(root,'shared/v62/V62_PRODUCTION_SPEC.md'),path.join(target,'V62_PRODUCTION_SPEC.md'));
 fs.writeFileSync(path.join(target,'production-manifest.json'),JSON.stringify({productionSystemVersion:3,videoId:'V62-conspiracy-income',title:'Conspiracy Income',sceneMode:'micro-semantic',requiresPreproductionPlan:true,policy:{noGenericFallback:true,noNonconsecutiveBackgroundReuse:true,staticBackgroundWithinContinuityGroup:true,meaningfulForegroundMutation:true,contactSheetRequired:true,sceneCompleteContactSheetRequired:true,measuredVoiceTimingRequired:true,maxConsecutiveSameBackground:2,minBackgroundGroups:65,minScenes:120}},null,2));
 console.log('V62: '+beats.length+' scenes / '+group+' backgrounds');
