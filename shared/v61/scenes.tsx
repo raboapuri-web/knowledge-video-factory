@@ -21,8 +21,8 @@ const Sky=({m,night=false,tropical=false}:{m:M;night?:boolean;tropical?:boolean}
  const c=hues[m.bgSeed%hues.length];
  return <div style={{position:'absolute',inset:0,overflow:'hidden',background:tropical?'linear-gradient(#294752,#72908b 53%,#354c2f 54%,#122820)':night?'linear-gradient(#080d20,#1b2b40 70%,#101a27)':'linear-gradient('+c[1]+', '+c[2]+' 65%, '+c[0]+')'}}>
  <div style={{position:'absolute',left:(m.bgSeed*53)%1250+160,top:night?145:105,width:night?95:160,height:night?95:160,borderRadius:'50%',background:night?'#f1eccb':'#fff0c0',boxShadow:'0 0 100px #f6dba480'}}/>
- {Array.from({length:18}).map((_,i)=><div key={i} style={{position:'absolute',left:i*119-80+((m.bgSeed*19)%80),bottom:200+(i%3)*18,width:90+(i%3)*60,height:130+((i*17+m.bgSeed)%5)*45,background:tropical?'#243e33':night?'#111b2a':'#324e5a',opacity:tropical?.68:.8,clipPath:i%3===0?'polygon(50% 0,90% 100%,10% 100%)':undefined}}/>)}
- {Array.from({length:45}).map((_,i)=><div key={i} style={{position:'absolute',left:(i*151+m.bgSeed*19)%1870,top:220+(i*61)%370,width:4,height:6,background:night?'#ffe9aa':'#e8f2ef',opacity:night?.65:.25}}/>)}
+ {Array.from({length:18}).map((_,i)=><div key={i} style={{position:'absolute',left:i*119-80+((m.bgSeed*19)%80),bottom:200+(i%3)*18,width:90+(i%3)*60,height:130+((i*17+m.bgSeed)%5)*45,background:tropical?'#243e33':night?'#111b2a':'#324e5a',opacity:tropical? .68:.8,clipPath:i%3===0?'polygon(50% 0,90% 100%,10% 100%)':undefined}}/>)}
+ {Array.from({length:45}).map((_,i)=><div key={i} style={{position:'absolute',left:(i*151+m.bgSeed*19)%1870,top:220+(i*61)%370,width:4,height:6,background:night?'#ffe9aa':'#e8f2ef',opacity:night? .65:.25}}/>)}
  </div>;
 };
 
@@ -153,7 +153,7 @@ const Globe=({m,p}:{m:M;p:number})=><Stage m={m} tag='一人ひとりの人生�
 const ClockFuture=({m,p}:{m:M;p:number})=><Stage m={m} tag={m.phase==='future_2036'?'2036 · 十歳になった子どもたち':'2046 · 二十歳になった子どもたち'} kind='city'>
  <div style={{position:'absolute',left:130,top:490,width:1660,height:20,background:'#dee2d055'}}/>
  {Array.from({length:4}).map((_,i)=><div key={i} style={{position:'absolute',left:130+i*430,top:250+(i%2)*35,width:360,height:620,background:['#233d4d','#50635e','#6c5b4a','#414956'][i],border:'7px solid #d4d4cd80',borderRadius:14}}/>)}
- {Array.from({length:4}).map((_,i)=><Figure key={i} x={235+i*427+show(p,.05+i*.05,.4+i*.05)*55} y={825} z={m.phase==='future_2036'?.57:.79} coat={['#c7b9ba','#a8bab8','#d4b785','#b6bfd2'][i]} walk={12*Math.sin(p*7+i)}/>)}
+ {Array.from({length:4}).map((_,i)=><Figure key={i} x={235+i*427+show(p,.05+i*.05,.4+i*.05)*55} y={825} z={m.phase==='future_2036'? .57:.79} coat={['#c7b9ba','#a8bab8','#d4b785','#b6bfd2'][i]} walk={12*Math.sin(p*7+i)}/>)}
  <Caption x={410} y={148} t={m.phase==='future_2036'?'十年後、四人はそれぞれの毎日を生きる':'二十年後、四人はそれぞれの未来を考える'} size={43} w={1100} align='center'/>
  </Stage>;
 
@@ -225,7 +225,7 @@ export const SceneVisual=({n,progress}:{n:number;progress:number})=>{
  const m=scenes[Math.max(0,n-1)]??scenes[0],p=clamp(progress);
  const fadeIn=interpolate(p,[0,.025],[0,1],{extrapolateLeft:'clamp',extrapolateRight:'clamp'});
  const fadeOut=interpolate(p,[.965,1],[1,.8],{extrapolateLeft:'clamp',extrapolateRight:'clamp'});
- const z=m.shotKind==='macro'?.041:m.shotKind==='detail'?.028:m.shotKind==='tracking'?.035:.012;
+ const z=m.shotKind==='macro'? .041:m.shotKind==='detail'? .028:m.shotKind==='tracking'? .035:.012;
  const focusX=33+(m.bgSeed*29)%34,focusY=36+(m.bgSeed*17)%28;
  const delta=m.shotKind==='tracking'?38*p:0;
  return <div style={{position:'absolute',inset:0,opacity:fadeIn*fadeOut,transform:'translateX('+delta+'px) scale('+(1+z*Math.sin(p*Math.PI))+')',transformOrigin:focusX+'% '+focusY+'%'}}>
