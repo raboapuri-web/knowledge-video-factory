@@ -97,11 +97,11 @@ jobs:
           test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v69-final.mp4 | head -1)" = '1920'
           test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v69-final.mp4 | head -1)" = '1080'
           test "$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v69-final.mp4 | cut -d. -f1)" -gt 750
-      - run: node shared/qa/generate-scene-contact-sheet.mjs v69-free-services v69-free-services/out/v69-final.mp4 v69-free-services/out/v68-contact-sheet.jpg
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v69-free-services v69-free-services/out/v69-final.mp4 v69-free-services/out/v69-contact-sheet.jpg
       - working-directory: v69-free-services
         env: {GH_TOKEN: '${{ github.token }}'}
         run: |
           TAG="v69-free-services-${GITHUB_RUN_ID}"
           NAME="knowledge-video-v69-free-services-${GITHUB_RUN_ID}.mp4"
           cp out/v69-final.mp4 "out/$NAME"
-          gh release create "$TAG" "out/$NAME" out/v68-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V69_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V69 Free Services Production ${GITHUB_RUN_ID}" --notes "Original ad-funded media and free services documentary: 14 original historical and contemporary story phases; 170–380 micro-scenes, scene-specific evolving foreground, held local background, synchronized Japanese narration, BGM."
+          gh release create "$TAG" "out/$NAME" out/v69-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V69_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V69 Free Services Production ${GITHUB_RUN_ID}" --notes "Original ad-funded media and free services documentary: 14 original historical and contemporary story phases; 170–380 micro-scenes, scene-specific evolving foreground, held local background, synchronized Japanese narration, BGM."
