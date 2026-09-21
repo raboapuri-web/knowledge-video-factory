@@ -1,0 +1,33 @@
+name: V67 Chapter Timing QA
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/v67-chapter-timing.yml']
+permissions: {actions: read, contents: read}
+jobs:
+  chapters:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: v67-prepared
+          path: .
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 35526371909
+      - run: tar -xzf v67-prepared.tar.gz
+      - name: Exact chapter timing from measured narration
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const d=JSON.parse(fs.readFileSync('v67-medieval-ransom/src/script-data.json'));
+          const s=JSON.parse(fs.readFileSync('v67-medieval-ransom/src/sync-timing.json'));
+          console.log('MEASURED_DURATION',s.durationSeconds,'SCENES',d.beats.length,'SYNC',s.beats.length);
+          if(s.beats.length!==d.beats.length)throw new Error('sync mismatch');
+          let prev='';
+          for(let i=0;i<d.beats.length;i++){
+            const b=d.beats[i],t=s.beats[i];
+            if(b.phase!==prev){console.log('CHAPTER',b.phase,Math.floor(t.start/60)+':'+String(Math.floor(t.start%60)).padStart(2,'0'),t.start,b.narration.slice(0,30));prev=b.phase;}
+          }
+          NODE
