@@ -47,9 +47,9 @@ jobs:
       - id: plan
         working-directory: v69-free-services
         run: echo "matrix=$(node scripts/plan-segments.mjs)" >> "$GITHUB_OUTPUT"
-      - run: tar --exclude='v69-free-services/node_modules' -czf v68-prepared.tar.gz v69-free-services
+      - run: tar --exclude='v69-free-services/node_modules' -czf v69-prepared.tar.gz v69-free-services
       - uses: actions/upload-artifact@v4
-        with: {name: v68-prepared, path: v68-prepared.tar.gz, retention-days: 1}
+        with: {name: v69-prepared, path: v69-prepared.tar.gz, retention-days: 1}
   render:
     needs: prepare
     runs-on: ubuntu-24.04
@@ -64,14 +64,14 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: 20}
       - uses: actions/download-artifact@v4
-        with: {name: v68-prepared}
-      - run: tar -xzf v68-prepared.tar.gz
+        with: {name: v69-prepared}
+      - run: tar -xzf v69-prepared.tar.gz
       - working-directory: v69-free-services
         run: npm install
       - working-directory: v69-free-services
         run: mkdir -p out && npx remotion render src/index.tsx V69FreeServices "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
       - uses: actions/upload-artifact@v4
-        with: {name: 'v68-segment-${{ matrix.id }}', path: 'v69-free-services/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
+        with: {name: 'v69-segment-${{ matrix.id }}', path: 'v69-free-services/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
   finalize:
     needs: [prepare,render]
     runs-on: ubuntu-24.04
@@ -82,10 +82,10 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: 20}
       - uses: actions/download-artifact@v4
-        with: {name: v68-prepared}
-      - run: tar -xzf v68-prepared.tar.gz
+        with: {name: v69-prepared}
+      - run: tar -xzf v69-prepared.tar.gz
       - uses: actions/download-artifact@v4
-        with: {pattern: 'v68-segment-*', path: v69-free-services/parts, merge-multiple: true}
+        with: {pattern: 'v69-segment-*', path: v69-free-services/parts, merge-multiple: true}
       - working-directory: v69-free-services
         run: node scripts/generate-bgm.mjs
       - working-directory: v69-free-services
