@@ -7,7 +7,7 @@ if(!fs.existsSync(template)) throw Error('V44 base project is missing');
 fs.rmSync(target,{recursive:true,force:true});
 fs.cpSync(template,target,{recursive:true});
 const source=fs.readFileSync(path.join(root,'shared/v68/income-happiness-script.txt'),'utf8').trim();
-const re=/\[\[([a-z_]+)\]\]\s*([\s\S]*?)(?=\n\s*\[\[|$)/g;
+const re=/\[\[([a-z0-9_]+)\]\]\s*([\s\S]*?)(?=\n\s*\[\[|$)/g;
 let units=[];
 for(const hit of source.matchAll(re)){
  const phase=hit[1],body=hit[2].replace(/\s*\n\s*/g,' ').trim();
@@ -55,7 +55,7 @@ const beats=units.map((u,i)=>{
   foreground:detect(u),cameraSeed:(Math.floor(group/2)%5)};
 });
 if(group<88)throw Error('Continuity/background count too low '+group);
-fs.writeFileSync(path.join(target,'script.txt'),source.replace(/\[\[[a-z_]+\]\]\s*/g,'')+'\n');
+fs.writeFileSync(path.join(target,'script.txt'),source.replace(/\[\[[a-z0-9_]+\]\]\s*/g,'')+'\n');
 fs.writeFileSync(path.join(target,'src/script-data.json'),JSON.stringify({videoId:'V68-income-happiness',title:'年収はいくらあれば幸せなのか？【幸福の経済学×行動経済学×時間の心理学】',beats},null,2));
 fs.writeFileSync(path.join(target,'src/scene-data.json'),JSON.stringify(beats,null,2));
 fs.writeFileSync(path.join(target,'src/sync-timing.json'),JSON.stringify({durationSeconds:1700,beats:[]}));
