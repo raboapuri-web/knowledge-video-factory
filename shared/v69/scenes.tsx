@@ -51,10 +51,48 @@ const animated=(b:Beat,p:number)=>{
  if(ph==='network_market')return <g><Person x={395} y={460} z={.78} p={p}/><Laptop x={970} y={645} p={p}/><Person x={1460} y={463} z={.68} kind="friend" p={p}/>{Array.from({length:7},(_,i)=><path key={i} d={`M930 420 Q${950+(i-3)*85} ${265-p*35} ${270+i*230} ${295+(i%3)*110}`} fill="none" stroke={i%2?P.gold:P.teal} strokeWidth="8" opacity={.25+p*.65}/>) }<Pulse x={950} y={440} p={p}/></g>;
  throw Error('No original foreground animation for '+ph);
 };
+
+const SetDressing=({b}:{b:Beat})=>{
+ const s=b.bgSeed,phase=b.phase;
+ const a=rng(s,41),k=s%5,x=80+a*1240;
+ const isOld=phase==='penny_press'||phase==='radio_livingroom';
+ const isOutside=phase==='commute_opening'||phase==='attention_train'||phase==='final_train'||phase==='benefits_park';
+ return <g data-unique-set={b.bgGroup}>
+  {isOld&&<g>
+   <Box x={x} y={160+(s%3)*70} w={130+k*35} h={260+(s%4)*25} c={k%2?'#bca585':'#6f5a47'} o={.8}/>
+   <Box x={x+22} y={195+(s%3)*70} w={80+k*19} h={150} c="#d8c6a6" o={.45}/>
+   {Array.from({length:4},(_,i)=><Sheet key={i} x={130+i*95+(s%4)*19} y={710-i*15} w={110} h={125} p={.77}/>)}
+  </g>}
+  {isOutside&&<g>
+   {Array.from({length:4},(_,i)=><g key={i}>
+    <Box x={115+(i*420)+(s%6)*12} y={180+(i%2)*35} w={95+k*23} h={190+(s%3)*30} c={i%2?'#839ba4':'#4b697a'} o={.35}/>
+    <Box x={130+i*420+(s%6)*12} y={215+(i%2)*35} w={25} h={13} c={P.gold} o={.5}/>
+   </g>)}
+   <Box x={x} y={755} w={100+(s%4)*22} h={35} c={P.gold} o={.5}/>
+  </g>}
+  {(phase==='platform_cafe'||phase==='benefits_park'||phase==='night_scroll'||phase==='subscription_lockin')&&<g>
+   <Box x={x} y={315+(s%3)*35} w={90+k*15} h={270} c={k%2?'#ac9f88':'#657b82'} o={.45}/>
+   <Box x={x+26} y={380+(s%3)*35} w={42} h={102} c={P.paper} o={.45}/>
+   {Array.from({length:2},(_,i)=><circle key={i} cx={200+i*900+(s%4)*40} cy={120} r={18+(s%3)*9} fill={P.gold} opacity={.4}/>)}
+  </g>}
+  {(phase==='data_center'||phase==='network_market')&&<g>
+   {Array.from({length:8},(_,i)=><g key={i}><Line x={x} y={135+i*79} X={x+170+(s%4)*50} Y={135+i*79} c={P.teal} s={3} o={.27}/><circle cx={x+210} cy={145+i*78} r={5+(i%3)} fill={P.gold} opacity={.35}/></g>)}
+  </g>}
+  {(phase==='newsroom'||phase==='zero_price_chocolate')&&<g>
+   <Box x={x} y={125+(s%4)*17} w={210+(s%3)*29} h={370} c={k%2?'#b6b2a4':'#7e9395'} o={.5}/>
+   {Array.from({length:5},(_,i)=><Box key={i} x={x+20} y={160+i*60} w={110+(i%3)*25} h={9} c={i===s%5?P.red:P.paper} o={.45}/>)}
+  </g>}
+  {(phase==='morning_bedroom')&&<g>
+   <Box x={x} y={390} w={110+k*20} h={270} c={k%2?'#a5a08e':'#708d93'} o={.55}/>
+   <Box x={x+12} y={415} w={65} h={90} c={P.paper} o={.55}/><Box x={x+40} y={670} w={12} h={135} c="#626e6f" o={.8}/>
+  </g>}
+ </g>;
+};
+
 export const SceneVisual=({n,progress}:{n:number;progress:number})=>{
  const b=beats[n-1]??beats[0],p=ease(progress),zoom=b.shotKind==='macro'?1.08:b.shotKind==='detail'?1.04:1;
  return <svg width="1920" height="1080" viewBox="0 0 1920 1080" style={{position:'absolute',inset:0,overflow:'hidden'}}>
-  <g data-plate={b.bgGroup}>{stage(b.phase,b.bgSeed)}</g><g data-shot={b.visual} transform={`translate(${960*(1-zoom)} ${540*(1-zoom)}) scale(${zoom})`}>{animated(b,p)}</g>
+  <g data-plate={b.bgGroup} transform={`translate(${-Math.floor(rng(b.bgSeed,12)*85)} ${-Math.floor(rng(b.bgSeed,13)*40)}) scale(${1.015+(b.bgSeed%5)*.014})`}>{stage(b.phase,b.bgSeed)}<SetDressing b={b}/></g><g data-shot={b.visual} transform={`translate(${960*(1-zoom)} ${540*(1-zoom)}) scale(${zoom})`}>{animated(b,p)}</g>
   <Box x={0} y={0} w={1920} h={1080} c={P.night} o={.07}/>
  </svg>;
 };
