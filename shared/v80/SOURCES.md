@@ -1,0 +1,10 @@
+# V80 Concentration — research, visual and narration caveats
+- Gloria Mark, *Attention Span: A Groundbreaking Way to Restore Balance, Happiness and Productivity* (2023). Screen switching observations concern one screen/task, not a universal 47-second limit. APA interview: https://www.apa.org/news/podcasts/speaking-of-psychology/attention-spans
+- Stothart, Mitchum & Yehnert (2015), The attentional cost of receiving a cell phone notification. Journal of Experimental Psychology: Human Perception and Performance 41(4), 893–897. https://pubmed.ncbi.nlm.nih.gov/26121498/
+- Sophie Leroy (2009), Why is it so hard to do my work? The challenge of attention residue when switching between work tasks. Organizational Behavior and Human Decision Processes 109(2), 168–181. https://doi.org/10.1016/j.obhdp.2009.04.002
+- Andrea D. Stieger et al., media multitasking / sustained attention literature: different measures of subjective distraction and measured attention do not imply identical conclusions.
+- 2025 smartphone mobile internet blocking two-week intervention (reported PMID 39967678): https://pubmed.ncbi.nlm.nih.gov/39967678/ . The attention test improvement in an intervention is not proof of irreversible or universal long-term changes in brains.
+- OECD PISA 2022 Results Volume II, distracting digital devices in math class: https://www.oecd.org/en/publications/pisa-2022-results-volume-ii_a97db61c-en.html . Self-report is not measured neurological decline.
+- Herbert A. Simon (1971), Designing Organizations for an Information-Rich World: abundance of information creates a scarcity of recipient attention.
+- "8 seconds humans versus 9 seconds goldfish" is an unverified pop-science comparison; narration debunks it, not endorses it.
+Scenes depict fictional illustrative readers, workers, students and researchers, not original participants or authentic footage of named studies. Screen metrics are from different observation contexts and should not be presented as a single worldwide attention-span time series. All scene UI is stylized, no brands.
