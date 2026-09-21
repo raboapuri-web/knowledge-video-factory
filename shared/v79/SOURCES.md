@@ -1,0 +1,4 @@
+# V79 — ソクラテス裁判・史料と制作上の注意
+一次史料：プラトン『ソクラテスの弁明』（告発、神的なしるし、アルギヌサイの将軍裁判、サラミスのレオン、刑罰の提案と投票）；プラトン『クリトン』（逃亡をめぐる法と正義の議論）；プラトン『パイドン』（プラトン本人は最期に立ち会っていないと記す）；アリストファネス『雲』（歴史的証言ではなく誇張を伴う喜劇）；クセノフォン『ソクラテスの弁明』『ソクラテスの思い出』（別の視点）。
+参考研究：Stanford Encyclopedia of Philosophy, "Socrates" https://plato.stanford.edu/entries/socrates/ ; "Ancient Political Philosophy" https://plato.stanford.edu/entries/ancient-political/ ; Christopher J. Joyce (2022), *Amnesty and Reconciliation in Late Fifth-Century Athens*.
+映像の法廷の人物、群衆、表情、票、牢獄での細部は理解を助けるための再構成であり、個別の裁判員の動機を断言しない。敗戦404 BCE、民主政回復403 BCE、裁判399 BCE。告発に対する正式な審理と当時の政治的背景を区別し、いずれか単一の「真の動機」を断定しない。古代アテナイは全住民が政治参加したわけではない。プラトンの対話篇を実際の逐語記録として扱わない。
