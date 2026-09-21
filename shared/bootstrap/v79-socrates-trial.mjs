@@ -7,7 +7,7 @@ if(!fs.existsSync(template))throw new Error('V44 template missing');
 fs.rmSync(target,{recursive:true,force:true});
 fs.cpSync(template,target,{recursive:true});
 const script=fs.readFileSync(path.join(root,'shared/v79/socrates-script.txt'),'utf8').trim();
-const phaseRe=/\[\[([a-z_]+)\]\]\s*([\s\S]*?)(?=\n\s*\[\[|$)/g;
+const phaseRe=/\[\[([a-z_0-9]+)\]\]\s*([\s\S]*?)(?=\n\s*\[\[|$)/g;
 const units=[];
 for(const hit of script.matchAll(phaseRe)){
  const phase=hit[1];
@@ -44,7 +44,7 @@ const beats=units.map((u,i)=>{
  bgGroup:'B'+String(group).padStart(3,'0'),bgSeed:group};
 });
 if(beats.length<270||group<140)throw new Error('Scenes/backgrounds insufficient '+beats.length+'/'+group);
-fs.writeFileSync(path.join(target,'script.txt'),script.replace(/\[\[[a-z_]+\]\]\s*/g,'')+'\n');
+fs.writeFileSync(path.join(target,'script.txt'),script.replace(/\[\[[a-z_0-9]+\]\]\s*/g,'')+'\n');
 fs.writeFileSync(path.join(target,'src/script-data.json'),JSON.stringify({videoId:'V79-socrates-trial',title:'なぜソクラテスは民主政によって殺されたのか？【古代ギリシャ史×政治哲学×司法制度】',beats},null,2));
 fs.writeFileSync(path.join(target,'src/scene-data.json'),JSON.stringify(beats,null,2));
 fs.writeFileSync(path.join(target,'src/sync-timing.json'),JSON.stringify({durationSeconds:1450,beats:[]}));
