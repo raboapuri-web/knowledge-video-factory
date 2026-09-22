@@ -1,0 +1,21 @@
+name: Asset Library QA
+on:
+  push:
+    paths:
+      - 'shared/asset-library/**'
+      - '.github/workflows/asset-library-tests.yml'
+  pull_request:
+    paths:
+      - 'shared/asset-library/**'
+      - '.github/workflows/asset-library-tests.yml'
+permissions:
+  contents: read
+jobs:
+  asset-tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node shared/asset-library/test-assets.mjs

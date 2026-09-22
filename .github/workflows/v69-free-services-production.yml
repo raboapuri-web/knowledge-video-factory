@@ -1,9 +1,6 @@
 name: V69 Free Services Production
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/v69-free-services-production.yml','shared/bootstrap/v69-free-services.mjs','shared/v69/**']
 permissions: {contents: write}
 jobs:
   prepare:
@@ -22,6 +19,8 @@ jobs:
         run: ln -sfn "$PWD/node_modules" ../node_modules
       - working-directory: v69-free-services
         run: node scripts/build-preproduction.mjs
+      - name: Select high-match reusable assets before preview and voice
+        run: node shared/asset-library/prepare.mjs v69-free-services
       - name: Fine scene and static-background guard
         run: |
           node - <<'NODE'

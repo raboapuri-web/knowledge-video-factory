@@ -70,3 +70,7 @@ APIキーをコードやJSONへ直接書かないでください。
 `episodes/<episode>/output/final.mp4`
 
 GitHub Actions実行後はエピソードごとのArtifactまたはGitHub Releaseから取得できます。
+
+## 共有素材（背景 / パーツ / 人物）
+
+`shared/asset-library/README.md` に、意味一致でのみ既存素材を選択するレジストリ、Remotionへの組み込み、V69でのオプトイン、およびQA手順をまとめています。既存の音声・字幕・映像テンプレートとは独立した追加機能です。
