@@ -38,7 +38,12 @@
         "y": 0,
         "w": 1920,
         "h": 1080
-      }
+      },
+      "mustMentionAny": [
+        "データセンター",
+        "サーバー",
+        "ラック"
+      ]
     },
     {
       "id": "bg-night-room",
@@ -69,7 +74,12 @@
         "y": 0,
         "w": 1920,
         "h": 1080
-      }
+      },
+      "mustMentionAny": [
+        "夜の部屋",
+        "自宅",
+        "ソファ"
+      ]
     },
     {
       "id": "part-phone",
@@ -105,7 +115,12 @@
         "w": 330,
         "h": 570
       },
-      "motion": "enter-right"
+      "motion": "enter-right",
+      "mustMentionAny": [
+        "スマートフォン",
+        "スマホ",
+        "アプリ"
+      ]
     },
     {
       "id": "part-invoice",
@@ -136,7 +151,13 @@
         "w": 350,
         "h": 490
       },
-      "motion": "rise"
+      "motion": "rise",
+      "mustMentionAny": [
+        "請求",
+        "支払",
+        "課金",
+        "明細"
+      ]
     },
     {
       "id": "part-clock",
@@ -170,7 +191,12 @@
         "w": 330,
         "h": 330
       },
-      "motion": "fade"
+      "motion": "fade",
+      "mustMentionAny": [
+        "時計",
+        "時間",
+        "深夜"
+      ]
     },
     {
       "id": "person-commuter",
@@ -206,7 +232,13 @@
         "w": 500,
         "h": 700
       },
-      "motion": "enter-left"
+      "motion": "enter-left",
+      "mustMentionAny": [
+        "会社員",
+        "男性会社員",
+        "乗客",
+        "通勤"
+      ]
     },
     {
       "id": "person-engineer",
@@ -238,7 +270,12 @@
         "w": 490,
         "h": 680
       },
-      "motion": "enter-left"
+      "motion": "enter-left",
+      "mustMentionAny": [
+        "技術者",
+        "研究者",
+        "職員"
+      ]
     }
   ]
 }

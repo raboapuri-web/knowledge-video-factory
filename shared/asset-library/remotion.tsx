@@ -30,8 +30,8 @@ export const AssetLayers=({selection,progress,slot}:{selection:AssetSelection;pr
  * Keep subtitles, VOICEVOX timing, BGM and scene IDs in the existing video root.
  */
 export const AssetScene=({selection,progress}:{selection:AssetSelection;progress:number})=>{
- if(selection.mode!=='library'||!selection.background||!selection.part||!selection.person)
-  throw Error('AssetScene requires an explicitly approved complete semantic composition');
+ if(selection.mode!=='library'||!selection.background||(!selection.part&&!selection.person))
+  throw Error('AssetScene requires a high-match background and meaningful foreground');
  return <AbsoluteFill><AssetLayers selection={selection} progress={progress} slot="background"/>
   <AssetLayers selection={selection} progress={progress} slot="foreground"/></AbsoluteFill>;
 };

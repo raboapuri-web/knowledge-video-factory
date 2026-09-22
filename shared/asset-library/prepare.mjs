@@ -39,6 +39,7 @@ export function rankAsset(asset,scene,policy={}){
  const phase=String(scene.phase||'');
  if(asset.phases?.length&&!asset.phases.includes(phase))return null;
  if((asset.avoid||[]).some(t=>contains(body,t)))return null;
+ if(asset.mustMentionAny?.length&&!asset.mustMentionAny.some(t=>contains(body,t)))return null;
  const hits=asset.tags.filter(t=>contains(body,t));
  if(hits.length<2)return null; // A topic/phase alone can never cause reuse.
  const score=Math.min(1,.16+.145*Math.min(3,hits.length)+(asset.phases?.includes(phase)?.25:0)
@@ -96,11 +97,14 @@ export function buildPlan(beats,catalog=read(path.join(here,'catalog.json')),roo
   const part=pick('パーツ',Number(policy.partMaxScenesPerVideo??9));
   const person=pick('人物',Number(policy.personMaxScenesPerVideo??12));
   const requested=b.assetComposition==='library';
+  const automatic=b.assetComposition==='auto';
+  const complete=Boolean(background&&(part||person));
   // Preserve hand-authored Remotion scenes unless the storyboard explicitly approves replacement.
   // Do not silently show a generic fallback if a storyboard asks for a library shot.
-  if(requested&&(!background||!part||!person))throw Error('library shot '+b.id+' has no full high-match background/part/person trio');
-  scenes[b.id]={bgGroup:b.bgGroup,background,part,person,mode:requested?'library':'bespoke',
-   reason:requested?'explicit storyboard approval':'preserve authored animation'};
+  if(requested&&!complete)throw Error('library shot '+b.id+' has no high-match background and meaningful foreground');
+  scenes[b.id]={bgGroup:b.bgGroup,background,part,person,mode:requested||(automatic&&complete)?'library':'bespoke',
+   reason:requested?'explicit storyboard approval':automatic&&complete?'automatic high-match composition':
+    automatic?'insufficient match; preserve authored animation':'preserve authored animation'};
  }
  const unmatched=[...groups].filter(([id])=>!groupMatches.has(id)).map(([id,rows])=>({bgGroup:id,phase:rows[0].phase,
   exampleNarration:rows.map(x=>x.narration).join(' ').slice(0,120)}));
