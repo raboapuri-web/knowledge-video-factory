@@ -19,7 +19,7 @@ if(!sheetId||!serviceJson){
 }
 const sa=JSON.parse(serviceJson);
 if(!sa.client_email||!sa.private_key)throw Error('Invalid Google service-account credentials');
-const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s・･、，,（）()／/ー\\-]/g,'');
+const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s・･、，,（）()／ー_-]/g,'').replaceAll('/','');
 const b64=v=>Buffer.from(typeof v==='string'?v:JSON.stringify(v)).toString('base64url');
 const now=Math.floor(Date.now()/1000);
 const base=b64({alg:'RS256',typ:'JWT'})+'.'+b64({
