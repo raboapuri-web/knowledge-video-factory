@@ -1,53 +1,87 @@
-# 共有素材ライブラリ — 背景 / パーツ / 人物
+# パーツ専用・共有素材ライブラリ（v2）
 
-既存の `knowledge-video-factory` 内に設置（現在のGitHubリポジトリは公開設定）。動画ごとに別Gitリポジトリを作らず、コード・VOICEVOX・Remotion・QA と同じコミットで素材を固定する。既存の完成動画や映像テンプレートregistryは変更しない。
+このフォルダーは **パーツ/** のみ保持します。背景・人物の共有素材フォルダーおよび登録情報は削除済みです。背景・人物は動画ごとに台本・年代・構図・演技に合わせて新規制作し、既存の `shared/vXX/scenes.tsx` / Remotion の描画方式を使います。共通の「動き・図解のテンプレート」は `shared/remotion-templates/` に引き続き存在し、画像パーツとは別の仕組みです。
 
-## ディレクトリと素材登録
-- `背景/` — 1920×1080、**文字・人物・動く小物を描き込まない**静止画プレート。
-- `パーツ/` — 透過PNG / WebP / SVG。スマホ、請求書、時計など、台本に対応する前景物体。
-- `人物/` — 背景透過の独立キャラ。シルエット、服装、視点、姿勢をメタデータに含め、再登場時の一貫性を維持する。
-- `catalog.json` — 1素材1件。ユニークなID、カテゴリ、正確な相対ファイル名、テーマ語2個以上、適用phase、除外語、作風、権利、1920×1080空間での配置、モーション。名前だけの曖昧な素材は登録しない。
+## 1. 現行の照合方法：AIベクトル検索・画像認識ではない
 
-付属SVGは動作確認用のオリジナル・サンプル。従来の高密度な場面別vector sceneを置き換える完成美術ではない。実写寄りのカットは同じ登録ルールで生成画像のPNG/WebPを追加する。外部素材は権利・商用利用・被写体/既存作品類似を人間が確認してから `cleared-commercial` にする。画像内に字幕・見出しを焼き込まない。
+`prepare.mjs` 内の `rankAsset` は、`src/script-data.json` の **各beatの narration + visualIntent + phase** と、`catalog.json` 内のパーツ登録情報を比較する規則ベースの日本語**部分文字列一致**です。全角半角のNFKC正規化と小文字化のみ行い、語形変化・類義語・否定・誰が何をするか・画角・実際の画像内容は理解しません。タグと一致しても映像の文脈に合う保証はありません。スコアは確率・CLIP類似度・OpenAIの評価値ではありません。
 
-## 台本から動画まで（既存の作り方に合わせる）
-1. 学術検証済み原稿から、意味チャンクと `phase, bgGroup, narration, visualIntent` を設計。`bgGroup` は隣接する1〜2シーンだけが同じ固定背景を持ち、離れたシーンへ戻さない。
-2. **映像絵コンテが先**。各sceneの特定の背景・物体・人とその動き・構図・前後の接続を指定する。テンプレート/素材があることを理由に脚本の意味を曲げない。
-3. ブートストラップで `<episode>/src/script-data.json` を作る。既存の `shared/remotion-templates` とは別レイヤーで、素材はIDとmetadataから候補を選ぶ。
-4. `node shared/asset-library/prepare.mjs <episode>` を**VOICEVOX前・プレビュー前**に実行。`src/asset-plan.json`（各beat/Groupの採用・スコア・SHA256・採用理由）、`qa/asset-report.json`（未充足の背景一覧）、および採用品だけ `public/assets/library` へコピー。GitHub Actionsのprepareジョブとrenderジョブ間では、音声と同じく生成済みpublicフォルダをartifactで受け渡す。API呼び出しはゼロ。
-5. 既存Remotionシーンが基本。**絵コンテで承認したシーンのみ** `assetComposition: "library"` とし、下記の`AssetScene`に切り替える。背景と意味のある前景（パーツ/人物の少なくとも一方）が基準を満たさなければ処理を停止し、汎用画像を挿入しない。`AssetLayers` で背景だけ/前景だけの採用も可能だが、既存stageや人物と重複しないか動画側で手動指定する。
-   新規動画では各beatに `assetComposition: "auto"` と書くと、背景＋意味のある前景が高マッチのときだけ自動採用し、不足ならそのbeatを従来の固有sceneに戻す。既存V69はこの指定をしていないため映像を勝手に置き換えない。
-6. VOICEVOX音声実測 → 現在のindex.tsxによる字幕 → Remotionプレビュー → シーンcontact sheet → 本番レンダー → 既存のReleaseとQA。素材の選定は字幕や音声の再生速度に影響しない。
+硬い除外条件:
+- 登録した `phases` にシーンの `phase` が含まれること。
+- `avoid` に含まれる語がナレーション・画作り意図に現れないこと。
+- `mustMentionAny` に登録された、対象物を直接表す語が少なくとも一つ現れること。
+- `tags` から **2語以上** が部分文字列として見つかること（ただし重複/同義語を別概念として数える限界がある）。
+- 下記のスコアが `catalog.threshold`（現在0.88）以上であること。
 
-### 新規動画に組み込むサンプル
+現行スコアは `min(1, 0.16 + 0.145×min(タグ一致数,3) + 0.25×phase一致 + 0.10×作風一致 + 0.09×色調一致)` です。phaseは候補の前提条件なので一致時に加点します。2タグ・phase・作風・色調一致で **0.89**、3タグなら **1.0** です。タグ・閾値・重みは運用上の便宜的な数値であり、**「0.89＝画像として89%合っている」の意味ではありません**。撮影方向・パーツの重複・画面の空き・権利確認は自動判定できません。
 
-動画の `src/index.tsx` に以下のように追加する。共有モジュールの相対パスは動画ディレクトリがリポジトリ直下である場合。
+## 2. 誤った流用を防ぐ運用
+
+`assetComposition` を未指定または `bespoke` にすると、映像へのパーツ挿入はありません。素材に一致しただけでは採用しません。
+
+`assetComposition: "auto"` は **候補の提案・QAレポートへの登録のみ** 行い、動画には重ねません。候補をコンタクトシート/絵コンテで確認し、「物体が画面内に存在する必要があり、既存sceneに描かれていない」「サイズ・角度・前後関係・字幕との衝突がない」と判断できたbeatだけ `assetComposition: "parts-overlay"` に変更します。これで実際のRemotion背景・人物の上に高マッチのパーツ1点だけを前景として表示します。`parts-overlay` に候補が無い場合はエラーで本番制作を停止し、無関係な素材で代用しません。
+
+`catalog.policy.partMaxScenesPerVideo=9`、`cooldownScenes=3`。同じ`bgGroup`の連続beatでは同じパーツを使えますが、別の`bgGroup`へ移った場合は3beat以内の再使用を制限します。選択されたファイルのSHA256を `src/asset-plan.json` に記録し、採用素材のみ `<episode>/public/assets/library/パーツ/` へコピーします。`qa/asset-report.json` に一致候補・承認数・不足数を出力します。
+
+## 3. 次の動画を作る手順
+
+1. **台本・学術根拠を先に完成**し、歴史、場所、行為、時間経過を具体的なシーンに分割。`narration` / `visualIntent` / `phase` / `bgGroup` を作成します。`visualIntent` は **台本から独立した捏造キーワードを加えない**。
+2. `node shared/asset-library/prepare.mjs <動画ディレクトリ>` をVOICEVOX前・Remotionプレビュー前に実行し、候補と採用予定をレビューします。新しい動画のworkflowにこのコマンドを追加し、prepare jobで作ったpublicファイルをrender jobへ引き継ぎます。
+3. `assetComposition:"auto"` で一致した候補を `src/asset-plan.json` の `scenes[beat.id].part` で確認。画作りに本当に必要なものだけ `parts-overlay` に変更して選定を再実行。既存Remotionで既に同じ物体を描いているなら **追加せず、その既存の描画を置換・改修する**。
+4. 今まで通り、独自背景・人物・前景行動を作り、VOICEVOX実測尺、字幕（映像に焼き込まず別レイヤー）、Remotion、コンタクトシート、本番レンダー、完成MP4のQAを実行。意味と連続性が優先であり、素材再利用率の数値目標は設けません。
+
+### Remotion統合例
 
 ```tsx
 import assetPlan from './asset-plan.json';
-import {AssetScene, type AssetSelection} from '../../shared/asset-library/remotion';
-const choice=(assetPlan.scenes as Record<string,AssetSelection>)[beat.id];
-const frameVisual=choice?.mode==='library'
-  ? <AssetScene selection={choice} progress={beatProgress}/>
-  : <SceneVisual n={beatIndex+1} progress={beatProgress}/>;
+import {PartOverlay, type AssetSelection} from '../../shared/asset-library/remotion';
+const selection=(assetPlan.scenes as Record<string,AssetSelection>)[beat.id];
+return <AbsoluteFill>
+  <SceneVisual n={beatIndex+1} progress={beatProgress}/>
+  <PartOverlay selection={selection} progress={beatProgress}/>
+  <Subtitle beat={beat} progress={beatProgress}/>
+</AbsoluteFill>;
 ```
 
-従来の字幕とVOICEVOX timingはその外側に重ねる。単なる書類/スマホ/人物だけを既存の複雑な場面の上へ無条件に重ねない。ライブラリ選択後も、具体的な動作や移動・カメラ・前景オブジェクトの入れ替えはscene固有の実装を行う。連続シーン中の**背景画像およびカメラ座標は静止**させ、入退場と前景のみ動かす。
+既存V69にこの部品を接続してありますが、既存のbeatには`assetComposition`が無いので視覚は従来と同じです。新しい`index.tsx`へ取り込むときは、元の字幕・音声実測タイミングを残してください。動画の性質によってはRemotion内で一からそのパーツを作り、共有素材に依存しないほうが自然です。
 
-## 採用基準・予算
-- 意味一致：ナレーションまたは画作り意図から **別々のキーワード2件以上＋その素材を直接指す必須語**、適切なphase、除外語なし、同じ作風/色調、スコア0.88以上。スコアは規則ベースの一致度であり、モデルの確率ではない。
-- 背景：同じbackground group内では静止して共有、**別groupで同じ素材を使用しない**。1素材につき1group/1動画が初期値。合わないgroupは「新規制作待ち」としてレポートに残し既存Remotion専用画を使う。
-- パーツ/人物：最大採用回数と3sceneの間隔を設ける。同一キャラクターの連続登場はbgGroup内で許容。素材総数の少なさを無理な流用で補わない。
-- catalogの追加・更新で参照先SHA256が変わるため、過去のepisodeを再構築する際はその実行時のGitコミットに固定する。`src/asset-plan.json` は生成物でありレビュー対象。
+## 4. 新しいパーツを登録するとき
 
-## 動作確認
+`パーツ/` に文字・透かし・背景の無い透過SVG/PNG/WebPを格納し、`catalog.json` へID / 相対ファイル / `phases` / `mustMentionAny` / `tags` / `avoid` / style / palette / commercial-license / layout / motionを追加。`layout` は1920×1080の配置座標なので、動画ごとの構図に合わせて適宜変更・個別指定します。背景や人物のファイル/カテゴリは登録できません。外部由来の素材は商用利用権を確認してください。
+
 ```bash
 node shared/asset-library/test-assets.mjs
 node shared/asset-library/prepare.mjs v69-free-services
 cat v69-free-services/qa/asset-report.json
 ```
 
-既存V69のworkflowはprepareでasset-planとファイルを用意する。**既存のV69原稿は絵コンテ側でlibraryを許可していないので見た目は従来通り**。次の動画で承認sceneに `assetComposition:"library"` を付ければ、マッチした素材だけ描画される。人間の目によるcontact sheetレビューが必須。
+**QA通過は素材の画像品質・意味整合性を保証しません。** 審美・意味・連続性・被りを全sceneのコンタクトシートで確認してください。
 
-## 再利用せず新規制作する条件
-固有の歴史上の人物・特定の年代/土地/職業・遠近感や人物行動が合わない、文字/商標/権利に問題がある、あるいは同じ背景が繰り返し現れるとき。新規PNG/WebPを作ったら、透過/解像度・ファイルサイズ・商用権利・ID・タグ・phase・レイアウトを登録しテストする。背景2倍速のパン/ズーム演出を用いる場合でも、同じbgGroupを跨いで背景の座標が変わることを禁止する（既存V69/V81は背景固定）。
+## 5. 今後の動画制作で使う依頼文
+
+```text
+テーマ：「（ここに今回の動画テーマ）」
+台本：（このチャットの確定稿または添付の確定台本を使う）
+
+既存の knowledge-video-factory を確認して、現在の制作方式で長尺動画を本番制作してください。
+素材ライブラリは shared/asset-library/パーツ/ のみ使用し、背景・人物は今回の
+台本・年代・場面・構図に合わせてオリジナルで制作してください。共有パーツは
+catalog.json / prepare.mjs の必須語・タグ・phase・除外語・スコアで候補選定し、
+採用候補を scene ID / 一致理由 / 既存の描画との重複 / レイアウトとともにレビューしてください。
+数値が0.88以上でも意味・時代・実際の画像・配置の不一致があれば必ず不採用。
+使用率を上げるために台本や絵コンテを変えないこと。
+
+各beatは assetComposition:"auto" で候補出しし、既存sceneと重複せず、
+パーツが意味を直接伝える場面だけ parts-overlay を明示承認して採用。
+一致しない箇所は固有sceneを作り、汎用画像・同じ背景の使い回し・
+意味のないアイコンの点滅で埋めないでください。
+同一背景を連続beatで使うときはカメラと背景を固定し、ナレーションに合わせて
+人物の動き・物体の追加/削除・因果の図示を変えること。登場人物は映像内で
+時間・場所・衣装・行動の連続性を保つこと。
+
+台本の文ごとに細かくsceneを分け、情景の具体性とアニメーションの密度を優先。
+字幕は原文のまま映像と独立レイヤー、VOICEVOXは読みを調整したspeechから生成し
+実音声尺に同期。従来のRemotionテンプレート registry と専用sceneを併用し、
+事前QA、全sceneプレビュー/コンタクトシート、レンダー、完成MP4の音声・字幕・画質QAまで
+実施してください。実装・動作確認後に変更したGitHubコミットと成果物を示してください。
+```

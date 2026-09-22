@@ -4,7 +4,7 @@ import scriptData from './script-data.json';
 import sync from './sync-timing.json';
 import {SceneVisual} from './scenes';
 import assetPlan from './asset-plan.json';
-import {AssetScene, type AssetSelection} from '../../shared/asset-library/remotion';
+import {PartOverlay, type AssetSelection} from '../../shared/asset-library/remotion';
 
 type Beat={id:string;visual:string;narration:string;phase:string;variant:number;shotKind:string;bgGroup:string;bgSeed:number};
 type SyncBeat={index:number;start:number;end:number};
@@ -54,14 +54,13 @@ const V69=()=>{
   const beat=beats[a.index]??beats[0];
   
   return <AbsoluteFill style={{background:'#020306',fontFamily:font}}>
-    <AbsoluteFill>{(assetPlan.scenes as Record<string,AssetSelection>)[beat.id]?.mode==='library'
-      ? <AssetScene selection={(assetPlan.scenes as Record<string,AssetSelection>)[beat.id]} progress={a.progress}/>
-      : <SceneVisual n={a.index+1} progress={a.progress}/>}</AbsoluteFill>
+    <AbsoluteFill><SceneVisual n={a.index+1} progress={a.progress}/>
+      {<PartOverlay selection={(assetPlan.scenes as Record<string,AssetSelection>)[beat.id]} progress={a.progress}/>}</AbsoluteFill>
     <Subtitle beat={beat} progress={a.progress}/>
   </AbsoluteFill>;
 };
 
-const ScenePreview=()=>{const frame=useCurrentFrame();const n=Math.min(beats.length,Math.floor(frame/20)+1);const p=(frame%20)/20;const sel=(assetPlan.scenes as Record<string,AssetSelection>)[beats[n-1].id];return <AbsoluteFill style={{background:'#03070c'}}>{sel?.mode==='library'?<AssetScene selection={sel} progress={p}/>:<SceneVisual n={n} progress={p}/>}</AbsoluteFill>;};
+const ScenePreview=()=>{const frame=useCurrentFrame();const n=Math.min(beats.length,Math.floor(frame/20)+1);const p=(frame%20)/20;const sel=(assetPlan.scenes as Record<string,AssetSelection>)[beats[n-1].id];return <AbsoluteFill style={{background:'#03070c'}}><SceneVisual n={n} progress={p}/>{<PartOverlay selection={sel} progress={p}/>}</AbsoluteFill>;};
 
 const Root=()=>{
   const duration=Math.max(30,Math.ceil(Number(sync.durationSeconds||1700)*30));

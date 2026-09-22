@@ -1,86 +1,14 @@
 {
-  "version": 1,
+  "version": 2,
   "threshold": 0.88,
   "policy": {
-    "backgroundMaxGroupsPerVideo": 1,
     "partMaxScenesPerVideo": 9,
-    "personMaxScenesPerVideo": 12,
     "cooldownScenes": 3,
     "visualStyle": "cinematic-vector",
     "palette": "muted-dark",
     "requireOriginalOrClearedRights": true
   },
   "assets": [
-    {
-      "id": "bg-data-center",
-      "category": "背景",
-      "file": "背景/data-center.svg",
-      "phases": [
-        "data_center"
-      ],
-      "tags": [
-        "データ",
-        "サーバー",
-        "センター",
-        "情報",
-        "収集",
-        "ラック"
-      ],
-      "avoid": [
-        "屋外",
-        "森林"
-      ],
-      "style": "cinematic-vector",
-      "palette": "muted-dark",
-      "license": "original-project",
-      "layout": {
-        "x": 0,
-        "y": 0,
-        "w": 1920,
-        "h": 1080
-      },
-      "mustMentionAny": [
-        "データセンター",
-        "サーバー",
-        "ラック"
-      ]
-    },
-    {
-      "id": "bg-night-room",
-      "category": "背景",
-      "file": "背景/night-room.svg",
-      "phases": [
-        "night_scroll",
-        "subscription_lockin"
-      ],
-      "tags": [
-        "夜の部屋",
-        "部屋",
-        "スマートフォン",
-        "動画",
-        "画面",
-        "ソファ",
-        "自宅"
-      ],
-      "avoid": [
-        "日中",
-        "屋外"
-      ],
-      "style": "cinematic-vector",
-      "palette": "muted-dark",
-      "license": "original-project",
-      "layout": {
-        "x": 0,
-        "y": 0,
-        "w": 1920,
-        "h": 1080
-      },
-      "mustMentionAny": [
-        "夜の部屋",
-        "自宅",
-        "ソファ"
-      ]
-    },
     {
       "id": "part-phone",
       "category": "パーツ",
@@ -196,85 +124,6 @@
         "時計",
         "時間",
         "深夜"
-      ]
-    },
-    {
-      "id": "person-commuter",
-      "category": "人物",
-      "file": "人物/commuter.svg",
-      "phases": [
-        "commute_opening",
-        "attention_train",
-        "final_train",
-        "morning_bedroom",
-        "night_scroll"
-      ],
-      "tags": [
-        "会社員",
-        "男性",
-        "男性会社員",
-        "通勤",
-        "電車",
-        "乗客",
-        "帰宅",
-        "スマートフォン"
-      ],
-      "avoid": [
-        "女性のみ",
-        "子供"
-      ],
-      "style": "cinematic-vector",
-      "palette": "muted-dark",
-      "license": "original-project",
-      "layout": {
-        "x": 290,
-        "y": 300,
-        "w": 500,
-        "h": 700
-      },
-      "motion": "enter-left",
-      "mustMentionAny": [
-        "会社員",
-        "男性会社員",
-        "乗客",
-        "通勤"
-      ]
-    },
-    {
-      "id": "person-engineer",
-      "category": "人物",
-      "file": "人物/engineer.svg",
-      "phases": [
-        "data_center",
-        "newsroom"
-      ],
-      "tags": [
-        "研究者",
-        "技術者",
-        "分析",
-        "データ",
-        "記録",
-        "調査",
-        "職員"
-      ],
-      "avoid": [
-        "幼児",
-        "子供"
-      ],
-      "style": "cinematic-vector",
-      "palette": "muted-dark",
-      "license": "original-project",
-      "layout": {
-        "x": 260,
-        "y": 300,
-        "w": 490,
-        "h": 680
-      },
-      "motion": "enter-left",
-      "mustMentionAny": [
-        "技術者",
-        "研究者",
-        "職員"
       ]
     }
   ]
