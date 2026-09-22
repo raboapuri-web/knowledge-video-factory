@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/office-worker-preview.yml'
+      - 'shared/asset-library/人物テンプレート/office-worker-rig.tsx'
+      - 'shared/v69/index.tsx'
   workflow_dispatch:
 permissions:
   contents: read
@@ -30,11 +32,13 @@ jobs:
           mkdir -p out
           npx remotion render src/index.tsx OfficeWorkerOfficePreview out/office-worker-office-preview.mp4 --scale=0.5 --concurrency=2 --codec=h264
           npx remotion still src/index.tsx OfficeWorkerOfficePreview out/office-worker-office-still.png --frame=90 --scale=0.5
+          npx remotion still src/index.tsx OfficeWorkerNeckCloseup out/office-worker-neck-closeup.png --frame=15 --scale=0.75
       - uses: actions/upload-artifact@v4
         with:
           name: articulated-office-worker-preview
           path: |
             v69-free-services/out/office-worker-office-preview.mp4
             v69-free-services/out/office-worker-office-still.png
+            v69-free-services/out/office-worker-neck-closeup.png
           if-no-files-found: error
           retention-days: 7

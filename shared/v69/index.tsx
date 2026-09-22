@@ -72,8 +72,14 @@ const OfficeWorkerOfficePreview=()=>{
     worker={{x:780,y:180,scale:1,action,talking:action==='point'}}/>;
 };
 
+/** Enlarged idle shot for verifying the chin / neck / collar connection. */
+const OfficeWorkerNeckCloseup=()=>(
+  <OfficeWorkerBackgroundScene backgroundFile='BG_office.png'
+    worker={{x:625,y:380,scale:1.9,action:'idle'}}/>
+);
+
 const Root=()=>{
   const duration=Math.max(30,Math.ceil(Number(sync.durationSeconds||1700)*30));
-  return <><Composition id='V69FreeServices' component={V69} durationInFrames={duration} fps={30} width={1920} height={1080}/><Composition id='V69ScenePreview' component={ScenePreview} durationInFrames={beats.length*20} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerRigPreview' component={OfficeWorkerRigPreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerOfficePreview' component={OfficeWorkerOfficePreview} durationInFrames={240} fps={30} width={1920} height={1080}/></>;
+  return <><Composition id='V69FreeServices' component={V69} durationInFrames={duration} fps={30} width={1920} height={1080}/><Composition id='V69ScenePreview' component={ScenePreview} durationInFrames={beats.length*20} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerRigPreview' component={OfficeWorkerRigPreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerOfficePreview' component={OfficeWorkerOfficePreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerNeckCloseup' component={OfficeWorkerNeckCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/></>;
 };
 registerRoot(Root);

@@ -146,7 +146,8 @@ export const OfficeWorkerRig=({
             suit={suitColor} skin={skinColor} briefcase={showBriefcase&&action!=='wave'&&action!=='point'}/>
           {/* Tilt only the head, pivoting at the neck. */}
           <Hinge x={180} y={169} angle={j.headTilt}>
-            <rect x={-13} y={-7} width={26} height={25} rx={8} fill={skinColor}/>
+            {/* Neck reaches under the chin and overlaps the shirt collar: no transparent gap during head tilt. */}
+            <rect x={-14} y={-30} width={28} height={45} rx={9} fill={skinColor}/>
             <ellipse cx={-48} cy={-67} rx={9} ry={15} fill={skinColor}/>
             <ellipse cx={48} cy={-67} rx={9} ry={15} fill={skinColor}/>
             <path d="M-48 -91 Q-47 -145 0 -148 Q47 -145 48 -91 L44 -58 Q34 -27 0 -22 Q-34 -27 -44 -58Z"

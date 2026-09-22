@@ -86,3 +86,7 @@ npx remotion render src/index.tsx OfficeWorkerRigPreview out/office-worker-previ
 ```
 
 運用: ナレーションに意味がある場所だけ人物を重ね、字幕は上のレイヤーへ。隣接するbgGroupでは背景を静止させaction/poseのみ切替可能。年齢・衣装・人物像・構図が台本と合わないときは専用人物を新規作成してください。汎用の動きのregistryは管理台帳との同期が必要なため今回は変更していません。キャラクター本体は素材ライブラリ内のReactコードとして管理し、旧 `shared/remotion-templates/office-worker-rig.tsx` は既存importを壊さないための再エクスポートのみです。
+
+## 首と顔の接続（2026-09-23修正）
+
+顎下の透過ギャップをなくすため首の描画矩形を x=-14, y=-30, width=28, height=45 とし、顔の下に重なるようにしました。頭部の回転ヒンジ位置は変えず、手足の関節機構も維持。実際の見た目は `OfficeWorkerNeckCloseup` の拡大静止画で確認できます。
