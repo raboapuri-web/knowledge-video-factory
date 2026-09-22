@@ -19,3 +19,15 @@ jobs:
         with:
           node-version: '20'
       - run: node shared/asset-library/test-assets.mjs
+      - name: Bootstrap V69 without rendering or voice synthesis
+        run: node shared/bootstrap/v69-free-services.mjs
+      - name: Prepare selected assets for the actual Remotion episode
+        run: node shared/asset-library/prepare.mjs v69-free-services
+      - name: Typecheck the Remotion integration
+        run: |
+          cd v69-free-services
+          npm install --ignore-scripts --no-audit --no-fund
+          cd ..
+          ln -sfn "$PWD/v69-free-services/node_modules" node_modules
+          cd v69-free-services
+          npm run check
