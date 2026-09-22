@@ -27,6 +27,9 @@ jobs:
         run: node shared/bootstrap/v69-free-services.mjs
       - name: Prepare selected assets for the actual Remotion episode
         run: node shared/asset-library/prepare.mjs v69-free-services
+      - name: Stage an approved background for the composited character preview
+        run: node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_office.png
+      - run: node shared/asset-library/人物テンプレート/test-scene.mjs
       - name: Typecheck the Remotion integration
         run: |
           cd v69-free-services

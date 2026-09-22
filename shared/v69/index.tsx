@@ -5,7 +5,8 @@ import sync from './sync-timing.json';
 import {SceneVisual} from './scenes';
 import assetPlan from './asset-plan.json';
 import {PartOverlay, type AssetSelection} from '../../shared/asset-library/remotion';
-import {OfficeWorkerRigPreview} from '../../shared/remotion-templates/office-worker-rig';
+import {OfficeWorkerRigPreview,type OfficeWorkerAction} from '../../shared/asset-library/人物テンプレート/office-worker-rig';
+import {OfficeWorkerBackgroundScene} from '../../shared/asset-library/人物テンプレート/scene';
 
 type Beat={id:string;visual:string;narration:string;phase:string;variant:number;shotKind:string;bgGroup:string;bgSeed:number};
 type SyncBeat={index:number;start:number;end:number};
@@ -63,8 +64,16 @@ const V69=()=>{
 
 const ScenePreview=()=>{const frame=useCurrentFrame();const n=Math.min(beats.length,Math.floor(frame/20)+1);const p=(frame%20)/20;const sel=(assetPlan.scenes as Record<string,AssetSelection>)[beats[n-1].id];return <AbsoluteFill style={{background:'#03070c'}}><SceneVisual n={n} progress={p}/>{<PartOverlay selection={sel} progress={p}/>}</AbsoluteFill>;};
 
+/** Standalone example: a confirmed library background + an articulated character. */
+const OfficeWorkerOfficePreview=()=>{
+  const frame=useCurrentFrame();
+  const action:OfficeWorkerAction=frame<60?'idle':frame<120?'walk':frame<180?'wave':'point';
+  return <OfficeWorkerBackgroundScene backgroundFile='BG_office.png'
+    worker={{x:780,y:180,scale:1,action,talking:action==='point'}}/>;
+};
+
 const Root=()=>{
   const duration=Math.max(30,Math.ceil(Number(sync.durationSeconds||1700)*30));
-  return <><Composition id='V69FreeServices' component={V69} durationInFrames={duration} fps={30} width={1920} height={1080}/><Composition id='V69ScenePreview' component={ScenePreview} durationInFrames={beats.length*20} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerRigPreview' component={OfficeWorkerRigPreview} durationInFrames={240} fps={30} width={1920} height={1080}/></>;
+  return <><Composition id='V69FreeServices' component={V69} durationInFrames={duration} fps={30} width={1920} height={1080}/><Composition id='V69ScenePreview' component={ScenePreview} durationInFrames={beats.length*20} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerRigPreview' component={OfficeWorkerRigPreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerOfficePreview' component={OfficeWorkerOfficePreview} durationInFrames={240} fps={30} width={1920} height={1080}/></>;
 };
 registerRoot(Root);
