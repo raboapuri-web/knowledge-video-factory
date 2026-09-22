@@ -45,9 +45,24 @@ return <AbsoluteFill>
 
 既存V69にこの部品を接続してありますが、既存のbeatには`assetComposition`が無いので視覚は従来と同じです。新しい`index.tsx`へ取り込むときは、元の字幕・音声実測タイミングを残してください。動画の性質によってはRemotion内で一からそのパーツを作り、共有素材に依存しないほうが自然です。
 
+## フォルダーに入れるだけで自動登録する（v3）
+
+**登録対象はパーツのみ**。削除済みの背景・人物の共有フォルダーは復活させません。
+
+GitHubのパーツフォルダーを開き、Add file → Upload files からSVG / PNG / WebPを直接アップロードしてmainブランチへコミットしてください。アップロードだけで GitHub Actions の「Auto-register uploaded parts」が起動します。1回の実行で新規・変更画像は最大10点、1画像4MB以下です。既存の手動登録素材は上書きしません。
+
+新しい画像があればOpenAIの画像認識で対象物を読み取り、素材ID、画像の説明、関連語、必須語、除外語、作風・色調と標準配置を catalog.json に自動コミットします。SVGはプレビュー用PNGに変換して解析しますが、元ファイル自体は変更しません。画像を差し替えた場合のみ再解析し、登録済みの素材ID・ライセンス確認状態・配置は保持します。未変更画像でAPIを再呼び出ししません。自動登録画像を削除すると、そのマスター登録も削除します。
+
+**初回設定：** GitHubリポジトリの Settings → Secrets and variables → Actions に OPENAI_API_KEY を登録してください。動画制作のために登録済みなら同じものを使います。画像解析APIは従量課金です。GitHub Actionsの設定でリポジトリへの書き込み許可も必要です。mainへのbot pushがブランチ保護で禁止されている場合は管理者側で許可するか、PR経由の運用へ変更してください。キー未設定や画像解析エラーの場合、素材はフォルダーに残りますが JSON は更新せず、Actionsで失敗理由を表示します。キーを設定した後に Actionsから「Run workflow」で再実行できます。PRのコードには秘密鍵を渡しません。
+
+**安全上の区別：JSONへの登録は自動、商用利用の権利確認と映像への採用は別。** AIは画像の出典・利用権を判定できないため、自動登録素材の license は pending-review とし、素材選定からは除外します。アップロードした素材の商用利用権を確認したら catalog.json の該当素材だけ original-project（自作）または cleared-commercial（商用許諾確認済み）へ変更してください。この確認後も実際の場面への合致・重複・レイアウトを目視して parts-overlay を明示指定するまで動画には重ねません。
+
+画像の外部参照・スクリプト等を含むSVG、フォルダー内の別のサブフォルダー、不正拡張子は拒否します。自動分析が不正なキーワードを返した場合、一部だけ登録せず処理を失敗させます。API使用料を抑えるため同時に10点までに制限しています。手元でのモックテスト: node shared/asset-library/test-register.mjs
+
+
 ## 4. 新しいパーツを登録するとき
 
-`パーツ/` に文字・透かし・背景の無い透過SVG/PNG/WebPを格納し、`catalog.json` へID / 相対ファイル / `phases` / `mustMentionAny` / `tags` / `avoid` / style / palette / commercial-license / layout / motionを追加。`layout` は1920×1080の配置座標なので、動画ごとの構図に合わせて適宜変更・個別指定します。背景や人物のファイル/カテゴリは登録できません。外部由来の素材は商用利用権を確認してください。
+`パーツ/` に文字・透かし・背景の無い透過SVG/PNG/WebPを格納すると、Actionsが `catalog.json` に自動登録します。手作業で登録する場合は、ID / 相対ファイル / `phases` / `mustMentionAny` / `tags` / `avoid` / style / palette / commercial-license / layout / motionを追加。`layout` は1920×1080の配置座標なので、動画ごとの構図に合わせて適宜変更・個別指定します。背景や人物のファイル/カテゴリは登録できません。外部由来の素材は商用利用権を確認してください。
 
 ```bash
 node shared/asset-library/test-assets.mjs

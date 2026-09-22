@@ -1,0 +1,46 @@
+name: Auto-register uploaded parts
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'shared/asset-library/パーツ/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: part-catalog-main
+  cancel-in-progress: false
+jobs:
+  register:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install SVG-to-PNG rasterizer
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq librsvg2-bin
+      - name: Analyze images and auto-update catalog
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node shared/asset-library/register-parts.mjs
+      - name: Verify updated catalog
+        run: |
+          node shared/asset-library/test-assets.mjs
+          node shared/asset-library/test-register.mjs
+      - name: Commit the catalog only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add shared/asset-library/catalog.json
+          if git diff --cached --quiet; then
+            echo "All images already registered."
+          else
+            git commit -m "Auto-register uploaded video parts in catalog"
+            git push origin HEAD:main
+          fi

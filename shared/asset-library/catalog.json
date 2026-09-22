@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "threshold": 0.88,
   "policy": {
     "partMaxScenesPerVideo": 9,

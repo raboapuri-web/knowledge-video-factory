@@ -18,7 +18,7 @@ export function validateCatalog(catalog=read(path.join(here,'catalog.json')),roo
   ids.add(a.id);
   if(!legalCategories.has(a.category)||typeof a.file!=='string'||!a.file.startsWith(a.category+'/'))throw Error('invalid category or path for '+a.id);
   if(!Array.isArray(a.tags)||a.tags.length<2||a.tags.some(t=>typeof t!=='string'||t.length<2)||!Array.isArray(a.mustMentionAny)||!a.mustMentionAny.length)throw Error('two tags and a direct concept anchor required for '+a.id);
-  if(a.license!=='original-project'&&a.license!=='cleared-commercial')throw Error('rights not cleared for '+a.id);
+  if(a.license!=='original-project'&&a.license!=='cleared-commercial'&&a.license!=='pending-review')throw Error('rights not cleared for '+a.id);
   if(paths.has(a.file))throw Error('duplicate asset file '+a.file);
   paths.add(a.file);
   if(!/\.(?:svg|png|webp)$/.test(a.file))throw Error('unsupported format '+a.file);
@@ -35,14 +35,15 @@ export function validateCatalog(catalog=read(path.join(here,'catalog.json')),roo
 
 const contains=(text,term)=>text.includes(String(term).normalize('NFKC').toLowerCase());
 export function rankAsset(asset,scene,policy={}){
+ if(asset.license==='pending-review')return null;
  const body=String((scene.narration||'')+' '+(scene.visualIntent||'')).normalize('NFKC').toLowerCase();
  const phase=String(scene.phase||'');
- if(asset.phases?.length&&!asset.phases.includes(phase))return null;
+ if(asset.phases?.length&&!asset.phases.includes(phase)&&!asset.phases.includes('*'))return null;
  if((asset.avoid||[]).some(t=>contains(body,t)))return null;
  if(asset.mustMentionAny?.length&&!asset.mustMentionAny.some(t=>contains(body,t)))return null;
  const hits=asset.tags.filter(t=>contains(body,t));
  if(hits.length<2)return null; // A topic/phase alone can never cause reuse.
- const score=Math.min(1,.16+.145*Math.min(3,hits.length)+(asset.phases?.includes(phase)?.25:0)
+ const score=Math.min(1,.16+.145*Math.min(3,hits.length)+((asset.phases?.includes(phase)||asset.phases?.includes('*'))?.25:0)
   +(asset.style===policy.visualStyle?.10:0)+(asset.palette===policy.palette?.09:0));
  return score>=Number(policy.threshold||.88)?{asset,score:Number(score.toFixed(3)),matchedTags:hits}:null;
 }
