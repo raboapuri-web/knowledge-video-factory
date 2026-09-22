@@ -25,7 +25,7 @@ assert.equal(plan.scenes.S005.mode,'bespoke','an unmatched auto storyboard prese
 const phone=original.assets.find(a=>a.id==='part-phone');
 assert.equal(rankAsset(phone,{phase:'data_center',narration:'データの分析とサーバーの画面'}, {...original.policy,threshold:original.threshold}),null,'phone requires an explicit phone/app concept');
 assert.equal(plan.scenes.S001.background?.sha256,plan.scenes.S002.background?.sha256);
-assert.throws(()=>buildPlan([{...beats[0],assetComposition:'library',narration:'unrelated'}],original),/no full high-match/);
+assert.throws(()=>buildPlan([{...beats[0],assetComposition:'library',narration:'unrelated'}],original),/no high-match background/);
 assert.throws(()=>buildPlan([{...beats[0],id:'A',bgGroup:'ONE'}, {...beats[1],id:'B',bgGroup:'TWO'}, {...beats[2],id:'C',bgGroup:'ONE'}],original),/noncontiguous/);
 const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'video-assets-'));
 try{
