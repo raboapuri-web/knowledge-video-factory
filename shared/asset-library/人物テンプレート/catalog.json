@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "description": "再利用可能なReact/Remotion人物コンポーネントの登録簿。静止画像用の../catalog.jsonとは別管理。",
+  "selectionPolicy": "候補検索用。背景の選定およびシーンへの人物配置は台本・時代・構図・連続性を確認して明示的に実施。",
+  "characters": [
+    {
+      "id": "character-modern-male-office-worker",
+      "name": "現代の男性会社員",
+      "category": "人物テンプレート",
+      "status": "approved",
+      "type": "react-svg-rig",
+      "file": "office-worker-rig.tsx",
+      "component": "OfficeWorkerRig",
+      "sceneFile": "scene.tsx",
+      "sceneComponent": "OfficeWorkerBackgroundScene",
+      "previewComponent": "OfficeWorkerOfficePreview",
+      "previewComposition": "OfficeWorkerNeckCloseup",
+      "tags": [
+        "男性",
+        "会社員",
+        "サラリーマン",
+        "ビジネスマン",
+        "現代",
+        "オフィス",
+        "通勤",
+        "スーツ",
+        "2D",
+        "ベクター",
+        "関節",
+        "アニメーション"
+      ],
+      "usage": [
+        "会社で働く",
+        "オフィスで会話する",
+        "電車通勤",
+        "歩く",
+        "手を振る",
+        "指さす"
+      ],
+      "avoid": [
+        "古代",
+        "中世",
+        "歴史的衣装が必須の場面",
+        "別人物として描く必要がある場面"
+      ],
+      "actions": [
+        {
+          "id": "idle",
+          "name": "待機",
+          "description": "微細な頭・腕・身体の動き"
+        },
+        {
+          "id": "walk",
+          "name": "歩行",
+          "description": "左右の腕と脚を交互に動かす簡易歩行"
+        },
+        {
+          "id": "wave",
+          "name": "手を振る",
+          "description": "右肩・右肘を動かす"
+        },
+        {
+          "id": "point",
+          "name": "指さし",
+          "description": "右肩から腕を水平に伸ばす"
+        }
+      ],
+      "adjustableJoints": [
+        "leftShoulder",
+        "leftElbow",
+        "rightShoulder",
+        "rightElbow",
+        "leftHip",
+        "leftKnee",
+        "rightHip",
+        "rightKnee",
+        "headTilt",
+        "bodyLean"
+      ],
+      "adjustableProps": [
+        "x",
+        "y",
+        "scale",
+        "walkSpeed",
+        "pose",
+        "talking",
+        "showBriefcase",
+        "mirror",
+        "suitColor",
+        "pantsColor",
+        "shirtColor",
+        "skinColor",
+        "hairColor",
+        "shoeColor"
+      ],
+      "dimensions": {
+        "width": 360,
+        "height": 640,
+        "coordinateSystem": "1920x1080"
+      },
+      "recommendedBackgrounds": [
+        "背景/BG_office.png",
+        "背景/BG_densha.png",
+        "背景/BG_oneroom.png"
+      ],
+      "license": "original-project",
+      "knownLimitations": [
+        "歩行は簡易的な2Dループ。床接地を自動補正する逆運動学（IK）は未実装。",
+        "特定の背景・時代・字幕位置に対する適合は動画ごとに確認が必要。"
+      ],
+      "updatedAt": "2026-09-23",
+      "note": "2026-09-23 顎と首の隙間を修正した最新版。画像PNGではなく編集可能なReact SVGコード。"
+    }
+  ]
+}

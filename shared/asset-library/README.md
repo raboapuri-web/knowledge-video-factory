@@ -10,6 +10,8 @@
 
 例：`node shared/asset-library/人物テンプレート/stage-background.mjs <動画ディレクトリ> BG_office.png` を `prepare.mjs` 実行**後**に呼ぶと、Remotionのpublic配下へ背景がコピーされます。その後 `<OfficeWorkerBackgroundScene backgroundFile="BG_office.png" worker={{action:'walk'}} />` で背景・可動人物を重ねられます。詳しい説明は `人物テンプレート/README.md`。旧import `shared/remotion-templates/office-worker-rig.tsx` からも再エクスポートされます。
 
+**人物テンプレートの登録簿は `人物テンプレート/catalog.json` です。** `character-modern-male-office-worker`（現代の男性会社員）を登録済みで、対応するReactコードと関節・動作・使用候補背景を記載しています。人物コードを探すときはこのJSONを参照してください。静止背景・画像パーツ用の `catalog.json` とは分離しています。
+
 **人物テンプレートはTSXプログラムであり、静止素材のマスター `catalog.json` に登録する画像ではありません。** 同ディレクトリのコードはパーツ・背景の自動登録ワークフローの対象外です。映像への背景・人物の採用は台本と構図に合う場合だけ明示的に行います。
 
 ## 1. 現行の照合方法：AIベクトル検索・画像認識ではない
