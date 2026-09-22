@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: '20'
       - run: node shared/asset-library/test-assets.mjs
+      - run: node shared/asset-library/test-register.mjs
       - name: Bootstrap V69 without rendering or voice synthesis
         run: node shared/bootstrap/v69-free-services.mjs
       - name: Prepare selected assets for the actual Remotion episode
