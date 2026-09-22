@@ -147,7 +147,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -158,8 +158,8 @@
       "sourceSha256": "02cd14c9a929cd62c8fa5327075e29bf9a7e3dd234820ea2f4b2b17a487292b3",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -182,7 +182,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -193,8 +193,8 @@
       "sourceSha256": "acbb81492613220e6b4269457a3754a83eb348ec2dfb9480b71d24218b356dbc",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -217,7 +217,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -228,8 +228,8 @@
       "sourceSha256": "4cd388c408ca87a52b92e0ade32cb92994525db67da3edf96016d05ebcad76d8",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -253,7 +253,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -264,8 +264,8 @@
       "sourceSha256": "9be8ce85248293737246b0bb61a49cb920f242da6a944399177a491c0b11a381",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -289,7 +289,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -300,8 +300,8 @@
       "sourceSha256": "e82937fb10e76ecb65e0f709740d19dd71b2ac9b2b341905f26b99304f42a375",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -324,7 +324,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -335,8 +335,8 @@
       "sourceSha256": "14f01ef7454f665800bb37ceaec585990d11c71f1a4ce4ac6ad13fe21dd8b8e6",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -360,7 +360,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -371,8 +371,8 @@
       "sourceSha256": "a71d199659d019d4f317684b8ecd6a0ee9bd0dd28aa6c171370b390716696808",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -395,7 +395,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -406,8 +406,8 @@
       "sourceSha256": "3296a8faddb6cff60b2c120b4ae5669046c0b39d5fc2db050499d1ab1c42a8eb",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -429,7 +429,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -440,8 +440,8 @@
       "sourceSha256": "fa55f957104e44f6f213ca27bb846aec21a5c1cfc57d416df77df1d00f7e08e2",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -464,7 +464,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -475,8 +475,8 @@
       "sourceSha256": "6f1c5bd8f1d60fcc9d58f588cadb7df9ddde677d3572450cfc0d9f0872f372d6",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -499,7 +499,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -510,8 +510,8 @@
       "sourceSha256": "9bfddc7a02aa190adb34ee47b1c8df50d9d9529976d09e3e6367c095f1825bff",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -534,7 +534,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -545,8 +545,8 @@
       "sourceSha256": "13ecea4c422b5c0fdb1bd7f937eaa65a3f2c680427ec9ae1c727701bef4d67a0",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -569,7 +569,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -580,8 +580,8 @@
       "sourceSha256": "fe5d567d3390bb4a502cf2f91f9a614f50c0dc75ab87e904e12b3c3efee29011",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -605,7 +605,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -616,8 +616,8 @@
       "sourceSha256": "9b0ca64861b74b495bb47047437f7892a92ca49082baabf084ee1707d2a66abb",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -640,7 +640,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -651,8 +651,8 @@
       "sourceSha256": "3f7daa89b1246d635ad03ce34b33b42865855404388c9ad6faa4213014720875",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -675,7 +675,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -686,8 +686,8 @@
       "sourceSha256": "d52c5181ea7ed85793f7043b021fd6e8c728e8bc6a7f878e3ce562875f8d903d",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -708,7 +708,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -719,8 +719,8 @@
       "sourceSha256": "1c212d868d57c948263929d46d53ae6e87ae30c292c4bfde6f28e483325c3741",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -743,7 +743,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -754,8 +754,8 @@
       "sourceSha256": "6baeef21052f65482c6e680f950c58f13a30529017e2c0df958cb270f54ddcd3",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -777,7 +777,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -788,8 +788,8 @@
       "sourceSha256": "bffd0f6f6e87ef2a817b027e422dd46ae40754117be8911aab32b6ef952f08f1",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -813,7 +813,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -824,8 +824,8 @@
       "sourceSha256": "5a937130d4b251194ee8ed92c9f858fdd5cc736b178ee1d78ff79963a935bf69",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -848,7 +848,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -859,8 +859,8 @@
       "sourceSha256": "947572b3fe999417a751de1ea3656b43a352027f4f25391902a6e8473d70c0d3",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -883,7 +883,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -894,8 +894,8 @@
       "sourceSha256": "ac284b13b883d64559b03cee442699aef5bd0c538c4412b194d37b1e7d5dc152",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -918,7 +918,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -929,8 +929,8 @@
       "sourceSha256": "92cac71f2b9cb7fa95bb3a3969f728a72e5392dabee1fb516382feebebc03a4e",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -953,7 +953,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -964,8 +964,8 @@
       "sourceSha256": "44a304e695e3d15be46480ddb26774d256e251e1a6735568447ec5c6c095f8f3",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -988,7 +988,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -999,8 +999,8 @@
       "sourceSha256": "eb9c90519624e9c7e1d1fa340f0d16a5c3a2b4168e228e76a2a74a90875bfc71",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -1023,7 +1023,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -1034,8 +1034,8 @@
       "sourceSha256": "4bae1c267149e371b76756070a27e5e4069ce3419bfbc7e5f72b7ca598891b44",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -1057,7 +1057,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -1068,8 +1068,8 @@
       "sourceSha256": "00fb809d46759c70c556d6448d5f06bcf192a903983b62f1f0b71eb2d69fb8a0",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -1091,7 +1091,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -1102,8 +1102,8 @@
       "sourceSha256": "7041cdf9f444862abf7c16e73875535b86716940c441b7fbd5f71a2ffab794e0",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -1126,7 +1126,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -1137,8 +1137,8 @@
       "sourceSha256": "f9717e7907cec163ca98fae29bc7e73ede874a97de796028fa18bbf7826351cc",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -1161,7 +1161,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -1172,8 +1172,8 @@
       "sourceSha256": "7b55fc152e1a9e1992959b7e30ba75fc8a710db3af9a0aa8bfb6cd211b095a47",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -1196,7 +1196,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -1207,8 +1207,8 @@
       "sourceSha256": "8ad56daf6804c8f92259d72f029346c546939500f5a5e0fe392104e8a2d317fd",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -1231,7 +1231,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -1242,8 +1242,8 @@
       "sourceSha256": "6f4ef686a3ce848c7d1a3b1dd924b8ebe20c09a799d901483f93af256aeb8712",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     },
     {
@@ -1265,7 +1265,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -1276,8 +1276,8 @@
       "sourceSha256": "26868b4759dd2aef5a19b2f634eb8610517f8b81d7376483e4db054d2a5c7f3a",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
     }
   ]
