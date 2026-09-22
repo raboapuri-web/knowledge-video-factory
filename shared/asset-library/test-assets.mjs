@@ -4,7 +4,10 @@ import os from 'node:os';
 import path from 'node:path';
 import {buildPlan,prepareEpisode,validateCatalog,rankAsset} from './prepare.mjs';
 const catalog=validateCatalog();
-assert(catalog.assets.every(a=>a.category==='パーツ'));
+assert(catalog.assets.every(a=>['パーツ','背景'].includes(a.category)));
+assert(catalog.assets.some(a=>a.category==='背景'),'uploaded background images must be cataloged');
+assert.equal(catalog.assets.filter(a=>a.category==='背景').length,fs.readdirSync(new URL('./背景/',import.meta.url)).filter(x=>/\.(?:png|webp|svg)$/i.test(x)).length);
+assert.equal(rankAsset(catalog.assets.find(a=>a.category==='背景'),{phase:'night_scroll',narration:'本棚と書斎',assetComposition:'auto'},{...catalog.policy,threshold:catalog.threshold}),null,'backgrounds must never be selected as overlay parts');
 const beats=[
  {id:'S001',bgGroup:'B001',phase:'data_center',narration:'データセンターのサーバーに情報が収集され、技術者はスマートフォンの画面を見る。',assetComposition:'parts-overlay'},
  {id:'S002',bgGroup:'B001',phase:'data_center',narration:'スマートフォンの画面でデータを見る。',assetComposition:'auto'},

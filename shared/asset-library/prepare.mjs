@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';
 
 const here=path.dirname(fileURLToPath(import.meta.url));
 export const libraryRoot=here;
-const legalCategories=new Set(['パーツ']);
+const legalCategories=new Set(['パーツ','背景']);
 const sha256=(p)=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 const read=(p)=>JSON.parse(fs.readFileSync(p,'utf8'));
 const forbiddenSvg=/<script\b|<foreignObject\b|\bon\w+\s*=|(?:href|src)\s*=\s*["'](?:https?:|javascript:|data:)/i;
@@ -35,7 +35,7 @@ export function validateCatalog(catalog=read(path.join(here,'catalog.json')),roo
 
 const contains=(text,term)=>text.includes(String(term).normalize('NFKC').toLowerCase());
 export function rankAsset(asset,scene,policy={}){
- if(asset.license==='pending-review')return null;
+ if(asset.category!=='パーツ'||asset.license==='pending-review')return null;
  const body=String((scene.narration||'')+' '+(scene.visualIntent||'')).normalize('NFKC').toLowerCase();
  const phase=String(scene.phase||'');
  if(asset.phases?.length&&!asset.phases.includes(phase)&&!asset.phases.includes('*'))return null;
@@ -66,7 +66,7 @@ export function buildPlan(beats,catalog=read(path.join(here,'catalog.json')),roo
   if(b.bgGroup!==previous&&seenGroups.has(b.bgGroup))throw Error('noncontiguous bgGroup '+b.bgGroup);
   previous=b.bgGroup;seenGroups.add(previous);
   if(!['parts-overlay','auto','bespoke',undefined].includes(b.assetComposition))throw Error('unsupported assetComposition '+b.id);
-  const ranked=catalog.assets.map(a=>rankAsset(a,b,policy)).filter(Boolean)
+  const ranked=catalog.assets.filter(a=>a.category==='パーツ').map(a=>rankAsset(a,b,policy)).filter(Boolean)
    .sort((a,z)=>z.score-a.score||a.asset.id.localeCompare(z.asset.id));
   let part=null;
   for(const m of ranked){

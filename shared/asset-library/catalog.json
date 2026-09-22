@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "threshold": 0.88,
   "policy": {
     "partMaxScenesPerVideo": 9,
@@ -9,6 +9,82 @@
     "requireOriginalOrClearedRights": true
   },
   "assets": [
+    {
+      "id": "part-clock",
+      "category": "パーツ",
+      "file": "パーツ/clock.svg",
+      "phases": [
+        "morning_bedroom",
+        "commute_opening",
+        "attention_train",
+        "night_scroll"
+      ],
+      "tags": [
+        "時計",
+        "時間",
+        "午前",
+        "深夜",
+        "何分",
+        "通勤",
+        "遅刻"
+      ],
+      "avoid": [
+        "年代",
+        "世紀"
+      ],
+      "style": "cinematic-vector",
+      "palette": "muted-dark",
+      "license": "original-project",
+      "layout": {
+        "x": 1380,
+        "y": 170,
+        "w": 330,
+        "h": 330
+      },
+      "motion": "fade",
+      "mustMentionAny": [
+        "時計",
+        "時間",
+        "深夜"
+      ]
+    },
+    {
+      "id": "part-invoice",
+      "category": "パーツ",
+      "file": "パーツ/invoice.svg",
+      "phases": [
+        "subscription_lockin",
+        "newsroom"
+      ],
+      "tags": [
+        "請求",
+        "料金",
+        "支払",
+        "契約",
+        "課金",
+        "金額",
+        "明細"
+      ],
+      "avoid": [
+        "現金のみ"
+      ],
+      "style": "cinematic-vector",
+      "palette": "muted-dark",
+      "license": "original-project",
+      "layout": {
+        "x": 1280,
+        "y": 250,
+        "w": 350,
+        "h": 490
+      },
+      "motion": "rise",
+      "mustMentionAny": [
+        "請求",
+        "支払",
+        "課金",
+        "明細"
+      ]
+    },
     {
       "id": "part-phone",
       "category": "パーツ",
@@ -51,80 +127,1158 @@
       ]
     },
     {
-      "id": "part-invoice",
-      "category": "パーツ",
-      "file": "パーツ/invoice.svg",
+      "id": "bg-bg-bank",
+      "category": "背景",
+      "file": "背景/BG_bank.png",
+      "name": "銀行",
       "phases": [
-        "subscription_lockin",
-        "newsroom"
+        "*"
       ],
       "tags": [
-        "請求",
-        "料金",
-        "支払",
-        "契約",
-        "課金",
-        "金額",
-        "明細"
+        "銀行",
+        "金融機関",
+        "店舗",
+        "窓口",
+        "金融"
       ],
-      "avoid": [
-        "現金のみ"
-      ],
-      "style": "cinematic-vector",
-      "palette": "muted-dark",
-      "license": "original-project",
-      "layout": {
-        "x": 1280,
-        "y": 250,
-        "w": 350,
-        "h": 490
-      },
-      "motion": "rise",
       "mustMentionAny": [
-        "請求",
-        "支払",
-        "課金",
-        "明細"
-      ]
+        "銀行"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "f5d54c908e8f30fb354413211f6ca06b5f0a0d1e",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
     },
     {
-      "id": "part-clock",
-      "category": "パーツ",
-      "file": "パーツ/clock.svg",
+      "id": "bg-bg-cafenaiso",
+      "category": "背景",
+      "file": "背景/BG_cafenaiso.png",
+      "name": "カフェの店内",
       "phases": [
-        "morning_bedroom",
-        "commute_opening",
-        "attention_train",
-        "night_scroll"
+        "*"
       ],
       "tags": [
-        "時計",
-        "時間",
-        "午前",
-        "深夜",
-        "何分",
-        "通勤",
-        "遅刻"
+        "カフェ",
+        "喫茶店",
+        "店内",
+        "飲食店"
       ],
-      "avoid": [
-        "年代",
-        "世紀"
-      ],
-      "style": "cinematic-vector",
-      "palette": "muted-dark",
-      "license": "original-project",
-      "layout": {
-        "x": 1380,
-        "y": 170,
-        "w": 330,
-        "h": 330
-      },
-      "motion": "fade",
       "mustMentionAny": [
-        "時計",
-        "時間",
-        "深夜"
-      ]
+        "カフェ"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "35ba51e19e85a5235ce54a776489b7fbd2a2e975",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-conviniencestore",
+      "category": "背景",
+      "file": "背景/BG_conviniencestore.png",
+      "name": "コンビニの外観",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "コンビニ",
+        "コンビニエンスストア",
+        "店舗外観",
+        "24時間営業"
+      ],
+      "mustMentionAny": [
+        "コンビニ"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "00ab0dd6cca7b5d0366e42dbcf4f69c6b1e63cc2",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-darkroom",
+      "category": "背景",
+      "file": "背景/BG_darkroom.png",
+      "name": "暗い抽象空間",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "暗い空間",
+        "暗室",
+        "抽象空間",
+        "展示空間",
+        "スタジオ"
+      ],
+      "mustMentionAny": [
+        "暗い空間"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "1ef78d9b1224a26076aec1f9c8ff9d7c55697712",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-densha",
+      "category": "背景",
+      "file": "背景/BG_densha.png",
+      "name": "通勤電車の車内",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "通勤電車",
+        "電車",
+        "車内",
+        "座席",
+        "吊り革"
+      ],
+      "mustMentionAny": [
+        "通勤電車"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "1ce92772e3457769d8fc1197ac8901027202bb06",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-gekizyo",
+      "category": "背景",
+      "file": "背景/BG_gekizyo.png",
+      "name": "劇場",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "劇場",
+        "舞台",
+        "観客席",
+        "演劇"
+      ],
+      "mustMentionAny": [
+        "劇場"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "237f74eedd05fffb2d5354782508b0e2e7a67c57",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-girisya",
+      "category": "背景",
+      "file": "背景/BG_girisya.png",
+      "name": "古代ギリシャの街並み",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "古代ギリシャ",
+        "ギリシャ",
+        "古代",
+        "街並み",
+        "広場"
+      ],
+      "mustMentionAny": [
+        "古代ギリシャ"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "d63ad2c08d0d969176f1439e7dc5f72c79962831",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-girisya-hote",
+      "category": "背景",
+      "file": "背景/BG_girisya_hote.png",
+      "name": "古代ギリシャの法廷",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "古代ギリシャ",
+        "ギリシャ",
+        "法廷",
+        "裁判"
+      ],
+      "mustMentionAny": [
+        "古代ギリシャ"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "f9629e6f0282a6ab7ebb1f03193ce316c7487094",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-girisya-minato",
+      "category": "背景",
+      "file": "背景/BG_girisya_minato.png",
+      "name": "古代ギリシャの港",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "古代ギリシャ",
+        "ギリシャ",
+        "交易"
+      ],
+      "mustMentionAny": [
+        "古代ギリシャ"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "725c1a3b780a4beec5147aad4263c42bb50d5a3f",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-hensyushitsu",
+      "category": "背景",
+      "file": "背景/BG_hensyushitsu.png",
+      "name": "編集室",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "編集室",
+        "報道",
+        "ニュース",
+        "制作現場"
+      ],
+      "mustMentionAny": [
+        "編集室"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "cdae052715d9110c4d98b6f53f2537260fdbd4f2",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-honndana",
+      "category": "背景",
+      "file": "背景/BG_honndana.png",
+      "name": "本棚",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "本棚",
+        "書架",
+        "蔵書",
+        "書斎"
+      ],
+      "mustMentionAny": [
+        "本棚"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "4110bd8bd35a43ec5810e4849efea5ad3e3238d5",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-hospital",
+      "category": "背景",
+      "file": "背景/BG_hospital.png",
+      "name": "病院",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "病院",
+        "医療機関",
+        "医療",
+        "診察室"
+      ],
+      "mustMentionAny": [
+        "病院"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "83b9d0eb0484b5cd57c97fe959a8a218c68891bb",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-hote",
+      "category": "背景",
+      "file": "背景/BG_hote.png",
+      "name": "法廷",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "法廷",
+        "裁判所",
+        "裁判",
+        "司法"
+      ],
+      "mustMentionAny": [
+        "法廷"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "630278143a136006b2d5e8fbafee9a079c8e763b",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-hudousan",
+      "category": "背景",
+      "file": "背景/BG_hudousan.png",
+      "name": "不動産会社",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "不動産",
+        "不動産会社",
+        "物件",
+        "賃貸",
+        "店舗"
+      ],
+      "mustMentionAny": [
+        "不動産"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "3890c7a6748dd8350f96bad6ca1e7d6c6a7acd0e",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-kenkyu",
+      "category": "背景",
+      "file": "背景/BG_kenkyu.png",
+      "name": "研究室",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "研究室",
+        "実験室",
+        "科学",
+        "研究"
+      ],
+      "mustMentionAny": [
+        "研究室"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "ada4649a2c69f2d21e5d6bdfa240773593354790",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-kitchen",
+      "category": "背景",
+      "file": "背景/BG_kitchen.png",
+      "name": "キッチン",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "キッチン",
+        "台所",
+        "料理",
+        "家庭"
+      ],
+      "mustMentionAny": [
+        "キッチン"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "3c84849cdcfef7e3843162b257e099df6c9d6c9d",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-konbini",
+      "category": "背景",
+      "file": "背景/BG_konbini.png",
+      "name": "コンビニ",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "コンビニ",
+        "コンビニエンスストア"
+      ],
+      "mustMentionAny": [
+        "コンビニ"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "b8c69683a5ab38158c6cd92d3c43ac317381cfef",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-kouen",
+      "category": "背景",
+      "file": "背景/BG_kouen.png",
+      "name": "公園",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "公園",
+        "緑地",
+        "散歩",
+        "屋外"
+      ],
+      "mustMentionAny": [
+        "公園"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "5c516f145c88f4f741ef387ebf128d0f965758fd",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-minato",
+      "category": "背景",
+      "file": "背景/BG_minato.png",
+      "name": "港",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "海辺",
+        "船舶",
+        "交易"
+      ],
+      "mustMentionAny": [
+        "港"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "9743674a70e57c6867817545e0d8f99e843d44d9",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-movie",
+      "category": "背景",
+      "file": "背景/BG_MOVIE.png",
+      "name": "映画館",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "映画館",
+        "劇場",
+        "座席",
+        "スクリーン",
+        "映画鑑賞"
+      ],
+      "mustMentionAny": [
+        "映画館"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "5a0856b649c2b3316034bf41b8d68a318109b457",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-office",
+      "category": "背景",
+      "file": "背景/BG_office.png",
+      "name": "オフィス",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "オフィス",
+        "職場",
+        "会社",
+        "事務所"
+      ],
+      "mustMentionAny": [
+        "オフィス"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "98331ae20c07ee60e88c53c73c44d7b820539322",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-oneroom",
+      "category": "背景",
+      "file": "背景/BG_oneroom.png",
+      "name": "ワンルームの室内",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "ワンルーム",
+        "一人暮らし",
+        "自宅",
+        "寝室"
+      ],
+      "mustMentionAny": [
+        "ワンルーム"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "cb35c1081d56db2a2fff21c5c89789f73a5a23d8",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-rougoku",
+      "category": "背景",
+      "file": "背景/BG_rougoku.png",
+      "name": "牢獄",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "牢獄",
+        "監獄",
+        "監房",
+        "拘禁"
+      ],
+      "mustMentionAny": [
+        "牢獄"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "98c58d0782cbebd1d97a8b50b0eab0b5ca650827",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-school",
+      "category": "背景",
+      "file": "背景/BG_school.png",
+      "name": "学校の教室",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "学校",
+        "教室",
+        "教育",
+        "授業"
+      ],
+      "mustMentionAny": [
+        "学校"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "2dc1f980bedd9aea2e71c928b98161eaefc5086f",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-shinden",
+      "category": "背景",
+      "file": "背景/BG_Shinden.png",
+      "name": "神殿",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "神殿",
+        "寺院",
+        "古代",
+        "宗教施設"
+      ],
+      "mustMentionAny": [
+        "神殿"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "f2dd0860200374bbbbec314cf6b7dab6021ea472",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-sns",
+      "category": "背景",
+      "file": "背景/BG_SNS.png",
+      "name": "SNS画面の空間",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "SNS",
+        "ソーシャルメディア",
+        "投稿",
+        "情報空間"
+      ],
+      "mustMentionAny": [
+        "SNS"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "f516e7586d07e02846a7abb2ab587203fc8651b4",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-subway",
+      "category": "背景",
+      "file": "背景/BG_subway.png",
+      "name": "地下鉄の駅",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "地下鉄",
+        "プラットホーム",
+        "ホーム"
+      ],
+      "mustMentionAny": [
+        "地下鉄"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "d9b5143c4fc69e76e3e269a18bd76ebdecde83f4",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-suizokukan",
+      "category": "背景",
+      "file": "背景/BG_suizokukan.png",
+      "name": "水族館",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "水族館",
+        "水槽",
+        "展示"
+      ],
+      "mustMentionAny": [
+        "水族館"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "e5f2f1c55096005eb21c06ecb3582241be342e35",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-supermarket",
+      "category": "背景",
+      "file": "背景/BG_supermarket.png",
+      "name": "スーパーマーケット",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "スーパー",
+        "スーパーマーケット",
+        "食料品",
+        "売り場"
+      ],
+      "mustMentionAny": [
+        "スーパー"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "0ffdabe61a236160ed89104445bc32c1bc0051fd",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-syosai",
+      "category": "背景",
+      "file": "背景/BG_syosai.png",
+      "name": "書斎",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "書斎",
+        "書物",
+        "読書",
+        "本棚"
+      ],
+      "mustMentionAny": [
+        "書斎"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "1c2fdebbe76dda17d669c79b1af9c06e135bd0e0",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-tosyokan",
+      "category": "背景",
+      "file": "背景/BG_tosyokan.png",
+      "name": "図書館",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "図書館",
+        "蔵書",
+        "書架",
+        "読書"
+      ],
+      "mustMentionAny": [
+        "図書館"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "eef5c6c0c00d87dd1002ee954c27932bb3ad6766",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-town",
+      "category": "背景",
+      "file": "背景/BG_town.png",
+      "name": "街なか",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "街並み",
+        "市街地",
+        "交差点",
+        "横断歩道"
+      ],
+      "mustMentionAny": [
+        "街並み"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "1318eaf5cefb3c5b1d08af9ba0a5e27fbe20d536",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-washitsu",
+      "category": "背景",
+      "file": "背景/BG_washitsu.png",
+      "name": "和室",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "和室",
+        "日本家屋",
+        "座敷"
+      ],
+      "mustMentionAny": [
+        "和室"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceGitBlobSha": "54a89683715db6089ef1be63987c731c78844f9b",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
     }
   ]
 }

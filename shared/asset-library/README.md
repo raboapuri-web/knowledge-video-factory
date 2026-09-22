@@ -1,6 +1,6 @@
-# パーツ専用・共有素材ライブラリ（v2）
+# 共有素材ライブラリ（背景はメタデータ登録・パーツはオーバーレイ）
 
-このフォルダーは **パーツ/** のみ保持します。背景・人物の共有素材フォルダーおよび登録情報は削除済みです。背景・人物は動画ごとに台本・年代・構図・演技に合わせて新規制作し、既存の `shared/vXX/scenes.tsx` / Remotion の描画方式を使います。共通の「動き・図解のテンプレート」は `shared/remotion-templates/` に引き続き存在し、画像パーツとは別の仕組みです。
+このフォルダーは **パーツ/** とユーザーが追加した **背景/** を保持します。背景は名称・関連語などのマスター登録対象ですが、既存の動画に自動で全面背景として差し込まれるわけではありません。人物共有フォルダーは削除済みです。動画の文脈・時代・構図に合わない背景は使用せず、動画ごとに新規制作します。共通の「動き・図解のテンプレート」は `shared/remotion-templates/` に引き続き存在し、画像パーツとは別の仕組みです。
 
 ## 1. 現行の照合方法：AIベクトル検索・画像認識ではない
 
@@ -45,9 +45,9 @@ return <AbsoluteFill>
 
 既存V69にこの部品を接続してありますが、既存のbeatには`assetComposition`が無いので視覚は従来と同じです。新しい`index.tsx`へ取り込むときは、元の字幕・音声実測タイミングを残してください。動画の性質によってはRemotion内で一からそのパーツを作り、共有素材に依存しないほうが自然です。
 
-## フォルダーに入れるだけで自動登録する（v3）
+## フォルダーに入れるだけで自動登録する（v4）
 
-**登録対象はパーツのみ**。削除済みの背景・人物の共有フォルダーは復活させません。
+**背景／パーツを別々に登録します。人物フォルダーは復活させません。** 背景は `shared/asset-library/背景/` へアップロードすると `auto-register-backgrounds.yml` が画像のファイル名を元に名称・キーワードをJSONへ仮登録します。画像内容のAI解析は行わず、背景レコードは `needsVisualReview:true` と `license:pending-review` で保留されます。実際の画像・権利を確認してから採用してください。背景はRemotionのパーツ用オーバーレイとして自動選択されません。
 
 GitHubのパーツフォルダーを開き、Add file → Upload files からSVG / PNG / WebPを直接アップロードしてmainブランチへコミットしてください。アップロードだけで GitHub Actions の「Auto-register uploaded parts」が起動します。1回の実行で新規・変更画像は最大10点、1画像4MB以下です。既存の手動登録素材は上書きしません。
 
@@ -62,7 +62,7 @@ GitHubのパーツフォルダーを開き、Add file → Upload files からSVG
 
 ## 4. 新しいパーツを登録するとき
 
-`パーツ/` に文字・透かし・背景の無い透過SVG/PNG/WebPを格納すると、Actionsが `catalog.json` に自動登録します。手作業で登録する場合は、ID / 相対ファイル / `phases` / `mustMentionAny` / `tags` / `avoid` / style / palette / commercial-license / layout / motionを追加。`layout` は1920×1080の配置座標なので、動画ごとの構図に合わせて適宜変更・個別指定します。背景や人物のファイル/カテゴリは登録できません。外部由来の素材は商用利用権を確認してください。
+`パーツ/` に文字・透かし・背景の無い透過SVG/PNG/WebPを格納すると、Actionsが `catalog.json` に自動登録します。手作業で登録する場合は、ID / 相対ファイル / `phases` / `mustMentionAny` / `tags` / `avoid` / style / palette / commercial-license / layout / motionを追加。`layout` は1920×1080の配置座標なので、動画ごとの構図に合わせて適宜変更・個別指定します。背景は専用の `register-backgrounds.mjs` で自動登録します。人物カテゴリは登録できません。外部由来の素材は商用利用権を確認してください。
 
 ```bash
 node shared/asset-library/test-assets.mjs

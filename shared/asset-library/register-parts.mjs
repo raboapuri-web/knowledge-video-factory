@@ -98,6 +98,7 @@ export async function syncCatalog({root=here,analyze=analyzeWithOpenAI,maxPerRun
  const catalogPath=path.join(root,'catalog.json'),original=JSON.parse(fs.readFileSync(catalogPath,'utf8'));
  const files=scan(root),present=new Set(files.map(x=>x.file)),retained=[];
  for(const a of original.assets){
+  if(a.category!=='パーツ'){retained.push(a);continue;}
   if(present.has(a.file))retained.push(a);
   else if(a.autoRegistration)console.log('Dropping removed auto entry: '+a.file);
   else throw Error('Manually registered file missing; restore it or edit JSON explicitly: '+a.file);

@@ -71,6 +71,6 @@ APIキーをコードやJSONへ直接書かないでください。
 
 GitHub Actions実行後はエピソードごとのArtifactまたはGitHub Releaseから取得できます。
 
-## 共有素材（パーツのみ）
+## 共有素材（パーツと背景のメタデータ）
 
-`shared/asset-library/パーツ/` に画像をGitHub経由で追加すると、GitHub Actionsが画像を解析して `shared/asset-library/catalog.json` に自動登録します（OPENAI_API_KEYが必要）。AIは商用利用権を判断できないため、自動登録素材は権利確認までは検索候補から除外します。詳しい利用手順・照合方式・Remotion統合は `shared/asset-library/README.md` を参照してください。背景・人物は共有素材化せず、従来どおり動画ごとにオリジナル制作します。
+`shared/asset-library/パーツ/` に画像をGitHub経由で追加すると、GitHub Actionsが画像を解析して `shared/asset-library/catalog.json` に自動登録します（OPENAI_API_KEYが必要）。AIは商用利用権を判断できないため、自動登録素材は権利確認までは検索候補から除外します。詳しい利用手順・照合方式・Remotion統合は `shared/asset-library/README.md` を参照してください。背景は `shared/asset-library/背景/` へのアップロードでJSONへ仮登録し、映像への採用は個別にレビューします。人物は動画ごとにオリジナル制作します。
