@@ -3,6 +3,8 @@ on:
   push:
     paths:
       - 'shared/asset-library/**'
+      - 'shared/remotion-templates/office-worker-rig.tsx'
+      - 'shared/v69/index.tsx'
       - '.github/workflows/asset-library-tests.yml'
   pull_request:
     paths:

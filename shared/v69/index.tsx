@@ -5,6 +5,7 @@ import sync from './sync-timing.json';
 import {SceneVisual} from './scenes';
 import assetPlan from './asset-plan.json';
 import {PartOverlay, type AssetSelection} from '../../shared/asset-library/remotion';
+import {OfficeWorkerRigPreview} from '../../shared/remotion-templates/office-worker-rig';
 
 type Beat={id:string;visual:string;narration:string;phase:string;variant:number;shotKind:string;bgGroup:string;bgSeed:number};
 type SyncBeat={index:number;start:number;end:number};
@@ -64,6 +65,6 @@ const ScenePreview=()=>{const frame=useCurrentFrame();const n=Math.min(beats.len
 
 const Root=()=>{
   const duration=Math.max(30,Math.ceil(Number(sync.durationSeconds||1700)*30));
-  return <><Composition id='V69FreeServices' component={V69} durationInFrames={duration} fps={30} width={1920} height={1080}/><Composition id='V69ScenePreview' component={ScenePreview} durationInFrames={beats.length*20} fps={30} width={1920} height={1080}/></>;
+  return <><Composition id='V69FreeServices' component={V69} durationInFrames={duration} fps={30} width={1920} height={1080}/><Composition id='V69ScenePreview' component={ScenePreview} durationInFrames={beats.length*20} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerRigPreview' component={OfficeWorkerRigPreview} durationInFrames={240} fps={30} width={1920} height={1080}/></>;
 };
 registerRoot(Root);

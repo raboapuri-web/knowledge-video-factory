@@ -74,3 +74,7 @@ GitHub Actions実行後はエピソードごとのArtifactまたはGitHub Releas
 ## 共有素材（パーツと背景のメタデータ）
 
 `shared/asset-library/パーツ/` に画像をGitHub経由で追加すると、GitHub Actionsが画像を解析して `shared/asset-library/catalog.json` に自動登録します（OPENAI_API_KEYが必要）。AIは商用利用権を判断できないため、自動登録素材は権利確認までは検索候補から除外します。詳しい利用手順・照合方式・Remotion統合は `shared/asset-library/README.md` を参照してください。背景は `shared/asset-library/背景/` へのアップロードでJSONへ仮登録し、映像への採用は個別にレビューします。人物は動画ごとにオリジナル制作します。
+
+## 関節付き2D会社員（React / Remotion）
+
+shared/remotion-templates/office-worker-rig.tsx にSVG製の現代男性会社員テンプレートを追加。肩・肘・股関節・膝・頭・上体を角度指定でき、待機・歩行・手を振る・指さす動きをRemotionフレームに同期させます。shared/remotion-templates/README-office-worker.md に使用例があります。V69の既存映像は変更せず、独立した OfficeWorkerRigPreview Compositionから動きを確認できます。
