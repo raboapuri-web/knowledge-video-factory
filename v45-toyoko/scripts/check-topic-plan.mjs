@@ -13,8 +13,8 @@ const paragraphs=heads.map((h,i)=>approved.slice(h.index,heads[i+1]?.index??appr
  .split('\n').map(x=>x.trim()).filter(x=>x&&!x.startsWith('#')&&!x.startsWith('約')&&!x.startsWith('---')));
 const expected=['prologue','chapter1','chapter2','chapter3','chapter4','epilogue'];
 const categoryBackgrounds={
- town:new Set(['BG_TOWN_NIGHT_WIDE','BG_TOWN_DAY_WIDE','BG_TOYOKO_GROUND','BG_KABUKICHO_ALLEY','BG_GIRL_HOME','BG_LIBRARY_CLASSROOM','BG_SHELTER_ENTRANCE']),
- facility:new Set(['BG_TOYOKO_GROUND','BG_SHELTER_ENTRANCE','BG_SHELTER_BEDROOM','BG_SHELTER_DINING','BG_SHELTER_COUNSEL','BG_ABROAD_SHELTER']),
+ town:new Set(['BG_TOWN_NIGHT_WIDE','BG_TOWN_DAY_WIDE','BG_TOYOKO_GROUND','BG_KABUKICHO_ALLEY','BG_GIRL_HOME','BG_LIBRARY_CLASSROOM','BG_SHELTER_ENTRANCE','BG_SHELTER_COUNSEL','BG_LIBRARY_ROOM']),
+ facility:new Set(['BG_TOYOKO_GROUND','BG_SHELTER_ENTRANCE','BG_SHELTER_BEDROOM','BG_SHELTER_DINING','BG_SHELTER_COUNSEL','BG_YOUTH_CENTER','BG_ABROAD_SHELTER']),
  research:new Set(['BG_VANCOUVER_RAIN','BG_ABROAD_SHELTER','BG_SHELTER_ENTRANCE','BG_TOYOKO_GROUND','BG_LIBRARY_ROOM']),
  youth_center:new Set(['BG_YOUTH_CENTER','BG_YOUTH_CENTER_ENTRANCE','BG_TOYOKO_GROUND']),
  concept:new Set(['BG_SHELTER_ENTRANCE','BG_TOYOKO_GROUND','BG_TOWN_DAY_WIDE'])
