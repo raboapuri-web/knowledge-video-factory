@@ -1,0 +1,160 @@
+name: V45 Toyoko Chapter 2 Six-Way Parallel Feedback
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v45-toyoko-chapter2-parallel.yml'
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Approved original VOICEVOX audio source run
+        default: '35831899329'
+        required: false
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: toyoko-ch2-parallel-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install FFmpeg for the measured original speech
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Retrieve unchanged approved original six-chapter VOICEVOX recordings
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ inputs.source_run_id || '35831899329' }}
+          github-token: ${{ github.token }}
+          pattern: toyoko-audio-*
+          path: v45-toyoko/out/chapter-audio
+          merge-multiple: false
+      - name: Validate the approved script, locked earlier chapters, and create only chapter 2
+        working-directory: v45-toyoko
+        run: |
+          node scripts/check-original-script.mjs
+          node scripts/verify-reused-chapter-audio.mjs
+          node scripts/build-full-review.mjs
+          node scripts/stage-assets.mjs
+          node scripts/build-chapter-preview.mjs chapter2
+          npm install --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+          npm run check
+      - name: Produce six gapless shot-boundary-aligned render ranges
+        id: plan
+        working-directory: v45-toyoko
+        run: |
+          PLAN="$(node scripts/plan-chapter2-parallel.mjs)"
+          test -s out/chapter2-segment-plan.json
+          echo "matrix=$PLAN" >> "$GITHUB_OUTPUT"
+      - name: Reuse the 58-paragraph storyboard timing and original chapter 2 speech on every worker
+        run: |
+          tar -czf v45-toyoko/out/chapter2-prepared.tar.gz \
+            v45-toyoko/src/chapter-selected-data.json \
+            v45-toyoko/src/chapter-edits/chapter2.json \
+            v45-toyoko/out/chapter2-review-scene-list.json \
+            v45-toyoko/out/chapter2-segment-plan.json \
+            v45-toyoko/public/audio/chapters/chapter2/narration.m4a
+      - uses: actions/upload-artifact@v4
+        with:
+          name: toyoko-ch2-source-prepared
+          path: v45-toyoko/out/chapter2-prepared.tar.gz
+          if-no-files-found: error
+          retention-days: 7
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install video tools and Japanese caption fonts
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/download-artifact@v4
+        with:
+          name: toyoko-ch2-source-prepared
+          path: .
+      - name: Restore the exact same prebuilt chapter 2 timeline on each worker
+        run: tar -xzf chapter2-prepared.tar.gz
+      - name: Stage backgrounds, rigs and renderer
+        working-directory: v45-toyoko
+        run: |
+          node scripts/stage-assets.mjs
+          npm install --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Render precisely this frame range, muted, at 1280x720
+        working-directory: v45-toyoko
+        run: |
+          mkdir -p out/chapter2-parts
+          npx remotion render src/chapter2-preview-index.tsx ToyokoChapterTwoFeedback \
+            "out/chapter2-parts/chapter2-part-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --scale=0.6666666666666666 --muted \
+            --codec=h264 --crf=21 --concurrency=2 --log=warn
+          test -s "out/chapter2-parts/chapter2-part-${{ matrix.id }}.mp4"
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=nb_frames \
+            -of csv=p=0 "out/chapter2-parts/chapter2-part-${{ matrix.id }}.mp4")" \
+            = "${{ matrix.frames }}"
+          test -z "$(ffprobe -v error -select_streams a -show_entries stream=codec_name \
+            -of csv=p=0 "out/chapter2-parts/chapter2-part-${{ matrix.id }}.mp4")"
+      - name: Save verified video-only independent chapter range
+        uses: actions/upload-artifact@v4
+        with:
+          name: chapter2-part-${{ matrix.id }}
+          path: v45-toyoko/out/chapter2-parts/chapter2-part-${{ matrix.id }}.mp4
+          if-no-files-found: error
+          retention-days: 7
+  merge:
+    needs: [prepare,render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - uses: actions/download-artifact@v4
+        with:
+          name: toyoko-ch2-source-prepared
+          path: .
+      - name: Restore exact chapter 2 original speech and source timing
+        run: tar -xzf chapter2-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: chapter2-part-*
+          path: v45-toyoko/out/chapter2-parts
+          merge-multiple: false
+      - name: Stream-copy all six exact video ranges and mux only original chapter 2 voice
+        working-directory: v45-toyoko
+        run: |
+          node scripts/merge-chapter2-parallel.mjs
+          test -s out/toyoko-chapter2-feedback-v1.mp4
+          test -s out/chapter2-review-verification.json
+      - name: Upload the actual standalone chapter 2 review movie with source scene list
+        uses: actions/upload-artifact@v4
+        with:
+          name: toyoko-chapter2-feedback-v1-voice-and-visual-6way
+          path: |
+            v45-toyoko/out/toyoko-chapter2-feedback-v1.mp4
+            v45-toyoko/out/chapter2-review-verification.json
+            v45-toyoko/out/chapter2-review-scene-list.json
+            v45-toyoko/out/chapter2-segment-plan.json
+            v45-toyoko/src/chapter-edits/chapter2.json
+          if-no-files-found: error
+          retention-days: 7
