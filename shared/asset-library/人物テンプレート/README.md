@@ -164,3 +164,16 @@ export const Office=()=>
 ### 女性会社員の首元・ワイシャツ修正（2026-09-23）
 
 頭部の回転中心をy=198まで下げ、短い首が顎と白いワイシャツの襟元につながるよう調整。白いシャツ前面の底辺を平らにして矢印状のV字シルエットを廃止。襟を小さく、前立てとボタンだけにし、胸元のハートやリボンは使用しません。
+
+
+## PASSERBY：男女5人の匿名通行人（React SVG）
+
+`PASSERBY.tsx` / 登録ID `character-passerby-crowd`。男女混合5人（男性3人・女性2人）の顔なしシルエット。全員の**目・口・鼻を描画しません**。服装・髪型・色を変えた5体の関節付きSVGで、`idle`（正面）・`walk`（歩く）・`photoFlash`（スマートフォンで撮影し、瞬間フラッシュ）の3動作に対応します。撮影者は `photographerIndex`（0〜4、既定は中央の2）で指定し、**撮影するのは1人だけ**。スマホはその人の右前腕・手首の可動階層内に描いてあり、腕とともに動きます。
+
+```tsx
+import {PASSERBYScene} from '../../shared/asset-library/人物テンプレート/passerby-scene';
+export const City=()=>
+  <PASSERBYScene backgroundFile="BG_town.png" crowd={{action:'photoFlash',photographerIndex:2,photoStartFrame:0}}/>;
+```
+
+背景を使う前に `node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_town.png` を実行してください。プレビューは独立した `PASSERBYTownPreview`（9秒、正面→歩行→撮影）。撮影パートはフレーム202と247付近で短時間発光します。撮影アクション開始フレームを `photoStartFrame` に渡してください。

@@ -1,0 +1,53 @@
+name: PASSERBY Five-Person Preview
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/passerby-preview.yml'
+      - 'shared/asset-library/人物テンプレート/PASSERBY.tsx'
+      - 'shared/asset-library/人物テンプレート/passerby-scene.tsx'
+      - 'shared/v69/index.tsx'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate character catalog and prepare approved town background
+        run: |
+          node shared/bootstrap/v69-free-services.mjs
+          node shared/asset-library/prepare.mjs v69-free-services
+          node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_town.png
+          node shared/asset-library/人物テンプレート/test-catalog.mjs
+      - name: Install and typecheck Remotion templates
+        working-directory: v69-free-services
+        run: |
+          npm install --ignore-scripts --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+          npm run check
+      - name: Render group actions and a one-frame camera flash
+        working-directory: v69-free-services
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx PASSERBYTownPreview out/PASSERBY-preview.mp4 --scale=0.5 --concurrency=2 --codec=h264
+          npx remotion still src/index.tsx PASSERBYTownPreview out/PASSERBY-front.png --frame=30 --scale=0.75
+          npx remotion still src/index.tsx PASSERBYTownPreview out/PASSERBY-walk.png --frame=127 --scale=0.75
+          npx remotion still src/index.tsx PASSERBYTownPreview out/PASSERBY-photo.png --frame=192 --scale=0.75
+          npx remotion still src/index.tsx PASSERBYTownPreview out/PASSERBY-flash.png --frame=202 --scale=0.75
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PASSERBY-five-person-preview
+          path: |
+            v69-free-services/out/PASSERBY-preview.mp4
+            v69-free-services/out/PASSERBY-front.png
+            v69-free-services/out/PASSERBY-walk.png
+            v69-free-services/out/PASSERBY-photo.png
+            v69-free-services/out/PASSERBY-flash.png
+          if-no-files-found: error
+          retention-days: 7

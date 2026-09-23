@@ -497,6 +497,114 @@
           "矢印状のシャツ裾・胸元のリボンなし"
         ]
       }
+    },
+    {
+      "id": "character-passerby-crowd",
+      "name": "男女混合の通行人5人",
+      "category": "人物テンプレート",
+      "status": "approved",
+      "type": "react-svg-rig",
+      "file": "PASSERBY.tsx",
+      "component": "PASSERBY",
+      "sceneFile": "passerby-scene.tsx",
+      "sceneComponent": "PASSERBYScene",
+      "previewComponent": "PASSERBYPreview",
+      "previewComposition": "PASSERBYTownPreview",
+      "tags": [
+        "通行人",
+        "群衆",
+        "5人",
+        "男女混合",
+        "男性",
+        "女性",
+        "匿名",
+        "顔なし",
+        "街なか",
+        "駅",
+        "オフィス街",
+        "2D",
+        "ベクター",
+        "関節",
+        "アニメーション",
+        "スマートフォン",
+        "フラッシュ"
+      ],
+      "usage": [
+        "街なかの群衆",
+        "駅前の通行人",
+        "人々が正面を向いている",
+        "歩く人々",
+        "写真撮影の通行人"
+      ],
+      "avoid": [
+        "特定の実在人物を描写する場面",
+        "目・鼻・口を描く必要がある場面",
+        "古代・歴史上の服装が必要な場面"
+      ],
+      "actions": [
+        {
+          "id": "idle",
+          "name": "正面",
+          "description": "男女5人が顔の特徴を描かずに正面向きで立つ"
+        },
+        {
+          "id": "walk",
+          "name": "歩く",
+          "description": "5人の手足の関節を別位相で動かして歩く"
+        },
+        {
+          "id": "photoFlash",
+          "name": "携帯で写真を撮る（フラッシュ）",
+          "description": "中央の1人が手に固定したスマホを構え、短いフラッシュを発光。撮影者の指定も可能"
+        }
+      ],
+      "adjustableJoints": [
+        "leftShoulder",
+        "leftElbow",
+        "rightShoulder",
+        "rightElbow",
+        "leftHip",
+        "leftKnee",
+        "rightHip",
+        "rightKnee",
+        "headTilt",
+        "bodyLean"
+      ],
+      "adjustableProps": [
+        "x",
+        "y",
+        "scale",
+        "action",
+        "pose",
+        "walkSpeed",
+        "photographerIndex",
+        "photoStartFrame",
+        "flashEnabled"
+      ],
+      "dimensions": {
+        "width": 1920,
+        "height": 1080,
+        "coordinateSystem": "1920x1080"
+      },
+      "groupSize": 5,
+      "groupGenderCount": {
+        "man": 3,
+        "woman": 2
+      },
+      "facialFeatures": "none",
+      "recommendedBackgrounds": [
+        "背景/BG_town.png",
+        "背景/BG_subway.png",
+        "背景/BG_office.png"
+      ],
+      "license": "original-project",
+      "knownLimitations": [
+        "正面向きの群衆専用。前後方向の移動と足裏の床接地を計算するIKは未実装。",
+        "フラッシュは映像効果として一時的に発光。デバイス本体は撮影者の前腕・手首の関節に追従。",
+        "顔は目・口・鼻などのパーツを一切描画しない。"
+      ],
+      "updatedAt": "2026-09-23",
+      "note": "PASSERBY.tsx：男女5人、顔の特徴は描かない。正面・歩行・スマホ撮影（瞬間フラッシュ）の3動作。背景選択は明示的に行い、写真を撮るのは指定した1人のみ。"
     }
   ]
 }

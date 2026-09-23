@@ -10,7 +10,7 @@ const imageCatalog=JSON.parse(fs.readFileSync(path.join(root,'catalog.json'),'ut
 assert.equal(data.version,1);
 assert(Array.isArray(data.characters)&&data.characters.length>0,'At least one React character must be registered');
 const allowedLicense=new Set(['original-project','cleared-commercial','pending-review']);
-const names=new Set(),files=new Set(),actionIds=new Set(['idle','walk','wave','point','sit','standUp','sitPhone','walkPhone']);
+const names=new Set(),files=new Set(),actionIds=new Set(['idle','walk','wave','point','sit','standUp','sitPhone','walkPhone','photoFlash']);
 for(const character of data.characters){
   assert.match(character.id,/^[a-z][a-z0-9-]+$/);
   assert(!names.has(character.id),'Duplicate character ID: '+character.id);
@@ -23,7 +23,7 @@ for(const character of data.characters){
   assert(Array.isArray(character.actions)&&character.actions.length>0);
   assert(Array.isArray(character.adjustableJoints)&&character.adjustableJoints.length>=8);
   assert(Array.isArray(character.recommendedBackgrounds));
-  assert.match(character.file,/^[a-z][a-z0-9-]*\.tsx$/);
+  assert.match(character.file,/^[A-Za-z][A-Za-z0-9-]*\.tsx$/);
   assert(!files.has(character.file),'Duplicate character file: '+character.file);
   files.add(character.file);
   assert.match(character.component,/^[A-Z][A-Za-z0-9]*$/);
@@ -34,8 +34,21 @@ for(const character of data.characters){
     assert(code.includes("'"+action.id+"'"),'Action not found in component code: '+action.id);
   }
   for(const joint of character.adjustableJoints)assert(code.includes(joint),'Joint not found in component code: '+joint);
-  assert.equal(character.dimensions.width,360);
-  assert.equal(character.dimensions.height,640);
+  if(character.id==='character-passerby-crowd'){
+    assert.equal(character.dimensions.width,1920);
+    assert.equal(character.dimensions.height,1080);
+    assert.equal(character.groupSize,5);
+    assert.equal(character.groupGenderCount.man,3);
+    assert.equal(character.groupGenderCount.woman,2);
+    assert.equal(character.facialFeatures,'none');
+    assert.equal((code.match(/outfit:'(?:jacket|hoodie|cardigan|shirt)',x:/g)||[]).length,5);
+    assert(code.includes("elapsed%45>=21&&elapsed%45<=23"),'Flash must be momentary, not always on');
+    assert(code.includes('phone={photographer}'),'Device must be bound to the photo action');
+    assert(code.includes('<Hinge x={0} y={76} angle={elbow}>'),'Phone must follow elbow');
+  }else{
+    assert.equal(character.dimensions.width,360);
+    assert.equal(character.dimensions.height,640);
+  }
   assert.match(character.sceneFile,/^[a-z][a-z0-9-]*\.tsx$/);
   const scene=fs.readFileSync(path.join(folder,character.sceneFile),'utf8');
   assert(scene.includes('export const '+character.sceneComponent+'='));
