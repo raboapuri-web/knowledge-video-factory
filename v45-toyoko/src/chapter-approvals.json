@@ -64,5 +64,27 @@
     "epilogue"
   ],
   "assemblyPolicy": "only concatenate all individually reviewed and explicitly approved chapter videos; preserve the frozen prologue asset bytes and source run reference",
-  "reviewCandidates": []
+  "reviewCandidates": [
+    {
+      "chapterId": "chapter4",
+      "status": "rendered_awaiting_user_review",
+      "sourceRunId": 35871217158,
+      "artifactId": 10755148263,
+      "artifactName": "toyoko-chapter4-feedback-v1-voice-and-visual-6way",
+      "artifactUrl": "https://github.com/raboapuri-web/knowledge-video-factory/actions/runs/35871217158/artifacts/10755148263",
+      "movieFilename": "toyoko-chapter4-feedback-v1.mp4",
+      "durationSeconds": 481.56666666666666,
+      "frames": 14447,
+      "sceneCount": 70,
+      "oneOffDiagramDesigns": 27,
+      "parallelRenderWorkers": 6,
+      "priorApprovedUnchanged": [
+        "prologue",
+        "chapter1",
+        "chapter2",
+        "chapter3"
+      ],
+      "notes": "Standalone 720p H264/AAC chapter-four MP4 successfully rendered and exact-frame verified with original VOICEVOX. Await explicit user approval, then freeze artifact. Other four approved chapter videos were not changed."
+    }
+  ]
 }
