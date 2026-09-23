@@ -866,7 +866,7 @@
     {
       "id": "bg-bg-oneroom",
       "category": "背景",
-      "file": "背景/BG_oneroom.png",
+      "file": "背景/BG_oneroom_night.png",
       "name": "ワンルームの室内",
       "phases": [
         "*"
@@ -875,7 +875,9 @@
         "ワンルーム",
         "一人暮らし",
         "自宅",
-        "寝室"
+        "寝室",
+        "夜",
+        "電気なし"
       ],
       "mustMentionAny": [
         "ワンルーム"
