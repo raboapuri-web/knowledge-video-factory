@@ -177,3 +177,19 @@ export const City=()=>
 ```
 
 背景を使う前に `node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_town.png` を実行してください。プレビューは独立した `PASSERBYTownPreview`（9秒、正面→歩行→全員で同時撮影）。撮影パートはフレーム202と247付近で5台のスマホから短時間発光します。撮影アクション開始フレームを `photoStartFrame` に渡してください。
+
+
+## RESEARCHER_MAN：白衣を着た男性研究員
+
+人物ID `character-researcher-man`。編集可能なReact SVGを `RESEARCHER_MAN.tsx`、背景付き合成を `researcher-man-scene.tsx` に保存。白衣＋薄青いシャツ＋名札＋ポケット＋濃紺パンツの成人男性で、肩・肘・股関節・膝・頭・上体を個別に操作できます。
+
+アクションは `idle`（正面で待機）、`walk`（歩く）、`inspectFlask`（右手に持ったフラスコを観察）、`point`（指さす）。フラスコは**右前腕の関節内に描画**し、肩・肘に追従します。 `showFlask` でほかのアクションでも表示可能、`flaskLiquidColor` で液体色を変更できます。
+
+```tsx
+import {ResearcherBackgroundScene} from '../../shared/asset-library/人物テンプレート/researcher-man-scene';
+export const Lab=()=>
+  <ResearcherBackgroundScene backgroundFile="BG_kenkyu.png"
+    researcher={{x:795,y:190,scale:1,action:'inspectFlask'}}/>;
+```
+
+背景使用前に `node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_kenkyu.png` を実行してください。`RESEARCHER_MANLabPreview`（8秒）で4動作、`RESEARCHER_MANFaceCloseup` で顔・首元とフラスコを確認できます。既存の人物コードは変更しません。

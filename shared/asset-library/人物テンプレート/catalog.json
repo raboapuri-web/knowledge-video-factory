@@ -604,6 +604,115 @@
       ],
       "updatedAt": "2026-09-23",
       "note": "PASSERBY.tsx：男女5人、顔の目・口・鼻なし。正面・歩行・全員でスマホ撮影（同時瞬間フラッシュ）の3動作。撮影時は全員の左腕をまっすぐ下ろし、右腕はV字に曲げて右手首に追従するスマホを持つ。"
+    },
+    {
+      "id": "character-researcher-man",
+      "name": "白衣を着た男性研究員",
+      "category": "人物テンプレート",
+      "status": "approved",
+      "type": "react-svg-rig",
+      "file": "RESEARCHER_MAN.tsx",
+      "component": "RESEARCHER_MAN",
+      "sceneFile": "researcher-man-scene.tsx",
+      "sceneComponent": "ResearcherBackgroundScene",
+      "previewComponent": "RESEARCHER_MANPreview",
+      "previewComposition": "RESEARCHER_MANLabPreview",
+      "tags": [
+        "研究員",
+        "科学者",
+        "男性",
+        "白衣",
+        "研究室",
+        "ラボ",
+        "実験",
+        "フラスコ",
+        "成人",
+        "2D",
+        "ベクター",
+        "関節",
+        "アニメーション"
+      ],
+      "usage": [
+        "研究室で実験する",
+        "フラスコの試料を観察する",
+        "実験結果を説明する",
+        "研究室内を歩く",
+        "科学・化学の解説"
+      ],
+      "avoid": [
+        "医療行為を専門職の医師として描写する必要がある場面",
+        "古代・歴史上の研究者の服装が必要な場面",
+        "保護装備を厳密に必要とする危険な実験シーン"
+      ],
+      "actions": [
+        {
+          "id": "idle",
+          "name": "正面・待機",
+          "description": "白衣を着て微細な呼吸や頭・腕の動きをする"
+        },
+        {
+          "id": "walk",
+          "name": "歩く",
+          "description": "肩・肘・股関節・膝を連動させて歩く"
+        },
+        {
+          "id": "inspectFlask",
+          "name": "フラスコを観察",
+          "description": "右手に固定した三角フラスコを持ち上げ、顔を向けて観察する"
+        },
+        {
+          "id": "point",
+          "name": "指さす",
+          "description": "右腕を伸ばし、説明しながら指さす"
+        }
+      ],
+      "adjustableJoints": [
+        "leftShoulder",
+        "leftElbow",
+        "rightShoulder",
+        "rightElbow",
+        "leftHip",
+        "leftKnee",
+        "rightHip",
+        "rightKnee",
+        "headTilt",
+        "bodyLean"
+      ],
+      "adjustableProps": [
+        "x",
+        "y",
+        "scale",
+        "action",
+        "walkSpeed",
+        "pose",
+        "mirror",
+        "talking",
+        "showFlask",
+        "labCoatColor",
+        "shirtColor",
+        "pantsColor",
+        "skinColor",
+        "hairColor",
+        "shoeColor",
+        "flaskLiquidColor"
+      ],
+      "dimensions": {
+        "width": 360,
+        "height": 640,
+        "coordinateSystem": "1920x1080"
+      },
+      "recommendedBackgrounds": [
+        "背景/BG_kenkyu.png",
+        "背景/BG_hospital.png"
+      ],
+      "license": "original-project",
+      "knownLimitations": [
+        "正面向きの簡易2D歩行で、足裏の床接地IKは未実装。",
+        "フラスコの液体は記号的な演出であり、実験操作や安全装備の正確な手順を示すものではありません。",
+        "背景に合わせた人物位置・フラスコの色・字幕との重なりは動画ごとに確認してください。"
+      ],
+      "updatedAt": "2026-09-23",
+      "note": "独立した編集可能なReact SVGの成人男性研究員。白衣、薄青のシャツ、名札、白衣ポケット、濃紺パンツ、三角フラスコ。フラスコは右前腕の関節階層に格納し手と一緒に回転する。"
     }
   ]
 }

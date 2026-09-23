@@ -1,0 +1,55 @@
+name: RESEARCHER_MAN Lab Preview
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/researcher-man-preview.yml'
+      - 'shared/asset-library/人物テンプレート/RESEARCHER_MAN.tsx'
+      - 'shared/asset-library/人物テンプレート/researcher-man-scene.tsx'
+      - 'shared/v69/index.tsx'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Prepare laboratory background and check JSON registration
+        run: |
+          node shared/bootstrap/v69-free-services.mjs
+          node shared/asset-library/prepare.mjs v69-free-services
+          node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_kenkyu.png
+          node shared/asset-library/人物テンプレート/test-catalog.mjs
+      - name: Install and typecheck Remotion components
+        working-directory: v69-free-services
+        run: |
+          npm install --ignore-scripts --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+          npm run check
+      - name: Render RESEARCHER_MAN laboratory preview
+        working-directory: v69-free-services
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx RESEARCHER_MANLabPreview out/RESEARCHER_MAN-preview.mp4 --scale=0.5 --concurrency=2 --codec=h264
+          npx remotion still src/index.tsx RESEARCHER_MANLabPreview out/RESEARCHER_MAN-idle.png --frame=22 --scale=0.75
+          npx remotion still src/index.tsx RESEARCHER_MANLabPreview out/RESEARCHER_MAN-walk.png --frame=90 --scale=0.75
+          npx remotion still src/index.tsx RESEARCHER_MANLabPreview out/RESEARCHER_MAN-flask.png --frame=145 --scale=0.75
+          npx remotion still src/index.tsx RESEARCHER_MANLabPreview out/RESEARCHER_MAN-point.png --frame=205 --scale=0.75
+          npx remotion still src/index.tsx RESEARCHER_MANFaceCloseup out/RESEARCHER_MAN-closeup.png --frame=20 --scale=0.75
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RESEARCHER_MAN-lab-preview
+          path: |
+            v69-free-services/out/RESEARCHER_MAN-preview.mp4
+            v69-free-services/out/RESEARCHER_MAN-idle.png
+            v69-free-services/out/RESEARCHER_MAN-walk.png
+            v69-free-services/out/RESEARCHER_MAN-flask.png
+            v69-free-services/out/RESEARCHER_MAN-point.png
+            v69-free-services/out/RESEARCHER_MAN-closeup.png
+          if-no-files-found: error
+          retention-days: 7
