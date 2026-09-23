@@ -1,14 +1,6 @@
 name: V45 Toyoko Complete Film - Six Chapters, 160 Shots
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/v45-toyoko-full-movie.yml'
-      - 'v45-toyoko/**'
-      - 'shared/asset-library/人物テンプレート/**'
-      - 'shared/asset-library/背景/**'
-      - 'shared/asset-library/パーツ/**'
 permissions:
   contents: read
 concurrency:
