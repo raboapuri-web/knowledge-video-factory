@@ -1,0 +1,578 @@
+{
+  "version": "chapter-review-v2",
+  "chapterId": "chapter1",
+  "source": "src/approved_original_narration.md",
+  "reuseApprovedVOICEVOX": true,
+  "format": "VOICED_REAL_CHAPTER_REVIEW",
+  "chapterReviewState": "first_video_for_feedback",
+  "priorChapter": "prologue_user_approved_locked",
+  "rules": [
+    "Render ONLY first chapter using the current approved 50 original paragraphs; no re-render or modification of the prologue",
+    "Do not generate interstitial diagrams on a timer",
+    "Use unique narrative shot per paragraph block; reuse C02-02 after an actual change of subject only",
+    "The participant visual for the 38-person study belongs only to paragraph 10; the 49-person study graphic belongs only to paragraph 33",
+    "Favor distinct place/actor/action and foreground over repeated camera scaling",
+    "Do not concatenate chapters until approved"
+  ],
+  "shots": [
+    {
+      "id": "C1-01",
+      "fromParagraph": 1,
+      "toParagraph": 2,
+      "visualRef": "C01-01",
+      "recommendation": "少女の帰還をめぐり、大人が街の集団と施設を見比べる。まず視点は歌舞伎町。"
+    },
+    {
+      "id": "C1-02",
+      "fromParagraph": 3,
+      "toParagraph": 4,
+      "visualRef": "C01-02",
+      "recommendation": "施設入口の若者が足を止める。反抗だけでは説明できないという問いを映像で置く。"
+    },
+    {
+      "id": "C1-03",
+      "fromParagraph": 5,
+      "toParagraph": 5,
+      "visualRef": "CUSTOM_SAFE_BED",
+      "recommendation": "施設の寝室。無人の整った寝具にゆっくり寄り、安全な寝床への願いを見せる。",
+      "customShot": {
+        "shotId": "V03-01",
+        "visual": "寝室の整えられた寝具、まだ座っていないベッド",
+        "narrationCue": "施設の寝室。無人の整った寝具にゆっくり寄り、安全な寝床への願いを見せる。",
+        "camera": "closeup_insert",
+        "background": "BG_SHELTER_BEDROOM",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C1-04",
+      "fromParagraph": 6,
+      "toParagraph": 6,
+      "visualRef": "CUSTOM_STREET_UNSAFE",
+      "recommendation": "夜の路地の若者。うつむきスマホを握る。街を楽しむ様子ではなく不安定な夜を示す。",
+      "customShot": {
+        "shotId": "V04-01",
+        "visual": "夜の路地に立つ少女、無人に見える街",
+        "narrationCue": "夜の路地の若者。うつむきスマホを握る。街を楽しむ様子ではなく不安定な夜を示す。",
+        "camera": "medium_tracking",
+        "background": "BG_KABUKICHO_ALLEY",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "look_down"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C1-05",
+      "fromParagraph": 7,
+      "toParagraph": 7,
+      "visualRef": "C12-01",
+      "recommendation": "施設の扉の手前で足を止める少女。利用しない、戻ってしまうという選択。"
+    },
+    {
+      "id": "C1-06",
+      "fromParagraph": 8,
+      "toParagraph": 8,
+      "visualRef": "C02-01",
+      "recommendation": "地図上で日本からカナダへ移動する一度限りの研究導入。"
+    },
+    {
+      "id": "C1-07",
+      "fromParagraph": 9,
+      "toParagraph": 9,
+      "visualRef": "C03-01",
+      "recommendation": "バンクーバーの研究者が面談室へ入る。調査の対象と方法を示す。"
+    },
+    {
+      "id": "C1-08",
+      "fromParagraph": 10,
+      "toParagraph": 10,
+      "visualRef": "C03-02",
+      "recommendation": "調査参加者38人のシルエットを人数に合わせて一度だけ表示する。"
+    },
+    {
+      "id": "C1-09",
+      "fromParagraph": 11,
+      "toParagraph": 11,
+      "visualRef": "C03-03",
+      "recommendation": "研究者が路上経験のある若者の話を聞く。質問者と回答者を示す面談構図。"
+    },
+    {
+      "id": "C1-10",
+      "fromParagraph": 12,
+      "toParagraph": 12,
+      "visualRef": "C02-02",
+      "recommendation": "冷たい雨を避けてバンクーバーの軒下に座る若者。雨を前景に動かす。"
+    },
+    {
+      "id": "C1-11",
+      "fromParagraph": 13,
+      "toParagraph": 13,
+      "visualRef": "C02-03",
+      "recommendation": "濡れた若者と施設内部の明かり。屋内と屋外の温度差を見せる。"
+    },
+    {
+      "id": "C1-12",
+      "fromParagraph": 14,
+      "toParagraph": 14,
+      "visualRef": "C05-01",
+      "recommendation": "施設の入口まで足を運ぶ若者。保護が必要なのに入りづらいという転換。"
+    },
+    {
+      "id": "C1-13",
+      "fromParagraph": 15,
+      "toParagraph": 15,
+      "visualRef": "C04-01",
+      "recommendation": "施設に入る際の規則表示を見上げる若者。"
+    },
+    {
+      "id": "C1-14",
+      "fromParagraph": 16,
+      "toParagraph": 16,
+      "visualRef": "C04-02",
+      "recommendation": "施設内に進む時計と、帰着する若者。具体的な規則を情景で示す。"
+    },
+    {
+      "id": "C1-15",
+      "fromParagraph": 17,
+      "toParagraph": 17,
+      "visualRef": "CUSTOM_RULES_SAFETY",
+      "recommendation": "同じ施設背景からいったん離れ、暖かい寝具と時計・扉を横に対置した専用説明画面。ベン図にしない。",
+      "customShot": {
+        "shotId": "V15-01",
+        "visual": "保護された寝床・時計・扉を一枚の対比画面にする",
+        "narrationCue": "同じ施設背景からいったん離れ、暖かい寝具と時計・扉を横に対置した専用説明画面。ベン図にしない。",
+        "camera": "symbolic_safe_rules",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C1-16",
+      "fromParagraph": 18,
+      "toParagraph": 18,
+      "visualRef": "C05-02",
+      "recommendation": "職員が施設内へ案内する場面。扉は保護と規則の両方を意味する。"
+    },
+    {
+      "id": "C1-17",
+      "fromParagraph": 19,
+      "toParagraph": 19,
+      "visualRef": "CUSTOM_HOUSING_ACCESS",
+      "recommendation": "雨の街の屋根付き住宅と路上の距離を示す一回限りの街並み俯瞰。人数や割合は描かない。",
+      "customShot": {
+        "shotId": "V17-01",
+        "visual": "遠くに屋根のある建物、近くで雨をしのぐ若者",
+        "narrationCue": "雨の街の屋根付き住宅と路上の距離を示す一回限りの街並み俯瞰。人数や割合は描かない。",
+        "camera": "wide_crane",
+        "background": "BG_VANCOUVER_RAIN",
+        "characters": [
+          "ABROAD_YOUTH"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "look_up"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C1-18",
+      "fromParagraph": 20,
+      "toParagraph": 20,
+      "visualRef": "C02-02",
+      "recommendation": "雨をしのぐ若者の手元に寄り、若者は屋根そのものを嫌っていないことを表現する。"
+    },
+    {
+      "id": "C1-19",
+      "fromParagraph": 21,
+      "toParagraph": 21,
+      "visualRef": "CUSTOM_ABROAD_THRESHOLD",
+      "recommendation": "受け入れ先を探して施設前で立ち止まる若者。施設の全景でなく扉と背中に寄る。",
+      "customShot": {
+        "shotId": "V19-01",
+        "visual": "施設のドアの前で立ち止まる若者の背中",
+        "narrationCue": "受け入れ先を探して施設前で立ち止まる若者。施設の全景でなく扉と背中に寄る。",
+        "camera": "door_closeup",
+        "background": "BG_ABROAD_SHELTER",
+        "characters": [
+          "ABROAD_YOUTH"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "stop",
+          "look_down"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C1-20",
+      "fromParagraph": 22,
+      "toParagraph": 22,
+      "visualRef": "C05-03",
+      "recommendation": "海外の施設の扉から、日本の施設廊下へマッチカット。話題の日本への帰還を明示。"
+    },
+    {
+      "id": "C1-21",
+      "fromParagraph": 23,
+      "toParagraph": 23,
+      "visualRef": "C06-01",
+      "recommendation": "施設で目を覚ます少女。朝の職員との距離感を示す。"
+    },
+    {
+      "id": "C1-22",
+      "fromParagraph": 24,
+      "toParagraph": 24,
+      "visualRef": "C07-01",
+      "recommendation": "面談室で少女と職員が書類を挟んで向かい合う。進路や住居の相談を描く。"
+    },
+    {
+      "id": "C1-23",
+      "fromParagraph": 25,
+      "toParagraph": 26,
+      "visualRef": "C06-02",
+      "recommendation": "施設の廊下と外出管理を示す行動線。善意から設けられたルールが生活にあることを示す。"
+    },
+    {
+      "id": "C1-24",
+      "fromParagraph": 27,
+      "toParagraph": 27,
+      "visualRef": "C08-01",
+      "recommendation": "少女の過去の自宅の情景。保護者の背中を見る少女。虐待事件などを創作しない。"
+    },
+    {
+      "id": "C1-25",
+      "fromParagraph": 28,
+      "toParagraph": 28,
+      "visualRef": "C08-02",
+      "recommendation": "自宅の扉を閉じる少女の手元。過去の生活が施設と重なる感覚を示す。"
+    },
+    {
+      "id": "C1-26",
+      "fromParagraph": 29,
+      "toParagraph": 29,
+      "visualRef": "C07-02",
+      "recommendation": "施設面談室へ戻り、職員の問いに対する少女の視線を描く。"
+    },
+    {
+      "id": "C1-27",
+      "fromParagraph": 30,
+      "toParagraph": 30,
+      "visualRef": "C07-03",
+      "recommendation": "机上の書類から少女が手を引く小さな動き。質問を管理と受け取る場面。"
+    },
+    {
+      "id": "C1-28",
+      "fromParagraph": 31,
+      "toParagraph": 31,
+      "visualRef": "C08-03",
+      "recommendation": "施設の廊下へ切り替わり、家庭との目的の違いを場所の違いで見せる。"
+    },
+    {
+      "id": "C1-29",
+      "fromParagraph": 32,
+      "toParagraph": 32,
+      "visualRef": "C09-01",
+      "recommendation": "ベッドに座り窓の外を見る少女。環境の違いと残る不安。"
+    },
+    {
+      "id": "C1-30",
+      "fromParagraph": 33,
+      "toParagraph": 33,
+      "visualRef": "C10-01",
+      "recommendation": "アメリカの研究者による49人の調査。研究室と49人の人数図をこの箇所に一度だけ。"
+    },
+    {
+      "id": "C1-31",
+      "fromParagraph": 34,
+      "toParagraph": 34,
+      "visualRef": "C10-02",
+      "recommendation": "施設を前にためらう若者。ルールと職員の態度を受け止める姿を示す。"
+    },
+    {
+      "id": "C1-32",
+      "fromParagraph": 35,
+      "toParagraph": 35,
+      "visualRef": "CUSTOM_ABROAD_TRUST",
+      "recommendation": "信頼できる友人が施設の利用を後押しする、施設前での若者同士の対話。",
+      "customShot": {
+        "shotId": "V32-01",
+        "visual": "施設前で友人が若者の話を聞く",
+        "narrationCue": "信頼できる友人が施設の利用を後押しする、施設前での若者同士の対話。",
+        "camera": "medium_side_tracking",
+        "background": "BG_ABROAD_SHELTER",
+        "characters": [
+          "ABROAD_YOUTH",
+          "ABROAD_YOUTH"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "talk",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C1-33",
+      "fromParagraph": 36,
+      "toParagraph": 36,
+      "visualRef": "C11-01",
+      "recommendation": "少女が施設方向と歌舞伎町を見比べる。少女の行動理由への視点変化。"
+    },
+    {
+      "id": "C1-34",
+      "fromParagraph": 37,
+      "toParagraph": 38,
+      "visualRef": "C11-02",
+      "recommendation": "街で少女を背後から追う。危険への憧れではなく意思決定を失う恐れを示す。"
+    },
+    {
+      "id": "C1-35",
+      "fromParagraph": 39,
+      "toParagraph": 39,
+      "visualRef": "C09-02",
+      "recommendation": "街の広場で友人へ歩く少女。夜中のコンビニや友人との行動を自分で選ぶ生活。"
+    },
+    {
+      "id": "C1-36",
+      "fromParagraph": 40,
+      "toParagraph": 41,
+      "visualRef": "CUSTOM_STREET_LONELINESS",
+      "recommendation": "眠る場所も定まらない夜の路地。少女を単独で奥へ歩かせ、不安定さと自分で進む感覚を同居させる。",
+      "customShot": {
+        "shotId": "V36-01",
+        "visual": "一人で歩く少女と長い夜の路地",
+        "narrationCue": "眠る場所も定まらない夜の路地。少女を単独で奥へ歩かせ、不安定さと自分で進む感覚を同居させる。",
+        "camera": "wide_follow",
+        "background": "BG_KABUKICHO_ALLEY",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [
+          "BAG"
+        ],
+        "requiredRigActions": [
+          "walk"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C1-37",
+      "fromParagraph": 42,
+      "toParagraph": 42,
+      "visualRef": "CUSTOM_PROTECTED_ROOM",
+      "recommendation": "施設の空の寝床へ寄る。安全な設備がある事実だけを静かに見せる。",
+      "customShot": {
+        "shotId": "V37-01",
+        "visual": "整った寝床と静かな施設、無人の部屋",
+        "narrationCue": "施設の空の寝床へ寄る。安全な設備がある事実だけを静かに見せる。",
+        "camera": "closeup_insert",
+        "background": "BG_SHELTER_BEDROOM",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C1-38",
+      "fromParagraph": 43,
+      "toParagraph": 43,
+      "visualRef": "CUSTOM_OWN_DOOR",
+      "recommendation": "施設入口で自分の手で扉の取っ手に触れる少女。自分で決められることを映像化。",
+      "customShot": {
+        "shotId": "V38-01",
+        "visual": "自分でドアの取っ手に触れる少女",
+        "narrationCue": "施設入口で自分の手で扉の取っ手に触れる少女。自分で決められることを映像化。",
+        "camera": "hands_closeup",
+        "background": "BG_SHELTER_ENTRANCE",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [
+          "DOOR"
+        ],
+        "requiredRigActions": [
+          "reach",
+          "open_door"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C1-39",
+      "fromParagraph": 44,
+      "toParagraph": 44,
+      "visualRef": "CUSTOM_NEW_QUESTION",
+      "recommendation": "歌舞伎町の全景を見せ直す。ここから論点が自由以外に移る。",
+      "customShot": {
+        "shotId": "V39-01",
+        "visual": "夜の街を引きで見せて次の論点へ",
+        "narrationCue": "歌舞伎町の全景を見せ直す。ここから論点が自由以外に移る。",
+        "camera": "wide_crane",
+        "background": "BG_TOWN_NIGHT_WIDE",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C1-40",
+      "fromParagraph": 45,
+      "toParagraph": 45,
+      "visualRef": "CUSTOM_SUPPORTER_LISTEN",
+      "recommendation": "施設の面談室。相談員が少女の話を聞き、本人の意思を尊重する可能性を示す。",
+      "customShot": {
+        "shotId": "V40-01",
+        "visual": "施設の面談室で支援者が少女の話を聞く",
+        "narrationCue": "施設の面談室。相談員が少女の話を聞き、本人の意思を尊重する可能性を示す。",
+        "camera": "over_shoulder",
+        "background": "BG_SHELTER_COUNSEL",
+        "characters": [
+          "GIRL_16",
+          "SUPPORTER"
+        ],
+        "props": [
+          "FORM"
+        ],
+        "requiredRigActions": [
+          "talk",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C1-41",
+      "fromParagraph": 46,
+      "toParagraph": 47,
+      "visualRef": "CUSTOM_STREET_DECISION",
+      "recommendation": "施設と街の間で少女が足を止める。規則だけ緩めても街を離れないかもしれないという問い。",
+      "customShot": {
+        "shotId": "V41-01",
+        "visual": "街を離れるかを考えて立ち止まる少女",
+        "narrationCue": "施設と街の間で少女が足を止める。規則だけ緩めても街を離れないかもしれないという問い。",
+        "camera": "medium_tracking",
+        "background": "BG_TOWN_NIGHT_WIDE",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [
+          "BAG"
+        ],
+        "requiredRigActions": [
+          "stop",
+          "look_left",
+          "look_right"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C1-42",
+      "fromParagraph": 48,
+      "toParagraph": 48,
+      "visualRef": "CUSTOM_EMPTY_FRIEND_SEAT",
+      "recommendation": "施設食堂の空いた隣席。施設入所により仲間と離れることを情景で示す。",
+      "customShot": {
+        "shotId": "V42-01",
+        "visual": "施設の食堂に空いている椅子、離れた仲間との距離感",
+        "narrationCue": "施設食堂の空いた隣席。施設入所により仲間と離れることを情景で示す。",
+        "camera": "closeup_insert",
+        "background": "BG_SHELTER_DINING",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C1-43",
+      "fromParagraph": 49,
+      "toParagraph": 49,
+      "visualRef": "C12-02",
+      "recommendation": "歌舞伎町で待っていた友人が少女に手を振る。"
+    },
+    {
+      "id": "C1-44",
+      "fromParagraph": 50,
+      "toParagraph": 50,
+      "visualRef": "CUSTOM_FINAL_FRIENDS",
+      "recommendation": "夜の広場の少女と仲間をやや引きで見せる。次章『仲間』への自然なつながりを残す。",
+      "customShot": {
+        "shotId": "V44-01",
+        "visual": "夜の街で並んで座る少女と仲間たち",
+        "narrationCue": "夜の広場の少女と仲間をやや引きで見せる。次章『仲間』への自然なつながりを残す。",
+        "camera": "wide_group",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_BOY",
+          "FRIEND_GIRL"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "look_around"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    }
+  ]
+}
