@@ -864,7 +864,7 @@
       }
     },
     {
-      "id": "bg-bg-oneroom_night",
+      "id": "bg-bg-oneroom-night",
       "category": "背景",
       "file": "背景/BG_oneroom_night.png",
       "name": "ワンルームの室内",
@@ -2066,6 +2066,80 @@
         "status": "user-confirmed",
         "confirmedAt": "2026-09-23",
         "note": "利用者の指示により素材の利用権利を確定。第三者による独立した権利調査を実施したことを示すものではない。"
+      }
+    },
+    {
+      "id": "bg-bg-vancouver-rain",
+      "category": "背景",
+      "file": "背景/BG_VANCOUVER_RAIN.png",
+      "name": "バンクーバーの晴れた海沿い都市景観",
+      "description": "海越しに見えるバンクーバー風の都市スカイライン。青い高層ビル群、展望塔、白い屋根のスタジアム、雪を残した山並み、ヨットと水面の反射を、輪郭の明瞭なフラットベクター調で描いた昼間の広角背景。画像内に雨の描写はない。",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "バンクーバー",
+        "カナダ",
+        "都市",
+        "街並み",
+        "海辺",
+        "海",
+        "港",
+        "山並み",
+        "高層ビル",
+        "展望塔",
+        "スタジアム",
+        "ヨット",
+        "青空",
+        "昼間",
+        "ベクター"
+      ],
+      "mustMentionAny": [
+        "バンクーバー",
+        "海辺",
+        "港"
+      ],
+      "avoid": [
+        "雨天",
+        "豪雨",
+        "夜景",
+        "屋内"
+      ],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "original-project",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "fdc320ad3eaa00e70cb43374221108043028e622159f09c5bfef67593978b0e2",
+      "visualAnalysis": {
+        "composition": "横長16:9の広角構図。上部に青空と雲、中景に雪を残した山並みと密集した都市高層建築、下部に海と船の水面。人物を重ねる場合は遠景として使用する。",
+        "dominantElements": [
+          "青空と白い雲",
+          "雪を残した山並み",
+          "高層ビル群と展望塔",
+          "白い屋根のスタジアム",
+          "ヨットと船",
+          "手前の海面と反射",
+          "岸辺の樹木"
+        ],
+        "recommendedUses": [
+          "バンクーバーを紹介する場面",
+          "カナダの都市・観光解説",
+          "港湾都市や都市景観を説明する場面",
+          "都市と自然の関係の説明",
+          "海辺の昼間の俯瞰的な導入"
+        ]
+      },
+      "autoRegistration": {
+        "method": "user-requested-visual-inspection",
+        "needsVisualReview": false,
+        "analyzedAt": "2026-09-23",
+        "note": "会話内の生成画像とGitHub上のPNGが同一Git blobであることを確認。BG_VANCOUVER.pngを指定名BG_VANCOUVER_RAIN.pngに改名して登録。ファイル名と異なり画像は晴天で雨の描写なし。"
       }
     }
   ]
