@@ -24,9 +24,21 @@
       "plannedShots": 18,
       "sourceImplementedShots": 18,
       "visualPreviewWorkflow": ".github/workflows/v45-toyoko-prologue-preview.yml",
-      "renderVerification": "not_confirmed",
+      "renderVerification": "silent_3600frame_mp4_rendered_in_failed_actions_runs_but_not_published",
       "userVisualApproval": false,
-      "finalAudioSync": "not_started"
+      "finalAudioSync": "not_started",
+      "workflowFailure": {
+        "runs": [
+          35824936806,
+          35825057228
+        ],
+        "failedStep": "Extract exactly one midpoint for every storyboard cut",
+        "observedError": "ffmpeg Invalid duration for option ss: .500",
+        "videoRenderStep": "succeeded_3600_frames_960x540_51.3MB",
+        "artifactUpload": "skipped_due_to_failed_extraction",
+        "fixCommit": "a1b00a520aeb36692ebbafd86698a413a76f6be2",
+        "fixStatus": "committed_not_yet_verified_by_new_workflow_run"
+      }
     },
     {
       "id": "chapter1",
