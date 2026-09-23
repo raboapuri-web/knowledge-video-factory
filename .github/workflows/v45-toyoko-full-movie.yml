@@ -1,0 +1,150 @@
+name: V45 Toyoko Complete Film - Six Chapters, 160 Shots
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v45-toyoko-full-movie.yml'
+      - 'v45-toyoko/**'
+      - 'shared/asset-library/人物テンプレート/**'
+      - 'shared/asset-library/背景/**'
+      - 'shared/asset-library/パーツ/**'
+permissions:
+  contents: read
+concurrency:
+  group: v45-toyoko-full-film-${{ github.ref }
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Verify source is exact user-approved original for all six chapters
+        working-directory: v45-toyoko
+        run: |
+          node scripts/check-original-script.mjs
+          node scripts/check-prologue.mjs
+          node scripts/stage-assets.mjs
+      - name: Compile all six chapter graphics and final video entrypoints
+        working-directory: v45-toyoko
+        run: |
+          npm install --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+          npm run check
+          node scripts/check-all-shots.mjs
+  chapters:
+    needs: validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, epilogue]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Prepare render tools
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - name: Stage all named scene backgrounds, props and React rig imports
+        working-directory: v45-toyoko
+        run: |
+          node scripts/stage-assets.mjs
+          npm install --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Losslessly bind original manuscript to this chapter's exact storyboard shot IDs
+        working-directory: v45-toyoko
+        run: node scripts/prepare-chapter.mjs "${{ matrix.chapter }"
+      - name: Start real Japanese VOICEVOX narrator
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version; then exit 0; fi
+            sleep 2
+          done
+          echo "VOICEVOX failed to become ready" >&2
+          exit 1
+      - name: Synthesize original chapter narration and measured shot-level subtitles
+        working-directory: v45-toyoko
+        run: |
+          node scripts/generate-voicevox.mjs "${{ matrix.chapter }"
+          node scripts/build-chapter-review.mjs "${{ matrix.chapter }"
+          node scripts/build-subtitles.mjs
+          npm run check
+      - name: Render each entire chapter with both sound and burned-in Japanese captions for review
+        working-directory: v45-toyoko
+        run: |
+          mkdir -p out/shot-review
+          npx remotion render src/chapter-index.tsx ToyokoChapterComplete \
+            "out/chapter-${{ matrix.chapter }.mp4" \
+            --scale=0.5 --codec=h264 --crf=19 --concurrency=2
+          test -s "out/chapter-${{ matrix.chapter }.mp4"
+          test -n "$(ffprobe -v error -select_streams a -show_entries stream=codec_name \
+            -of csv=p=0 "out/chapter-${{ matrix.chapter }.mp4")"
+          node scripts/extract-chapter-stills.mjs "${{ matrix.chapter }"
+      - name: Share VOICEVOX audio and exact timing bundle for final single-timeline render
+        uses: actions/upload-artifact@v4
+        with:
+          name: toyoko-audio-${{ matrix.chapter }
+          path: v45-toyoko/out/chapter-bundle/${{ matrix.chapter }/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Share chapter picture, narration and subtitle preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: toyoko-review-${{ matrix.chapter }
+          path: |
+            v45-toyoko/out/chapter-${{ matrix.chapter }.mp4
+            v45-toyoko/out/toyoko-${{ matrix.chapter }-review.srt
+            v45-toyoko/out/shot-review/${{ matrix.chapter }/*.png
+            v45-toyoko/out/original-narration-alignment-${{ matrix.chapter }.json
+          if-no-files-found: error
+          retention-days: 7
+  final:
+    needs: [validate, chapters]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Install final rendering tools
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - name: Download all six independently synthesized approved-original narrations
+        uses: actions/download-artifact@v4
+        with:
+          pattern: toyoko-audio-*
+          path: v45-toyoko/out/chapter-audio
+          merge-multiple: false
+      - name: Build a single Remotion video timeline with original text and real audio timings
+        working-directory: v45-toyoko
+        run: |
+          node scripts/check-original-script.mjs
+          node scripts/stage-assets.mjs
+          npm install --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+          node scripts/build-full-review.mjs
+          npm run check
+      - name: Render final full 1080p movie; captions independent and VOICEVOX per chapter
+        working-directory: v45-toyoko
+        run: |
+          mkdir -p out
+          npx remotion render src/final-index.tsx ToyokoFullMovie out/toyoko-full-final.mp4 \
+            --codec=h264 --crf=19 --concurrency=1 --log=warn
+          node scripts/check-final-movie.mjs
+      - name: Upload full completed film for viewing and download
+        uses: actions/upload-artifact@v4
+        with:
+          name: toyoko-full-final-1080p-160shots
+          path: |
+            v45-toyoko/out/toyoko-full-final.mp4
+            v45-toyoko/out/final-render-verification.json
+            v45-toyoko/out/final-audio-manifest.json
+            v45-toyoko/src/approved_original_narration.md
+          if-no-files-found: error
+          retention-days: 7
