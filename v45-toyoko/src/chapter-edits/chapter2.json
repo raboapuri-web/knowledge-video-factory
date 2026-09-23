@@ -1,0 +1,997 @@
+{
+  "version": "chapter-review-v3",
+  "chapterId": "chapter2",
+  "source": "src/approved_original_narration.md",
+  "reuseApprovedVOICEVOX": true,
+  "format": "VOICED_REAL_CHAPTER_REVIEW",
+  "chapterReviewState": "first_video_for_feedback",
+  "approvedPriorChapters": [
+    "prologue",
+    "chapter1"
+  ],
+  "rules": [
+    "Original 58 approved paragraphs unchanged",
+    "Unique scene recommendations and no automatic repeated graphics",
+    "Research sample=138 people and OR≈5.9 appear once, do not invent outcome fractions",
+    "Split full chapter on exact shot frame boundaries, render 6 video-only parts in parallel, mux original audio once",
+    "Do not modify approved chapters or assemble whole film before approvals"
+  ],
+  "diagramIds": [
+    "DG_SHARED_NIGHT",
+    "DG_DOUBLE_EDGED",
+    "DG_STUDY_138",
+    "DG_SIX_MONTHS",
+    "DG_ASSOCIATION",
+    "DG_ODDS_59",
+    "DG_USAGE_CLUSTER",
+    "DG_SAME_BUILDING",
+    "DG_GROUP_OR_ALONE",
+    "DG_TRUST_BRIDGE",
+    "DG_SOCIAL_NETWORK",
+    "DG_NETWORK_TWO_ROUTES",
+    "DG_BELONGING_PARADOX",
+    "DG_TRUST_CUES"
+  ],
+  "shots": [
+    {
+      "id": "C2-01",
+      "fromParagraph": 1,
+      "toParagraph": 1,
+      "visualRef": "C13-01",
+      "recommendation": "少女が友人の輪へ戻る"
+    },
+    {
+      "id": "C2-02",
+      "fromParagraph": 2,
+      "toParagraph": 2,
+      "visualRef": "C13-02",
+      "recommendation": "友人が飲み物を少女へ手渡す"
+    },
+    {
+      "id": "C2-03",
+      "fromParagraph": 3,
+      "toParagraph": 3,
+      "visualRef": "C13-03",
+      "recommendation": "少年が昨夜の出来事を大げさに語り集団が笑う"
+    },
+    {
+      "id": "C2-04",
+      "fromParagraph": 4,
+      "toParagraph": 5,
+      "visualRef": "C2_STRANGERS",
+      "recommendation": "年齢も出身も異なる若者が同じ夜の広場に集う",
+      "customShot": {
+        "shotId": "V04-01",
+        "visual": "年齢も出身も異なる若者が同じ夜の広場に集う",
+        "narrationCue": "年齢も出身も異なる若者が同じ夜の広場に集う",
+        "camera": "side_tracking",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_BOY",
+          "OTHER_YOUTH"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-05",
+      "fromParagraph": 6,
+      "toParagraph": 6,
+      "visualRef": "C16-03",
+      "recommendation": "少女が孤独から一時的に離れる"
+    },
+    {
+      "id": "C2-06",
+      "fromParagraph": 7,
+      "toParagraph": 8,
+      "visualRef": "DG_SHARED_NIGHT",
+      "recommendation": "個々の過去の説明なしでも共に夜を過ごせる配置図",
+      "customShot": {
+        "shotId": "V06-01",
+        "visual": "個々の過去の説明なしでも共に夜を過ごせる配置図",
+        "narrationCue": "個々の過去の説明なしでも共に夜を過ごせる配置図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-07",
+      "fromParagraph": 9,
+      "toParagraph": 9,
+      "visualRef": "C14-01",
+      "recommendation": "授業終了後生徒が帰り支度を始める"
+    },
+    {
+      "id": "C2-08",
+      "fromParagraph": 10,
+      "toParagraph": 10,
+      "visualRef": "C15-02",
+      "recommendation": "それぞれの家へ帰る生徒が町で分かれる"
+    },
+    {
+      "id": "C2-09",
+      "fromParagraph": 11,
+      "toParagraph": 11,
+      "visualRef": "C15-03",
+      "recommendation": "家に帰れない少女だけが駅方向へ進む"
+    },
+    {
+      "id": "C2-10",
+      "fromParagraph": 12,
+      "toParagraph": 13,
+      "visualRef": "C2_QUIET_COMPANY",
+      "recommendation": "家庭について問わず隣に座る友人",
+      "customShot": {
+        "shotId": "V10-01",
+        "visual": "家庭について問わず隣に座る友人",
+        "narrationCue": "家庭について問わず隣に座る友人",
+        "camera": "side_tracking",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_GIRL"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-11",
+      "fromParagraph": 14,
+      "toParagraph": 14,
+      "visualRef": "C16-02",
+      "recommendation": "夜の広場で少女が仲間と共に食事する"
+    },
+    {
+      "id": "C2-12",
+      "fromParagraph": 15,
+      "toParagraph": 15,
+      "visualRef": "C2_NIGHT_RISK",
+      "recommendation": "夜の危険な路地で少女が一人歩く",
+      "customShot": {
+        "shotId": "V12-01",
+        "visual": "夜の危険な路地で少女が一人歩く",
+        "narrationCue": "夜の危険な路地で少女が一人歩く",
+        "camera": "wide_crane",
+        "background": "BG_KABUKICHO_ALLEY",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "idle"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-13",
+      "fromParagraph": 16,
+      "toParagraph": 16,
+      "visualRef": "C17-03",
+      "recommendation": "危険な夜に友人と朝まで過ごす"
+    },
+    {
+      "id": "C2-14",
+      "fromParagraph": 17,
+      "toParagraph": 17,
+      "visualRef": "C2_GROUP_NOT_SIMPLE",
+      "recommendation": "普通の友達以上に支えになる仲間を引きで見せる",
+      "customShot": {
+        "shotId": "V14-01",
+        "visual": "普通の友達以上に支えになる仲間を引きで見せる",
+        "narrationCue": "普通の友達以上に支えになる仲間を引きで見せる",
+        "camera": "side_tracking",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_BOY",
+          "FRIEND_GIRL"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-15",
+      "fromParagraph": 18,
+      "toParagraph": 18,
+      "visualRef": "C2_ALL_NIGHT",
+      "recommendation": "朝まで付き添ってくれた友人",
+      "customShot": {
+        "shotId": "V15-01",
+        "visual": "朝まで付き添ってくれた友人",
+        "narrationCue": "朝まで付き添ってくれた友人",
+        "camera": "wide_crane",
+        "background": "BG_TOWN_DAY_WIDE",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_GIRL"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "idle"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-16",
+      "fromParagraph": 19,
+      "toParagraph": 19,
+      "visualRef": "C17-02",
+      "recommendation": "財布をなくした少女へ食事を分ける友人"
+    },
+    {
+      "id": "C2-17",
+      "fromParagraph": 20,
+      "toParagraph": 20,
+      "visualRef": "C2_EMPTY_SEAT",
+      "recommendation": "少女が座る場所を仲間が空けてくれる",
+      "customShot": {
+        "shotId": "V17-01",
+        "visual": "少女が座る場所を仲間が空けてくれる",
+        "narrationCue": "少女が座る場所を仲間が空けてくれる",
+        "camera": "side_tracking",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_BOY"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-18",
+      "fromParagraph": 21,
+      "toParagraph": 21,
+      "visualRef": "C2_FRIENDS_SUPPORT",
+      "recommendation": "危険な夜の街と支えになる仲間が同じ画面にある",
+      "customShot": {
+        "shotId": "V18-01",
+        "visual": "危険な夜の街と支えになる仲間が同じ画面にある",
+        "narrationCue": "危険な夜の街と支えになる仲間が同じ画面にある",
+        "camera": "medium_two_shot",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_BOY",
+          "FRIEND_GIRL"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-19",
+      "fromParagraph": 22,
+      "toParagraph": 23,
+      "visualRef": "DG_DOUBLE_EDGED",
+      "recommendation": "一つの人間関係が身を守る力にも危険な場所へ留める力にもなる独自対比図",
+      "customShot": {
+        "shotId": "V19-01",
+        "visual": "一つの人間関係が身を守る力にも危険な場所へ留める力にもなる独自対比図",
+        "narrationCue": "一つの人間関係が身を守る力にも危険な場所へ留める力にもなる独自対比図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-20",
+      "fromParagraph": 24,
+      "toParagraph": 24,
+      "visualRef": "C18-01",
+      "recommendation": "サンフランシスコの街と研究への場面移動"
+    },
+    {
+      "id": "C2-21",
+      "fromParagraph": 25,
+      "toParagraph": 25,
+      "visualRef": "DG_STUDY_138",
+      "recommendation": "調査参加者138人の人数を人物アイコンで正確に示す",
+      "customShot": {
+        "shotId": "V21-01",
+        "visual": "調査参加者138人の人数を人物アイコンで正確に示す",
+        "narrationCue": "調査参加者138人の人数を人物アイコンで正確に示す",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-22",
+      "fromParagraph": 26,
+      "toParagraph": 26,
+      "visualRef": "C18-02",
+      "recommendation": "研究者が若者に施設利用と交友関係を尋ねる"
+    },
+    {
+      "id": "C2-23",
+      "fromParagraph": 27,
+      "toParagraph": 27,
+      "visualRef": "C2_INTERVIEW_NETWORK",
+      "recommendation": "研究者が回答者の周囲の人間関係を聞き取る",
+      "customShot": {
+        "shotId": "V23-01",
+        "visual": "研究者が回答者の周囲の人間関係を聞き取る",
+        "narrationCue": "研究者が回答者の周囲の人間関係を聞き取る",
+        "camera": "side_tracking",
+        "background": "BG_RESEARCH_INTERVIEW",
+        "characters": [
+          "RESEARCHER",
+          "ABROAD_YOUTH"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-24",
+      "fromParagraph": 28,
+      "toParagraph": 28,
+      "visualRef": "DG_SIX_MONTHS",
+      "recommendation": "初回と半年後の二つのカレンダーを表示",
+      "customShot": {
+        "shotId": "V24-01",
+        "visual": "初回と半年後の二つのカレンダーを表示",
+        "narrationCue": "初回と半年後の二つのカレンダーを表示",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-25",
+      "fromParagraph": 29,
+      "toParagraph": 29,
+      "visualRef": "C2_RESEARCH_FINDING",
+      "recommendation": "研究者が調査メモから関連に気付く",
+      "customShot": {
+        "shotId": "V25-01",
+        "visual": "研究者が調査メモから関連に気付く",
+        "narrationCue": "研究者が調査メモから関連に気付く",
+        "camera": "side_tracking",
+        "background": "BG_LIBRARY_RESEARCH",
+        "characters": [
+          "RESEARCHER"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-26",
+      "fromParagraph": 30,
+      "toParagraph": 30,
+      "visualRef": "DG_ASSOCIATION",
+      "recommendation": "周囲に施設利用者がいる場合といない場合の関連を定性的に比較し割合を創作しない",
+      "customShot": {
+        "shotId": "V26-01",
+        "visual": "周囲に施設利用者がいる場合といない場合の関連を定性的に比較し割合を創作しない",
+        "narrationCue": "周囲に施設利用者がいる場合といない場合の関連を定性的に比較し割合を創作しない",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-27",
+      "fromParagraph": 31,
+      "toParagraph": 31,
+      "visualRef": "DG_ODDS_59",
+      "recommendation": "施設利用オッズ比約5.9倍を正確に一度だけ示す",
+      "customShot": {
+        "shotId": "V27-01",
+        "visual": "施設利用オッズ比約5.9倍を正確に一度だけ示す",
+        "narrationCue": "施設利用オッズ比約5.9倍を正確に一度だけ示す",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-28",
+      "fromParagraph": 32,
+      "toParagraph": 32,
+      "visualRef": "DG_USAGE_CLUSTER",
+      "recommendation": "施設利用者が人間関係のなかにまとまって現れる観察上の関連を可視化",
+      "customShot": {
+        "shotId": "V28-01",
+        "visual": "施設利用者が人間関係のなかにまとまって現れる観察上の関連を可視化",
+        "narrationCue": "施設利用者が人間関係のなかにまとまって現れる観察上の関連を可視化",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-29",
+      "fromParagraph": 33,
+      "toParagraph": 33,
+      "visualRef": "C21-01",
+      "recommendation": "研究の話から歌舞伎町の少女へ戻る"
+    },
+    {
+      "id": "C2-30",
+      "fromParagraph": 34,
+      "toParagraph": 34,
+      "visualRef": "C21-02",
+      "recommendation": "知人のいない施設の入り口に少女が一人で立つ"
+    },
+    {
+      "id": "C2-31",
+      "fromParagraph": 35,
+      "toParagraph": 35,
+      "visualRef": "C2_UNKNOWN_HALL",
+      "recommendation": "知らない人たちが行き交う初めての施設の廊下",
+      "customShot": {
+        "shotId": "V31-01",
+        "visual": "知らない人たちが行き交う初めての施設の廊下",
+        "narrationCue": "知らない人たちが行き交う初めての施設の廊下",
+        "camera": "side_tracking",
+        "background": "BG_SHELTER_CORRIDOR",
+        "characters": [
+          "GIRL_16",
+          "OTHER_YOUTH"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "walk",
+          "stop"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-32",
+      "fromParagraph": 36,
+      "toParagraph": 36,
+      "visualRef": "C2_FRIENDS_LEFT",
+      "recommendation": "施設から歌舞伎町に残る友人たちを思う少女",
+      "customShot": {
+        "shotId": "V32-01",
+        "visual": "施設から歌舞伎町に残る友人たちを思う少女",
+        "narrationCue": "施設から歌舞伎町に残る友人たちを思う少女",
+        "camera": "medium_two_shot",
+        "background": "BG_SHELTER_BEDROOM",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-33",
+      "fromParagraph": 37,
+      "toParagraph": 37,
+      "visualRef": "C22-01",
+      "recommendation": "知っている友人が施設の入口で手を振る"
+    },
+    {
+      "id": "C2-34",
+      "fromParagraph": 38,
+      "toParagraph": 38,
+      "visualRef": "C22-02",
+      "recommendation": "友人と少女が施設へ一緒に入る"
+    },
+    {
+      "id": "C2-35",
+      "fromParagraph": 39,
+      "toParagraph": 39,
+      "visualRef": "C2_SHELTER_KNOWN",
+      "recommendation": "施設の明るい廊下を友人が案内する",
+      "customShot": {
+        "shotId": "V35-01",
+        "visual": "施設の明るい廊下を友人が案内する",
+        "narrationCue": "施設の明るい廊下を友人が案内する",
+        "camera": "side_tracking",
+        "background": "BG_SHELTER_CORRIDOR",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_GIRL"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-36",
+      "fromParagraph": 40,
+      "toParagraph": 40,
+      "visualRef": "DG_SAME_BUILDING",
+      "recommendation": "同じ建物でも知り合いがいるかどうかで違って見える二場面対比",
+      "customShot": {
+        "shotId": "V36-01",
+        "visual": "同じ建物でも知り合いがいるかどうかで違って見える二場面対比",
+        "narrationCue": "同じ建物でも知り合いがいるかどうかで違って見える二場面対比",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-37",
+      "fromParagraph": 41,
+      "toParagraph": 41,
+      "visualRef": "C23-01",
+      "recommendation": "仲間の残る街から一人で離れる少女"
+    },
+    {
+      "id": "C2-38",
+      "fromParagraph": 42,
+      "toParagraph": 43,
+      "visualRef": "DG_GROUP_OR_ALONE",
+      "recommendation": "施設へ一人で行く経路と危険でも友人といる経路を人物と場所で比較",
+      "customShot": {
+        "shotId": "V38-01",
+        "visual": "施設へ一人で行く経路と危険でも友人といる経路を人物と場所で比較",
+        "narrationCue": "施設へ一人で行く経路と危険でも友人といる経路を人物と場所で比較",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-39",
+      "fromParagraph": 44,
+      "toParagraph": 44,
+      "visualRef": "C2_TURNING_DARK",
+      "recommendation": "危険な紹介の話に移る前の夜の路地",
+      "customShot": {
+        "shotId": "V39-01",
+        "visual": "危険な紹介の話に移る前の夜の路地",
+        "narrationCue": "危険な紹介の話に移る前の夜の路地",
+        "camera": "side_tracking",
+        "background": "BG_KABUKICHO_ALLEY",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-40",
+      "fromParagraph": 45,
+      "toParagraph": 45,
+      "visualRef": "C24-01",
+      "recommendation": "友人が見知らぬ大人を少女へ紹介する"
+    },
+    {
+      "id": "C2-41",
+      "fromParagraph": 46,
+      "toParagraph": 46,
+      "visualRef": "C2_HELPFUL_FRIEND",
+      "recommendation": "以前に食事を分けてくれた友人への信頼を別場面で見せる",
+      "customShot": {
+        "shotId": "V41-01",
+        "visual": "以前に食事を分けてくれた友人への信頼を別場面で見せる",
+        "narrationCue": "以前に食事を分けてくれた友人への信頼を別場面で見せる",
+        "camera": "medium_two_shot",
+        "background": "BG_LIBRARY_CONVENIENCE_INTERIOR",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_GIRL"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-42",
+      "fromParagraph": 47,
+      "toParagraph": 47,
+      "visualRef": "C2_ADULT_QUESTION",
+      "recommendation": "少女が友人の隣から新しく紹介された大人を見る",
+      "customShot": {
+        "shotId": "V42-01",
+        "visual": "少女が友人の隣から新しく紹介された大人を見る",
+        "narrationCue": "少女が友人の隣から新しく紹介された大人を見る",
+        "camera": "side_tracking",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_GIRL",
+          "OLDER_MAN"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "listen",
+          "talk"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-43",
+      "fromParagraph": 48,
+      "toParagraph": 48,
+      "visualRef": "DG_TRUST_BRIDGE",
+      "recommendation": "信頼している友人を介して未知の大人との接点が生じる三点図",
+      "customShot": {
+        "shotId": "V43-01",
+        "visual": "信頼している友人を介して未知の大人との接点が生じる三点図",
+        "narrationCue": "信頼している友人を介して未知の大人との接点が生じる三点図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-44",
+      "fromParagraph": 49,
+      "toParagraph": 49,
+      "visualRef": "DG_SOCIAL_NETWORK",
+      "recommendation": "仲間の知り合いへとつながりが広がる複数ノードの社会的ネットワーク図",
+      "customShot": {
+        "shotId": "V44-01",
+        "visual": "仲間の知り合いへとつながりが広がる複数ノードの社会的ネットワーク図",
+        "narrationCue": "仲間の知り合いへとつながりが広がる複数ノードの社会的ネットワーク図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-45",
+      "fromParagraph": 50,
+      "toParagraph": 50,
+      "visualRef": "DG_NETWORK_TWO_ROUTES",
+      "recommendation": "同じネットワークが支援情報と危険な誘いの両方を伝える異なる経路の図",
+      "customShot": {
+        "shotId": "V45-01",
+        "visual": "同じネットワークが支援情報と危険な誘いの両方を伝える異なる経路の図",
+        "narrationCue": "同じネットワークが支援情報と危険な誘いの両方を伝える異なる経路の図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-46",
+      "fromParagraph": 51,
+      "toParagraph": 51,
+      "visualRef": "C2_FRIENDS_SAFE",
+      "recommendation": "少女を孤独から守る仲間との実景",
+      "customShot": {
+        "shotId": "V46-01",
+        "visual": "少女を孤独から守る仲間との実景",
+        "narrationCue": "少女を孤独から守る仲間との実景",
+        "camera": "medium_two_shot",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_BOY",
+          "FRIEND_GIRL"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-47",
+      "fromParagraph": 52,
+      "toParagraph": 52,
+      "visualRef": "C2_ADULT_IN_EDGE",
+      "recommendation": "街の奥に現れる未知の大人と仲間たち",
+      "customShot": {
+        "shotId": "V47-01",
+        "visual": "街の奥に現れる未知の大人と仲間たち",
+        "narrationCue": "街の奥に現れる未知の大人と仲間たち",
+        "camera": "side_tracking",
+        "background": "BG_KABUKICHO_ALLEY",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_GIRL",
+          "OLDER_MAN"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "listen",
+          "talk"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-48",
+      "fromParagraph": 53,
+      "toParagraph": 54,
+      "visualRef": "DG_BELONGING_PARADOX",
+      "recommendation": "仲間から離れにくい作用と危険人物への接点を別の線で対比",
+      "customShot": {
+        "shotId": "V48-01",
+        "visual": "仲間から離れにくい作用と危険人物への接点を別の線で対比",
+        "narrationCue": "仲間から離れにくい作用と危険人物への接点を別の線で対比",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-49",
+      "fromParagraph": 55,
+      "toParagraph": 55,
+      "visualRef": "C2_QUESTION_SHIFT",
+      "recommendation": "大人への信頼という新しい問いへ画面の視点を移す",
+      "customShot": {
+        "shotId": "V49-01",
+        "visual": "大人への信頼という新しい問いへ画面の視点を移す",
+        "narrationCue": "大人への信頼という新しい問いへ画面の視点を移す",
+        "camera": "side_tracking",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "OLDER_MAN"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-50",
+      "fromParagraph": 56,
+      "toParagraph": 56,
+      "visualRef": "C2_SHELTER_HESITANCE",
+      "recommendation": "支援者に警戒する少女の面談風景",
+      "customShot": {
+        "shotId": "V50-01",
+        "visual": "支援者に警戒する少女の面談風景",
+        "narrationCue": "支援者に警戒する少女の面談風景",
+        "camera": "side_tracking",
+        "background": "BG_SHELTER_COUNSEL",
+        "characters": [
+          "GIRL_16",
+          "SUPPORTER"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-51",
+      "fromParagraph": 57,
+      "toParagraph": 57,
+      "visualRef": "C2_STREET_ADULT",
+      "recommendation": "街で声をかけてくる大人と少女",
+      "customShot": {
+        "shotId": "V51-01",
+        "visual": "街で声をかけてくる大人と少女",
+        "narrationCue": "街で声をかけてくる大人と少女",
+        "camera": "side_tracking",
+        "background": "BG_KABUKICHO_ALLEY",
+        "characters": [
+          "GIRL_16",
+          "OLDER_MAN"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "listen",
+          "talk"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C2-52",
+      "fromParagraph": 58,
+      "toParagraph": 58,
+      "visualRef": "DG_TRUST_CUES",
+      "recommendation": "信頼の手掛かりとなる友人の紹介と目先の親切という次章の問い",
+      "customShot": {
+        "shotId": "V52-01",
+        "visual": "信頼の手掛かりとなる友人の紹介と目先の親切という次章の問い",
+        "narrationCue": "信頼の手掛かりとなる友人の紹介と目先の親切という次章の問い",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    }
+  ]
+}
