@@ -1,0 +1,356 @@
+{
+  "version": "chapter-review-v5",
+  "chapterId": "epilogue",
+  "source": "src/approved_original_narration.md",
+  "reuseApprovedVOICEVOX": true,
+  "format": "VOICED_REAL_CHAPTER_REVIEW",
+  "chapterReviewState": "first_video_for_feedback",
+  "approvedPriorChapters": [
+    "prologue",
+    "chapter1",
+    "chapter2",
+    "chapter3",
+    "chapter4"
+  ],
+  "rules": [
+    "Preserve all 25 approved original epilogue paragraphs and original VOICEVOX/captions",
+    "Use the prologue visual motifs intentionally for closure, but do not auto-repeat any diagram or generic template",
+    "Only three one-off summary graphics are used and each addresses a different final argument",
+    "Render video-only chunks on six workers at exact scene boundaries and mux original epilogue VOICEVOX once",
+    "Do not re-render any of the five approved prior chapters and do not concatenate full film before epilogue approval"
+  ],
+  "diagramIds": [
+    "DG_VIEW_CHANGED",
+    "DG_SAFETY_BELONGING",
+    "DG_MOVE_IS_NOT_SOLVE"
+  ],
+  "shots": [
+    {
+      "id": "E-01",
+      "fromParagraph": 1,
+      "toParagraph": 1,
+      "visualRef": "E01-01",
+      "recommendation": "深夜の映画館前をプロローグと同じ街区から見せる"
+    },
+    {
+      "id": "E-02",
+      "fromParagraph": 2,
+      "toParagraph": 2,
+      "visualRef": "E01-02",
+      "recommendation": "少女が友人の隣に座りスマホを見る"
+    },
+    {
+      "id": "E-03",
+      "fromParagraph": 3,
+      "toParagraph": 3,
+      "visualRef": "EPI_FRIEND_CIRCLE",
+      "recommendation": "笑い合い話を聞く同年代の若者たちを少女の周囲に配置する",
+      "customShot": {
+        "shotId": "V03-01",
+        "visual": "笑い合い話を聞く同年代の若者たちを少女の周囲に配置する",
+        "narrationCue": "笑い合い話を聞く同年代の若者たちを少女の周囲に配置する",
+        "camera": "group_wide",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_BOY",
+          "FRIEND_GIRL",
+          "OTHER_YOUTH"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "E-04",
+      "fromParagraph": 4,
+      "toParagraph": 4,
+      "visualRef": "E01-03",
+      "recommendation": "少し離れた場所で見知らぬ大人が若者へ声をかける"
+    },
+    {
+      "id": "E-05",
+      "fromParagraph": 5,
+      "toParagraph": 5,
+      "visualRef": "EPI_RISK_DISTANCE",
+      "recommendation": "少女と見知らぬ大人の距離を遠景で見せ危険の可能性を示す",
+      "customShot": {
+        "shotId": "V05-01",
+        "visual": "少女と見知らぬ大人の距離を遠景で見せ危険の可能性を示す",
+        "narrationCue": "少女と見知らぬ大人の距離を遠景で見せ危険の可能性を示す",
+        "camera": "deep_focus",
+        "background": "BG_KABUKICHO_ALLEY",
+        "characters": [
+          "GIRL_16",
+          "OLDER_MAN"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "look_around",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "E-06",
+      "fromParagraph": 6,
+      "toParagraph": 6,
+      "visualRef": "E02-01",
+      "recommendation": "それでも少女が今日も仲間の隣に座っている"
+    },
+    {
+      "id": "E-07",
+      "fromParagraph": 7,
+      "toParagraph": 8,
+      "visualRef": "DG_VIEW_CHANGED",
+      "recommendation": "最初は安全対危険に見えていた問題が今は別の構造として見えることを専用対比図で整理する",
+      "customShot": {
+        "shotId": "V07-01",
+        "visual": "最初は安全対危険に見えていた問題が今は別の構造として見えることを専用対比図で整理する",
+        "narrationCue": "最初は安全対危険に見えていた問題が今は別の構造として見えることを専用対比図で整理する",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "E-08",
+      "fromParagraph": 9,
+      "toParagraph": 9,
+      "visualRef": "E04-03",
+      "recommendation": "施設で少女を危険から守ろうとする支援者"
+    },
+    {
+      "id": "E-09",
+      "fromParagraph": 10,
+      "toParagraph": 10,
+      "visualRef": "E02-02",
+      "recommendation": "歌舞伎町で困ったとき飲み物を差し出す友人"
+    },
+    {
+      "id": "E-10",
+      "fromParagraph": 11,
+      "toParagraph": 11,
+      "visualRef": "E04-02",
+      "recommendation": "施設入口で少女が街を振り返り安全と人間関係の両方を考える"
+    },
+    {
+      "id": "E-11",
+      "fromParagraph": 12,
+      "toParagraph": 12,
+      "visualRef": "E03-02",
+      "recommendation": "友人から見知らぬ大人へつながる関係を一度だけ示す"
+    },
+    {
+      "id": "E-12",
+      "fromParagraph": 13,
+      "toParagraph": 14,
+      "visualRef": "DG_SAFETY_BELONGING",
+      "recommendation": "安全を求める気持ちと人間関係を求める気持ちが別方向に向く構造と、本来は両立できることを一枚で示す",
+      "customShot": {
+        "shotId": "V12-01",
+        "visual": "安全を求める気持ちと人間関係を求める気持ちが別方向に向く構造と、本来は両立できることを一枚で示す",
+        "narrationCue": "安全を求める気持ちと人間関係を求める気持ちが別方向に向く構造と、本来は両立できることを一枚で示す",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "E-13",
+      "fromParagraph": 15,
+      "toParagraph": 15,
+      "visualRef": "E04-01",
+      "recommendation": "安全な施設で暮らしながらスマホで友人と連絡を取る少女"
+    },
+    {
+      "id": "E-14",
+      "fromParagraph": 16,
+      "toParagraph": 16,
+      "visualRef": "EPI_LOSS_RESISTANCE",
+      "recommendation": "今ある人間関係を手放すことへの抵抗を、施設へ向かう少女と背後の仲間で描く",
+      "customShot": {
+        "shotId": "V14-01",
+        "visual": "今ある人間関係を手放すことへの抵抗を、施設へ向かう少女と背後の仲間で描く",
+        "narrationCue": "今ある人間関係を手放すことへの抵抗を、施設へ向かう少女と背後の仲間で描く",
+        "camera": "rear_tracking",
+        "background": "BG_TOWN_NIGHT_WIDE",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_BOY",
+          "FRIEND_GIRL"
+        ],
+        "props": [
+          "BAG"
+        ],
+        "requiredRigActions": [
+          "walk",
+          "sit"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "E-15",
+      "fromParagraph": 17,
+      "toParagraph": 17,
+      "visualRef": "EPI_AFTER_STREET",
+      "recommendation": "食事と寝床だけでなく街を離れた後の生活を支える必要があることを生活場面で示す",
+      "customShot": {
+        "shotId": "V15-01",
+        "visual": "食事と寝床だけでなく街を離れた後の生活を支える必要があることを生活場面で示す",
+        "narrationCue": "食事と寝床だけでなく街を離れた後の生活を支える必要があることを生活場面で示す",
+        "camera": "medium_wide",
+        "background": "BG_SHELTER_DINING",
+        "characters": [
+          "GIRL_16",
+          "SUPPORTER"
+        ],
+        "props": [
+          "FOOD"
+        ],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "E-16",
+      "fromParagraph": 18,
+      "toParagraph": 18,
+      "visualRef": "EPI_NOT_DANGER",
+      "recommendation": "危険そのものではなく居場所を求めている少女と友人の静かな夜",
+      "customShot": {
+        "shotId": "V16-01",
+        "visual": "危険そのものではなく居場所を求めている少女と友人の静かな夜",
+        "narrationCue": "危険そのものではなく居場所を求めている少女と友人の静かな夜",
+        "camera": "side_medium",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_GIRL"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "E-17",
+      "fromParagraph": 19,
+      "toParagraph": 19,
+      "visualRef": "EPI_ANCHOR",
+      "recommendation": "街でしか得られないと感じている人間関係と生活の拠り所を手元の小物と仲間で描く",
+      "customShot": {
+        "shotId": "V17-01",
+        "visual": "街でしか得られないと感じている人間関係と生活の拠り所を手元の小物と仲間で描く",
+        "narrationCue": "街でしか得られないと感じている人間関係と生活の拠り所を手元の小物と仲間で描く",
+        "camera": "hands_to_group",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_BOY",
+          "FRIEND_GIRL"
+        ],
+        "props": [
+          "PHONE",
+          "FOOD"
+        ],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "E-18",
+      "fromParagraph": 20,
+      "toParagraph": 20,
+      "visualRef": "E05-01",
+      "recommendation": "夜の映画館前が朝へ変わっていく"
+    },
+    {
+      "id": "E-19",
+      "fromParagraph": 21,
+      "toParagraph": 21,
+      "visualRef": "E05-02",
+      "recommendation": "若者が去った広場を会社員や買い物客が通り過ぎる"
+    },
+    {
+      "id": "E-20",
+      "fromParagraph": 22,
+      "toParagraph": 23,
+      "visualRef": "DG_MOVE_IS_NOT_SOLVE",
+      "recommendation": "若者を別の場所へ移動させるだけでは帰れる場所がない問題は消えないという移動と生活基盤の違いを図示する",
+      "customShot": {
+        "shotId": "V20-01",
+        "visual": "若者を別の場所へ移動させるだけでは帰れる場所がない問題は消えないという移動と生活基盤の違いを図示する",
+        "narrationCue": "若者を別の場所へ移動させるだけでは帰れる場所がない問題は消えないという移動と生活基盤の違いを図示する",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "E-21",
+      "fromParagraph": 24,
+      "toParagraph": 24,
+      "visualRef": "E06-01",
+      "recommendation": "少女が再び施設入口へ向かい支援者が迎える"
+    },
+    {
+      "id": "E-22",
+      "fromParagraph": 25,
+      "toParagraph": 25,
+      "visualRef": "E06-02",
+      "recommendation": "少女が自分で扉を開けて施設内へ一歩進む"
+    }
+  ]
+}
