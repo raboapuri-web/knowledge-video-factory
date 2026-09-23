@@ -3,7 +3,7 @@ import {Composition,registerRoot} from 'remotion';
 import fullJson from './final-review-data.json';
 import {CompleteFilm,type CompleteData} from './video-compositions';
 
-const movie=fullJson as CompleteData;
+const movie=fullJson as unknown as CompleteData;
 if(movie.status!=='all_160_shots_voicevox_measured_approved_original'||
   !Number.isFinite(movie.durationFrames)||movie.durationFrames<1)
  throw Error('Build approved six-chapter audio manifest before full-film render');
