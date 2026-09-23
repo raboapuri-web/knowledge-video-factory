@@ -93,3 +93,20 @@ npx remotion render src/index.tsx OfficeWorkerRigPreview out/office-worker-previ
 ## 首と顔の接続（2026-09-23修正）
 
 顎下の透過ギャップをなくすため首の描画矩形を x=-14, y=-30, width=28, height=45 とし、顔の下に重なるようにしました。頭部の回転ヒンジ位置は変えず、手足の関節機構も維持。実際の見た目は `OfficeWorkerNeckCloseup` の拡大静止画で確認できます。
+
+
+## パーカー姿の少女（関節付きReact人物）
+
+[人物テンプレート/catalog.json](./catalog.json) の `character-hoodie-girl` に登録。実装は `hoodie-girl-rig.tsx`、背景合成は `hoodie-girl-scene.tsx`。肩・肘・股関節・膝の左右、首の傾きと上体の傾きを `pose` で制御できます。標準動作は `idle`/`walk`/`wave`/`point`。衣装・髪色・靴の色も変更可能です。
+
+オフィスの会社員とは独立した別人物です。年齢・衣装・場所の一貫性が必要な場合、無条件の流用は避けてください。歩行は簡易ループで足裏接地IKは未実装です。
+
+```tsx
+import {HoodieGirlBackgroundScene} from '../../shared/asset-library/人物テンプレート/hoodie-girl-scene';
+
+export const Room=()=>
+  <HoodieGirlBackgroundScene backgroundFile="BG_oneroom.png"
+    girl={{x:800,y:190,scale:1,action:'walk',pose:{leftElbow:-35}}}/>;
+```
+
+プレビュー準備は `prepare.mjs` の**後**に `node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_oneroom.png` を実行。Remotion Studioから `HoodieGirlRoomPreview`、首元の確認には `HoodieGirlNeckCloseup` を選びます。

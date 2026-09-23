@@ -7,6 +7,8 @@ import assetPlan from './asset-plan.json';
 import {PartOverlay, type AssetSelection} from '../../shared/asset-library/remotion';
 import {OfficeWorkerRigPreview,type OfficeWorkerAction} from '../../shared/asset-library/人物テンプレート/office-worker-rig';
 import {OfficeWorkerBackgroundScene} from '../../shared/asset-library/人物テンプレート/scene';
+import {HoodieGirlRigPreview,type HoodieGirlAction} from '../../shared/asset-library/人物テンプレート/hoodie-girl-rig';
+import {HoodieGirlBackgroundScene} from '../../shared/asset-library/人物テンプレート/hoodie-girl-scene';
 
 type Beat={id:string;visual:string;narration:string;phase:string;variant:number;shotKind:string;bgGroup:string;bgSeed:number};
 type SyncBeat={index:number;start:number;end:number};
@@ -78,8 +80,22 @@ const OfficeWorkerNeckCloseup=()=>(
     worker={{x:625,y:380,scale:1.9,action:'idle'}}/>
 );
 
+/** An independently previewable 8-second scene; does not change the episode. */
+const HoodieGirlRoomPreview=()=>{
+  const f=useCurrentFrame();
+  const action:HoodieGirlAction=f<60?'idle':f<120?'walk':f<180?'wave':'point';
+  return <HoodieGirlBackgroundScene backgroundFile='BG_oneroom.png'
+    girl={{x:800,y:190,scale:1,action,talking:action==='point'}}/>;
+};
+
+/** Zoomed visual QA of jaw, neck, hood collar and head-tilt join. */
+const HoodieGirlNeckCloseup=()=>(
+  <HoodieGirlBackgroundScene backgroundFile='BG_oneroom.png'
+    girl={{x:635,y:420,scale:2,action:'idle',pose:{headTilt:3}}}/>
+);
+
 const Root=()=>{
   const duration=Math.max(30,Math.ceil(Number(sync.durationSeconds||1700)*30));
-  return <><Composition id='V69FreeServices' component={V69} durationInFrames={duration} fps={30} width={1920} height={1080}/><Composition id='V69ScenePreview' component={ScenePreview} durationInFrames={beats.length*20} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerRigPreview' component={OfficeWorkerRigPreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerOfficePreview' component={OfficeWorkerOfficePreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerNeckCloseup' component={OfficeWorkerNeckCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/></>;
+  return <><Composition id='V69FreeServices' component={V69} durationInFrames={duration} fps={30} width={1920} height={1080}/><Composition id='V69ScenePreview' component={ScenePreview} durationInFrames={beats.length*20} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerRigPreview' component={OfficeWorkerRigPreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerOfficePreview' component={OfficeWorkerOfficePreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerNeckCloseup' component={OfficeWorkerNeckCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/><Composition id='HoodieGirlRigPreview' component={HoodieGirlRigPreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='HoodieGirlRoomPreview' component={HoodieGirlRoomPreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='HoodieGirlNeckCloseup' component={HoodieGirlNeckCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/></>;
 };
 registerRoot(Root);

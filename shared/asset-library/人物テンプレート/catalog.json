@@ -110,6 +110,111 @@
       ],
       "updatedAt": "2026-09-23",
       "note": "2026-09-23 顎と首の隙間を修正した最新版。画像PNGではなく編集可能なReact SVGコード。"
+    },
+    {
+      "id": "character-hoodie-girl",
+      "name": "パーカーを着た少女",
+      "category": "人物テンプレート",
+      "status": "approved",
+      "type": "react-svg-rig",
+      "file": "hoodie-girl-rig.tsx",
+      "component": "HoodieGirlRig",
+      "sceneFile": "hoodie-girl-scene.tsx",
+      "sceneComponent": "HoodieGirlBackgroundScene",
+      "previewComponent": "HoodieGirlRigPreview",
+      "previewComposition": "HoodieGirlRoomPreview",
+      "tags": [
+        "少女",
+        "女の子",
+        "パーカー",
+        "フーディー",
+        "現代",
+        "2D",
+        "ベクター",
+        "可動関節",
+        "アニメーション",
+        "街",
+        "一人暮らし"
+      ],
+      "usage": [
+        "街を歩く",
+        "部屋で過ごす",
+        "手を振る",
+        "指さす",
+        "話す"
+      ],
+      "avoid": [
+        "歴史的衣装が必須の場面",
+        "特定の実在人物として描く場面",
+        "学校の制服が必須の場面"
+      ],
+      "actions": [
+        {
+          "id": "idle",
+          "name": "待機",
+          "description": "呼吸・頭と腕の微動"
+        },
+        {
+          "id": "walk",
+          "name": "歩行",
+          "description": "肩・股関節・膝を周期的に動かす"
+        },
+        {
+          "id": "wave",
+          "name": "手を振る",
+          "description": "右肩と右肘を動かす"
+        },
+        {
+          "id": "point",
+          "name": "指さし",
+          "description": "右腕を水平に伸ばす"
+        }
+      ],
+      "adjustableJoints": [
+        "leftShoulder",
+        "leftElbow",
+        "rightShoulder",
+        "rightElbow",
+        "leftHip",
+        "leftKnee",
+        "rightHip",
+        "rightKnee",
+        "headTilt",
+        "bodyLean"
+      ],
+      "adjustableProps": [
+        "x",
+        "y",
+        "scale",
+        "action",
+        "walkSpeed",
+        "pose",
+        "talking",
+        "mirror",
+        "hoodieColor",
+        "sleeveColor",
+        "pantsColor",
+        "skinColor",
+        "hairColor",
+        "shoeColor"
+      ],
+      "dimensions": {
+        "width": 360,
+        "height": 640,
+        "coordinateSystem": "1920x1080"
+      },
+      "recommendedBackgrounds": [
+        "背景/BG_oneroom.png",
+        "背景/BG_town.png",
+        "背景/BG_densha.png"
+      ],
+      "license": "original-project",
+      "knownLimitations": [
+        "簡易2D歩行。足裏の床接地を自動補正するIKは未実装。",
+        "背景の人物サイズや重なり・時代性はシーンごとに確認すること。"
+      ],
+      "updatedAt": "2026-09-23",
+      "note": "パーカー姿の少女の編集可能なReact SVG。顎から首を襟へ連結した可動関節付き。"
     }
   ]
 }
