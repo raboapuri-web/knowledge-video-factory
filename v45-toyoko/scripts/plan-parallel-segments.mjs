@@ -15,8 +15,12 @@ const all=doc.chapters.flatMap(ch=>ch.beats.map(beat=>({
  chapter:ch.chapterId
 })));
 if(all.length!==160||all[0].from!==0||all.some((b,i)=>b.end<=b.from||
-   i>0&&b.from!==all[i-1].end))
-  throw Error('Original storyboard frame timeline is not a gapless 160-shot sequence');
+   (i>0&&(b.from<all[i-1].end||
+    (b.chapter===all[i-1].chapter&&b.from!==all[i-1].end)))))
+  throw Error('Original storyboard shots overlap or break continuity within a chapter');
+// Each chapter deliberately contains up to eight frames of silent end padding.
+// Preserve these frames in the global timeline; do not pretend adjacent chapters
+// necessarily have back-to-back narration beats.
 if(all.at(-1).end>doc.durationFrames)
   throw Error('Last storyboard cut extends beyond the movie');
 const cuts=all.map(x=>x.end).filter(x=>x>0&&x<doc.durationFrames);
