@@ -84,6 +84,30 @@ const RuleIcons=({p}:{p:number})=><g>
  {text(930,730,'守るための条件が、利用の負担にもなる',40,soft)}
  </g>;
 
+const SafeIcons=({p}:{p:number})=><g>
+ {[[440,'食事'],[935,'寝床'],[1425,'見守り']].map(([rawX,label],i)=>{
+  const x=Number(rawX);
+  return <g key={String(label)} opacity={Math.max(.12,Math.min(1,p*2-i*.3))}>
+   {card(x-160,300,320,270,i===1?gold:blue)}
+   {i===0?<g><ellipse cx={x} cy={395} rx={100} ry={53} fill='none' stroke={gold} strokeWidth={9}/>
+       <ellipse cx={x} cy={395} rx={65} ry={31} fill={gold} opacity={.55}/></g>:
+    i===1?<g>{path('M'+(x-96)+' 410 h192 v50 h-192Z',gold,8)}
+      <rect x={x-91} y={368} width={70} height={42} fill={gold}/></g>:
+    <g><circle cx={x} cy={373} r={31} fill={gold}/>
+     {path('M'+(x-72)+' 462 Q'+x+' 391 '+(x+72)+' 462',gold,8)}</g>}
+   {text(x,503,String(label),44)}
+  </g>;
+ })}
+ {text(935,742,'施設が提供できる具体的な安全',39,soft)}
+ </g>;
+const ResearchProcess=({p}:{p:number})=><g>
+ {card(300,302,370,252,blue)}{card(775,302,370,252,gold)}{card(1250,302,370,252,blue)}
+ {text(485,425,'聞き取り',46)}{text(960,425,'回答の整理',46)}
+ {text(1435,425,'関連を確認',43)}
+ {path('M684 427 H754',soft,7)}{path('M1159 427 H1230',soft,7)}
+ {text(960,775,'研究は個々の若者の状況を丁寧に調べる',37,soft)}
+ </g>;
+
 const Flow=({p,mode}:{p:number;mode:string})=>{
  const labels=mode==='choice_path'?['街の仲間','施設・支援','安心と関係の両立']:
  mode==='resource_trap'?['食事・寝床','ひとりに依存','断りにくさ']:
@@ -147,7 +171,9 @@ export const TopicDiagram=({diagramId,overlay=false,variant=0}:{
  diagramId==='safe_vs_belonging'?<Venn p={p} view={variant}/>:
  diagramId==='network'||diagramId==='belonging'||diagramId==='community'?<Social p={p}/>:
  diagramId==='network_risk'?<Social p={p} risk/>:
- diagramId==='rule_icons'||diagramId==='safe_icons'?<RuleIcons p={p}/>:
+ diagramId==='rule_icons'?<RuleIcons p={p}/>:
+ diagramId==='safe_icons'?<SafeIcons p={p}/>:
+ diagramId==='research_process'?<ResearchProcess p={p}/>:
  diagramId==='adult_compare'?<AdultCompare p={p}/>:
  diagramId==='japan_canada'?<JapanCanada p={p}/>:
  diagramId==='clock21'?<Clock p={p}/>:
