@@ -80,8 +80,8 @@
     "backgrounds": [
       {
         "id": "BG_TOWN_NIGHT_WIDE",
-        "status": "new",
-        "sourceOrBrief": "夜の歌舞伎町・映画館と周辺ビルを含む俯瞰／固有ロゴ文字は不要",
+        "status": "existing",
+        "sourceOrBrief": "夜の歌舞伎町・映画館と周辺ビルを含む俯瞰／固有ロゴ文字は不要／2026-09-23 main上の実ファイル・ライブラリ登録を確認",
         "usedByShotIds": [
           "P01-01",
           "P01-02",
@@ -91,21 +91,25 @@
           "E01-01",
           "E05-01"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_TOWN_NIGHT_WIDE.png",
+        "resolution": "existing_file_verified"
       },
       {
         "id": "BG_TOWN_DAY_WIDE",
-        "status": "new",
-        "sourceOrBrief": "歌舞伎町・映画館周辺の昼景。夜景差分が実際に制作できる場合は共通化可",
+        "status": "existing",
+        "sourceOrBrief": "歌舞伎町・映画館周辺の昼景。夜景差分が実際に制作できる場合は共通化可／2026-09-23 main上の実ファイル・ライブラリ登録を確認",
         "usedByShotIds": [
           "C37-01"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+        "resolution": "existing_file_verified"
       },
       {
         "id": "BG_TOYOKO_GROUND",
-        "status": "new",
-        "sourceOrBrief": "トー横広場の地上目線／座れる縁・通路・奥行き",
+        "status": "existing",
+        "sourceOrBrief": "トー横広場の地上目線／座れる縁・通路・奥行き／2026-09-23 main上の実ファイル・ライブラリ登録を確認",
         "usedByShotIds": [
           "P01-03",
           "P02-01",
@@ -137,12 +141,14 @@
           "E02-03",
           "E05-02"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_TOYOKO_GROUND.png",
+        "resolution": "existing_file_verified"
       },
       {
         "id": "BG_KABUKICHO_ALLEY",
-        "status": "new",
-        "sourceOrBrief": "歌舞伎町の夜の路地／成人との出会い・移動",
+        "status": "existing",
+        "sourceOrBrief": "歌舞伎町の夜の路地／成人との出会い・移動／2026-09-23 main上の実ファイル・ライブラリ登録を確認",
         "usedByShotIds": [
           "P05-01",
           "C11-02",
@@ -159,7 +165,9 @@
           "C36-01",
           "C43-01"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_KABUKICHO_ALLEY.png",
+        "resolution": "existing_file_verified"
       },
       {
         "id": "BG_SHELTER_ENTRANCE",
@@ -456,7 +464,7 @@
     "characters": [
       {
         "id": "GIRL_16",
-        "status": "new",
+        "status": "reuse_existing_character",
         "sourceOrBrief": "主人公。16歳の架空の少女。全編で髪型・服・携行品を維持。",
         "usedByShotIds": [
           "P03-01",
@@ -559,11 +567,18 @@
           "E06-01",
           "E06-02"
         ],
-        "required": true
+        "required": true,
+        "sourceFile": "shared/asset-library/人物テンプレート/hoodie-girl-rig.tsx",
+        "component": "HoodieGirlRig",
+        "alternativeSources": [],
+        "productionNote": "主人公。hoodie-girl-rig.tsxを全編で同一の外見・衣装・携行品で使用する。",
+        "needsVariantImplementation": false,
+        "needsShotActionCoverageCheck": true,
+        "resolution": "existing_file_verified__shot_variant_not_rendered"
       },
       {
         "id": "FRIEND_BOY",
-        "status": "new",
+        "status": "reuse_existing_character",
         "sourceOrBrief": "トー横で隣を空ける少年。再登場時に同一個体。",
         "usedByShotIds": [
           "P02-02",
@@ -582,11 +597,18 @@
           "E01-02",
           "E02-03"
         ],
-        "required": true
+        "required": true,
+        "sourceFile": "shared/asset-library/人物テンプレート/hoodie-boy-rig.tsx",
+        "component": "HoodieBoyRig",
+        "alternativeSources": [],
+        "productionNote": "登録ID character-hoodie-boy は hoodie-boy-rig.tsx / HoodieBoyRig に対応。少年用の色・外見を固定する。",
+        "needsVariantImplementation": false,
+        "needsShotActionCoverageCheck": true,
+        "resolution": "existing_file_verified__shot_variant_not_rendered"
       },
       {
         "id": "FRIEND_GIRL",
-        "status": "new",
+        "status": "reuse_existing_character",
         "sourceOrBrief": "飲み物や食事を分け合う少女の友人。",
         "usedByShotIds": [
           "P02-02",
@@ -619,11 +641,22 @@
           "E02-02",
           "E02-03"
         ],
-        "required": true
+        "required": true,
+        "sourceFile": "shared/asset-library/人物テンプレート/hoodie-girl-rig.tsx",
+        "component": "HoodieGirlRig",
+        "alternativeSources": [],
+        "productionNote": "hoodie-girl-rig.tsxを主人公とは異なるhoodieColor/sleeveColor等に指定し同一人物と混同しない。",
+        "needsVariantImplementation": false,
+        "needsShotActionCoverageCheck": true,
+        "resolution": "existing_file_verified__shot_variant_not_rendered",
+        "variantProps": {
+          "hoodieColor": "主人公と異なる色（動画で固定する）",
+          "sleeveColor": "主人公と異なる色（動画で固定する）"
+        }
       },
       {
         "id": "SUPPORTER",
-        "status": "new",
+        "status": "reuse_existing_character",
         "sourceOrBrief": "行政・支援団体の職員を示す成人。悪役的な描写をしない。",
         "usedByShotIds": [
           "P05-01",
@@ -656,11 +689,18 @@
           "E06-01",
           "E06-02"
         ],
-        "required": true
+        "required": true,
+        "sourceFile": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+        "component": "OfficeWorkerRig",
+        "alternativeSources": [],
+        "productionNote": "office-worker-rig.tsxを流用する。会社員の小物が場面に合わない場合はshowBriefcase:false等を指定する。",
+        "needsVariantImplementation": false,
+        "needsShotActionCoverageCheck": true,
+        "resolution": "existing_file_verified__shot_variant_not_rendered"
       },
       {
         "id": "OLDER_MAN",
-        "status": "new",
+        "status": "reuse_existing_character",
         "sourceOrBrief": "親切から搾取的な要求へ移る成人男性。外見では悪意を決めつけない。",
         "usedByShotIds": [
           "C24-01",
@@ -678,11 +718,23 @@
           "C33-01",
           "C36-01"
         ],
-        "required": true
+        "required": true,
+        "sourceFile": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+        "component": "OfficeWorkerRig",
+        "alternativeSources": [],
+        "productionNote": "office-worker-rig.tsxを使用し、hairColorを金色・suitColor等の衣服色を白に指定する。",
+        "needsVariantImplementation": false,
+        "needsShotActionCoverageCheck": true,
+        "resolution": "existing_file_verified__shot_variant_not_rendered",
+        "variantProps": {
+          "hairColor": "#E5C04A",
+          "suitColor": "#F5F4F0",
+          "pantsColor": "#F5F4F0"
+        }
       },
       {
         "id": "PASSERBY",
-        "status": "new_variant",
+        "status": "reuse_existing_character",
         "sourceOrBrief": "通勤客／通行人。群衆用の簡易リグ。",
         "usedByShotIds": [
           "P01-02",
@@ -694,11 +746,18 @@
           "E05-01",
           "E05-02"
         ],
-        "required": true
+        "required": true,
+        "sourceFile": "shared/asset-library/人物テンプレート/RESEARCHER_MAN.tsx",
+        "component": "RESEARCHER_MAN",
+        "alternativeSources": [],
+        "productionNote": "指定に従いRESEARCHER_MAN.tsxを使う。登録済みPASSERBY.tsxへ勝手に置換しない。白衣が路上・通勤客の映像に残るため衣装整合性をプレビューで検査する。",
+        "needsVariantImplementation": false,
+        "needsShotActionCoverageCheck": true,
+        "resolution": "existing_file_verified__shot_variant_not_rendered"
       },
       {
         "id": "OTHER_YOUTH",
-        "status": "new_variant",
+        "status": "reuse_existing_character",
         "sourceOrBrief": "路上・学校・施設の若者たち。服装や顔を変えた群衆。",
         "usedByShotIds": [
           "P01-03",
@@ -730,11 +789,27 @@
           "C45-03",
           "E05-02"
         ],
-        "required": true
+        "required": true,
+        "sourceFile": "shared/asset-library/人物テンプレート/hoodie-boy-rig.tsx",
+        "component": "HoodieBoyRig",
+        "alternativeSources": [
+          {
+            "file": "shared/asset-library/人物テンプレート/hoodie-boy-rig.tsx",
+            "component": "HoodieBoyRig"
+          },
+          {
+            "file": "shared/asset-library/人物テンプレート/hoodie-girl-rig.tsx",
+            "component": "HoodieGirlRig"
+          }
+        ],
+        "productionNote": "hoodie-boy-rig.tsxとhoodie-girl-rig.tsxのバリエーションを使用。目・鼻・口を描かないこと。現行リグに顔パーツ非表示の公開propはないため、顔描画制御の追加または専用ラッパー実装が必要。",
+        "needsVariantImplementation": true,
+        "needsShotActionCoverageCheck": true,
+        "resolution": "existing_file_verified__shot_variant_not_rendered"
       },
       {
         "id": "RESEARCHER",
-        "status": "new_variant",
+        "status": "reuse_existing_character",
         "sourceOrBrief": "海外研究場面用の成人。職員とは別人として示す。",
         "usedByShotIds": [
           "C03-01",
@@ -746,20 +821,43 @@
           "C44-03",
           "C45-02"
         ],
-        "required": true
+        "required": true,
+        "sourceFile": "shared/asset-library/人物テンプレート/RESEARCHER_WOMAN.tsx",
+        "component": "RESEARCHER_WOMAN",
+        "alternativeSources": [
+          {
+            "file": "shared/asset-library/人物テンプレート/RESEARCHER_WOMAN.tsx",
+            "component": "RESEARCHER_WOMAN"
+          },
+          {
+            "file": "shared/asset-library/人物テンプレート/RESEARCHER_MAN.tsx",
+            "component": "RESEARCHER_MAN"
+          }
+        ],
+        "productionNote": "RESEARCHER_WOMAN.tsx または RESEARCHER_MAN.tsxを場面ごとに使用する。研究者本人の特定映像を装わない。",
+        "needsVariantImplementation": false,
+        "needsShotActionCoverageCheck": true,
+        "resolution": "existing_file_verified__shot_variant_not_rendered"
       },
       {
         "id": "ABROAD_STAFF",
-        "status": "new_variant",
+        "status": "reuse_existing_character",
         "sourceOrBrief": "海外研究再現の支援施設職員。日本の支援者とは衣装・外見を分ける。",
         "usedByShotIds": [
           "C05-02"
         ],
-        "required": true
+        "required": true,
+        "sourceFile": "shared/asset-library/人物テンプレート/office-woman-rig.tsx",
+        "component": "OfficeWomanRig",
+        "alternativeSources": [],
+        "productionNote": "office-woman-rig.tsx / OfficeWomanRigを使用する。",
+        "needsVariantImplementation": false,
+        "needsShotActionCoverageCheck": true,
+        "resolution": "existing_file_verified__shot_variant_not_rendered"
       },
       {
         "id": "ABROAD_YOUTH",
-        "status": "new_variant",
+        "status": "reuse_existing_character",
         "sourceOrBrief": "海外の研究参加者を象徴する人物。日本の主人公と混同しない。",
         "usedByShotIds": [
           "C01-03",
@@ -789,16 +887,51 @@
           "C45-02",
           "C45-03"
         ],
-        "required": true
+        "required": true,
+        "sourceFile": "shared/asset-library/人物テンプレート/hoodie-boy-rig.tsx",
+        "component": "HoodieBoyRig",
+        "alternativeSources": [
+          {
+            "file": "shared/asset-library/人物テンプレート/hoodie-boy-rig.tsx",
+            "component": "HoodieBoyRig"
+          },
+          {
+            "file": "shared/asset-library/人物テンプレート/hoodie-girl-rig.tsx",
+            "component": "HoodieGirlRig"
+          }
+        ],
+        "productionNote": "hoodie-boy-rig.tsx または hoodie-girl-rig.tsxを使用し、hairColorを黄色に指定する。主人公とは明確に識別する。",
+        "needsVariantImplementation": false,
+        "needsShotActionCoverageCheck": true,
+        "resolution": "existing_file_verified__shot_variant_not_rendered",
+        "variantProps": {
+          "hairColor": "#E5C04A"
+        }
       },
       {
         "id": "PARENT",
-        "status": "new_variant",
+        "status": "reuse_existing_character",
         "sourceOrBrief": "主人公の家庭回想にのみ使用する保護者のシルエット。",
         "usedByShotIds": [
           "C08-01"
         ],
-        "required": true
+        "required": true,
+        "sourceFile": "shared/asset-library/人物テンプレート/PARENT_FATHER.tsx",
+        "component": "ParentFatherRig",
+        "alternativeSources": [
+          {
+            "file": "shared/asset-library/人物テンプレート/PARENT_FATHER.tsx",
+            "component": "ParentFatherRig"
+          },
+          {
+            "file": "shared/asset-library/人物テンプレート/PARENT_MOTHER.tsx",
+            "component": "ParentMotherRig"
+          }
+        ],
+        "productionNote": "PARENT_FATHER.tsx / ParentFatherRig または PARENT_MOTHER.tsx / ParentMotherRig を使用する。",
+        "needsVariantImplementation": false,
+        "needsShotActionCoverageCheck": true,
+        "resolution": "existing_file_verified__shot_variant_not_rendered"
       }
     ],
     "props": [
@@ -839,7 +972,7 @@
       },
       {
         "id": "DRINK",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "手渡し可能な飲み物",
         "usedByShotIds": [
           "C13-02",
@@ -847,11 +980,14 @@
           "C28-02",
           "E02-02"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/パーツ/DRINK.png",
+        "productionNote": "共有ライブラリに格納済み。カット内の位置・大きさ・持ち手への追従を確認する。",
+        "resolution": "existing_file_verified"
       },
       {
         "id": "FOOD",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "袋入りの軽食・パン",
         "usedByShotIds": [
           "P02-02",
@@ -867,11 +1003,14 @@
           "C35-01",
           "C38-01"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/パーツ/pan.png",
+        "productionNote": "pan.pngを使用する。",
+        "resolution": "existing_file_verified"
       },
       {
         "id": "BAG",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "少女が移動時に持つバッグ",
         "usedByShotIds": [
           "P03-01",
@@ -915,32 +1054,41 @@
           "E06-01",
           "E06-02"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/パーツ/BAG.png",
+        "productionNote": "共有ライブラリに格納済み。カット内の位置・大きさ・持ち手への追従を確認する。",
+        "resolution": "existing_file_verified"
       },
       {
         "id": "CHARGER",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "充電ケーブル",
         "usedByShotIds": [
           "C38-02",
           "C39-01"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/パーツ/CHARGER.png",
+        "productionNote": "共有ライブラリに格納済み。カット内の位置・大きさ・持ち手への追従を確認する。",
+        "resolution": "existing_file_verified"
       },
       {
         "id": "BEDDING",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "枕・掛け布団（背景に固定する場合は分離不要）",
         "usedByShotIds": [
           "P05-03",
           "C06-01",
           "C09-01"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/パーツ/BEDDING.png",
+        "productionNote": "共有ライブラリに格納済み。カット内の位置・大きさ・持ち手への追従を確認する。",
+        "resolution": "existing_file_verified"
       },
       {
         "id": "DOOR",
-        "status": "new",
+        "status": "create_during_video",
         "sourceOrBrief": "開閉可能な室内外扉",
         "usedByShotIds": [
           "P05-02",
@@ -966,11 +1114,13 @@
           "E06-01",
           "E06-02"
         ],
-        "required": true
+        "required": true,
+        "productionNote": "動画制作時に開閉可能な扉の構成を新規作成する。背景に固定された扉だけでは代替不可。",
+        "resolution": "pending_video_implementation"
       },
       {
         "id": "TABLE",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "面談用の机と椅子",
         "usedByShotIds": [
           "C03-03",
@@ -983,20 +1133,25 @@
           "C44-02",
           "C46-01"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/パーツ/TABLE.png",
+        "productionNote": "共有ライブラリに格納済み。カット内の位置・大きさ・持ち手への追従を確認する。",
+        "resolution": "existing_file_verified"
       },
       {
         "id": "MEAL_TRAY",
-        "status": "new",
+        "status": "create_during_video",
         "sourceOrBrief": "食堂のトレー",
         "usedByShotIds": [
           "C06-03"
         ],
-        "required": true
+        "required": true,
+        "productionNote": "動画制作時に食堂のトレーを新規作成する。",
+        "resolution": "pending_video_implementation"
       },
       {
         "id": "WALLET",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "財布・小銭",
         "usedByShotIds": [
           "P04-02",
@@ -1006,11 +1161,14 @@
           "C31-03",
           "C35-01"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/パーツ/WALLET.png",
+        "productionNote": "共有ライブラリに格納済み。カット内の位置・大きさ・持ち手への追従を確認する。",
+        "resolution": "existing_file_verified"
       },
       {
         "id": "FORM",
-        "status": "new",
+        "status": "create_during_video",
         "sourceOrBrief": "相談用紙／文字なしの書類",
         "usedByShotIds": [
           "C03-01",
@@ -1031,20 +1189,24 @@
           "C46-02",
           "C48-02"
         ],
-        "required": true
+        "required": true,
+        "productionNote": "動画制作時に文字なしの相談用紙／書類を新規作成する。",
+        "resolution": "pending_video_implementation"
       }
     ],
     "templates": [
       {
         "id": "ACTOR_RIG",
-        "status": "new",
+        "status": "reuse_existing_augment_as_needed",
         "sourceOrBrief": "少女・少年・友人・支援者の関節付きReact/SVGリグ。歩行・着座・立上り・受渡し・視線・口パク",
         "usedByShotIds": [],
-        "required": false
+        "required": false,
+        "productionNote": "既存の各キャラクターの関節付きリグを使用。シーン必須動作が未実装なら当該リグまたはシーン専用アクションを動画制作時に追加する。",
+        "resolution": "existing_character_rigs_verified__action_coverage_pending"
       },
       {
         "id": "DIALOGUE_STAGE",
-        "status": "new",
+        "status": "create_or_complete_during_video",
         "sourceOrBrief": "会話の切返し／手元／2ショット。会話当事者が画面外にならない",
         "usedByShotIds": [
           "P02-02",
@@ -1075,11 +1237,13 @@
           "C46-01",
           "C48-02"
         ],
-        "required": true
+        "required": true,
+        "productionNote": "シーンごとに会話演出・カメラ切返しを動画制作時に新規作成する。",
+        "resolution": "pending_video_implementation"
       },
       {
         "id": "MOVE_THROUGH_SPACE",
-        "status": "new",
+        "status": "create_or_complete_during_video",
         "sourceOrBrief": "歩行＋追従カメラ＋背景遷移。被写体の床接地を保つ",
         "usedByShotIds": [
           "P01-01",
@@ -1106,11 +1270,13 @@
           "E06-01",
           "E06-02"
         ],
-        "required": true
+        "required": true,
+        "productionNote": "キャラクターの既存walkを使い、カメラ追従・背景遷移は動画制作時に追加する。",
+        "resolution": "pending_video_implementation"
       },
       {
         "id": "SOCIAL_GRAPH",
-        "status": "new",
+        "status": "create_or_complete_during_video",
         "sourceOrBrief": "人・つながり・支援施設利用の関連を図解。観察研究の因果を捏造しない",
         "usedByShotIds": [
           "C19-01",
@@ -1121,22 +1287,26 @@
           "E03-02",
           "E03-03"
         ],
-        "required": true
+        "required": true,
+        "productionNote": "動画制作時に新規作成する。",
+        "resolution": "pending_video_implementation"
       },
       {
         "id": "DEPENDENCY_GRAPH",
-        "status": "new",
+        "status": "create_or_complete_during_video",
         "sourceOrBrief": "食事・金銭・住居が一人の相手へ集中する関係の可視化",
         "usedByShotIds": [
           "C31-03",
           "C35-01",
           "C35-02"
         ],
-        "required": true
+        "required": true,
+        "productionNote": "動画制作時に新規作成する。",
+        "resolution": "pending_video_implementation"
       },
       {
         "id": "CHOICE_PATH",
-        "status": "new",
+        "status": "create_or_complete_during_video",
         "sourceOrBrief": "施設／街の選択で同伴者・生活条件が変わる概念図",
         "usedByShotIds": [
           "C11-01",
@@ -1144,7 +1314,9 @@
           "C42-03",
           "E04-01"
         ],
-        "required": true
+        "required": true,
+        "productionNote": "動画制作時に新規作成する。",
+        "resolution": "pending_video_implementation"
       },
       {
         "id": "CROWD_GRID",
@@ -9253,6 +9425,147 @@
       "whether walking or sitting looks anatomically natural",
       "whether a camera cuts at the correct word without exact audio and transcript",
       "image content appropriateness and commercial rights"
+    ]
+  },
+  "assetResolutionPolicy": {
+    "version": "2026-09-23-user-instructions",
+    "meaning": "semantic IDs in scenes[].shots[] stay unchanged; resolve via assetRegistry id and assetFile/sourceFile/alternativeSources, then apply per-character productionNote/variantProps.",
+    "noAutomaticSubstitution": true,
+    "notProofOfVisualCompletion": true,
+    "confirmedExistingBackgrounds": [
+      "BG_TOWN_NIGHT_WIDE",
+      "BG_TOWN_DAY_WIDE",
+      "BG_TOYOKO_GROUND",
+      "BG_KABUKICHO_ALLEY"
+    ],
+    "confirmedExistingPartMappings": {
+      "DRINK": "DRINK.png",
+      "FOOD": "pan.png",
+      "BAG": "BAG.png",
+      "CHARGER": "CHARGER.png",
+      "BEDDING": "BEDDING.png",
+      "TABLE": "TABLE.png",
+      "WALLET": "WALLET.png"
+    },
+    "charactersFromExistingRig": {
+      "GIRL_16": [
+        "人物テンプレート/hoodie-girl-rig.tsx",
+        "HoodieGirlRig"
+      ],
+      "FRIEND_BOY": [
+        "人物テンプレート/hoodie-boy-rig.tsx",
+        "HoodieBoyRig"
+      ],
+      "FRIEND_GIRL": [
+        "人物テンプレート/hoodie-girl-rig.tsx",
+        "HoodieGirlRig"
+      ],
+      "SUPPORTER": [
+        "人物テンプレート/office-worker-rig.tsx",
+        "OfficeWorkerRig"
+      ],
+      "OLDER_MAN": [
+        "人物テンプレート/office-worker-rig.tsx",
+        "OfficeWorkerRig"
+      ],
+      "PASSERBY": [
+        "人物テンプレート/RESEARCHER_MAN.tsx",
+        "RESEARCHER_MAN"
+      ],
+      "OTHER_YOUTH": [
+        "人物テンプレート/hoodie-boy-rig.tsx",
+        "HoodieBoyRig"
+      ],
+      "RESEARCHER": [
+        "人物テンプレート/RESEARCHER_WOMAN.tsx",
+        "RESEARCHER_WOMAN"
+      ],
+      "ABROAD_STAFF": [
+        "人物テンプレート/office-woman-rig.tsx",
+        "OfficeWomanRig"
+      ],
+      "ABROAD_YOUTH": [
+        "人物テンプレート/hoodie-boy-rig.tsx",
+        "HoodieBoyRig"
+      ],
+      "PARENT": [
+        "人物テンプレート/PARENT_FATHER.tsx",
+        "ParentFatherRig"
+      ]
+    },
+    "charactersWithMultipleAllowedFiles": {
+      "RESEARCHER": [
+        [
+          "人物テンプレート/RESEARCHER_WOMAN.tsx",
+          "RESEARCHER_WOMAN"
+        ],
+        [
+          "人物テンプレート/RESEARCHER_MAN.tsx",
+          "RESEARCHER_MAN"
+        ]
+      ],
+      "OTHER_YOUTH": [
+        [
+          "人物テンプレート/hoodie-boy-rig.tsx",
+          "HoodieBoyRig"
+        ],
+        [
+          "人物テンプレート/hoodie-girl-rig.tsx",
+          "HoodieGirlRig"
+        ]
+      ],
+      "ABROAD_YOUTH": [
+        [
+          "人物テンプレート/hoodie-boy-rig.tsx",
+          "HoodieBoyRig"
+        ],
+        [
+          "人物テンプレート/hoodie-girl-rig.tsx",
+          "HoodieGirlRig"
+        ]
+      ],
+      "PARENT": [
+        [
+          "人物テンプレート/PARENT_FATHER.tsx",
+          "ParentFatherRig"
+        ],
+        [
+          "人物テンプレート/PARENT_MOTHER.tsx",
+          "ParentMotherRig"
+        ]
+      ]
+    },
+    "createOnlyDuringVideo": [
+      "DOOR",
+      "MEAL_TRAY",
+      "FORM",
+      "DIALOGUE_STAGE",
+      "MOVE_THROUGH_SPACE",
+      "SOCIAL_GRAPH",
+      "DEPENDENCY_GRAPH",
+      "CHOICE_PATH"
+    ],
+    "blockingImplementationNotes": [
+      "OTHER_YOUTH: current hoodie rigs have no face-feature suppression public prop; implement it before using this variant.",
+      "PASSERBY: user explicitly mapped RESEARCHER_MAN.tsx, not existing PASSERBY.tsx; verify lab coat/clothing against commuter scene and do not silently switch files.",
+      "OfficeWorkerRig and OfficeWomanRig support idle/walk/wave/point; sitting, handing over items etc require shot-specific animation or rig extension.",
+      "RESEARCHER_MAN/WOMAN support idle/walk/inspectFlask/point; other shot actions must be implemented.",
+      "The 12 unprovided scene-specific backgrounds are still new; do not substitute generic backgrounds.",
+      "DOOR, MEAL_TRAY, FORM and five non-ACTOR_RIG templates must be produced during video creation before QA passes."
+    ],
+    "missingBackgroundIds": [
+      "BG_SHELTER_ENTRANCE",
+      "BG_SHELTER_BEDROOM",
+      "BG_SHELTER_DINING",
+      "BG_SHELTER_COUNSEL",
+      "BG_SHELTER_CORRIDOR",
+      "BG_GIRL_HOME",
+      "BG_YOUTH_CENTER",
+      "BG_YOUTH_CENTER_ENTRANCE",
+      "BG_VANCOUVER_RAIN",
+      "BG_ABROAD_SHELTER",
+      "BG_US_STREET",
+      "BG_RESEARCH_INTERVIEW"
     ]
   }
 }
