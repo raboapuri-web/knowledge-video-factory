@@ -2069,10 +2069,11 @@
       }
     },
     {
-      "id": "bg-bg-vancouver-rain",
-      "category": "背景",
-      "file": "背景/BG_VANCOUVER_RAIN.png",
-      "name": "バンクーバーの晴れた海沿い都市景観",
+       "id": "bg-bg-vancouver",
+  "category": "背景",
+  "file": "背景/BG_VANCOUVER.png",
+  "name": "バンクーバーの晴れた海沿い都市景観",
+  "license": "cleared-commercial"
       "description": "海越しに見えるバンクーバー風の都市スカイライン。青い高層ビル群、展望塔、白い屋根のスタジアム、雪を残した山並み、ヨットと水面の反射を、輪郭の明瞭なフラットベクター調で描いた昼間の広角背景。画像内に雨の描写はない。",
       "phases": [
         "*"
