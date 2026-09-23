@@ -15,10 +15,23 @@
       "narration": "approved_original_voicevox",
       "approvedAt": "2026-09-23",
       "notes": "The user explicitly approved this actual standalone prologue video. Its audio, visual edit, and timing are locked. Future chapter 1 renders must not modify or re-render the prologue."
+    },
+    {
+      "chapterId": "chapter1",
+      "status": "user_approved_final_do_not_rerender",
+      "approvedSourceRunId": 35858406172,
+      "approvedArtifactId": 10749231192,
+      "approvedArtifactName": "toyoko-chapter1-feedback-v1-voice-and-visual",
+      "approvedArtifactUrl": "https://github.com/raboapuri-web/knowledge-video-factory/actions/runs/35858406172/artifacts/10749231192",
+      "videoFile": "toyoko-chapter1-feedback-v1.mp4",
+      "editorialManifest": "src/chapter-edits/chapter1.json",
+      "chapterSceneCount": 44,
+      "narration": "approved_original_voicevox",
+      "approvedAt": "2026-09-23",
+      "notes": "User expressly approved chapter-one actual video. Lock exact video bytes, original sound/captions, timeline; do not re-render when producing chapter two."
     }
   ],
   "pendingChapters": [
-    "chapter1",
     "chapter2",
     "chapter3",
     "chapter4",
