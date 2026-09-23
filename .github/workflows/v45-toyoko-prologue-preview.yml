@@ -46,12 +46,14 @@ jobs:
         run: |
           npm run voice:prologue
           node scripts/check-voiced-review.mjs
+          node scripts/build-subtitles.mjs
       - name: Render prologue with VOICEVOX narration and separate subtitles
         working-directory: v45-toyoko
         run: |
           mkdir -p out/shot-review
           npm run preview:prologue
           test -s out/toyoko-prologue-review.mp4
+          test "$(ffprobe -v error -select_streams a -show_entries stream=codec_name -of csv=p=0 out/toyoko-prologue-review.mp4 | wc -l)" -ge 1
           ffprobe -v error -select_streams v:0 -show_entries stream=width,height,nb_frames -of default=noprint_wrappers=1 out/toyoko-prologue-review.mp4
       - name: Extract exactly one voice-timed midpoint for every storyboard cut
         working-directory: v45-toyoko
@@ -63,6 +65,8 @@ jobs:
           name: v45-toyoko-prologue-18cuts-voiced-draft-review
           path: |
             v45-toyoko/out/toyoko-prologue-review.mp4
+            v45-toyoko/out/toyoko-prologue-review.srt
+            v45-toyoko/public/audio/narration.m4a
             v45-toyoko/out/shot-review/*.png
             v45-toyoko/out/shot-timestamps.tsv
             v45-toyoko/src/script-data.json
