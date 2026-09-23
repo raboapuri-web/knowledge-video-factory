@@ -32,25 +32,41 @@ jobs:
           npm install --no-audit --no-fund
           ln -sfn "$PWD/node_modules" ../node_modules
           npm run check
-      - name: Render silent 18-cut prologue review (not final narration)
+      - name: Start VOICEVOX for shot-aligned chapter narration
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            curl -fsS http://127.0.0.1:50021/version && exit 0
+            sleep 2
+          done
+          exit 1
+      - name: Synthesize 18 narration and subtitle timings
+        working-directory: v45-toyoko
+        run: |
+          npm run voice:prologue
+          node scripts/check-voiced-review.mjs
+      - name: Render prologue with VOICEVOX narration and separate subtitles
         working-directory: v45-toyoko
         run: |
           mkdir -p out/shot-review
           npm run preview:prologue
           test -s out/toyoko-prologue-review.mp4
           ffprobe -v error -select_streams v:0 -show_entries stream=width,height,nb_frames -of default=noprint_wrappers=1 out/toyoko-prologue-review.mp4
-      - name: Extract exactly one midpoint for every storyboard cut
+      - name: Extract exactly one voice-timed midpoint for every storyboard cut
         working-directory: v45-toyoko
         run: |
           node scripts/extract-shot-reviews.mjs
       - name: Save viewable review video and per-cut inspection frames
         uses: actions/upload-artifact@v4
         with:
-          name: v45-toyoko-prologue-18cuts-silent-review
+          name: v45-toyoko-prologue-18cuts-voiced-draft-review
           path: |
             v45-toyoko/out/toyoko-prologue-review.mp4
             v45-toyoko/out/shot-review/*.png
             v45-toyoko/out/shot-timestamps.tsv
+            v45-toyoko/src/script-data.json
+            v45-toyoko/src/sync-timing.json
             v45-toyoko/PROLOGUE_REVIEW.md
           if-no-files-found: error
           retention-days: 7
