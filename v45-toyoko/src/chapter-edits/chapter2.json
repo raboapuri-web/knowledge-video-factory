@@ -340,8 +340,26 @@
       "id": "C2-20",
       "fromParagraph": 24,
       "toParagraph": 24,
-      "visualRef": "C18-01",
-      "recommendation": "サンフランシスコの街と研究への場面移動"
+      "visualRef": "C2_US_STREET",
+      "recommendation": "サンフランシスコの街と研究への場面移動",
+      "customShot": {
+        "shotId": "V20-01",
+        "visual": "サンフランシスコの街と研究への場面移動",
+        "narrationCue": "サンフランシスコの街と研究への場面移動",
+        "camera": "wide_crane",
+        "background": "BG_US_STREET",
+        "characters": [
+          "ABROAD_YOUTH"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "walk"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
     },
     {
       "id": "C2-21",
@@ -641,8 +659,29 @@
       "id": "C2-37",
       "fromParagraph": 41,
       "toParagraph": 41,
-      "visualRef": "C23-01",
-      "recommendation": "仲間の残る街から一人で離れる少女"
+      "visualRef": "C2_LEAVE_GROUP",
+      "recommendation": "仲間の残る街から一人で離れる少女",
+      "customShot": {
+        "shotId": "V37-01",
+        "visual": "仲間の残る街から一人で離れる少女",
+        "narrationCue": "仲間の残る街から一人で離れる少女",
+        "camera": "wide_pullback",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_BOY",
+          "FRIEND_GIRL"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "walk",
+          "sit"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
     },
     {
       "id": "C2-38",
