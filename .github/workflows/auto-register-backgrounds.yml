@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'shared/asset-library/背景/**'
+      - 'shared/asset-library/catalog.json'
       - 'shared/asset-library/register-backgrounds.mjs'
       - '.github/workflows/auto-register-backgrounds.yml'
   workflow_dispatch:
