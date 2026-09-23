@@ -7,8 +7,7 @@ export type PasserbyJoint='leftShoulder'|'leftElbow'|'rightShoulder'|'rightElbow
 export type PASSERBYProps={
   x?:number;y?:number;scale?:number;action?:PasserbyAction;
   pose?:Partial<Record<PasserbyJoint,number>>;walkSpeed?:number;
-  /** Index of the sole phone photographer (other four do not flash). */
-  photographerIndex?:0|1|2|3|4;
+  /** All five hold their own phone and fire the flash simultaneously. */
   photoStartFrame?:number;flashEnabled?:boolean;
 };
 type Look={sex:'man'|'woman';hairStyle:'short'|'swept'|'bob'|'long';
@@ -82,7 +81,7 @@ const BlankFace=({person:p}:{person:Look})=><g>
     L40 -59 Q31 -70 20 -83 Q0 -66 -25 -75Z" fill={p.hair}/>}
 </g>;
 type Pose=Record<PasserbyJoint,number>;
-const getPose=(action:PasserbyAction,t:number,p:Look,photographer:boolean,
+const getPose=(action:PasserbyAction,t:number,p:Look,
   overrides:PASSERBYProps['pose'],speed:number):Pose=>{
   const v=Math.sin(t*Math.PI*2*speed+p.phase*Math.PI*2);
   const a:Pose={leftShoulder:6,leftElbow:-6,rightShoulder:-6,rightElbow:6,
@@ -92,9 +91,13 @@ const getPose=(action:PasserbyAction,t:number,p:Look,photographer:boolean,
     a.leftHip=-v*22;a.rightHip=v*22;
     a.leftKnee=4+Math.max(0,v)*31;a.rightKnee=4+Math.max(0,-v)*31;
     a.bodyLean=2;
-  }else if(action==='photoFlash'&&photographer){
-    a.rightShoulder=-146;a.rightElbow=119;
-    a.leftShoulder=146;a.leftElbow=-119;a.headTilt=2;
+  }else if(action==='photoFlash'){
+    // Left arm hangs straight down (both joints neutral).
+    a.leftShoulder=0;a.leftElbow=0;
+    // Right forearm folds BACK toward the head: bent V pose rather than
+    // the previous outward elbow. Phone remains attached to its right wrist.
+    a.rightShoulder=-75;a.rightElbow=-145;
+    a.headTilt=2;
   }
   for(const k of Object.keys(overrides??{}) as PasserbyJoint[]){
     const v=overrides?.[k];if(typeof v==='number'&&Number.isFinite(v))
@@ -102,12 +105,12 @@ const getPose=(action:PasserbyAction,t:number,p:Look,photographer:boolean,
   }
   return a;
 };
-const Person=({p,index,action,frame,t,photoStartFrame,photographerIndex,pose,
-  walkSpeed,flashEnabled}:{p:Look;index:number;action:PasserbyAction;frame:number;
-  t:number;photoStartFrame:number;photographerIndex:number;pose:PASSERBYProps['pose'];
+const Person=({p,action,frame,t,photoStartFrame,pose,
+  walkSpeed,flashEnabled}:{p:Look;action:PasserbyAction;frame:number;
+  t:number;photoStartFrame:number;pose:PASSERBYProps['pose'];
   walkSpeed:number;flashEnabled:boolean})=>{
-  const photographer=action==='photoFlash'&&index===photographerIndex;
-  const j=getPose(action,t,p,photographer,pose,walkSpeed);
+  const photographer=action==='photoFlash';
+  const j=getPose(action,t,p,pose,walkSpeed);
   const v=Math.sin(t*Math.PI*2*walkSpeed+p.phase*Math.PI*2);
   const bob=action==='walk'?-Math.abs(v)*3:Math.sin(t*1.2+p.phase)*.6;
   const elapsed=frame-photoStartFrame;
@@ -155,16 +158,15 @@ const Person=({p,index,action,frame,t,photoStartFrame,photographerIndex,pose,
   </g>;
 };
 export const PASSERBY=({x=0,y=0,scale=1,action='idle',pose={},
-  walkSpeed=1.05,photographerIndex=2,photoStartFrame=0,flashEnabled=true}:PASSERBYProps)=>{
+  walkSpeed=1.05,photoStartFrame=0,flashEnabled=true}:PASSERBYProps)=>{
   const frame=useCurrentFrame(),{fps}=useVideoConfig(),t=frame/fps;
   return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"
     aria-label="顔の特徴を描かない男女五人の通行人"
     style={{position:'absolute',inset:0,width:'100%',height:'100%',overflow:'visible',pointerEvents:'none'}}>
     <g transform={'translate('+x+' '+y+') scale('+scale+')'}>
-      {PEOPLE.map((p,index)=><Person key={index} p={p} index={index}
+      {PEOPLE.map((p,index)=><Person key={index} p={p}
         action={action} frame={frame} t={t} photoStartFrame={photoStartFrame}
-        photographerIndex={photographerIndex} pose={pose}
-        walkSpeed={walkSpeed} flashEnabled={flashEnabled}/>)}
+        pose={pose} walkSpeed={walkSpeed} flashEnabled={flashEnabled}/>)}
     </g>
   </svg>;
 };

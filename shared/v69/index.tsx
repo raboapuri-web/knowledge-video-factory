@@ -149,7 +149,7 @@ const PASSERBYTownPreview=()=>{
   const frame=useCurrentFrame();
   const action:PasserbyAction=frame<90?'idle':frame<180?'walk':'photoFlash';
   return <PASSERBYScene backgroundFile='BG_town.png'
-    crowd={{action,photographerIndex:2,photoStartFrame:180}}/>;
+    crowd={{action,photoStartFrame:180}}/>;
 };
 const Root=()=>{
   const duration=Math.max(30,Math.ceil(Number(sync.durationSeconds||1700)*30));

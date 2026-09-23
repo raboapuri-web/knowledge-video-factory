@@ -43,7 +43,11 @@ for(const character of data.characters){
     assert.equal(character.facialFeatures,'none');
     assert.equal((code.match(/outfit:'(?:jacket|hoodie|cardigan|shirt)',x:/g)||[]).length,5);
     assert(code.includes("elapsed%45>=21&&elapsed%45<=23"),'Flash must be momentary, not always on');
-    assert(code.includes('phone={photographer}'),'Device must be bound to the photo action');
+    assert(code.includes("const photographer=action==='photoFlash'"),'Every person must take the photo');
+    assert(!code.includes('photographerIndex'),'The outdated single photographer selector must not remain');
+    assert(code.includes('a.leftShoulder=0;a.leftElbow=0'),'Free arm must hang straight down');
+    assert(code.includes('a.rightShoulder=-75;a.rightElbow=-145'),'Phone arm must reverse bend in a V');
+    assert(code.includes('phone={photographer} flash={flash}'),'Every phone must flash from its lens');
     assert(code.includes('<Hinge x={0} y={76} angle={elbow}>'),'Phone must follow elbow');
   }else{
     assert.equal(character.dimensions.width,360);

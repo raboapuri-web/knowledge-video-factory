@@ -168,12 +168,12 @@ export const Office=()=>
 
 ## PASSERBY：男女5人の匿名通行人（React SVG）
 
-`PASSERBY.tsx` / 登録ID `character-passerby-crowd`。男女混合5人（男性3人・女性2人）の顔なしシルエット。全員の**目・口・鼻を描画しません**。服装・髪型・色を変えた5体の関節付きSVGで、`idle`（正面）・`walk`（歩く）・`photoFlash`（スマートフォンで撮影し、瞬間フラッシュ）の3動作に対応します。撮影者は `photographerIndex`（0〜4、既定は中央の2）で指定し、**撮影するのは1人だけ**。スマホはその人の右前腕・手首の可動階層内に描いてあり、腕とともに動きます。
+`PASSERBY.tsx` / 登録ID `character-passerby-crowd`。男女混合5人（男性3人・女性2人）の顔なしシルエット。全員の**目・口・鼻を描画しません**。服装・髪型・色を変えた5体の関節付きSVGで、`idle`（正面）・`walk`（歩く）・`photoFlash`（スマートフォンで撮影し、瞬間フラッシュ）の3動作に対応します。撮影時は**5人全員**が左腕をまっすぐ下ろし、右腕を内向きのV字に曲げて各自のスマホを持ち、同時に瞬間フラッシュを発光します。スマホはそれぞれの右前腕・手首の可動階層内にあり、腕とともに動きます。
 
 ```tsx
 import {PASSERBYScene} from '../../shared/asset-library/人物テンプレート/passerby-scene';
 export const City=()=>
-  <PASSERBYScene backgroundFile="BG_town.png" crowd={{action:'photoFlash',photographerIndex:2,photoStartFrame:0}}/>;
+  <PASSERBYScene backgroundFile="BG_town.png" crowd={{action:'photoFlash',photoStartFrame:0}}/>;
 ```
 
-背景を使う前に `node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_town.png` を実行してください。プレビューは独立した `PASSERBYTownPreview`（9秒、正面→歩行→撮影）。撮影パートはフレーム202と247付近で短時間発光します。撮影アクション開始フレームを `photoStartFrame` に渡してください。
+背景を使う前に `node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_town.png` を実行してください。プレビューは独立した `PASSERBYTownPreview`（9秒、正面→歩行→全員で同時撮影）。撮影パートはフレーム202と247付近で5台のスマホから短時間発光します。撮影アクション開始フレームを `photoStartFrame` に渡してください。
