@@ -6,7 +6,9 @@
     "stage": "node scripts/stage-assets.mjs",
     "check:plan": "node scripts/check-prologue.mjs",
     "check": "tsc --noEmit",
-    "preview:prologue": "remotion render src/index.tsx ToyokoPrologueReview out/toyoko-prologue-review.mp4 --scale=0.5 --codec=h264 --crf=18 --concurrency=2"
+    "preview:prologue": "remotion render src/index.tsx ToyokoPrologueVoicedReview out/toyoko-prologue-review.mp4 --scale=0.5 --codec=h264 --crf=18 --concurrency=2",
+    "preview:silent": "remotion render src/index.tsx ToyokoPrologueReview out/toyoko-prologue-silent.mp4 --scale=0.5 --codec=h264 --crf=18 --concurrency=2",
+    "voice:prologue": "node scripts/generate-voicevox.mjs"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
