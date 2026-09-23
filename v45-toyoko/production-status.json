@@ -4,15 +4,19 @@
   "workflow": "chapter_by_chapter_with_review_then_single_final_timeline",
   "updatedAt": "2026-09-23",
   "approvedNarration": {
-    "availableInRepository": false,
-    "source": "Original approved full narration not retrievable; a new 18-shot prologue VOICEVOX review draft is recorded separately and explicitly NOT approved.",
+    "availableInRepository": true,
+    "source": "User-uploaded 631-line six-chapter original narration, saved verbatim at src/approved_original_narration.md",
     "scriptDataPath": "src/script-data.json",
-    "provisionalDraftPresent": true,
-    "provisionalDraftBeatCount": 18,
+    "sourceFile": "src/approved_original_narration.md",
+    "originalApprovedScriptRecovered": true,
+    "originalPrologueParagraphs": 26,
+    "prologueOriginalBoundShots": 18,
+    "integrityCheck": "scripts/check-original-script.mjs",
     "voicevoxGeneratorImplemented": true,
     "subtitleCompositionImplemented": true,
     "generatedAudioVerified": false,
-    "subtitleFrameReviewVerified": false
+    "subtitleFrameReviewVerified": false,
+    "remainingChapterNarrationBoundToShots": false
   },
   "chapters": [
     {
@@ -30,26 +34,25 @@
       "visualPreviewWorkflow": ".github/workflows/v45-toyoko-prologue-preview.yml",
       "renderVerification": "silent_3600frame_mp4_rendered_in_failed_actions_runs_but_not_published",
       "userVisualApproval": false,
-      "finalAudioSync": "implemented_but_requires_successful_voicevox_run_and_original_script",
+      "finalAudioSync": "original_narration_bound_to_18_shots_measured_render_pending",
       "workflowFailure": {
-        "runs": [
+        "historicalRuns": [
           35824936806,
-          35825057228
+          35825057228,
+          35828015748,
+          35828972812
         ],
-        "failedStep": "Extract exactly one midpoint for every storyboard cut",
-        "observedError": "ffmpeg Invalid duration for option ss: .500",
-        "videoRenderStep": "succeeded_3600_frames_960x540_51.3MB",
-        "artifactUpload": "skipped_due_to_failed_extraction",
-        "fixCommit": "a1b00a520aeb36692ebbafd86698a413a76f6be2",
-        "fixStatus": "old silent review FFmpeg failure fixed in code; now run new voiced review workflow"
+        "historicalFailure": "Original silent render succeeded but screenshot extraction failed; interim voiced config without timed audio also failed.",
+        "currentFix": "Original approved script bound; workflow generates VOICEVOX timing before voiced composition, and extracts review shots using numeric measured times.",
+        "currentRunConclusion": "not_verified"
       },
       "audioAndSubtitles": {
         "implementation": "committed",
-        "speechSource": "new provisional reconstruction from scene plan; not recovered original script",
+        "speechSource": "user-provided original verbatim 26-paragraph prologue (not previous provisional draft)",
         "beats": 18,
         "shotBoundaryTiming": "VOICEVOX audio measured on run",
-        "captionTiming": "per shot measured, intra-shot chunk timing approximate",
-        "renderStatus": "CI awaiting verification",
+        "captionTiming": "per shot measured; intra-shot subtitle chunk positions proportional to characters until visual verification",
+        "renderStatus": "await_successful_actions_run",
         "reviewStatus": "not_yet_approved"
       }
     },
@@ -57,31 +60,41 @@
       "id": "chapter1",
       "plannedScenes": 12,
       "plannedShots": 32,
-      "status": "await_prologue_review"
+      "status": "await_prologue_review_and_own_shot_binding",
+      "originalNarrationSource": "src/approved_original_narration.md",
+      "originalTextAvailable": true
     },
     {
       "id": "chapter2",
       "plannedScenes": 12,
       "plannedShots": 30,
-      "status": "await_prologue_review"
+      "status": "await_prologue_review_and_own_shot_binding",
+      "originalNarrationSource": "src/approved_original_narration.md",
+      "originalTextAvailable": true
     },
     {
       "id": "chapter3",
       "plannedScenes": 12,
       "plannedShots": 32,
-      "status": "await_prologue_review"
+      "status": "await_prologue_review_and_own_shot_binding",
+      "originalNarrationSource": "src/approved_original_narration.md",
+      "originalTextAvailable": true
     },
     {
       "id": "chapter4",
       "plannedScenes": 12,
       "plannedShots": 32,
-      "status": "await_prologue_review"
+      "status": "await_prologue_review_and_own_shot_binding",
+      "originalNarrationSource": "src/approved_original_narration.md",
+      "originalTextAvailable": true
     },
     {
       "id": "epilogue",
       "plannedScenes": 6,
       "plannedShots": 16,
-      "status": "await_prologue_review"
+      "status": "await_prologue_review_and_own_shot_binding",
+      "originalNarrationSource": "src/approved_original_narration.md",
+      "originalTextAvailable": true
     }
   ],
   "finalRender": {
