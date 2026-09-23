@@ -85,7 +85,7 @@ const HoodieGirlRoomPreview=()=>{
   const f=useCurrentFrame();
   const action:HoodieGirlAction=f<60?'idle':f<120?'walk':f<180?'wave':'point';
   return <HoodieGirlBackgroundScene backgroundFile='BG_oneroom.png'
-    girl={{x:800,y:190,scale:1,action,talking:action==='point'}}/>;
+    girl={{x:1100,y:500,scale:.84,action,talking:action==='point'}}/>;
 };
 
 /** Zoomed visual QA of jaw, neck, hood collar and head-tilt join. */
