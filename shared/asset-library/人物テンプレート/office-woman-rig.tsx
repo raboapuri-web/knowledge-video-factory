@@ -130,9 +130,6 @@ export const OfficeWomanRig=({
           <Leg x={210} y={360} hip={j.rightHip} knee={j.rightKnee} color={pantsColor} shoe={shoeColor}/>
           <Arm x={122} y={205} shoulder={j.leftShoulder} elbow={j.leftElbow}
             suit={suitColor} skin={skinColor}/>
-          {/* Short neck, behind the blouse and blazer. Head is lowered below
-              to leave only a natural-sized visible neck above the collar. */}
-          <rect x={168} y={160} width={24} height={42} rx={9} fill={skinColor}/>
           {/* Fitted contemporary blazer, blouse and modest waist shaping.
               This is independent artwork, not a tint of the male suit. */}
           <path d="M145 179 Q180 165 215 179 Q239 193 245 230
@@ -166,15 +163,20 @@ export const OfficeWomanRig=({
             stroke="#303a4e" strokeWidth={4}/>
           <Arm x={238} y={205} shoulder={j.rightShoulder} elbow={j.rightElbow}
             suit={suitColor} skin={skinColor} briefcase={showBriefcase&&action!=='wave'&&action!=='point'}/>
-          {/* Lower head 13 px so jaw overlaps the short neck at the shirt collar.
-              The neck stays attached to torso while the head can rotate. */}
+          {/* Face and neck share the head pivot; back hair is behind the neck,
+              with the jaw drawn over its top. This prevents a dark hair-only gap. */}
           <Hinge x={180} y={198} angle={j.headTilt}>
             {/* Hair back passes to shoulder height, beneath face and cheeks. */}
             <path d="M-49 -102 Q-54 -150 -19 -158 Q5 -170 31 -156
                      Q60 -140 53 -96 L56 6 Q44 28 31 29
                      L18 10 Q0 17 -18 10 L-31 29 Q-48 26 -56 6Z"
               fill={hairColor} stroke="#32282e" strokeWidth={2}/>
-            {/* Neck is stationary behind the shirt; head tilts without a long exposed throat. */}
+            {/* The skin neck is drawn AFTER the back hair, so it stays visible
+                between chin and blouse. Its upper end sits behind the jaw;
+                its lower end meets the white collar. It follows head tilt. */}
+            <path d="M-11 -44 Q0 -48 11 -44 L13 0
+                     Q0 6 -13 0Z" fill={skinColor}
+              stroke="#ba8f80" strokeWidth={1.2}/>
             <ellipse cx={-45} cy={-86} rx={8} ry={12} fill={skinColor}/>
             <ellipse cx={45} cy={-86} rx={8} ry={12} fill={skinColor}/>
             {/* Face: softer oval than the man's but still an adult. */}
