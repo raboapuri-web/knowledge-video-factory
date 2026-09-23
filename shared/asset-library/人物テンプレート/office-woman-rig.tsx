@@ -130,6 +130,9 @@ export const OfficeWomanRig=({
           <Leg x={210} y={360} hip={j.rightHip} knee={j.rightKnee} color={pantsColor} shoe={shoeColor}/>
           <Arm x={122} y={205} shoulder={j.leftShoulder} elbow={j.leftElbow}
             suit={suitColor} skin={skinColor}/>
+          {/* Short neck, behind the blouse and blazer. Head is lowered below
+              to leave only a natural-sized visible neck above the collar. */}
+          <rect x={168} y={151} width={24} height={41} rx={9} fill={skinColor}/>
           {/* Fitted contemporary blazer, blouse and modest waist shaping.
               This is independent artwork, not a tint of the male suit. */}
           <path d="M145 179 Q180 165 215 179 Q239 193 245 230
@@ -142,12 +145,11 @@ export const OfficeWomanRig=({
           <path d="M159 182 L179 209 L169 225 L150 193Z
                    M201 182 L181 209 L191 225 L210 193Z"
             fill="#fffaf7" stroke="#c0b6bb" strokeWidth={2}/>
-          {/* Small blouse knot instead of the original suit necktie. */}
-          <path d="M179 211 Q169 200 164 209 Q163 219 179 222
-                   Q195 219 196 209 Q190 200 181 211Z"
-            fill="#b986a0" stroke="#8c637e" strokeWidth={2}/>
-          <path d="M179 222 L169 252 L181 247 L192 252 L183 222Z"
-            fill="#ad7894"/>
+          {/* Plain white button-front blouse; no bow, ribbon, heart or necktie. */}
+          <path d="M180 208 V298" stroke="#dad4d4" strokeWidth={2} fill="none"/>
+          <circle cx={180} cy={230} r={2.3} fill="#c6bfc0"/>
+          <circle cx={180} cy={260} r={2.3} fill="#c6bfc0"/>
+          <circle cx={180} cy={289} r={2.3} fill="#c6bfc0"/>
           <path d="M146 179 Q152 208 174 276 L144 240 L156 223 L140 211Z"
             fill="#64728f" stroke="#36445c" strokeWidth={2}/>
           <path d="M214 179 Q208 208 186 276 L216 240 L204 223 L220 211Z"
@@ -159,15 +161,15 @@ export const OfficeWomanRig=({
             stroke="#303a4e" strokeWidth={4}/>
           <Arm x={238} y={205} shoulder={j.rightShoulder} elbow={j.rightElbow}
             suit={suitColor} skin={skinColor} briefcase={showBriefcase&&action!=='wave'&&action!=='point'}/>
-          {/* Professional medium-length bob, soft rounded face and an
-              overlapping neck. Hair, ears and facial features rotate together. */}
-          <Hinge x={180} y={169} angle={j.headTilt}>
+          {/* Medium-length bob and adult face. Head hinge moved down 16px;
+              the short neck is behind the shirt, avoiding a long visible throat. */}
+          <Hinge x={180} y={185} angle={j.headTilt}>
             {/* Hair back passes to shoulder height, beneath face and cheeks. */}
             <path d="M-49 -102 Q-54 -150 -19 -158 Q5 -170 31 -156
                      Q60 -140 53 -96 L56 6 Q44 28 31 29
                      L18 10 Q0 17 -18 10 L-31 29 Q-48 26 -56 6Z"
               fill={hairColor} stroke="#32282e" strokeWidth={2}/>
-            <rect x={-13} y={-37} width={26} height={57} rx={10} fill={skinColor}/>
+            {/* Neck is stationary behind the shirt; head tilts without a long exposed throat. */}
             <ellipse cx={-45} cy={-86} rx={8} ry={12} fill={skinColor}/>
             <ellipse cx={45} cy={-86} rx={8} ry={12} fill={skinColor}/>
             {/* Face: softer oval than the man's but still an adult. */}
