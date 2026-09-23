@@ -1,0 +1,956 @@
+{
+  "schemaVersion": "2.1",
+  "project": "v45-toyoko",
+  "sourceOfTruth": "src/approved_original_narration.md",
+  "legacyStoryboard": "src/toyoko_scene_plan.json",
+  "sourceParagraphCounts": [
+    26,
+    50,
+    58,
+    66,
+    74,
+    25
+  ],
+  "chapterOrder": [
+    "prologue",
+    "chapter1",
+    "chapter2",
+    "chapter3",
+    "chapter4",
+    "epilogue"
+  ],
+  "approvalStatus": "topic-visual-proposal-generated-from-user-approved-25-block-design",
+  "editingPolicy": {
+    "topicSceneMatch": "The setting must match the topic of the current source paragraphs; no sentence-by-sentence acting required",
+    "narration": "unchanged original source, once in original order, no cuts",
+    "variation": "alternate setting, setting+animated explanatory objects, standalone diagram screens every 6–8s",
+    "numbers": "only show empirical counts in source narrative, avoid fabricated graphs",
+    "legacyShots": "reusable visual assets only, no rigid 160-shot restriction"
+  },
+  "blocks": [
+    {
+      "blockId": "P-1",
+      "chapterId": "prologue",
+      "topic": "深夜の歌舞伎町とトー横",
+      "primaryCategory": "town",
+      "sourceParagraphRange": [
+        1,
+        5
+      ],
+      "sourceFirstParagraph": "深夜11時を過ぎた新宿歌舞伎町では、巨大な映画館のスクリーンからこぼれる光が、行き交う人々の顔を青白く照らしている。",
+      "sourceLastParagraph": "そして、この街へ集まる若者たちは、いつしか「トーヨコキッズ」と呼ばれるようになった。",
+      "visualSegments": [
+        {
+          "fromParagraph": 1,
+          "toParagraph": 2,
+          "kind": "scene",
+          "backgroundId": "BG_TOWN_NIGHT_WIDE",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 3,
+          "toParagraph": 3,
+          "kind": "scene",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 4,
+          "toParagraph": 5,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": "network"
+        }
+      ]
+    },
+    {
+      "blockId": "P-2",
+      "chapterId": "prologue",
+      "topic": "少女が街に居場所を見つけるまで",
+      "primaryCategory": "town",
+      "sourceParagraphRange": [
+        6,
+        12
+      ],
+      "sourceFirstParagraph": "ここで、家庭に居場所を失い、この街へやって来た16歳の少女の一日を想像してみよう。",
+      "sourceLastParagraph": "眠る場所が見つからない夜には、朝まで起きている友人の隣で過ごすこともある。",
+      "visualSegments": [
+        {
+          "fromParagraph": 6,
+          "toParagraph": 7,
+          "kind": "scene",
+          "backgroundId": "BG_GIRL_HOME",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 8,
+          "toParagraph": 9,
+          "kind": "scene",
+          "backgroundId": "BG_TOWN_NIGHT_WIDE",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 10,
+          "toParagraph": 12,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": "network"
+        }
+      ]
+    },
+    {
+      "blockId": "P-3",
+      "chapterId": "prologue",
+      "topic": "紹介された安全な施設",
+      "primaryCategory": "facility",
+      "sourceParagraphRange": [
+        13,
+        16
+      ],
+      "sourceFirstParagraph": "そんな少女のもとに、ある日、若者を支援する大人が現れる。",
+      "sourceLastParagraph": "路上で夜を明かし、見知らぬ大人から声をかけられ続ける生活に比べれば、はるかに安全な場所である。",
+      "visualSegments": [
+        {
+          "fromParagraph": 13,
+          "toParagraph": 14,
+          "kind": "scene",
+          "backgroundId": "BG_SHELTER_ENTRANCE",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 15,
+          "toParagraph": 15,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_SHELTER_BEDROOM",
+          "diagramId": "safe_icons"
+        },
+        {
+          "fromParagraph": 16,
+          "toParagraph": 16,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "safe_vs_belonging"
+        }
+      ]
+    },
+    {
+      "blockId": "P-4",
+      "chapterId": "prologue",
+      "topic": "街への帰還と中心の問い",
+      "primaryCategory": "town",
+      "sourceParagraphRange": [
+        17,
+        26
+      ],
+      "sourceFirstParagraph": "ところが、施設で一晩を過ごした少女は、翌日になると再び歌舞伎町へ戻ってしまう。",
+      "sourceLastParagraph": "今夜は、歌舞伎町に集まる若者たちの行動を通して、人間が安全よりも優先してしまう、ある奇妙な欲求について考えていこう。",
+      "visualSegments": [
+        {
+          "fromParagraph": 17,
+          "toParagraph": 17,
+          "kind": "scene",
+          "backgroundId": "BG_SHELTER_ENTRANCE",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 18,
+          "toParagraph": 21,
+          "kind": "scene",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 22,
+          "toParagraph": 26,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "safe_vs_belonging"
+        }
+      ]
+    },
+    {
+      "blockId": "C1-1",
+      "chapterId": "chapter1",
+      "topic": "反抗だけでは説明できない",
+      "primaryCategory": "facility",
+      "sourceParagraphRange": [
+        1,
+        7
+      ],
+      "sourceFirstParagraph": "少女が保護施設から歌舞伎町へ戻ってしまった理由について、私たちは最初に、ある説明を思い浮かべるかもしれない。",
+      "sourceLastParagraph": "それにもかかわらず、彼らは施設を利用しようとしなかったり、一度利用しても、再び街へ戻ってしまったりする。",
+      "visualSegments": [
+        {
+          "fromParagraph": 1,
+          "toParagraph": 2,
+          "kind": "scene",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 3,
+          "toParagraph": 4,
+          "kind": "scene",
+          "backgroundId": "BG_SHELTER_ENTRANCE",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 5,
+          "toParagraph": 7,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "safe_vs_belonging"
+        }
+      ]
+    },
+    {
+      "blockId": "C1-2",
+      "chapterId": "chapter1",
+      "topic": "バンクーバーの38人と施設利用",
+      "primaryCategory": "research",
+      "sourceParagraphRange": [
+        8,
+        14
+      ],
+      "sourceFirstParagraph": "この一見矛盾した行動を理解するために、舞台を日本から遠く離れた、カナダのバンクーバーへ移してみよう。",
+      "sourceLastParagraph": "ところが、研究者たちが若者の話を詳しく聞いていくと、屋内で眠れるという利益を理解しながらも、施設の利用を避けている者たちがいた。",
+      "visualSegments": [
+        {
+          "fromParagraph": 8,
+          "toParagraph": 8,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "japan_canada"
+        },
+        {
+          "fromParagraph": 9,
+          "toParagraph": 11,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "survey38"
+        },
+        {
+          "fromParagraph": 12,
+          "toParagraph": 13,
+          "kind": "scene",
+          "backgroundId": "BG_VANCOUVER_RAIN",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 14,
+          "toParagraph": 14,
+          "kind": "scene",
+          "backgroundId": "BG_ABROAD_SHELTER",
+          "diagramId": null
+        }
+      ]
+    },
+    {
+      "blockId": "C1-3",
+      "chapterId": "chapter1",
+      "topic": "施設の規則、尊厳と利用障壁",
+      "primaryCategory": "facility",
+      "sourceParagraphRange": [
+        15,
+        35
+      ],
+      "sourceFirstParagraph": "彼らが問題にしていたのは、施設での生活を支配する規則だった。",
+      "sourceLastParagraph": "一方で、路上生活から抜け出したいという希望や、信頼できる人からの支えは、施設の利用を後押ししていた。",
+      "visualSegments": [
+        {
+          "fromParagraph": 15,
+          "toParagraph": 18,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_ABROAD_SHELTER",
+          "diagramId": "rule_icons"
+        },
+        {
+          "fromParagraph": 19,
+          "toParagraph": 21,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "choice_path"
+        },
+        {
+          "fromParagraph": 22,
+          "toParagraph": 26,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_SHELTER_DINING",
+          "diagramId": "rule_icons"
+        },
+        {
+          "fromParagraph": 27,
+          "toParagraph": 32,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_SHELTER_COUNSEL",
+          "diagramId": "trust_gap"
+        },
+        {
+          "fromParagraph": 33,
+          "toParagraph": 35,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "survey49"
+        }
+      ]
+    },
+    {
+      "blockId": "C1-4",
+      "chapterId": "chapter1",
+      "topic": "自分で選ぶ感覚と友人という次の論点",
+      "primaryCategory": "facility",
+      "sourceParagraphRange": [
+        36,
+        50
+      ],
+      "sourceFirstParagraph": "ここで、少女が保護施設から逃げ出した理由が、少し違って見えてくる。",
+      "sourceLastParagraph": "そして、その人間関係こそが、彼女を危険な街に留め続ける、もう一つの理由になっていたのである。",
+      "visualSegments": [
+        {
+          "fromParagraph": 36,
+          "toParagraph": 41,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": "autonomy"
+        },
+        {
+          "fromParagraph": 42,
+          "toParagraph": 43,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "safe_vs_belonging"
+        },
+        {
+          "fromParagraph": 44,
+          "toParagraph": 48,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_SHELTER_ENTRANCE",
+          "diagramId": "choice_path"
+        },
+        {
+          "fromParagraph": 49,
+          "toParagraph": 50,
+          "kind": "scene",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": null
+        }
+      ]
+    },
+    {
+      "blockId": "C2-1",
+      "chapterId": "chapter2",
+      "topic": "仲間に迎え入れられる夜",
+      "primaryCategory": "town",
+      "sourceParagraphRange": [
+        1,
+        8
+      ],
+      "sourceFirstParagraph": "話を再び、歌舞伎町の映画館前へ戻そう。",
+      "sourceLastParagraph": "同じ場所で夜を過ごしているというだけで、彼らの間には、ある種の連帯感が生まれる。",
+      "visualSegments": [
+        {
+          "fromParagraph": 1,
+          "toParagraph": 3,
+          "kind": "scene",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 4,
+          "toParagraph": 8,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": "network"
+        }
+      ]
+    },
+    {
+      "blockId": "C2-2",
+      "chapterId": "chapter2",
+      "topic": "学校と家庭にない居場所",
+      "primaryCategory": "town",
+      "sourceParagraphRange": [
+        9,
+        17
+      ],
+      "sourceFirstParagraph": "学校へ行けば、周囲の生徒たちは、当然のように家へ帰っていく。",
+      "sourceLastParagraph": "そして、この関係は、単なる仲のよい友人という言葉では説明しきれない。",
+      "visualSegments": [
+        {
+          "fromParagraph": 9,
+          "toParagraph": 10,
+          "kind": "scene",
+          "backgroundId": "BG_LIBRARY_CLASSROOM",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 11,
+          "toParagraph": 14,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": "belonging"
+        },
+        {
+          "fromParagraph": 15,
+          "toParagraph": 17,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "safe_vs_belonging"
+        }
+      ]
+    },
+    {
+      "blockId": "C2-3",
+      "chapterId": "chapter2",
+      "topic": "助け合いと社会的ネットワークの研究",
+      "primaryCategory": "research",
+      "sourceParagraphRange": [
+        18,
+        40
+      ],
+      "sourceFirstParagraph": "彼女が家に帰れなくなったとき、朝まで一緒に過ごしてくれた友人。",
+      "sourceLastParagraph": "同じ建物であっても、そこに自分の知っている人間がいるかどうかによって、施設の見え方は大きく変わるのである。",
+      "visualSegments": [
+        {
+          "fromParagraph": 18,
+          "toParagraph": 21,
+          "kind": "scene",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 22,
+          "toParagraph": 23,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "network"
+        },
+        {
+          "fromParagraph": 24,
+          "toParagraph": 28,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "survey138"
+        },
+        {
+          "fromParagraph": 29,
+          "toParagraph": 32,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "odds59"
+        },
+        {
+          "fromParagraph": 33,
+          "toParagraph": 36,
+          "kind": "scene",
+          "backgroundId": "BG_SHELTER_ENTRANCE",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 37,
+          "toParagraph": 40,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_SHELTER_ENTRANCE",
+          "diagramId": "network"
+        }
+      ]
+    },
+    {
+      "blockId": "C2-4",
+      "chapterId": "chapter2",
+      "topic": "仲間から離れる代償と危険な紹介",
+      "primaryCategory": "town",
+      "sourceParagraphRange": [
+        41,
+        58
+      ],
+      "sourceFirstParagraph": "逆に、周囲の友人たちが全員歌舞伎町に残っている状況では、施設へ移ることが、集団から離れるという決断になってしまう。",
+      "sourceLastParagraph": "その答えは、人間が他人を信頼するとき、何を手掛かりにしているのかという問題と、深く関係している。",
+      "visualSegments": [
+        {
+          "fromParagraph": 41,
+          "toParagraph": 43,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "choice_path"
+        },
+        {
+          "fromParagraph": 44,
+          "toParagraph": 48,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_KABUKICHO_ALLEY",
+          "diagramId": "network"
+        },
+        {
+          "fromParagraph": 49,
+          "toParagraph": 54,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "network_risk"
+        },
+        {
+          "fromParagraph": 55,
+          "toParagraph": 58,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": "trust_gap"
+        }
+      ]
+    },
+    {
+      "blockId": "C3-1",
+      "chapterId": "chapter3",
+      "topic": "支援者への質問に答える重さ",
+      "primaryCategory": "facility",
+      "sourceParagraphRange": [
+        1,
+        9
+      ],
+      "sourceFirstParagraph": "ここで、歌舞伎町に戻ってきた少女が、二人の大人と出会う場面を考えてみよう。",
+      "sourceLastParagraph": "そして、まだ自分のことをよく知らない大人から、これからの生活を変えるように求められる。",
+      "visualSegments": [
+        {
+          "fromParagraph": 1,
+          "toParagraph": 5,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_SHELTER_COUNSEL",
+          "diagramId": "trust_gap"
+        },
+        {
+          "fromParagraph": 6,
+          "toParagraph": 9,
+          "kind": "scene",
+          "backgroundId": "BG_SHELTER_COUNSEL",
+          "diagramId": null
+        }
+      ]
+    },
+    {
+      "blockId": "C3-2",
+      "chapterId": "chapter3",
+      "topic": "受容の言葉と悪質な大人との対比",
+      "primaryCategory": "town",
+      "sourceParagraphRange": [
+        10,
+        25
+      ],
+      "sourceFirstParagraph": "もう一人は、歌舞伎町で知り合った、年上の男性である。",
+      "sourceLastParagraph": "なぜなら、彼女がその大人との関係を続ける理由は、相手を信頼しているからという説明だけでは、捉えきれないからである。",
+      "visualSegments": [
+        {
+          "fromParagraph": 10,
+          "toParagraph": 14,
+          "kind": "scene",
+          "backgroundId": "BG_KABUKICHO_ALLEY",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 15,
+          "toParagraph": 18,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "adult_compare"
+        },
+        {
+          "fromParagraph": 19,
+          "toParagraph": 23,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_SHELTER_COUNSEL",
+          "diagramId": "adult_compare"
+        },
+        {
+          "fromParagraph": 24,
+          "toParagraph": 25,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "trust_gap"
+        }
+      ]
+    },
+    {
+      "blockId": "C3-3",
+      "chapterId": "chapter3",
+      "topic": "路上経済と生活資源への依存",
+      "primaryCategory": "research",
+      "sourceParagraphRange": [
+        26,
+        44
+      ],
+      "sourceFirstParagraph": "この問題について、2009年に発表されたアメリカの研究を見てみよう。",
+      "sourceLastParagraph": "本人の意思で選んだように見える行動の背後には、生き延びるための選択肢を、すでに奪われているという事情が存在していたのである。",
+      "visualSegments": [
+        {
+          "fromParagraph": 26,
+          "toParagraph": 32,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "survey80"
+        },
+        {
+          "fromParagraph": 33,
+          "toParagraph": 40,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_LIBRARY_ROOM",
+          "diagramId": "dependency"
+        },
+        {
+          "fromParagraph": 41,
+          "toParagraph": 44,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "resource_trap"
+        }
+      ]
+    },
+    {
+      "blockId": "C3-4",
+      "chapterId": "chapter3",
+      "topic": "断りたくても離れられない状況",
+      "primaryCategory": "town",
+      "sourceParagraphRange": [
+        45,
+        54
+      ],
+      "sourceFirstParagraph": "この構造を、歌舞伎町の少女へ重ねてみよう。",
+      "sourceLastParagraph": "自分を助けてくれる相手を失いたくないという気持ちと、その相手から離れたいという気持ちが、同じ人間のなかに存在するようになるのである。",
+      "visualSegments": [
+        {
+          "fromParagraph": 45,
+          "toParagraph": 49,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_LIBRARY_ROOM",
+          "diagramId": "dependency"
+        },
+        {
+          "fromParagraph": 50,
+          "toParagraph": 54,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "resource_trap"
+        }
+      ]
+    },
+    {
+      "blockId": "C3-5",
+      "chapterId": "chapter3",
+      "topic": "危険な関係と安全な依存先の不足",
+      "primaryCategory": "concept",
+      "sourceParagraphRange": [
+        55,
+        66
+      ],
+      "sourceFirstParagraph": "ここに、歌舞伎町の若者たちが直面している、もう一つの矛盾がある。",
+      "sourceLastParagraph": "最後に、少女を受け入れる側の、社会制度について考えてみよう。",
+      "visualSegments": [
+        {
+          "fromParagraph": 55,
+          "toParagraph": 59,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "adult_compare"
+        },
+        {
+          "fromParagraph": 60,
+          "toParagraph": 64,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "resource_trap"
+        },
+        {
+          "fromParagraph": 65,
+          "toParagraph": 66,
+          "kind": "scene",
+          "backgroundId": "BG_SHELTER_ENTRANCE",
+          "diagramId": null
+        }
+      ]
+    },
+    {
+      "blockId": "C4-1",
+      "chapterId": "chapter4",
+      "topic": "歌舞伎町の若者相談窓口",
+      "primaryCategory": "youth_center",
+      "sourceParagraphRange": [
+        1,
+        12
+      ],
+      "sourceFirstParagraph": "2024年5月、東京都は歌舞伎町に、若者向けの総合相談窓口「きみまも＠歌舞伎町」を開設した。",
+      "sourceLastParagraph": "施設の目的は、そのような関係を通じて、若者たちを適切な支援へつなげていくことにある。",
+      "visualSegments": [
+        {
+          "fromParagraph": 1,
+          "toParagraph": 4,
+          "kind": "scene",
+          "backgroundId": "BG_YOUTH_CENTER_ENTRANCE",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 5,
+          "toParagraph": 8,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_YOUTH_CENTER",
+          "diagramId": "safe_icons"
+        },
+        {
+          "fromParagraph": 9,
+          "toParagraph": 12,
+          "kind": "scene",
+          "backgroundId": "BG_YOUTH_CENTER",
+          "diagramId": null
+        }
+      ]
+    },
+    {
+      "blockId": "C4-2",
+      "chapterId": "chapter4",
+      "topic": "規則と開所時間、夜に戻る少女",
+      "primaryCategory": "youth_center",
+      "sourceParagraphRange": [
+        13,
+        28
+      ],
+      "sourceFirstParagraph": "しかし、若者を守るための施設には、ある避けがたい問題が存在する。",
+      "sourceLastParagraph": "そして、彼女は再び、夜の街へ戻っていく。",
+      "visualSegments": [
+        {
+          "fromParagraph": 13,
+          "toParagraph": 17,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_YOUTH_CENTER",
+          "diagramId": "rule_icons"
+        },
+        {
+          "fromParagraph": 18,
+          "toParagraph": 18,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "clock21"
+        },
+        {
+          "fromParagraph": 19,
+          "toParagraph": 22,
+          "kind": "scene",
+          "backgroundId": "BG_YOUTH_CENTER",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 23,
+          "toParagraph": 25,
+          "kind": "scene",
+          "backgroundId": "BG_YOUTH_CENTER_ENTRANCE",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 26,
+          "toParagraph": 28,
+          "kind": "scene",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": null
+        }
+      ]
+    },
+    {
+      "blockId": "C4-3",
+      "chapterId": "chapter4",
+      "topic": "保護制度の両義性とニューヨークの研究",
+      "primaryCategory": "research",
+      "sourceParagraphRange": [
+        29,
+        45
+      ],
+      "sourceFirstParagraph": "若者を危険から守ろうとする施設が存在する一方で、その施設を利用した若者が、再び危険な場所へ戻ってしまう。",
+      "sourceLastParagraph": "そして、自分の意見を尊重され、職員との関係を築いていく経験が、施設を安心して利用することにつながっていたのである。",
+      "visualSegments": [
+        {
+          "fromParagraph": 29,
+          "toParagraph": 36,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "rules_tradeoff"
+        },
+        {
+          "fromParagraph": 37,
+          "toParagraph": 40,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "survey37"
+        },
+        {
+          "fromParagraph": 41,
+          "toParagraph": 45,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_ABROAD_SHELTER",
+          "diagramId": "autonomy"
+        }
+      ]
+    },
+    {
+      "blockId": "C4-4",
+      "chapterId": "chapter4",
+      "topic": "本人の意思と続いていく支援関係",
+      "primaryCategory": "facility",
+      "sourceParagraphRange": [
+        46,
+        58
+      ],
+      "sourceFirstParagraph": "ここで、少女が保護施設へ移った後の生活を、もう一度考えてみよう。",
+      "sourceLastParagraph": "次に困ったとき、もう一度相談できる大人がいるという事実が、その若者の行動を変えることもあるからである。",
+      "visualSegments": [
+        {
+          "fromParagraph": 46,
+          "toParagraph": 50,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_SHELTER_COUNSEL",
+          "diagramId": "autonomy"
+        },
+        {
+          "fromParagraph": 51,
+          "toParagraph": 54,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_YOUTH_CENTER",
+          "diagramId": "trust_gap"
+        },
+        {
+          "fromParagraph": 55,
+          "toParagraph": 58,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_SHELTER_ENTRANCE",
+          "diagramId": "network"
+        }
+      ]
+    },
+    {
+      "blockId": "C4-5",
+      "chapterId": "chapter4",
+      "topic": "施設への移動だけでなく生活を維持する",
+      "primaryCategory": "concept",
+      "sourceParagraphRange": [
+        59,
+        74
+      ],
+      "sourceFirstParagraph": "そして、この問題には、さらに大きな社会的な意味が隠されている。",
+      "sourceLastParagraph": "危険な場所から離れた後も、自分の生活や人間関係を失わずに済むという安心だったのである。",
+      "visualSegments": [
+        {
+          "fromParagraph": 59,
+          "toParagraph": 66,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "choice_path"
+        },
+        {
+          "fromParagraph": 67,
+          "toParagraph": 68,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "safe_vs_belonging"
+        },
+        {
+          "fromParagraph": 69,
+          "toParagraph": 72,
+          "kind": "scene",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 73,
+          "toParagraph": 74,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "safe_vs_belonging"
+        }
+      ]
+    },
+    {
+      "blockId": "E-1",
+      "chapterId": "epilogue",
+      "topic": "再び映画館の前に立つ",
+      "primaryCategory": "town",
+      "sourceParagraphRange": [
+        1,
+        8
+      ],
+      "sourceFirstParagraph": "深夜の歌舞伎町では、映画館の巨大なスクリーンが、今日も街を行き交う人々を照らしている。",
+      "sourceLastParagraph": "しかし、今では少し違ったものが見えているはずである。",
+      "visualSegments": [
+        {
+          "fromParagraph": 1,
+          "toParagraph": 6,
+          "kind": "scene",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 7,
+          "toParagraph": 8,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": "network_risk"
+        }
+      ]
+    },
+    {
+      "blockId": "E-2",
+      "chapterId": "epilogue",
+      "topic": "安全とつながりの両立",
+      "primaryCategory": "concept",
+      "sourceParagraphRange": [
+        9,
+        19
+      ],
+      "sourceFirstParagraph": "施設のなかには、彼女を危険から守ろうとする大人たちがいる。",
+      "sourceLastParagraph": "その場所でしか得られないと感じている、人間関係や生活の拠り所を、手放せずにいるのである。",
+      "visualSegments": [
+        {
+          "fromParagraph": 9,
+          "toParagraph": 12,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "safe_vs_belonging"
+        },
+        {
+          "fromParagraph": 13,
+          "toParagraph": 17,
+          "kind": "diagram",
+          "backgroundId": null,
+          "diagramId": "choice_path"
+        },
+        {
+          "fromParagraph": 18,
+          "toParagraph": 19,
+          "kind": "scene",
+          "backgroundId": "BG_TOYOKO_GROUND",
+          "diagramId": null
+        }
+      ]
+    },
+    {
+      "blockId": "E-3",
+      "chapterId": "epilogue",
+      "topic": "夜明けと、自分で施設の扉を開く未来",
+      "primaryCategory": "facility",
+      "sourceParagraphRange": [
+        20,
+        25
+      ],
+      "sourceFirstParagraph": "夜が明ければ、歌舞伎町の映画館の前には、再び通勤する会社員や買い物客が行き交うようになる。",
+      "sourceLastParagraph": "彼女は初めて、仲間を失うことを恐れずに、歌舞伎町から離れるという選択肢を考えられるのかもしれない。",
+      "visualSegments": [
+        {
+          "fromParagraph": 20,
+          "toParagraph": 23,
+          "kind": "scene",
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "diagramId": null
+        },
+        {
+          "fromParagraph": 24,
+          "toParagraph": 25,
+          "kind": "scene-overlay",
+          "backgroundId": "BG_SHELTER_ENTRANCE",
+          "diagramId": "autonomy"
+        }
+      ]
+    }
+  ]
+}
