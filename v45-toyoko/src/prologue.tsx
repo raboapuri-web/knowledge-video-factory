@@ -127,10 +127,10 @@ const TimeShade=({amount}:{amount:number})=><AbsoluteFill style={{
  * No narration/subtitles: the original approved full text is not in the repository.
  * This is a VISUAL REVIEW cut only; it must not be mistaken for the voiced episode.
  */
-export const PrologueShot=({shot,file}:{shot:ToyokoShot;file:string})=>{
+export const PrologueShot=({shot,file,durationSeconds}:{shot:ToyokoShot;file:string;durationSeconds?:number})=>{
   const frame=useCurrentFrame();
   const {fps}=useVideoConfig();
-  const p=clamp(frame/Math.max(1,Math.round(shot.timing.targetDurationSeconds*fps)-1));
+  const p=clamp(frame/Math.max(1,Math.round((durationSeconds??shot.timing.targetDurationSeconds)*fps)-1));
   let actors:React.ReactNode=null;
   let foreground:React.ReactNode=null;
   let secondaryPlate:React.ReactNode=null;
@@ -286,7 +286,7 @@ export const PrologueShot=({shot,file}:{shot:ToyokoShot;file:string})=>{
           actionStartFrame={-60} pose={{headTilt:tween(8,-11,smooth((p-.05)/.2))}}/>
         <Girl x={1380} y={466} z={.73} action='sitPhone' friend/>
         <Girl x={girlX} y={435} z={.76} action={girlAction}
-          actionStartFrame={Math.round(shot.timing.targetDurationSeconds*fps*.42)}/>
+          actionStartFrame={Math.round((durationSeconds??shot.timing.targetDurationSeconds)*fps*.42)}/>
       </>;
       foreground=<Bag x={girlX+190} y={805} z={.45}/>;
       break;
