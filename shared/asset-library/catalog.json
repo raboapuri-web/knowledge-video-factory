@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "threshold": 0.88,
   "policy": {
     "partMaxScenesPerVideo": 9,
@@ -1284,18 +1284,31 @@
       "id": "bg-bg-kabukicho-alley",
       "category": "背景",
       "file": "背景/BG_KABUKICHO_ALLEY.png",
-      "name": "BG_KABUKICHO_ALLEY",
+      "name": "夜の歌舞伎町路地",
       "phases": [
         "*"
       ],
       "tags": [
-        "BG_KABUKICHO_ALLEY",
-        "背景素材"
+        "歌舞伎町",
+        "路地",
+        "夜景",
+        "ネオン",
+        "バー",
+        "ラーメン",
+        "カラオケ",
+        "繁華街"
       ],
       "mustMentionAny": [
-        "BG_KABUKICHO_ALLEY"
+        "歌舞伎町",
+        "ネオン",
+        "バー",
+        "ラーメン"
       ],
-      "avoid": [],
+      "avoid": [
+        "昼間",
+        "田舎",
+        "自然景観"
+      ],
       "style": "flat-vector",
       "palette": "colorful",
       "license": "pending-review",
@@ -1308,27 +1321,60 @@
       "motion": "none",
       "sourceSha256": "54e8070687890c7b1d63b60e241edf3e1bbf973131dad4f333cc5f727d311810",
       "autoRegistration": {
-        "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "method": "openai-vision-detailed",
+        "needsVisualReview": false,
+        "note": "画像本体をOpenAI Visionで詳細分析済み。権利ステータスは別管理のためlicenseは変更していない。",
+        "model": "gpt-4.1-mini",
+        "analyzedAt": "2026-09-23"
+      },
+      "description": "ネオン輝く歌舞伎町の繁華街路地を描写。夜間で街灯やビル窓、看板の光が路面の水たまりに反射している。画面中央には舗装された道路が奥に伸び、左右にバーやラーメン店、カラオケなどの飲食・娯楽店が並ぶ。歩道には植木や街灯、スクーターと白い車が配置され、奥行き感を強調。画面下部中央は比較的空いており、キャラクター配置や字幕表示がしやすい。",
+      "visualAnalysis": {
+        "composition": "画面奥に向かう路地を中央に据え、両側店舗の灯りと看板が空間を引き締めつつ中央下部に広めの空きスペースを確保。",
+        "dominantElements": [
+          "ネオン看板",
+          "街路灯",
+          "路面の反射",
+          "バー店内の灯り",
+          "飲食店の看板",
+          "植栽",
+          "スクーター"
+        ],
+        "recommendedUses": [
+          "夜の街シーン背景",
+          "バーや飲食店の紹介シーン",
+          "都会の繁華街演出",
+          "ネオン輝く路地の雰囲気作り",
+          "アニメやゲームの背景",
+          "都市の夜景描写"
+        ]
       }
     },
     {
       "id": "bg-bg-town-day-wide",
       "category": "背景",
       "file": "背景/BG_TOWN_DAY_WIDE.png",
-      "name": "BG_TOWN_DAY_WIDE",
+      "name": "晴天のカラフル都市街並み",
       "phases": [
         "*"
       ],
       "tags": [
-        "BG_TOWN_DAY_WIDE",
-        "背景素材"
+        "都市",
+        "広告看板",
+        "昼間",
+        "快晴",
+        "ビル群",
+        "スニーカー",
+        "口紅"
       ],
       "mustMentionAny": [
-        "BG_TOWN_DAY_WIDE"
+        "広告看板",
+        "都市"
       ],
-      "avoid": [],
+      "avoid": [
+        "夜景",
+        "自然風景",
+        "室内"
+      ],
       "style": "flat-vector",
       "palette": "colorful",
       "license": "pending-review",
@@ -1341,27 +1387,62 @@
       "motion": "none",
       "sourceSha256": "256a2d8d1b1333664b64e54a694e861ba8c41c750bd3387663f5a776690317d5",
       "autoRegistration": {
-        "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "method": "openai-vision-detailed",
+        "needsVisualReview": false,
+        "note": "画像本体をOpenAI Visionで詳細分析済み。権利ステータスは別管理のためlicenseは変更していない。",
+        "model": "gpt-4.1-mini",
+        "analyzedAt": "2026-09-23"
+      },
+      "description": "昼間の快晴の空の下、鮮やかな色彩で描かれた高層ビル群が密集する都市の街並み。中央に陽が高く輝き、青空と白い雲が背景を彩る。両端に咲き誇る桜の木の枝がフレームを飾り、ビルの壁面にはスニーカー、香水、猫、口紅、ヘッドホンなどの大型広告が表示されている。建物の下部には緑の植栽も配置。画面中央付近にやや空間があり、キャラクター配置や字幕表示に適している。",
+      "visualAnalysis": {
+        "composition": "中央にやや開けた空間を残し、両側に密集したビルと広告看板が縦構図でフレームを形成している。",
+        "dominantElements": [
+          "ビル群",
+          "広告看板",
+          "桜の木",
+          "青空",
+          "太陽",
+          "植栽"
+        ],
+        "recommendedUses": [
+          "都市風情の演出",
+          "広告関連の背景",
+          "春の季節表現",
+          "現代的なシーン",
+          "商品紹介シーン",
+          "明るい日中シーン"
+        ]
       }
     },
     {
       "id": "bg-bg-town-night-wide",
       "category": "背景",
       "file": "背景/BG_TOWN_NIGHT_WIDE.png",
-      "name": "BG_TOWN_NIGHT_WIDE",
+      "name": "夜のネオン煌めく近未来都市と桜",
       "phases": [
         "*"
       ],
       "tags": [
-        "BG_TOWN_NIGHT_WIDE",
-        "背景素材"
+        "夜景",
+        "ネオン",
+        "未来都市",
+        "大型ビジョン",
+        "満月",
+        "ビル群",
+        "星空",
+        "女性ポートレート"
       ],
       "mustMentionAny": [
-        "BG_TOWN_NIGHT_WIDE"
+        "未来都市",
+        "大型ビジョン",
+        "満月"
       ],
-      "avoid": [],
+      "avoid": [
+        "昼間",
+        "田舎風景",
+        "乗り物",
+        "人混み"
+      ],
       "style": "flat-vector",
       "palette": "colorful",
       "license": "pending-review",
@@ -1374,29 +1455,64 @@
       "motion": "none",
       "sourceSha256": "d9a21e4080392fd7a90b5ed7b2de32cb6d2b8f6a0365e0f1c1e29d7031906deb",
       "autoRegistration": {
-        "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "method": "openai-vision-detailed",
+        "needsVisualReview": false,
+        "note": "画像本体をOpenAI Visionで詳細分析済み。権利ステータスは別管理のためlicenseは変更していない。",
+        "model": "gpt-4.1-mini",
+        "analyzedAt": "2026-09-23"
+      },
+      "description": "夜のネオンが輝く未来的な都市のワイドビュー。マンション・ビル群が空にそびえ、その前面に大きな大型ビジョンが5枚配置され、それぞれ個性的な女性のイラストが映し出されている。満月と星空、夜空の雲が遠景にあり、左右に咲くピンクの桜並木が夜の彩りを添える。ビルの窓と大型画面の明かりが鮮烈で、前景の建物屋上には緑の木々が並ぶ。画面下中央や左右に比較的空間があり、キャラクター挿入や字幕追加がしやすい構図となっている。",
+      "visualAnalysis": {
+        "composition": "中央のビルと大型ビジョンを基軸に左右の桜でバランスを取り、下部に空間を設けて字幕やキャラ挿入に余裕を持たせたフレーム構成。",
+        "dominantElements": [
+          "大型ビジョン女性イラスト5枚",
+          "近未来ビル群",
+          "満月と星空",
+          "桜の木々",
+          "ネオンライト",
+          "夜空の雲"
+        ],
+        "recommendedUses": [
+          "夜の都市シーン背景",
+          "未来的なイベント紹介",
+          "ファッションプロモーション",
+          "バーチャルキャラクター背景",
+          "夜景の歌詞動画",
+          "桜夜のストーリー場面"
+        ]
       }
     },
     {
       "id": "bg-bg-toyoko-ground",
       "category": "背景",
       "file": "背景/BG_TOYOKO_GROUND.png",
-      "name": "BG_TOYOKO_GROUND",
+      "name": "夜の都市映画館前広場",
       "phases": [
         "*"
       ],
       "tags": [
-        "BG_TOYOKO_GROUND",
-        "背景素材"
+        "夜景",
+        "映画館",
+        "TOHO CINEMAS",
+        "IMAX",
+        "SHINJUKU",
+        "広場",
+        "看板",
+        "カラオケ",
+        "アニメ"
       ],
       "mustMentionAny": [
-        "BG_TOYOKO_GROUND"
+        "TOHO CINEMAS",
+        "IMAX",
+        "SHINJUKU"
       ],
-      "avoid": [],
+      "avoid": [
+        "住宅街",
+        "自然風景",
+        "昼間"
+      ],
       "style": "flat-vector",
-      "palette": "colorful",
+      "palette": "muted-dark",
       "license": "pending-review",
       "layout": {
         "x": 0,
@@ -1407,9 +1523,30 @@
       "motion": "none",
       "sourceSha256": "9c61b7ab381005947b1c9fc5fd2904cc84dc2f07e045403821102c0247eae473",
       "autoRegistration": {
-        "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "method": "openai-vision-detailed",
+        "needsVisualReview": false,
+        "note": "画像本体をOpenAI Visionで詳細分析済み。権利ステータスは別管理のためlicenseは変更していない。",
+        "model": "gpt-4.1-mini",
+        "analyzedAt": "2026-09-23"
+      },
+      "description": "夜の都市にある映画館前の広場の背景。中央に大きなTOHO CINEMAS IMAXの建物があり、建物正面上部に光るゴジラのようなモンスターの大看板が輝く。左右に多層の商業施設が広がり、左には赤いカラオケやゲーム・DVD販売の看板、右にはアニメ看板やKFCの店舗看板が見える。広場は舗装され、街灯と植栽の緑が配されている。空は夜の深い青で、建物の窓や看板の明かりが暖色系で点灯している。広場や建物前の空間はキャラクター配置や字幕表示に適している。",
+      "visualAnalysis": {
+        "composition": "中央の映画館建物を背にし、前景広場の空間が広く字幕やキャラクター配置に最適な構図。",
+        "dominantElements": [
+          "TOHO CINEMAS建物",
+          "ゴジラ看板",
+          "街灯",
+          "商業ビル看板",
+          "植栽",
+          "舗装広場"
+        ],
+        "recommendedUses": [
+          "夜の都市シーン",
+          "映画館前の待ち合わせ",
+          "イベント告知背景",
+          "アニメの街シーン",
+          "ゲームの市街地ロビー"
+        ]
       }
     },
     {
@@ -1420,15 +1557,23 @@
         "*"
       ],
       "tags": [
-        "ハンドバッグ",
         "バッグ",
+        "ハンドバッグ",
         "ピンク",
-        "ファッション"
+        "女性向け",
+        "光沢",
+        "ゴールド留め具",
+        "ファッショングッズ"
       ],
       "mustMentionAny": [
-        "ハンドバッグ"
+        "バッグ",
+        "ハンドバッグ",
+        "ピンク"
       ],
-      "avoid": [],
+      "avoid": [
+        "スポーツ用品",
+        "男性用小物"
+      ],
       "style": "flat-vector",
       "palette": "colorful",
       "license": "pending-review",
@@ -1444,7 +1589,28 @@
         "name": "ハンドバッグ",
         "description": "ピンク色のハンドバッグ。持ち手と本体のフラップが違う濃淡のピンクで、中央に金色の留め具がついている。",
         "model": "gpt-4.1-mini",
-        "needsVisualReview": true
+        "needsVisualReview": false,
+        "method": "openai-vision-detailed",
+        "analyzedAt": "2026-09-23",
+        "note": "画像本体をOpenAI Visionで詳細分析済み。権利ステータスは別管理のためlicenseは変更していない。"
+      },
+      "name": "ピンクハンドバッグ",
+      "description": "ピンクの光沢感のある素材で作られた女性用ハンドバッグ。ゴールドの留め具と取っ手の金色金具がアクセント。正面から見たシンプルな形状で、透明背景で人物などの前景に重ねやすい。",
+      "visualAnalysis": {
+        "composition": "中央にバッグが大きく配置されており、周囲に余白があり使いやすい構図。",
+        "dominantElements": [
+          "バッグ本体",
+          "取っ手",
+          "留め具",
+          "光沢のある表面"
+        ],
+        "recommendedUses": [
+          "ファッション紹介動画",
+          "キャラクター背景の小物",
+          "買い物シーンの演出",
+          "ギフトやプレゼント説明",
+          "女性向け商品の広告"
+        ]
       }
     },
     {
@@ -1455,17 +1621,23 @@
         "*"
       ],
       "tags": [
-        "ベッド",
-        "寝具",
+        "ベッドフレーム",
+        "シーツ",
         "掛け布団",
-        "木製フレーム",
         "青色",
-        "白色"
+        "木製",
+        "寝具"
       ],
       "mustMentionAny": [
-        "ベッド"
+        "ベッドフレーム",
+        "掛け布団"
       ],
-      "avoid": [],
+      "avoid": [
+        "ソファ",
+        "椅子",
+        "アウトドア",
+        "車内"
+      ],
       "style": "flat-vector",
       "palette": "muted-dark",
       "license": "pending-review",
@@ -1481,7 +1653,28 @@
         "name": "ベッド",
         "description": "青い掛け布団と白い枕が置かれた茶色の木製ベッド。シンプルでモダンなデザインの寝具。",
         "model": "gpt-4.1-mini",
-        "needsVisualReview": true
+        "needsVisualReview": false,
+        "method": "openai-vision-detailed",
+        "analyzedAt": "2026-09-23",
+        "note": "画像本体をOpenAI Visionで詳細分析済み。権利ステータスは別管理のためlicenseは変更していない。"
+      },
+      "name": "ベッドと寝具セット",
+      "description": "木製フレームのベッドに白い枕と白いシーツ、その上に青色の掛け布団が掛かった寝具セット。正面やや右斜め上から見た視点で、背景は透過されている。布の質感を簡略化しつつも折り目が表現されている。",
+      "visualAnalysis": {
+        "composition": "正面やや右斜め上から見たフレームと寝具のセットを中央に配置し、上下左右にスペースがある。",
+        "dominantElements": [
+          "木製ベッドフレーム",
+          "白い枕",
+          "白いシーツ",
+          "青い掛け布団"
+        ],
+        "recommendedUses": [
+          "寝室シーンの前景",
+          "ホテルや宿泊施設の紹介動画",
+          "インテリアデザイン説明",
+          "睡眠関連コンテンツ",
+          "リラックスや休息の演出"
+        ]
       }
     },
     {
@@ -1492,18 +1685,26 @@
         "*"
       ],
       "tags": [
-        "充電器",
         "USB-C",
+        "充電器",
         "ケーブル",
-        "スマートフォン",
-        "電源プラグ",
-        "白色"
+        "充電器プラグ",
+        "USBケーブル",
+        "白色",
+        "角丸",
+        "電源アダプタ"
       ],
       "mustMentionAny": [
-        "充電器"
+        "USB-C",
+        "充電器",
+        "ケーブル"
       ],
-      "avoid": [],
-      "style": "flat-vector",
+      "avoid": [
+        "他の電子機器",
+        "ブランドロゴ",
+        "環境シーン"
+      ],
+      "style": "photographic",
       "palette": "muted-light",
       "license": "pending-review",
       "layout": {
@@ -1518,7 +1719,29 @@
         "name": "充電器",
         "description": "USB-Cケーブル付きの白いスマートフォン用充電器。電源プラグは2ピンプラグタイプで、ケーブルは一体型で丸まっている。",
         "model": "gpt-4.1-mini",
-        "needsVisualReview": true
+        "needsVisualReview": false,
+        "method": "openai-vision-detailed",
+        "analyzedAt": "2026-09-23",
+        "note": "画像本体をOpenAI Visionで詳細分析済み。権利ステータスは別管理のためlicenseは変更していない。"
+      },
+      "name": "USB-C充電器とケーブル",
+      "description": "白いプラスチック製のUSB-C充電器本体と、取り外し可能なUSB-Cケーブルのセット。充電器は日本・欧州型二股プラグで壁コンセントに接続可能。ケーブルは充電器に巻かれており、コネクタもUSB-C。全体的に清潔感のある白色で角丸デザイン。背景透過で、シンプルに正面からやや左斜め上アングルで撮影。",
+      "visualAnalysis": {
+        "composition": "主役である充電器本体とケーブルが中央に配置され、背景は透過で余白が十分にあるため様々な前景合成が可能。",
+        "dominantElements": [
+          "充電器本体",
+          "USB-C端子",
+          "二股プラグ",
+          "USB-Cケーブル",
+          "ケーブル巻き取り"
+        ],
+        "recommendedUses": [
+          "デジタル製品紹介動画",
+          "モバイル機器充電シーン",
+          "電子機器アクセサリー紹介",
+          "教育用テクノロジー映像",
+          "オンラインショップの商品表示動画"
+        ]
       }
     },
     {
@@ -1529,16 +1752,22 @@
         "*"
       ],
       "tags": [
-        "エナジードリンク缶",
-        "飲み物",
-        "雷マーク",
-        "エネルギードリンク",
-        "飲料"
+        "エナジードリンク",
+        "飲料缶",
+        "アルミ缶",
+        "稲妻",
+        "黄色",
+        "光沢"
       ],
       "mustMentionAny": [
-        "エナジードリンク缶"
+        "エナジードリンク",
+        "飲料缶",
+        "アルミ缶"
       ],
-      "avoid": [],
+      "avoid": [
+        "ガラス瓶",
+        "ジュース"
+      ],
       "style": "flat-vector",
       "palette": "colorful",
       "license": "pending-review",
@@ -1554,7 +1783,30 @@
         "name": "エナジードリンク缶",
         "description": "黒地に黄色と青の雷のデザインが描かれたエナジードリンクの缶。飲料缶の金属質感を細かく表現。",
         "model": "gpt-4.1-mini",
-        "needsVisualReview": true
+        "needsVisualReview": false,
+        "method": "openai-vision-detailed",
+        "analyzedAt": "2026-09-23",
+        "note": "画像本体をOpenAI Visionで詳細分析済み。権利ステータスは別管理のためlicenseは変更していない。"
+      },
+      "name": "エナジードリンク缶のイラスト",
+      "description": "斜めに傾いた黒色のアルミ缶で、黄色と青の雷の稲妻模様が大胆にデザインされたエナジードリンクのパッケージ。質感はメタリックで光沢があり、背景は透過で単独使用しやすい。",
+      "visualAnalysis": {
+        "composition": "斜め配置で缶全体が映り、周囲に透明スペースが十分あるため重ねやすい。",
+        "dominantElements": [
+          "缶本体",
+          "黄色の雷模様",
+          "青の雷模様",
+          "アルミ缶の蓋",
+          "黒地背景"
+        ],
+        "recommendedUses": [
+          "スポーツ・運動シーンの小道具",
+          "エナジードリンク紹介動画",
+          "元気や活力を演出するシーン",
+          "ゲームUIのアイテム表現",
+          "商品カタログ動画",
+          "広告素材のアクセント"
+        ]
       }
     },
     {
@@ -1566,19 +1818,26 @@
       ],
       "tags": [
         "メロンパン",
-        "お菓子",
-        "パン",
         "焼き菓子",
-        "格子模様",
-        "包装",
-        "スイーツ"
+        "パン",
+        "透明包装",
+        "包装済み",
+        "食品",
+        "菓子",
+        "パン菓子"
       ],
       "mustMentionAny": [
-        "メロンパン"
+        "メロンパン",
+        "透明包装",
+        "焼き菓子"
       ],
-      "avoid": [],
+      "avoid": [
+        "生パン",
+        "飲料",
+        "非食品"
+      ],
       "style": "flat-vector",
-      "palette": "colorful",
+      "palette": "muted-light",
       "license": "pending-review",
       "layout": {
         "x": 1250,
@@ -1592,7 +1851,29 @@
         "name": "メロンパン",
         "description": "白いビニール包装に包まれた焼き菓子のメロンパン。表面に格子模様が特徴的。",
         "model": "gpt-4.1-mini",
-        "needsVisualReview": true
+        "needsVisualReview": false,
+        "method": "openai-vision-detailed",
+        "analyzedAt": "2026-09-23",
+        "note": "画像本体をOpenAI Visionで詳細分析済み。権利ステータスは別管理のためlicenseは変更していない。"
+      },
+      "name": "包装されたメロンパン",
+      "description": "透明フィルム包装内にある網目模様の焼き菓子メロンパン。黄色と茶色の柔らかそうなパンがしっかり包まれている。正面向きで背景は透過的。",
+      "visualAnalysis": {
+        "composition": "映像中央にパンを大きく配置し、周囲には余白が十分あるため他の要素との組み合わせが容易。",
+        "dominantElements": [
+          "メロンパン",
+          "透明包装フィルム",
+          "白ラベル",
+          "網目模様パン表面"
+        ],
+        "recommendedUses": [
+          "食事シーンの前景小物",
+          "ベーカリー紹介動画",
+          "食品パッケージ表現",
+          "アニメーション広告",
+          "料理準備場面",
+          "日本の菓子紹介"
+        ]
       }
     },
     {
@@ -1603,18 +1884,26 @@
         "*"
       ],
       "tags": [
-        "白いテーブル",
         "テーブル",
-        "家具",
-        "シンプル",
-        "四角",
-        "モダン"
+        "白いテーブル",
+        "モダン家具",
+        "木製",
+        "正面ビュー",
+        "四角脚",
+        "リビング",
+        "ダイニング",
+        "家具"
       ],
       "mustMentionAny": [
-        "白いテーブル"
+        "テーブル",
+        "白いテーブル",
+        "モダン家具"
       ],
-      "avoid": [],
-      "style": "flat-vector",
+      "avoid": [
+        "屋外テーブル",
+        "カフェ用テーブル"
+      ],
+      "style": "photographic",
       "palette": "muted-light",
       "license": "pending-review",
       "layout": {
@@ -1629,7 +1918,28 @@
         "name": "白いテーブル",
         "description": "シンプルなデザインの白い四角いテーブル。脚は四角いフレーム構造で真っ直ぐ立っている。",
         "model": "gpt-4.1-mini",
-        "needsVisualReview": true
+        "needsVisualReview": false,
+        "method": "openai-vision-detailed",
+        "analyzedAt": "2026-09-23",
+        "note": "画像本体をOpenAI Visionで詳細分析済み。権利ステータスは別管理のためlicenseは変更していない。"
+      },
+      "name": "白いモダンテーブル正面ビュー",
+      "description": "白い木材のモダンなテーブルで、四角い脚と長方形の天板を持ち、正面から撮影されている。背景は透明処理されており、透過効果でどのシーンにも合いやすい。",
+      "visualAnalysis": {
+        "composition": "正面中央にテーブルが大きく配置され、左右に均等な余白があり、下方に背景の透過部分が広がっている。",
+        "dominantElements": [
+          "天板",
+          "四角い脚",
+          "白い木材",
+          "影のグラデーション"
+        ],
+        "recommendedUses": [
+          "オフィスや家のリビングルームシーン",
+          "インテリア紹介動画",
+          "家具販売プロモーション",
+          "食事シーンの背景",
+          "ミーティングシーンの映像"
+        ]
       }
     },
     {
@@ -1641,17 +1951,25 @@
       ],
       "tags": [
         "財布",
-        "札入れ",
-        "カード入れ",
-        "革財布",
-        "ブラウン",
-        "収納",
-        "小物"
+        "カード",
+        "紙幣",
+        "茶色",
+        "青色",
+        "緑色",
+        "レザー",
+        "ステッチ",
+        "ボタン"
       ],
       "mustMentionAny": [
-        "財布"
+        "財布",
+        "カード",
+        "紙幣"
       ],
-      "avoid": [],
+      "avoid": [
+        "現金のみ",
+        "硬貨",
+        "ファッションアクセサリー"
+      ],
       "style": "flat-vector",
       "palette": "muted-dark",
       "license": "pending-review",
@@ -1667,7 +1985,30 @@
         "name": "財布",
         "description": "茶色の革製の財布のイラスト。紙幣とカードが中に入っている。",
         "model": "gpt-4.1-mini",
-        "needsVisualReview": true
+        "needsVisualReview": false,
+        "method": "openai-vision-detailed",
+        "analyzedAt": "2026-09-23",
+        "note": "画像本体をOpenAI Visionで詳細分析済み。権利ステータスは別管理のためlicenseは変更していない。"
+      },
+      "name": "財布とカードと紙幣のイラスト",
+      "description": "茶色のレザー風財布に青色のカードと緑色の紙幣が少し見えているイラスト。革の縫い目がステッチで表現されており、ボタンは黄色。黒背景にぼかしのグロー効果がある。",
+      "visualAnalysis": {
+        "composition": "中央に財布を大きく配置し、上部にカードと紙幣が覗く構図で、周囲に余白があり重ねての合成やテキスト挿入に適する。",
+        "dominantElements": [
+          "財布本体",
+          "カード",
+          "紙幣",
+          "ボタン",
+          "ステッチ"
+        ],
+        "recommendedUses": [
+          "電子マネー説明動画",
+          "キャッシュレス決済解説",
+          "家計管理アプリ紹介",
+          "金融・投資サービス案内",
+          "生活シーンの演出",
+          "財布紛失防止対策紹介"
+        ]
       }
     }
   ]
