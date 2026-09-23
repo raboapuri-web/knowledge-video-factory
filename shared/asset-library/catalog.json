@@ -1411,6 +1411,264 @@
         "needsVisualReview": true,
         "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
       }
+    },
+    {
+      "id": "part-auto-c9b46e7fff0c7899",
+      "category": "パーツ",
+      "file": "パーツ/BAG.png",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "ハンドバッグ",
+        "バッグ",
+        "ピンク",
+        "ファッション"
+      ],
+      "mustMentionAny": [
+        "ハンドバッグ"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 1250,
+        "y": 300,
+        "w": 350,
+        "h": 400
+      },
+      "motion": "fade",
+      "sourceSha256": "4461c7137092061b868de891e84f576f17baff6ddca79415520cf7df390e73ac",
+      "autoRegistration": {
+        "name": "ハンドバッグ",
+        "description": "ピンク色のハンドバッグ。持ち手と本体のフラップが違う濃淡のピンクで、中央に金色の留め具がついている。",
+        "model": "gpt-4.1-mini",
+        "needsVisualReview": true
+      }
+    },
+    {
+      "id": "part-auto-019c585d9ea0533a",
+      "category": "パーツ",
+      "file": "パーツ/BEDDING.png",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "ベッド",
+        "寝具",
+        "掛け布団",
+        "木製フレーム",
+        "青色",
+        "白色"
+      ],
+      "mustMentionAny": [
+        "ベッド"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "muted-dark",
+      "license": "pending-review",
+      "layout": {
+        "x": 1250,
+        "y": 300,
+        "w": 350,
+        "h": 400
+      },
+      "motion": "fade",
+      "sourceSha256": "db9426d55f77d89a6b5749dd6886edc47e181433617d336142fbc0b738a62153",
+      "autoRegistration": {
+        "name": "ベッド",
+        "description": "青い掛け布団と白い枕が置かれた茶色の木製ベッド。シンプルでモダンなデザインの寝具。",
+        "model": "gpt-4.1-mini",
+        "needsVisualReview": true
+      }
+    },
+    {
+      "id": "part-auto-1d3308d3918cb538",
+      "category": "パーツ",
+      "file": "パーツ/CHARGER.png",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "充電器",
+        "USB-C",
+        "ケーブル",
+        "スマートフォン",
+        "電源プラグ",
+        "白色"
+      ],
+      "mustMentionAny": [
+        "充電器"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "muted-light",
+      "license": "pending-review",
+      "layout": {
+        "x": 1250,
+        "y": 300,
+        "w": 350,
+        "h": 400
+      },
+      "motion": "fade",
+      "sourceSha256": "d805a2fd9e9f48134a044acd25f88cb5e7bd9899cfb02f6e7df661338ebd2ab0",
+      "autoRegistration": {
+        "name": "充電器",
+        "description": "USB-Cケーブル付きの白いスマートフォン用充電器。電源プラグは2ピンプラグタイプで、ケーブルは一体型で丸まっている。",
+        "model": "gpt-4.1-mini",
+        "needsVisualReview": true
+      }
+    },
+    {
+      "id": "part-auto-a8e5a3db114b7d3e",
+      "category": "パーツ",
+      "file": "パーツ/DRINK.png",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "エナジードリンク缶",
+        "飲み物",
+        "雷マーク",
+        "エネルギードリンク",
+        "飲料"
+      ],
+      "mustMentionAny": [
+        "エナジードリンク缶"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 1250,
+        "y": 300,
+        "w": 350,
+        "h": 400
+      },
+      "motion": "fade",
+      "sourceSha256": "62be85b243f445a6f0fa4180ea48dfbf38ccbd6a0585a20fec02639e59af19bd",
+      "autoRegistration": {
+        "name": "エナジードリンク缶",
+        "description": "黒地に黄色と青の雷のデザインが描かれたエナジードリンクの缶。飲料缶の金属質感を細かく表現。",
+        "model": "gpt-4.1-mini",
+        "needsVisualReview": true
+      }
+    },
+    {
+      "id": "part-auto-ce5b3d228fe9409a",
+      "category": "パーツ",
+      "file": "パーツ/pan.png",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "メロンパン",
+        "お菓子",
+        "パン",
+        "焼き菓子",
+        "格子模様",
+        "包装",
+        "スイーツ"
+      ],
+      "mustMentionAny": [
+        "メロンパン"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 1250,
+        "y": 300,
+        "w": 350,
+        "h": 400
+      },
+      "motion": "fade",
+      "sourceSha256": "d90a66e628284a543513cfb98d15a7adef2daf05b1830ff70b4da32c289865cd",
+      "autoRegistration": {
+        "name": "メロンパン",
+        "description": "白いビニール包装に包まれた焼き菓子のメロンパン。表面に格子模様が特徴的。",
+        "model": "gpt-4.1-mini",
+        "needsVisualReview": true
+      }
+    },
+    {
+      "id": "part-auto-34458e47469fa350",
+      "category": "パーツ",
+      "file": "パーツ/TABLE.png",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "白いテーブル",
+        "テーブル",
+        "家具",
+        "シンプル",
+        "四角",
+        "モダン"
+      ],
+      "mustMentionAny": [
+        "白いテーブル"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "muted-light",
+      "license": "pending-review",
+      "layout": {
+        "x": 1250,
+        "y": 300,
+        "w": 350,
+        "h": 400
+      },
+      "motion": "fade",
+      "sourceSha256": "d389d64b0873979dc2fbe17fc099cb8457487d9b2a540723e7f7940a665c4a5f",
+      "autoRegistration": {
+        "name": "白いテーブル",
+        "description": "シンプルなデザインの白い四角いテーブル。脚は四角いフレーム構造で真っ直ぐ立っている。",
+        "model": "gpt-4.1-mini",
+        "needsVisualReview": true
+      }
+    },
+    {
+      "id": "part-auto-2679868ba4e74a25",
+      "category": "パーツ",
+      "file": "パーツ/WALLET.png",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "財布",
+        "札入れ",
+        "カード入れ",
+        "革財布",
+        "ブラウン",
+        "収納",
+        "小物"
+      ],
+      "mustMentionAny": [
+        "財布"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "muted-dark",
+      "license": "pending-review",
+      "layout": {
+        "x": 1250,
+        "y": 300,
+        "w": 350,
+        "h": 400
+      },
+      "motion": "fade",
+      "sourceSha256": "32b548e32f398c49f8861c69bba9ab94e29fc08d90ea709a70ad87b0687e3d49",
+      "autoRegistration": {
+        "name": "財布",
+        "description": "茶色の革製の財布のイラスト。紙幣とカードが中に入っている。",
+        "model": "gpt-4.1-mini",
+        "needsVisualReview": true
+      }
     }
   ]
 }
