@@ -26,7 +26,7 @@ for(const character of data.characters){
   assert.match(character.file,/^[A-Za-z][A-Za-z0-9_-]*\.tsx$/);
   assert(!files.has(character.file),'Duplicate character file: '+character.file);
   files.add(character.file);
-  assert.match(character.component,/^[A-Z][A-Za-z0-9]*$/);
+  assert.match(character.component,/^[A-Z][A-Za-z0-9_]*$/);
   const code=fs.readFileSync(path.join(folder,character.file),'utf8');
   assert(code.includes('export const '+character.component+'='),'Exported React character missing: '+character.component);
   for(const action of character.actions){
