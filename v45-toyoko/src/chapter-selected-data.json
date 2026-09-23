@@ -1,0 +1,10 @@
+{
+  "version": "standalone-chapter-preview-v1",
+  "status": "build_required",
+  "chapterId": "prologue",
+  "fps": 30,
+  "durationFrames": 0,
+  "shots": [],
+  "narrationBeats": [],
+  "audioFile": ""
+}
