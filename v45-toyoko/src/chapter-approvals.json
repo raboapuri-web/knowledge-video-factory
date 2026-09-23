@@ -51,5 +51,25 @@
     "epilogue"
   ],
   "assemblyPolicy": "only concatenate all individually reviewed and explicitly approved chapter videos; preserve the frozen prologue asset bytes and source run reference",
-  "reviewCandidates": []
+  "reviewCandidates": [
+    {
+      "chapterId": "chapter3",
+      "status": "rendered_awaiting_user_review",
+      "sourceRunId": 35868450662,
+      "artifactId": 10754026165,
+      "artifactName": "toyoko-chapter3-feedback-v1-voice-and-visual-6way",
+      "artifactUrl": "https://github.com/raboapuri-web/knowledge-video-factory/actions/runs/35868450662/artifacts/10754026165",
+      "movieFilename": "toyoko-chapter3-feedback-v1.mp4",
+      "durationSeconds": 430.4,
+      "sceneCount": 61,
+      "oneOffDiagramDesigns": 22,
+      "parallelRenderWorkers": 6,
+      "priorApprovedUnchanged": [
+        "prologue",
+        "chapter1",
+        "chapter2"
+      ],
+      "notes": "Corrected subtitle-overlay version, final MP4 1280x720 30fps 12912 frames, original audio and captions, ready for user visual approval; do not concatenate or mark approved until user says OK."
+    }
+  ]
 }
