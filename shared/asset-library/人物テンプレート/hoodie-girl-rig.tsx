@@ -16,6 +16,8 @@ export type HoodieGirlRigProps={
   actionStartFrame?:number;
   /** Hide the simple SVG chair when the scene already has a matching seat. */
   showChair?:boolean;
+  /** Anonymous background youths: omit eyes, eyebrows, nose, mouth and cheeks. */
+  hideFaceFeatures?:boolean;
   hoodieColor?:string;sleeveColor?:string;pantsColor?:string;
   skinColor?:string;hairColor?:string;shoeColor?:string;
 };
@@ -138,7 +140,7 @@ const Arm=({x,y,shoulder,elbow,sleeve,skin,phone=false}:{
 /** Transparent foreground, local artboard 360x640. Render in any Remotion scene. */
 export const HoodieGirlRig=({
   x=780,y=180,scale=1,action='idle',walkSpeed=1.1,pose,
-  talking=false,mirror=false,actionStartFrame=0,showChair=true,
+  talking=false,mirror=false,actionStartFrame=0,showChair=true,hideFaceFeatures=false,
   hoodieColor='#7764ac',sleeveColor='#715da4',pantsColor='#354052',
   skinColor='#edbeaa',hairColor='#3d3544',shoeColor='#eff0f2'
 }:HoodieGirlRigProps)=>{
@@ -218,6 +220,7 @@ export const HoodieGirlRig=({
             {/* Hair tie (above the ponytail root, behind the face edge). */}
             <circle cx={46} cy={-47} r={7} fill="#e68da9" stroke="#c96c93" strokeWidth={2}/>
             <circle cx={46} cy={-47} r={2} fill="#fff0f5"/>
+            {!hideFaceFeatures&&<>
             {/* Larger sparkling eyes, delicate eyebrows and visible rosy cheeks. */}
             <path d="M-26 -28 Q-18 -32 -10 -29 M10 -29 Q18 -32 26 -28"
               stroke="#604854" strokeWidth={2.2} fill="none" strokeLinecap="round"/>
@@ -235,6 +238,7 @@ export const HoodieGirlRig=({
               ?<ellipse cx={0} cy={10} rx={5.5} ry={4.5} fill="#a45d68"/>
               :<path d="M-7 10 Q0 16 7 10" stroke="#a45d68" strokeWidth={2}
                 fill="none" strokeLinecap="round"/>}
+</>}
           </Hinge>
         </g>
         </g>
