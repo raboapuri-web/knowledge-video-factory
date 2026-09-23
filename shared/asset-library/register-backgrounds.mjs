@@ -7,6 +7,18 @@ import {validateCatalog} from './prepare.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url));
 const imageExt=/\.(?:png|webp|svg)$/i;
 const descriptions={
+  "BG_VANCOUVER_RAIN": [
+    "バンクーバーの海沿い都市景観",
+    "バンクーバー",
+    "海",
+    "山並み",
+    "高層ビル",
+    "港",
+    "カナダ",
+    "ベクター",
+    "街並み",
+    "青空"
+  ],
   "BG_MOVIE": [
     "映画館",
     "映画館",
