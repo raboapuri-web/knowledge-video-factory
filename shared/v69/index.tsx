@@ -158,7 +158,7 @@ const RESEARCHER_MANLabPreview=()=>{
   const frame=useCurrentFrame();
   const action:ResearcherAction=frame<60?'idle':frame<120?'walk':frame<180?'inspectFlask':'point';
   return <ResearcherBackgroundScene backgroundFile='BG_kenkyu.png'
-    researcher={{x:795,y:190,scale:1,action,talking:action==='point'}}/>;
+    researcher={{x:1280,y:355,scale:.83,action,talking:action==='point'}}/>;
 };
 const RESEARCHER_MANFaceCloseup=()=>(
   <ResearcherBackgroundScene backgroundFile='BG_kenkyu.png'
