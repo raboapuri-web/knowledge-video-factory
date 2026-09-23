@@ -1,0 +1,147 @@
+name: V45 Toyoko Parallel 1080p Final Film
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Previous run containing all six approved narration artifacts
+        required: false
+        default: '35831899329'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v45-toyoko-parallel-final.yml'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: v45-toyoko-parallel-final-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install audio metadata tools
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Download already completed six-chapter original VOICEVOX recordings
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ inputs.source_run_id || '35831899329' }}
+          github-token: ${{ github.token }}
+          pattern: toyoko-audio-*
+          path: v45-toyoko/out/chapter-audio
+          merge-multiple: false
+      - name: Verify reused narration is exactly the current user-approved full manuscript
+        working-directory: v45-toyoko
+        run: |
+          node scripts/check-original-script.mjs
+          node scripts/verify-reused-chapter-audio.mjs
+          node scripts/build-full-review.mjs
+      - name: Plan non-overlapping exact global frame ranges, preferring shot boundaries
+        id: plan
+        working-directory: v45-toyoko
+        run: echo "matrix=$(node scripts/plan-parallel-segments.mjs)" >> "$GITHUB_OUTPUT"
+      - name: Package reusable master timeline and audio just once
+        run: |
+          tar -czf v45-toyoko/out/toyoko-parallel-prepared.tar.gz \
+            v45-toyoko/src/final-review-data.json \
+            v45-toyoko/public/audio/chapters \
+            v45-toyoko/out/segment-plan.json \
+            v45-toyoko/out/final-audio-manifest.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: toyoko-parallel-prepared
+          path: v45-toyoko/out/toyoko-parallel-prepared.tar.gz
+          if-no-files-found: error
+          retention-days: 7
+  segments:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/download-artifact@v4
+        with:
+          name: toyoko-parallel-prepared
+          path: .
+      - name: Restore shared six-chapter timing and approved VOICEVOX audio
+        run: tar -xzf toyoko-parallel-prepared.tar.gz
+      - name: Stage verified storyboard assets and install renderer
+        working-directory: v45-toyoko
+        run: |
+          node scripts/stage-assets.mjs
+          npm install --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Render this exact FULL FILM frame range at 1920x1080, without re-rendering sound
+        working-directory: v45-toyoko
+        run: |
+          mkdir -p out/parallel-parts
+          npx remotion render src/final-index.tsx ToyokoFullMovie \
+            "out/parallel-parts/toyoko-part-${{ matrix.id }}.mp4" \
+            --frames=${{ matrix.start }}-${{ matrix.end }} \
+            --muted --codec=h264 --crf=19 --concurrency=2 --log=warn
+          test -s "out/parallel-parts/toyoko-part-${{ matrix.id }}.mp4"
+          FRAMES="$(ffprobe -v error -select_streams v:0 \
+            -show_entries stream=nb_frames -of default=nw=1:nk=1 \
+            "out/parallel-parts/toyoko-part-${{ matrix.id }}.mp4")"
+          test "$FRAMES" = "${{ matrix.frames }}"
+          test -z "$(ffprobe -v error -select_streams a -show_entries stream=codec_name \
+            -of csv=p=0 "out/parallel-parts/toyoko-part-${{ matrix.id }}.mp4")"
+      - name: Retain independent segment with exact frame count
+        uses: actions/upload-artifact@v4
+        with:
+          name: toyoko-part-${{ matrix.id }}
+          path: v45-toyoko/out/parallel-parts/toyoko-part-${{ matrix.id }}.mp4
+          if-no-files-found: error
+          retention-days: 7
+  merge:
+    needs: [prepare,segments]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - uses: actions/download-artifact@v4
+        with:
+          name: toyoko-parallel-prepared
+          path: .
+      - name: Restore exact original timeline and its six voices
+        run: tar -xzf toyoko-parallel-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: toyoko-part-*
+          path: v45-toyoko/out/parallel-parts
+          merge-multiple: false
+      - name: Losslessly join ordered picture ranges and mux approved original narration only once
+        working-directory: v45-toyoko
+        run: |
+          node scripts/merge-parallel-segments.mjs
+          node scripts/check-final-movie.mjs
+      - name: Provide actual completed full movie and frame/audio QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: toyoko-full-final-1080p-160shots-parallel
+          path: |
+            v45-toyoko/out/toyoko-full-final.mp4
+            v45-toyoko/out/final-render-verification.json
+            v45-toyoko/out/parallel-merge-verification.json
+            v45-toyoko/out/segment-plan.json
+            v45-toyoko/out/final-audio-manifest.json
+          if-no-files-found: error
+          retention-days: 7
