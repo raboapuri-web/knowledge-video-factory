@@ -24,6 +24,7 @@ jobs:
       - name: Stage exact approved backgrounds and validate the scene plan
         working-directory: v45-toyoko
         run: |
+          node scripts/check-original-script.mjs
           node scripts/check-prologue.mjs
           node scripts/stage-assets.mjs
       - name: Install production dependencies and typecheck
