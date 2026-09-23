@@ -44,12 +44,21 @@ let lastParagraph=0,prevEnd=0;
 const shots=edit.shots.map((s,i)=>{
  if(s.fromParagraph!==lastParagraph+1||s.toParagraph>paragraphs.length||
     s.toParagraph<s.fromParagraph)throw Error('Chapter shot source gap/overlap: '+s.id);
- if(s.visualRef.startsWith('P')&&!byRef.has(s.visualRef))throw Error('Unverified original shot '+s.visualRef);
+ const old=byRef.get(s.visualRef);
+ const custom=s.customShot;
+ if(!old&&!custom&&id!=='prologue')throw Error('Unregistered explicit shot '+s.visualRef);
+ if(old&&custom)throw Error('Chapter scene cannot bind both original and custom storyboard');
+ if(custom&&(custom.shotId!==('V'+String(i+1).padStart(2,'0')+'-01')||
+    typeof custom.background!=='string'||!custom.visual||!custom.camera||
+    !Array.isArray(custom.characters)||!Array.isArray(custom.requiredRigActions)))
+  throw Error('Incomplete explicit custom shot '+s.id);
+ if(custom&&s.visualRef==='CUSTOM_RULES_SAFETY'&&id!=='chapter1')
+  throw Error('Chapter-specific conceptual illustration cannot be reused');
  const from=frameMarks[s.fromParagraph-1],end=frameMarks[s.toParagraph];
  if(from!==prevEnd||end<=from)throw Error('Chapter visual frame gap/overlap '+s.id);
  lastParagraph=s.toParagraph;prevEnd=end;
  return {...s,fromFrame:from,durationFrames:end-from,sourceText:paragraphs.slice(s.fromParagraph-1,s.toParagraph).join('\n'),
-  originalShot:s.visualRef.startsWith('P')?byRef.get(s.visualRef):null};
+  originalShot:old??null};
 });
 if(lastParagraph!==paragraphs.length||shots[0].fromFrame!==0||
  prevEnd!==audioBeats.at(-1).endFrame||prevEnd>chapter.durationFrames)throw Error('Incomplete chapter coverage');
