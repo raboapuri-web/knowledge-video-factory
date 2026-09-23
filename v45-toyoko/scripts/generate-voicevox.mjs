@@ -6,6 +6,7 @@ import {generateVoicevox} from '../../shared/voice/generate-voicevox.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const script=JSON.parse(fs.readFileSync(path.join(root,'src/script-data.json'),'utf8'));
 if(script.beats?.length!==18)throw Error('Expected 18 narration beats for prologue');
+if(script.approved!==true||script.originalApprovedScriptRecovered!==true||script.sourceFile!=='src/approved_original_narration.md')throw Error('Only actual approved original source may be voiced');
 const b=script.beats.map(x=>x.id);
 if(new Set(b).size!==18||b.some(x=>!/^P0[1-6]-0[1-3]$/.test(x)))throw Error('Unexpected beat IDs');
 const generated=await generateVoicevox(root,{
@@ -18,7 +19,7 @@ const sync=JSON.parse(fs.readFileSync(location,'utf8'));
 if(sync.beats.length!==18||sync.beats.some((x,i)=>x.id!==b[i]))throw Error('Audio timing mismatch');
 if(sync.beats.some(x=>!(x.end>x.start)))throw Error('Nonpositive VOICEVOX beat length');
 if(!(generated.durationSeconds>20))throw Error('Synthesis unexpectedly short');
-sync.status='measured_voicevox_provisional_script';
+sync.status=script.approved===true&&script.originalApprovedScriptRecovered===true?'measured_voicevox_approved_script':'measured_voicevox_provisional_script';
 sync.scriptVersion=script.version;
 sync.approvedNarration=script.approved===true;
 fs.writeFileSync(location,JSON.stringify(sync,null,2)+'\n');
