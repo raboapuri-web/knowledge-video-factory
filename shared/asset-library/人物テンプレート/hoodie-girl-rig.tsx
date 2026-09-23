@@ -111,7 +111,7 @@ export const HoodieGirlRig=({
           {/* Back of hood, followed by neck and torso so there is no detached head. */}
           <path d="M135 130 Q132 74 180 69 Q229 73 226 130 L243 210
                    Q180 221 117 210 Z" fill="#594a80" stroke="#3f355d" strokeWidth={4}/>
-          <rect x={166} y={133} width={28} height={58} rx={10} fill={skinColor}/>
+          <rect x={168} y={162} width={24} height={26} rx={9} fill={skinColor}/>
           <path d="M132 178 Q180 159 228 178 L248 224 L235 358
                    Q180 379 125 358 L112 224 Z"
             fill={hoodieColor} stroke="#43395f" strokeWidth={4} strokeLinejoin="round"/>
@@ -124,29 +124,48 @@ export const HoodieGirlRig=({
           <path d="M127 355 Q180 373 233 355" fill="none" stroke="#554675" strokeWidth={8}/>
           <Arm x={237} y={205} shoulder={j.rightShoulder} elbow={j.rightElbow}
             sleeve={sleeveColor} skin={skinColor}/>
-          {/* Face / hair pivot with neck behind jaw. The neck ends below the hood collar. */}
+          {/* Round face, playful high ponytail and short overlapping neck. All move with the head joint. */}
           <Hinge x={180} y={142} angle={j.headTilt}>
-            <path d="M-44 -50 Q-50 -105 -10 -115 Q20 -118 39 -100
-                     Q54 -80 44 -29 L46 24 Q23 48 0 44 Q-25 45 -46 21 Z"
+            {/* Ponytail sits BEHIND the round head, tied at the upper right. */}
+            <path d="M29 -54 Q53 -69 73 -51 Q92 -35 85 -7 Q83 11 99 19
+                     Q77 45 53 25 Q45 7 48 -12 Q45 -36 29 -54Z"
+              fill={hairColor} stroke="#352d3a" strokeWidth={2} strokeLinejoin="round"/>
+            <path d="M76 -43 Q90 -18 79 7" stroke="#695b72" strokeWidth={3}
+              fill="none" strokeLinecap="round"/>
+            {/* Round back hair + ears + genuinely circular face, not a tapered oval. */}
+            <circle cx={0} cy={-18} r={49} fill={hairColor}/>
+            <ellipse cx={-42} cy={-14} rx={8} ry={11} fill={skinColor}/>
+            <ellipse cx={42} cy={-14} rx={8} ry={11} fill={skinColor}/>
+            <circle cx={0} cy={-18} r={44} fill={skinColor} stroke="#bd9281" strokeWidth={2}/>
+            {/* Curved, asymmetrical bangs and side locks to soften the silhouette. */}
+            <path d="M-46 -38 Q-43 -77 -11 -80 Q28 -83 45 -47
+                     Q28 -51 13 -60 Q-4 -41 -20 -42 Q-35 -37 -46 -38Z"
               fill={hairColor}/>
-            <ellipse cx={-42} cy={-27} rx={8} ry={12} fill={skinColor}/>
-            <ellipse cx={42} cy={-27} rx={8} ry={12} fill={skinColor}/>
-            <path d="M-43 -54 Q-39 -96 0 -96 Q38 -96 43 -54 L40 -15
-                     Q34 29 0 37 Q-34 29 -40 -15 Z"
-              fill={skinColor} stroke="#ac806f" strokeWidth={2}/>
-            <path d="M-46 -63 Q-51 -116 -6 -120 Q35 -120 46 -86 L44 -51
-                     Q30 -73 12 -73 Q-9 -67 -19 -86 Q-24 -68 -43 -55 Z"
+            <path d="M-44 -34 Q-49 -4 -37 7 Q-42 -16 -36 -34Z
+                     M44 -33 Q50 -4 36 7 Q42 -15 36 -33Z"
               fill={hairColor}/>
-            <path d="M-26 -26 Q-19 -32 -11 -26 M11 -26 Q19 -32 26 -26"
-              stroke="#43313d" strokeWidth={3} fill="none" strokeLinecap="round"/>
-            <circle cx={-19} cy={-23} r={3} fill="#43313d"/>
-            <circle cx={19} cy={-23} r={3} fill="#43313d"/>
-            <ellipse cx={-29} cy={-7} rx={7} ry={3} fill="#d99196" opacity={.45}/>
-            <ellipse cx={29} cy={-7} rx={7} ry={3} fill="#d99196" opacity={.45}/>
-            <path d="M0 -18 L-2 -8 L2 -7" stroke="#c39080" strokeWidth={2} fill="none"/>
+            <path d="M-22 -47 Q-7 -42 8 -60" fill="none" stroke="#5d5065"
+              strokeWidth={3} strokeLinecap="round"/>
+            {/* Hair tie (above the ponytail root, behind the face edge). */}
+            <circle cx={46} cy={-47} r={7} fill="#e68da9" stroke="#c96c93" strokeWidth={2}/>
+            <circle cx={46} cy={-47} r={2} fill="#fff0f5"/>
+            {/* Larger sparkling eyes, delicate eyebrows and visible rosy cheeks. */}
+            <path d="M-26 -28 Q-18 -32 -10 -29 M10 -29 Q18 -32 26 -28"
+              stroke="#604854" strokeWidth={2.2} fill="none" strokeLinecap="round"/>
+            <ellipse cx={-17} cy={-14} rx={6.5} ry={8} fill="#342c3b"/>
+            <ellipse cx={17} cy={-14} rx={6.5} ry={8} fill="#342c3b"/>
+            <circle cx={-15} cy={-17} r={2.5} fill="#fff"/>
+            <circle cx={19} cy={-17} r={2.5} fill="#fff"/>
+            <circle cx={-19} cy={-10} r={1} fill="#fff" opacity={.75}/>
+            <circle cx={15} cy={-10} r={1} fill="#fff" opacity={.75}/>
+            <ellipse cx={-29} cy={3} rx={8} ry={4.5} fill="#e98d9f" opacity={.58}/>
+            <ellipse cx={29} cy={3} rx={8} ry={4.5} fill="#e98d9f" opacity={.58}/>
+            <path d="M0 -9 Q-2 -5 2 -4" stroke="#d69c8e" strokeWidth={1.5}
+              fill="none" strokeLinecap="round"/>
             {talkingNow
-              ?<ellipse cx={0} cy={13} rx={7} ry={5} fill="#8b4f58"/>
-              :<path d="M-8 12 Q0 17 8 12" stroke="#88545a" strokeWidth={2} fill="none"/>}
+              ?<ellipse cx={0} cy={10} rx={5.5} ry={4.5} fill="#a45d68"/>
+              :<path d="M-7 10 Q0 16 7 10" stroke="#a45d68" strokeWidth={2}
+                fill="none" strokeLinecap="round"/>}
           </Hinge>
         </g>
       </g>
