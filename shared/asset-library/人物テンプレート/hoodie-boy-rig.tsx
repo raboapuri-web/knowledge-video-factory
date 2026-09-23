@@ -16,6 +16,8 @@ export type HoodieBoyRigProps={
   actionStartFrame?:number;
   /** Hide the simple SVG chair when the scene already has a matching seat. */
   showChair?:boolean;
+  /** Anonymous background youths: omit eyes, eyebrows, nose, mouth and cheeks. */
+  hideFaceFeatures?:boolean;
   hoodieColor?:string;sleeveColor?:string;pantsColor?:string;
   skinColor?:string;hairColor?:string;shoeColor?:string;
 };
@@ -138,7 +140,7 @@ const Arm=({x,y,shoulder,elbow,sleeve,skin,phone=false}:{
 /** Transparent foreground, local artboard 360x640. Render in any Remotion scene. */
 export const HoodieBoyRig=({
   x=780,y=180,scale=1,action='idle',walkSpeed=1.1,pose,
-  talking=false,mirror=false,actionStartFrame=0,showChair=true,
+  talking=false,mirror=false,actionStartFrame=0,showChair=true,hideFaceFeatures=false,
   hoodieColor='#438b90',sleeveColor='#357c83',pantsColor='#334052',
   skinColor='#eab799',hairColor='#2e3443',shoeColor='#f1f3f4'
 }:HoodieBoyRigProps)=>{
@@ -215,6 +217,7 @@ export const HoodieBoyRig=({
               fill={hairColor}/>
             <path d="M-36 -39 Q-19 -29 -7 -42 M18 -59 Q30 -48 37 -43"
               fill="none" stroke="#4b5360" strokeWidth={2.5} strokeLinecap="round"/>
+            {!hideFaceFeatures&&<>
             {/* Friendly youthful eyes: round face retained, features distinct. */}
             <path d="M-26 -29 Q-18 -32 -10 -29 M10 -29 Q18 -32 26 -29"
               stroke="#393a43" strokeWidth={2.7} fill="none" strokeLinecap="round"/>
@@ -228,6 +231,7 @@ export const HoodieBoyRig=({
               ?<ellipse cx={0} cy={11} rx={5.5} ry={4} fill="#965a52"/>
               :<path d="M-8 10 Q0 17 8 10" stroke="#965a52"
                 strokeWidth={2} fill="none" strokeLinecap="round"/>}
+</>}
           </Hinge>
         </g>
         </g>
