@@ -44,6 +44,7 @@ jobs:
           node scripts/verify-reused-chapter-audio.mjs
           node scripts/build-full-review.mjs
           node scripts/stage-assets.mjs
+          node scripts/stage-chapter2-assets.mjs
           node scripts/build-chapter-preview.mjs chapter2
           npm install --no-audit --no-fund
           ln -sfn "$PWD/node_modules" ../node_modules
@@ -94,6 +95,7 @@ jobs:
         working-directory: v45-toyoko
         run: |
           node scripts/stage-assets.mjs
+          node scripts/stage-chapter2-assets.mjs
           npm install --no-audit --no-fund
           ln -sfn "$PWD/node_modules" ../node_modules
       - name: Render precisely this frame range, muted, at 1280x720
