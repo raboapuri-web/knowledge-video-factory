@@ -195,3 +195,17 @@ export const Lab=()=>
 背景使用前に `node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_kenkyu.png` を実行してください。`RESEARCHER_MANLabPreview`（8秒）で4動作、`RESEARCHER_MANFaceCloseup` で顔・首元とフラスコを確認できます。既存の人物コードは変更しません。
 
 Remotion CompositionのIDはアンダースコア使用不可のため、`ResearcherManLabPreview`（8秒）、`ResearcherManPreview`、`ResearcherManFaceCloseup` です。ファイル名とReactコンポーネント名は要望どおり `RESEARCHER_MAN` のままです。
+
+
+## RESEARCHER_WOMAN：白衣を着た女性研究員（関節付きReact SVG）
+
+独立した人物ID `character-researcher-woman`。コード `RESEARCHER_WOMAN.tsx`、背景合成 `researcher-woman-scene.tsx`。成人女性で肩までのボブヘア、白衣、淡紫色のワイシャツ、名札、パンツスーツ。男性研究員と同じ関節制御・4動作（`idle`、`walk`、`inspectFlask`、`point`）を使用できます。頭と首を襟元までつなぎ、服にハート・リボンなどを追加しません。フラスコは右前腕の関節内に置き、右手の動きに追従しながら容器が上向きになるようにしています。男性版は変更しません。
+
+```tsx
+import {ResearcherWomanBackgroundScene} from '../../shared/asset-library/人物テンプレート/researcher-woman-scene';
+export const Lab=()=>
+  <ResearcherWomanBackgroundScene backgroundFile="BG_kenkyu.png"
+    researcher={{x:1280,y:355,scale:.83,action:'inspectFlask'}}/>;
+```
+
+研究室背景は `stage-background.mjs v69-free-services BG_kenkyu.png` でステージング。Remotion Composition IDは `ResearcherWomanLabPreview`（8秒）と `ResearcherWomanFaceCloseup`。アンダースコアがある `RESEARCHER_WOMAN` はReactファイル名・コンポーネント名であり、Composition IDには使用しません。

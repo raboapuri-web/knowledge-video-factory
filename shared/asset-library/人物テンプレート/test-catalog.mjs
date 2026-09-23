@@ -34,7 +34,12 @@ for(const character of data.characters){
     assert(code.includes("'"+action.id+"'"),'Action not found in component code: '+action.id);
   }
   for(const joint of character.adjustableJoints)assert(code.includes(joint),'Joint not found in component code: '+joint);
-  if(character.id==='character-researcher-man'){
+  if(character.id==='character-researcher-man'||character.id==='character-researcher-woman'){
+    if(character.id==='character-researcher-woman'){
+      assert(code.includes('Medium bob behind the face'),'Woman researcher needs distinct shoulder-length bob hair');
+      assert(code.includes('This skin neck is in FRONT of the back hair'),'Female head should overlap and connect to collar');
+      assert(code.includes("export const RESEARCHER_WOMAN="),'Woman scientist component export missing');
+    }
     assert(code.includes("action==='inspectFlask'"),'Researcher observation action missing');
     assert(code.includes('<Flask liquid={liquid} rotation={flaskRotation}/>'),'Flask must be physically attached inside forearm hierarchy');
     assert(code.includes('flaskRotation={-j.rightShoulder-j.rightElbow}'),'Flask must be held upright by wrist correction');
