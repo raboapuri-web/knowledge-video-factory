@@ -1,0 +1,1237 @@
+{
+  "version": "chapter-review-v4",
+  "chapterId": "chapter4",
+  "source": "src/approved_original_narration.md",
+  "reuseApprovedVOICEVOX": true,
+  "format": "VOICED_REAL_CHAPTER_REVIEW",
+  "chapterReviewState": "first_video_for_feedback",
+  "approvedPriorChapters": [
+    "prologue",
+    "chapter1",
+    "chapter2",
+    "chapter3"
+  ],
+  "rules": [
+    "Preserve all 74 original approved paragraphs, chapter 4 measured original VOICEVOX and captions",
+    "One-off, content-appropriate graphics only: hours 15-21 from script, research sample 11 facilities and 37 youths, no fabricated percentages",
+    "Depict consultation hub separate from overnight shelter, do not imply both are same venue",
+    "Use unique visualRef per scene with varied camera/location/actor emphasis; never auto-repeat Venn or diagrams on a clock",
+    "Render chapter4 video-only chunks on 6 workers and mux unchanged original chapter4 narration once",
+    "Do not rerender user-approved prologue through chapter3 or prematurely concatenate"
+  ],
+  "diagramIds": [
+    "DG_OPEN_15",
+    "DG_TRUST_TO_SUPPORT",
+    "DG_SAFETY_BOUNDARIES",
+    "DG_PROTECTION_LIMIT",
+    "DG_OPEN_HOURS",
+    "DG_NEW_RELATIONSHIP",
+    "DG_DAY_NIGHT_LOOP",
+    "DG_BUILDING_VS_LIFE",
+    "DG_ACCESS_FRICTION",
+    "DG_SAFE_NOT_REACHED",
+    "DG_SAFETY_AND_ACCESS",
+    "DG_STUDY_11_37",
+    "DG_STABLE_RULES",
+    "DG_AGENCY_BESIDE_SAFETY",
+    "DG_YOUTH_PARTICIPATION",
+    "DG_CHOICE_BOARD",
+    "DG_FRIEND_CONTACT",
+    "DG_TRUST_TAKES_TIME",
+    "DG_RETURN_PATH",
+    "DG_SYSTEM_VIEW",
+    "DG_REASON_TO_ENTER",
+    "DG_ENTER_LOSS",
+    "DG_MANY_DECISIONS",
+    "DG_RELOCATION_VS_LIFE",
+    "DG_FEAR_OF_LOSS",
+    "DG_AFTER_EXIT",
+    "DG_CONTINUITY"
+  ],
+  "shots": [
+    {
+      "id": "C4-01",
+      "fromParagraph": 1,
+      "toParagraph": 1,
+      "visualRef": "C37-01",
+      "recommendation": "2024年5月の歌舞伎町へ。相談窓口が街のなかにある位置を広く見せる"
+    },
+    {
+      "id": "C4-02",
+      "fromParagraph": 2,
+      "toParagraph": 2,
+      "visualRef": "C37-02",
+      "recommendation": "若者向け総合相談窓口を建物入口から示す。実在施設の外観の厳密再現とはしない"
+    },
+    {
+      "id": "C4-03",
+      "fromParagraph": 3,
+      "toParagraph": 3,
+      "visualRef": "C38-01",
+      "recommendation": "軽食をとって休憩する利用者と相談員のいる若者向け窓口"
+    },
+    {
+      "id": "C4-04",
+      "fromParagraph": 4,
+      "toParagraph": 4,
+      "visualRef": "C37-03",
+      "recommendation": "宿泊施設ではなく相談窓口に入る若者と支援者を入口側から描く"
+    },
+    {
+      "id": "C4-05",
+      "fromParagraph": 5,
+      "toParagraph": 6,
+      "visualRef": "DG_OPEN_15",
+      "recommendation": "午後3時に開く相談窓口の1日の始まりを時刻と入口アイコンで示す",
+      "customShot": {
+        "shotId": "V05-01",
+        "visual": "午後3時に開く相談窓口の1日の始まりを時刻と入口アイコンで示す",
+        "narrationCue": "午後3時に開く相談窓口の1日の始まりを時刻と入口アイコンで示す",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-06",
+      "fromParagraph": 7,
+      "toParagraph": 7,
+      "visualRef": "C38-03",
+      "recommendation": "学校帰りの若者が飲み物を飲み相談員と自然に会話する"
+    },
+    {
+      "id": "C4-07",
+      "fromParagraph": 8,
+      "toParagraph": 8,
+      "visualRef": "C38-02",
+      "recommendation": "少女が相談窓口でスマホを充電する手元"
+    },
+    {
+      "id": "C4-08",
+      "fromParagraph": 9,
+      "toParagraph": 9,
+      "visualRef": "C39-02",
+      "recommendation": "声をかける職員に初めは曖昧に返事をする少女"
+    },
+    {
+      "id": "C4-09",
+      "fromParagraph": 10,
+      "toParagraph": 10,
+      "visualRef": "C39-03",
+      "recommendation": "無理に聞き出さず少女が自分から話し始めるまで相談員が待つ"
+    },
+    {
+      "id": "C4-10",
+      "fromParagraph": 11,
+      "toParagraph": 11,
+      "visualRef": "C4_CONVERSATION",
+      "recommendation": "少女が日常の学校・友人の話から困りごとを少しずつ話し始める会話",
+      "customShot": {
+        "shotId": "V10-01",
+        "visual": "少女が日常の学校・友人の話から困りごとを少しずつ話し始める会話",
+        "narrationCue": "少女が日常の学校・友人の話から困りごとを少しずつ話し始める会話",
+        "camera": "medium_tracking",
+        "background": "BG_YOUTH_CENTER",
+        "characters": [
+          "GIRL_16",
+          "SUPPORTER"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-11",
+      "fromParagraph": 12,
+      "toParagraph": 12,
+      "visualRef": "DG_TRUST_TO_SUPPORT",
+      "recommendation": "立ち寄りから対話を通じ必要な支援につながる段階の概念図",
+      "customShot": {
+        "shotId": "V11-01",
+        "visual": "立ち寄りから対話を通じ必要な支援につながる段階の概念図",
+        "narrationCue": "立ち寄りから対話を通じ必要な支援につながる段階の概念図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-12",
+      "fromParagraph": 13,
+      "toParagraph": 13,
+      "visualRef": "C4_PROTECTION_RULES",
+      "recommendation": "空の安全な施設を見せ、運営のためのルールという論点に切り替える",
+      "customShot": {
+        "shotId": "V12-01",
+        "visual": "空の安全な施設を見せ、運営のためのルールという論点に切り替える",
+        "narrationCue": "空の安全な施設を見せ、運営のためのルールという論点に切り替える",
+        "camera": "medium_tracking",
+        "background": "BG_YOUTH_CENTER_ENTRANCE",
+        "characters": [
+          "SUPPORTER"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-13",
+      "fromParagraph": 14,
+      "toParagraph": 14,
+      "visualRef": "C40-01",
+      "recommendation": "職員が受付で利用者へ施設の利用条件を案内する"
+    },
+    {
+      "id": "C4-14",
+      "fromParagraph": 15,
+      "toParagraph": 16,
+      "visualRef": "DG_SAFETY_BOUNDARIES",
+      "recommendation": "暴力や悪質な大人の侵入を防ぐために施設に守る境界線が必要という説明図",
+      "customShot": {
+        "shotId": "V14-01",
+        "visual": "暴力や悪質な大人の侵入を防ぐために施設に守る境界線が必要という説明図",
+        "narrationCue": "暴力や悪質な大人の侵入を防ぐために施設に守る境界線が必要という説明図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-15",
+      "fromParagraph": 17,
+      "toParagraph": 17,
+      "visualRef": "DG_PROTECTION_LIMIT",
+      "recommendation": "安全のための制限と若者が使える場所であることの両立が必要という図",
+      "customShot": {
+        "shotId": "V15-01",
+        "visual": "安全のための制限と若者が使える場所であることの両立が必要という図",
+        "narrationCue": "安全のための制限と若者が使える場所であることの両立が必要という図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-16",
+      "fromParagraph": 18,
+      "toParagraph": 18,
+      "visualRef": "DG_OPEN_HOURS",
+      "recommendation": "きみまもの原則開所時間15時から21時までを実数で示す時計。宿泊窓口とは区別",
+      "customShot": {
+        "shotId": "V16-01",
+        "visual": "きみまもの原則開所時間15時から21時までを実数で示す時計。宿泊窓口とは区別",
+        "narrationCue": "きみまもの原則開所時間15時から21時までを実数で示す時計。宿泊窓口とは区別",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-17",
+      "fromParagraph": 19,
+      "toParagraph": 19,
+      "visualRef": "C41-01",
+      "recommendation": "夜9時の終了を案内する職員と窓口の時計"
+    },
+    {
+      "id": "C4-18",
+      "fromParagraph": 20,
+      "toParagraph": 21,
+      "visualRef": "C41-02",
+      "recommendation": "20時過ぎから帰り支度する若者。帰宅する少年が家族へ連絡する"
+    },
+    {
+      "id": "C4-19",
+      "fromParagraph": 22,
+      "toParagraph": 22,
+      "visualRef": "C41-03",
+      "recommendation": "友人と来た若者が荷物をまとめ駅方向へ施設から出る"
+    },
+    {
+      "id": "C4-20",
+      "fromParagraph": 23,
+      "toParagraph": 23,
+      "visualRef": "C42-01",
+      "recommendation": "ほかの若者が帰宅し家に帰れない少女だけが入口に残る"
+    },
+    {
+      "id": "C4-21",
+      "fromParagraph": 24,
+      "toParagraph": 24,
+      "visualRef": "C4_OTHER_SHELTER",
+      "recommendation": "相談員が別の宿泊施設を提案する様子。相談窓口と宿泊先は別の建物として示す",
+      "customShot": {
+        "shotId": "V21-01",
+        "visual": "相談員が別の宿泊施設を提案する様子。相談窓口と宿泊先は別の建物として示す",
+        "narrationCue": "相談員が別の宿泊施設を提案する様子。相談窓口と宿泊先は別の建物として示す",
+        "camera": "medium_tracking",
+        "background": "BG_YOUTH_CENTER",
+        "characters": [
+          "GIRL_16",
+          "SUPPORTER"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-22",
+      "fromParagraph": 25,
+      "toParagraph": 25,
+      "visualRef": "DG_NEW_RELATIONSHIP",
+      "recommendation": "未知の大人と若者のいる新しい宿泊先に移るまでの関係再構築の負担を説明",
+      "customShot": {
+        "shotId": "V22-01",
+        "visual": "未知の大人と若者のいる新しい宿泊先に移るまでの関係再構築の負担を説明",
+        "narrationCue": "未知の大人と若者のいる新しい宿泊先に移るまでの関係再構築の負担を説明",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-23",
+      "fromParagraph": 26,
+      "toParagraph": 26,
+      "visualRef": "C43-02",
+      "recommendation": "歌舞伎町には少女が知る顔の友人たちがいる"
+    },
+    {
+      "id": "C4-24",
+      "fromParagraph": 27,
+      "toParagraph": 27,
+      "visualRef": "C43-03",
+      "recommendation": "映画館前の友人の輪に少女が戻る"
+    },
+    {
+      "id": "C4-25",
+      "fromParagraph": 28,
+      "toParagraph": 28,
+      "visualRef": "C43-01",
+      "recommendation": "再び夜の路地へ歩く少女を背後から追う"
+    },
+    {
+      "id": "C4-26",
+      "fromParagraph": 29,
+      "toParagraph": 29,
+      "visualRef": "DG_DAY_NIGHT_LOOP",
+      "recommendation": "昼の相談窓口と夜の広場を別の場所・時刻で描く帰還の一日",
+      "customShot": {
+        "shotId": "V26-01",
+        "visual": "昼の相談窓口と夜の広場を別の場所・時刻で描く帰還の一日",
+        "narrationCue": "昼の相談窓口と夜の広場を別の場所・時刻で描く帰還の一日",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-27",
+      "fromParagraph": 30,
+      "toParagraph": 30,
+      "visualRef": "DG_BUILDING_VS_LIFE",
+      "recommendation": "建物の提供だけでは若者の24時間の生活を支えきれない時間軸の図",
+      "customShot": {
+        "shotId": "V27-01",
+        "visual": "建物の提供だけでは若者の24時間の生活を支えきれない時間軸の図",
+        "narrationCue": "建物の提供だけでは若者の24時間の生活を支えきれない時間軸の図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-28",
+      "fromParagraph": 31,
+      "toParagraph": 31,
+      "visualRef": "C40-02",
+      "recommendation": "利用案内を示す職員。安全を保つ一定の規則が必要であることを示す"
+    },
+    {
+      "id": "C4-29",
+      "fromParagraph": 32,
+      "toParagraph": 32,
+      "visualRef": "DG_ACCESS_FRICTION",
+      "recommendation": "ルールが厳しすぎると支援の入口にためらいが生じるという概念的な障壁図",
+      "customShot": {
+        "shotId": "V29-01",
+        "visual": "ルールが厳しすぎると支援の入口にためらいが生じるという概念的な障壁図",
+        "narrationCue": "ルールが厳しすぎると支援の入口にためらいが生じるという概念的な障壁図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-30",
+      "fromParagraph": 33,
+      "toParagraph": 33,
+      "visualRef": "C4_STREET_EXCLUDED",
+      "recommendation": "制度の利用条件に合わず夜の街で過ごす若者。具体的な排除事例の創作はしない",
+      "customShot": {
+        "shotId": "V30-01",
+        "visual": "制度の利用条件に合わず夜の街で過ごす若者。具体的な排除事例の創作はしない",
+        "narrationCue": "制度の利用条件に合わず夜の街で過ごす若者。具体的な排除事例の創作はしない",
+        "camera": "medium_tracking",
+        "background": "BG_KABUKICHO_ALLEY",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-31",
+      "fromParagraph": 34,
+      "toParagraph": 34,
+      "visualRef": "C4_ADULT_NEARBY",
+      "recommendation": "夜の路地の奥に悪質な勧誘をする可能性のある大人を距離を置いて配置",
+      "customShot": {
+        "shotId": "V31-01",
+        "visual": "夜の路地の奥に悪質な勧誘をする可能性のある大人を距離を置いて配置",
+        "narrationCue": "夜の路地の奥に悪質な勧誘をする可能性のある大人を距離を置いて配置",
+        "camera": "medium_tracking",
+        "background": "BG_KABUKICHO_ALLEY",
+        "characters": [
+          "GIRL_16",
+          "OLDER_MAN"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-32",
+      "fromParagraph": 35,
+      "toParagraph": 35,
+      "visualRef": "DG_SAFE_NOT_REACHED",
+      "recommendation": "安全な場所は存在するが利用までの経路が途切れる場合を示す説明図",
+      "customShot": {
+        "shotId": "V32-01",
+        "visual": "安全な場所は存在するが利用までの経路が途切れる場合を示す説明図",
+        "narrationCue": "安全な場所は存在するが利用までの経路が途切れる場合を示す説明図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-33",
+      "fromParagraph": 36,
+      "toParagraph": 36,
+      "visualRef": "DG_SAFETY_AND_ACCESS",
+      "recommendation": "安全を守る仕組みと本人が安心して利用できることを別々の軸で説明。数値グラフではない",
+      "customShot": {
+        "shotId": "V33-01",
+        "visual": "安全を守る仕組みと本人が安心して利用できることを別々の軸で説明。数値グラフではない",
+        "narrationCue": "安全を守る仕組みと本人が安心して利用できることを別々の軸で説明。数値グラフではない",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-34",
+      "fromParagraph": 37,
+      "toParagraph": 37,
+      "visualRef": "C44-01",
+      "recommendation": "話を2018年に発表されたアメリカの研究へ移す米国の街並み"
+    },
+    {
+      "id": "C4-35",
+      "fromParagraph": 38,
+      "toParagraph": 38,
+      "visualRef": "DG_STUDY_11_37",
+      "recommendation": "ニューヨーク州11施設に暮らす16〜21歳の37人への聞き取り。11建物と37人を正確に示す",
+      "customShot": {
+        "shotId": "V35-01",
+        "visual": "ニューヨーク州11施設に暮らす16〜21歳の37人への聞き取り。11建物と37人を正確に示す",
+        "narrationCue": "ニューヨーク州11施設に暮らす16〜21歳の37人への聞き取り。11建物と37人を正確に示す",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-36",
+      "fromParagraph": 39,
+      "toParagraph": 39,
+      "visualRef": "C44-02",
+      "recommendation": "研究者が施設で暮らす若者の経験を聞き取る面談構図"
+    },
+    {
+      "id": "C4-37",
+      "fromParagraph": 40,
+      "toParagraph": 40,
+      "visualRef": "DG_STABLE_RULES",
+      "recommendation": "施設がもたらす生活の安定と厳しいと感じる規則を一つの室内の異なる側面で可視化",
+      "customShot": {
+        "shotId": "V37-01",
+        "visual": "施設がもたらす生活の安定と厳しいと感じる規則を一つの室内の異なる側面で可視化",
+        "narrationCue": "施設がもたらす生活の安定と厳しいと感じる規則を一つの室内の異なる側面で可視化",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-38",
+      "fromParagraph": 41,
+      "toParagraph": 41,
+      "visualRef": "DG_AGENCY_BESIDE_SAFETY",
+      "recommendation": "安全な施設でも自分の生活の決め方を選びたい気持ちを人物と選択アイコンで表現",
+      "customShot": {
+        "shotId": "V38-01",
+        "visual": "安全な施設でも自分の生活の決め方を選びたい気持ちを人物と選択アイコンで表現",
+        "narrationCue": "安全な施設でも自分の生活の決め方を選びたい気持ちを人物と選択アイコンで表現",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-39",
+      "fromParagraph": 42,
+      "toParagraph": 42,
+      "visualRef": "C45-02",
+      "recommendation": "何度も職員と会話することで不安が和らいでいく施設での関係を情景で示す"
+    },
+    {
+      "id": "C4-40",
+      "fromParagraph": 43,
+      "toParagraph": 43,
+      "visualRef": "DG_YOUTH_PARTICIPATION",
+      "recommendation": "施設運営や決まりごとの話し合いに本人の声が加わる意思決定図。アンケート値は創作しない",
+      "customShot": {
+        "shotId": "V40-01",
+        "visual": "施設運営や決まりごとの話し合いに本人の声が加わる意思決定図。アンケート値は創作しない",
+        "narrationCue": "施設運営や決まりごとの話し合いに本人の声が加わる意思決定図。アンケート値は創作しない",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-41",
+      "fromParagraph": 44,
+      "toParagraph": 44,
+      "visualRef": "C45-01",
+      "recommendation": "生活の決定権を求める若者が施設入口で立ち止まる"
+    },
+    {
+      "id": "C4-42",
+      "fromParagraph": 45,
+      "toParagraph": 45,
+      "visualRef": "C45-03",
+      "recommendation": "施設内の共有空間で職員や他の若者と安心して過ごせるようになる"
+    },
+    {
+      "id": "C4-43",
+      "fromParagraph": 46,
+      "toParagraph": 46,
+      "visualRef": "C46-01",
+      "recommendation": "歌舞伎町の少女が保護施設へ移った後の面談を描く"
+    },
+    {
+      "id": "C4-44",
+      "fromParagraph": 47,
+      "toParagraph": 47,
+      "visualRef": "C4_LOSING_FRIENDS",
+      "recommendation": "危険な街から離れる代わりに友人と会えなくなることを恐れる少女",
+      "customShot": {
+        "shotId": "V44-01",
+        "visual": "危険な街から離れる代わりに友人と会えなくなることを恐れる少女",
+        "narrationCue": "危険な街から離れる代わりに友人と会えなくなることを恐れる少女",
+        "camera": "medium_tracking",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_GIRL"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-45",
+      "fromParagraph": 48,
+      "toParagraph": 48,
+      "visualRef": "C46-02",
+      "recommendation": "居住先・学校・友人と連絡する方法を職員と一緒に検討する"
+    },
+    {
+      "id": "C4-46",
+      "fromParagraph": 49,
+      "toParagraph": 49,
+      "visualRef": "DG_CHOICE_BOARD",
+      "recommendation": "住む場所・学校・安全に連絡を取れる友人の三つを本人の選択肢として並べる一回限りの図",
+      "customShot": {
+        "shotId": "V46-01",
+        "visual": "住む場所・学校・安全に連絡を取れる友人の三つを本人の選択肢として並べる一回限りの図",
+        "narrationCue": "住む場所・学校・安全に連絡を取れる友人の三つを本人の選択肢として並べる一回限りの図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-47",
+      "fromParagraph": 50,
+      "toParagraph": 50,
+      "visualRef": "DG_FRIEND_CONTACT",
+      "recommendation": "施設へ移っても安全に友人と関係を保ち相談できる大人を増やすネットワーク図",
+      "customShot": {
+        "shotId": "V47-01",
+        "visual": "施設へ移っても安全に友人と関係を保ち相談できる大人を増やすネットワーク図",
+        "narrationCue": "施設へ移っても安全に友人と関係を保ち相談できる大人を増やすネットワーク図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-48",
+      "fromParagraph": 51,
+      "toParagraph": 51,
+      "visualRef": "C4_BED_NOT_ENOUGH",
+      "recommendation": "整った寝室と食事だけでは支援の違いを説明しきれないことを静かな施設情景で示す",
+      "customShot": {
+        "shotId": "V48-01",
+        "visual": "整った寝室と食事だけでは支援の違いを説明しきれないことを静かな施設情景で示す",
+        "narrationCue": "整った寝室と食事だけでは支援の違いを説明しきれないことを静かな施設情景で示す",
+        "camera": "medium_tracking",
+        "background": "BG_SHELTER_BEDROOM",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-49",
+      "fromParagraph": 52,
+      "toParagraph": 52,
+      "visualRef": "C4_COUNSEL_TRUST",
+      "recommendation": "少女と相談員が同じ机に向かう。支援する大人との関係が重要という情景",
+      "customShot": {
+        "shotId": "V49-01",
+        "visual": "少女と相談員が同じ机に向かう。支援する大人との関係が重要という情景",
+        "narrationCue": "少女と相談員が同じ机に向かう。支援する大人との関係が重要という情景",
+        "camera": "medium_tracking",
+        "background": "BG_SHELTER_COUNSEL",
+        "characters": [
+          "GIRL_16",
+          "SUPPORTER"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-50",
+      "fromParagraph": 53,
+      "toParagraph": 53,
+      "visualRef": "DG_TRUST_TAKES_TIME",
+      "recommendation": "信頼は建物と違い一日では完成しない。複数回の面談を示す非数値タイムライン",
+      "customShot": {
+        "shotId": "V50-01",
+        "visual": "信頼は建物と違い一日では完成しない。複数回の面談を示す非数値タイムライン",
+        "narrationCue": "信頼は建物と違い一日では完成しない。複数回の面談を示す非数値タイムライン",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-51",
+      "fromParagraph": 54,
+      "toParagraph": 54,
+      "visualRef": "C4_FIRST_MEETING",
+      "recommendation": "初めて会った少女が話したくない時に相談員が待つ。明日に話せるとは限らない",
+      "customShot": {
+        "shotId": "V51-01",
+        "visual": "初めて会った少女が話したくない時に相談員が待つ。明日に話せるとは限らない",
+        "narrationCue": "初めて会った少女が話したくない時に相談員が待つ。明日に話せるとは限らない",
+        "camera": "medium_tracking",
+        "background": "BG_SHELTER_COUNSEL",
+        "characters": [
+          "GIRL_16",
+          "SUPPORTER"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-52",
+      "fromParagraph": 55,
+      "toParagraph": 55,
+      "visualRef": "C4_REPEAT_VISITS",
+      "recommendation": "会話、食事、街への帰還、再訪という異なる場所を時間の流れに沿って示す",
+      "customShot": {
+        "shotId": "V52-01",
+        "visual": "会話、食事、街への帰還、再訪という異なる場所を時間の流れに沿って示す",
+        "narrationCue": "会話、食事、街への帰還、再訪という異なる場所を時間の流れに沿って示す",
+        "camera": "medium_tracking",
+        "background": "BG_YOUTH_CENTER_ENTRANCE",
+        "characters": [
+          "GIRL_16",
+          "SUPPORTER"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-53",
+      "fromParagraph": 56,
+      "toParagraph": 56,
+      "visualRef": "C47-01",
+      "recommendation": "施設を離れた後も職員との関係が続くよう、職員が少女を見送る"
+    },
+    {
+      "id": "C4-54",
+      "fromParagraph": 57,
+      "toParagraph": 57,
+      "visualRef": "C47-02",
+      "recommendation": "一度施設を離れた少女が別の日に相談窓口を訪れる"
+    },
+    {
+      "id": "C4-55",
+      "fromParagraph": 58,
+      "toParagraph": 58,
+      "visualRef": "DG_RETURN_PATH",
+      "recommendation": "困った時にもう一度支援を頼れる関係を切れない再訪経路として示す",
+      "customShot": {
+        "shotId": "V55-01",
+        "visual": "困った時にもう一度支援を頼れる関係を切れない再訪経路として示す",
+        "narrationCue": "困った時にもう一度支援を頼れる関係を切れない再訪経路として示す",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-56",
+      "fromParagraph": 59,
+      "toParagraph": 59,
+      "visualRef": "DG_SYSTEM_VIEW",
+      "recommendation": "個人の一回の保護から継続した生活の支えへ、社会制度の視点を広げる概念図",
+      "customShot": {
+        "shotId": "V56-01",
+        "visual": "個人の一回の保護から継続した生活の支えへ、社会制度の視点を広げる概念図",
+        "narrationCue": "個人の一回の保護から継続した生活の支えへ、社会制度の視点を広げる概念図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-57",
+      "fromParagraph": 60,
+      "toParagraph": 60,
+      "visualRef": "C4_SAFE_PLACE",
+      "recommendation": "行政や支援団体が安全な場所を用意するという場面。利用できる施設外観",
+      "customShot": {
+        "shotId": "V57-01",
+        "visual": "行政や支援団体が安全な場所を用意するという場面。利用できる施設外観",
+        "narrationCue": "行政や支援団体が安全な場所を用意するという場面。利用できる施設外観",
+        "camera": "medium_tracking",
+        "background": "BG_SHELTER_ENTRANCE",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-58",
+      "fromParagraph": 61,
+      "toParagraph": 61,
+      "visualRef": "DG_REASON_TO_ENTER",
+      "recommendation": "建物があるだけでなく本人がそこで暮らす理由を必要とすることを入口の内外で図解",
+      "customShot": {
+        "shotId": "V58-01",
+        "visual": "建物があるだけでなく本人がそこで暮らす理由を必要とすることを入口の内外で図解",
+        "narrationCue": "建物があるだけでなく本人がそこで暮らす理由を必要とすることを入口の内外で図解",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-59",
+      "fromParagraph": 62,
+      "toParagraph": 62,
+      "visualRef": "DG_ENTER_LOSS",
+      "recommendation": "施設で得られるものと入所時に失うかもしれないものを分けて整理する非数値比較",
+      "customShot": {
+        "shotId": "V59-01",
+        "visual": "施設で得られるものと入所時に失うかもしれないものを分けて整理する非数値比較",
+        "narrationCue": "施設で得られるものと入所時に失うかもしれないものを分けて整理する非数値比較",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-60",
+      "fromParagraph": 63,
+      "toParagraph": 63,
+      "visualRef": "C4_FRIENDS_LEFT",
+      "recommendation": "友人たちが街に残り少女一人が施設に移ることで失うつながりを情景で描く",
+      "customShot": {
+        "shotId": "V60-01",
+        "visual": "友人たちが街に残り少女一人が施設に移ることで失うつながりを情景で描く",
+        "narrationCue": "友人たちが街に残り少女一人が施設に移ることで失うつながりを情景で描く",
+        "camera": "medium_tracking",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_GIRL"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-61",
+      "fromParagraph": 64,
+      "toParagraph": 64,
+      "visualRef": "C4_REEXPLAIN",
+      "recommendation": "初対面の相談員へ今までの生活事情を再度説明する少女",
+      "customShot": {
+        "shotId": "V61-01",
+        "visual": "初対面の相談員へ今までの生活事情を再度説明する少女",
+        "narrationCue": "初対面の相談員へ今までの生活事情を再度説明する少女",
+        "camera": "medium_tracking",
+        "background": "BG_SHELTER_COUNSEL",
+        "characters": [
+          "GIRL_16",
+          "SUPPORTER"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-62",
+      "fromParagraph": 65,
+      "toParagraph": 65,
+      "visualRef": "C4_NEW_RELATIONSHIP",
+      "recommendation": "新しい施設で知らない人々との生活を始める少女",
+      "customShot": {
+        "shotId": "V62-01",
+        "visual": "新しい施設で知らない人々との生活を始める少女",
+        "narrationCue": "新しい施設で知らない人々との生活を始める少女",
+        "camera": "medium_tracking",
+        "background": "BG_SHELTER_CORRIDOR",
+        "characters": [
+          "GIRL_16",
+          "OTHER_YOUTH"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-63",
+      "fromParagraph": 66,
+      "toParagraph": 66,
+      "visualRef": "DG_MANY_DECISIONS",
+      "recommendation": "安全な施設への移動には住居・人間関係・習慣という複数の決断が伴う三点図",
+      "customShot": {
+        "shotId": "V63-01",
+        "visual": "安全な施設への移動には住居・人間関係・習慣という複数の決断が伴う三点図",
+        "narrationCue": "安全な施設への移動には住居・人間関係・習慣という複数の決断が伴う三点図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-64",
+      "fromParagraph": 67,
+      "toParagraph": 67,
+      "visualRef": "DG_RELOCATION_VS_LIFE",
+      "recommendation": "大人から見た場所の移動と本人から見た生活の再編の異なる二層を比較",
+      "customShot": {
+        "shotId": "V64-01",
+        "visual": "大人から見た場所の移動と本人から見た生活の再編の異なる二層を比較",
+        "narrationCue": "大人から見た場所の移動と本人から見た生活の再編の異なる二層を比較",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-65",
+      "fromParagraph": 68,
+      "toParagraph": 68,
+      "visualRef": "C4_PERSONAL_JOURNEY",
+      "recommendation": "少女が施設と街の二つの背景の間を見つめる。選択の重みを人物で示す",
+      "customShot": {
+        "shotId": "V65-01",
+        "visual": "少女が施設と街の二つの背景の間を見つめる。選択の重みを人物で示す",
+        "narrationCue": "少女が施設と街の二つの背景の間を見つめる。選択の重みを人物で示す",
+        "camera": "medium_tracking",
+        "background": "BG_SHELTER_ENTRANCE",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-66",
+      "fromParagraph": 69,
+      "toParagraph": 69,
+      "visualRef": "C48-01",
+      "recommendation": "冒頭に出た少女が施設の入口を離れる姿へ戻る"
+    },
+    {
+      "id": "C4-67",
+      "fromParagraph": 70,
+      "toParagraph": 71,
+      "visualRef": "C4_BACK_TO_TOYOKO",
+      "recommendation": "少女が映画館前へ戻り仲間の隣に座る。危険が好きだからと決め付けない",
+      "customShot": {
+        "shotId": "V67-01",
+        "visual": "少女が映画館前へ戻り仲間の隣に座る。危険が好きだからと決め付けない",
+        "narrationCue": "少女が映画館前へ戻り仲間の隣に座る。危険が好きだからと決め付けない",
+        "camera": "medium_tracking",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_GIRL",
+          "FRIEND_BOY"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "idle",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-68",
+      "fromParagraph": 72,
+      "toParagraph": 72,
+      "visualRef": "DG_FEAR_OF_LOSS",
+      "recommendation": "少女が失いたくない友人・相談先・生活の三つを人物の持ち物のように示す",
+      "customShot": {
+        "shotId": "V68-01",
+        "visual": "少女が失いたくない友人・相談先・生活の三つを人物の持ち物のように示す",
+        "narrationCue": "少女が失いたくない友人・相談先・生活の三つを人物の持ち物のように示す",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-69",
+      "fromParagraph": 73,
+      "toParagraph": 73,
+      "visualRef": "DG_AFTER_EXIT",
+      "recommendation": "危険から隔離するだけでなく離れた後の生活が続くことを道筋で示す",
+      "customShot": {
+        "shotId": "V69-01",
+        "visual": "危険から隔離するだけでなく離れた後の生活が続くことを道筋で示す",
+        "narrationCue": "危険から隔離するだけでなく離れた後の生活が続くことを道筋で示す",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C4-70",
+      "fromParagraph": 74,
+      "toParagraph": 74,
+      "visualRef": "DG_CONTINUITY",
+      "recommendation": "安全と、暮らしと、人間関係を失わずに済む安心を別の場所へも持ち運べる最終概念図",
+      "customShot": {
+        "shotId": "V70-01",
+        "visual": "安全と、暮らしと、人間関係を失わずに済む安心を別の場所へも持ち運べる最終概念図",
+        "narrationCue": "安全と、暮らしと、人間関係を失わずに済む安心を別の場所へも持ち運べる最終概念図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    }
+  ]
+}
