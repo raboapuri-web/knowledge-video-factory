@@ -13,9 +13,10 @@ if(expected.some((s,i)=>ids[i]!==s))throw Error('Prologue ordering changed');
 if(shots.reduce((a,s)=>a+s.timing.targetDurationSeconds,0)!==120)throw Error('Provisional 120-second prologue timing changed');
 const renderer=fs.readFileSync(new URL('../src/prologue.tsx',import.meta.url),'utf8');
 for(const id of ids)if(!renderer.includes("case '"+id+"'"))throw Error('No bespoke visual branch for '+id);
-if(fs.existsSync(new URL('../src/script-data.json',import.meta.url))){
- const script=JSON.parse(fs.readFileSync(new URL('../src/script-data.json',import.meta.url),'utf8'));
- if(script.approved!==true||!script.prologue?.trim())throw Error('Narration must be approved full text, not storyboard narrationCue');
-}
+const script=JSON.parse(fs.readFileSync(new URL('../src/script-data.json',import.meta.url),'utf8'));
+if(script.approved===true && script.originalApprovedScriptRecovered!==true)throw Error('Prologue draft cannot be marked approved without original verified script');
+if(!Array.isArray(script.beats)||script.beats.length!==18)throw Error('Expected 18 shot-linked spoken narration beats');
+if(script.beats.some((b,i)=>b.id!==ids[i]||!b.narration?.trim()||b.subtitle!==b.narration))throw Error('Narration/subtitles must match each exact storyboard shot');
+if(script.approved!==true)console.log('WARNING: VOICED PREVIEW USES NEW PROVISIONAL DRAFT, NOT ORIGINAL APPROVED SCRIPT');
 console.log('Validated '+pro.length+' prologue scenes / '+shots.length+' bespoke storyboard cuts, no shot omitted.');
-console.log('Narration is NOT attached; preview must be unvoiced and must not be published as a completed chapter.');
+console.log(script.approved===true?'Verified script attached':'Provisional narrated review ONLY: do not publish as approved full chapter.');
