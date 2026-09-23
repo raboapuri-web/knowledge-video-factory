@@ -5,10 +5,14 @@
   "updatedAt": "2026-09-23",
   "approvedNarration": {
     "availableInRepository": false,
-    "source": "approved original script must be provided verbatim; storyboard narration cues are insufficient",
+    "source": "Original approved full narration not retrievable; a new 18-shot prologue VOICEVOX review draft is recorded separately and explicitly NOT approved.",
     "scriptDataPath": "src/script-data.json",
-    "voicevoxNotYetGenerated": true,
-    "subtitlesNotYetGenerated": true
+    "provisionalDraftPresent": true,
+    "provisionalDraftBeatCount": 18,
+    "voicevoxGeneratorImplemented": true,
+    "subtitleCompositionImplemented": true,
+    "generatedAudioVerified": false,
+    "subtitleFrameReviewVerified": false
   },
   "chapters": [
     {
@@ -26,7 +30,7 @@
       "visualPreviewWorkflow": ".github/workflows/v45-toyoko-prologue-preview.yml",
       "renderVerification": "silent_3600frame_mp4_rendered_in_failed_actions_runs_but_not_published",
       "userVisualApproval": false,
-      "finalAudioSync": "not_started",
+      "finalAudioSync": "implemented_but_requires_successful_voicevox_run_and_original_script",
       "workflowFailure": {
         "runs": [
           35824936806,
@@ -37,7 +41,16 @@
         "videoRenderStep": "succeeded_3600_frames_960x540_51.3MB",
         "artifactUpload": "skipped_due_to_failed_extraction",
         "fixCommit": "a1b00a520aeb36692ebbafd86698a413a76f6be2",
-        "fixStatus": "committed_not_yet_verified_by_new_workflow_run"
+        "fixStatus": "old silent review FFmpeg failure fixed in code; now run new voiced review workflow"
+      },
+      "audioAndSubtitles": {
+        "implementation": "committed",
+        "speechSource": "new provisional reconstruction from scene plan; not recovered original script",
+        "beats": 18,
+        "shotBoundaryTiming": "VOICEVOX audio measured on run",
+        "captionTiming": "per shot measured, intra-shot chunk timing approximate",
+        "renderStatus": "CI awaiting verification",
+        "reviewStatus": "not_yet_approved"
       }
     },
     {
