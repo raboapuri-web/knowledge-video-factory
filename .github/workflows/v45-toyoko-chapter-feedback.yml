@@ -58,7 +58,7 @@ jobs:
           mkdir -p out
           npx remotion render src/chapter-review-index.tsx ToyokoChapterPreview \
             out/toyoko-prologue-feedback-v1.mp4 \
-            --scale=0.6666666666667 --codec=h264 --crf=21 --concurrency=2 --log=warn
+            --scale=0.6666666666666666 --codec=h264 --crf=21 --concurrency=2 --log=warn
           test -s out/toyoko-prologue-feedback-v1.mp4
       - name: Verify chapter runtime, picture and original audio are present
         working-directory: v45-toyoko
