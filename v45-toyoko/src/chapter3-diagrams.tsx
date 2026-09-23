@@ -35,7 +35,8 @@ const arr=(x1:number,y1:number,x2:number,y2:number,c=C.teal,w=6,dash=false)=>
  <path d={'M'+(x2-23)+' '+(y2-17)+' L'+x2+' '+y2+' L'+(x2-23)+' '+(y2+17)}
  fill='none' stroke={c} strokeWidth={w} strokeLinecap='round' strokeLinejoin='round'
  transform={x2===x1?'rotate(90 '+x2+' '+y2+')':undefined}/></g>;
-const subtitle=(s:string)=>txt(960,954,s,34,C.gray);
+// Captions occupy the lower third. Do not overlay a duplicate SVG footer on the narration.
+const subtitle=(_s:string)=>null;
 const pick=(id:string,p:number)=>{
  const show=(offset:number)=>Math.max(.10,Math.min(1,(p-offset)*3));
  if(id==='DG_SUPPORT_PROCESS')return <g>
