@@ -1,0 +1,165 @@
+{
+  "version": "chapter-review-v1",
+  "chapterId": "prologue",
+  "source": "src/approved_original_narration.md",
+  "reuseApprovedVOICEVOX": true,
+  "format": "VOICED_REAL_CHAPTER_REVIEW",
+  "renderBeforeUserFeedback": true,
+  "chapterReviewState": "first_video_for_feedback",
+  "rules": [
+    "This chapter is a standalone video with original VOICEVOX narration and subtitles",
+    "Do not insert diagram rotation on a timer; only the ONE narrative-specific three-place composition at paragraph 25",
+    "Never repeat the same old background-and-actor-composition consecutively",
+    "Chapter renders are independent. Do not regenerate a complete full movie until every chapter is explicitly reviewed",
+    "Do not use the 299-row spreadsheet as an approval gate"
+  ],
+  "shots": [
+    {
+      "id": "PR-01",
+      "fromParagraph": 1,
+      "toParagraph": 1,
+      "visualRef": "P01-01",
+      "recommendation": "映画館周辺を高所から見せる。夜の街の位置関係を一目で示す。"
+    },
+    {
+      "id": "PR-02",
+      "fromParagraph": 2,
+      "toParagraph": 2,
+      "visualRef": "P01-02",
+      "recommendation": "帰宅する通行人と、広場に残る若者の対比。"
+    },
+    {
+      "id": "PR-03",
+      "fromParagraph": 3,
+      "toParagraph": 3,
+      "visualRef": "P02-02",
+      "recommendation": "地面に座る若者たちの食べ物の受け渡し。スマホを見る少女も同じ広場に配置。"
+    },
+    {
+      "id": "PR-04",
+      "fromParagraph": 4,
+      "toParagraph": 5,
+      "visualRef": "P01-03",
+      "recommendation": "映画館前の若者たちの集まりを全景で見せる。"
+    },
+    {
+      "id": "PR-05",
+      "fromParagraph": 6,
+      "toParagraph": 7,
+      "visualRef": "P03-01",
+      "recommendation": "架空の少女が自宅で荷物を持つ。家庭事情の具体的な事件は描かない。"
+    },
+    {
+      "id": "PR-06",
+      "fromParagraph": 8,
+      "toParagraph": 8,
+      "visualRef": "P03-02",
+      "recommendation": "SNSで知った友人の存在を文字なし通知で示す。"
+    },
+    {
+      "id": "PR-07",
+      "fromParagraph": 9,
+      "toParagraph": 9,
+      "visualRef": "P03-03",
+      "recommendation": "電車の少女から夜の街へ映像転換し、街が日常になっていくことを示す。"
+    },
+    {
+      "id": "PR-08",
+      "fromParagraph": 10,
+      "toParagraph": 10,
+      "visualRef": "P04-01",
+      "recommendation": "少女と友人が昼から夕方へ街を歩く。"
+    },
+    {
+      "id": "PR-09",
+      "fromParagraph": 11,
+      "toParagraph": 11,
+      "visualRef": "P04-02",
+      "recommendation": "友人と金銭を出し合って食事を買う。"
+    },
+    {
+      "id": "PR-10",
+      "fromParagraph": 12,
+      "toParagraph": 12,
+      "visualRef": "P04-03",
+      "recommendation": "広場で座ったまま夜を明かす少女と友人。"
+    },
+    {
+      "id": "PR-11",
+      "fromParagraph": 13,
+      "toParagraph": 13,
+      "visualRef": "P05-01",
+      "recommendation": "支援者が街で少女に話しかける。"
+    },
+    {
+      "id": "PR-12",
+      "fromParagraph": 14,
+      "toParagraph": 14,
+      "visualRef": "P05-02",
+      "recommendation": "少女と支援者が施設の入り口へ向かう。"
+    },
+    {
+      "id": "PR-13",
+      "fromParagraph": 15,
+      "toParagraph": 16,
+      "visualRef": "P05-03",
+      "recommendation": "整った寝室と少女を見せ、街と異なる保護された環境を示す。"
+    },
+    {
+      "id": "PR-14",
+      "fromParagraph": 17,
+      "toParagraph": 17,
+      "visualRef": "P06-01",
+      "recommendation": "翌日、少女が保護施設の扉から出て行く。"
+    },
+    {
+      "id": "PR-15",
+      "fromParagraph": 18,
+      "toParagraph": 18,
+      "visualRef": "P06-02",
+      "recommendation": "少女が再び歌舞伎町の映画館前へ向かう。"
+    },
+    {
+      "id": "PR-16",
+      "fromParagraph": 19,
+      "toParagraph": 21,
+      "visualRef": "P06-03",
+      "recommendation": "友人が隣の場所を空け、少女が腰を下ろす。"
+    },
+    {
+      "id": "PR-17",
+      "fromParagraph": 22,
+      "toParagraph": 22,
+      "visualRef": "CITY_ADULTS",
+      "recommendation": "街角に残る少女と、立ち止まって遠巻きに見る大人。これまでと違う構図。"
+    },
+    {
+      "id": "PR-18",
+      "fromParagraph": 23,
+      "toParagraph": 23,
+      "visualRef": "SHELTER_VS_TOWN",
+      "recommendation": "施設入口と街の間に一人で立つ少女。説明図を使わず空間の距離で葛藤を示す。"
+    },
+    {
+      "id": "PR-19",
+      "fromParagraph": 24,
+      "toParagraph": 24,
+      "visualRef": "TWO_ADULTS",
+      "recommendation": "支援者のいる相談室と路地の大人を左右の異なる情景で対比する。"
+    },
+    {
+      "id": "PR-20",
+      "fromParagraph": 25,
+      "toParagraph": 25,
+      "visualRef": "THREE_PLACES",
+      "recommendation": "家庭・施設・街の3つの異なる場所をカード状に提示。繰り返しのベン図は使用しない。"
+    },
+    {
+      "id": "PR-21",
+      "fromParagraph": 26,
+      "toParagraph": 26,
+      "visualRef": "NIGHT_QUESTION",
+      "recommendation": "最初の映画館前の全景へ戻る。中央の少女へゆっくり寄り、次章への問いを残す。"
+    }
+  ]
+}
