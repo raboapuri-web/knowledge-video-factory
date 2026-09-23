@@ -110,3 +110,21 @@ export const Room=()=>
 ```
 
 プレビュー準備は `prepare.mjs` の**後**に `node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_oneroom.png` を実行。Remotion Studioから `HoodieGirlRoomPreview`、首元の確認には `HoodieGirlNeckCloseup` を選びます。
+
+
+## 少女の追加アクション：座る／立つ／スマホ（2026-09-23）
+
+`HoodieGirlRig` の `action` に `sit`・`standUp`・`sitPhone`・`walkPhone` を追加しました。従来の顔（丸顔・ポニーテール）と `idle`・`walk`・`wave`・`point` は保持しています。
+
+`sit` と `standUp` は約1.1秒の**一方向**遷移です。各動作が始まるフレームを `actionStartFrame` に与えてください。Remotion の `<Sequence>` 内でローカルフレームが0から始まる場合は省略できます。
+
+```tsx
+<HoodieGirlRig action="sitPhone" x={1100} y={500} scale={0.84}/>
+<HoodieGirlRig action="walkPhone" x={1100} y={500} scale={0.84}/>
+<HoodieGirlRig action="sit" actionStartFrame={240}/>
+<HoodieGirlRig action="standUp" actionStartFrame={360}/>
+```
+
+スマートフォンは**右前腕のローカル座標**に固定し、肩→肘→手首の回転と一緒に移動します。固定座標の端末を「右手付近に表示」する実装ではありません。スマホの下端と親指が重なる描画にしています。簡易椅子は `sit`、`sitPhone`、`standUp` で表示され、動画背景に椅子がある場合 `showChair={false}` で隠せます。正面向きの簡易座位なので、床接地IKや3/4方向の座り姿勢は未実装です。
+
+`HoodieGirlRoomPreview` は480フレーム・30fps（16秒）で、待機→歩行→手振り→指さし→座る→座ってスマホ→立ち上がる→歩きスマホを確認できます。手とスマホの位置は `HoodieGirlPhoneCloseup` でも確認してください。

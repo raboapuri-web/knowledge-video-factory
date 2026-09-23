@@ -10,7 +10,7 @@ const imageCatalog=JSON.parse(fs.readFileSync(path.join(root,'catalog.json'),'ut
 assert.equal(data.version,1);
 assert(Array.isArray(data.characters)&&data.characters.length>0,'At least one React character must be registered');
 const allowedLicense=new Set(['original-project','cleared-commercial','pending-review']);
-const names=new Set(),files=new Set(),actionIds=new Set(['idle','walk','wave','point']);
+const names=new Set(),files=new Set(),actionIds=new Set(['idle','walk','wave','point','sit','standUp','sitPhone','walkPhone']);
 for(const character of data.characters){
   assert.match(character.id,/^[a-z][a-z0-9-]+$/);
   assert(!names.has(character.id),'Duplicate character ID: '+character.id);

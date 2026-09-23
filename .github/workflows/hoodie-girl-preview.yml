@@ -40,6 +40,11 @@ jobs:
           npx remotion still src/index.tsx HoodieGirlRoomPreview out/hoodie-girl-idle.png --frame=15 --scale=0.75
           npx remotion still src/index.tsx HoodieGirlRoomPreview out/hoodie-girl-walk.png --frame=90 --scale=0.75
           npx remotion still src/index.tsx HoodieGirlRoomPreview out/hoodie-girl-wave.png --frame=150 --scale=0.75
+          npx remotion still src/index.tsx HoodieGirlRoomPreview out/hoodie-girl-sit.png --frame=284 --scale=0.75
+          npx remotion still src/index.tsx HoodieGirlRoomPreview out/hoodie-girl-sit-phone.png --frame=335 --scale=0.75
+          npx remotion still src/index.tsx HoodieGirlRoomPreview out/hoodie-girl-stand-up.png --frame=382 --scale=0.75
+          npx remotion still src/index.tsx HoodieGirlRoomPreview out/hoodie-girl-walk-phone.png --frame=452 --scale=0.75
+          npx remotion still src/index.tsx HoodieGirlPhoneCloseup out/hoodie-girl-phone-closeup.png --frame=15 --scale=0.75
           npx remotion still src/index.tsx HoodieGirlNeckCloseup out/hoodie-girl-neck.png --frame=15 --scale=0.75
       - uses: actions/upload-artifact@v4
         with:
@@ -49,6 +54,11 @@ jobs:
             v69-free-services/out/hoodie-girl-idle.png
             v69-free-services/out/hoodie-girl-walk.png
             v69-free-services/out/hoodie-girl-wave.png
+            v69-free-services/out/hoodie-girl-sit.png
+            v69-free-services/out/hoodie-girl-sit-phone.png
+            v69-free-services/out/hoodie-girl-stand-up.png
+            v69-free-services/out/hoodie-girl-walk-phone.png
+            v69-free-services/out/hoodie-girl-phone-closeup.png
             v69-free-services/out/hoodie-girl-neck.png
           if-no-files-found: error
           retention-days: 7
