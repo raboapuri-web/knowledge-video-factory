@@ -33,8 +33,8 @@ const Leg=({x,hip,knee,color,shoe}:{x:number;hip:number;knee:number;color:string
         fill={shoe} stroke="#252932" strokeWidth={2.4}/>
     </Hinge>
   </Hinge>;
-const Arm=({x,shoulder,elbow,top,skin,phone=false}:{
-  x:number;shoulder:number;elbow:number;top:string;skin:string;phone?:boolean;
+const Arm=({x,shoulder,elbow,top,skin,phone=false,flash=false}:{
+  x:number;shoulder:number;elbow:number;top:string;skin:string;phone?:boolean;flash?:boolean;
 })=><Hinge x={x} y={57} angle={shoulder}>
   <rect x={-13} width={26} height={83} rx={12} fill={top} stroke="#37404b" strokeWidth={2.6}/>
   <circle cy={76} r={13} fill={top} stroke="#37404b" strokeWidth={2}/>
@@ -46,6 +46,14 @@ const Arm=({x,shoulder,elbow,top,skin,phone=false}:{
         fill="#272c38" stroke="#141a24" strokeWidth={2.8}/>
       <rect x={-16} y={-42} width={32} height={53} rx={3} fill="#657c8d"/>
       <circle cx={9} cy={-35} r={3.1} fill="#d3e0e7"/>
+      {/* Emit exclusively from the phone camera lens, following wrist movement. */}
+      {flash&&<g transform="translate(9 -35)" style={{mixBlendMode:'screen'}}>
+        <circle r={32} fill="#fffbe8" opacity={.76}/>
+        <circle r={13} fill="#ffffff"/>
+        <path d="M0 -48 L6 -17 L44 -29 L16 -6 L48 0 L16 6
+                 L44 29 L6 17 L0 48 L-6 17 L-44 29 L-16 6
+                 L-48 0 L-16 -6 L-44 -29 L-6 -17Z" fill="#fff7d0" opacity={.9}/>
+      </g>}
     </g>}
     <ellipse cy={84} rx={10} ry={13} fill={skin} stroke="#9e7a68" strokeWidth={1.7}/>
     {phone&&<path d="M-9 79 Q0 65 11 75 L9 91 Q0 96 -8 88Z"
@@ -140,16 +148,9 @@ const Person=({p,index,action,frame,t,photoStartFrame,photographerIndex,pose,
           <circle cy={144} r={2} fill={p.shirt}/>
         </g>}
         <Arm x={44} shoulder={j.rightShoulder} elbow={j.rightElbow}
-          top={p.top} skin={p.skin} phone={photographer}/>
+          top={p.top} skin={p.skin} phone={photographer} flash={flash}/>
         <Hinge x={0} y={2} angle={j.headTilt}><BlankFace person={p}/></Hinge>
       </g>
-      {flash&&<g transform="translate(-28 48)" style={{mixBlendMode:'screen'}}>
-        <circle r={34} fill="#fffbe8" opacity={.8}/>
-        <circle r={13} fill="#ffffff"/>
-        <path d="M0 -52 L7 -17 L47 -31 L17 -7 L52 0 L17 7
-                 L47 31 L7 17 L0 52 L-7 17 L-47 31 L-17 7
-                 L-52 0 L-17 -7 L-47 -31 L-7 -17Z" fill="#fff7d0" opacity={.9}/>
-      </g>}
     </g>
   </g>;
 };
