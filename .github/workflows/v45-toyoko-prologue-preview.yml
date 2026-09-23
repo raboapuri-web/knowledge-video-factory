@@ -1,0 +1,60 @@
+name: V45 Toyoko Prologue Visual Review
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v45-toyoko-prologue-preview.yml'
+      - 'v45-toyoko/**'
+      - 'shared/asset-library/人物テンプレート/hoodie-girl-rig.tsx'
+      - 'shared/asset-library/人物テンプレート/hoodie-boy-rig.tsx'
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Prepare graphics tools
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - name: Stage exact approved backgrounds and validate the scene plan
+        working-directory: v45-toyoko
+        run: |
+          node scripts/check-prologue.mjs
+          node scripts/stage-assets.mjs
+      - name: Install production dependencies and typecheck
+        working-directory: v45-toyoko
+        run: |
+          npm install --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+          npm run check
+      - name: Render silent 18-cut prologue review (not final narration)
+        working-directory: v45-toyoko
+        run: |
+          mkdir -p out/shot-review
+          npm run preview:prologue
+          test -s out/toyoko-prologue-review.mp4
+          ffprobe -v error -select_streams v:0 -show_entries stream=width,height,nb_frames -of default=noprint_wrappers=1 out/toyoko-prologue-review.mp4
+      - name: Extract exactly one midpoint for every storyboard cut
+        working-directory: v45-toyoko
+        run: |
+          node scripts/shot-timestamps.mjs > out/shot-timestamps.tsv
+          while IFS="$(printf '\t')" read -r TS ID; do
+            ffmpeg -y -loglevel error -ss "$TS" -i out/toyoko-prologue-review.mp4 -frames:v 1 "out/shot-review/$ID.png"
+          done < out/shot-timestamps.tsv
+          test "$(find out/shot-review -maxdepth 1 -name '*.png' | wc -l)" -eq 18
+      - name: Save viewable review video and per-cut inspection frames
+        uses: actions/upload-artifact@v4
+        with:
+          name: v45-toyoko-prologue-18cuts-silent-review
+          path: |
+            v45-toyoko/out/toyoko-prologue-review.mp4
+            v45-toyoko/out/shot-review/*.png
+            v45-toyoko/out/shot-timestamps.tsv
+            v45-toyoko/PROLOGUE_REVIEW.md
+          if-no-files-found: error
+          retention-days: 7
