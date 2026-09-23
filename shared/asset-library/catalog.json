@@ -2069,11 +2069,11 @@
       }
     },
     {
-       "id": "bg-bg-vancouver",
-  "category": "背景",
-  "file": "背景/BG_VANCOUVER.png",
-  "name": "バンクーバーの晴れた海沿い都市景観",
-  "license": "cleared-commercial",
+      "id": "bg-bg-vancouver",
+      "category": "背景",
+      "file": "背景/BG_VANCOUVER.png",
+      "name": "バンクーバーの晴れた海沿い都市景観",
+      "license": "original-project",
       "description": "海越しに見えるバンクーバー風の都市スカイライン。青い高層ビル群、展望塔、白い屋根のスタジアム、雪を残した山並み、ヨットと水面の反射を、輪郭の明瞭なフラットベクター調で描いた昼間の広角背景。画像内に雨の描写はない。",
       "phases": [
         "*"
@@ -2108,7 +2108,6 @@
       ],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "original-project",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2161,7 +2160,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2172,8 +2171,9 @@
       "sourceSha256": "f34b6ab20e1b9ebaae1dceb2d79cf012041251a7335a1c5857fd41844890d917",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。 利用者が2026-09-23に動画への使用を明示承認（以前の権利確認の指示に従い登録）。第三者による独立した権利調査を行ったことは示さない。シーンとの構図・内容の適合は本番QAで確認する。",
+        "usageApproval": "user-approved-2026-09-23"
       }
     },
     {
@@ -2194,7 +2194,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2205,8 +2205,9 @@
       "sourceSha256": "e306a152724a0350a5036ca29583e2642777fce6c415f47f2d4baa63edf7e9d0",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。 利用者が2026-09-23に動画への使用を明示承認（以前の権利確認の指示に従い登録）。第三者による独立した権利調査を行ったことは示さない。シーンとの構図・内容の適合は本番QAで確認する。",
+        "usageApproval": "user-approved-2026-09-23"
       }
     },
     {
@@ -2260,7 +2261,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2271,8 +2272,9 @@
       "sourceSha256": "ea1caac088aa6b235afb38c6993604d0d3bf05d787469ea4bde6690770bd45e6",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。 利用者が2026-09-23に動画への使用を明示承認（以前の権利確認の指示に従い登録）。第三者による独立した権利調査を行ったことは示さない。シーンとの構図・内容の適合は本番QAで確認する。",
+        "usageApproval": "user-approved-2026-09-23"
       }
     },
     {
@@ -2293,7 +2295,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2304,8 +2306,9 @@
       "sourceSha256": "99d2274bbea186a7d4934b5fd33bb50125db8dedfffbad9a7d579c61c6347d79",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。 利用者が2026-09-23に動画への使用を明示承認（以前の権利確認の指示に従い登録）。第三者による独立した権利調査を行ったことは示さない。シーンとの構図・内容の適合は本番QAで確認する。",
+        "usageApproval": "user-approved-2026-09-23"
       }
     },
     {
@@ -2326,7 +2329,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2337,8 +2340,9 @@
       "sourceSha256": "6453853eab64482f0904a5bfc638433d00798736e8918c6ca0c2d94f5399ec84",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。 利用者が2026-09-23に動画への使用を明示承認（以前の権利確認の指示に従い登録）。第三者による独立した権利調査を行ったことは示さない。シーンとの構図・内容の適合は本番QAで確認する。",
+        "usageApproval": "user-approved-2026-09-23"
       }
     },
     {
@@ -2359,7 +2363,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2370,8 +2374,9 @@
       "sourceSha256": "856cce65e18616a1d29dc099331fa5db69eb7b3e87d153ba2c2a3bb65f8f881b",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。 利用者が2026-09-23に動画への使用を明示承認（以前の権利確認の指示に従い登録）。第三者による独立した権利調査を行ったことは示さない。シーンとの構図・内容の適合は本番QAで確認する。",
+        "usageApproval": "user-approved-2026-09-23"
       }
     },
     {
@@ -2392,7 +2397,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2403,8 +2408,9 @@
       "sourceSha256": "90bd07c65edb064babb76fe1b8405dc8eee630f0da6e99467f4ac9d697d5c572",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。 利用者が2026-09-23に動画への使用を明示承認（以前の権利確認の指示に従い登録）。第三者による独立した権利調査を行ったことは示さない。シーンとの構図・内容の適合は本番QAで確認する。",
+        "usageApproval": "user-approved-2026-09-23"
       }
     },
     {
@@ -2425,7 +2431,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2436,8 +2442,9 @@
       "sourceSha256": "627344e35384cb2a7f83ed901d05aa23ff018e5e7830713c452050d75f6ee438",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。 利用者が2026-09-23に動画への使用を明示承認（以前の権利確認の指示に従い登録）。第三者による独立した権利調査を行ったことは示さない。シーンとの構図・内容の適合は本番QAで確認する。",
+        "usageApproval": "user-approved-2026-09-23"
       }
     },
     {
@@ -2458,7 +2465,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2469,8 +2476,9 @@
       "sourceSha256": "57b81cb3bd5331913f48ced12fac7ad2052b4165584daf3a103e10f8ee3775bd",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。 利用者が2026-09-23に動画への使用を明示承認（以前の権利確認の指示に従い登録）。第三者による独立した権利調査を行ったことは示さない。シーンとの構図・内容の適合は本番QAで確認する。",
+        "usageApproval": "user-approved-2026-09-23"
       }
     },
     {
@@ -2491,7 +2499,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2502,8 +2510,9 @@
       "sourceSha256": "abaaa6a5bce239b67790cae3578b4aa7bb799fdc63a5b54716f4cd0c7de6b118",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。 利用者が2026-09-23に動画への使用を明示承認（以前の権利確認の指示に従い登録）。第三者による独立した権利調査を行ったことは示さない。シーンとの構図・内容の適合は本番QAで確認する。",
+        "usageApproval": "user-approved-2026-09-23"
       }
     },
     {
@@ -2524,7 +2533,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2535,8 +2544,9 @@
       "sourceSha256": "0111e41d6e7193eb566fafc97e5739b71d13a639def4b84174b902c084d648c4",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。 利用者が2026-09-23に動画への使用を明示承認（以前の権利確認の指示に従い登録）。第三者による独立した権利調査を行ったことは示さない。シーンとの構図・内容の適合は本番QAで確認する。",
+        "usageApproval": "user-approved-2026-09-23"
       }
     }
   ]
