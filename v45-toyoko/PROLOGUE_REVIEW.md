@@ -1,13 +1,10 @@
-# v45-toyoko | プロローグ映像プレビュー
+# v45-toyoko | プロローグ映像・VOICEVOX音声・字幕レビュー
 
-- Source of truth: src/toyoko_scene_plan.json (60 scenes / 160 shots).
-- This milestone implements ONLY the prologue: P01–P06 / 18 individual story-specific cuts.
-- This is a silent picture-lock review, not a completed chapter or the final video. The original approved complete narration script is NOT in this repository. NarrationCue is only a summary and must never be used as a substitute for the final script.
-- All 18 preview cut times are the provisional 120 seconds in the storyboard, NOT VOICEVOX-measured timings.
-- No subtitles, narration or BGM are fabricated for this silent preview. The definitive VOICEVOX reading, subtitle text and durations cannot be generated until the exact approved narration is stored in src/script-data.json and bound to every shot. Do not claim final audio sync.
-- Chapter-by-chapter method: check storyboard IDs and material mappings; animate that chapter; render video and per-cut review frames; inspect and repair; finally compose all six chapters on one Remotion timeline and render once.
-- Current storyboard P03-03 transitions from train to town, P05-02/P06-01 animate React door, P06-03 shifts the boy before girl sits. Faceless OTHER_YOUTH uses hideFaceFeatures in the shared hoodie rigs.
-- For this preliminary review only, the shared RESEARCHER_MAN is styled in muted street clothes as PASSERBY per user mapping. A street-appropriate design still requires visual confirmation.
-- Visual check before accepting: background floor and characters align; camera never crops the action; handoffs are legible; entrance overlay matches architectural door; all P01–P06 continuity and the 18 independent images are checked. Files in CI being generated does not mean these visual checks passed.
-- If the entrance door overlay clashes with the background, alter the scene-specific door position/appearance or make a separate doorway plate; do not silently omit the opening action.
-- Do not add decorative on-screen words. Approved narration subtitles must be a separate independent topmost layer after audio timing is known.
+- Source of truth: `src/toyoko_scene_plan.json` (60 scenes / 160 shots). This milestone implements prologue P01–P06, 18 bespoke cuts.
+- `src/script-data.json` contains 18 full prologue speech passages **newly reconstructed for this review** from the scene cues; the originally approved full script is not in the repository or retrievable here. The draft is **not approved**. Do not call this final narration, silently substitute this text for the user's previously approved complete script, or publish the final episode with it.
+- Run the GitHub Actions workflow `.github/workflows/v45-toyoko-prologue-preview.yml` to synthesize 18 VOICEVOX speech clips (青山龍星), measure every beat, write `src/sync-timing.json`, and render a moving prologue with narration and a separate topmost Japanese caption layer.
+- `ToyokoPrologueVoicedReview` uses **real VOICEVOX-measured beat start/end times** for all 18 shot boundaries, camera/rig progress and caption segments; source text for each caption is identical to the corresponding spoken input. Internal within-beat caption chunk changes are proportional to text length and require human review; they are not phoneme-level forced alignment.
+- `ToyokoPrologueReview` remains an intentionally silent 120s provisional storyboard preview for debugging only; it must never be mistaken for the final audio-aligned preview.
+- The workflow extracts one screenshot at the measured midpoint of every shot and uploads the resulting video + 18 stills + exact temporary timings together. Workflow success does not itself indicate aesthetic approval.
+- Prologue film checks: all P01–P06 cuts play without scene omission; floor and characters align; handovers/readability, door opening against architecture, P06-03 boy shifting **before** girl sits, costume/prop continuity, text/audio match, no fake DM text, subtitles clear of moving hands.
+- After review and restoration/approval of the original verbatim narration, repeat synthesis/render for the chapter. Complete the remaining five parts and put all six on one Remotion final timeline.
