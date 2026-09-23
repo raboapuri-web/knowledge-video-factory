@@ -98,7 +98,7 @@
     }
   ],
   "finalRender": {
-    "status": "not_started",
+    "status": "previous_160_shot_original_movie_complete;topic_reedit_not_yet_verified",
     "mustUseSingleTimeline": true,
     "requiredChecks": [
       "six chapters approved individually",
@@ -106,6 +106,25 @@
       "original complete narration bound to each shot",
       "VOICEVOX actual durations and subtitles verified",
       "full chapter boundaries and continuity reviewed"
-    ]
+    ],
+    "previousMovieRunId": 35839068625,
+    "currentReeditRunId": 35847461521
+  },
+  "topicBlockReedit": {
+    "source": "src/topic-blocks.json",
+    "originalNarration": "src/approved_original_narration.md",
+    "revision": "2.1",
+    "blocks": 25,
+    "sourceAlignedVisualSegments": 82,
+    "originalAudioReused": true,
+    "diagramTemplates": "src/topic-diagrams.tsx",
+    "screenRotationSeconds": 7,
+    "renderWorkflow": ".github/workflows/v45-toyoko-topic-reedit.yml",
+    "runId": 35847461521,
+    "prepareStage": "success",
+    "renderStage": "in_progress_at_last_check",
+    "finalMovieVerified": false,
+    "editorialReview": "not_yet_reviewed_by_user",
+    "timingLimitation": "Paragraph boundaries within old voice beats interpolated by source-character ratio, not forced alignment"
   }
 }
