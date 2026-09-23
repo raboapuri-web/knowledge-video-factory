@@ -192,9 +192,9 @@
         ],
         "required": true,
         "assetFile": "shared/asset-library/背景/BG_SHELTER_ENTRANCE.png",
-        "resolution": "existing_file_verified",
-        "catalogReviewStatus": "pending-review",
-        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
+        "resolution": "existing_file_verified__user_approved",
+        "catalogReviewStatus": "approved",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。利用者が2026-09-23に使用を承認。実際の場面・構図との適合、字幕や人物との重複は各カットのQAで確認する。"
       },
       {
         "id": "BG_SHELTER_BEDROOM",
@@ -208,9 +208,9 @@
         ],
         "required": true,
         "assetFile": "shared/asset-library/背景/BG_SHELTER_BEDROOM.png",
-        "resolution": "existing_file_verified",
-        "catalogReviewStatus": "pending-review",
-        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
+        "resolution": "existing_file_verified__user_approved",
+        "catalogReviewStatus": "approved",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。利用者が2026-09-23に使用を承認。実際の場面・構図との適合、字幕や人物との重複は各カットのQAで確認する。"
       },
       {
         "id": "BG_SHELTER_DINING",
@@ -221,9 +221,9 @@
         ],
         "required": true,
         "assetFile": "shared/asset-library/背景/BG_SHELTER_DINING.png",
-        "resolution": "existing_file_verified",
-        "catalogReviewStatus": "pending-review",
-        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
+        "resolution": "existing_file_verified__user_approved",
+        "catalogReviewStatus": "approved",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。利用者が2026-09-23に使用を承認。実際の場面・構図との適合、字幕や人物との重複は各カットのQAで確認する。"
       },
       {
         "id": "BG_SHELTER_COUNSEL",
@@ -243,9 +243,9 @@
         ],
         "required": true,
         "assetFile": "shared/asset-library/背景/BG_SHELTER_COUNSEL.png",
-        "resolution": "existing_file_verified",
-        "catalogReviewStatus": "pending-review",
-        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
+        "resolution": "existing_file_verified__user_approved",
+        "catalogReviewStatus": "approved",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。利用者が2026-09-23に使用を承認。実際の場面・構図との適合、字幕や人物との重複は各カットのQAで確認する。"
       },
       {
         "id": "BG_SHELTER_CORRIDOR",
@@ -259,13 +259,13 @@
         ],
         "required": true,
         "assetFile": "shared/asset-library/背景/BG_SHELTER_CORRIDOR.png",
-        "resolution": "existing_file_verified",
-        "catalogReviewStatus": "pending-review",
-        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
+        "resolution": "existing_file_verified__user_approved",
+        "catalogReviewStatus": "approved",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。利用者が2026-09-23に使用を承認。実際の場面・構図との適合、字幕や人物との重複は各カットのQAで確認する。"
       },
       {
         "id": "BG_GIRL_HOME",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "少女の自宅の居室と玄関／過去回想用",
         "usedByShotIds": [
           "P03-01",
@@ -274,8 +274,10 @@
           "C26-02"
         ],
         "required": true,
-        "resolution": "not_found_on_main",
-        "productionNote": "ユーザーは格納済みと申告。ただし2026-09-23照合時点のmain/shared/asset-library/背景およびcatalog.jsonではBG_GIRL_HOME.pngを確認できない。アップロード/ブランチ/ファイル名を再照合し、見つかるまで別背景への無断代替は禁止。"
+        "resolution": "existing_file_verified__user_approved_mapping",
+        "productionNote": "ユーザー指定：BG_GIRL_HOMEの物理ファイルはBG_ROOM_NIGHT_ON.pngを使用。少女の自宅・居室・玄関の構図が必要なカットは、既存背景と合うようにカメラ・人物・必要なら場面専用の玄関演出を動画制作時に実装。ファイル名を変更しない。",
+        "assetFile": "shared/asset-library/背景/BG_ROOM_NIGHT_ON.png",
+        "catalogReviewStatus": "approved"
       },
       {
         "id": "BG_YOUTH_CENTER",
@@ -296,9 +298,9 @@
         ],
         "required": true,
         "assetFile": "shared/asset-library/背景/BG_YOUTH_CENTER.png",
-        "resolution": "existing_file_verified",
-        "catalogReviewStatus": "pending-review",
-        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
+        "resolution": "existing_file_verified__user_approved",
+        "catalogReviewStatus": "approved",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。利用者が2026-09-23に使用を承認。実際の場面・構図との適合、字幕や人物との重複は各カットのQAで確認する。"
       },
       {
         "id": "BG_YOUTH_CENTER_ENTRANCE",
@@ -312,9 +314,9 @@
         ],
         "required": true,
         "assetFile": "shared/asset-library/背景/BG_YOUTH_CENTER_ENTRANCE.png",
-        "resolution": "existing_file_verified",
-        "catalogReviewStatus": "pending-review",
-        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
+        "resolution": "existing_file_verified__user_approved",
+        "catalogReviewStatus": "approved",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。利用者が2026-09-23に使用を承認。実際の場面・構図との適合、字幕や人物との重複は各カットのQAで確認する。"
       },
       {
         "id": "BG_VANCOUVER_RAIN",
@@ -349,9 +351,9 @@
         ],
         "required": true,
         "assetFile": "shared/asset-library/背景/BG_ABROAD_SHELTER.png",
-        "resolution": "existing_file_verified",
-        "catalogReviewStatus": "pending-review",
-        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
+        "resolution": "existing_file_verified__user_approved",
+        "catalogReviewStatus": "approved",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。利用者が2026-09-23に使用を承認。実際の場面・構図との適合、字幕や人物との重複は各カットのQAで確認する。"
       },
       {
         "id": "BG_US_STREET",
@@ -366,9 +368,9 @@
         ],
         "required": true,
         "assetFile": "shared/asset-library/背景/BG_US_STREET.png",
-        "resolution": "existing_file_verified",
-        "catalogReviewStatus": "pending-review",
-        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
+        "resolution": "existing_file_verified__user_approved",
+        "catalogReviewStatus": "approved",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。利用者が2026-09-23に使用を承認。実際の場面・構図との適合、字幕や人物との重複は各カットのQAで確認する。"
       },
       {
         "id": "BG_RESEARCH_INTERVIEW",
@@ -385,9 +387,9 @@
         ],
         "required": true,
         "assetFile": "shared/asset-library/背景/BG_RESEARCH_INTERVIEW.png",
-        "resolution": "existing_file_verified",
-        "catalogReviewStatus": "pending-review",
-        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
+        "resolution": "existing_file_verified__user_approved",
+        "catalogReviewStatus": "approved",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。利用者が2026-09-23に使用を承認。実際の場面・構図との適合、字幕や人物との重複は各カットのQAで確認する。"
       },
       {
         "id": "BG_LIBRARY_SNS",
@@ -9482,14 +9484,14 @@
       "all asset ids exist in assetRegistry"
     ],
     "blockingChecksBeforeRender": [
-      "every new mandatory asset has an approved tangible file and passed visual review",
       "every requiredRigActions value is supported by character rig or a bespoke animation",
       "every scene and shot maps to exact approved narration substring; no gaps or overlaps",
       "actual VOICEVOX timestamps and captions coincide with frameIn/frameOut",
       "all 160 shots rendered to 3-frame contact sheet and action shots to motion preview",
       "all proof statements reviewed; no silent substitute, unapproved deletion or cut merge",
       "character appearance/age/props/time/location continuous; school flashbacks and overseas research clearly differentiated",
-      "BG_GIRL_HOME.pngの実ファイルと台帳登録を確認するまで、該当カットは未完成として扱う。"
+      "all required backgrounds resolve to a real, user-approved library file; BG_GIRL_HOME maps to BG_ROOM_NIGHT_ON.png, BG_VANCOUVER_RAIN maps to BG_VANCOUVER.png with React rain",
+      "per-shot background visual fit (home/entrance/interior and rainy Vancouver) is confirmed by render previews; user authorization does not replace this visual QA"
     ],
     "cannotValidateFromJsonAlone": [
       "subtle emotional tone",
@@ -9621,12 +9623,9 @@
       "PASSERBY: user explicitly mapped RESEARCHER_MAN.tsx, not existing PASSERBY.tsx; verify lab coat/clothing against commuter scene and do not silently switch files.",
       "OfficeWorkerRig and OfficeWomanRig support idle/walk/wave/point; sitting, handing over items etc require shot-specific animation or rig extension.",
       "RESEARCHER_MAN/WOMAN support idle/walk/inspectFlask/point; other shot actions must be implemented.",
-      "The 12 unprovided scene-specific backgrounds are still new; do not substitute generic backgrounds.",
       "DOOR, MEAL_TRAY, FORM and five non-ACTOR_RIG templates must be produced during video creation before QA passes."
     ],
-    "missingBackgroundIds": [
-      "BG_GIRL_HOME"
-    ],
+    "missingBackgroundIds": [],
     "verifiedBackgroundBindings": {
       "BG_SHELTER_ENTRANCE": "shared/asset-library/背景/BG_SHELTER_ENTRANCE.png",
       "BG_SHELTER_BEDROOM": "shared/asset-library/背景/BG_SHELTER_BEDROOM.png",
@@ -9638,23 +9637,19 @@
       "BG_VANCOUVER_RAIN": "shared/asset-library/背景/BG_VANCOUVER.png",
       "BG_ABROAD_SHELTER": "shared/asset-library/背景/BG_ABROAD_SHELTER.png",
       "BG_US_STREET": "shared/asset-library/背景/BG_US_STREET.png",
-      "BG_RESEARCH_INTERVIEW": "shared/asset-library/背景/BG_RESEARCH_INTERVIEW.png"
+      "BG_RESEARCH_INTERVIEW": "shared/asset-library/背景/BG_RESEARCH_INTERVIEW.png",
+      "BG_GIRL_HOME": "shared/asset-library/背景/BG_ROOM_NIGHT_ON.png"
     },
-    "visualReviewStillPending": [
-      "BG_SHELTER_ENTRANCE",
-      "BG_SHELTER_BEDROOM",
-      "BG_SHELTER_DINING",
-      "BG_SHELTER_COUNSEL",
-      "BG_SHELTER_CORRIDOR",
-      "BG_YOUTH_CENTER",
-      "BG_YOUTH_CENTER_ENTRANCE",
-      "BG_ABROAD_SHELTER",
-      "BG_US_STREET",
-      "BG_RESEARCH_INTERVIEW"
-    ],
+    "visualReviewStillPending": [],
     "notes": [
-      "2026-09-23: confirmed 11 newly uploaded background image files on GitHub main; 10 remain catalog pending-review; user reports BG_GIRL_HOME uploaded but no matching asset exists on main at verification.",
-      "BG_VANCOUVER_RAIN is a scene semantic ID only. Physical file BG_VANCOUVER.png; React rain effect to be created at video implementation."
-    ]
+      "BG_VANCOUVER_RAIN is a scene semantic ID only. Physical file BG_VANCOUVER.png; React rain effect to be created at video implementation.",
+      "2026-09-23 user approved existing background assets; BG_GIRL_HOME maps to BG_ROOM_NIGHT_ON.png, all planned backgrounds now have verified files."
+    ],
+    "backgroundUsageApproval": {
+      "approvedBy": "user",
+      "approvedAt": "2026-09-23",
+      "scope": "BG_GIRL_HOME→BG_ROOM_NIGHT_ON.png and previously pending-review background images in this video's scene plan; catalog updated for the eleven assets",
+      "note": "Prior pending-review use blocks cleared at user's instruction. Per-shot framing/visual QA remains mandatory; no assumption of independent third-party rights verification."
+    }
   }
 }
