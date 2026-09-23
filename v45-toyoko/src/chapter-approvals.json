@@ -77,5 +77,28 @@
     "epilogue"
   ],
   "assemblyPolicy": "only concatenate all individually reviewed and explicitly approved chapter videos; preserve the frozen prologue asset bytes and source run reference",
-  "reviewCandidates": []
+  "reviewCandidates": [
+    {
+      "chapterId": "epilogue",
+      "status": "rendered_awaiting_user_review",
+      "sourceRunId": 35873954125,
+      "artifactId": 10756752297,
+      "artifactName": "toyoko-epilogue-feedback-v1-voice-and-visual-4way",
+      "artifactUrl": "https://github.com/raboapuri-web/knowledge-video-factory/actions/runs/35873954125/artifacts/10756752297",
+      "movieFilename": "toyoko-epilogue-feedback-v1.mp4",
+      "durationFrames": 4756,
+      "durationSeconds": 158.53333333333333,
+      "sceneCount": 22,
+      "uniqueDiagramDesigns": 3,
+      "parallelRenderWorkers": 4,
+      "priorApprovedUnchanged": [
+        "prologue",
+        "chapter1",
+        "chapter2",
+        "chapter3",
+        "chapter4"
+      ],
+      "notes": "Epilogue rendered and technical MP4/audio/frames verified. User has not yet approved this video. Do not assemble the entire film until user feedback is accepted."
+    }
+  ]
 }
