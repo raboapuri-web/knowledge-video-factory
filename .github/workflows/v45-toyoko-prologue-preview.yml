@@ -1,13 +1,6 @@
 name: V45 Toyoko Prologue Visual Review
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/v45-toyoko-prologue-preview.yml'
-      - 'v45-toyoko/**'
-      - 'shared/asset-library/人物テンプレート/hoodie-girl-rig.tsx'
-      - 'shared/asset-library/人物テンプレート/hoodie-boy-rig.tsx'
 permissions:
   contents: read
 jobs:
@@ -63,7 +56,7 @@ jobs:
       - name: Save viewable review video and per-cut inspection frames
         uses: actions/upload-artifact@v4
         with:
-          name: v45-toyoko-prologue-18cuts-voiced-draft-review
+          name: v45-toyoko-prologue-18cuts-voiced-approved-original-review
           path: |
             v45-toyoko/out/toyoko-prologue-review.mp4
             v45-toyoko/out/toyoko-prologue-review.srt
