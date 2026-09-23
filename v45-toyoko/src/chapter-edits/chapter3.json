@@ -1,0 +1,1050 @@
+{
+  "version": "chapter-review-v3",
+  "chapterId": "chapter3",
+  "source": "src/approved_original_narration.md",
+  "reuseApprovedVOICEVOX": true,
+  "format": "VOICED_REAL_CHAPTER_REVIEW",
+  "chapterReviewState": "first_video_for_feedback",
+  "approvedPriorChapters": [
+    "prologue",
+    "chapter1",
+    "chapter2"
+  ],
+  "rules": [
+    "Keep approved original 66 paragraphs verbatim and existing chapter3 VOICEVOX and captions",
+    "Render one-off explanatory SVG diagrams strictly bound to their narration, no repeating automatic diagram rotation",
+    "80 and 40 are distinct source study sample counts. Do not invent comparative frequencies or statistics",
+    "Depict exploited youths with dignity, without graphic sexual/violent elements; hypothetical examples are not research footage",
+    "Six parallel exact-frame video-only chunks, audio mux once, approved 3 previous chapters remain byte-for-byte frozen",
+    "No full movie concatenation before all chapter videos receive user approval"
+  ],
+  "diagramIDs": [
+    "DG_SUPPORT_PROCESS",
+    "DG_ADULT_FIRST_VIEW",
+    "DG_CHANGE_ACCEPT",
+    "DG_TRUST_ENTRY",
+    "DG_HELP_ACCESS",
+    "DG_FIRST_IMPRESSION",
+    "DG_STUDY_80",
+    "DG_STREET_RESOURCES",
+    "DG_EXIT_COST",
+    "DG_STUDY_40",
+    "DG_FEW_OPTIONS",
+    "DG_COERCION",
+    "DG_OPTION_NOT_FREE",
+    "DG_LOSE_SHELTER",
+    "DG_NO_ROUTE",
+    "DG_GRATITUDE_BURDEN",
+    "DG_DEPENDENCY_CYCLE",
+    "DG_SURVIVAL_NEEDS",
+    "DG_LISTEN_AND_RESOURCES",
+    "DG_ZERO_SUM",
+    "DG_AGENCY",
+    "DG_SAFE_BACKUP"
+  ],
+  "shots": [
+    {
+      "id": "C3-01",
+      "fromParagraph": 1,
+      "toParagraph": 1,
+      "visualRef": "C25-01",
+      "recommendation": "歌舞伎町で少女が出会う二人の大人。まず職員と街で向き合う"
+    },
+    {
+      "id": "C3-02",
+      "fromParagraph": 2,
+      "toParagraph": 2,
+      "visualRef": "C25-02",
+      "recommendation": "支援団体の職員が少女の身の安全について話し掛ける"
+    },
+    {
+      "id": "C3-03",
+      "fromParagraph": 3,
+      "toParagraph": 3,
+      "visualRef": "C26-01",
+      "recommendation": "相談員が今夜の寝場所と帰れない理由を確認する"
+    },
+    {
+      "id": "C3-04",
+      "fromParagraph": 4,
+      "toParagraph": 4,
+      "visualRef": "C25-03",
+      "recommendation": "宿泊施設を指し示す支援者と入口を見る少女"
+    },
+    {
+      "id": "C3-05",
+      "fromParagraph": 5,
+      "toParagraph": 5,
+      "visualRef": "DG_SUPPORT_PROCESS",
+      "recommendation": "本人確認から利用条件の確認、支援先紹介までの支援手続きの段階図",
+      "customShot": {
+        "shotId": "V05-01",
+        "visual": "本人確認から利用条件の確認、支援先紹介までの支援手続きの段階図",
+        "narrationCue": "本人確認から利用条件の確認、支援先紹介までの支援手続きの段階図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-06",
+      "fromParagraph": 6,
+      "toParagraph": 7,
+      "visualRef": "C26-02",
+      "recommendation": "家庭を思い出す少女。家や親についての質問が負担になる背景"
+    },
+    {
+      "id": "C3-07",
+      "fromParagraph": 8,
+      "toParagraph": 8,
+      "visualRef": "C26-03",
+      "recommendation": "面談室に戻り言葉に詰まる少女"
+    },
+    {
+      "id": "C3-08",
+      "fromParagraph": 9,
+      "toParagraph": 9,
+      "visualRef": "X_CHANGE_REQUEST",
+      "recommendation": "生活を変えるよう求められ相談室の椅子から身を引く少女",
+      "customShot": {
+        "shotId": "V08-01",
+        "visual": "生活を変えるよう求められ相談室の椅子から身を引く少女",
+        "narrationCue": "生活を変えるよう求められ相談室の椅子から身を引く少女",
+        "camera": "medium_two_shot",
+        "background": "BG_SHELTER_COUNSEL",
+        "characters": [
+          "GIRL_16",
+          "SUPPORTER"
+        ],
+        "props": [
+          "FORM"
+        ],
+        "requiredRigActions": [
+          "listen",
+          "look_down"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-09",
+      "fromParagraph": 10,
+      "toParagraph": 10,
+      "visualRef": "C27-01",
+      "recommendation": "もう一人の大人として路地の男性と少女が出会う"
+    },
+    {
+      "id": "C3-10",
+      "fromParagraph": 11,
+      "toParagraph": 11,
+      "visualRef": "C27-02",
+      "recommendation": "男性が飲み物と食事を差し出す"
+    },
+    {
+      "id": "C3-11",
+      "fromParagraph": 12,
+      "toParagraph": 12,
+      "visualRef": "C27-03",
+      "recommendation": "説得しないまま話を聞く男性と少女"
+    },
+    {
+      "id": "C3-12",
+      "fromParagraph": 13,
+      "toParagraph": 13,
+      "visualRef": "X_LISTEN_STREET",
+      "recommendation": "少女の話を静かに聞く男性。現段階では危険を外見で断定しない",
+      "customShot": {
+        "shotId": "V12-01",
+        "visual": "少女の話を静かに聞く男性。現段階では危険を外見で断定しない",
+        "narrationCue": "少女の話を静かに聞く男性。現段階では危険を外見で断定しない",
+        "camera": "side_two_shot",
+        "background": "BG_KABUKICHO_ALLEY",
+        "characters": [
+          "GIRL_16",
+          "OLDER_MAN"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "talk",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-13",
+      "fromParagraph": 14,
+      "toParagraph": 14,
+      "visualRef": "X_OFFER_ROOM",
+      "recommendation": "今夜の宿泊先を示す男性。差し出された鍵を象徴的に見せる",
+      "customShot": {
+        "shotId": "V13-01",
+        "visual": "今夜の宿泊先を示す男性。差し出された鍵を象徴的に見せる",
+        "narrationCue": "今夜の宿泊先を示す男性。差し出された鍵を象徴的に見せる",
+        "camera": "hands_insert",
+        "background": "BG_KABUKICHO_ALLEY",
+        "characters": [
+          "GIRL_16",
+          "OLDER_MAN"
+        ],
+        "props": [
+          "KEY"
+        ],
+        "requiredRigActions": [
+          "reach",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-14",
+      "fromParagraph": 15,
+      "toParagraph": 15,
+      "visualRef": "DG_ADULT_FIRST_VIEW",
+      "recommendation": "少女の視点で支援者と男性の初期印象を左右の具体的行動で比較",
+      "customShot": {
+        "shotId": "V14-01",
+        "visual": "少女の視点で支援者と男性の初期印象を左右の具体的行動で比較",
+        "narrationCue": "少女の視点で支援者と男性の初期印象を左右の具体的行動で比較",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-15",
+      "fromParagraph": 16,
+      "toParagraph": 16,
+      "visualRef": "DG_CHANGE_ACCEPT",
+      "recommendation": "生活の変更を求める言葉と現状の受容が異なる負担をもつ二つのカード",
+      "customShot": {
+        "shotId": "V15-01",
+        "visual": "生活の変更を求める言葉と現状の受容が異なる負担をもつ二つのカード",
+        "narrationCue": "生活の変更を求める言葉と現状の受容が異なる負担をもつ二つのカード",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-16",
+      "fromParagraph": 17,
+      "toParagraph": 17,
+      "visualRef": "C28-03",
+      "recommendation": "男性が近づく夜の街。親切が悪質な目的の入口となる可能性"
+    },
+    {
+      "id": "C3-17",
+      "fromParagraph": 18,
+      "toParagraph": 18,
+      "visualRef": "DG_TRUST_ENTRY",
+      "recommendation": "最初の親切から信頼、依存へ近づく分岐を示し結末を決めつけない概念図",
+      "customShot": {
+        "shotId": "V17-01",
+        "visual": "最初の親切から信頼、依存へ近づく分岐を示し結末を決めつけない概念図",
+        "narrationCue": "最初の親切から信頼、依存へ近づく分岐を示し結末を決めつけない概念図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-18",
+      "fromParagraph": 19,
+      "toParagraph": 20,
+      "visualRef": "DG_HELP_ACCESS",
+      "recommendation": "支援者の質問と悪質な男性の表面的な親切が逆方向に見える構造",
+      "customShot": {
+        "shotId": "V18-01",
+        "visual": "支援者の質問と悪質な男性の表面的な親切が逆方向に見える構造",
+        "narrationCue": "支援者の質問と悪質な男性の表面的な親切が逆方向に見える構造",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-19",
+      "fromParagraph": 21,
+      "toParagraph": 21,
+      "visualRef": "C28-01",
+      "recommendation": "支援者の善意が手続きや質問として現れる"
+    },
+    {
+      "id": "C3-20",
+      "fromParagraph": 22,
+      "toParagraph": 22,
+      "visualRef": "C29-01",
+      "recommendation": "男性から目先の食事を受け取る少女"
+    },
+    {
+      "id": "C3-21",
+      "fromParagraph": 23,
+      "toParagraph": 23,
+      "visualRef": "DG_FIRST_IMPRESSION",
+      "recommendation": "最初の接点のみでは危険を判別できないことを両者の外見でなく情報量で表す",
+      "customShot": {
+        "shotId": "V21-01",
+        "visual": "最初の接点のみでは危険を判別できないことを両者の外見でなく情報量で表す",
+        "narrationCue": "最初の接点のみでは危険を判別できないことを両者の外見でなく情報量で表す",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-22",
+      "fromParagraph": 24,
+      "toParagraph": 24,
+      "visualRef": "X_NOT_FOOLISH",
+      "recommendation": "少女が相手を見つめ考える。単に騙された人物として描かない",
+      "customShot": {
+        "shotId": "V22-01",
+        "visual": "少女が相手を見つめ考える。単に騙された人物として描かない",
+        "narrationCue": "少女が相手を見つめ考える。単に騙された人物として描かない",
+        "camera": "reaction_closeup",
+        "background": "BG_KABUKICHO_ALLEY",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "look_up",
+          "think"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-23",
+      "fromParagraph": 25,
+      "toParagraph": 25,
+      "visualRef": "X_RELATION_CONTINUES",
+      "recommendation": "男性の部屋で生活し始めた少女、信頼だけでは説明できない関係",
+      "customShot": {
+        "shotId": "V23-01",
+        "visual": "男性の部屋で生活し始めた少女、信頼だけでは説明できない関係",
+        "narrationCue": "男性の部屋で生活し始めた少女、信頼だけでは説明できない関係",
+        "camera": "wide_pullback",
+        "background": "BG_LIBRARY_ROOM",
+        "characters": [
+          "GIRL_16",
+          "OLDER_MAN"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-24",
+      "fromParagraph": 26,
+      "toParagraph": 26,
+      "visualRef": "C30-01",
+      "recommendation": "研究の舞台を米国の街へ移す"
+    },
+    {
+      "id": "C3-25",
+      "fromParagraph": 27,
+      "toParagraph": 27,
+      "visualRef": "DG_STUDY_80",
+      "recommendation": "2009年研究の対象は15歳から23歳までの住居のない若者80人と表示",
+      "customShot": {
+        "shotId": "V25-01",
+        "visual": "2009年研究の対象は15歳から23歳までの住居のない若者80人と表示",
+        "narrationCue": "2009年研究の対象は15歳から23歳までの住居のない若者80人と表示",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-26",
+      "fromParagraph": 28,
+      "toParagraph": 28,
+      "visualRef": "DG_STREET_RESOURCES",
+      "recommendation": "食事、住居、収入を得る必要から非公式な経済活動へ向かう経路図。犯罪を美化しない",
+      "customShot": {
+        "shotId": "V26-01",
+        "visual": "食事、住居、収入を得る必要から非公式な経済活動へ向かう経路図。犯罪を美化しない",
+        "narrationCue": "食事、住居、収入を得る必要から非公式な経済活動へ向かう経路図。犯罪を美化しない",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-27",
+      "fromParagraph": 29,
+      "toParagraph": 30,
+      "visualRef": "C30-02",
+      "recommendation": "研究者が若者から貧困と就業機会、人間関係と勧誘について聞き取る"
+    },
+    {
+      "id": "C3-28",
+      "fromParagraph": 31,
+      "toParagraph": 31,
+      "visualRef": "C30-03",
+      "recommendation": "正規の仕事を探す若者が財布と求人を確認する"
+    },
+    {
+      "id": "C3-29",
+      "fromParagraph": 32,
+      "toParagraph": 32,
+      "visualRef": "C31-01",
+      "recommendation": "生き延びる手段を求めて知人から誘われる若者"
+    },
+    {
+      "id": "C3-30",
+      "fromParagraph": 33,
+      "toParagraph": 33,
+      "visualRef": "C32-01",
+      "recommendation": "歌舞伎町の少女が男性から食事を差し出される"
+    },
+    {
+      "id": "C3-31",
+      "fromParagraph": 34,
+      "toParagraph": 34,
+      "visualRef": "C32-02",
+      "recommendation": "寝場所として提供された部屋へ荷物を持ち入る少女"
+    },
+    {
+      "id": "C3-32",
+      "fromParagraph": 35,
+      "toParagraph": 35,
+      "visualRef": "C32-03",
+      "recommendation": "男性から見返りを要求され戸惑う少女。暴力や性的描写はしない"
+    },
+    {
+      "id": "C3-33",
+      "fromParagraph": 36,
+      "toParagraph": 36,
+      "visualRef": "C33-01",
+      "recommendation": "男性がこれまでの食事や宿泊を持ち出す"
+    },
+    {
+      "id": "C3-34",
+      "fromParagraph": 37,
+      "toParagraph": 37,
+      "visualRef": "C33-02",
+      "recommendation": "関係を断とうと扉に手をかける少女"
+    },
+    {
+      "id": "C3-35",
+      "fromParagraph": 38,
+      "toParagraph": 39,
+      "visualRef": "DG_EXIT_COST",
+      "recommendation": "今夜の寝床、通信手段、食事が同時に失われ得る退出コストを個別の象徴で表す",
+      "customShot": {
+        "shotId": "V35-01",
+        "visual": "今夜の寝床、通信手段、食事が同時に失われ得る退出コストを個別の象徴で表す",
+        "narrationCue": "今夜の寝床、通信手段、食事が同時に失われ得る退出コストを個別の象徴で表す",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-36",
+      "fromParagraph": 40,
+      "toParagraph": 40,
+      "visualRef": "C34-01",
+      "recommendation": "部屋に立ち尽くし生活基盤まで失うことを想像する少女"
+    },
+    {
+      "id": "C3-37",
+      "fromParagraph": 41,
+      "toParagraph": 41,
+      "visualRef": "DG_STUDY_40",
+      "recommendation": "2006年の研究対象40人を実数で示す。研究の行為を生々しく描かない",
+      "customShot": {
+        "shotId": "V37-01",
+        "visual": "2006年の研究対象40人を実数で示す。研究の行為を生々しく描かない",
+        "narrationCue": "2006年の研究対象40人を実数で示す。研究の行為を生々しく描かない",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-38",
+      "fromParagraph": 42,
+      "toParagraph": 42,
+      "visualRef": "DG_FEW_OPTIONS",
+      "recommendation": "住居と食事への別経路が乏しい選択肢の狭まりを示す",
+      "customShot": {
+        "shotId": "V38-01",
+        "visual": "住居と食事への別経路が乏しい選択肢の狭まりを示す",
+        "narrationCue": "住居と食事への別経路が乏しい選択肢の狭まりを示す",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-39",
+      "fromParagraph": 43,
+      "toParagraph": 43,
+      "visualRef": "DG_COERCION",
+      "recommendation": "本人の意向と他者による強制・操作を別の矢印で区別した構造図",
+      "customShot": {
+        "shotId": "V39-01",
+        "visual": "本人の意向と他者による強制・操作を別の矢印で区別した構造図",
+        "narrationCue": "本人の意向と他者による強制・操作を別の矢印で区別した構造図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-40",
+      "fromParagraph": 44,
+      "toParagraph": 44,
+      "visualRef": "DG_OPTION_NOT_FREE",
+      "recommendation": "望んだ選択と他に生活手段がないための選択を対比し自由な同意と混同しない",
+      "customShot": {
+        "shotId": "V40-01",
+        "visual": "望んだ選択と他に生活手段がないための選択を対比し自由な同意と混同しない",
+        "narrationCue": "望んだ選択と他に生活手段がないための選択を対比し自由な同意と混同しない",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-41",
+      "fromParagraph": 45,
+      "toParagraph": 45,
+      "visualRef": "C36-01",
+      "recommendation": "研究の話から歌舞伎町の少女へ戻る"
+    },
+    {
+      "id": "C3-42",
+      "fromParagraph": 46,
+      "toParagraph": 46,
+      "visualRef": "C36-02",
+      "recommendation": "男性に危険を感じる少女が施設入口を遠くから見る"
+    },
+    {
+      "id": "C3-43",
+      "fromParagraph": 47,
+      "toParagraph": 47,
+      "visualRef": "C34-02",
+      "recommendation": "男性の部屋を出た後の夜の路地を想像する少女"
+    },
+    {
+      "id": "C3-44",
+      "fromParagraph": 48,
+      "toParagraph": 48,
+      "visualRef": "DG_LOSE_SHELTER",
+      "recommendation": "断った場合に寝場所の選択肢が消える空の寝床と扉の図",
+      "customShot": {
+        "shotId": "V44-01",
+        "visual": "断った場合に寝場所の選択肢が消える空の寝床と扉の図",
+        "narrationCue": "断った場合に寝場所の選択肢が消える空の寝床と扉の図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-45",
+      "fromParagraph": 49,
+      "toParagraph": 49,
+      "visualRef": "X_ROOM_DEMAND",
+      "recommendation": "男性からの要求と過去の提供を思い浮かべる少女",
+      "customShot": {
+        "shotId": "V45-01",
+        "visual": "男性からの要求と過去の提供を思い浮かべる少女",
+        "narrationCue": "男性からの要求と過去の提供を思い浮かべる少女",
+        "camera": "over_shoulder",
+        "background": "BG_LIBRARY_ROOM",
+        "characters": [
+          "GIRL_16",
+          "OLDER_MAN"
+        ],
+        "props": [
+          "FOOD"
+        ],
+        "requiredRigActions": [
+          "look_down",
+          "talk"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-46",
+      "fromParagraph": 50,
+      "toParagraph": 50,
+      "visualRef": "X_AWARE_STILL",
+      "recommendation": "危険を感じながらも部屋に残る少女の後ろ姿",
+      "customShot": {
+        "shotId": "V46-01",
+        "visual": "危険を感じながらも部屋に残る少女の後ろ姿",
+        "narrationCue": "危険を感じながらも部屋に残る少女の後ろ姿",
+        "camera": "rear_wide",
+        "background": "BG_LIBRARY_ROOM",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [
+          "BAG"
+        ],
+        "requiredRigActions": [
+          "idle",
+          "look_around"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-47",
+      "fromParagraph": 51,
+      "toParagraph": 51,
+      "visualRef": "DG_NO_ROUTE",
+      "recommendation": "退出後の安全な生活につながる経路が見えないことを未接続の道で示す",
+      "customShot": {
+        "shotId": "V47-01",
+        "visual": "退出後の安全な生活につながる経路が見えないことを未接続の道で示す",
+        "narrationCue": "退出後の安全な生活につながる経路が見えないことを未接続の道で示す",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-48",
+      "fromParagraph": 52,
+      "toParagraph": 52,
+      "visualRef": "C35-02",
+      "recommendation": "生活資源が一人の相手に集中する説明図をこの箇所で一度だけ使う"
+    },
+    {
+      "id": "C3-49",
+      "fromParagraph": 53,
+      "toParagraph": 54,
+      "visualRef": "DG_GRATITUDE_BURDEN",
+      "recommendation": "最初の感謝が断りづらい心理的負担へ変わる経過を時間軸で示す。数字なし",
+      "customShot": {
+        "shotId": "V49-01",
+        "visual": "最初の感謝が断りづらい心理的負担へ変わる経過を時間軸で示す。数字なし",
+        "narrationCue": "最初の感謝が断りづらい心理的負担へ変わる経過を時間軸で示す。数字なし",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-50",
+      "fromParagraph": 55,
+      "toParagraph": 55,
+      "visualRef": "X_CITY_PARADOX",
+      "recommendation": "夜の広場に座る少女、相反する二つの現実を画面の明暗で示す",
+      "customShot": {
+        "shotId": "V50-01",
+        "visual": "夜の広場に座る少女、相反する二つの現実を画面の明暗で示す",
+        "narrationCue": "夜の広場に座る少女、相反する二つの現実を画面の明暗で示す",
+        "camera": "wide_crane",
+        "background": "BG_TOYOKO_GROUND",
+        "characters": [
+          "GIRL_16",
+          "FRIEND_GIRL"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "sit",
+          "look_around"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-51",
+      "fromParagraph": 56,
+      "toParagraph": 56,
+      "visualRef": "X_SUPPORTER_WANTS",
+      "recommendation": "支援者が安全な施設へ案内しようとする",
+      "customShot": {
+        "shotId": "V51-01",
+        "visual": "支援者が安全な施設へ案内しようとする",
+        "narrationCue": "支援者が安全な施設へ案内しようとする",
+        "camera": "wide_directional",
+        "background": "BG_SHELTER_ENTRANCE",
+        "characters": [
+          "GIRL_16",
+          "SUPPORTER"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "talk",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-52",
+      "fromParagraph": 57,
+      "toParagraph": 57,
+      "visualRef": "X_SUPPORT_CHANGES",
+      "recommendation": "支援を受ける際に慣れた関係と生活を離れることを考える少女",
+      "customShot": {
+        "shotId": "V52-01",
+        "visual": "支援を受ける際に慣れた関係と生活を離れることを考える少女",
+        "narrationCue": "支援を受ける際に慣れた関係と生活を離れることを考える少女",
+        "camera": "rear_tracking",
+        "background": "BG_SHELTER_CORRIDOR",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [
+          "BAG"
+        ],
+        "requiredRigActions": [
+          "stop",
+          "look_down"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-53",
+      "fromParagraph": 58,
+      "toParagraph": 58,
+      "visualRef": "X_OLDER_MAN_WANTS",
+      "recommendation": "生活を変えずに食事と寝場所を提供する男性",
+      "customShot": {
+        "shotId": "V53-01",
+        "visual": "生活を変えずに食事と寝場所を提供する男性",
+        "narrationCue": "生活を変えずに食事と寝場所を提供する男性",
+        "camera": "hands_insert",
+        "background": "BG_LIBRARY_CONVENIENCE_EXTERIOR",
+        "characters": [
+          "GIRL_16",
+          "OLDER_MAN"
+        ],
+        "props": [
+          "FOOD"
+        ],
+        "requiredRigActions": [
+          "receive",
+          "talk"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-54",
+      "fromParagraph": 59,
+      "toParagraph": 59,
+      "visualRef": "DG_DEPENDENCY_CYCLE",
+      "recommendation": "親切から生活依存、断りづらさ、離脱困難への循環を一本の流れで説明",
+      "customShot": {
+        "shotId": "V54-01",
+        "visual": "親切から生活依存、断りづらさ、離脱困難への循環を一本の流れで説明",
+        "narrationCue": "親切から生活依存、断りづらさ、離脱困難への循環を一本の流れで説明",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-55",
+      "fromParagraph": 60,
+      "toParagraph": 60,
+      "visualRef": "DG_SURVIVAL_NEEDS",
+      "recommendation": "食事・寝床だけでなく連絡手段も必要な生活資源の個別アイコン",
+      "customShot": {
+        "shotId": "V55-01",
+        "visual": "食事・寝床だけでなく連絡手段も必要な生活資源の個別アイコン",
+        "narrationCue": "食事・寝床だけでなく連絡手段も必要な生活資源の個別アイコン",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-56",
+      "fromParagraph": 61,
+      "toParagraph": 61,
+      "visualRef": "DG_LISTEN_AND_RESOURCES",
+      "recommendation": "人間関係と生活資源の二つが支援で共に必要という二本柱の図",
+      "customShot": {
+        "shotId": "V56-01",
+        "visual": "人間関係と生活資源の二つが支援で共に必要という二本柱の図",
+        "narrationCue": "人間関係と生活資源の二つが支援で共に必要という二本柱の図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-57",
+      "fromParagraph": 62,
+      "toParagraph": 62,
+      "visualRef": "DG_ZERO_SUM",
+      "recommendation": "安全を得るための仲間の喪失と仲間を守るための危険への残留を左右の対比",
+      "customShot": {
+        "shotId": "V57-01",
+        "visual": "安全を得るための仲間の喪失と仲間を守るための危険への残留を左右の対比",
+        "narrationCue": "安全を得るための仲間の喪失と仲間を守るための危険への残留を左右の対比",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-58",
+      "fromParagraph": 63,
+      "toParagraph": 63,
+      "visualRef": "DG_AGENCY",
+      "recommendation": "誰かへの生活依存が本人の意思決定範囲を狭める抽象図",
+      "customShot": {
+        "shotId": "V58-01",
+        "visual": "誰かへの生活依存が本人の意思決定範囲を狭める抽象図",
+        "narrationCue": "誰かへの生活依存が本人の意思決定範囲を狭める抽象図",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-59",
+      "fromParagraph": 64,
+      "toParagraph": 64,
+      "visualRef": "DG_SAFE_BACKUP",
+      "recommendation": "危険な相手に頼らずに済む複数の安全な支えと場所のネットワーク",
+      "customShot": {
+        "shotId": "V59-01",
+        "visual": "危険な相手に頼らずに済む複数の安全な支えと場所のネットワーク",
+        "narrationCue": "危険な相手に頼らずに済む複数の安全な支えと場所のネットワーク",
+        "camera": "diagram_only",
+        "background": "BG_LIBRARY_DARK",
+        "characters": [],
+        "props": [],
+        "requiredRigActions": [],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-60",
+      "fromParagraph": 65,
+      "toParagraph": 65,
+      "visualRef": "X_LIMITS_SHELTER",
+      "recommendation": "守るための施設の入口を見ながら、単独の施設だけで十分かを問う少女",
+      "customShot": {
+        "shotId": "V60-01",
+        "visual": "守るための施設の入口を見ながら、単独の施設だけで十分かを問う少女",
+        "narrationCue": "守るための施設の入口を見ながら、単独の施設だけで十分かを問う少女",
+        "camera": "wide_pullback",
+        "background": "BG_SHELTER_ENTRANCE",
+        "characters": [
+          "GIRL_16"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "stop",
+          "look_up"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    },
+    {
+      "id": "C3-61",
+      "fromParagraph": 66,
+      "toParagraph": 66,
+      "visualRef": "X_NEXT_INSTITUTION",
+      "recommendation": "相談機関の外観へゆっくり引き、次章の制度の論点へつなぐ",
+      "customShot": {
+        "shotId": "V61-01",
+        "visual": "相談機関の外観へゆっくり引き、次章の制度の論点へつなぐ",
+        "narrationCue": "相談機関の外観へゆっくり引き、次章の制度の論点へつなぐ",
+        "camera": "wide_crane",
+        "background": "BG_YOUTH_CENTER_ENTRANCE",
+        "characters": [
+          "GIRL_16",
+          "SUPPORTER"
+        ],
+        "props": [],
+        "requiredRigActions": [
+          "walk",
+          "listen"
+        ],
+        "template": null,
+        "timing": {
+          "targetDurationSeconds": 8
+        }
+      }
+    }
+  ]
+}
