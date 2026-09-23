@@ -125,7 +125,7 @@ const HoodieBoyFaceCloseup=()=>(
 );
 const HoodieBoyPhoneCloseup=()=>(
   <HoodieBoyBackgroundScene backgroundFile='BG_oneroom.png'
-    boy={{x:610,y:290,scale:2.25,action:'sitPhone'}}/>
+    boy={{x:690,y:110,scale:1.7,action:'sitPhone'}}/>
 );
 
 const Root=()=>{
