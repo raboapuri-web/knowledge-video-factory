@@ -616,7 +616,7 @@
       "sceneFile": "researcher-man-scene.tsx",
       "sceneComponent": "ResearcherBackgroundScene",
       "previewComponent": "RESEARCHER_MANPreview",
-      "previewComposition": "RESEARCHER_MANLabPreview",
+      "previewComposition": "ResearcherManLabPreview",
       "tags": [
         "研究員",
         "科学者",

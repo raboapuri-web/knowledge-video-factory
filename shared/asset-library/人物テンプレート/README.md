@@ -193,3 +193,5 @@ export const Lab=()=>
 ```
 
 背景使用前に `node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_kenkyu.png` を実行してください。`RESEARCHER_MANLabPreview`（8秒）で4動作、`RESEARCHER_MANFaceCloseup` で顔・首元とフラスコを確認できます。既存の人物コードは変更しません。
+
+Remotion CompositionのIDはアンダースコア使用不可のため、`ResearcherManLabPreview`（8秒）、`ResearcherManPreview`、`ResearcherManFaceCloseup` です。ファイル名とReactコンポーネント名は要望どおり `RESEARCHER_MAN` のままです。
