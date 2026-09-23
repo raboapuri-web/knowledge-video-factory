@@ -29,6 +29,8 @@ jobs:
         working-directory: v69-free-services
         run: |
           npm install --ignore-scripts --no-audit --no-fund
+          # The shared/ TSX files are outside v69-free-services; TypeScript resolves modules from repository root.
+          ln -sfn "$PWD/node_modules" ../node_modules
           npm run check
       - name: Render hoodie girl on approved room background
         working-directory: v69-free-services
