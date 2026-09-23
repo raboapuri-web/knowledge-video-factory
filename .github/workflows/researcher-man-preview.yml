@@ -7,6 +7,8 @@ on:
       - 'shared/asset-library/人物テンプレート/RESEARCHER_MAN.tsx'
       - 'shared/asset-library/人物テンプレート/researcher-man-scene.tsx'
       - 'shared/v69/index.tsx'
+      - 'shared/asset-library/人物テンプレート/catalog.json'
+      - 'shared/asset-library/人物テンプレート/test-catalog.mjs'
   workflow_dispatch:
 permissions:
   contents: read
