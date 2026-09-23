@@ -1,0 +1,73 @@
+{
+  "project": "v45-toyoko",
+  "sourceOfTruth": "src/toyoko_scene_plan.json",
+  "workflow": "chapter_by_chapter_with_review_then_single_final_timeline",
+  "updatedAt": "2026-09-23",
+  "approvedNarration": {
+    "availableInRepository": false,
+    "source": "approved original script must be provided verbatim; storyboard narration cues are insufficient",
+    "scriptDataPath": "src/script-data.json",
+    "voicevoxNotYetGenerated": true,
+    "subtitlesNotYetGenerated": true
+  },
+  "chapters": [
+    {
+      "id": "prologue",
+      "sceneIds": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "plannedShots": 18,
+      "sourceImplementedShots": 18,
+      "visualPreviewWorkflow": ".github/workflows/v45-toyoko-prologue-preview.yml",
+      "renderVerification": "not_confirmed",
+      "userVisualApproval": false,
+      "finalAudioSync": "not_started"
+    },
+    {
+      "id": "chapter1",
+      "plannedScenes": 12,
+      "plannedShots": 32,
+      "status": "await_prologue_review"
+    },
+    {
+      "id": "chapter2",
+      "plannedScenes": 12,
+      "plannedShots": 30,
+      "status": "await_prologue_review"
+    },
+    {
+      "id": "chapter3",
+      "plannedScenes": 12,
+      "plannedShots": 32,
+      "status": "await_prologue_review"
+    },
+    {
+      "id": "chapter4",
+      "plannedScenes": 12,
+      "plannedShots": 32,
+      "status": "await_prologue_review"
+    },
+    {
+      "id": "epilogue",
+      "plannedScenes": 6,
+      "plannedShots": 16,
+      "status": "await_prologue_review"
+    }
+  ],
+  "finalRender": {
+    "status": "not_started",
+    "mustUseSingleTimeline": true,
+    "requiredChecks": [
+      "six chapters approved individually",
+      "all 160 storyboard cuts implemented",
+      "original complete narration bound to each shot",
+      "VOICEVOX actual durations and subtitles verified",
+      "full chapter boundaries and continuity reviewed"
+    ]
+  }
+}
