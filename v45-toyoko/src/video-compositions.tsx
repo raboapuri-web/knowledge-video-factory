@@ -15,7 +15,7 @@ export type ChapterData={
 };
 const plan=storyboard as unknown as {scenes:{id:string;chapterId:string;shots:Shot[]}[];
  assetRegistry:{backgrounds:{id:string;assetFile?:string;sourceOrBrief?:string}[]}};
-const lookup=new Map(plan.assetRegistry.backgrounds.map(a=>[a.id,a]));
+const lookup=new Map<string,{id:string;assetFile?:string;sourceOrBrief?:string}>(plan.assetRegistry.backgrounds.map(a=>[a.id,a] as const));
 const byId=new Map<string,Shot>(plan.scenes.flatMap(s=>s.shots.map(shot=>[shot.shotId,shot] as const)));
 export const assertStoryboard=()=>{
  if(plan.scenes.length!==60||byId.size!==160)throw Error('Expected exact 60-scene, 160-cut JSON source');
