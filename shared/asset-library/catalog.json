@@ -1279,6 +1279,138 @@
         "needsVisualReview": false,
         "note": "利用者による一括確認・承認済み（2026-09-23）。登録名称・キーワードは元のファイル名ベース。動画ごとの場面・構図の適合確認は別途必要。"
       }
+    },
+    {
+      "id": "bg-bg-kabukicho-alley",
+      "category": "背景",
+      "file": "背景/BG_KABUKICHO_ALLEY.png",
+      "name": "BG_KABUKICHO_ALLEY",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_KABUKICHO_ALLEY",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_KABUKICHO_ALLEY"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "54e8070687890c7b1d63b60e241edf3e1bbf973131dad4f333cc5f727d311810",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-town-day-wide",
+      "category": "背景",
+      "file": "背景/BG_TOWN_DAY_WIDE.png",
+      "name": "BG_TOWN_DAY_WIDE",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_TOWN_DAY_WIDE",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_TOWN_DAY_WIDE"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "256a2d8d1b1333664b64e54a694e861ba8c41c750bd3387663f5a776690317d5",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-town-night-wide",
+      "category": "背景",
+      "file": "背景/BG_TOWN_NIGHT_WIDE.png",
+      "name": "BG_TOWN_NIGHT_WIDE",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_TOWN_NIGHT_WIDE",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_TOWN_NIGHT_WIDE"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "d9a21e4080392fd7a90b5ed7b2de32cb6d2b8f6a0365e0f1c1e29d7031906deb",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-toyoko-ground",
+      "category": "背景",
+      "file": "背景/BG_TOYOKO_GROUND.png",
+      "name": "BG_TOYOKO_GROUND",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_TOYOKO_GROUND",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_TOYOKO_GROUND"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "9c61b7ab381005947b1c9fc5fd2904cc84dc2f07e045403821102c0247eae473",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
     }
   ]
 }
