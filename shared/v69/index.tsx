@@ -7,6 +7,8 @@ import assetPlan from './asset-plan.json';
 import {PartOverlay, type AssetSelection} from '../../shared/asset-library/remotion';
 import {OfficeWorkerRigPreview,type OfficeWorkerAction} from '../../shared/asset-library/人物テンプレート/office-worker-rig';
 import {OfficeWorkerBackgroundScene} from '../../shared/asset-library/人物テンプレート/scene';
+import {OfficeWomanRigPreview,type OfficeWomanAction} from '../../shared/asset-library/人物テンプレート/office-woman-rig';
+import {OfficeWomanBackgroundScene} from '../../shared/asset-library/人物テンプレート/office-woman-scene';
 import {HoodieGirlRigPreview,type HoodieGirlAction} from '../../shared/asset-library/人物テンプレート/hoodie-girl-rig';
 import {HoodieGirlBackgroundScene} from '../../shared/asset-library/人物テンプレート/hoodie-girl-scene';
 import {HoodieBoyRigPreview,type HoodieBoyAction} from '../../shared/asset-library/人物テンプレート/hoodie-boy-rig';
@@ -128,8 +130,20 @@ const HoodieBoyPhoneCloseup=()=>(
     boy={{x:690,y:110,scale:1.7,action:'sitPhone'}}/>
 );
 
+/** Independent female office-worker demo; existing episode and male rig untouched. */
+const OfficeWomanOfficePreview=()=>{
+  const f=useCurrentFrame();
+  const action:OfficeWomanAction=f<60?'idle':f<120?'walk':f<180?'wave':'point';
+  return <OfficeWomanBackgroundScene backgroundFile='BG_office.png'
+    woman={{x:780,y:180,scale:1,action,talking:action==='point'}}/>;
+};
+const OfficeWomanFaceCloseup=()=>(
+  <OfficeWomanBackgroundScene backgroundFile='BG_office.png'
+    woman={{x:690,y:230,scale:2,action:'idle',pose:{headTilt:3}}}/>
+);
+
 const Root=()=>{
   const duration=Math.max(30,Math.ceil(Number(sync.durationSeconds||1700)*30));
-  return <><Composition id='V69FreeServices' component={V69} durationInFrames={duration} fps={30} width={1920} height={1080}/><Composition id='V69ScenePreview' component={ScenePreview} durationInFrames={beats.length*20} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerRigPreview' component={OfficeWorkerRigPreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerOfficePreview' component={OfficeWorkerOfficePreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerNeckCloseup' component={OfficeWorkerNeckCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/><Composition id='HoodieGirlRigPreview' component={HoodieGirlRigPreview} durationInFrames={480} fps={30} width={1920} height={1080}/><Composition id='HoodieGirlRoomPreview' component={HoodieGirlRoomPreview} durationInFrames={480} fps={30} width={1920} height={1080}/><Composition id='HoodieGirlNeckCloseup' component={HoodieGirlNeckCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/><Composition id='HoodieGirlPhoneCloseup' component={HoodieGirlPhoneCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/><Composition id='HoodieBoyRigPreview' component={HoodieBoyRigPreview} durationInFrames={480} fps={30} width={1920} height={1080}/><Composition id='HoodieBoyRoomPreview' component={HoodieBoyRoomPreview} durationInFrames={480} fps={30} width={1920} height={1080}/><Composition id='HoodieBoyFaceCloseup' component={HoodieBoyFaceCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/><Composition id='HoodieBoyPhoneCloseup' component={HoodieBoyPhoneCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/></>;
+  return <><Composition id='V69FreeServices' component={V69} durationInFrames={duration} fps={30} width={1920} height={1080}/><Composition id='V69ScenePreview' component={ScenePreview} durationInFrames={beats.length*20} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerRigPreview' component={OfficeWorkerRigPreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerOfficePreview' component={OfficeWorkerOfficePreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWorkerNeckCloseup' component={OfficeWorkerNeckCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/><Composition id='OfficeWomanRigPreview' component={OfficeWomanRigPreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWomanOfficePreview' component={OfficeWomanOfficePreview} durationInFrames={240} fps={30} width={1920} height={1080}/><Composition id='OfficeWomanFaceCloseup' component={OfficeWomanFaceCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/><Composition id='HoodieGirlRigPreview' component={HoodieGirlRigPreview} durationInFrames={480} fps={30} width={1920} height={1080}/><Composition id='HoodieGirlRoomPreview' component={HoodieGirlRoomPreview} durationInFrames={480} fps={30} width={1920} height={1080}/><Composition id='HoodieGirlNeckCloseup' component={HoodieGirlNeckCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/><Composition id='HoodieGirlPhoneCloseup' component={HoodieGirlPhoneCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/><Composition id='HoodieBoyRigPreview' component={HoodieBoyRigPreview} durationInFrames={480} fps={30} width={1920} height={1080}/><Composition id='HoodieBoyRoomPreview' component={HoodieBoyRoomPreview} durationInFrames={480} fps={30} width={1920} height={1080}/><Composition id='HoodieBoyFaceCloseup' component={HoodieBoyFaceCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/><Composition id='HoodieBoyPhoneCloseup' component={HoodieBoyPhoneCloseup} durationInFrames={60} fps={30} width={1920} height={1080}/></>;
 };
 registerRoot(Root);

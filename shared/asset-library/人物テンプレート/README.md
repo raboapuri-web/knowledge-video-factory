@@ -145,3 +145,17 @@ export const Room=()=>
 スマホは肩・肘と連動する**右前腕のSVG内**に固定され、手の上に表示されます。2D簡易座位のため自然な斜め座り・床接地IKは未実装。
 
 `prepare.mjs` 実行後に `node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_oneroom.png` で背景を動画publicにコピー。Remotion Studioでは `HoodieBoyRoomPreview`（16秒）、`HoodieBoyFaceCloseup`、`HoodieBoyPhoneCloseup` を確認できます。
+
+
+## 現代の女性会社員（関節付き2D React）
+
+`character-modern-female-office-worker` は男性会社員と同じ肩・肘・股関節・膝・頭・上体を動かせる別のReact SVGです。女性向けのボブヘア・柔らかな成人の顔・ジャケット・ブラウス・パンツスーツと4動作（待機・歩行・手振り・指さし）に対応します。コードは `office-woman-rig.tsx`、背景合成は `office-woman-scene.tsx`。
+
+```tsx
+import {OfficeWomanBackgroundScene} from '../../shared/asset-library/人物テンプレート/office-woman-scene';
+export const Office=()=>
+  <OfficeWomanBackgroundScene backgroundFile="BG_office.png"
+    woman={{x:780,y:180,scale:1,action:'walk',showBriefcase:true}}/>;
+```
+
+背景ファイルはRemotionのpublicへステージングが必要です。V69のプレビューCompositionは `OfficeWomanOfficePreview`（8秒）と `OfficeWomanFaceCloseup` です。男性版には手を加えません。簡易2D歩行のため足裏接地IKは未実装です。

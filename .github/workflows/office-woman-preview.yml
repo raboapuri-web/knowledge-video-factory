@@ -1,0 +1,46 @@
+name: Office Woman Preview
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/office-woman-preview.yml'
+      - 'shared/asset-library/人物テンプレート/office-woman-rig.tsx'
+      - 'shared/v69/index.tsx'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Prepare V69 Remotion preview source
+        run: |
+          node shared/bootstrap/v69-free-services.mjs
+          node shared/asset-library/prepare.mjs v69-free-services
+          node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_office.png
+      - name: Install Remotion dependencies
+        working-directory: v69-free-services
+        run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Render articulated woman preview video and still
+        working-directory: v69-free-services
+        run: |
+          mkdir -p out
+          ln -sfn "$PWD/node_modules" ../node_modules
+          npm run check
+          npx remotion render src/index.tsx OfficeWomanOfficePreview out/office-woman-office-preview.mp4 --scale=0.5 --concurrency=2 --codec=h264
+          npx remotion still src/index.tsx OfficeWomanOfficePreview out/office-woman-office-still.png --frame=90 --scale=0.5
+          npx remotion still src/index.tsx OfficeWomanFaceCloseup out/office-woman-face-closeup.png --frame=15 --scale=0.75
+      - uses: actions/upload-artifact@v4
+        with:
+          name: articulated-office-woman-preview
+          path: |
+            v69-free-services/out/office-woman-office-preview.mp4
+            v69-free-services/out/office-woman-office-still.png
+            v69-free-services/out/office-woman-face-closeup.png
+          if-no-files-found: error
+          retention-days: 7

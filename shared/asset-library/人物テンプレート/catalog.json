@@ -375,6 +375,116 @@
       ],
       "updatedAt": "2026-09-23",
       "note": "少女版と同じ8動作・右前腕に追従するスマホ・座位遷移を備えた少年。短い無造作ヘア、丸顔、青緑色のパーカー。静止PNGではなく編集可能なReact SVG。"
+    },
+    {
+      "id": "character-modern-female-office-worker",
+      "name": "現代の女性会社員",
+      "category": "人物テンプレート",
+      "status": "approved",
+      "type": "react-svg-rig",
+      "file": "office-woman-rig.tsx",
+      "component": "OfficeWomanRig",
+      "sceneFile": "office-woman-scene.tsx",
+      "sceneComponent": "OfficeWomanBackgroundScene",
+      "previewComponent": "OfficeWomanRigPreview",
+      "previewComposition": "OfficeWomanOfficePreview",
+      "tags": [
+        "女性",
+        "会社員",
+        "オフィスワーカー",
+        "ビジネスウーマン",
+        "現代",
+        "オフィス",
+        "通勤",
+        "スーツ",
+        "パンツスーツ",
+        "ブラウス",
+        "2D",
+        "ベクター",
+        "関節",
+        "アニメーション"
+      ],
+      "usage": [
+        "会社で働く",
+        "オフィスで会話する",
+        "電車通勤",
+        "歩く",
+        "手を振る",
+        "指さす"
+      ],
+      "avoid": [
+        "古代",
+        "中世",
+        "歴史的衣装が必須の場面",
+        "別人物として描く必要がある場面"
+      ],
+      "actions": [
+        {
+          "id": "idle",
+          "name": "待機",
+          "description": "微細な頭・腕・身体の動き"
+        },
+        {
+          "id": "walk",
+          "name": "歩行",
+          "description": "左右の腕と脚を交互に動かす簡易歩行"
+        },
+        {
+          "id": "wave",
+          "name": "手を振る",
+          "description": "右肩・右肘を動かす"
+        },
+        {
+          "id": "point",
+          "name": "指さし",
+          "description": "右肩から腕を水平に伸ばす"
+        }
+      ],
+      "adjustableJoints": [
+        "leftShoulder",
+        "leftElbow",
+        "rightShoulder",
+        "rightElbow",
+        "leftHip",
+        "leftKnee",
+        "rightHip",
+        "rightKnee",
+        "headTilt",
+        "bodyLean"
+      ],
+      "adjustableProps": [
+        "x",
+        "y",
+        "scale",
+        "walkSpeed",
+        "pose",
+        "talking",
+        "showBriefcase",
+        "mirror",
+        "suitColor",
+        "pantsColor",
+        "shirtColor",
+        "skinColor",
+        "hairColor",
+        "shoeColor"
+      ],
+      "dimensions": {
+        "width": 360,
+        "height": 640,
+        "coordinateSystem": "1920x1080"
+      },
+      "recommendedBackgrounds": [
+        "背景/BG_office.png",
+        "背景/BG_densha.png",
+        "背景/BG_oneroom.png"
+      ],
+      "license": "original-project",
+      "knownLimitations": [
+        "床接地IKなしの簡易2D歩行。",
+        "衣装・背景との構図・字幕の重なりはシーンごとに確認すること。"
+      ],
+      "updatedAt": "2026-09-23",
+      "note": "男性会社員と同等の肩・肘・股関節・膝などの関節と4動作。女性用の丸みのある大人の顔、肩までのボブ、ブラウス、フィットしたジャケット、パンツスーツの独立React SVG。"
     }
   ]
 }
