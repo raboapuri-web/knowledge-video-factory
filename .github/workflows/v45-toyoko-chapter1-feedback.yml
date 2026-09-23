@@ -1,0 +1,84 @@
+name: V45 Toyoko Chapter 1 Individual Feedback Movie
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v45-toyoko-chapter1-feedback.yml'
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Existing approved original six-chapter VOICEVOX artifacts
+        required: false
+        default: '35831899329'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: toyoko-chapter-one-feedback-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  chapter1-feedback:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install FFmpeg and Japanese fonts
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - name: Reuse previous full and approved original VOICEVOX chapter audio
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ inputs.source_run_id || '35831899329' }}
+          github-token: ${{ github.token }}
+          pattern: toyoko-audio-*
+          path: v45-toyoko/out/chapter-audio
+          merge-multiple: false
+      - name: Build one standalone editorial chapter, not the old 160-shot film
+        working-directory: v45-toyoko
+        run: |
+          node scripts/check-original-script.mjs
+          node scripts/verify-reused-chapter-audio.mjs
+          node scripts/build-full-review.mjs
+          node scripts/stage-assets.mjs
+          node scripts/build-chapter-preview.mjs chapter1
+          npm install --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+          npm run check
+      - name: Render actual first-chapter video at 1280x720 with original voice and distinct screens
+        working-directory: v45-toyoko
+        run: |
+          mkdir -p out
+          npx remotion render src/chapter1-preview-index.tsx ToyokoChapter1Feedback \
+            out/toyoko-chapter1-feedback-v1.mp4 \
+            --scale=0.6666666666666666 --codec=h264 --crf=21 --concurrency=2 --log=warn
+          test -s out/toyoko-chapter1-feedback-v1.mp4
+      - name: Verify chapter runtime, picture and original audio are present
+        working-directory: v45-toyoko
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import {execFileSync} from 'node:child_process';
+          const m=JSON.parse(fs.readFileSync('src/chapter-selected-data.json','utf8'));
+          const x=JSON.parse(execFileSync('ffprobe',['-v','error','-show_entries',
+            'format=duration:stream=codec_type,codec_name,width,height',
+            '-of','json','out/toyoko-chapter1-feedback-v1.mp4'],{encoding:'utf8'}));
+          const v=x.streams.find(s=>s.codec_type==='video');
+          const a=x.streams.find(s=>s.codec_type==='audio');
+          if(!v||v.width!==1280||v.height!==720||!a||a.codec_name!=='aac'||
+             Math.abs(+x.format.duration-m.durationFrames/30)>1.5)
+            throw Error('Chapter review movie has an unexpected format or incorrect runtime');
+          console.log('VERIFIED: standalone chapter-one movie with original narration and subtitles, '+
+            m.shots.length+' editorial shots, '+x.format.duration+' sec');
+          NODE
+      - name: Upload first-chapter video alone; do not modify approved prologue or concatenate chapters
+        uses: actions/upload-artifact@v4
+        with:
+          name: toyoko-chapter1-feedback-v1-voice-and-visual
+          path: |
+            v45-toyoko/out/toyoko-chapter1-feedback-v1.mp4
+            v45-toyoko/out/chapter1-review-scene-list.json
+            v45-toyoko/src/chapter-edits/chapter1.json
+          if-no-files-found: error
+          retention-days: 7
