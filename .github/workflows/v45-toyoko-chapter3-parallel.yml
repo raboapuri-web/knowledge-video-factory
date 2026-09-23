@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/v45-toyoko-chapter3-parallel.yml'
+      - 'v45-toyoko/src/chapter3-diagrams.tsx'
   workflow_dispatch:
     inputs:
       source_run_id:
