@@ -10,7 +10,7 @@ if(plan.scenes.length!==60||plan.scenes.flatMap(s=>s.shots).length!==160)
  throw Error('Source-of-truth scene plan must contain 60 scenes, 160 cuts');
 let absolute=0;
 const chapters=CHAPTERS.map((id,i)=>{
- const base=path.join(root,'out/chapter-audio',id);
+ const base=path.join(root,'out/chapter-audio','toyoko-audio-'+id);
  const data=JSON.parse(fs.readFileSync(path.join(base,'chapter-data.json'),'utf8'));
  if(data.chapterId!==id||data.beats.length!==expected[i]||data.status!=='voicevox_measured_approved_script')
   throw Error('Missing complete approved chapter: '+id);
