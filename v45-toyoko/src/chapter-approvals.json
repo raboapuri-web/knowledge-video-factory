@@ -57,34 +57,25 @@
       "narration": "approved_original_voicevox",
       "approvedAt": "2026-09-23",
       "notes": "User expressly approved corrected subtitle-overlay chapter-three video; freeze this artifact. Do not modify or rerender."
+    },
+    {
+      "chapterId": "chapter4",
+      "status": "user_approved_final_do_not_rerender",
+      "approvedSourceRunId": 35871217158,
+      "approvedArtifactId": 10755148263,
+      "approvedArtifactName": "toyoko-chapter4-feedback-v1-voice-and-visual-6way",
+      "approvedArtifactUrl": "https://github.com/raboapuri-web/knowledge-video-factory/actions/runs/35871217158/artifacts/10755148263",
+      "videoFile": "toyoko-chapter4-feedback-v1.mp4",
+      "editorialManifest": "src/chapter-edits/chapter4.json",
+      "chapterSceneCount": 70,
+      "narration": "approved_original_voicevox",
+      "approvedAt": "2026-09-23",
+      "notes": "User explicitly approved Chapter 4 video. Freeze exact artifact for final assembly; never re-render this chapter."
     }
   ],
   "pendingChapters": [
-    "chapter4",
     "epilogue"
   ],
   "assemblyPolicy": "only concatenate all individually reviewed and explicitly approved chapter videos; preserve the frozen prologue asset bytes and source run reference",
-  "reviewCandidates": [
-    {
-      "chapterId": "chapter4",
-      "status": "rendered_awaiting_user_review",
-      "sourceRunId": 35871217158,
-      "artifactId": 10755148263,
-      "artifactName": "toyoko-chapter4-feedback-v1-voice-and-visual-6way",
-      "artifactUrl": "https://github.com/raboapuri-web/knowledge-video-factory/actions/runs/35871217158/artifacts/10755148263",
-      "movieFilename": "toyoko-chapter4-feedback-v1.mp4",
-      "durationSeconds": 481.56666666666666,
-      "frames": 14447,
-      "sceneCount": 70,
-      "oneOffDiagramDesigns": 27,
-      "parallelRenderWorkers": 6,
-      "priorApprovedUnchanged": [
-        "prologue",
-        "chapter1",
-        "chapter2",
-        "chapter3"
-      ],
-      "notes": "Standalone 720p H264/AAC chapter-four MP4 successfully rendered and exact-frame verified with original VOICEVOX. Await explicit user approval, then freeze artifact. Other four approved chapter videos were not changed."
-    }
-  ]
+  "reviewCandidates": []
 }
