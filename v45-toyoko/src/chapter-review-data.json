@@ -1,0 +1,7 @@
+{
+  "status": "requires_voicevox_generation",
+  "chapterId": "prologue",
+  "durationFrames": 0,
+  "beats": [],
+  "audioFile": "audio/narration.m4a"
+}
