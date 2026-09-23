@@ -42,11 +42,7 @@ jobs:
       - name: Extract exactly one midpoint for every storyboard cut
         working-directory: v45-toyoko
         run: |
-          node scripts/shot-timestamps.mjs > out/shot-timestamps.tsv
-          while IFS="$(printf '\t')" read -r TS ID; do
-            ffmpeg -y -loglevel error -ss "$TS" -i out/toyoko-prologue-review.mp4 -frames:v 1 "out/shot-review/$ID.png"
-          done < out/shot-timestamps.tsv
-          test "$(find out/shot-review -maxdepth 1 -name '*.png' | wc -l)" -eq 18
+          node scripts/extract-shot-reviews.mjs
       - name: Save viewable review video and per-cut inspection frames
         uses: actions/upload-artifact@v4
         with:
