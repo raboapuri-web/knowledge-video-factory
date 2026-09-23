@@ -1,10 +1,11 @@
-# v45-toyoko | プロローグ映像・VOICEVOX音声・字幕レビュー
+# v45-toyoko | 確定原稿に基づくプロローグ映像・VOICEVOX音声・字幕レビュー
 
-- Source of truth: `src/toyoko_scene_plan.json` (60 scenes / 160 shots). This milestone implements prologue P01–P06, 18 bespoke cuts.
-- `src/script-data.json` contains 18 full prologue speech passages **newly reconstructed for this review** from the scene cues; the originally approved full script is not in the repository or retrievable here. The draft is **not approved**. Do not call this final narration, silently substitute this text for the user's previously approved complete script, or publish the final episode with it.
-- Run the GitHub Actions workflow `.github/workflows/v45-toyoko-prologue-preview.yml` to synthesize 18 VOICEVOX speech clips (青山龍星), measure every beat, write `src/sync-timing.json`, and render a moving prologue with narration and a separate topmost Japanese caption layer.
-- `ToyokoPrologueVoicedReview` uses **real VOICEVOX-measured beat start/end times** for all 18 shot boundaries, camera/rig progress and caption segments; source text for each caption is identical to the corresponding spoken input. Internal within-beat caption chunk changes are proportional to text length and require human review; they are not phoneme-level forced alignment.
-- `ToyokoPrologueReview` remains an intentionally silent 120s provisional storyboard preview for debugging only; it must never be mistaken for the final audio-aligned preview.
-- The workflow extracts one screenshot at the measured midpoint of every shot and uploads the resulting video + 18 stills + exact temporary timings together. Workflow success does not itself indicate aesthetic approval.
-- Prologue film checks: all P01–P06 cuts play without scene omission; floor and characters align; handovers/readability, door opening against architecture, P06-03 boy shifting **before** girl sits, costume/prop continuity, text/audio match, no fake DM text, subtitles clear of moving hands.
-- After review and restoration/approval of the original verbatim narration, repeat synthesis/render for the chapter. Complete the remaining five parts and put all six on one Remotion final timeline.
+- **正式原稿**: `src/approved_original_narration.md`。ユーザー提供の全6パート・631行の台本本文を、章立てを含めて原文どおりGitHubへ保存。仮原稿は制作ソースとして使用しない。
+- **映像設計**: `src/toyoko_scene_plan.json`（60基本シーン・160カット）。現在の映像実装はプロローグ P01〜P06 の18カット。
+- **ナレーションと字幕**: `src/script-data.json` は原稿プロローグ26段落を原文順で18カットへ対応付けたもの。各カットの`sourceFragments`を連結した文字列と原稿の26段落を連結した文字列が一字一句同一でなければCIを止める。字幕は原稿本文からのみ生成し、架空の言い換え・要約は挿入しない。
+- `node scripts/check-original-script.mjs` は全6パートの有無とプロローグ原文の完全一致を確認する。残る第1〜4章・エピローグは原稿を保存済みだが、各章のカットと音声の1対1の紐付け・映像実装は未完了。
+- GitHub Actionsの`.github/workflows/v45-toyoko-prologue-preview.yml`はVOICEVOX（青山龍星）で原文を読み上げ、18ビートそれぞれの時間を実測し、独立した字幕レイヤーと日本語SRTを生成して、音声・字幕入り確認動画と各カットの確認画像を出力する。前回の字幕スクリーンショット抽出エラーは`scripts/extract-shot-reviews.mjs`で修正済み。
+- **時間は実測優先**: 当初の「プロローグ約2:00」は暫定。原稿1140文字分を削らずに読み上げるため、実際の尺が2分を超えることがある。無断で原稿を短縮したり、VOICEVOXを不自然に高速化したりしない。
+- **品質チェック**: P06-03には原稿後半の339文字分が集中している。映像確認で長い単一画面になっていないか検証し、必要なら元のP06-03の内部に新規アニメーションや動的なカメラ切り替えを入れる。シーン設計の18個の番号と原稿の原文・順序を変えない。
+- 映像中の人物と背景の整合、ドア開閉、少年が位置を空けてから少女が座る順序、字幕と音声・手の重なりも目視で確認する。Actions成功だけでは映像の完成承認にはならない。
+- 全章を映像・音声・字幕つきで個別確認した後、6パートをRemotionの同一タイムラインに配置し、本編全体の音声・字幕と映像の連続性を検査する。
