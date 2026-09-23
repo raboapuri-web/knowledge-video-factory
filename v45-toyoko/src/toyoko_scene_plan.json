@@ -171,7 +171,7 @@
       },
       {
         "id": "BG_SHELTER_ENTRANCE",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "保護施設の外観・内外両方向の扉",
         "usedByShotIds": [
           "P05-02",
@@ -190,11 +190,15 @@
           "E06-01",
           "E06-02"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_SHELTER_ENTRANCE.png",
+        "resolution": "existing_file_verified",
+        "catalogReviewStatus": "pending-review",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
       },
       {
         "id": "BG_SHELTER_BEDROOM",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "保護施設の寝室／一人用ベッドと窓",
         "usedByShotIds": [
           "P05-03",
@@ -202,20 +206,28 @@
           "C09-01",
           "E04-01"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_SHELTER_BEDROOM.png",
+        "resolution": "existing_file_verified",
+        "catalogReviewStatus": "pending-review",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
       },
       {
         "id": "BG_SHELTER_DINING",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "保護施設の食堂・共有スペース",
         "usedByShotIds": [
           "C06-03"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_SHELTER_DINING.png",
+        "resolution": "existing_file_verified",
+        "catalogReviewStatus": "pending-review",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
       },
       {
         "id": "BG_SHELTER_COUNSEL",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "相談室／机と椅子・両向き構図",
         "usedByShotIds": [
           "C07-01",
@@ -229,11 +241,15 @@
           "C46-02",
           "C48-02"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_SHELTER_COUNSEL.png",
+        "resolution": "existing_file_verified",
+        "catalogReviewStatus": "pending-review",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
       },
       {
         "id": "BG_SHELTER_CORRIDOR",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "施設の廊下／扉まで動線がある",
         "usedByShotIds": [
           "C05-03",
@@ -241,7 +257,11 @@
           "C08-03",
           "C22-02"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_SHELTER_CORRIDOR.png",
+        "resolution": "existing_file_verified",
+        "catalogReviewStatus": "pending-review",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
       },
       {
         "id": "BG_GIRL_HOME",
@@ -253,11 +273,13 @@
           "C08-02",
           "C26-02"
         ],
-        "required": true
+        "required": true,
+        "resolution": "not_found_on_main",
+        "productionNote": "ユーザーは格納済みと申告。ただし2026-09-23照合時点のmain/shared/asset-library/背景およびcatalog.jsonではBG_GIRL_HOME.pngを確認できない。アップロード/ブランチ/ファイル名を再照合し、見つかるまで別背景への無断代替は禁止。"
       },
       {
         "id": "BG_YOUTH_CENTER",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "若者向け相談窓口の室内／充電・休憩スペース",
         "usedByShotIds": [
           "C37-03",
@@ -272,11 +294,15 @@
           "C41-01",
           "C41-02"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_YOUTH_CENTER.png",
+        "resolution": "existing_file_verified",
+        "catalogReviewStatus": "pending-review",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
       },
       {
         "id": "BG_YOUTH_CENTER_ENTRANCE",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "若者向け相談窓口の外観・入口。宿泊施設とは異なる外観",
         "usedByShotIds": [
           "C37-02",
@@ -284,21 +310,29 @@
           "C42-01",
           "C42-02"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_YOUTH_CENTER_ENTRANCE.png",
+        "resolution": "existing_file_verified",
+        "catalogReviewStatus": "pending-review",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
       },
       {
         "id": "BG_VANCOUVER_RAIN",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "バンクーバーの雨の都市部／研究内容の説明イメージ",
         "usedByShotIds": [
           "C01-03",
           "C02-02"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_VANCOUVER.png",
+        "resolution": "existing_file_verified",
+        "catalogReviewStatus": "approved",
+        "productionNote": "背景実体はBG_VANCOUVER.png（晴天の都市景観）。雨は当該カットでReact雨レイヤーを重ねる。画像ファイルをBG_VANCOUVER_RAIN.pngへ改名しない。背景の天候・時刻と前景人物の地面/遠近の整合も確認する。"
       },
       {
         "id": "BG_ABROAD_SHELTER",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "海外の若者向けシェルターの一室・入口",
         "usedByShotIds": [
           "C02-03",
@@ -313,11 +347,15 @@
           "C45-01",
           "C45-03"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_ABROAD_SHELTER.png",
+        "resolution": "existing_file_verified",
+        "catalogReviewStatus": "pending-review",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
       },
       {
         "id": "BG_US_STREET",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "米国の都市部・路上／特定都市の厳密再現を装わない",
         "usedByShotIds": [
           "C18-01",
@@ -326,11 +364,15 @@
           "C31-01",
           "C44-01"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_US_STREET.png",
+        "resolution": "existing_file_verified",
+        "catalogReviewStatus": "pending-review",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
       },
       {
         "id": "BG_RESEARCH_INTERVIEW",
-        "status": "new",
+        "status": "existing",
         "sourceOrBrief": "海外研究の聞き取りを抽象化した取材室",
         "usedByShotIds": [
           "C03-01",
@@ -341,7 +383,11 @@
           "C44-02",
           "C45-02"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_RESEARCH_INTERVIEW.png",
+        "resolution": "existing_file_verified",
+        "catalogReviewStatus": "pending-review",
+        "productionNote": "GitHub mainの画像実ファイルとcatalog.jsonの登録を確認済み。現在のcatalog.jsonでは利用・目視レビューがpending-reviewのため、本番利用前に確認を完了する。"
       },
       {
         "id": "BG_LIBRARY_SNS",
@@ -2494,7 +2540,19 @@
             "mustNotSubstituteBackgroundOrCharactersSilently": true,
             "proof": "次の海外研究へ地理的に接続"
           },
-          "approval": "planned_not_rendered"
+          "approval": "planned_not_rendered",
+          "weatherEffect": {
+            "type": "rain",
+            "implementation": "react-overlay",
+            "sourceBackground": "shared/asset-library/背景/BG_VANCOUVER.png",
+            "status": "to_implement_during_video",
+            "requirements": [
+              "前景・中景に降雨の速度差をつける",
+              "雨の移動はフレームから決定的に計算する",
+              "必要に応じて晴天背景の明度・彩度を下げ、軒下の若者と整合させる",
+              "字幕の視認性を下げない"
+            ]
+          }
         }
       ],
       "chapterId": "chapter1",
@@ -2592,7 +2650,19 @@
             "mustNotSubstituteBackgroundOrCharactersSilently": true,
             "proof": "雰囲気の説明映像であり個別参加者の実録を装わない"
           },
-          "approval": "planned_not_rendered"
+          "approval": "planned_not_rendered",
+          "weatherEffect": {
+            "type": "rain",
+            "implementation": "react-overlay",
+            "sourceBackground": "shared/asset-library/背景/BG_VANCOUVER.png",
+            "status": "to_implement_during_video",
+            "requirements": [
+              "前景・中景に降雨の速度差をつける",
+              "雨の移動はフレームから決定的に計算する",
+              "必要に応じて晴天背景の明度・彩度を下げ、軒下の若者と整合させる",
+              "字幕の視認性を下げない"
+            ]
+          }
         },
         {
           "narrationCue": "屋根のある住居や、安心して眠れる施設が必要",
@@ -9418,7 +9488,8 @@
       "actual VOICEVOX timestamps and captions coincide with frameIn/frameOut",
       "all 160 shots rendered to 3-frame contact sheet and action shots to motion preview",
       "all proof statements reviewed; no silent substitute, unapproved deletion or cut merge",
-      "character appearance/age/props/time/location continuous; school flashbacks and overseas research clearly differentiated"
+      "character appearance/age/props/time/location continuous; school flashbacks and overseas research clearly differentiated",
+      "BG_GIRL_HOME.pngの実ファイルと台帳登録を確認するまで、該当カットは未完成として扱う。"
     ],
     "cannotValidateFromJsonAlone": [
       "subtle emotional tone",
@@ -9554,18 +9625,36 @@
       "DOOR, MEAL_TRAY, FORM and five non-ACTOR_RIG templates must be produced during video creation before QA passes."
     ],
     "missingBackgroundIds": [
+      "BG_GIRL_HOME"
+    ],
+    "verifiedBackgroundBindings": {
+      "BG_SHELTER_ENTRANCE": "shared/asset-library/背景/BG_SHELTER_ENTRANCE.png",
+      "BG_SHELTER_BEDROOM": "shared/asset-library/背景/BG_SHELTER_BEDROOM.png",
+      "BG_SHELTER_DINING": "shared/asset-library/背景/BG_SHELTER_DINING.png",
+      "BG_SHELTER_COUNSEL": "shared/asset-library/背景/BG_SHELTER_COUNSEL.png",
+      "BG_SHELTER_CORRIDOR": "shared/asset-library/背景/BG_SHELTER_CORRIDOR.png",
+      "BG_YOUTH_CENTER": "shared/asset-library/背景/BG_YOUTH_CENTER.png",
+      "BG_YOUTH_CENTER_ENTRANCE": "shared/asset-library/背景/BG_YOUTH_CENTER_ENTRANCE.png",
+      "BG_VANCOUVER_RAIN": "shared/asset-library/背景/BG_VANCOUVER.png",
+      "BG_ABROAD_SHELTER": "shared/asset-library/背景/BG_ABROAD_SHELTER.png",
+      "BG_US_STREET": "shared/asset-library/背景/BG_US_STREET.png",
+      "BG_RESEARCH_INTERVIEW": "shared/asset-library/背景/BG_RESEARCH_INTERVIEW.png"
+    },
+    "visualReviewStillPending": [
       "BG_SHELTER_ENTRANCE",
       "BG_SHELTER_BEDROOM",
       "BG_SHELTER_DINING",
       "BG_SHELTER_COUNSEL",
       "BG_SHELTER_CORRIDOR",
-      "BG_GIRL_HOME",
       "BG_YOUTH_CENTER",
       "BG_YOUTH_CENTER_ENTRANCE",
-      "BG_VANCOUVER_RAIN",
       "BG_ABROAD_SHELTER",
       "BG_US_STREET",
       "BG_RESEARCH_INTERVIEW"
+    ],
+    "notes": [
+      "2026-09-23: confirmed 11 newly uploaded background image files on GitHub main; 10 remain catalog pending-review; user reports BG_GIRL_HOME uploaded but no matching asset exists on main at verification.",
+      "BG_VANCOUVER_RAIN is a scene semantic ID only. Physical file BG_VANCOUVER.png; React rain effect to be created at video implementation."
     ]
   }
 }
