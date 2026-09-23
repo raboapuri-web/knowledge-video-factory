@@ -72,27 +72,29 @@ const Leg=({x,hip,knee,pants,shoe}:{
       fill={shoe} stroke="#202632" strokeWidth={3}/>
   </Hinge>
 </Hinge>;
-const Flask=({liquid}:{liquid:string})=><g transform="translate(0 103)">
+const Flask=({liquid,rotation}:{liquid:string;rotation:number})=>
+  <g transform={'translate(0 103) rotate('+rotation+') scale(1.15)'}>
   {/* The flask neck sits between thumb and fingers; entire flask follows hand. */}
   <path d="M-8 -57 H8 V-34 L24 -7 Q30 8 15 12 H-15 Q-30 8 -24 -7 L-8 -34Z"
-    fill="#d5f2f3" fillOpacity={.38} stroke="#427c8f" strokeWidth={3} strokeLinejoin="round"/>
+    fill="#e0f8fa" fillOpacity={.62} stroke="#2a7385" strokeWidth={3} strokeLinejoin="round"/>
   <path d="M-19 -6 Q0 -2 19 -6 L23 2 Q25 8 15 9 H-15 Q-25 8 -23 2Z"
-    fill={liquid} opacity={.78}/>
+    fill={liquid} opacity={.97}/>
   <path d="M-11 -58 H11" stroke="#427c8f" strokeWidth={3} strokeLinecap="round"/>
   <path d="M-4 -41 V-22" stroke="#ffffff" strokeWidth={3} opacity={.85}/>
 </g>;
-const Arm=({x,shoulder,elbow,coat,skin,liquid,holdFlask=false}:{
+const Arm=({x,shoulder,elbow,coat,skin,liquid,holdFlask=false,flaskRotation=0}:{
   x:number;shoulder:number;elbow:number;coat:string;skin:string;
-  liquid:string;holdFlask?:boolean;
+  liquid:string;holdFlask?:boolean;flaskRotation?:number;
 })=><Hinge x={x} y={204} angle={shoulder}>
   <rect x={-18} width={36} height={104} rx={17} fill={coat} stroke="#83969f" strokeWidth={3}/>
   <circle cy={94} r={19} fill={coat} stroke="#83969f" strokeWidth={3}/>
   <Hinge x={0} y={94} angle={elbow}>
     <rect x={-15} width={30} height={91} rx={14} fill={coat} stroke="#83969f" strokeWidth={3}/>
     <rect x={-15} y={78} width={30} height={12} rx={3} fill="#d9eaf0"/>
-    {/* Controlled by both shoulder and elbow; not an absolute-position prop. */}
-    {holdFlask&&<Flask liquid={liquid}/>}
     <ellipse cy={97} rx={13} ry={15} fill={skin} stroke="#af826b" strokeWidth={2}/>
+    {/* Glass is in FRONT of palm, fingers draw over its neck. Its wrist correction
+        preserves a recognizable upright flask while shoulder/elbow change. */}
+    {holdFlask&&<Flask liquid={liquid} rotation={flaskRotation}/>}
     {holdFlask&&<path d="M-13 91 Q-4 82 7 90 L7 105 Q-2 108 -12 101Z"
       fill={skin} stroke="#af826b" strokeWidth={1.4}/>}
   </Hinge>
@@ -157,7 +159,7 @@ export const RESEARCHER_MAN=({
           {/* Right arm and actual carried flask render in front of coat. */}
           <Arm x={239} shoulder={j.rightShoulder} elbow={j.rightElbow}
             coat={labCoatColor} skin={skinColor} liquid={flaskLiquidColor}
-            holdFlask={holdFlask}/>
+            holdFlask={holdFlask} flaskRotation={-j.rightShoulder-j.rightElbow}/>
           {/* Skin neck lies under chin and overlaps the upper shirt collar. */}
           <Hinge x={180} y={169} angle={j.headTilt}>
             <rect x={-13} y={-30} width={26} height={47} rx={9} fill={skinColor}/>

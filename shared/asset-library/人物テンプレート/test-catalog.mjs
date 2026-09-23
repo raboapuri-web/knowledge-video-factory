@@ -36,7 +36,8 @@ for(const character of data.characters){
   for(const joint of character.adjustableJoints)assert(code.includes(joint),'Joint not found in component code: '+joint);
   if(character.id==='character-researcher-man'){
     assert(code.includes("action==='inspectFlask'"),'Researcher observation action missing');
-    assert(code.includes('<Flask liquid={liquid}/>'),'Flask must be physically attached inside forearm hierarchy');
+    assert(code.includes('<Flask liquid={liquid} rotation={flaskRotation}/>'),'Flask must be physically attached inside forearm hierarchy');
+    assert(code.includes('flaskRotation={-j.rightShoulder-j.rightElbow}'),'Flask must be held upright by wrist correction');
     assert(code.includes('<Hinge x={0} y={94} angle={elbow}>'),'Flask must follow elbow rotation');
     assert(!code.includes("photoFlash"),'Scientist rig should not reuse the passerby photo action');
     assert(character.recommendedBackgrounds.includes('背景/BG_kenkyu.png'));
