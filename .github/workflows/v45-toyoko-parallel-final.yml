@@ -46,7 +46,10 @@ jobs:
       - name: Plan non-overlapping exact global frame ranges, preferring shot boundaries
         id: plan
         working-directory: v45-toyoko
-        run: echo "matrix=$(node scripts/plan-parallel-segments.mjs)" >> "$GITHUB_OUTPUT"
+        run: |
+          PLAN="$(node scripts/plan-parallel-segments.mjs)"
+          test -s out/segment-plan.json
+          echo "matrix=$PLAN" >> "$GITHUB_OUTPUT"
       - name: Package reusable master timeline and audio just once
         run: |
           tar -czf v45-toyoko/out/toyoko-parallel-prepared.tar.gz \
