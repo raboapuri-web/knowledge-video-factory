@@ -11,12 +11,15 @@ const video=path.join(episode,'out/toyoko-prologue-review.mp4');
 if(!fs.existsSync(video)||fs.statSync(video).size===0)throw Error('Prologue preview MP4 is missing');
 const outputDir=path.join(episode,'out/shot-review');
 fs.mkdirSync(outputDir,{recursive:true});
-let offset=0;
+const sync=JSON.parse(fs.readFileSync(path.join(episode,'src/sync-timing.json'),'utf8'));
+if(sync.status!=='measured_voicevox_provisional_script'&&sync.status!=='measured_voicevox_approved_script')throw Error('The review screenshots must use measured VOICEVOX shot durations');
+if(sync.beats?.length!==18)throw Error('Missing measured timing for 18 cuts');
 const rows=[];
-for(const shot of shots){
-  const duration=shot.timing.targetDurationSeconds;
-  if(typeof duration!=='number'||duration<=0)throw Error('Invalid cut duration '+shot.shotId);
-  const second=(offset+duration/2).toFixed(3);
+for(let i=0;i<shots.length;i++){
+  const shot=shots[i];
+  const beat=sync.beats[i];
+  if(beat?.id!==shot.shotId||!(beat.end>beat.start))throw Error('Invalid beat '+shot.shotId);
+  const second=((beat.start+beat.end)/2).toFixed(3);
   const out=path.join(outputDir,shot.shotId+'.png');
   // Invoke ffmpeg with a verified numeric argument instead of parsing a shell TSV.
   const run=spawnSync('ffmpeg',['-y','-loglevel','error','-ss',second,'-i',video,'-frames:v','1',out],
@@ -26,9 +29,8 @@ for(const shot of shots){
   }
   rows.push(second+'\t'+shot.shotId);
   console.log(shot.shotId+' -> '+second+'s');
-  offset+=duration;
 }
-if(offset!==120)throw Error('Storyboard preview is not 120s');
+if(!(sync.durationSeconds>20))throw Error('Missing measured audio duration');
 const files=fs.readdirSync(outputDir).filter(x=>/^P\d\d-\d\d\.png$/.test(x));
 if(files.length!==18)throw Error('Expected 18 review images; found '+files.length);
 fs.writeFileSync(path.join(episode,'out/shot-timestamps.tsv'),rows.join('\n')+'\n');
