@@ -132,27 +132,32 @@ export const OfficeWomanRig=({
             suit={suitColor} skin={skinColor}/>
           {/* Short neck, behind the blouse and blazer. Head is lowered below
               to leave only a natural-sized visible neck above the collar. */}
-          <rect x={168} y={151} width={24} height={41} rx={9} fill={skinColor}/>
+          <rect x={168} y={160} width={24} height={42} rx={9} fill={skinColor}/>
           {/* Fitted contemporary blazer, blouse and modest waist shaping.
               This is independent artwork, not a tint of the male suit. */}
           <path d="M145 179 Q180 165 215 179 Q239 193 245 230
                    L224 288 Q229 326 234 367 Q180 385 126 367
                    Q131 326 136 288 L115 230 Q120 193 145 179Z"
             fill={suitColor} stroke="#303c53" strokeWidth={4} strokeLinejoin="round"/>
-          <path d="M156 178 Q180 171 204 178 L208 275
-                   Q192 304 180 310 Q168 304 152 275Z"
-            fill={shirtColor} stroke="#b2a9ad" strokeWidth={2}/>
-          <path d="M159 182 L179 209 L169 225 L150 193Z
-                   M201 182 L181 209 L191 225 L210 193Z"
-            fill="#fffaf7" stroke="#c0b6bb" strokeWidth={2}/>
+          {/* Straight-front white shirt: a flat lower hem, NOT the old pointed V shape. */}
+          <path d="M157 181 Q180 176 203 181
+                   L203 342 Q180 348 157 342 Z"
+            fill={shirtColor} stroke="#c5bec1" strokeWidth={2}/>
+          {/* Two restrained shirt collar leaves: the jacket lapels remain separate. */}
+          <path d="M157 181 L175 195 L171 209 L157 196 Z"
+            fill="#fffaf7" stroke="#d0c9cc" strokeWidth={1.8}/>
+          <path d="M203 181 L185 195 L189 209 L203 196 Z"
+            fill="#fffaf7" stroke="#d0c9cc" strokeWidth={1.8}/>
           {/* Plain white button-front blouse; no bow, ribbon, heart or necktie. */}
-          <path d="M180 208 V298" stroke="#dad4d4" strokeWidth={2} fill="none"/>
-          <circle cx={180} cy={230} r={2.3} fill="#c6bfc0"/>
-          <circle cx={180} cy={260} r={2.3} fill="#c6bfc0"/>
-          <circle cx={180} cy={289} r={2.3} fill="#c6bfc0"/>
-          <path d="M146 179 Q152 208 174 276 L144 240 L156 223 L140 211Z"
+          <path d="M180 200 V341" stroke="#ded8d9" strokeWidth={1.8} fill="none"/>
+          <circle cx={180} cy={219} r={2.1} fill="#c6bfc0"/>
+          <circle cx={180} cy={248} r={2.1} fill="#c6bfc0"/>
+          <circle cx={180} cy={277} r={2.1} fill="#c6bfc0"/>
+          <circle cx={180} cy={306} r={2.1} fill="#c6bfc0"/>
+          <circle cx={180} cy={335} r={2.1} fill="#c6bfc0"/>
+          <path d="M146 179 Q150 207 164 254 L144 236 L153 220 L141 212 Z"
             fill="#64728f" stroke="#36445c" strokeWidth={2}/>
-          <path d="M214 179 Q208 208 186 276 L216 240 L204 223 L220 211Z"
+          <path d="M214 179 Q210 207 196 254 L216 236 L207 220 L219 212 Z"
             fill="#64728f" stroke="#36445c" strokeWidth={2}/>
           <path d="M136 287 Q180 302 224 287 M141 337 Q180 347 219 337"
             stroke="#344057" strokeWidth={2.5} fill="none"/>
@@ -161,9 +166,9 @@ export const OfficeWomanRig=({
             stroke="#303a4e" strokeWidth={4}/>
           <Arm x={238} y={205} shoulder={j.rightShoulder} elbow={j.rightElbow}
             suit={suitColor} skin={skinColor} briefcase={showBriefcase&&action!=='wave'&&action!=='point'}/>
-          {/* Medium-length bob and adult face. Head hinge moved down 16px;
-              the short neck is behind the shirt, avoiding a long visible throat. */}
-          <Hinge x={180} y={185} angle={j.headTilt}>
+          {/* Lower head 13 px so jaw overlaps the short neck at the shirt collar.
+              The neck stays attached to torso while the head can rotate. */}
+          <Hinge x={180} y={198} angle={j.headTilt}>
             {/* Hair back passes to shoulder height, beneath face and cheeks. */}
             <path d="M-49 -102 Q-54 -150 -19 -158 Q5 -170 31 -156
                      Q60 -140 53 -96 L56 6 Q44 28 31 29
