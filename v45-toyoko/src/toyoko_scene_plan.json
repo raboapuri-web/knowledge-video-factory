@@ -461,7 +461,10 @@
           "C33-02",
           "C34-01"
         ],
-        "required": true
+        "required": true,
+        "assetFile": "shared/asset-library/背景/BG_oneroom_night.png",
+        "resolution": "existing_file_verified",
+        "productionNote": "登録の旧BG_oneroom.pngは存在しない。GitHubに実在する別の夜間ワンルーム背景BG_oneroom_night.pngをC32〜C34の成人男性の室内として採用。主人公の自宅BG_ROOM_NIGHT_ON.pngと混同しない。"
       },
       {
         "id": "BG_LIBRARY_DARK",
@@ -9638,7 +9641,8 @@
       "BG_ABROAD_SHELTER": "shared/asset-library/背景/BG_ABROAD_SHELTER.png",
       "BG_US_STREET": "shared/asset-library/背景/BG_US_STREET.png",
       "BG_RESEARCH_INTERVIEW": "shared/asset-library/背景/BG_RESEARCH_INTERVIEW.png",
-      "BG_GIRL_HOME": "shared/asset-library/背景/BG_ROOM_NIGHT_ON.png"
+      "BG_GIRL_HOME": "shared/asset-library/背景/BG_ROOM_NIGHT_ON.png",
+      "BG_LIBRARY_ROOM": "shared/asset-library/背景/BG_oneroom_night.png"
     },
     "visualReviewStillPending": [],
     "notes": [
