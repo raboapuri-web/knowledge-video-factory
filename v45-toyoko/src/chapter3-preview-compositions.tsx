@@ -36,7 +36,7 @@ const diagramIds=new Set([
 ]);
 export const ChapterThreeFilm=()=>{
  if(film.status!=='chapter_preview_ready'||film.chapterId!=='chapter3'||
-  film.sourceParagraphCount!==66||film.fps!==32||film.shots.length!==61||
+  film.sourceParagraphCount!==66||film.fps!==30||film.shots.length!==61||
   film.durationFrames<=0||film.narrationBeats.length!==32)
   throw Error('Standalone chapter-three 58-paragraph / 52-scene original VOICEVOX data not prepared');
  const seen=new Set<string>();
