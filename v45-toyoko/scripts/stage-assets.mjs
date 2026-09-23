@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const episode=path.join(root,'v45-toyoko');
 const plan=JSON.parse(fs.readFileSync(path.join(episode,'src/toyoko_scene_plan.json'),'utf8'));
 const scenes=plan.scenes.filter(s=>s.chapterId==='prologue');
