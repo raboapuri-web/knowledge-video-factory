@@ -1,0 +1,61 @@
+name: Parent Father Mother Preview
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/parents-preview.yml'
+      - 'shared/asset-library/人物テンプレート/PARENT_FATHER.tsx'
+      - 'shared/asset-library/人物テンプレート/PARENT_MOTHER.tsx'
+      - 'shared/asset-library/人物テンプレート/parent-father-scene.tsx'
+      - 'shared/asset-library/人物テンプレート/parent-mother-scene.tsx'
+      - 'shared/v69/index.tsx'
+      - 'shared/asset-library/人物テンプレート/catalog.json'
+      - 'shared/asset-library/人物テンプレート/test-catalog.mjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Prepare approved room and validate character JSON
+        run: |
+          node shared/bootstrap/v69-free-services.mjs
+          node shared/asset-library/prepare.mjs v69-free-services
+          node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_oneroom.png
+          node shared/asset-library/人物テンプレート/test-catalog.mjs
+      - name: Install and typecheck Remotion
+        working-directory: v69-free-services
+        run: |
+          npm install --ignore-scripts --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+          npm run check
+      - name: Render father and mother independently, plus family still
+        working-directory: v69-free-services
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx ParentFatherRoomPreview out/PARENT_FATHER-preview.mp4 --scale=0.5 --concurrency=2 --codec=h264
+          npx remotion render src/index.tsx ParentMotherRoomPreview out/PARENT_MOTHER-preview.mp4 --scale=0.5 --concurrency=2 --codec=h264
+          npx remotion still src/index.tsx ParentFatherRoomPreview out/PARENT_FATHER-idle.png --frame=15 --scale=0.75
+          npx remotion still src/index.tsx ParentFatherRoomPreview out/PARENT_FATHER-wave.png --frame=150 --scale=0.75
+          npx remotion still src/index.tsx ParentMotherRoomPreview out/PARENT_MOTHER-idle.png --frame=15 --scale=0.75
+          npx remotion still src/index.tsx ParentMotherRoomPreview out/PARENT_MOTHER-wave.png --frame=150 --scale=0.75
+          npx remotion still src/index.tsx ParentsTogetherPreview out/PARENTS-together.png --frame=15 --scale=0.75
+      - uses: actions/upload-artifact@v4
+        with:
+          name: parents-individual-previews
+          path: |
+            v69-free-services/out/PARENT_FATHER-preview.mp4
+            v69-free-services/out/PARENT_MOTHER-preview.mp4
+            v69-free-services/out/PARENT_FATHER-idle.png
+            v69-free-services/out/PARENT_FATHER-wave.png
+            v69-free-services/out/PARENT_MOTHER-idle.png
+            v69-free-services/out/PARENT_MOTHER-wave.png
+            v69-free-services/out/PARENTS-together.png
+          if-no-files-found: error
+          retention-days: 7

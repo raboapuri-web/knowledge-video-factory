@@ -34,6 +34,14 @@ for(const character of data.characters){
     assert(code.includes("'"+action.id+"'"),'Action not found in component code: '+action.id);
   }
   for(const joint of character.adjustableJoints)assert(code.includes(joint),'Joint not found in component code: '+joint);
+  if(character.id==='character-parent-father'||character.id==='character-parent-mother'){
+    assert(code.includes('open knitted cardigan')||code.includes('soft terracotta cardigan')||
+      code.includes('Everyday mother'), 'Parent must have casual clothing rather than an office suit');
+    assert(code.includes('showBag'), 'Independent parent controls must include optional bag');
+    assert(code.includes('<Hinge x={180}'), 'Parent head and neck must move at a joint');
+    assert(!code.includes("showBriefcase"),'Parent must not show a business briefcase');
+    assert(character.recommendedBackgrounds.includes('背景/BG_oneroom.png'));
+  }
   if(character.id==='character-researcher-man'||character.id==='character-researcher-woman'){
     if(character.id==='character-researcher-woman'){
       assert(code.includes('Medium bob behind the face'),'Woman researcher needs distinct shoulder-length bob hair');

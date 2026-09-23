@@ -823,6 +823,227 @@
       ],
       "updatedAt": "2026-09-23",
       "note": "白衣・淡紫色のワイシャツ・名札・濃紺パンツ・肩までのボブヘアの成人女性研究員。男性版と同じ4動作と可動関節を備えた独立React SVG。フラスコは右前腕内にあり、手に追従しつつ瓶の向きが上を保たれる。"
+    },
+    {
+      "id": "character-parent-father",
+      "name": "父親（現代の男性保護者）",
+      "category": "人物テンプレート",
+      "status": "approved",
+      "type": "react-svg-rig",
+      "file": "PARENT_FATHER.tsx",
+      "component": "ParentFatherRig",
+      "sceneFile": "parent-father-scene.tsx",
+      "sceneComponent": "ParentFatherBackgroundScene",
+      "previewComponent": "ParentFatherRigPreview",
+      "previewComposition": "ParentFatherRoomPreview",
+      "tags": [
+        "父親",
+        "父",
+        "男性",
+        "親",
+        "保護者",
+        "家族",
+        "家庭",
+        "大人",
+        "カーディガン",
+        "普段着",
+        "2D",
+        "ベクター",
+        "可動関節",
+        "アニメーション"
+      ],
+      "usage": [
+        "家族の会話",
+        "自宅で過ごす父親",
+        "子供を迎える",
+        "親子の散歩",
+        "手を振る",
+        "説明しながら指さす"
+      ],
+      "avoid": [
+        "特定の実在人物の本人として描く場面",
+        "歴史的衣装が必須の場面",
+        "正式な会社員スーツが必須の場面"
+      ],
+      "actions": [
+        {
+          "id": "idle",
+          "name": "正面・待機",
+          "description": "リラックスした立ち姿で微細な動きをする"
+        },
+        {
+          "id": "walk",
+          "name": "歩く",
+          "description": "肩・肘・股関節・膝を使った歩行ループ"
+        },
+        {
+          "id": "wave",
+          "name": "手を振る",
+          "description": "右腕を上げ、相手に手を振る"
+        },
+        {
+          "id": "point",
+          "name": "指さす",
+          "description": "右腕を伸ばして説明・案内する"
+        }
+      ],
+      "adjustableJoints": [
+        "leftShoulder",
+        "leftElbow",
+        "rightShoulder",
+        "rightElbow",
+        "leftHip",
+        "leftKnee",
+        "rightHip",
+        "rightKnee",
+        "headTilt",
+        "bodyLean"
+      ],
+      "adjustableProps": [
+        "x",
+        "y",
+        "scale",
+        "action",
+        "walkSpeed",
+        "pose",
+        "talking",
+        "showBag",
+        "mirror",
+        "topColor",
+        "pantsColor",
+        "shirtColor",
+        "skinColor",
+        "hairColor",
+        "shoeColor"
+      ],
+      "dimensions": {
+        "width": 360,
+        "height": 640,
+        "coordinateSystem": "1920x1080"
+      },
+      "recommendedBackgrounds": [
+        "背景/BG_oneroom.png",
+        "背景/BG_town.png",
+        "背景/BG_densha.png"
+      ],
+      "license": "original-project",
+      "knownLimitations": [
+        "歩行は簡易的な2Dループ。床接地を自動補正する逆運動学（IK）は未実装。",
+        "特定の背景・時代・字幕位置に対する適合は動画ごとに確認が必要。"
+      ],
+      "updatedAt": "2026-09-23",
+      "note": "親子・家族描写に使用する現代の父親。灰色の混じる短髪、緑のカーディガンとベージュのTシャツ、濃色パンツ。男性会社員を使い回さない独立React SVG。"
+    },
+    {
+      "id": "character-parent-mother",
+      "name": "母親（現代の女性保護者）",
+      "category": "人物テンプレート",
+      "status": "approved",
+      "type": "react-svg-rig",
+      "file": "PARENT_MOTHER.tsx",
+      "component": "ParentMotherRig",
+      "sceneFile": "parent-mother-scene.tsx",
+      "sceneComponent": "ParentMotherBackgroundScene",
+      "previewComponent": "ParentMotherRigPreview",
+      "previewComposition": "ParentMotherRoomPreview",
+      "tags": [
+        "母親",
+        "母",
+        "女性",
+        "親",
+        "保護者",
+        "家族",
+        "家庭",
+        "大人",
+        "カーディガン",
+        "ワイシャツ",
+        "普段着",
+        "2D",
+        "ベクター",
+        "可動関節",
+        "アニメーション"
+      ],
+      "usage": [
+        "家族の会話",
+        "自宅で過ごす母親",
+        "子供を迎える",
+        "親子の散歩",
+        "手を振る",
+        "説明しながら指さす"
+      ],
+      "avoid": [
+        "特定の実在人物の本人として描く場面",
+        "歴史的衣装が必須の場面",
+        "正式な会社員スーツが必須の場面"
+      ],
+      "actions": [
+        {
+          "id": "idle",
+          "name": "正面・待機",
+          "description": "リラックスした立ち姿で微細な動きをする"
+        },
+        {
+          "id": "walk",
+          "name": "歩く",
+          "description": "肩・肘・股関節・膝を使った歩行ループ"
+        },
+        {
+          "id": "wave",
+          "name": "手を振る",
+          "description": "右腕を上げ、相手に手を振る"
+        },
+        {
+          "id": "point",
+          "name": "指さす",
+          "description": "右腕を伸ばして説明・案内する"
+        }
+      ],
+      "adjustableJoints": [
+        "leftShoulder",
+        "leftElbow",
+        "rightShoulder",
+        "rightElbow",
+        "leftHip",
+        "leftKnee",
+        "rightHip",
+        "rightKnee",
+        "headTilt",
+        "bodyLean"
+      ],
+      "adjustableProps": [
+        "x",
+        "y",
+        "scale",
+        "action",
+        "walkSpeed",
+        "pose",
+        "talking",
+        "showBag",
+        "mirror",
+        "topColor",
+        "pantsColor",
+        "shirtColor",
+        "skinColor",
+        "hairColor",
+        "shoeColor"
+      ],
+      "dimensions": {
+        "width": 360,
+        "height": 640,
+        "coordinateSystem": "1920x1080"
+      },
+      "recommendedBackgrounds": [
+        "背景/BG_oneroom.png",
+        "背景/BG_town.png",
+        "背景/BG_densha.png"
+      ],
+      "license": "original-project",
+      "knownLimitations": [
+        "歩行は簡易的な2Dループ。床接地を自動補正する逆運動学（IK）は未実装。",
+        "特定の背景・時代・字幕位置に対する適合は動画ごとに確認が必要。"
+      ],
+      "updatedAt": "2026-09-23",
+      "note": "親子・家族描写に使用する現代の母親。首と顎を接続した肩までの髪、テラコッタのカーディガン、襟付き白シャツと濃色パンツ。女性会社員を使い回さない独立React SVG。"
     }
   ]
 }

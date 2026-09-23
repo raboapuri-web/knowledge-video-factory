@@ -209,3 +209,21 @@ export const Lab=()=>
 ```
 
 研究室背景は `stage-background.mjs v69-free-services BG_kenkyu.png` でステージング。Remotion Composition IDは `ResearcherWomanLabPreview`（8秒）と `ResearcherWomanFaceCloseup`。アンダースコアがある `RESEARCHER_WOMAN` はReactファイル名・コンポーネント名であり、Composition IDには使用しません。
+
+
+## PARENT_FATHER / PARENT_MOTHER：両親の独立2Dテンプレート
+
+父親 `character-parent-father`（`PARENT_FATHER.tsx`）と母親 `character-parent-mother`（`PARENT_MOTHER.tsx`）を**別々のReact SVGとして登録**しています。父は控えめなグレー混じりの髪＋緑のカーディガン＋クリーム色のTシャツ。母は肩までのダークブラウンヘア＋テラコッタのカーディガン＋白い前開きシャツ。目・鼻・口は普通の成人キャラクターとして描写し、通行人の匿名素材とは分けています。母は顎・首・襟元の連結を維持し、リボン・ハートや矢印形シャツは描きません。
+
+両方とも肩・肘・股関節・膝・頭・上体が可動で、`idle` / `walk` / `wave` / `point` の4動作。独立して `topColor` / `shirtColor` / `pantsColor` / `hairColor` / `skinColor` / `showBag` を指定できます。男性・女性会社員のコードおよび既存の研究員や子供のコードは変更していません。
+
+```tsx
+import {ParentFatherBackgroundScene} from '../../shared/asset-library/人物テンプレート/parent-father-scene';
+import {ParentMotherRig} from '../../shared/asset-library/人物テンプレート/PARENT_MOTHER';
+export const Family=()=>
+  <ParentFatherBackgroundScene backgroundFile="BG_oneroom.png" parent={{x:745,y:500,scale:.8,action:'idle'}}>
+    <ParentMotherRig x={1160} y={500} scale={.8} action="wave"/>
+  </ParentFatherBackgroundScene>;
+```
+
+Remotionに背景をステージするには `node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_oneroom.png` を実行。動画プレビューは `ParentFatherRoomPreview` と `ParentMotherRoomPreview`、2人併用確認は `ParentsTogetherPreview` です。床接地IKや複雑な座り姿勢は未実装です。
