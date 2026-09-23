@@ -242,6 +242,139 @@
       ],
       "updatedAt": "2026-09-23",
       "note": "丸顔・ポニーテール版。座る・立ち上がる・座ってスマホ・歩きスマホに対応。スマホは右前腕の可動階層に配置し、手と一緒に移動・回転する。"
+    },
+    {
+      "id": "character-hoodie-boy",
+      "name": "パーカーを着た少年",
+      "category": "人物テンプレート",
+      "status": "approved",
+      "type": "react-svg-rig",
+      "file": "hoodie-boy-rig.tsx",
+      "component": "HoodieBoyRig",
+      "sceneFile": "hoodie-boy-scene.tsx",
+      "sceneComponent": "HoodieBoyBackgroundScene",
+      "previewComponent": "HoodieBoyRigPreview",
+      "previewComposition": "HoodieBoyRoomPreview",
+      "tags": [
+        "少年",
+        "男の子",
+        "パーカー",
+        "フーディー",
+        "現代",
+        "2D",
+        "ベクター",
+        "可動関節",
+        "アニメーション",
+        "街",
+        "通学",
+        "スマホ"
+      ],
+      "usage": [
+        "街を歩く",
+        "部屋で過ごす",
+        "椅子に座る",
+        "椅子から立ち上がる",
+        "座ってスマートフォンを見る",
+        "歩きながらスマートフォンを見る",
+        "手を振る",
+        "指さす",
+        "話す"
+      ],
+      "avoid": [
+        "歴史的衣装が必須の場面",
+        "特定の実在人物として描く場面",
+        "学校の制服が必須の場面"
+      ],
+      "actions": [
+        {
+          "id": "idle",
+          "name": "待機",
+          "description": "呼吸・頭と腕の微動"
+        },
+        {
+          "id": "walk",
+          "name": "歩行",
+          "description": "肩・股関節・膝を周期的に動かす"
+        },
+        {
+          "id": "wave",
+          "name": "手を振る",
+          "description": "右肩と右肘を動かす"
+        },
+        {
+          "id": "point",
+          "name": "指さし",
+          "description": "右腕を水平に伸ばす"
+        },
+        {
+          "id": "sit",
+          "name": "座る",
+          "description": "正面向きで両膝と股関節を曲げて椅子に腰を下ろす（約1.1秒）"
+        },
+        {
+          "id": "standUp",
+          "name": "立ち上がる",
+          "description": "座った姿勢から約1.1秒で直立する一方向の遷移"
+        },
+        {
+          "id": "sitPhone",
+          "name": "座ってスマホを見る",
+          "description": "右手に固定されたスマートフォンを座って見る"
+        },
+        {
+          "id": "walkPhone",
+          "name": "歩きながらスマホを見る",
+          "description": "右前腕と手首に追従するスマートフォンを保持して歩く"
+        }
+      ],
+      "adjustableJoints": [
+        "leftShoulder",
+        "leftElbow",
+        "rightShoulder",
+        "rightElbow",
+        "leftHip",
+        "leftKnee",
+        "rightHip",
+        "rightKnee",
+        "headTilt",
+        "bodyLean"
+      ],
+      "adjustableProps": [
+        "x",
+        "y",
+        "scale",
+        "action",
+        "walkSpeed",
+        "pose",
+        "talking",
+        "mirror",
+        "hoodieColor",
+        "sleeveColor",
+        "pantsColor",
+        "skinColor",
+        "hairColor",
+        "shoeColor",
+        "actionStartFrame",
+        "showChair"
+      ],
+      "dimensions": {
+        "width": 360,
+        "height": 640,
+        "coordinateSystem": "1920x1080"
+      },
+      "recommendedBackgrounds": [
+        "背景/BG_oneroom.png",
+        "背景/BG_town.png",
+        "背景/BG_densha.png"
+      ],
+      "license": "original-project",
+      "knownLimitations": [
+        "簡易2D歩行。足裏の床接地を自動補正するIKは未実装。",
+        "背景の人物サイズや重なり・時代性はシーンごとに確認すること。",
+        "正面向きの簡易座位。3/4ビューや足裏の完全な接地IKは未実装。"
+      ],
+      "updatedAt": "2026-09-23",
+      "note": "少女版と同じ8動作・右前腕に追従するスマホ・座位遷移を備えた少年。短い無造作ヘア、丸顔、青緑色のパーカー。静止PNGではなく編集可能なReact SVG。"
     }
   ]
 }

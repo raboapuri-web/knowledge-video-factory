@@ -1,0 +1,64 @@
+name: Hoodie Boy Preview
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/hoodie-boy-preview.yml'
+      - 'shared/asset-library/人物テンプレート/hoodie-boy-rig.tsx'
+      - 'shared/asset-library/人物テンプレート/hoodie-boy-scene.tsx'
+      - 'shared/v69/index.tsx'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Prepare a standalone Remotion preview
+        run: |
+          node shared/bootstrap/v69-free-services.mjs
+          node shared/asset-library/prepare.mjs v69-free-services
+          node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_oneroom.png
+          node shared/asset-library/人物テンプレート/test-catalog.mjs
+      - name: Install dependencies and type-check
+        working-directory: v69-free-services
+        run: |
+          npm install --ignore-scripts --no-audit --no-fund
+          # The shared/ TSX files are outside v69-free-services; TypeScript resolves modules from repository root.
+          ln -sfn "$PWD/node_modules" ../node_modules
+          npm run check
+      - name: Render hoodie boy on approved room background
+        working-directory: v69-free-services
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx HoodieBoyRoomPreview out/hoodie-boy-preview.mp4 --scale=0.5 --concurrency=2 --codec=h264
+          npx remotion still src/index.tsx HoodieBoyRoomPreview out/hoodie-boy-idle.png --frame=15 --scale=0.75
+          npx remotion still src/index.tsx HoodieBoyRoomPreview out/hoodie-boy-walk.png --frame=90 --scale=0.75
+          npx remotion still src/index.tsx HoodieBoyRoomPreview out/hoodie-boy-wave.png --frame=150 --scale=0.75
+          npx remotion still src/index.tsx HoodieBoyRoomPreview out/hoodie-boy-sit.png --frame=284 --scale=0.75
+          npx remotion still src/index.tsx HoodieBoyRoomPreview out/hoodie-boy-sit-phone.png --frame=335 --scale=0.75
+          npx remotion still src/index.tsx HoodieBoyRoomPreview out/hoodie-boy-stand-up.png --frame=382 --scale=0.75
+          npx remotion still src/index.tsx HoodieBoyRoomPreview out/hoodie-boy-walk-phone.png --frame=452 --scale=0.75
+          npx remotion still src/index.tsx HoodieBoyPhoneCloseup out/hoodie-boy-phone-closeup.png --frame=15 --scale=0.75
+          npx remotion still src/index.tsx HoodieBoyFaceCloseup out/hoodie-boy-face-closeup.png --frame=15 --scale=0.75
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hoodie-boy-preview
+          path: |
+            v69-free-services/out/hoodie-boy-preview.mp4
+            v69-free-services/out/hoodie-boy-idle.png
+            v69-free-services/out/hoodie-boy-walk.png
+            v69-free-services/out/hoodie-boy-wave.png
+            v69-free-services/out/hoodie-boy-sit.png
+            v69-free-services/out/hoodie-boy-sit-phone.png
+            v69-free-services/out/hoodie-boy-stand-up.png
+            v69-free-services/out/hoodie-boy-walk-phone.png
+            v69-free-services/out/hoodie-boy-phone-closeup.png
+            v69-free-services/out/hoodie-boy-face-closeup.png
+          if-no-files-found: error
+          retention-days: 7

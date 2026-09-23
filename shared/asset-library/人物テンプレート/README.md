@@ -128,3 +128,20 @@ export const Room=()=>
 スマートフォンは**右前腕のローカル座標**に固定し、肩→肘→手首の回転と一緒に移動します。固定座標の端末を「右手付近に表示」する実装ではありません。スマホの下端と親指が重なる描画にしています。簡易椅子は `sit`、`sitPhone`、`standUp` で表示され、動画背景に椅子がある場合 `showChair={false}` で隠せます。正面向きの簡易座位なので、床接地IKや3/4方向の座り姿勢は未実装です。
 
 `HoodieGirlRoomPreview` は480フレーム・30fps（16秒）で、待機→歩行→手振り→指さし→座る→座ってスマホ→立ち上がる→歩きスマホを確認できます。手とスマホの位置は `HoodieGirlPhoneCloseup` でも確認してください。
+
+
+## パーカー姿の少年（少女版の8動作に対応）
+
+人物ID `character-hoodie-boy` を `人物テンプレート/catalog.json` に登録。実装 `hoodie-boy-rig.tsx`、背景合成 `hoodie-boy-scene.tsx`。少女版の座る／立ち上がる／座ってスマホ／歩きスマホ、および従来4動作の合計8動作を引き継ぎ、**短い無造作ヘア・丸顔・青緑のパーカー**の少年として独立したReact SVGを実装しました。少女テンプレート自体は変更しません。
+
+```tsx
+import {HoodieBoyBackgroundScene} from '../../shared/asset-library/人物テンプレート/hoodie-boy-scene';
+
+export const Room=()=>
+  <HoodieBoyBackgroundScene backgroundFile="BG_oneroom.png"
+    boy={{x:1100,y:500,scale:.84,action:'sitPhone'}}/>;
+```
+
+スマホは肩・肘と連動する**右前腕のSVG内**に固定され、手の上に表示されます。2D簡易座位のため自然な斜め座り・床接地IKは未実装。
+
+`prepare.mjs` 実行後に `node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_oneroom.png` で背景を動画publicにコピー。Remotion Studioでは `HoodieBoyRoomPreview`（16秒）、`HoodieBoyFaceCloseup`、`HoodieBoyPhoneCloseup` を確認できます。
