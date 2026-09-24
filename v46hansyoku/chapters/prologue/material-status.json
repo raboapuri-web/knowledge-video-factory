@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "v46-prologue-material-status-v1",
+  "updatedAt": "2026-09-24",
+  "chapterId": "prologue",
+  "sourceInventory": "v46hansyoku/chapters/prologue/required-assets.json",
+  "sourceScenePlan": "v46hansyoku/scene-plans/prologue.json",
+  "state": "missing_assets_identified_awaiting_registration",
+  "requiredUserUploads": [
+    {
+      "assetId": "BG_V46_OFFICE_STREET_NIGHT",
+      "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+      "priority": "P0",
+      "status": "not_uploaded_for_v46",
+      "sceneIds": [
+        "V46-P001",
+        "V46-P002",
+        "V46-P004",
+        "V46-P013",
+        "V46-P014",
+        "V46-P024",
+        "V46-P028"
+      ],
+      "canSkipIfExistingAssetFits": false
+    },
+    {
+      "assetId": "BG_V46_SUBWAY_ENTRANCE",
+      "filePath": "shared/asset-library/背景/BG_V46_SUBWAY_ENTRANCE.png",
+      "priority": "P0",
+      "status": "not_uploaded_for_v46",
+      "sceneIds": [
+        "V46-P003"
+      ],
+      "canSkipIfExistingAssetFits": false
+    },
+    {
+      "assetId": "BG_V46_UNIVERSITY_GATE",
+      "filePath": "shared/asset-library/背景/BG_V46_UNIVERSITY_GATE.png",
+      "priority": "P0",
+      "status": "not_uploaded_for_v46",
+      "sceneIds": [
+        "V46-P004",
+        "V46-P020"
+      ],
+      "canSkipIfExistingAssetFits": false
+    },
+    {
+      "assetId": "BG_V46_CLIENT_MEETING_ROOM",
+      "filePath": "shared/asset-library/背景/BG_V46_CLIENT_MEETING_ROOM.png",
+      "priority": "P1",
+      "status": "not_uploaded_for_v46",
+      "sceneIds": [
+        "V46-P005"
+      ],
+      "canSkipIfExistingAssetFits": true
+    },
+    {
+      "assetId": "BG_V46_PEER_LIVING_ROOM",
+      "filePath": "shared/asset-library/背景/BG_V46_PEER_LIVING_ROOM.png",
+      "priority": "P0",
+      "status": "not_uploaded_for_v46",
+      "sceneIds": [
+        "V46-P015",
+        "V46-P018",
+        "V46-P021"
+      ],
+      "canSkipIfExistingAssetFits": false
+    },
+    {
+      "assetId": "BG_V46_PEER_COMPANY_OFFICE",
+      "filePath": "shared/asset-library/背景/BG_V46_PEER_COMPANY_OFFICE.png",
+      "priority": "P0",
+      "status": "not_uploaded_for_v46",
+      "sceneIds": [
+        "V46-P016",
+        "V46-P019"
+      ],
+      "canSkipIfExistingAssetFits": false
+    },
+    {
+      "assetId": "BG_V46_PEER_COMPANY_WORKSPACE",
+      "filePath": "shared/asset-library/背景/BG_V46_PEER_COMPANY_WORKSPACE.png",
+      "priority": "P0",
+      "status": "not_uploaded_for_v46",
+      "sceneIds": [
+        "V46-P017"
+      ],
+      "canSkipIfExistingAssetFits": false
+    },
+    {
+      "assetId": "BG_V46_RESIDENTIAL_STREET_NIGHT",
+      "filePath": "shared/asset-library/背景/BG_V46_RESIDENTIAL_STREET_NIGHT.png",
+      "priority": "P1",
+      "status": "not_uploaded_for_v46",
+      "sceneIds": [
+        "V46-P031",
+        "V46-P032"
+      ],
+      "canSkipIfExistingAssetFits": true
+    }
+  ],
+  "requiredCode": [
+    {
+      "assetId": "V46_CHILD_RIG",
+      "path": "shared/asset-library/人物テンプレート/v46-child-rig.tsx",
+      "status": "not_implemented",
+      "owner": "Remotion implementation phase"
+    },
+    {
+      "group": "night-office-layers",
+      "status": "not_implemented",
+      "owner": "video_implementation_not_user_background_upload"
+    },
+    {
+      "group": "identity-and-posing",
+      "status": "not_implemented",
+      "owner": "video_implementation_not_user_background_upload"
+    },
+    {
+      "group": "paper-budget-and-screen",
+      "status": "not_implemented",
+      "owner": "video_implementation_not_user_background_upload"
+    },
+    {
+      "group": "phone-photo-and-household-props",
+      "status": "not_implemented",
+      "owner": "video_implementation_not_user_background_upload"
+    },
+    {
+      "group": "split-lighting-and-foreground",
+      "status": "not_implemented",
+      "owner": "video_implementation_not_user_background_upload"
+    }
+  ],
+  "existingReview": [
+    {
+      "assetId": "bg-bg-town-night-wide",
+      "status": "rejected_mismatch",
+      "filePath": "shared/asset-library/背景/BG_TOWN_NIGHT_WIDE.png"
+    },
+    {
+      "assetId": "part-auto-c9b46e7fff0c7899",
+      "status": "rejected_mismatch",
+      "filePath": "shared/asset-library/パーツ/BAG.png"
+    },
+    {
+      "assetId": "bg-bg-subway",
+      "status": "rejected_for_ground_entrance_pending_visual_check",
+      "filePath": "shared/asset-library/背景/BG_subway.png"
+    },
+    {
+      "assetId": "bg-bg-town",
+      "status": "conditional_day_night_fit",
+      "filePath": "shared/asset-library/背景/BG_town.png"
+    },
+    {
+      "assetId": "bg-bg-densha",
+      "status": "registered_candidate_visual_review_pending",
+      "filePath": "shared/asset-library/背景/BG_densha.png"
+    },
+    {
+      "assetId": "bg-bg-office",
+      "status": "registered_candidate_visual_review_pending",
+      "filePath": "shared/asset-library/背景/BG_office.png"
+    },
+    {
+      "assetId": "bg-bg-oneroom-night",
+      "status": "registered_candidate_visual_review_pending",
+      "filePath": "shared/asset-library/背景/BG_oneroom_night.png"
+    },
+    {
+      "assetId": "part-invoice",
+      "status": "registered_candidate_visual_review_pending",
+      "filePath": "shared/asset-library/パーツ/invoice.svg"
+    },
+    {
+      "assetId": "part-phone",
+      "status": "registered_candidate_visual_review_pending",
+      "filePath": "shared/asset-library/パーツ/phone.svg"
+    },
+    {
+      "assetId": "part-auto-2679868ba4e74a25",
+      "status": "registered_candidate_visual_review_pending",
+      "filePath": "shared/asset-library/パーツ/WALLET.png"
+    },
+    {
+      "assetId": "part-clock",
+      "status": "registered_candidate_visual_review_pending",
+      "filePath": "shared/asset-library/パーツ/clock.svg"
+    },
+    {
+      "assetId": "bg-bg-kitchen",
+      "status": "registered_candidate_visual_review_pending",
+      "filePath": "shared/asset-library/背景/BG_kitchen.png"
+    },
+    {
+      "assetId": "bg-bg-supermarket",
+      "status": "registered_candidate_visual_review_pending",
+      "filePath": "shared/asset-library/背景/BG_supermarket.png"
+    }
+  ],
+  "assetGateOpen": false,
+  "renderStarted": false,
+  "userApprovedScenePlan": false,
+  "verificationPolicy": "On recheck, inspect actual files and character/scene fit. Never mark an unregistered or unsuitable item as ready."
+}
