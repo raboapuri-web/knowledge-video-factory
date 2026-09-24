@@ -10,7 +10,7 @@ permissions:
   contents: read
 concurrency:
   group: v46hansyoku-prologue-review
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   render-prologue:
     runs-on: ubuntu-24.04
