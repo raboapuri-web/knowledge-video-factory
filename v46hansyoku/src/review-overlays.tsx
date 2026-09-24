@@ -5,7 +5,7 @@ const smooth=(v:number)=>{const t=Math.max(0,Math.min(1,v));return t*t*(3-2*t);}
 
 /** Review change 1: single formula persists across the three original VOICEVOX scene boundaries. */
 export const BudgetEquation=({sceneNumber,progress}:{sceneNumber:number;progress:number})=>{
-  const phase=sceneNumber===7?progress*.69:sceneNumber===8?.69+progress*.30:1;
+  const phase=sceneNumber===7?progress*.69:sceneNumber===8 ? .69+progress*.30 : 1;
   const entries=[
     {text:'[収入]',at:.05},{text:'-[家賃]',at:.20},{text:'-[食費]',at:.38},
     {text:'-[老後資金]',at:.57},{text:'＝',at:.73},
