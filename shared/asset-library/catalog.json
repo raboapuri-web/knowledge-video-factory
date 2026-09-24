@@ -2548,6 +2548,336 @@
         "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。 利用者が2026-09-23に動画への使用を明示承認（以前の権利確認の指示に従い登録）。第三者による独立した権利調査を行ったことは示さない。シーンとの構図・内容の適合は本番QAで確認する。",
         "usageApproval": "user-approved-2026-09-23"
       }
+    },
+    {
+      "id": "bg-bg-v46-client-meeting-room",
+      "category": "背景",
+      "file": "背景/BG_V46_CLIENT_MEETING_ROOM.png",
+      "name": "BG_V46_CLIENT_MEETING_ROOM",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_CLIENT_MEETING_ROOM",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_CLIENT_MEETING_ROOM"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "d64a6e0c162a8608686227ebd4828192925ec037dc0e1ea18727ff9cca21823a",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-office-street-night",
+      "category": "背景",
+      "file": "背景/BG_V46_OFFICE_STREET_NIGHT.png",
+      "name": "BG_V46_OFFICE_STREET_NIGHT",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_OFFICE_STREET_NIGHT",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_OFFICE_STREET_NIGHT"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "8f2b53f930698ae43d2fdcda169d199dc40f2f091f3e01b54956e58dd83a979b",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-office-street-night2",
+      "category": "背景",
+      "file": "背景/BG_V46_OFFICE_STREET_NIGHT2.png",
+      "name": "BG_V46_OFFICE_STREET_NIGHT2",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_OFFICE_STREET_NIGHT2",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_OFFICE_STREET_NIGHT2"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "50ebad5cd2ab8b959f57731a3b1d0d32400eab6579b781cad60d4ca49ad10e03",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-office-street-night3",
+      "category": "背景",
+      "file": "背景/BG_V46_OFFICE_STREET_NIGHT3.png",
+      "name": "BG_V46_OFFICE_STREET_NIGHT3",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_OFFICE_STREET_NIGHT3",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_OFFICE_STREET_NIGHT3"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "3830125f77c412a339167202a8f1d9a46e81b571a1ea7555e537befe8c014c57",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-peer-company-office",
+      "category": "背景",
+      "file": "背景/BG_V46_PEER_COMPANY_OFFICE.png",
+      "name": "BG_V46_PEER_COMPANY_OFFICE",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_PEER_COMPANY_OFFICE",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_PEER_COMPANY_OFFICE"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "39fc9eaaccea712c5964c52fb0a11ba2e2312a6ff50ba36fc09942a4ae257359",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-peer-company-workspace",
+      "category": "背景",
+      "file": "背景/BG_V46_PEER_COMPANY_WORKSPACE.png",
+      "name": "BG_V46_PEER_COMPANY_WORKSPACE",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_PEER_COMPANY_WORKSPACE",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_PEER_COMPANY_WORKSPACE"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "a13d1815d2f6dbb0e9be0ed209cc3e9062e12cc4da1a7feded2cd28909a43d2a",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-peer-living-room",
+      "category": "背景",
+      "file": "背景/BG_V46_PEER_LIVING_ROOM.png",
+      "name": "BG_V46_PEER_LIVING_ROOM",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_PEER_LIVING_ROOM",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_PEER_LIVING_ROOM"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "f88186b77bf01ce28bdc5b65843bd17064379505b970dd639c9d636f2d514d80",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-residential-street-night",
+      "category": "背景",
+      "file": "背景/BG_V46_RESIDENTIAL_STREET_NIGHT.png",
+      "name": "BG_V46_RESIDENTIAL_STREET_NIGHT",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_RESIDENTIAL_STREET_NIGHT",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_RESIDENTIAL_STREET_NIGHT"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "cd6c3ce2edc4120cbaddee871c435069adfed08ba115a4342cc845defb9d3f6a",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-subway-entrance",
+      "category": "背景",
+      "file": "背景/BG_V46_SUBWAY_ENTRANCE.png",
+      "name": "BG_V46_SUBWAY_ENTRANCE",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_SUBWAY_ENTRANCE",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_SUBWAY_ENTRANCE"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "99cc06874d831d1946b2b1fb9826df337dc3cc0de7cd1ad902a1d3fa78bfaf54",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-university-gate",
+      "category": "背景",
+      "file": "背景/BG_V46_UNIVERSITY_GATE.png",
+      "name": "BG_V46_UNIVERSITY_GATE",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_UNIVERSITY_GATE",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_UNIVERSITY_GATE"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "b46befff0a04b7a36226a1e69c71badd5411b4c690fc435fda982443163a9beb",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
     }
   ]
 }
