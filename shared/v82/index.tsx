@@ -4,7 +4,7 @@ import story from './script-data.json';
 import timing from './sync-timing.json';
 import {SceneVisual} from './scenes';
 
-type Beat={id:string;phase:string;visual:string;narration:string;bgGroup:string;variant:number;shotKind:string};
+type Beat={id:string;phase:string;visual:string;narration:string;bgGroup:string;bgSeed:number;foreground:string;variant:number;shotKind:string};
 type Sync={id:string;index:number;start:number;end:number};
 const beats=story.beats as Beat[];
 const sync=(timing.beats??[]) as Sync[];
