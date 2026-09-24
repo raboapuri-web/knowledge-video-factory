@@ -31,7 +31,7 @@ jobs:
         run: node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_office.png
       - run: node shared/asset-library/人物テンプレート/test-scene.mjs
       - name: Stage room background for hoodie-girl preview
-        run: node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_oneroom.png
+        run: node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_oneroom_night.png
       - run: node shared/asset-library/人物テンプレート/test-catalog.mjs
       - name: Typecheck the Remotion integration
         run: |
