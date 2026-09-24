@@ -1,4 +1,4 @@
-name: V46 Hansyoku Prologue 32-Scene Review
+name: V46 Hansyoku Prologue Review R1 Parallel Render
 on:
   push:
     branches: [main]
@@ -8,8 +8,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
-  group: v46hansyoku-prologue-review
+  group: v46hansyoku-prologue-review-r1
   cancel-in-progress: true
 jobs:
   render-prologue:
@@ -36,34 +37,47 @@ jobs:
           ln -sfn "$PWD/node_modules" ../node_modules
           node ../shared/voice/test-pronunciation.mjs
           node ../shared/qa/validate-video.mjs . pre
-      - name: Start original VOICEVOX engine
-        run: |
-          docker pull voicevox/voicevox_engine:cpu-latest
-          docker run -d --rm --name v46hansyoku-voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
-          for i in $(seq 1 150); do
-            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
-            sleep 2
-          done
-          docker logs v46hansyoku-voicevox
-          exit 1
-      - name: Synthesize and measure each of 32 original narration scenes
+      - name: Download original prologue for identical soundtrack and measured timing
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 36023379029
+          github-token: ${{ github.token }}
+          name: v46hansyoku-prologue-32-scenes-voiced-review
+          path: v46hansyoku/.approved-previous
+      - name: Restore original AAC narration and subtitles without new voice synthesis
         working-directory: v46hansyoku
         run: |
-          npm run voice:prologue
+          set -euo pipefail
+          original_mp4="$(find .approved-previous -type f -name 'v46-prologue.mp4' -print -quit)"
+          old_timing="$(find .approved-previous -type f -name 'sync-timing.json' -print -quit)"
+          old_subtitles="$(find .approved-previous -type f -name 'subtitle-cues.json' -print -quit)"
+          old_report="$(find .approved-previous -type f -name 'pronunciation-report.json' -print -quit)"
+          test -s "$original_mp4"
+          test -s "$old_timing"
+          test -s "$old_subtitles"
+          test -s "$old_report"
+          mkdir -p public/audio out
+          cp "$old_timing" src/sync-timing.json
+          cp "$old_subtitles" src/subtitle-cues.json
+          cp "$old_report" public/audio/pronunciation-report.json
+          ffmpeg -y -loglevel error -i "$original_mp4" -map 0:a:0 -vn -c:a copy public/audio/narration.m4a
+          test -s public/audio/narration.m4a
           npm run subtitles
+          node scripts/check-source.mjs
           node ../shared/qa/validate-video.mjs . post
+          echo "Original AAC narration restored exactly from previously reviewed video."
       - name: Typecheck entire Remotion implementation
         working-directory: v46hansyoku
         run: npm run check
-      - name: Render 1920x1080 voice and subtitle preview
+      - name: Parallel render 1920x1080 revised prologue with preserved voice and subtitles
         working-directory: v46hansyoku
         run: |
           mkdir -p out
-          npm run render:prologue
-          test -s out/v46-prologue.mp4
+          npm run render:revised
+          test -s out/v46-prologue-review-r1.mp4
           python3 - <<'PY'
           import json, subprocess
-          p='out/v46-prologue.mp4'
+          p='out/v46-prologue-review-r1.mp4'
           raw=subprocess.check_output(['ffprobe','-v','error','-show_streams','-show_format','-of','json',p],text=True)
           meta=json.loads(raw)
           videos=[s for s in meta['streams'] if s['codec_type']=='video']
@@ -81,14 +95,14 @@ jobs:
       - name: Generate one representative frame per source-aligned scene
         working-directory: v46hansyoku
         run: |
-          node ../shared/qa/generate-scene-contact-sheet.mjs . out/v46-prologue.mp4 out/scene-contact-sheet.jpg
+          node ../shared/qa/generate-scene-contact-sheet.mjs . out/v46-prologue-review-r1.mp4 out/scene-contact-sheet.jpg
           test "$(find .qa-scene-frames -name 'scene-*.jpg' | wc -l)" -eq 32
       - name: Publish review artifact (not chapter approval)
         uses: actions/upload-artifact@v4
         with:
-          name: v46hansyoku-prologue-32-scenes-voiced-review
+          name: v46hansyoku-prologue-review-r1-parallel-32-scenes
           path: |
-            v46hansyoku/out/v46-prologue.mp4
+            v46hansyoku/out/v46-prologue-review-r1.mp4
             v46hansyoku/out/v46-prologue.srt
             v46hansyoku/out/scene-contact-sheet.jpg
             v46hansyoku/.qa-scene-frames/scene-*.jpg
@@ -102,7 +116,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: v46hansyoku-prologue-failed-run-diagnostics
+          name: v46hansyoku-prologue-review-r1-failed-diagnostics
           path: |
             v46hansyoku/src/sync-timing.json
             v46hansyoku/src/subtitle-cues.json
