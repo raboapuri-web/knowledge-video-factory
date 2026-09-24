@@ -4,15 +4,27 @@
   "libraryRoot": "shared/asset-library",
   "staticCatalog": "shared/asset-library/catalog.json",
   "characterCatalog": "shared/asset-library/人物テンプレート/catalog.json",
-  "status": "library_verified_chapter_requirements_not_assessed",
+  "status": "prologue_inventory_completed_awaiting_asset_registration",
   "chapterRequirements": [
     {
       "chapterId": "prologue",
       "requiredAssetsPath": "v46hansyoku/chapters/prologue/required-assets.json",
       "registrationStatusPath": "v46hansyoku/chapters/prologue/material-status.json",
-      "status": "not_assessed",
+      "status": "inventory_completed_pending_registration",
       "approvedMissingAssets": [],
-      "pendingRegistration": []
+      "pendingRegistration": [
+        "BG_V46_OFFICE_STREET_NIGHT",
+        "BG_V46_SUBWAY_ENTRANCE",
+        "BG_V46_UNIVERSITY_GATE",
+        "BG_V46_CLIENT_MEETING_ROOM",
+        "BG_V46_PEER_LIVING_ROOM",
+        "BG_V46_PEER_COMPANY_OFFICE",
+        "BG_V46_PEER_COMPANY_WORKSPACE",
+        "BG_V46_RESIDENTIAL_STREET_NIGHT"
+      ],
+      "scenePlanPath": "v46hansyoku/scene-plans/prologue.json",
+      "requiredCodeAsset": "V46_CHILD_RIG",
+      "existingAssetReview": "pending_staging_visual_confirmation"
     },
     {
       "chapterId": "chapter1",
@@ -55,5 +67,5 @@
       "pendingRegistration": []
     }
   ],
-  "usagePolicy": "Review real imagery, licenses and scene fit. Pending-review is not automatically approved. Do not substitute mismatched assets or begin render before approved required assets are registered."
+  "usagePolicy": "Review real imagery, licenses and scene fit. Pending-review is not automatically approved. Do not substitute mismatched assets or begin render before approved required assets are registered. Prologue inventory lists 8 candidate backgrounds, including 2 conditional, and 1 TSX child rig; inventory is not proof of image-level verification."
 }
