@@ -1154,7 +1154,14 @@
         "遊ぶ動作はボールを手に持つ演出であり、複雑な物理シミュレーションは未実装。"
       ],
       "updatedAt": "2026-09-24",
-      "note": "男の子の独立React SVG。正面・走る・ボールで遊ぶ・泣くの4動作。頭と首を接続し、肩・肘・股関節・膝を個別調整可能。短い髪・青いトップス。"
+      "note": "男の子の独立React SVG。正面・走る・ボールで遊ぶ・泣くの4動作。頭部を8px下げ、首の上端を顎に重ねて下端を襟元へつなぎ、肩・肘・股関節・膝を個別調整可能。短い髪・青いトップス。",
+      "visualFix": {
+        "headPivotY": 206,
+        "neckLocalY": -48,
+        "neckHeight": 35,
+        "confirmedAgainst": "face bottom at headPivotY-36=170px, neck 158–193px, shirt starts at y≈190px",
+        "description": "頭と首の間に肌色が切れる空白を作らず、首はワイシャツ内にごく少量だけ重ねる。"
+      }
     },
     {
       "id": "character-v46-child-girl",
@@ -1265,7 +1272,14 @@
         "遊ぶ動作はボールを手に持つ演出であり、複雑な物理シミュレーションは未実装。"
       ],
       "updatedAt": "2026-09-24",
-      "note": "女の子の独立React SVG。正面・走る・ボールで遊ぶ・泣くの4動作。頭と首を接続し、肩・肘・股関節・膝を個別調整可能。ポニーテール・桃色のトップスとスカート。"
+      "note": "女の子の独立React SVG。正面・走る・ボールで遊ぶ・泣くの4動作。頭部を8px下げ、首の上端を顎に重ねて下端を襟元へつなぎ、肩・肘・股関節・膝を個別調整可能。ポニーテール・桃色のトップスとスカート。",
+      "visualFix": {
+        "headPivotY": 206,
+        "neckLocalY": -48,
+        "neckHeight": 35,
+        "confirmedAgainst": "face bottom at headPivotY-36=170px, neck 158–193px, shirt starts at y≈190px",
+        "description": "頭と首の間に肌色が切れる空白を作らず、首はワイシャツ内にごく少量だけ重ねる。"
+      }
     }
   ]
 }

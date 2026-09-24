@@ -116,10 +116,11 @@ export const V46_CHILD_RIG_BOY=({
             strokeWidth={3} fill="none"/>
           <Arm x={229} shoulder={j.rightShoulder} elbow={j.rightElbow}
             top={topColor} skin={skinColor} play={action==='play'} ball={ballColor}/>
-          {/* Head and neck overlap the neckline, including while crying. */}
-          <Hinge x={180} y={198} angle={j.headTilt}>
+          {/* Move head down 8px. The neck begins behind the jaw and ends just inside
+              the shirt neckline, avoiding both a floating face and a long skin strip. */}
+          <Hinge x={180} y={206} angle={j.headTilt}>
             
-            <rect x={-12} y={-26} width={24} height={39} rx={9} fill={skinColor}/>
+            <rect x={-12} y={-48} width={24} height={35} rx={9} fill={skinColor}/>
             <ellipse cx={-43} cy={-72} rx={8} ry={12} fill={skinColor}/>
             <ellipse cx={43} cy={-72} rx={8} ry={12} fill={skinColor}/>
             <circle cx={0} cy={-83} r={47} fill={skinColor}

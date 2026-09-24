@@ -117,13 +117,14 @@ export const V46_CHILD_RIG_GIRL=({
           <path d="M139 370 Q180 386 221 370" fill="none" stroke="#cf95b6" strokeWidth={2.5}/>
           <Arm x={229} shoulder={j.rightShoulder} elbow={j.rightElbow}
             top={topColor} skin={skinColor} play={action==='play'} ball={ballColor}/>
-          {/* Head and neck overlap the neckline, including while crying. */}
-          <Hinge x={180} y={198} angle={j.headTilt}>
+          {/* Move head down 8px. The neck begins behind the jaw and ends just inside
+              the shirt neckline, avoiding both a floating face and a long skin strip. */}
+          <Hinge x={180} y={206} angle={j.headTilt}>
             {/* Ponytail behind a round child's face. */}
             <path d="M32 -109 Q73 -118 81 -81 Q78 -55 55 -56
               Q70 -82 40 -91Z" fill={hairColor} stroke="#3e303d" strokeWidth={2}/>
             <circle cx={43} cy={-104} r={7} fill="#f1c4a9"/>
-            <rect x={-12} y={-26} width={24} height={39} rx={9} fill={skinColor}/>
+            <rect x={-12} y={-48} width={24} height={35} rx={9} fill={skinColor}/>
             <ellipse cx={-43} cy={-72} rx={8} ry={12} fill={skinColor}/>
             <ellipse cx={43} cy={-72} rx={8} ry={12} fill={skinColor}/>
             <circle cx={0} cy={-83} r={47} fill={skinColor}
