@@ -4,7 +4,7 @@
   "projectSlug": "v46hansyoku",
   "chapterId": "prologue",
   "chapterTitle": "誰も、彼に子供を持つなとは言っていない",
-  "status": "scene_design_completed_awaiting_asset_inventory",
+  "status": "assets_registered_pending_visual_staging_and_implementation",
   "source": {
     "repository": "raboapuri-web/knowledge-video-factory",
     "branch": "main",
@@ -52,7 +52,7 @@
         "columnEndExclusive1Based": 53
       },
       "visualDescription": "金曜夜の東京オフィス街。ガラスビルの窓が上層から徐々に消灯し、退勤する人影が出口に集まる。",
-      "backgroundId": "BG_TOWN_NIGHT_WIDE",
+      "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
       "characters": [
         {
           "id": "crowd",
@@ -73,16 +73,19 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-town-night-wide",
+          "assetId": "bg-bg-v46-office-street-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_GLASS_OFFICE_EXIT",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:night-office-layers",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -117,7 +120,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "金曜夜の東京オフィス街。ガラスビルの窓が上層から徐々に消灯し、退勤する人影が出口に集まる。",
-      "estimatedSeconds": 9.4
+      "estimatedSeconds": 9.4,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
+          "catalogId": "bg-bg-v46-office-street-night",
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P002",
@@ -138,7 +151,7 @@
         "columnEndExclusive1Based": 84
       },
       "visualDescription": "ビルのガラスドアから人々が同じ向きに歩き出し、主人公もまだ目立たず群れの一人として出てくる。",
-      "backgroundId": "BG_TOWN_NIGHT_WIDE",
+      "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
       "characters": [
         {
           "id": "crowd",
@@ -173,22 +186,19 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-town-night-wide",
+          "assetId": "bg-bg-v46-office-street-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_GLASS_OFFICE_EXIT",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
-        },
-        {
-          "assetId": "part-auto-c9b46e7fff0c7899",
-          "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "assetId": "remotion:night-office-layers",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -223,7 +233,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "ビルのガラスドアから人々が同じ向きに歩き出し、主人公もまだ目立たず群れの一人として出てくる。",
-      "estimatedSeconds": 5.9
+      "estimatedSeconds": 5.9,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
+          "catalogId": "bg-bg-v46-office-street-night",
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P003",
@@ -244,7 +264,7 @@
         "columnEndExclusive1Based": 108
       },
       "visualDescription": "地下鉄入口へ歩行者が途切れず入り、階段を下って暗い構内へ消えていく。主人公は人の最後尾近く。",
-      "backgroundId": "BG_subway",
+      "backgroundId": "BG_V46_SUBWAY_ENTRANCE",
       "characters": [
         {
           "id": "crowd",
@@ -274,16 +294,19 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-subway",
+          "assetId": "bg-bg-v46-subway-entrance",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_V46_SUBWAY_ENTRANCE.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_SUBWAY_STAIRS_FOREGROUND",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:night-office-layers",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -318,7 +341,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "地下鉄入口へ歩行者が途切れず入り、階段を下って暗い構内へ消えていく。主人公は人の最後尾近く。",
-      "estimatedSeconds": 4.7
+      "estimatedSeconds": 4.7,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_SUBWAY_ENTRANCE",
+          "catalogId": "bg-bg-v46-subway-entrance",
+          "filePath": "shared/asset-library/背景/BG_V46_SUBWAY_ENTRANCE.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P004",
@@ -339,7 +372,7 @@
         "columnEndExclusive1Based": 41
       },
       "visualDescription": "群衆の中で街灯の下に入った主人公の顔が初めて分かる。大学を出た13年前の短い回想は、同じ顔の若い姿で大学門を通る動作に限定。",
-      "backgroundId": "BG_town",
+      "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
       "characters": [
         {
           "id": "hero",
@@ -379,28 +412,27 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-town",
+          "assetId": "bg-bg-v46-university-gate",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_V46_UNIVERSITY_GATE.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "従来NEW素材の登録済み背景"
         },
         {
-          "assetId": "NEW_UNIVERSITY_GATE",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:identity-and-posing",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         },
         {
-          "assetId": "NEW_YOUNG_HERO_VARIANT",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
-        },
-        {
-          "assetId": "part-auto-c9b46e7fff0c7899",
+          "assetId": "bg-bg-v46-office-street-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         }
       ],
       "objectActions": [
@@ -440,7 +472,24 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "群衆の中で街灯の下に入った主人公の顔が初めて分かる。大学を出た13年前の短い回想は、同じ顔の若い姿で大学門を通る動作に限定。",
-      "estimatedSeconds": 7.4
+      "estimatedSeconds": 7.4,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_UNIVERSITY_GATE",
+          "catalogId": "bg-bg-v46-university-gate",
+          "filePath": "shared/asset-library/背景/BG_V46_UNIVERSITY_GATE.png",
+          "usage": "additional_cut_or_inset",
+          "visualReview": "pending"
+        },
+        {
+          "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
+          "catalogId": "bg-bg-v46-office-street-night",
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P005",
@@ -498,26 +547,33 @@
         {
           "assetId": "bg-bg-densha",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_densha.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
           "assetId": "bg-bg-office",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "別カットの背景既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "別カットの背景既存候補",
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "license": "cleared-commercial"
         },
         {
-          "assetId": "NEW_CLIENT_MEETING_ROOM",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "bg-bg-v46-client-meeting-room",
+          "origin": "registered_shared",
+          "filePath": "shared/asset-library/背景/BG_V46_CLIENT_MEETING_ROOM.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "従来NEW素材の登録済み背景"
         },
         {
-          "assetId": "NEW_WORK_DESK_SCREEN",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -562,7 +618,31 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "朝の定時電車、取引先との資料確認、後輩の仕事の受け取り、夕方の数値画面という職務の連鎖。仕事先の移動は動作に合わせたカットで区別する。",
-      "estimatedSeconds": 9.7
+      "estimatedSeconds": 9.7,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_densha",
+          "catalogId": "bg-bg-densha",
+          "filePath": "shared/asset-library/背景/BG_densha.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        },
+        {
+          "backgroundId": "BG_office",
+          "catalogId": "bg-bg-office",
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "usage": "additional_cut",
+          "visualReview": "pending"
+        },
+        {
+          "backgroundId": "BG_V46_CLIENT_MEETING_ROOM",
+          "catalogId": "bg-bg-v46-client-meeting-room",
+          "filePath": "shared/asset-library/背景/BG_V46_CLIENT_MEETING_ROOM.png",
+          "usage": "additional_cut_or_inset",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P006",
@@ -620,14 +700,17 @@
         {
           "assetId": "bg-bg-office",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_WORK_DESK_SCREEN",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -662,7 +745,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "同じ職場の夜。主人公の作業が会社の業務に組み込まれている様子を、画面の資料完成と隣の部署の仕事で示す。",
-      "estimatedSeconds": 5.7
+      "estimatedSeconds": 5.7,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_office",
+          "catalogId": "bg-bg-office",
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P007",
@@ -711,32 +804,41 @@
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
           "assetId": "part-invoice",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/invoice.svg",
+          "license": "original-project"
         },
         {
           "assetId": "part-phone",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/phone.svg",
+          "license": "original-project"
         },
         {
           "assetId": "part-auto-2679868ba4e74a25",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/WALLET.png",
+          "license": "cleared-commercial"
         },
         {
-          "assetId": "NEW_HOUSEHOLD_LEDGER_UI",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -776,7 +878,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "帰宅後の部屋。困窮はしていないが、給料から家賃・食費・老後の貯えを差し引くと残額が思うほど増えない。",
-      "estimatedSeconds": 11
+      "estimatedSeconds": 11,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P008",
@@ -820,20 +932,17 @@
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_RENTAL_FLOORPLANS",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
-        },
-        {
-          "assetId": "NEW_EDUCATION_BUDGET_PAPERS",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -873,7 +982,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "主人公は将来の結婚に必要な部屋の広さ、子供の教育費、共働きを続けられるかどうかを順に検討する。妻や子供が現在いると描かない。",
-      "estimatedSeconds": 9.9
+      "estimatedSeconds": 9.9,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P009",
@@ -917,20 +1036,25 @@
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
           "assetId": "part-phone",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/phone.svg",
+          "license": "original-project"
         },
         {
-          "assetId": "NEW_HOUSEHOLD_LEDGER_UI",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -965,7 +1089,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "彼が恋愛の前にお金を計算するようになった変化を、連絡先を開いても会話を始めず書類に戻る身ぶりで示す。交際相手は創作しない。",
-      "estimatedSeconds": 5.9
+      "estimatedSeconds": 5.9,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P010",
@@ -1009,20 +1143,25 @@
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_THREE_CONDITIONS_PAPERS",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         },
         {
           "assetId": "part-clock",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/clock.svg",
+          "license": "original-project"
         }
       ],
       "objectActions": [
@@ -1062,7 +1201,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "昇給、仕事の落ち着き、生活の見通しの三つの『まだ』を具体的な書類で検討する。均一なアイコン点滅にはしない。",
-      "estimatedSeconds": 6.5
+      "estimatedSeconds": 6.5,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P011",
@@ -1106,14 +1255,17 @@
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_PROGRESSIVE_CONDITION_PAPERS",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -1148,7 +1300,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "慎重に準備した一項目を終えたと思うと、次に満たすべき条件を見つける。物事が前進しても準備完了にはならない。",
-      "estimatedSeconds": 9.2
+      "estimatedSeconds": 9.2,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P012",
@@ -1192,20 +1354,17 @@
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_NEUTRAL_CALENDAR",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
-        },
-        {
-          "assetId": "part-auto-c9b46e7fff0c7899",
-          "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -1245,7 +1404,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "気がつけば35歳。前の書類を閉じ、壁の暦を見る動作と照明の短い経年表現で時間の経過を示す。",
-      "estimatedSeconds": 3.5
+      "estimatedSeconds": 3.5,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P013",
@@ -1266,7 +1435,7 @@
         "columnEndExclusive1Based": 17
       },
       "visualDescription": "夜の帰路、主人公のポケットで携帯が振動する。",
-      "backgroundId": "BG_TOWN_NIGHT_WIDE",
+      "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
       "characters": [
         {
           "id": "hero",
@@ -1287,22 +1456,20 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-town-night-wide",
-          "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
-        },
-        {
           "assetId": "part-phone",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/phone.svg",
+          "license": "original-project"
         },
         {
-          "assetId": "part-auto-c9b46e7fff0c7899",
+          "assetId": "bg-bg-v46-office-street-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         }
       ],
       "objectActions": [
@@ -1337,7 +1504,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "夜の帰路、主人公のポケットで携帯が振動する。",
-      "estimatedSeconds": 3.4
+      "estimatedSeconds": 3.4,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
+          "catalogId": "bg-bg-v46-office-street-night",
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P014",
@@ -1358,7 +1535,7 @@
         "columnEndExclusive1Based": 53
       },
       "visualDescription": "大学同期からの私的な写真メッセージを確認する。主人公の会社の同僚からの業務連絡に見せない。",
-      "backgroundId": "BG_TOWN_NIGHT_WIDE",
+      "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
       "characters": [
         {
           "id": "hero",
@@ -1379,22 +1556,27 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-town-night-wide",
-          "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
-        },
-        {
           "assetId": "part-phone",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/phone.svg",
+          "license": "original-project"
         },
         {
-          "assetId": "NEW_FAMILY_MESSAGE_PHOTO_UI",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:phone-photo-and-household-props",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
+        },
+        {
+          "assetId": "bg-bg-v46-office-street-night",
+          "origin": "registered_shared",
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         }
       ],
       "objectActions": [
@@ -1429,7 +1611,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "大学同期からの私的な写真メッセージを確認する。主人公の会社の同僚からの業務連絡に見せない。",
-      "estimatedSeconds": 6.7
+      "estimatedSeconds": 6.7,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
+          "catalogId": "bg-bg-v46-office-street-night",
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P015",
@@ -1450,7 +1642,7 @@
         "columnEndExclusive1Based": 95
       },
       "visualDescription": "広いリビングで同期と妻と二人の子供がケーキを囲み笑う一枚の写真。写真の中の人物を動かして新しい出来事にしない。",
-      "backgroundId": "NEW_PEER_LIVING_ROOM",
+      "backgroundId": "BG_V46_PEER_LIVING_ROOM",
       "characters": [
         {
           "id": "peer_parent",
@@ -1472,21 +1664,27 @@
         },
         {
           "id": "child_one",
-          "templateId": "NEW_CHILD_RIG",
-          "identity": "同期の子供1。まだ登録のない子供可動素材の候補",
+          "templateId": "character-v46-child-boy",
+          "identity": "同期の子供1。登録済みの可動人物",
           "position": "写真右前",
           "facing": "ケーキ",
           "initialPose": "説明文とcharacterActionsに従う",
-          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける",
+          "component": "V46_CHILD_RIG_BOY",
+          "sourceFile": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "motionConstraints": "登録済みfront/run/play/cry。座位、絵本・コップ保持、歩行、指差しはpose調整とRemotion場面演出で補完、実装時に検証する。"
         },
         {
           "id": "child_two",
-          "templateId": "NEW_CHILD_RIG",
+          "templateId": "character-v46-child-girl",
           "identity": "同期の子供2。子供1と容姿差分を付ける",
           "position": "写真左前",
           "facing": "ケーキ",
           "initialPose": "説明文とcharacterActionsに従う",
-          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける",
+          "component": "V46_CHILD_RIG_GIRL",
+          "sourceFile": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "motionConstraints": "登録済みfront/run/play/cry。座位、絵本・コップ保持、歩行、指差しはpose調整とRemotion場面演出で補完、実装時に検証する。"
         }
       ],
       "characterActions": [
@@ -1498,34 +1696,35 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "NEW_PEER_LIVING_ROOM",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "背景の新規候補"
+          "assetId": "character-v46-child-boy",
+          "origin": "registered_character_template",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "license": "cleared-commercial",
+          "review": "registered_pose_extension_needed_for_story_actions",
+          "role": "可動子供人物"
         },
         {
-          "assetId": "NEW_TWO_CHILD_RIGS",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "character-v46-child-girl",
+          "origin": "registered_character_template",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "license": "cleared-commercial",
+          "review": "registered_pose_extension_needed_for_story_actions",
+          "role": "可動子供人物"
         },
         {
-          "assetId": "NEW_BIRTHDAY_CAKE",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "bg-bg-v46-peer-living-room",
+          "origin": "registered_shared",
+          "filePath": "shared/asset-library/背景/BG_V46_PEER_LIVING_ROOM.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_PHOTO_FRAME",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
-        },
-        {
-          "assetId": "NEW_CHILD_RIG",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "二人の子供の可動人物候補"
+          "assetId": "remotion:phone-photo-and-household-props",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -1560,7 +1759,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "広いリビングで同期と妻と二人の子供がケーキを囲み笑う一枚の写真。写真の中の人物を動かして新しい出来事にしない。",
-      "estimatedSeconds": 7.7
+      "estimatedSeconds": 7.7,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_PEER_LIVING_ROOM",
+          "catalogId": "bg-bg-v46-peer-living-room",
+          "filePath": "shared/asset-library/背景/BG_V46_PEER_LIVING_ROOM.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P016",
@@ -1581,7 +1790,7 @@
         "columnEndExclusive1Based": 29
       },
       "visualDescription": "大学同期が卒業後に起業し、主人公とは別の会社を経営している。家族写真から同期の別会社へ遷移させ、会社を混同させない。",
-      "backgroundId": "NEW_PEER_COMPANY_OFFICE",
+      "backgroundId": "BG_V46_PEER_COMPANY_OFFICE",
       "characters": [
         {
           "id": "university_peer",
@@ -1602,16 +1811,19 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "NEW_PEER_COMPANY_OFFICE",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "背景の新規候補"
+          "assetId": "bg-bg-v46-peer-company-office",
+          "origin": "registered_shared",
+          "filePath": "shared/asset-library/背景/BG_V46_PEER_COMPANY_OFFICE.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_GENERIC_BUSINESS_BRIEF",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -1646,7 +1858,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "大学同期が卒業後に起業し、主人公とは別の会社を経営している。家族写真から同期の別会社へ遷移させ、会社を混同させない。",
-      "estimatedSeconds": 5.4
+      "estimatedSeconds": 5.4,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_PEER_COMPANY_OFFICE",
+          "catalogId": "bg-bg-v46-peer-company-office",
+          "filePath": "shared/asset-library/背景/BG_V46_PEER_COMPANY_OFFICE.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P017",
@@ -1667,7 +1889,7 @@
         "columnEndExclusive1Based": 68
       },
       "visualDescription": "同期の会社の従業員が商品を作り、顧客に応え、利益を生む仕事の連鎖を、業種不明の汎用商品で見せる。",
-      "backgroundId": "NEW_PEER_COMPANY_WORKSPACE",
+      "backgroundId": "BG_V46_PEER_COMPANY_WORKSPACE",
       "characters": [
         {
           "id": "male_worker",
@@ -1702,16 +1924,19 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "NEW_PEER_COMPANY_WORKSPACE",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "背景の新規候補"
+          "assetId": "bg-bg-v46-peer-company-workspace",
+          "origin": "registered_shared",
+          "filePath": "shared/asset-library/背景/BG_V46_PEER_COMPANY_WORKSPACE.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_GENERIC_PRODUCT_AND_COUNTER",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:phone-photo-and-household-props",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -1746,7 +1971,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "同期の会社の従業員が商品を作り、顧客に応え、利益を生む仕事の連鎖を、業種不明の汎用商品で見せる。",
-      "estimatedSeconds": 7.2
+      "estimatedSeconds": 7.2,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_PEER_COMPANY_WORKSPACE",
+          "catalogId": "bg-bg-v46-peer-company-workspace",
+          "filePath": "shared/asset-library/背景/BG_V46_PEER_COMPANY_WORKSPACE.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P018",
@@ -1767,7 +2002,7 @@
         "columnEndExclusive1Based": 123
       },
       "visualDescription": "事業の成功が経営者の家族に与える住まいや子供の選択肢を、同期の帰宅と広い居間での家族の読書として表現。特定の習い事や進学先は創作しない。",
-      "backgroundId": "NEW_PEER_LIVING_ROOM",
+      "backgroundId": "BG_V46_PEER_LIVING_ROOM",
       "characters": [
         {
           "id": "university_peer",
@@ -1789,21 +2024,27 @@
         },
         {
           "id": "child_one",
-          "templateId": "NEW_CHILD_RIG",
-          "identity": "同期の子供1。まだ登録のない子供可動素材の候補",
+          "templateId": "character-v46-child-boy",
+          "identity": "同期の子供1。登録済みの可動人物",
           "position": "テーブル手前左",
           "facing": "絵本",
           "initialPose": "説明文とcharacterActionsに従う",
-          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける",
+          "component": "V46_CHILD_RIG_BOY",
+          "sourceFile": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "motionConstraints": "登録済みfront/run/play/cry。座位、絵本・コップ保持、歩行、指差しはpose調整とRemotion場面演出で補完、実装時に検証する。"
         },
         {
           "id": "child_two",
-          "templateId": "NEW_CHILD_RIG",
+          "templateId": "character-v46-child-girl",
           "identity": "同期の子供2。子供1と容姿差分を付ける",
           "position": "テーブル手前右",
           "facing": "絵本",
           "initialPose": "説明文とcharacterActionsに従う",
-          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける",
+          "component": "V46_CHILD_RIG_GIRL",
+          "sourceFile": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "motionConstraints": "登録済みfront/run/play/cry。座位、絵本・コップ保持、歩行、指差しはpose調整とRemotion場面演出で補完、実装時に検証する。"
         }
       ],
       "characterActions": [
@@ -1820,34 +2061,42 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "NEW_PEER_LIVING_ROOM",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "背景の新規候補"
+          "assetId": "character-v46-child-boy",
+          "origin": "registered_character_template",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "license": "cleared-commercial",
+          "review": "registered_pose_extension_needed_for_story_actions",
+          "role": "可動子供人物"
         },
         {
-          "assetId": "NEW_TWO_CHILD_RIGS",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "character-v46-child-girl",
+          "origin": "registered_character_template",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "license": "cleared-commercial",
+          "review": "registered_pose_extension_needed_for_story_actions",
+          "role": "可動子供人物"
         },
         {
-          "assetId": "NEW_BOOKS_AND_TABLE",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "bg-bg-v46-peer-living-room",
+          "origin": "registered_shared",
+          "filePath": "shared/asset-library/背景/BG_V46_PEER_LIVING_ROOM.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_HOME_DOOR_FOREGROUND",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:phone-photo-and-household-props",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         },
         {
-          "assetId": "NEW_CHILD_RIG",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "二人の子供の可動人物候補"
+          "assetId": "remotion:split-lighting-and-foreground",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -1887,7 +2136,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "事業の成功が経営者の家族に与える住まいや子供の選択肢を、同期の帰宅と広い居間での家族の読書として表現。特定の習い事や進学先は創作しない。",
-      "estimatedSeconds": 9.9
+      "estimatedSeconds": 9.9,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_PEER_LIVING_ROOM",
+          "catalogId": "bg-bg-v46-peer-living-room",
+          "filePath": "shared/asset-library/背景/BG_V46_PEER_LIVING_ROOM.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P019",
@@ -1908,7 +2167,7 @@
         "columnEndExclusive1Based": 174
       },
       "visualDescription": "同期の会社で働く人の中には、家庭のための時間と余裕を確保できていない者もいるかもしれない。特定従業員の事実として断言せず、一例の仮想場面として描写。",
-      "backgroundId": "NEW_PEER_COMPANY_OFFICE",
+      "backgroundId": "BG_V46_PEER_COMPANY_OFFICE",
       "characters": [
         {
           "id": "male_worker",
@@ -1929,22 +2188,27 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "NEW_PEER_COMPANY_OFFICE",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "背景の新規候補"
+          "assetId": "bg-bg-v46-peer-company-office",
+          "origin": "registered_shared",
+          "filePath": "shared/asset-library/背景/BG_V46_PEER_COMPANY_OFFICE.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_GENERIC_FLOORPLAN",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         },
         {
           "assetId": "part-clock",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/clock.svg",
+          "license": "original-project"
         }
       ],
       "objectActions": [
@@ -1984,7 +2248,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "同期の会社で働く人の中には、家庭のための時間と余裕を確保できていない者もいるかもしれない。特定従業員の事実として断言せず、一例の仮想場面として描写。",
-      "estimatedSeconds": 9.2
+      "estimatedSeconds": 9.2,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_PEER_COMPANY_OFFICE",
+          "catalogId": "bg-bg-v46-peer-company-office",
+          "filePath": "shared/asset-library/背景/BG_V46_PEER_COMPANY_OFFICE.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P020",
@@ -2005,7 +2279,7 @@
         "columnEndExclusive1Based": 26
       },
       "visualDescription": "13年前、二人が同じ大学から社会へ出た時点を短い回想として描く。卒業後の経路はこの場面で明示しない。",
-      "backgroundId": "NEW_UNIVERSITY_GATE",
+      "backgroundId": "BG_V46_UNIVERSITY_GATE",
       "characters": [
         {
           "id": "hero",
@@ -2035,16 +2309,19 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "NEW_UNIVERSITY_GATE",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "背景の新規候補"
+          "assetId": "bg-bg-v46-university-gate",
+          "origin": "registered_shared",
+          "filePath": "shared/asset-library/背景/BG_V46_UNIVERSITY_GATE.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_YOUNG_HERO_PEER_VARIANTS",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:identity-and-posing",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -2079,7 +2356,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "13年前、二人が同じ大学から社会へ出た時点を短い回想として描く。卒業後の経路はこの場面で明示しない。",
-      "estimatedSeconds": 4.9
+      "estimatedSeconds": 4.9,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_UNIVERSITY_GATE",
+          "catalogId": "bg-bg-v46-university-gate",
+          "filePath": "shared/asset-library/背景/BG_V46_UNIVERSITY_GATE.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P021",
@@ -2100,7 +2387,7 @@
         "columnEndExclusive1Based": 67
       },
       "visualDescription": "左に同期の食卓で家族が暮らし、右に主人公の部屋で翌日の会議資料が置かれる。二者を貧富の優劣としてではなく異なる日常の事実として同時に映す。",
-      "backgroundId": "NEW_PEER_LIVING_ROOM",
+      "backgroundId": "BG_V46_PEER_LIVING_ROOM",
       "characters": [
         {
           "id": "peer_parent",
@@ -2122,21 +2409,27 @@
         },
         {
           "id": "child_one",
-          "templateId": "NEW_CHILD_RIG",
-          "identity": "同期の子供1。まだ登録のない子供可動素材の候補",
+          "templateId": "character-v46-child-boy",
+          "identity": "同期の子供1。登録済みの可動人物",
           "position": "左画面の父の隣",
           "facing": "親",
           "initialPose": "説明文とcharacterActionsに従う",
-          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける",
+          "component": "V46_CHILD_RIG_BOY",
+          "sourceFile": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "motionConstraints": "登録済みfront/run/play/cry。座位、絵本・コップ保持、歩行、指差しはpose調整とRemotion場面演出で補完、実装時に検証する。"
         },
         {
           "id": "child_two",
-          "templateId": "NEW_CHILD_RIG",
+          "templateId": "character-v46-child-girl",
           "identity": "同期の子供2。子供1と容姿差分を付ける",
           "position": "左画面の母の隣",
           "facing": "親",
           "initialPose": "説明文とcharacterActionsに従う",
-          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける",
+          "component": "V46_CHILD_RIG_GIRL",
+          "sourceFile": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "motionConstraints": "登録済みfront/run/play/cry。座位、絵本・コップ保持、歩行、指差しはpose調整とRemotion場面演出で補完、実装時に検証する。"
         },
         {
           "id": "hero",
@@ -2162,40 +2455,50 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "NEW_PEER_LIVING_ROOM",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "背景の新規候補"
+          "assetId": "character-v46-child-boy",
+          "origin": "registered_character_template",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "license": "cleared-commercial",
+          "review": "registered_pose_extension_needed_for_story_actions",
+          "role": "可動子供人物"
+        },
+        {
+          "assetId": "character-v46-child-girl",
+          "origin": "registered_character_template",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "license": "cleared-commercial",
+          "review": "registered_pose_extension_needed_for_story_actions",
+          "role": "可動子供人物"
+        },
+        {
+          "assetId": "bg-bg-v46-peer-living-room",
+          "origin": "registered_shared",
+          "filePath": "shared/asset-library/背景/BG_V46_PEER_LIVING_ROOM.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "別カットの背景既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "別カットの背景既存候補",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial"
         },
         {
-          "assetId": "NEW_TWO_CHILD_RIGS",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         },
         {
-          "assetId": "NEW_MEETING_DOCUMENTS",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
-        },
-        {
-          "assetId": "NEW_SPLIT_INTERIOR_MASK",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
-        },
-        {
-          "assetId": "NEW_CHILD_RIG",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "二人の子供の可動人物候補"
+          "assetId": "remotion:split-lighting-and-foreground",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -2240,7 +2543,24 @@
       "sceneType": "Existing",
       "templateSource": "dual_compare",
       "visualIntent": "左に同期の食卓で家族が暮らし、右に主人公の部屋で翌日の会議資料が置かれる。二者を貧富の優劣としてではなく異なる日常の事実として同時に映す。",
-      "estimatedSeconds": 7.5
+      "estimatedSeconds": 7.5,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_PEER_LIVING_ROOM",
+          "catalogId": "bg-bg-v46-peer-living-room",
+          "filePath": "shared/asset-library/背景/BG_V46_PEER_LIVING_ROOM.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        },
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "additional_cut",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P022",
@@ -2284,20 +2604,25 @@
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
           "assetId": "part-phone",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/phone.svg",
+          "license": "original-project"
         },
         {
-          "assetId": "NEW_MEETING_DOCUMENTS",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -2332,7 +2657,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "『諦めたのではない』という反論の導入。視聴者代理の架空の話者や追加セリフを創作せず、主人公の一瞬の沈黙として表現。",
-      "estimatedSeconds": 4.4
+      "estimatedSeconds": 4.4,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P023",
@@ -2376,20 +2711,25 @@
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
           "assetId": "part-phone",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/phone.svg",
+          "license": "original-project"
         },
         {
-          "assetId": "NEW_READING_LAMP_PROP",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:phone-photo-and-household-props",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -2424,7 +2764,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "本人が選んだ子供を持たない暮らしとして、写真と自室の両方を見つめる。『諦め』を示すバツ印や強制された表情は描かない。",
-      "estimatedSeconds": 7.2
+      "estimatedSeconds": 7.2,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P024",
@@ -2468,20 +2818,18 @@
         {
           "assetId": "bg-bg-office",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "bg-bg-town-night-wide",
+          "assetId": "bg-bg-v46-office-street-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "別カットの背景既存候補"
-        },
-        {
-          "assetId": "part-auto-c9b46e7fff0c7899",
-          "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "職場から帰宅する夜の屋外"
         }
       ],
       "objectActions": [
@@ -2516,7 +2864,24 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "誰も主人公に結婚や出産を禁じていないことを、通常の出勤・帰宅が遮られず続く様子で示す。禁止命令を読み上げる上司や法律書などは創作しない。",
-      "estimatedSeconds": 8.9
+      "estimatedSeconds": 8.9,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_office",
+          "catalogId": "bg-bg-office",
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        },
+        {
+          "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
+          "catalogId": "bg-bg-v46-office-street-night",
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "usage": "additional_cut_or_inset",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P025",
@@ -2560,26 +2925,32 @@
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
           "assetId": "bg-bg-kitchen",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "別カットの背景既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "別カットの背景既存候補",
+          "filePath": "shared/asset-library/背景/BG_kitchen.png",
+          "license": "cleared-commercial"
         },
         {
-          "assetId": "NEW_SIMPLE_MEAL_AND_HANGER",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:phone-photo-and-household-props",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         },
         {
-          "assetId": "NEW_WORK_SCHEDULE",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -2619,7 +2990,24 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "自分で働き暮らしを選ぶという主体性を、帰宅後の身の回りの動作で具体化する。未来の結婚や出産の決定を誇張しない。",
-      "estimatedSeconds": 5.2
+      "estimatedSeconds": 5.2,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        },
+        {
+          "backgroundId": "BG_kitchen",
+          "catalogId": "bg-bg-kitchen",
+          "filePath": "shared/asset-library/背景/BG_kitchen.png",
+          "usage": "additional_cut",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P026",
@@ -2663,20 +3051,24 @@
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_ALTERNATIVE_BUDGET_SCHEDULE",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         },
         {
-          "assetId": "NEW_ALTERNATIVE_WORLD_LIGHTING",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:split-lighting-and-foreground",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -2716,7 +3108,17 @@
       "sceneType": "Existing",
       "templateSource": "split_world",
       "visualIntent": "家賃が半額、夕方に退勤、教育費への不安が小さい世界を、現在と分岐した仮定として明示。同じ男・同じ机の条件だけを変更し、どちらを選ぶかは描かない。",
-      "estimatedSeconds": 12.5
+      "estimatedSeconds": 12.5,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P027",
@@ -2760,26 +3162,25 @@
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
           "assetId": "part-invoice",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/invoice.svg",
+          "license": "original-project"
         },
         {
-          "assetId": "NEW_RENTAL_FLOORPLANS",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
-        },
-        {
-          "assetId": "NEW_WORK_SCHEDULE",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -2819,7 +3220,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "本人が選ぶ指先と、住まいの広さ・家賃・労働時間という社会条件を同じ画面に置き、二つが矛盾するかという問いを残す。",
-      "estimatedSeconds": 8.4
+      "estimatedSeconds": 8.4,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P028",
@@ -2840,7 +3251,7 @@
         "columnEndExclusive1Based": 20
       },
       "visualDescription": "街の人々は誰にも止められず各自の帰路を選び、主人公も自宅側へ歩く。物理的な門や制止人物を登場させない。",
-      "backgroundId": "BG_TOWN_NIGHT_WIDE",
+      "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
       "characters": [
         {
           "id": "hero",
@@ -2870,16 +3281,19 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-town-night-wide",
+          "assetId": "bg-bg-v46-office-street-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_CITY_CROSSWALK_LAYER",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:night-office-layers",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -2914,7 +3328,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "街の人々は誰にも止められず各自の帰路を選び、主人公も自宅側へ歩く。物理的な門や制止人物を登場させない。",
-      "estimatedSeconds": 3.9
+      "estimatedSeconds": 3.9,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
+          "catalogId": "bg-bg-v46-office-street-night",
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P029",
@@ -2972,26 +3396,33 @@
         {
           "assetId": "bg-bg-office",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "別カットの背景既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "別カットの背景既存候補",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial"
         },
         {
           "assetId": "part-invoice",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/invoice.svg",
+          "license": "original-project"
         },
         {
-          "assetId": "NEW_WORK_DESK_SCREEN",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:paper-budget-and-screen",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -3031,7 +3462,24 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "社会を支える仕事と自分の暮らしを守る生活が続くうち、子供を持たない人生を選ぶ者がいる、という因果を主人公の一日で追う。",
-      "estimatedSeconds": 8.7
+      "estimatedSeconds": 8.7,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_office",
+          "catalogId": "bg-bg-office",
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        },
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "additional_cut",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P030",
@@ -3074,12 +3522,15 @@
         },
         {
           "id": "generic_child",
-          "templateId": "NEW_CHILD_RIG",
+          "templateId": "character-v46-child-boy",
           "identity": "一般の親の子供。大学同期の二人の子供とは別人物・別衣装",
           "position": "親の隣",
           "facing": "棚の商品",
           "initialPose": "説明文とcharacterActionsに従う",
-          "characterContinuity": "この一場面の親子として、同期一家の子供と別人にする。"
+          "characterContinuity": "この一場面の親子として、同期一家の子供と別人にする。",
+          "component": "V46_CHILD_RIG_BOY",
+          "sourceFile": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "motionConstraints": "登録済みfront/run/play/cry。座位、絵本・コップ保持、歩行、指差しはpose調整とRemotion場面演出で補完、実装時に検証する。"
         }
       ],
       "characterActions": [
@@ -3096,22 +3547,27 @@
       ],
       "requiredAssets": [
         {
+          "assetId": "character-v46-child-boy",
+          "origin": "registered_character_template",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "license": "cleared-commercial",
+          "review": "registered_pose_extension_needed_for_story_actions",
+          "role": "可動子供人物"
+        },
+        {
           "assetId": "bg-bg-supermarket",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_supermarket.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_CHILD_RIG",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
-        },
-        {
-          "assetId": "NEW_GENERIC_DAILY_GOODS",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:phone-photo-and-household-props",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -3146,7 +3602,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "社会で働く人々の仕事が、別の場所で子供を育てる家庭の生活を支える。主人公が同期の家族へ直接奉仕するという未記載の関係は作らない。 店舗の親子は同期一家と別人の衣装・顔を使用する。",
-      "estimatedSeconds": 6
+      "estimatedSeconds": 6,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_supermarket",
+          "catalogId": "bg-bg-supermarket",
+          "filePath": "shared/asset-library/背景/BG_supermarket.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P031",
@@ -3167,7 +3633,7 @@
         "columnEndExclusive1Based": 39
       },
       "visualDescription": "ある人々は家庭のある住居へ、主人公らは仕事を終えてそれぞれの生活へ帰る。個々の繁殖状況を集団ラベルで断定せず、直前の人物の生活だけを対比させる。",
-      "backgroundId": "BG_TOWN_NIGHT_WIDE",
+      "backgroundId": "BG_V46_RESIDENTIAL_STREET_NIGHT",
       "characters": [
         {
           "id": "hero",
@@ -3197,16 +3663,19 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-town-night-wide",
+          "assetId": "bg-bg-v46-residential-street-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_V46_RESIDENTIAL_STREET_NIGHT.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
-          "assetId": "NEW_RESIDENTIAL_WINDOWS_LAYER",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "remotion:split-lighting-and-foreground",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -3241,7 +3710,17 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "ある人々は家庭のある住居へ、主人公らは仕事を終えてそれぞれの生活へ帰る。個々の繁殖状況を集団ラベルで断定せず、直前の人物の生活だけを対比させる。",
-      "estimatedSeconds": 7
+      "estimatedSeconds": 7,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_RESIDENTIAL_STREET_NIGHT",
+          "catalogId": "bg-bg-v46-residential-street-night",
+          "filePath": "shared/asset-library/背景/BG_V46_RESIDENTIAL_STREET_NIGHT.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     },
     {
       "sceneId": "V46-P032",
@@ -3285,26 +3764,41 @@
         {
           "assetId": "bg-bg-oneroom-night",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "背景既存候補"
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "メイン背景"
         },
         {
           "assetId": "part-phone",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/phone.svg",
+          "license": "original-project"
         },
         {
           "assetId": "part-invoice",
           "origin": "registered_shared",
-          "review": "candidate_needs_visual_fit_confirmation",
-          "role": "小道具既存候補"
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "小道具既存候補",
+          "filePath": "shared/asset-library/パーツ/invoice.svg",
+          "license": "original-project"
         },
         {
-          "assetId": "NEW_RESIDENTIAL_WINDOWS_LAYER",
-          "origin": "proposed_new",
-          "review": "pending_material_inventory",
-          "role": "新規候補・次工程で要否確認"
+          "assetId": "bg-bg-v46-residential-street-night",
+          "origin": "registered_shared",
+          "filePath": "shared/asset-library/背景/BG_V46_RESIDENTIAL_STREET_NIGHT.png",
+          "license": "cleared-commercial",
+          "review": "registered_visual_composition_not_yet_verified",
+          "role": "主人公の部屋の窓から見える夜景"
+        },
+        {
+          "assetId": "remotion:split-lighting-and-foreground",
+          "origin": "scene_implementation",
+          "review": "not_implemented",
+          "role": "新規候補・次工程で要否確認",
+          "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
         }
       ],
       "objectActions": [
@@ -3344,7 +3838,24 @@
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
       "visualIntent": "問いの結び。主人公は窓の外を見て同期の家族写真に目を落とし、端末を消して家賃明細へ手を置く。何が人々を分けるのかを断言せず、第1章冒頭のお金の話へ画を受け渡す。",
-      "estimatedSeconds": 6
+      "estimatedSeconds": 6,
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "pending"
+        },
+        {
+          "backgroundId": "BG_V46_RESIDENTIAL_STREET_NIGHT",
+          "catalogId": "bg-bg-v46-residential-street-night",
+          "filePath": "shared/asset-library/背景/BG_V46_RESIDENTIAL_STREET_NIGHT.png",
+          "usage": "additional_cut_or_inset",
+          "visualReview": "pending"
+        }
+      ],
+      "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
     }
   ],
   "coverageValidation": {
@@ -3576,9 +4087,36 @@
     },
     "warnings": [
       "背景・人物・パーツのIDは登録照合済み。ただし全候補の画像の構図適合と必要素材は次の素材洗い出し工程で判断。",
-      "NEW_* は提案候補。正式な不足素材・個数・権利確認は次工程で確定。",
-      "動画・ナレーション・字幕・プレビューは未制作。"
+      "動画・ナレーション・字幕・プレビューは未制作。",
+      "確定台本ナレーションは変更せず、背景8枚と子供リグ2種を登録済みの正確なIDに置換。",
+      "子供リグのfront/run/play/cry以外の座位・物体保持などはシーン実装時にposeを拡張・確認。",
+      "既存背景の実画像の画角、遮蔽、人物の接地は未検証。Remotion可変小道具は実装前。"
     ]
   },
-  "nextStep": "プロローグに限ってシーン別の必要素材と不足素材を洗い出し、ユーザーによる素材制作・登録の工程へ。第1章の設計・レンダリングには進まない。"
+  "nextStep": "登録済みの背景8枚と人物2種類をプロローグ32シーンに合成して実画像の構図・可動域を検証。必要なRemotion小道具を実装する。今回は動画制作を開始しない。",
+  "assetReferences": {
+    "materialInventory": "v46hansyoku/chapters/prologue/required-assets.json",
+    "registrationStatus": "v46hansyoku/chapters/prologue/material-status.json",
+    "registeredV46Backgrounds": [
+      "bg-bg-v46-office-street-night",
+      "bg-bg-v46-subway-entrance",
+      "bg-bg-v46-university-gate",
+      "bg-bg-v46-client-meeting-room",
+      "bg-bg-v46-peer-living-room",
+      "bg-bg-v46-peer-company-office",
+      "bg-bg-v46-peer-company-workspace",
+      "bg-bg-v46-residential-street-night"
+    ],
+    "registeredV46ChildRigs": [
+      "character-v46-child-boy",
+      "character-v46-child-girl"
+    ],
+    "validation": "All required background images and child rig files/catalog records confirmed; pixel-level visual fit and scene-specific movements still need review."
+  },
+  "productionGate": {
+    "next": "Stage and visually verify 8 registered backgrounds, check rig pose requirements, implement Remotion scene props. No video render or work on later chapters without user approval.",
+    "doNotStartOtherChapters": true,
+    "renderStarted": false,
+    "approved": false
+  }
 }
