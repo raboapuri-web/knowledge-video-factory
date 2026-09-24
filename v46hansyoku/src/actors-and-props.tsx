@@ -12,12 +12,14 @@ export const clamp=(a:number)=>Math.max(0,Math.min(1,a));
 export const lerp=(a:number,b:number,t:number)=>a+(b-a)*clamp(t);
 export const pulse=(t:number)=>Math.sin(t*Math.PI*2);
 export const rise=(t:number,a=.08,b=.4)=>clamp((t-a)/(b-a));
-export type CharacterKind='hero'|'peer'|'male'|'female'|'father'|'mother'|'boy'|'girl'|'crowd';
+export type CharacterKind='hero'|'peer'|'youngHero'|'youngPeer'|'male'|'female'|'father'|'mother'|'boy'|'girl'|'crowd';
 export const Actor=({kind,x,y,scale=.58,motion='idle',pose={},mirror=false,variant=false}:{kind:CharacterKind;x:number;y:number;scale?:number;motion?:'idle'|'walk'|'front'|'run';pose?:Record<string,number>;mirror?:boolean;variant?:boolean})=>{
   const t=useCurrentFrame()/30;
   const breathing={...pose,bodyLean:(pose.bodyLean??0)+Math.sin(t*1.6)*.6};
   switch(kind){
    case 'hero':return <OfficeWorkerRig x={x} y={y} scale={scale} action={motion==='walk'?'walk':'idle'} pose={breathing} showBriefcase={motion==='walk'} mirror={mirror}/>;
+   case 'youngHero':return <OfficeWorkerRig x={x} y={y} scale={scale} action={motion==='walk'?'walk':'idle'} pose={breathing} suitColor="#7f948e" pantsColor="#394d5c" shirtColor="#e4ddd1" hairColor="#30363e" showBriefcase={false} mirror={mirror}/>;
+   case 'youngPeer':return <OfficeWorkerRig x={x} y={y} scale={scale} action={motion==='walk'?'walk':'idle'} pose={breathing} suitColor="#b39780" pantsColor="#394153" shirtColor="#e9ddd3" hairColor="#51332e" skinColor="#ddb79a" showBriefcase={false} mirror={mirror}/>;
    case 'peer':return <OfficeWorkerRig x={x} y={y} scale={scale} action={motion==='walk'?'walk':'idle'} pose={breathing} suitColor="#674f53" pantsColor="#443940" shirtColor="#fbf0e9" hairColor="#4f322d" skinColor="#ddb79a" showBriefcase={motion==='walk'} mirror={mirror}/>;
    case 'male':return <OfficeWorkerRig x={x} y={y} scale={scale} action={motion==='walk'?'walk':'idle'} pose={breathing} suitColor={variant?"#536b50":"#596779"} pantsColor="#404b56" hairColor={variant?"#675746":"#51453f"} showBriefcase={false} mirror={mirror}/>;
    case 'female':return <OfficeWomanRig x={x} y={y} scale={scale} action={motion==='walk'?'walk':'idle'} pose={breathing} suitColor="#616c72" shirtColor="#e3d9d5" mirror={mirror}/>;
