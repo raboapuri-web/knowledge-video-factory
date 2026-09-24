@@ -1,0 +1,26 @@
+{
+  "name": "v46hansyoku-prologue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "stage": "node scripts/stage-assets.mjs",
+    "check:source": "node scripts/check-source.mjs",
+    "check:plan": "node ../shared/qa/validate-preproduction.mjs . render",
+    "check": "tsc --noEmit",
+    "voice:prologue": "node scripts/generate-voicevox.mjs",
+    "subtitles": "node scripts/build-subtitles.mjs",
+    "render:prologue": "remotion render src/index.tsx V46HansyokuPrologue out/v46-prologue.mp4 --codec=h264 --crf=18 --concurrency=2"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.7.0"
+  }
+}
