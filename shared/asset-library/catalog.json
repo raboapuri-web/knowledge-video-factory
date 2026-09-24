@@ -2567,7 +2567,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2579,7 +2579,12 @@
       "autoRegistration": {
         "method": "filename-metadata",
         "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "note": "ファイル名による自動登録。利用権限はユーザーの包括確認に従い確定、画像の構図・アニメ合成適合は別途レビュー待ち。"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーからの既存の包括的な権利確定指示に基づく管理上の確定。独立した権利調査・画像の目視適合検証は未実施。",
+        "confirmedScope": "BG_V46 new user-supplied registered material"
       }
     },
     {
@@ -2600,7 +2605,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2612,7 +2617,12 @@
       "autoRegistration": {
         "method": "filename-metadata",
         "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "note": "ファイル名による自動登録。利用権限はユーザーの包括確認に従い確定、画像の構図・アニメ合成適合は別途レビュー待ち。"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーからの既存の包括的な権利確定指示に基づく管理上の確定。独立した権利調査・画像の目視適合検証は未実施。",
+        "confirmedScope": "BG_V46 new user-supplied registered material"
       }
     },
     {
@@ -2633,7 +2643,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2645,7 +2655,12 @@
       "autoRegistration": {
         "method": "filename-metadata",
         "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "note": "ファイル名による自動登録。利用権限はユーザーの包括確認に従い確定、画像の構図・アニメ合成適合は別途レビュー待ち。"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーからの既存の包括的な権利確定指示に基づく管理上の確定。独立した権利調査・画像の目視適合検証は未実施。",
+        "confirmedScope": "BG_V46 new user-supplied registered material"
       }
     },
     {
@@ -2666,7 +2681,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2678,7 +2693,12 @@
       "autoRegistration": {
         "method": "filename-metadata",
         "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "note": "ファイル名による自動登録。利用権限はユーザーの包括確認に従い確定、画像の構図・アニメ合成適合は別途レビュー待ち。"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーからの既存の包括的な権利確定指示に基づく管理上の確定。独立した権利調査・画像の目視適合検証は未実施。",
+        "confirmedScope": "BG_V46 new user-supplied registered material"
       }
     },
     {
@@ -2699,7 +2719,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2711,7 +2731,12 @@
       "autoRegistration": {
         "method": "filename-metadata",
         "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "note": "ファイル名による自動登録。利用権限はユーザーの包括確認に従い確定、画像の構図・アニメ合成適合は別途レビュー待ち。"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーからの既存の包括的な権利確定指示に基づく管理上の確定。独立した権利調査・画像の目視適合検証は未実施。",
+        "confirmedScope": "BG_V46 new user-supplied registered material"
       }
     },
     {
@@ -2732,7 +2757,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2744,7 +2769,12 @@
       "autoRegistration": {
         "method": "filename-metadata",
         "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "note": "ファイル名による自動登録。利用権限はユーザーの包括確認に従い確定、画像の構図・アニメ合成適合は別途レビュー待ち。"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーからの既存の包括的な権利確定指示に基づく管理上の確定。独立した権利調査・画像の目視適合検証は未実施。",
+        "confirmedScope": "BG_V46 new user-supplied registered material"
       }
     },
     {
@@ -2765,7 +2795,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2777,7 +2807,12 @@
       "autoRegistration": {
         "method": "filename-metadata",
         "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "note": "ファイル名による自動登録。利用権限はユーザーの包括確認に従い確定、画像の構図・アニメ合成適合は別途レビュー待ち。"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーからの既存の包括的な権利確定指示に基づく管理上の確定。独立した権利調査・画像の目視適合検証は未実施。",
+        "confirmedScope": "BG_V46 new user-supplied registered material"
       }
     },
     {
@@ -2798,7 +2833,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2810,7 +2845,12 @@
       "autoRegistration": {
         "method": "filename-metadata",
         "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "note": "ファイル名による自動登録。利用権限はユーザーの包括確認に従い確定、画像の構図・アニメ合成適合は別途レビュー待ち。"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーからの既存の包括的な権利確定指示に基づく管理上の確定。独立した権利調査・画像の目視適合検証は未実施。",
+        "confirmedScope": "BG_V46 new user-supplied registered material"
       }
     },
     {
@@ -2831,7 +2871,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2843,7 +2883,12 @@
       "autoRegistration": {
         "method": "filename-metadata",
         "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "note": "ファイル名による自動登録。利用権限はユーザーの包括確認に従い確定、画像の構図・アニメ合成適合は別途レビュー待ち。"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーからの既存の包括的な権利確定指示に基づく管理上の確定。独立した権利調査・画像の目視適合検証は未実施。",
+        "confirmedScope": "BG_V46 new user-supplied registered material"
       }
     },
     {
@@ -2864,7 +2909,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2876,7 +2921,12 @@
       "autoRegistration": {
         "method": "filename-metadata",
         "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "note": "ファイル名による自動登録。利用権限はユーザーの包括確認に従い確定、画像の構図・アニメ合成適合は別途レビュー待ち。"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーからの既存の包括的な権利確定指示に基づく管理上の確定。独立した権利調査・画像の目視適合検証は未実施。",
+        "confirmedScope": "BG_V46 new user-supplied registered material"
       }
     }
   ]
