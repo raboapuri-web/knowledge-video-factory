@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "v46hansyoku-project-v1",
+  "videoId": "v46",
+  "projectSlug": "v46hansyoku",
+  "displayTitle": "なぜ人類は自ら「繁殖の権利」を放棄するのか？【生態学×進化学×社会構造】",
+  "sourceDocumentSubtitle": "【生態学×進化学×行動経済学】",
+  "sourceOfTruth": {
+    "repository": "raboapuri-web/knowledge-video-factory",
+    "branch": "main",
+    "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+    "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+    "immutability": "verbatim; do not edit, summarize, reorder, omit, or add narration",
+    "sourceContainsReferences": true
+  },
+  "chapterOrder": [
+    {
+      "id": "prologue",
+      "label": "プロローグ",
+      "title": "誰も、彼に子供を持つなとは言っていない"
+    },
+    {
+      "id": "chapter1",
+      "label": "第1章",
+      "title": "子供を育てるために、子供を持たない"
+    },
+    {
+      "id": "chapter2",
+      "label": "第2章",
+      "title": "「自分で選んだ」という言葉の向こう側"
+    },
+    {
+      "id": "chapter3",
+      "label": "第3章",
+      "title": "地下の王国には、子供を産まない働き手がいる"
+    },
+    {
+      "id": "chapter4",
+      "label": "第4章",
+      "title": "女王の正体は、誰の顔もしていない"
+    },
+    {
+      "id": "epilogue",
+      "label": "エピローグ",
+      "title": "明日も、誰かの子供のために働く"
+    }
+  ],
+  "sharedAssets": {
+    "root": "shared/asset-library",
+    "staticCatalog": "shared/asset-library/catalog.json",
+    "characterCatalog": "shared/asset-library/人物テンプレート/catalog.json",
+    "backgrounds": "shared/asset-library/背景",
+    "parts": "shared/asset-library/パーツ",
+    "characters": "shared/asset-library/人物テンプレート",
+    "animationTemplateRegistry": "shared/production-rules/visual-template-registry.json",
+    "animationTemplateCode": "shared/remotion-templates"
+  },
+  "productionSystem": {
+    "visualEngine": "Remotion / React / TypeScript (2D)",
+    "narrationEngine": "VOICEVOX; pronunciation-only speech version; verify against original text",
+    "subtitlePolicy": "Exact approved script, separately layered, synchronized to measured voice durations",
+    "rendering": "GitHub Actions + FFmpeg; dedicated v46hansyoku workflow NOT installed",
+    "existingRules": "shared/production-rules/README.md",
+    "productionSystemVersion": 2,
+    "verifiedRegistryVersions": {
+      "visualTemplate": 4,
+      "voiceDictionary": 4,
+      "qaRules": 3,
+      "preproductionPolicy": 1,
+      "syncManifest": 7
+    }
+  },
+  "projectData": {
+    "scenePlanPattern": "v46hansyoku/chapters/{chapterId}/scene-plan.json",
+    "requiredAssetsPattern": "v46hansyoku/chapters/{chapterId}/required-assets.json",
+    "chapterAssetStatusPattern": "v46hansyoku/chapters/{chapterId}/material-status.json",
+    "progress": "v46hansyoku/production-status.json",
+    "approval": "v46hansyoku/chapter-approvals.json",
+    "globalAssetStatus": "v46hansyoku/material-status.json"
+  },
+  "chapterGate": "Start prologue scene design first. Do not move to chapter1 before explicit approval of prologue; same rule applies to each subsequent chapter.",
+  "creationScope": "Repository and planning metadata only; no scenes, synthesized voice, captions, previews or video renders."
+}
