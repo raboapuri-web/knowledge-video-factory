@@ -40,7 +40,8 @@ for(const character of data.characters){
     assert(code.includes('showBag'), 'Independent parent controls must include optional bag');
     assert(code.includes('<Hinge x={180}'), 'Parent head and neck must move at a joint');
     assert(!code.includes("showBriefcase"),'Parent must not show a business briefcase');
-    assert(character.recommendedBackgrounds.includes('背景/BG_oneroom.png'));
+    assert(character.recommendedBackgrounds.includes('背景/BG_oneroom_night.png'));
+    // The original BG_oneroom.png is no longer present in the approved image catalog.
   }
   if(character.id==='character-researcher-man'||character.id==='character-researcher-woman'){
     if(character.id==='character-researcher-woman'){
