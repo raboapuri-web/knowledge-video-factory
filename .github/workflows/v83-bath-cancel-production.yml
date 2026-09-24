@@ -2,7 +2,7 @@ name: V83 Bath Cancel Production
 on:
   workflow_dispatch:
   push:
-    branches: [v83-resale-production]
+    branches: [v83-bath-cancel-production]
     paths: ['.github/workflows/v83-bath-cancel-production.yml', 'shared/v83/**', 'shared/bootstrap/v83-bath-cancel.mjs']
 permissions: {contents: write}
 jobs:
