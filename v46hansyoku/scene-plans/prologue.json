@@ -3051,7 +3051,7 @@
         "columnStart1Based": 68,
         "columnEndExclusive1Based": 100
       },
-      "visualDescription": "社会で働く人々の仕事が、別の場所で子供を育てる家庭の生活を支える。主人公が同期の家族へ直接奉仕するという未記載の関係は作らない。",
+      "visualDescription": "社会で働く人々の仕事が、別の場所で子供を育てる家庭の生活を支える。主人公が同期の家族へ直接奉仕するという未記載の関係は作らない。 店舗の親子は同期一家と別人の衣装・顔を使用する。",
       "backgroundId": "BG_supermarket",
       "characters": [
         {
@@ -3064,22 +3064,22 @@
           "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
         },
         {
-          "id": "peer_wife",
+          "id": "generic_parent",
           "templateId": "character-parent-mother",
-          "identity": "大学同期の妻。商品を買う一般の母親として流用する場合は別顔・別服",
+          "identity": "別の家庭の一般の親。大学同期の妻と容姿・服装を明確に区別し、人物同一性を示さない",
           "position": "店内右",
           "facing": "買い物かご",
           "initialPose": "説明文とcharacterActionsに従う",
-          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+          "characterContinuity": "この一場面の一般家庭の親として、同期一家と別人の顔・服装を設定する。"
         },
         {
-          "id": "child_one",
+          "id": "generic_child",
           "templateId": "NEW_CHILD_RIG",
-          "identity": "同期の子供1。まだ登録のない子供可動素材の候補",
+          "identity": "一般の親の子供。大学同期の二人の子供とは別人物・別衣装",
           "position": "親の隣",
           "facing": "棚の商品",
           "initialPose": "説明文とcharacterActionsに従う",
-          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+          "characterContinuity": "この一場面の親子として、同期一家の子供と別人にする。"
         }
       ],
       "characterActions": [
@@ -3145,7 +3145,7 @@
       "summary": "社会で働く人々の仕事が、別の場所で子供を育てる家庭の生活を支える。主人公が同期の家族へ直接奉仕するという未記載の関係は作らない。",
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/prologue/scene-specific",
-      "visualIntent": "社会で働く人々の仕事が、別の場所で子供を育てる家庭の生活を支える。主人公が同期の家族へ直接奉仕するという未記載の関係は作らない。",
+      "visualIntent": "社会で働く人々の仕事が、別の場所で子供を育てる家庭の生活を支える。主人公が同期の家族へ直接奉仕するという未記載の関係は作らない。 店舗の親子は同期一家と別人の衣装・顔を使用する。",
       "estimatedSeconds": 6
     },
     {
