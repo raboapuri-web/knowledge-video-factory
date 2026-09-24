@@ -1,30 +1,37 @@
 {
   "schemaVersion": "v46hansyoku-material-status-v1",
-  "updatedAt": "2026-09-24",
+  "updatedAt": "2026-09-25",
   "libraryRoot": "shared/asset-library",
   "staticCatalog": "shared/asset-library/catalog.json",
   "characterCatalog": "shared/asset-library/人物テンプレート/catalog.json",
-  "status": "prologue_inventory_completed_awaiting_asset_registration",
+  "status": "prologue_assets_registered_visual_staging_pending",
   "chapterRequirements": [
     {
       "chapterId": "prologue",
       "requiredAssetsPath": "v46hansyoku/chapters/prologue/required-assets.json",
       "registrationStatusPath": "v46hansyoku/chapters/prologue/material-status.json",
-      "status": "inventory_completed_pending_registration",
+      "status": "all_user_requested_assets_registered_pending_scene_visual_review",
       "approvedMissingAssets": [],
-      "pendingRegistration": [
-        "BG_V46_OFFICE_STREET_NIGHT",
-        "BG_V46_SUBWAY_ENTRANCE",
-        "BG_V46_UNIVERSITY_GATE",
-        "BG_V46_CLIENT_MEETING_ROOM",
-        "BG_V46_PEER_LIVING_ROOM",
-        "BG_V46_PEER_COMPANY_OFFICE",
-        "BG_V46_PEER_COMPANY_WORKSPACE",
-        "BG_V46_RESIDENTIAL_STREET_NIGHT"
-      ],
+      "pendingRegistration": [],
       "scenePlanPath": "v46hansyoku/scene-plans/prologue.json",
-      "requiredCodeAsset": "V46_CHILD_RIG",
-      "existingAssetReview": "pending_staging_visual_confirmation"
+      "requiredCodeAsset": null,
+      "existingAssetReview": "registration_and_user_confirmed_rights_checked; visual_staging_pending",
+      "registeredAssets": [
+        "bg-bg-v46-office-street-night",
+        "bg-bg-v46-subway-entrance",
+        "bg-bg-v46-university-gate",
+        "bg-bg-v46-client-meeting-room",
+        "bg-bg-v46-peer-living-room",
+        "bg-bg-v46-peer-company-office",
+        "bg-bg-v46-peer-company-workspace",
+        "bg-bg-v46-residential-street-night",
+        "character-v46-child-boy",
+        "character-v46-child-girl"
+      ],
+      "registeredChildRigIds": [
+        "character-v46-child-boy",
+        "character-v46-child-girl"
+      ]
     },
     {
       "chapterId": "chapter1",
@@ -67,5 +74,5 @@
       "pendingRegistration": []
     }
   ],
-  "usagePolicy": "Review real imagery, licenses and scene fit. Pending-review is not automatically approved. Do not substitute mismatched assets or begin render before approved required assets are registered. Prologue inventory lists 8 candidate backgrounds, including 2 conditional, and 1 TSX child rig; inventory is not proof of image-level verification."
+  "usagePolicy": "All prologue assets requested from user are present and registered; actual visual fit and story-pose readiness remain under review. Do not substitute a mismatched background; do not render until scene staging is checked and user approves."
 }
