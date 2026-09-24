@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "v46hansyoku-material-status-v1",
+  "updatedAt": "2026-09-24",
+  "libraryRoot": "shared/asset-library",
+  "staticCatalog": "shared/asset-library/catalog.json",
+  "characterCatalog": "shared/asset-library/人物テンプレート/catalog.json",
+  "status": "library_verified_chapter_requirements_not_assessed",
+  "chapterRequirements": [
+    {
+      "chapterId": "prologue",
+      "requiredAssetsPath": "v46hansyoku/chapters/prologue/required-assets.json",
+      "registrationStatusPath": "v46hansyoku/chapters/prologue/material-status.json",
+      "status": "not_assessed",
+      "approvedMissingAssets": [],
+      "pendingRegistration": []
+    },
+    {
+      "chapterId": "chapter1",
+      "requiredAssetsPath": "v46hansyoku/chapters/chapter1/required-assets.json",
+      "registrationStatusPath": "v46hansyoku/chapters/chapter1/material-status.json",
+      "status": "not_assessed",
+      "approvedMissingAssets": [],
+      "pendingRegistration": []
+    },
+    {
+      "chapterId": "chapter2",
+      "requiredAssetsPath": "v46hansyoku/chapters/chapter2/required-assets.json",
+      "registrationStatusPath": "v46hansyoku/chapters/chapter2/material-status.json",
+      "status": "not_assessed",
+      "approvedMissingAssets": [],
+      "pendingRegistration": []
+    },
+    {
+      "chapterId": "chapter3",
+      "requiredAssetsPath": "v46hansyoku/chapters/chapter3/required-assets.json",
+      "registrationStatusPath": "v46hansyoku/chapters/chapter3/material-status.json",
+      "status": "not_assessed",
+      "approvedMissingAssets": [],
+      "pendingRegistration": []
+    },
+    {
+      "chapterId": "chapter4",
+      "requiredAssetsPath": "v46hansyoku/chapters/chapter4/required-assets.json",
+      "registrationStatusPath": "v46hansyoku/chapters/chapter4/material-status.json",
+      "status": "not_assessed",
+      "approvedMissingAssets": [],
+      "pendingRegistration": []
+    },
+    {
+      "chapterId": "epilogue",
+      "requiredAssetsPath": "v46hansyoku/chapters/epilogue/required-assets.json",
+      "registrationStatusPath": "v46hansyoku/chapters/epilogue/material-status.json",
+      "status": "not_assessed",
+      "approvedMissingAssets": [],
+      "pendingRegistration": []
+    }
+  ],
+  "usagePolicy": "Review real imagery, licenses and scene fit. Pending-review is not automatically approved. Do not substitute mismatched assets or begin render before approved required assets are registered."
+}
