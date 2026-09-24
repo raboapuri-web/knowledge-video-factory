@@ -1,16 +1,16 @@
 {
   "schemaVersion": "v46-prologue-material-status-v1",
-  "updatedAt": "2026-09-24",
+  "updatedAt": "2026-09-25",
   "chapterId": "prologue",
   "sourceInventory": "v46hansyoku/chapters/prologue/required-assets.json",
   "sourceScenePlan": "v46hansyoku/scene-plans/prologue.json",
-  "state": "missing_assets_identified_awaiting_registration",
+  "state": "all_requested_assets_registered_pending_visual_staging",
   "requiredUserUploads": [
     {
       "assetId": "BG_V46_OFFICE_STREET_NIGHT",
       "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
       "priority": "P0",
-      "status": "not_uploaded_for_v46",
+      "status": "registered_catalog_confirmed",
       "sceneIds": [
         "V46-P001",
         "V46-P002",
@@ -20,91 +20,125 @@
         "V46-P024",
         "V46-P028"
       ],
-      "canSkipIfExistingAssetFits": false
+      "canSkipIfExistingAssetFits": false,
+      "catalogId": "bg-bg-v46-office-street-night",
+      "license": "cleared-commercial",
+      "sourceSha256": "8f2b53f930698ae43d2fdcda169d199dc40f2f091f3e01b54956e58dd83a979b",
+      "actualImageVisualFit": "pending_staging",
+      "needsUserUpload": false
     },
     {
       "assetId": "BG_V46_SUBWAY_ENTRANCE",
       "filePath": "shared/asset-library/背景/BG_V46_SUBWAY_ENTRANCE.png",
       "priority": "P0",
-      "status": "not_uploaded_for_v46",
+      "status": "registered_catalog_confirmed",
       "sceneIds": [
         "V46-P003"
       ],
-      "canSkipIfExistingAssetFits": false
+      "canSkipIfExistingAssetFits": false,
+      "catalogId": "bg-bg-v46-subway-entrance",
+      "license": "cleared-commercial",
+      "sourceSha256": "99cc06874d831d1946b2b1fb9826df337dc3cc0de7cd1ad902a1d3fa78bfaf54",
+      "actualImageVisualFit": "pending_staging",
+      "needsUserUpload": false
     },
     {
       "assetId": "BG_V46_UNIVERSITY_GATE",
       "filePath": "shared/asset-library/背景/BG_V46_UNIVERSITY_GATE.png",
       "priority": "P0",
-      "status": "not_uploaded_for_v46",
+      "status": "registered_catalog_confirmed",
       "sceneIds": [
         "V46-P004",
         "V46-P020"
       ],
-      "canSkipIfExistingAssetFits": false
+      "canSkipIfExistingAssetFits": false,
+      "catalogId": "bg-bg-v46-university-gate",
+      "license": "cleared-commercial",
+      "sourceSha256": "b46befff0a04b7a36226a1e69c71badd5411b4c690fc435fda982443163a9beb",
+      "actualImageVisualFit": "pending_staging",
+      "needsUserUpload": false
     },
     {
       "assetId": "BG_V46_CLIENT_MEETING_ROOM",
       "filePath": "shared/asset-library/背景/BG_V46_CLIENT_MEETING_ROOM.png",
       "priority": "P1",
-      "status": "not_uploaded_for_v46",
+      "status": "registered_catalog_confirmed",
       "sceneIds": [
         "V46-P005"
       ],
-      "canSkipIfExistingAssetFits": true
+      "canSkipIfExistingAssetFits": true,
+      "catalogId": "bg-bg-v46-client-meeting-room",
+      "license": "cleared-commercial",
+      "sourceSha256": "d64a6e0c162a8608686227ebd4828192925ec037dc0e1ea18727ff9cca21823a",
+      "actualImageVisualFit": "pending_staging",
+      "needsUserUpload": false
     },
     {
       "assetId": "BG_V46_PEER_LIVING_ROOM",
       "filePath": "shared/asset-library/背景/BG_V46_PEER_LIVING_ROOM.png",
       "priority": "P0",
-      "status": "not_uploaded_for_v46",
+      "status": "registered_catalog_confirmed",
       "sceneIds": [
         "V46-P015",
         "V46-P018",
         "V46-P021"
       ],
-      "canSkipIfExistingAssetFits": false
+      "canSkipIfExistingAssetFits": false,
+      "catalogId": "bg-bg-v46-peer-living-room",
+      "license": "cleared-commercial",
+      "sourceSha256": "f88186b77bf01ce28bdc5b65843bd17064379505b970dd639c9d636f2d514d80",
+      "actualImageVisualFit": "pending_staging",
+      "needsUserUpload": false
     },
     {
       "assetId": "BG_V46_PEER_COMPANY_OFFICE",
       "filePath": "shared/asset-library/背景/BG_V46_PEER_COMPANY_OFFICE.png",
       "priority": "P0",
-      "status": "not_uploaded_for_v46",
+      "status": "registered_catalog_confirmed",
       "sceneIds": [
         "V46-P016",
         "V46-P019"
       ],
-      "canSkipIfExistingAssetFits": false
+      "canSkipIfExistingAssetFits": false,
+      "catalogId": "bg-bg-v46-peer-company-office",
+      "license": "cleared-commercial",
+      "sourceSha256": "39fc9eaaccea712c5964c52fb0a11ba2e2312a6ff50ba36fc09942a4ae257359",
+      "actualImageVisualFit": "pending_staging",
+      "needsUserUpload": false
     },
     {
       "assetId": "BG_V46_PEER_COMPANY_WORKSPACE",
       "filePath": "shared/asset-library/背景/BG_V46_PEER_COMPANY_WORKSPACE.png",
       "priority": "P0",
-      "status": "not_uploaded_for_v46",
+      "status": "registered_catalog_confirmed",
       "sceneIds": [
         "V46-P017"
       ],
-      "canSkipIfExistingAssetFits": false
+      "canSkipIfExistingAssetFits": false,
+      "catalogId": "bg-bg-v46-peer-company-workspace",
+      "license": "cleared-commercial",
+      "sourceSha256": "a13d1815d2f6dbb0e9be0ed209cc3e9062e12cc4da1a7feded2cd28909a43d2a",
+      "actualImageVisualFit": "pending_staging",
+      "needsUserUpload": false
     },
     {
       "assetId": "BG_V46_RESIDENTIAL_STREET_NIGHT",
       "filePath": "shared/asset-library/背景/BG_V46_RESIDENTIAL_STREET_NIGHT.png",
       "priority": "P1",
-      "status": "not_uploaded_for_v46",
+      "status": "registered_catalog_confirmed",
       "sceneIds": [
         "V46-P031",
         "V46-P032"
       ],
-      "canSkipIfExistingAssetFits": true
+      "canSkipIfExistingAssetFits": true,
+      "catalogId": "bg-bg-v46-residential-street-night",
+      "license": "cleared-commercial",
+      "sourceSha256": "cd6c3ce2edc4120cbaddee871c435069adfed08ba115a4342cc845defb9d3f6a",
+      "actualImageVisualFit": "pending_staging",
+      "needsUserUpload": false
     }
   ],
   "requiredCode": [
-    {
-      "assetId": "V46_CHILD_RIG",
-      "path": "shared/asset-library/人物テンプレート/v46-child-rig.tsx",
-      "status": "not_implemented",
-      "owner": "Remotion implementation phase"
-    },
     {
       "group": "night-office-layers",
       "status": "not_implemented",
@@ -201,5 +235,57 @@
   "assetGateOpen": false,
   "renderStarted": false,
   "userApprovedScenePlan": false,
-  "verificationPolicy": "On recheck, inspect actual files and character/scene fit. Never mark an unregistered or unsuitable item as ready."
+  "verificationPolicy": "8 backgrounds and 2 child rigs verified file+catalog; rights user-confirmed, physical visual composition and scene-specific pose/gadget code still require validation. Registration does not mean render-ready.",
+  "registeredChildren": [
+    {
+      "assetId": "character-v46-child-boy",
+      "component": "V46_CHILD_RIG_BOY",
+      "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+      "status": "approved",
+      "license": "cleared-commercial",
+      "registered": true,
+      "actions": [
+        "front",
+        "run",
+        "play",
+        "cry"
+      ],
+      "scenePosesBeyondRegisteredActions": [
+        "sit",
+        "hold_book",
+        "hold_cup",
+        "walk",
+        "point_shelf"
+      ],
+      "scenePoseStatus": "pending_scene_implementation_and_validation"
+    },
+    {
+      "assetId": "character-v46-child-girl",
+      "component": "V46_CHILD_RIG_GIRL",
+      "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+      "status": "approved",
+      "license": "cleared-commercial",
+      "registered": true,
+      "actions": [
+        "front",
+        "run",
+        "play",
+        "cry"
+      ],
+      "scenePosesBeyondRegisteredActions": [
+        "sit",
+        "hold_book",
+        "hold_cup",
+        "walk",
+        "point_shelf"
+      ],
+      "scenePoseStatus": "pending_scene_implementation_and_validation"
+    }
+  ],
+  "additionalOptionalRegisteredBackgrounds": [
+    "BG_V46_OFFICE_STREET_NIGHT2",
+    "BG_V46_OFFICE_STREET_NIGHT3"
+  ],
+  "visualStagingNeeded": true,
+  "sceneAnimationImplementationNeeded": true
 }
