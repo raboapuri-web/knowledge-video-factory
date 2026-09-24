@@ -1,0 +1,101 @@
+name: V46 Hansyoku Prologue 32-Scene Review
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'v46hansyoku/**'
+      - '.github/workflows/v46hansyoku-prologue.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: v46hansyoku-prologue-review
+  cancel-in-progress: false
+jobs:
+  render-prologue:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install graphics tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - name: Check exact approved chapter script and registered assets
+        working-directory: v46hansyoku
+        run: |
+          node scripts/check-source.mjs
+          node scripts/stage-assets.mjs
+      - name: Install Remotion and verify shared production-policy versions
+        working-directory: v46hansyoku
+        run: |
+          npm install --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+          node ../shared/voice/test-pronunciation.mjs
+          node ../shared/qa/validate-video.mjs . pre
+      - name: Start original VOICEVOX engine
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name v46hansyoku-voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 150); do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs v46hansyoku-voicevox
+          exit 1
+      - name: Synthesize and measure each of 32 original narration scenes
+        working-directory: v46hansyoku
+        run: |
+          npm run voice:prologue
+          npm run subtitles
+          node ../shared/qa/validate-video.mjs . post
+      - name: Typecheck entire Remotion implementation
+        working-directory: v46hansyoku
+        run: npm run check
+      - name: Render 1920x1080 voice and subtitle preview
+        working-directory: v46hansyoku
+        run: |
+          mkdir -p out
+          npm run render:prologue
+          test -s out/v46-prologue.mp4
+          ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,avg_frame_rate -of default=noprint_wrappers=1 out/v46-prologue.mp4
+          ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=noprint_wrappers=1 out/v46-prologue.mp4
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of csv=p=0 out/v46-prologue.mp4)" = "1920"
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of csv=p=0 out/v46-prologue.mp4)" = "1080"
+          test "$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of csv=p=0 out/v46-prologue.mp4)" = "aac"
+      - name: Generate one representative frame per source-aligned scene
+        working-directory: v46hansyoku
+        run: |
+          node ../shared/qa/generate-scene-contact-sheet.mjs . out/v46-prologue.mp4 out/scene-contact-sheet.jpg
+          test "$(find .qa-scene-frames -name 'scene-*.jpg' | wc -l)" -eq 32
+      - name: Publish review artifact (not chapter approval)
+        uses: actions/upload-artifact@v4
+        with:
+          name: v46hansyoku-prologue-32-scenes-voiced-review
+          path: |
+            v46hansyoku/out/v46-prologue.mp4
+            v46hansyoku/out/v46-prologue.srt
+            v46hansyoku/out/scene-contact-sheet.jpg
+            v46hansyoku/.qa-scene-frames/scene-*.jpg
+            v46hansyoku/public/audio/pronunciation-report.json
+            v46hansyoku/src/sync-timing.json
+            v46hansyoku/src/subtitle-cues.json
+            v46hansyoku/src/script-data.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload diagnostic data on failed run
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v46hansyoku-prologue-failed-run-diagnostics
+          path: |
+            v46hansyoku/src/sync-timing.json
+            v46hansyoku/src/subtitle-cues.json
+            v46hansyoku/public/audio/pronunciation-report.json
+            v46hansyoku/out/*.srt
+            v46hansyoku/out/*.jpg
+          if-no-files-found: ignore
+          retention-days: 5
