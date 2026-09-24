@@ -70,7 +70,7 @@
     }
   },
   "projectData": {
-    "scenePlanPattern": "v46hansyoku/chapters/{chapterId}/scene-plan.json",
+    "scenePlanPattern": "v46hansyoku/scene-plans/{chapterId}.json",
     "requiredAssetsPattern": "v46hansyoku/chapters/{chapterId}/required-assets.json",
     "chapterAssetStatusPattern": "v46hansyoku/chapters/{chapterId}/material-status.json",
     "progress": "v46hansyoku/production-status.json",
@@ -78,5 +78,6 @@
     "globalAssetStatus": "v46hansyoku/material-status.json"
   },
   "chapterGate": "Start prologue scene design first. Do not move to chapter1 before explicit approval of prologue; same rule applies to each subsequent chapter.",
-  "creationScope": "Repository and planning metadata only; no scenes, synthesized voice, captions, previews or video renders."
+  "creationScope": "Prologue scene design only completed. Asset inventory, scene-specific implementation, voice, subtitles and render have not started.",
+  "currentStage": "prologue_scene_design_completed_awaiting_material_inventory"
 }
