@@ -1,0 +1,69 @@
+name: V46 Child Boy Girl Preview
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v46-child-rigs-preview.yml'
+      - 'shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx'
+      - 'shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx'
+      - 'shared/asset-library/人物テンプレート/child-boy-scene.tsx'
+      - 'shared/asset-library/人物テンプレート/child-girl-scene.tsx'
+      - 'shared/asset-library/人物テンプレート/catalog.json'
+      - 'shared/asset-library/人物テンプレート/test-catalog.mjs'
+      - 'shared/v69/index.tsx'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Prepare park background and check character JSON
+        run: |
+          node shared/bootstrap/v69-free-services.mjs
+          node shared/asset-library/prepare.mjs v69-free-services
+          node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_kouen.png
+          node shared/asset-library/人物テンプレート/test-catalog.mjs
+      - name: Install and typecheck Remotion
+        working-directory: v69-free-services
+        run: |
+          npm install --ignore-scripts --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+          npm run check
+      - name: Render independent child animations and visual QA stills
+        working-directory: v69-free-services
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V46ChildBoyParkPreview out/V46_CHILD_RIG_BOY-preview.mp4 --scale=0.5 --concurrency=2 --codec=h264
+          npx remotion render src/index.tsx V46ChildGirlParkPreview out/V46_CHILD_RIG_GIRL-preview.mp4 --scale=0.5 --concurrency=2 --codec=h264
+          npx remotion still src/index.tsx V46ChildBoyParkPreview out/V46_CHILD_RIG_BOY-front.png --frame=20 --scale=0.75
+          npx remotion still src/index.tsx V46ChildBoyParkPreview out/V46_CHILD_RIG_BOY-run.png --frame=92 --scale=0.75
+          npx remotion still src/index.tsx V46ChildBoyParkPreview out/V46_CHILD_RIG_BOY-play.png --frame=151 --scale=0.75
+          npx remotion still src/index.tsx V46ChildBoyParkPreview out/V46_CHILD_RIG_BOY-cry.png --frame=216 --scale=0.75
+          npx remotion still src/index.tsx V46ChildGirlParkPreview out/V46_CHILD_RIG_GIRL-front.png --frame=20 --scale=0.75
+          npx remotion still src/index.tsx V46ChildGirlParkPreview out/V46_CHILD_RIG_GIRL-run.png --frame=92 --scale=0.75
+          npx remotion still src/index.tsx V46ChildGirlParkPreview out/V46_CHILD_RIG_GIRL-play.png --frame=151 --scale=0.75
+          npx remotion still src/index.tsx V46ChildGirlParkPreview out/V46_CHILD_RIG_GIRL-cry.png --frame=216 --scale=0.75
+          npx remotion still src/index.tsx V46ChildrenTogetherPreview out/V46_CHILDREN-together.png --frame=20 --scale=0.75
+      - uses: actions/upload-artifact@v4
+        with:
+          name: V46-child-rigs-previews
+          path: |
+            v69-free-services/out/V46_CHILD_RIG_BOY-preview.mp4
+            v69-free-services/out/V46_CHILD_RIG_GIRL-preview.mp4
+            v69-free-services/out/V46_CHILD_RIG_BOY-front.png
+            v69-free-services/out/V46_CHILD_RIG_BOY-run.png
+            v69-free-services/out/V46_CHILD_RIG_BOY-play.png
+            v69-free-services/out/V46_CHILD_RIG_BOY-cry.png
+            v69-free-services/out/V46_CHILD_RIG_GIRL-front.png
+            v69-free-services/out/V46_CHILD_RIG_GIRL-run.png
+            v69-free-services/out/V46_CHILD_RIG_GIRL-play.png
+            v69-free-services/out/V46_CHILD_RIG_GIRL-cry.png
+            v69-free-services/out/V46_CHILDREN-together.png
+          if-no-files-found: error
+          retention-days: 7

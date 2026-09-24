@@ -227,3 +227,20 @@ export const Family=()=>
 ```
 
 Remotionに背景をステージするには `node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_oneroom.png` を実行。動画プレビューは `ParentFatherRoomPreview` と `ParentMotherRoomPreview`、2人併用確認は `ParentsTogetherPreview` です。床接地IKや複雑な座り姿勢は未実装です。
+
+
+## V46子供：男女の独立した関節付き2D素材（2026-09-24）
+
+男の子 `V46_CHILD_RIG_BOY.tsx`（ID `character-v46-child-boy`）と女の子 `V46_CHILD_RIG_GIRL.tsx`（ID `character-v46-child-girl`）を独立登録しました。どちらも `front` 正面、`run` 走る、`play` 手にボールを持って遊ぶ、`cry` 涙を流して泣く、の4動作に対応します。肩・肘・股関節・膝・頭・上体の関節を別々に調整でき、頭と首の接合を維持したまま描画します。大人の人物より小さく配置する場合は `scale={0.7}` 〜 `{0.8}` を使用してください。
+
+```tsx
+import {ChildBoyBackgroundScene} from '../../shared/asset-library/人物テンプレート/child-boy-scene';
+import {V46_CHILD_RIG_GIRL} from '../../shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL';
+export const Park=()=>
+  <ChildBoyBackgroundScene backgroundFile="BG_kouen.png"
+    child={{x:650,y:530,scale:.77,action:'run'}}>
+    <V46_CHILD_RIG_GIRL x={1150} y={530} scale={.77} action="play"/>
+  </ChildBoyBackgroundScene>;
+```
+
+Remotion Composition IDは `V46ChildBoyParkPreview`、`V46ChildGirlParkPreview`、`V46ChildrenTogetherPreview`。それぞれ8秒・30fpsで4動作を順に確認できます。Reactコンポーネント名とファイル名はご指定どおり `V46_CHILD_RIG_BOY`、`V46_CHILD_RIG_GIRL` のままです。

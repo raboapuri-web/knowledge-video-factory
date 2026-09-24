@@ -10,7 +10,7 @@ const imageCatalog=JSON.parse(fs.readFileSync(path.join(root,'catalog.json'),'ut
 assert.equal(data.version,1);
 assert(Array.isArray(data.characters)&&data.characters.length>0,'At least one React character must be registered');
 const allowedLicense=new Set(['original-project','cleared-commercial','pending-review']);
-const names=new Set(),files=new Set(),actionIds=new Set(['idle','walk','wave','point','sit','standUp','sitPhone','walkPhone','photoFlash','inspectFlask']);
+const names=new Set(),files=new Set(),actionIds=new Set(['idle','walk','wave','point','sit','standUp','sitPhone','walkPhone','photoFlash','inspectFlask','front','run','play','cry']);
 for(const character of data.characters){
   assert.match(character.id,/^[a-z][a-z0-9-]+$/);
   assert(!names.has(character.id),'Duplicate character ID: '+character.id);
@@ -54,6 +54,15 @@ for(const character of data.characters){
     assert(code.includes('<Hinge x={0} y={94} angle={elbow}>'),'Flask must follow elbow rotation');
     assert(!code.includes("photoFlash"),'Scientist rig should not reuse the passerby photo action');
     assert(character.recommendedBackgrounds.includes('背景/BG_kenkyu.png'));
+  }
+  if(character.id==='character-v46-child-boy'||character.id==='character-v46-child-girl'){
+    assert.equal(character.actions.length,4,'Child needs four actions');
+    assert.deepEqual(character.actions.map(a=>a.id),['front','run','play','cry']);
+    assert(code.includes('getChild'),'Child must expose a joint-pose generator');
+    assert(code.includes("play={action==='play'}"),'Child must hold an animated toy ball in play');
+    assert(code.includes('tearOffset'),'Child must show animated tears when crying');
+    assert(code.includes('<Hinge x={0} y={73} angle={elbow}>'),'Child must have a functional elbow joint');
+    assert(character.recommendedBackgrounds.includes('背景/BG_kouen.png'));
   }
   if(character.id==='character-passerby-crowd'){
     assert.equal(character.dimensions.width,1920);
