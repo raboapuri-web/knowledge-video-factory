@@ -1,0 +1,1688 @@
+{
+  "schemaVersion": "v46-prologue-material-inventory-v1",
+  "videoId": "v46",
+  "chapterId": "prologue",
+  "status": "inventory_complete_awaiting_user_asset_production_and_scene_review",
+  "source": {
+    "scenePlanPath": "v46hansyoku/scene-plans/prologue.json",
+    "scenePlanSha": "400e1b95d52d7a15d33ba78433639bd4990008ef",
+    "scriptPath": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+    "scriptBlobSha": "0ee1e5978ca7567f853960801b6404616b5b149d"
+  },
+  "countSummary": {
+    "scenesAudited": 32,
+    "oldProvisionalNewAssetIds": 36,
+    "independentBackgroundImagesRequested": 8,
+    "newEditableCharacterRigs": 1,
+    "existingRegisteredCharacterTemplatesUsed": 5,
+    "remotionImplementationGroups": 5
+  },
+  "auditMethod": "Verified current GitHub scene-plan JSON and catalog records, names and descriptions plus rig source API. Metadata-based semantic review, not an actual rendered staging/visual image-content inspection; proposed backgrounds and action fit must be visually checked after upload.",
+  "priorityMeaning": {
+    "P0": "画づくりの主要場面の成立に必要。優先して用意",
+    "P1": "不足候補。ただし実装時に既存の絵の構図が合えば新規制作を省略可"
+  },
+  "requiredUserUploadBackgrounds": [
+    {
+      "assetId": "BG_V46_OFFICE_STREET_NIGHT",
+      "category": "background",
+      "delivery": "user_produced_png",
+      "priority": "P0",
+      "title": "金曜日夜の現代東京・オフィスビル出口と歩道",
+      "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+      "format": "PNG, 16:9, 1920x1080; flat-vector 2D; no baked-in persons, subtitles, logos or captions",
+      "sceneIds": [
+        "V46-P001",
+        "V46-P002",
+        "V46-P004",
+        "V46-P013",
+        "V46-P014",
+        "V46-P024",
+        "V46-P028"
+      ],
+      "description": "現代の自然な東京のオフィス街。画面左にガラス張りの退勤用出口、中央に複数人の歩行スペース、右奥に駅へ続く街路。広告大型ビジョンや桜は不要。帰宅途中の主人公の手元が映せる腰高の寄りにも耐える。P028は同じ街路の信号・横断歩道をRemotion前景で追加。",
+      "layerRequirements": [
+        "消灯する窓の前景/減光マスクと開閉する透明ドアはRemotionで分離生成。背景そのものは単一PNG。"
+      ],
+      "existingCandidates": [
+        "bg-bg-town-night-wide: 近未来ネオン・大型ビジョン・桜で日常のオフィス街と不一致。",
+        "bg-bg-town: 昼夜・ビル出口・交通導線が一致するか未確認。"
+      ],
+      "acceptanceChecks": [
+        "現代東京の仕事帰りと読める",
+        "出口・歩行帯・駅方向を視覚的に識別可能",
+        "既存通行人リグと合成して歩行接地できる"
+      ],
+      "registration": "not_registered",
+      "approval": "not_reviewed",
+      "usage": "required_if_scene_plan_kept"
+    },
+    {
+      "assetId": "BG_V46_SUBWAY_ENTRANCE",
+      "category": "background",
+      "delivery": "user_produced_png",
+      "priority": "P0",
+      "title": "地下鉄の地上入口と下り階段",
+      "filePath": "shared/asset-library/背景/BG_V46_SUBWAY_ENTRANCE.png",
+      "format": "PNG, 16:9, 1920x1080; flat-vector 2D; no baked-in persons, subtitles, logos or captions",
+      "sceneIds": [
+        "V46-P003"
+      ],
+      "description": "地上の夜の歩道から地下鉄に降りる入口を斜め前方・やや高所から見る。階段が画面手前から奥下へ向かい、通行人が入れる幅と左／右の手すりを持つ。プラットフォームではない。",
+      "layerRequirements": [
+        "手すり前景PNGまたは透明レイヤー相当のRemotion描画、階段の人物遮蔽マスクは実装側で生成"
+      ],
+      "existingCandidates": [
+        "bg-bg-subway は駅の登録で地上階段の見た目が保証されない。"
+      ],
+      "acceptanceChecks": [
+        "階段・手すりの位置が明確",
+        "人物が段を下るとき足位置を合わせられる",
+        "夜のオフィス街から違和感なく接続"
+      ],
+      "registration": "not_registered",
+      "approval": "not_reviewed",
+      "usage": "required_if_scene_plan_kept"
+    },
+    {
+      "assetId": "BG_V46_UNIVERSITY_GATE",
+      "category": "background",
+      "delivery": "user_produced_png",
+      "priority": "P0",
+      "title": "13年前の大学の門",
+      "filePath": "shared/asset-library/背景/BG_V46_UNIVERSITY_GATE.png",
+      "format": "PNG, 16:9, 1920x1080; flat-vector 2D; no baked-in persons, subtitles, logos or captions",
+      "sceneIds": [
+        "V46-P004",
+        "V46-P020"
+      ],
+      "description": "ブランド・学名を特定しない日本の大学正門。二人の男子学生が横並びでキャンパス内から外へ歩ける道幅、左右の門柱、奥行きのある通路。学術的説明や実在校名・ロゴは描かない。",
+      "layerRequirements": [
+        "門柱の前景遮蔽はRemotionで描画または必要時のみ同素材からレイヤー化"
+      ],
+      "existingCandidates": [
+        "既存の学校背景は小中学校の可能性があり大学正門の構図が一致するとは限らない。"
+      ],
+      "acceptanceChecks": [
+        "2人が並んで歩ける幅",
+        "現在へ戻るマッチカット用の門柱が左右にある"
+      ],
+      "registration": "not_registered",
+      "approval": "not_reviewed",
+      "usage": "required_if_scene_plan_kept"
+    },
+    {
+      "assetId": "BG_V46_CLIENT_MEETING_ROOM",
+      "category": "background",
+      "delivery": "user_produced_png",
+      "priority": "P1",
+      "title": "主人公の会社とは異なる取引先との会議室",
+      "filePath": "shared/asset-library/背景/BG_V46_CLIENT_MEETING_ROOM.png",
+      "format": "PNG, 16:9, 1920x1080; flat-vector 2D; no baked-in persons, subtitles, logos or captions",
+      "sceneIds": [
+        "V46-P005"
+      ],
+      "description": "現代の汎用会議室。画面中央〜下に向かい合う二人が座って資料を手渡せるテーブル、椅子2脚、書類を置ける天板、後景は簡潔な窓と壁。人物・手・説明文字を描かない。",
+      "layerRequirements": [
+        "手渡す紙と手の前後マスクはRemotionで生成"
+      ],
+      "existingCandidates": [
+        "bg-bg-office は執務室のため対面会議のテーブル・角度が現状保証されない。既存背景で成立すれば代替してこの画像は制作不要。"
+      ],
+      "acceptanceChecks": [
+        "二人の座位の視線と座面・テーブルの高さが合う",
+        "手渡しの動線が明瞭"
+      ],
+      "registration": "not_registered",
+      "approval": "not_reviewed",
+      "usage": "required_if_scene_plan_kept"
+    },
+    {
+      "assetId": "BG_V46_PEER_LIVING_ROOM",
+      "category": "background",
+      "delivery": "user_produced_png",
+      "priority": "P0",
+      "title": "大学同期の広いリビング兼食卓",
+      "filePath": "shared/asset-library/背景/BG_V46_PEER_LIVING_ROOM.png",
+      "format": "PNG, 16:9, 1920x1080; flat-vector 2D; no baked-in persons, subtitles, logos or captions",
+      "sceneIds": [
+        "V46-P015",
+        "V46-P018",
+        "V46-P021"
+      ],
+      "description": "広いが過度に豪華でない現代日本の住宅の居間と食卓。中央に家族4人と誕生日ケーキを並べられる机、左側に入室用扉、右側に絵本を読む空間。誕生日写真と普段の家族の生活、分割画面で同じ家具配置・窓位置を保つ。人物・ケーキ・絵本は背景に焼き込まない。",
+      "layerRequirements": [
+        "入室扉はRemotionで開閉可能な前景として追加;写真の枠はコード側で追加"
+      ],
+      "existingCandidates": [
+        "bg-bg-kitchen は調理場。BG_ROOM_NIGHT_ON 等は広い同期宅であることや室内の同一性を満たすか不明。"
+      ],
+      "acceptanceChecks": [
+        "写真・普段の生活・左右分割の3用法で同一間取りを維持",
+        "机前景に子供2人の配置余白",
+        "ドアから人物が入れる通路"
+      ],
+      "registration": "not_registered",
+      "approval": "not_reviewed",
+      "usage": "required_if_scene_plan_kept"
+    },
+    {
+      "assetId": "BG_V46_PEER_COMPANY_OFFICE",
+      "category": "background",
+      "delivery": "user_produced_png",
+      "priority": "P0",
+      "title": "同期の別会社・執務室",
+      "filePath": "shared/asset-library/背景/BG_V46_PEER_COMPANY_OFFICE.png",
+      "format": "PNG, 16:9, 1920x1080; flat-vector 2D; no baked-in persons, subtitles, logos or captions",
+      "sceneIds": [
+        "V46-P016",
+        "V46-P019"
+      ],
+      "description": "主人公の勤務先のオフィスとは明瞭に異なる壁・窓・机配置の現代オフィス。左に同期が企画書を開く机、右奥に従業員が夕方まで働く机と窓。特定の社名、売上グラフ、会社ロゴは描き込まない。",
+      "layerRequirements": [
+        "昼→夕方の光変化はRemotionの照明レイヤー。机上の書類は後付け。"
+      ],
+      "existingCandidates": [
+        "bg-bg-office を同一会社に見えるまま流用すると『別会社』の台本と衝突。構図と内装の区別が実装で十分なら新背景制作を省略可能。"
+      ],
+      "acceptanceChecks": [
+        "主人公の勤務先と誤認しない内装",
+        "経営者の机と従業員の机を同一職場として配置できる"
+      ],
+      "registration": "not_registered",
+      "approval": "not_reviewed",
+      "usage": "required_if_scene_plan_kept"
+    },
+    {
+      "assetId": "BG_V46_PEER_COMPANY_WORKSPACE",
+      "category": "background",
+      "delivery": "user_produced_png",
+      "priority": "P0",
+      "title": "同期の会社・製品作業と顧客対応の空間",
+      "filePath": "shared/asset-library/背景/BG_V46_PEER_COMPANY_WORKSPACE.png",
+      "format": "PNG, 16:9, 1920x1080; flat-vector 2D; no baked-in persons, subtitles, logos or captions",
+      "sceneIds": [
+        "V46-P017"
+      ],
+      "description": "同期の会社内で、左に無地の商品を扱う作業台、右に顧客対応用の端末が置かれたカウンターがある匿名の業務空間。業種や具体的な商品、会社の成長率は断定しない。二人が商品を手渡す通路を確保。",
+      "layerRequirements": [
+        "商品箱と手渡し経路の前景はRemotionでSVG作成"
+      ],
+      "existingCandidates": [
+        "bg-bg-office は日常のデスク勤務向け。梱包から顧客対応への横移動導線が合うか不明。"
+      ],
+      "acceptanceChecks": [
+        "左→右の無地箱の受け渡しが実演できる",
+        "同期のオフィスとの色・家具に一貫性を持たせる"
+      ],
+      "registration": "not_registered",
+      "approval": "not_reviewed",
+      "usage": "required_if_scene_plan_kept"
+    },
+    {
+      "assetId": "BG_V46_RESIDENTIAL_STREET_NIGHT",
+      "category": "background",
+      "delivery": "user_produced_png",
+      "priority": "P1",
+      "title": "主人公の帰路につながる住宅街の夜景",
+      "filePath": "shared/asset-library/背景/BG_V46_RESIDENTIAL_STREET_NIGHT.png",
+      "format": "PNG, 16:9, 1920x1080; flat-vector 2D; no baked-in persons, subtitles, logos or captions",
+      "sceneIds": [
+        "V46-P031",
+        "V46-P032"
+      ],
+      "description": "落ち着いた東京の住宅街。交差点から複数の住宅へ別方向に帰れる道筋と点在する窓。オフィス街から主人公の自室へ自然につながる夜の色味。人物・文字なし。P032は室内の窓越しに同じ街の遠景が見えるレイヤーとして切り出す。",
+      "layerRequirements": [
+        "窓明かり点灯はRemotionの各窓別レイヤーで表現; P032の室内窓には同じ風景を縮小配置"
+      ],
+      "existingCandidates": [
+        "bg-bg-town-night-wide は近未来ネオンで住宅街の意味と合わない。bg-bg-oneroom-night の窓から外が見えるか未確認。"
+      ],
+      "acceptanceChecks": [
+        "複数の帰路と家々が別々に見える",
+        "主人公の自室の窓の向こうへ合成しやすい"
+      ],
+      "registration": "not_registered",
+      "approval": "not_reviewed",
+      "usage": "required_if_scene_plan_kept"
+    }
+  ],
+  "codeProducedNotUserImage": {
+    "assetId": "V46_CHILD_RIG",
+    "category": "character_template",
+    "delivery": "remotion_typescript_component",
+    "priority": "P0",
+    "title": "同期の二人の幼い子供＋別家庭の子供を描き分ける可動2D人物",
+    "filePath": "shared/asset-library/人物テンプレート/v46-child-rig.tsx",
+    "format": "React/TypeScript editable SVG rig; not one flat PNG",
+    "sceneIds": [
+      "V46-P015",
+      "V46-P018",
+      "V46-P021",
+      "V46-P030"
+    ],
+    "description": "体格・顔・髪・服を変えた childA / childB を同一汎用リグの別propsで描画し、P030は別の服・顔の genericChild として区別。写真ポーズ、座位で絵本をめくる、コップを持つ、親の隣を歩く、商品を指さす。既存のフーディー少年少女は服装・体格が子供2人の役に適切か未確認で、縮小流用だけでは必要な年齢差と動作に対応できない。",
+    "registerVia": "人物テンプレート/catalog.json に登録。背景の自動登録ワークフローは人物TSXに適用されない。",
+    "productionOwner": "動画の実装工程でReact/Remotionコード作成。ユーザーが背景PNGだけアップロードする運用では、このTSXを画像アップロードとして依頼しない。",
+    "acceptanceChecks": [
+      "2人の顔・髪・服の差分を継続",
+      "3Dではなく既存人物と同じフラット2D",
+      "手の保持と座位・歩行の関節動作が可能"
+    ],
+    "registration": "not_registered",
+    "approval": "not_reviewed"
+  },
+  "registeredExistingAssets": [
+    {
+      "assetId": "bg-bg-town-night-wide",
+      "filePath": "shared/asset-library/背景/BG_TOWN_NIGHT_WIDE.png",
+      "license": "cleared-commercial",
+      "scenes": [
+        "V46-P001",
+        "V46-P002",
+        "V46-P013",
+        "V46-P014",
+        "V46-P024",
+        "V46-P028",
+        "V46-P031"
+      ],
+      "status": "rejected_mismatch",
+      "note": "Catalog describes futuristic neon city, large billboard portraits and cherry blossoms; not contemporary Friday office district."
+    },
+    {
+      "assetId": "part-auto-c9b46e7fff0c7899",
+      "filePath": "shared/asset-library/パーツ/BAG.png",
+      "license": "cleared-commercial",
+      "scenes": [
+        "V46-P002",
+        "V46-P004",
+        "V46-P012",
+        "V46-P013",
+        "V46-P024"
+      ],
+      "status": "rejected_mismatch",
+      "note": "BAG.png is a pink women's handbag, unsuitable for 35-year-old male office worker's commuter bag. Draw neutral briefcase as Remotion SVG or use showBriefcase in office worker rig."
+    },
+    {
+      "assetId": "bg-bg-subway",
+      "filePath": "shared/asset-library/背景/BG_subway.png",
+      "license": "cleared-commercial",
+      "scenes": [
+        "V46-P003"
+      ],
+      "status": "rejected_for_ground_entrance_pending_visual_check",
+      "note": "Station asset does not establish exterior descending staircase; explicit entrance background planned."
+    },
+    {
+      "assetId": "bg-bg-town",
+      "filePath": "shared/asset-library/背景/BG_town.png",
+      "license": "cleared-commercial",
+      "scenes": [
+        "V46-P004"
+      ],
+      "status": "conditional_day_night_fit",
+      "note": "Time of day must fit scene P004; use new night office street if daytime."
+    },
+    {
+      "assetId": "bg-bg-densha",
+      "filePath": "shared/asset-library/背景/BG_densha.png",
+      "license": "cleared-commercial",
+      "scenes": [
+        "V46-P005"
+      ],
+      "status": "registered_candidate_visual_review_pending",
+      "note": "Catalog records license cleared. Confirm actual view, relative scale, style and aspect during staging."
+    },
+    {
+      "assetId": "bg-bg-office",
+      "filePath": "shared/asset-library/背景/BG_office.png",
+      "license": "cleared-commercial",
+      "scenes": [
+        "V46-P005",
+        "V46-P006",
+        "V46-P024",
+        "V46-P029"
+      ],
+      "status": "registered_candidate_visual_review_pending",
+      "note": "Catalog records license cleared. Confirm actual view, relative scale, style and aspect during staging."
+    },
+    {
+      "assetId": "bg-bg-oneroom-night",
+      "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+      "license": "cleared-commercial",
+      "scenes": [
+        "V46-P007",
+        "V46-P008",
+        "V46-P009",
+        "V46-P010",
+        "V46-P011",
+        "V46-P012",
+        "V46-P021",
+        "V46-P022",
+        "V46-P023",
+        "V46-P025",
+        "V46-P026",
+        "V46-P027",
+        "V46-P029",
+        "V46-P032"
+      ],
+      "status": "registered_candidate_visual_review_pending",
+      "note": "Catalog records license cleared. Confirm actual view, relative scale, style and aspect during staging."
+    },
+    {
+      "assetId": "part-invoice",
+      "filePath": "shared/asset-library/パーツ/invoice.svg",
+      "license": "original-project",
+      "scenes": [
+        "V46-P007",
+        "V46-P027",
+        "V46-P029",
+        "V46-P032"
+      ],
+      "status": "registered_candidate_visual_review_pending",
+      "note": "Catalog records license cleared. Confirm actual view, relative scale, style and aspect during staging."
+    },
+    {
+      "assetId": "part-phone",
+      "filePath": "shared/asset-library/パーツ/phone.svg",
+      "license": "original-project",
+      "scenes": [
+        "V46-P007",
+        "V46-P009",
+        "V46-P013",
+        "V46-P014",
+        "V46-P022",
+        "V46-P023",
+        "V46-P032"
+      ],
+      "status": "registered_candidate_visual_review_pending",
+      "note": "Catalog records license cleared. Confirm actual view, relative scale, style and aspect during staging."
+    },
+    {
+      "assetId": "part-auto-2679868ba4e74a25",
+      "filePath": "shared/asset-library/パーツ/WALLET.png",
+      "license": "cleared-commercial",
+      "scenes": [
+        "V46-P007"
+      ],
+      "status": "registered_candidate_visual_review_pending",
+      "note": "Wallet image has black blurred backdrop in catalog; use only if inspected against desk angle, otherwise draw neutral wallet with React SVG."
+    },
+    {
+      "assetId": "part-clock",
+      "filePath": "shared/asset-library/パーツ/clock.svg",
+      "license": "original-project",
+      "scenes": [
+        "V46-P010",
+        "V46-P019"
+      ],
+      "status": "registered_candidate_visual_review_pending",
+      "note": "Catalog records license cleared. Confirm actual view, relative scale, style and aspect during staging."
+    },
+    {
+      "assetId": "bg-bg-kitchen",
+      "filePath": "shared/asset-library/背景/BG_kitchen.png",
+      "license": "cleared-commercial",
+      "scenes": [
+        "V46-P025"
+      ],
+      "status": "registered_candidate_visual_review_pending",
+      "note": "Catalog records license cleared. Confirm actual view, relative scale, style and aspect during staging."
+    },
+    {
+      "assetId": "bg-bg-supermarket",
+      "filePath": "shared/asset-library/背景/BG_supermarket.png",
+      "license": "cleared-commercial",
+      "scenes": [
+        "V46-P030"
+      ],
+      "status": "registered_candidate_visual_review_pending",
+      "note": "Catalog records license cleared. Confirm actual view, relative scale, style and aspect during staging."
+    }
+  ],
+  "registeredExistingCharacters": [
+    {
+      "id": "character-passerby-crowd",
+      "filePath": "shared/asset-library/人物テンプレート/PASSERBY.tsx",
+      "license": "original-project",
+      "notes": "動作可否・同一性は個別シーン実装で確認"
+    },
+    {
+      "id": "character-modern-male-office-worker",
+      "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+      "license": "original-project",
+      "notes": "主人公/同期で顔・服・髪差分が必要。現行 props は色・ミラー・角度が主で、顔差分は動画実装時に拡張。"
+    },
+    {
+      "id": "character-modern-female-office-worker",
+      "filePath": "shared/asset-library/人物テンプレート/office-woman-rig.tsx",
+      "license": "original-project",
+      "notes": "動作可否・同一性は個別シーン実装で確認"
+    },
+    {
+      "id": "character-parent-father",
+      "filePath": "shared/asset-library/人物テンプレート/PARENT_FATHER.tsx",
+      "license": "original-project",
+      "notes": "動作可否・同一性は個別シーン実装で確認"
+    },
+    {
+      "id": "character-parent-mother",
+      "filePath": "shared/asset-library/人物テンプレート/PARENT_MOTHER.tsx",
+      "license": "original-project",
+      "notes": "動作可否・同一性は個別シーン実装で確認"
+    }
+  ],
+  "provisionalNewAssetReconciliation": [
+    {
+      "originalAssetId": "NEW_GLASS_OFFICE_EXIT",
+      "resolvedTo": [
+        "BG_V46_OFFICE_STREET_NIGHT",
+        "night-office-layers"
+      ],
+      "sceneIds": [
+        "V46-P001",
+        "V46-P002"
+      ],
+      "decision": "consolidated_into_deliverable"
+    },
+    {
+      "originalAssetId": "NEW_SUBWAY_STAIRS_FOREGROUND",
+      "resolvedTo": [
+        "BG_V46_SUBWAY_ENTRANCE",
+        "night-office-layers"
+      ],
+      "sceneIds": [
+        "V46-P003"
+      ],
+      "decision": "consolidated_into_deliverable"
+    },
+    {
+      "originalAssetId": "NEW_UNIVERSITY_GATE",
+      "resolvedTo": [
+        "BG_V46_UNIVERSITY_GATE"
+      ],
+      "sceneIds": [
+        "V46-P004",
+        "V46-P020"
+      ],
+      "decision": "consolidated_into_deliverable"
+    },
+    {
+      "originalAssetId": "NEW_YOUNG_HERO_VARIANT",
+      "resolvedTo": [
+        "identity-and-posing"
+      ],
+      "sceneIds": [
+        "V46-P004"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_CLIENT_MEETING_ROOM",
+      "resolvedTo": [
+        "BG_V46_CLIENT_MEETING_ROOM"
+      ],
+      "sceneIds": [
+        "V46-P005"
+      ],
+      "decision": "consolidated_into_deliverable"
+    },
+    {
+      "originalAssetId": "NEW_WORK_DESK_SCREEN",
+      "resolvedTo": [
+        "paper-budget-and-screen"
+      ],
+      "sceneIds": [
+        "V46-P005",
+        "V46-P006",
+        "V46-P029"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_HOUSEHOLD_LEDGER_UI",
+      "resolvedTo": [
+        "paper-budget-and-screen"
+      ],
+      "sceneIds": [
+        "V46-P007",
+        "V46-P009"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_RENTAL_FLOORPLANS",
+      "resolvedTo": [
+        "paper-budget-and-screen"
+      ],
+      "sceneIds": [
+        "V46-P008",
+        "V46-P027"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_EDUCATION_BUDGET_PAPERS",
+      "resolvedTo": [
+        "paper-budget-and-screen"
+      ],
+      "sceneIds": [
+        "V46-P008"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_THREE_CONDITIONS_PAPERS",
+      "resolvedTo": [
+        "paper-budget-and-screen"
+      ],
+      "sceneIds": [
+        "V46-P010"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_PROGRESSIVE_CONDITION_PAPERS",
+      "resolvedTo": [
+        "paper-budget-and-screen"
+      ],
+      "sceneIds": [
+        "V46-P011"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_NEUTRAL_CALENDAR",
+      "resolvedTo": [
+        "paper-budget-and-screen"
+      ],
+      "sceneIds": [
+        "V46-P012"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_FAMILY_MESSAGE_PHOTO_UI",
+      "resolvedTo": [
+        "phone-photo-and-household-props"
+      ],
+      "sceneIds": [
+        "V46-P014"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_PEER_LIVING_ROOM",
+      "resolvedTo": [
+        "BG_V46_PEER_LIVING_ROOM"
+      ],
+      "sceneIds": [
+        "V46-P015",
+        "V46-P018",
+        "V46-P021"
+      ],
+      "decision": "consolidated_into_deliverable"
+    },
+    {
+      "originalAssetId": "NEW_TWO_CHILD_RIGS",
+      "resolvedTo": [
+        "V46_CHILD_RIG"
+      ],
+      "sceneIds": [
+        "V46-P015",
+        "V46-P018",
+        "V46-P021"
+      ],
+      "decision": "consolidated_into_deliverable"
+    },
+    {
+      "originalAssetId": "NEW_BIRTHDAY_CAKE",
+      "resolvedTo": [
+        "phone-photo-and-household-props"
+      ],
+      "sceneIds": [
+        "V46-P015"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_PHOTO_FRAME",
+      "resolvedTo": [
+        "phone-photo-and-household-props"
+      ],
+      "sceneIds": [
+        "V46-P015"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_CHILD_RIG",
+      "resolvedTo": [
+        "V46_CHILD_RIG"
+      ],
+      "sceneIds": [
+        "V46-P015",
+        "V46-P018",
+        "V46-P021",
+        "V46-P030"
+      ],
+      "decision": "consolidated_into_deliverable"
+    },
+    {
+      "originalAssetId": "NEW_PEER_COMPANY_OFFICE",
+      "resolvedTo": [
+        "BG_V46_PEER_COMPANY_OFFICE"
+      ],
+      "sceneIds": [
+        "V46-P016",
+        "V46-P019"
+      ],
+      "decision": "consolidated_into_deliverable"
+    },
+    {
+      "originalAssetId": "NEW_GENERIC_BUSINESS_BRIEF",
+      "resolvedTo": [
+        "paper-budget-and-screen"
+      ],
+      "sceneIds": [
+        "V46-P016"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_PEER_COMPANY_WORKSPACE",
+      "resolvedTo": [
+        "BG_V46_PEER_COMPANY_WORKSPACE"
+      ],
+      "sceneIds": [
+        "V46-P017"
+      ],
+      "decision": "consolidated_into_deliverable"
+    },
+    {
+      "originalAssetId": "NEW_GENERIC_PRODUCT_AND_COUNTER",
+      "resolvedTo": [
+        "phone-photo-and-household-props"
+      ],
+      "sceneIds": [
+        "V46-P017"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_BOOKS_AND_TABLE",
+      "resolvedTo": [
+        "phone-photo-and-household-props"
+      ],
+      "sceneIds": [
+        "V46-P018"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_HOME_DOOR_FOREGROUND",
+      "resolvedTo": [
+        "split-lighting-and-foreground"
+      ],
+      "sceneIds": [
+        "V46-P018"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_GENERIC_FLOORPLAN",
+      "resolvedTo": [
+        "paper-budget-and-screen"
+      ],
+      "sceneIds": [
+        "V46-P019"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_YOUNG_HERO_PEER_VARIANTS",
+      "resolvedTo": [
+        "identity-and-posing"
+      ],
+      "sceneIds": [
+        "V46-P020"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_MEETING_DOCUMENTS",
+      "resolvedTo": [
+        "paper-budget-and-screen"
+      ],
+      "sceneIds": [
+        "V46-P021",
+        "V46-P022"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_SPLIT_INTERIOR_MASK",
+      "resolvedTo": [
+        "split-lighting-and-foreground"
+      ],
+      "sceneIds": [
+        "V46-P021"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_READING_LAMP_PROP",
+      "resolvedTo": [
+        "phone-photo-and-household-props"
+      ],
+      "sceneIds": [
+        "V46-P023"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_SIMPLE_MEAL_AND_HANGER",
+      "resolvedTo": [
+        "phone-photo-and-household-props"
+      ],
+      "sceneIds": [
+        "V46-P025"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_WORK_SCHEDULE",
+      "resolvedTo": [
+        "paper-budget-and-screen"
+      ],
+      "sceneIds": [
+        "V46-P025",
+        "V46-P027"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_ALTERNATIVE_BUDGET_SCHEDULE",
+      "resolvedTo": [
+        "paper-budget-and-screen"
+      ],
+      "sceneIds": [
+        "V46-P026"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_ALTERNATIVE_WORLD_LIGHTING",
+      "resolvedTo": [
+        "split-lighting-and-foreground"
+      ],
+      "sceneIds": [
+        "V46-P026"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_CITY_CROSSWALK_LAYER",
+      "resolvedTo": [
+        "BG_V46_OFFICE_STREET_NIGHT",
+        "night-office-layers"
+      ],
+      "sceneIds": [
+        "V46-P028"
+      ],
+      "decision": "consolidated_into_deliverable"
+    },
+    {
+      "originalAssetId": "NEW_GENERIC_DAILY_GOODS",
+      "resolvedTo": [
+        "phone-photo-and-household-props"
+      ],
+      "sceneIds": [
+        "V46-P030"
+      ],
+      "decision": "generate_during_video_implementation"
+    },
+    {
+      "originalAssetId": "NEW_RESIDENTIAL_WINDOWS_LAYER",
+      "resolvedTo": [
+        "BG_V46_RESIDENTIAL_STREET_NIGHT",
+        "split-lighting-and-foreground"
+      ],
+      "sceneIds": [
+        "V46-P031",
+        "V46-P032"
+      ],
+      "decision": "consolidated_into_deliverable"
+    }
+  ],
+  "sceneByScene": [
+    {
+      "sceneId": "V46-P001",
+      "sourceLine": 7,
+      "originalBackgroundId": "BG_TOWN_NIGHT_WIDE",
+      "backgroundSelection": "BG_V46_OFFICE_STREET_NIGHT",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "inventoryStatus": "rejected_mismatch"
+        }
+      ],
+      "externalDeliverables": [
+        "BG_V46_OFFICE_STREET_NIGHT"
+      ],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "night-office-layers"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P002",
+      "sourceLine": 7,
+      "originalBackgroundId": "BG_TOWN_NIGHT_WIDE",
+      "backgroundSelection": "BG_V46_OFFICE_STREET_NIGHT",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "inventoryStatus": "rejected_mismatch"
+        },
+        {
+          "assetId": "part-auto-c9b46e7fff0c7899",
+          "inventoryStatus": "rejected_mismatch"
+        }
+      ],
+      "externalDeliverables": [
+        "BG_V46_OFFICE_STREET_NIGHT"
+      ],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "night-office-layers"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P003",
+      "sourceLine": 7,
+      "originalBackgroundId": "BG_subway",
+      "backgroundSelection": "BG_V46_SUBWAY_ENTRANCE",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-subway",
+          "inventoryStatus": "rejected_for_ground_entrance_pending_visual_check"
+        }
+      ],
+      "externalDeliverables": [
+        "BG_V46_SUBWAY_ENTRANCE"
+      ],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "night-office-layers"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P004",
+      "sourceLine": 9,
+      "originalBackgroundId": "BG_town",
+      "backgroundSelection": "BG_V46_OFFICE_STREET_NIGHT",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-town",
+          "inventoryStatus": "conditional_day_night_fit"
+        },
+        {
+          "assetId": "part-auto-c9b46e7fff0c7899",
+          "inventoryStatus": "rejected_mismatch"
+        }
+      ],
+      "externalDeliverables": [
+        "BG_V46_UNIVERSITY_GATE"
+      ],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "identity-and-posing"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P005",
+      "sourceLine": 9,
+      "originalBackgroundId": "BG_densha",
+      "backgroundSelection": "bg-bg-densha + BG_V46_CLIENT_MEETING_ROOM + bg-bg-office",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-densha",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "bg-bg-office",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [
+        "BG_V46_CLIENT_MEETING_ROOM"
+      ],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P006",
+      "sourceLine": 9,
+      "originalBackgroundId": "BG_office",
+      "backgroundSelection": "BG_office",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-office",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P007",
+      "sourceLine": 11,
+      "originalBackgroundId": "BG_oneroom_night",
+      "backgroundSelection": "BG_oneroom_night",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "part-invoice",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "part-phone",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "part-auto-2679868ba4e74a25",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P008",
+      "sourceLine": 11,
+      "originalBackgroundId": "BG_oneroom_night",
+      "backgroundSelection": "BG_oneroom_night",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P009",
+      "sourceLine": 11,
+      "originalBackgroundId": "BG_oneroom_night",
+      "backgroundSelection": "BG_oneroom_night",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "part-phone",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P010",
+      "sourceLine": 13,
+      "originalBackgroundId": "BG_oneroom_night",
+      "backgroundSelection": "BG_oneroom_night",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "part-clock",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P011",
+      "sourceLine": 15,
+      "originalBackgroundId": "BG_oneroom_night",
+      "backgroundSelection": "BG_oneroom_night",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P012",
+      "sourceLine": 15,
+      "originalBackgroundId": "BG_oneroom_night",
+      "backgroundSelection": "BG_oneroom_night",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "part-auto-c9b46e7fff0c7899",
+          "inventoryStatus": "rejected_mismatch"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P013",
+      "sourceLine": 17,
+      "originalBackgroundId": "BG_TOWN_NIGHT_WIDE",
+      "backgroundSelection": "BG_V46_OFFICE_STREET_NIGHT",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "inventoryStatus": "rejected_mismatch"
+        },
+        {
+          "assetId": "part-phone",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "part-auto-c9b46e7fff0c7899",
+          "inventoryStatus": "rejected_mismatch"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P014",
+      "sourceLine": 17,
+      "originalBackgroundId": "BG_TOWN_NIGHT_WIDE",
+      "backgroundSelection": "BG_V46_OFFICE_STREET_NIGHT",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "inventoryStatus": "rejected_mismatch"
+        },
+        {
+          "assetId": "part-phone",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "phone-photo-and-household-props"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P015",
+      "sourceLine": 17,
+      "originalBackgroundId": "NEW_PEER_LIVING_ROOM",
+      "backgroundSelection": "BG_V46_PEER_LIVING_ROOM",
+      "existingCandidates": [],
+      "externalDeliverables": [
+        "BG_V46_PEER_LIVING_ROOM"
+      ],
+      "characterRigRequirement": "V46_CHILD_RIG",
+      "implementationGroups": [
+        "phone-photo-and-household-props"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P016",
+      "sourceLine": 19,
+      "originalBackgroundId": "NEW_PEER_COMPANY_OFFICE",
+      "backgroundSelection": "BG_V46_PEER_COMPANY_OFFICE",
+      "existingCandidates": [],
+      "externalDeliverables": [
+        "BG_V46_PEER_COMPANY_OFFICE"
+      ],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P017",
+      "sourceLine": 19,
+      "originalBackgroundId": "NEW_PEER_COMPANY_WORKSPACE",
+      "backgroundSelection": "BG_V46_PEER_COMPANY_WORKSPACE",
+      "existingCandidates": [],
+      "externalDeliverables": [
+        "BG_V46_PEER_COMPANY_WORKSPACE"
+      ],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "phone-photo-and-household-props"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P018",
+      "sourceLine": 19,
+      "originalBackgroundId": "NEW_PEER_LIVING_ROOM",
+      "backgroundSelection": "BG_V46_PEER_LIVING_ROOM",
+      "existingCandidates": [],
+      "externalDeliverables": [
+        "BG_V46_PEER_LIVING_ROOM"
+      ],
+      "characterRigRequirement": "V46_CHILD_RIG",
+      "implementationGroups": [
+        "phone-photo-and-household-props",
+        "split-lighting-and-foreground"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P019",
+      "sourceLine": 19,
+      "originalBackgroundId": "NEW_PEER_COMPANY_OFFICE",
+      "backgroundSelection": "BG_V46_PEER_COMPANY_OFFICE",
+      "existingCandidates": [
+        {
+          "assetId": "part-clock",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [
+        "BG_V46_PEER_COMPANY_OFFICE"
+      ],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P020",
+      "sourceLine": 21,
+      "originalBackgroundId": "NEW_UNIVERSITY_GATE",
+      "backgroundSelection": "BG_V46_UNIVERSITY_GATE",
+      "existingCandidates": [],
+      "externalDeliverables": [
+        "BG_V46_UNIVERSITY_GATE"
+      ],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "identity-and-posing"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P021",
+      "sourceLine": 21,
+      "originalBackgroundId": "NEW_PEER_LIVING_ROOM",
+      "backgroundSelection": "BG_V46_PEER_LIVING_ROOM + bg-bg-oneroom-night",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [
+        "BG_V46_PEER_LIVING_ROOM"
+      ],
+      "characterRigRequirement": "V46_CHILD_RIG",
+      "implementationGroups": [
+        "paper-budget-and-screen",
+        "split-lighting-and-foreground"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P022",
+      "sourceLine": 23,
+      "originalBackgroundId": "BG_oneroom_night",
+      "backgroundSelection": "BG_oneroom_night",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "part-phone",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P023",
+      "sourceLine": 23,
+      "originalBackgroundId": "BG_oneroom_night",
+      "backgroundSelection": "BG_oneroom_night",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "part-phone",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "phone-photo-and-household-props"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P024",
+      "sourceLine": 25,
+      "originalBackgroundId": "BG_office",
+      "backgroundSelection": "bg-bg-office + BG_V46_OFFICE_STREET_NIGHT",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-office",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "inventoryStatus": "rejected_mismatch"
+        },
+        {
+          "assetId": "part-auto-c9b46e7fff0c7899",
+          "inventoryStatus": "rejected_mismatch"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P025",
+      "sourceLine": 25,
+      "originalBackgroundId": "BG_oneroom_night",
+      "backgroundSelection": "BG_oneroom_night",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "bg-bg-kitchen",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "phone-photo-and-household-props",
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P026",
+      "sourceLine": 27,
+      "originalBackgroundId": "BG_oneroom_night",
+      "backgroundSelection": "BG_oneroom_night",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen",
+        "split-lighting-and-foreground"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P027",
+      "sourceLine": 29,
+      "originalBackgroundId": "BG_oneroom_night",
+      "backgroundSelection": "BG_oneroom_night",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "part-invoice",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P028",
+      "sourceLine": 31,
+      "originalBackgroundId": "BG_TOWN_NIGHT_WIDE",
+      "backgroundSelection": "BG_V46_OFFICE_STREET_NIGHT",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "inventoryStatus": "rejected_mismatch"
+        }
+      ],
+      "externalDeliverables": [
+        "BG_V46_OFFICE_STREET_NIGHT"
+      ],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "night-office-layers"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P029",
+      "sourceLine": 31,
+      "originalBackgroundId": "BG_office",
+      "backgroundSelection": "BG_office",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-office",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "part-invoice",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "paper-budget-and-screen"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P030",
+      "sourceLine": 31,
+      "originalBackgroundId": "BG_supermarket",
+      "backgroundSelection": "BG_supermarket",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-supermarket",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [],
+      "characterRigRequirement": "V46_CHILD_RIG",
+      "implementationGroups": [
+        "phone-photo-and-household-props"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P031",
+      "sourceLine": 33,
+      "originalBackgroundId": "BG_TOWN_NIGHT_WIDE",
+      "backgroundSelection": "BG_V46_RESIDENTIAL_STREET_NIGHT",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "inventoryStatus": "rejected_mismatch"
+        }
+      ],
+      "externalDeliverables": [
+        "BG_V46_RESIDENTIAL_STREET_NIGHT"
+      ],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "split-lighting-and-foreground"
+      ],
+      "requiresVisualValidation": true
+    },
+    {
+      "sceneId": "V46-P032",
+      "sourceLine": 33,
+      "originalBackgroundId": "BG_oneroom_night",
+      "backgroundSelection": "bg-bg-oneroom-night + BG_V46_RESIDENTIAL_STREET_NIGHT through window (subject to actual room geometry)",
+      "existingCandidates": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "part-phone",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        },
+        {
+          "assetId": "part-invoice",
+          "inventoryStatus": "registered_candidate_visual_review_pending"
+        }
+      ],
+      "externalDeliverables": [
+        "BG_V46_RESIDENTIAL_STREET_NIGHT"
+      ],
+      "characterRigRequirement": "registered adult / passerby rigs (check identities and motions)",
+      "implementationGroups": [
+        "split-lighting-and-foreground"
+      ],
+      "requiresVisualValidation": true
+    }
+  ],
+  "implementationOnlyGroups": [
+    {
+      "group": "night-office-layers",
+      "scenes": [
+        1,
+        2,
+        3,
+        28
+      ],
+      "description": "開閉するガラスドア・ビル窓の消灯・前景手すり・横断歩道信号はRemotionで描画し背景に焼き込まない",
+      "sceneIds": [
+        "V46-P001",
+        "V46-P002",
+        "V46-P003",
+        "V46-P028"
+      ],
+      "status": "not_implemented",
+      "owner": "video_implementation_not_user_background_upload"
+    },
+    {
+      "group": "identity-and-posing",
+      "scenes": [
+        4,
+        5,
+        8,
+        15,
+        16,
+        18,
+        20,
+        21,
+        30
+      ],
+      "description": "主人公と同期を別顔・別服で保持。大学時代は服装・髪型変更。父親テンプレートと経営者テンプレートを同一顔にする差分。子供2人と一般の買い物親子は別人。既存rigの座位・手で持つ動作はシーンコードで追加",
+      "sceneIds": [
+        "V46-P004",
+        "V46-P005",
+        "V46-P008",
+        "V46-P015",
+        "V46-P016",
+        "V46-P018",
+        "V46-P020",
+        "V46-P021",
+        "V46-P030"
+      ],
+      "status": "not_implemented",
+      "owner": "video_implementation_not_user_background_upload"
+    },
+    {
+      "group": "paper-budget-and-screen",
+      "scenes": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        16,
+        19,
+        21,
+        22,
+        25,
+        26,
+        27,
+        29,
+        32
+      ],
+      "description": "PC表示、通帳残高、請求書、間取り、教育費、昇給・勤務表、進行条件、カレンダー、会議資料、半額家賃の仮想は同一の編集可能なReact SVG/2D部品から場面別に生成。金額・固有個人情報を創作しない",
+      "sceneIds": [
+        "V46-P005",
+        "V46-P006",
+        "V46-P007",
+        "V46-P008",
+        "V46-P009",
+        "V46-P010",
+        "V46-P011",
+        "V46-P012",
+        "V46-P014",
+        "V46-P016",
+        "V46-P019",
+        "V46-P021",
+        "V46-P022",
+        "V46-P025",
+        "V46-P026",
+        "V46-P027",
+        "V46-P029",
+        "V46-P032"
+      ],
+      "status": "not_implemented",
+      "owner": "video_implementation_not_user_background_upload"
+    },
+    {
+      "group": "phone-photo-and-household-props",
+      "scenes": [
+        13,
+        14,
+        15,
+        18,
+        21,
+        23,
+        25,
+        30
+      ],
+      "description": "同期からの写真メッセージ・誕生日ケーキ・写真のフレーム・絵本・コップ・皿・ハンガー・日用品無地箱・かごは専用Remotionレイヤー。同期一家の写真内は静止ポーズ、ふだんの生活とは区別",
+      "sceneIds": [
+        "V46-P013",
+        "V46-P014",
+        "V46-P015",
+        "V46-P018",
+        "V46-P021",
+        "V46-P023",
+        "V46-P025",
+        "V46-P030"
+      ],
+      "status": "not_implemented",
+      "owner": "video_implementation_not_user_background_upload"
+    },
+    {
+      "group": "split-lighting-and-foreground",
+      "scenes": [
+        18,
+        21,
+        26,
+        31,
+        32
+      ],
+      "description": "入室ドア開閉、既存dual_compareとsplit_worldの合成マスク、仮想の照明、住宅の窓明かり変化はコードで実装",
+      "sceneIds": [
+        "V46-P018",
+        "V46-P021",
+        "V46-P026",
+        "V46-P031",
+        "V46-P032"
+      ],
+      "status": "not_implemented",
+      "owner": "video_implementation_not_user_background_upload"
+    }
+  ],
+  "notes": [
+    "旧シーン設計内の NEW_* は36の個別画像を意味しない。8背景に統合、人物リグはReact TSX 1件、残りはRemotion内部で作成する可変要素・既存素材の配役差分。",
+    "BAG.pngはピンクの女性用ハンドバッグであり主人公の通勤鞄に流用不可。会社員rigにある showBriefcase または専用SVG鞄を使用。",
+    "BG_TOWN_NIGHT_WIDE.pngは近未来都市のネオンと女性大型看板を含むため、現代の自然な金曜夜のオフィス街・住宅街には採用しない。",
+    "BG_subway.png は駅素材だが地上の階段入口の構図は未確認。専用地上入口を優先。",
+    "動画編集で同じ室内が繰り返されても、机上の行動・照明・カメラ・小道具を変え、固定背景を切り替えるためだけの新規画像は不要。",
+    "既存背景の画像そのものの構図確認・権利／色調・背景奥の机の遮蔽の検証は次の登録・ステージング時に実施。",
+    "実際に画像が適合した既存素材が見つかればP1新規制作候補は不要として進捗を更新する。",
+    "各背景への人物・説明文・端末画面・ケーキ等の焼き込みは禁止。映像の動作はRemotion側で合成する。"
+  ],
+  "gate": {
+    "userDeliverableRegistration": "After user creates/commits selected background PNGs, verify catalog registration and actual visual fit; request adjustments for mismatches.",
+    "characterRig": "Implement code and catalog registration during chapter implementation, not by PNG upload",
+    "nextStage": "user_asset_creation_or_confirmation",
+    "renderStarted": false,
+    "voiceStarted": false,
+    "subtitlesStarted": false,
+    "doNotStartChapter1": true
+  }
+}
