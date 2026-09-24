@@ -17,33 +17,59 @@
     "animationTemplateRegistry": "confirmed",
     "productionRules": "confirmed",
     "existingEngine": "Remotion/React/TypeScript + VOICEVOX + GitHub Actions",
-    "v46DedicatedRenderingWorkflow": "not_created",
+    "v46DedicatedRenderingWorkflow": "implemented_and_verified",
     "projectMetadata": "prepared"
   },
-  "overallStatus": "prologue_assets_registered_awaiting_visual_staging_and_scene_implementation",
+  "overallStatus": "prologue_r1_rendered_actions_success_user_review_pending",
   "firstWorkUnit": "prologue",
   "chapters": [
     {
       "id": "prologue",
       "label": "プロローグ",
       "title": "誰も、彼に子供を持つなとは言っていない",
-      "sceneDesign": "completed",
-      "requiredAssets": "inventory_complete_all_requested_registered",
-      "missingAssets": "none_for_user_upload; visual_fit_and_remotion_pose_implementation_pending",
-      "assetRegistration": "8_requested_backgrounds_and_2_child_rigs_registered_in_catalog",
-      "voice": "not_started",
-      "subtitles": "not_started",
-      "video": "not_started",
-      "preview": "not_submitted",
-      "userApproval": "pending",
+      "sceneDesign": "32_scenes_review_r1_visual_corrections_applied",
+      "requiredAssets": "20_distinct_registered_assets_stage_verified",
+      "missingAssets": "none_for_user_upload",
+      "assetRegistration": "20_registered_assets_verified_by_actions",
+      "voice": "prior_review_soundtrack_restored_without_resynthesis",
+      "subtitles": "63_exact_original_cues_restored",
+      "video": "r1_mp4_rendered_1920x1080_30fps_h264_aac",
+      "preview": "github_actions_artifact_ready_for_review",
+      "userApproval": "pending_r1_video_review",
       "locked": false,
       "scenePlanPath": "v46hansyoku/scene-plans/prologue.json",
       "sceneCount": 32,
       "narrationCoverage": "14_of_14_paragraphs_verified_exact",
       "assetInventoryPath": "v46hansyoku/chapters/prologue/required-assets.json",
       "assetStatusPath": "v46hansyoku/chapters/prologue/material-status.json",
-      "imageVisualReview": "pending",
-      "sceneMotionImplementation": "not_started"
+      "imageVisualReview": "32_scene_contact_frames_generated_visual_review_by_user_pending",
+      "sceneMotionImplementation": "32_scenes_implemented_including_7_review_corrections",
+      "revision": {
+        "id": "r1",
+        "affectedSceneIds": [
+          "V46-P007",
+          "V46-P008",
+          "V46-P009",
+          "V46-P026",
+          "V46-P028",
+          "V46-P031",
+          "V46-P032"
+        ],
+        "voicePreserved": true,
+        "subtitlePreserved": true,
+        "newBackground": "BG_ROOM_NIGHT_ON.png",
+        "parallelWorkers": 4,
+        "actionsRunId": 36030111027,
+        "actionsConclusion": "success",
+        "measuredMp4DurationSeconds": 183.125333,
+        "assetCount": 20,
+        "qaFrames": 32,
+        "artifactId": 10822210855,
+        "artifactName": "v46hansyoku-prologue-review-r1-parallel-32-scenes",
+        "githubReviewUrl": "https://github.com/raboapuri-web/knowledge-video-factory/actions/runs/36030111027/artifacts/10822210855",
+        "videoFilename": "out/v46-prologue-review-r1.mp4",
+        "finalVideoUserApproval": false
+      }
     },
     {
       "id": "chapter1",
@@ -121,12 +147,10 @@
       "locked": false
     }
   ],
-  "renderStarted": false,
-  "nextAction": "Prologue only: review actual eight background images for angle/foreground; implement reusable scene motion and child-specific poses using existing boy/girl rigs, then request approval before rendering. No new user uploads required.",
+  "renderStarted": true,
+  "nextAction": "User checks prologue R1 artifact and requests corrections or explicitly approves. Do not start chapter1 before user approval.",
   "warnings": [
     "The supplied display title uses 社会構造, whereas the unchanged script header uses 行動経済学; do not silently edit either.",
-    "Other workflows in this repository contain video number v46 for a different project; use the unique v46hansyoku slug for paths, composition IDs and workflows.",
-    "A dedicated v46hansyoku render pipeline is not yet implemented; existing video workflows are examples, not executable v46hansyoku readiness.",
-    "Spreadsheet ledger sync is recorded by the GitHub manifest, but live spreadsheet contents and a v46 render/QA run have not been checked."
+    "Other workflows in this repository contain video number v46 for a different project; use the unique v46hansyoku slug for paths, composition IDs and workflows."
   ]
 }
