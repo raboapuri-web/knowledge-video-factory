@@ -7,7 +7,7 @@
       "id": "prologue",
       "label": "プロローグ",
       "title": "誰も、彼に子供を持つなとは言っていない",
-      "status": "not_started",
+      "status": "scene_design_completed_awaiting_material_inventory",
       "explicitUserApproval": false,
       "approvedAt": null,
       "approvedCommit": null,
@@ -15,7 +15,8 @@
       "audioLocked": false,
       "subtitlesLocked": false,
       "timingLocked": false,
-      "videoLocked": false
+      "videoLocked": false,
+      "scenePlanPath": "v46hansyoku/scene-plans/prologue.json"
     },
     {
       "id": "chapter1",
