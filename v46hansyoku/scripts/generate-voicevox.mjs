@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {generateVoicevox} from '../../shared/voice/generate-voicevox.mjs';
+const root=path.resolve(import.meta.dirname,'..');
+const plan=JSON.parse(fs.readFileSync(path.join(root,'scene-plans/prologue.json'),'utf8'));
+const script=JSON.parse(fs.readFileSync(path.join(root,'src/script-data.json'),'utf8'));
+if(script.approved!==true||plan.sceneCount!==32||script.beats.length!==32)throw Error('Approved 32-scene source required');
+for(let i=0;i<32;i++)if(plan.scenes[i].sceneId!==script.beats[i].id||plan.scenes[i].narrationText!==script.beats[i].narration||script.beats[i].narration!==script.beats[i].subtitle)throw Error('Narration changed at '+i);
+const result=await generateVoicevox(root,{speaker:'青山龍星',style:'ノーマル',speed:1.13,pitchScale:-0.026,intonationScale:0.86,volumeScale:0.96,prePhonemeLength:0.09,postPhonemeLength:0.11,padDuration:0.18});
+const f=path.join(root,'src/sync-timing.json'),sync=JSON.parse(fs.readFileSync(f,'utf8'));
+if(sync.beats.length!==32||sync.beats.some((x,i)=>x.id!==script.beats[i].id||!(x.end>x.start)))throw Error('Measured VOICEVOX beats missing or unordered');
+sync.status='measured_voicevox_approved_script';sync.approvedNarration=true;sync.sourceBlobSha=script.sourceBlobSha;sync.voice={speaker:'青山龍星',style:'ノーマル',speed:1.13,pitchScale:-0.026,intonationScale:0.86};
+fs.writeFileSync(f,JSON.stringify(sync,null,2)+'\n');
+console.log('32 exact VOICEVOX beats measured: '+result.durationSeconds+' sec');
