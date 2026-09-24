@@ -1,7 +1,7 @@
 {
   "schemaVersion": "v46hansyoku-progress-v1",
   "videoId": "v46",
-  "updatedAt": "2026-09-24",
+  "updatedAt": "2026-09-25",
   "sourceScript": {
     "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
     "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
@@ -20,7 +20,7 @@
     "v46DedicatedRenderingWorkflow": "not_created",
     "projectMetadata": "prepared"
   },
-  "overallStatus": "prologue_missing_assets_identified_awaiting_user_registration",
+  "overallStatus": "prologue_assets_registered_awaiting_visual_staging_and_scene_implementation",
   "firstWorkUnit": "prologue",
   "chapters": [
     {
@@ -28,9 +28,9 @@
       "label": "プロローグ",
       "title": "誰も、彼に子供を持つなとは言っていない",
       "sceneDesign": "completed",
-      "requiredAssets": "inventory_complete",
-      "missingAssets": "8_background_images_including_2_conditional_plus_1_editable_child_rig_to_implement",
-      "assetRegistration": "awaiting_user_background_uploads_and_visual_validation",
+      "requiredAssets": "inventory_complete_all_requested_registered",
+      "missingAssets": "none_for_user_upload; visual_fit_and_remotion_pose_implementation_pending",
+      "assetRegistration": "8_requested_backgrounds_and_2_child_rigs_registered_in_catalog",
       "voice": "not_started",
       "subtitles": "not_started",
       "video": "not_started",
@@ -41,7 +41,9 @@
       "sceneCount": 32,
       "narrationCoverage": "14_of_14_paragraphs_verified_exact",
       "assetInventoryPath": "v46hansyoku/chapters/prologue/required-assets.json",
-      "assetStatusPath": "v46hansyoku/chapters/prologue/material-status.json"
+      "assetStatusPath": "v46hansyoku/chapters/prologue/material-status.json",
+      "imageVisualReview": "pending",
+      "sceneMotionImplementation": "not_started"
     },
     {
       "id": "chapter1",
@@ -120,7 +122,7 @@
     }
   ],
   "renderStarted": false,
-  "nextAction": "User creates or confirms prologue-only 8 candidate background images (P0 6, P1 2 conditional) and uploads to shared/asset-library/背景; verify registration and visual fit. Child rig and dynamic props to be coded during implementation. No voice/subtitles/render until approved.",
+  "nextAction": "Prologue only: review actual eight background images for angle/foreground; implement reusable scene motion and child-specific poses using existing boy/girl rigs, then request approval before rendering. No new user uploads required.",
   "warnings": [
     "The supplied display title uses 社会構造, whereas the unchanged script header uses 行動経済学; do not silently edit either.",
     "Other workflows in this repository contain video number v46 for a different project; use the unique v46hansyoku slug for paths, composition IDs and workflows.",
