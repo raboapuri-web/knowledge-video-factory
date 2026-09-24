@@ -105,20 +105,20 @@ const HoodieGirlRoomPreview=()=>{
     f<60?'idle':f<120?'walk':f<180?'wave':f<240?'point':
     f<300?'sit':f<360?'sitPhone':f<420?'standUp':'walkPhone';
   const actionStartFrame=action==='sit'?240:action==='standUp'?360:0;
-  return <HoodieGirlBackgroundScene backgroundFile='BG_oneroom.png'
+  return <HoodieGirlBackgroundScene backgroundFile='BG_oneroom_night.png'
     girl={{x:1100,y:500,scale:.84,action,actionStartFrame,
       talking:action==='point'||action==='sitPhone'}}/>;
 };
 
 /** Zoomed visual QA of jaw, neck, hood collar and head-tilt join. */
 const HoodieGirlNeckCloseup=()=>(
-  <HoodieGirlBackgroundScene backgroundFile='BG_oneroom.png'
+  <HoodieGirlBackgroundScene backgroundFile='BG_oneroom_night.png'
     girl={{x:635,y:420,scale:2,action:'idle',pose:{headTilt:3}}}/>
 );
 
 /** Larger phone-holding pose to inspect the palm, screen and forearm attachment. */
 const HoodieGirlPhoneCloseup=()=>(
-  <HoodieGirlBackgroundScene backgroundFile='BG_oneroom.png'
+  <HoodieGirlBackgroundScene backgroundFile='BG_oneroom_night.png'
     girl={{x:610,y:290,scale:2.25,action:'sitPhone'}}/>
 );
 
@@ -129,18 +129,18 @@ const HoodieBoyRoomPreview=()=>{
     frame<60?'idle':frame<120?'walk':frame<180?'wave':frame<240?'point':
     frame<300?'sit':frame<360?'sitPhone':frame<420?'standUp':'walkPhone';
   const actionStartFrame=action==='sit'?240:action==='standUp'?360:0;
-  return <HoodieBoyBackgroundScene backgroundFile='BG_oneroom.png'
+  return <HoodieBoyBackgroundScene backgroundFile='BG_oneroom_night.png'
     boy={{x:1100,y:500,scale:.84,action,actionStartFrame,
       talking:action==='point'||action==='sitPhone'}}/>;
 };
 
 /** Enlarged face and the phone grip for quality review. */
 const HoodieBoyFaceCloseup=()=>(
-  <HoodieBoyBackgroundScene backgroundFile='BG_oneroom.png'
+  <HoodieBoyBackgroundScene backgroundFile='BG_oneroom_night.png'
     boy={{x:635,y:420,scale:2,action:'idle',pose:{headTilt:3}}}/>
 );
 const HoodieBoyPhoneCloseup=()=>(
-  <HoodieBoyBackgroundScene backgroundFile='BG_oneroom.png'
+  <HoodieBoyBackgroundScene backgroundFile='BG_oneroom_night.png'
     boy={{x:690,y:110,scale:1.7,action:'sitPhone'}}/>
 );
 
@@ -191,19 +191,19 @@ const RESEARCHER_WOMANFaceCloseup=()=>(
 const ParentFatherRoomPreview=()=>{
   const frame=useCurrentFrame();
   const action:ParentFatherAction=frame<60?'idle':frame<120?'walk':frame<180?'wave':'point';
-  return <ParentFatherBackgroundScene backgroundFile='BG_oneroom.png'
+  return <ParentFatherBackgroundScene backgroundFile='BG_oneroom_night.png'
     parent={{x:1050,y:500,scale:.84,action,talking:action==='point'}}/>;
 };
 const ParentMotherRoomPreview=()=>{
   const frame=useCurrentFrame();
   const action:ParentMotherAction=frame<60?'idle':frame<120?'walk':frame<180?'wave':'point';
-  return <ParentMotherBackgroundScene backgroundFile='BG_oneroom.png'
+  return <ParentMotherBackgroundScene backgroundFile='BG_oneroom_night.png'
     parent={{x:1050,y:500,scale:.84,action,talking:action==='point'}}/>;
 };
 const ParentsTogetherPreview=()=>{
   const frame=useCurrentFrame();
   const action=frame<60?'idle':frame<120?'walk':frame<180?'wave':'point';
-  return <ParentFatherBackgroundScene backgroundFile='BG_oneroom.png'
+  return <ParentFatherBackgroundScene backgroundFile='BG_oneroom_night.png'
     parent={{x:745,y:500,scale:.80,action,talking:action==='point'}}>
       <ParentMotherRigPreviewWrapper action={action}/>
     </ParentFatherBackgroundScene>;

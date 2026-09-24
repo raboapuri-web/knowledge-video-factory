@@ -101,7 +101,7 @@
       "recommendedBackgrounds": [
         "背景/BG_office.png",
         "背景/BG_densha.png",
-        "背景/BG_oneroom.png"
+        "背景/BG_oneroom_night.png"
       ],
       "license": "original-project",
       "knownLimitations": [
@@ -230,7 +230,7 @@
         "coordinateSystem": "1920x1080"
       },
       "recommendedBackgrounds": [
-        "背景/BG_oneroom.png",
+        "背景/BG_oneroom_night.png",
         "背景/BG_town.png",
         "背景/BG_densha.png"
       ],
@@ -363,7 +363,7 @@
         "coordinateSystem": "1920x1080"
       },
       "recommendedBackgrounds": [
-        "背景/BG_oneroom.png",
+        "背景/BG_oneroom_night.png",
         "背景/BG_town.png",
         "背景/BG_densha.png"
       ],
@@ -476,7 +476,7 @@
       "recommendedBackgrounds": [
         "背景/BG_office.png",
         "背景/BG_densha.png",
-        "背景/BG_oneroom.png"
+        "背景/BG_oneroom_night.png"
       ],
       "license": "original-project",
       "knownLimitations": [
@@ -922,7 +922,7 @@
         "coordinateSystem": "1920x1080"
       },
       "recommendedBackgrounds": [
-        "背景/BG_oneroom.png",
+        "背景/BG_oneroom_night.png",
         "背景/BG_town.png",
         "背景/BG_densha.png"
       ],
@@ -1033,7 +1033,7 @@
         "coordinateSystem": "1920x1080"
       },
       "recommendedBackgrounds": [
-        "背景/BG_oneroom.png",
+        "背景/BG_oneroom_night.png",
         "背景/BG_town.png",
         "背景/BG_densha.png"
       ],

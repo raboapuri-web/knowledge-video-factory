@@ -27,7 +27,7 @@ jobs:
         run: |
           node shared/bootstrap/v69-free-services.mjs
           node shared/asset-library/prepare.mjs v69-free-services
-          node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_oneroom.png
+          node shared/asset-library/人物テンプレート/stage-background.mjs v69-free-services BG_oneroom_night.png
           node shared/asset-library/人物テンプレート/test-catalog.mjs
       - name: Install and typecheck Remotion
         working-directory: v69-free-services
