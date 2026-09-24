@@ -1,0 +1,651 @@
+{
+  "version": "v46-prologue-immutable-source-v1",
+  "approved": true,
+  "sourceFile": "../考える夜_繁殖の権利_文学的改稿.txt",
+  "sourceBlobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+  "sourceChapter": "prologue",
+  "approvedSourceStartOffset": 89,
+  "approvedSourceEndOffset": 1353,
+  "beats": [
+    {
+      "id": "V46-P001",
+      "visual": "V46-P001",
+      "narration": "金曜日の夜、東京のオフィス街は、巨大な生き物が一日の呼吸を終えるように、ゆっくりと明かりを落としていく。",
+      "subtitle": "金曜日の夜、東京のオフィス街は、巨大な生き物が一日の呼吸を終えるように、ゆっくりと明かりを落としていく。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 1,
+        "lineStart": 7,
+        "lineEnd": 7,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 89,
+        "endOffsetExclusiveUTF16": 141,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 53
+      }
+    },
+    {
+      "id": "V46-P002",
+      "visual": "V46-P002",
+      "narration": "ガラス張りのビルから吐き出された人々が、同じ方角へ流れていく。",
+      "subtitle": "ガラス張りのビルから吐き出された人々が、同じ方角へ流れていく。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 1,
+        "lineStart": 7,
+        "lineEnd": 7,
+        "sentenceStart": 2,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 141,
+        "endOffsetExclusiveUTF16": 172,
+        "columnStart1Based": 53,
+        "columnEndExclusive1Based": 84
+      }
+    },
+    {
+      "id": "V46-P003",
+      "visual": "V46-P003",
+      "narration": "地下鉄の入口は、その流れを黙々と飲み込んでいた。",
+      "subtitle": "地下鉄の入口は、その流れを黙々と飲み込んでいた。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 1,
+        "lineStart": 7,
+        "lineEnd": 7,
+        "sentenceStart": 3,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 172,
+        "endOffsetExclusiveUTF16": 196,
+        "columnStart1Based": 84,
+        "columnEndExclusive1Based": 108
+      }
+    },
+    {
+      "id": "V46-P004",
+      "visual": "V46-P004",
+      "narration": "その群れの中に、三十五歳の男がいる。大学を出て十三年、彼は同じ会社に勤めてきた。",
+      "subtitle": "その群れの中に、三十五歳の男がいる。大学を出て十三年、彼は同じ会社に勤めてきた。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 2,
+        "lineStart": 9,
+        "lineEnd": 9,
+        "sentenceStart": 1,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 198,
+        "endOffsetExclusiveUTF16": 238,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 41
+      }
+    },
+    {
+      "id": "V46-P005",
+      "visual": "V46-P005",
+      "narration": "朝は決まった時刻の電車に乗り、取引先の機嫌を読み、後輩の仕事を引き受け、夕方には数字の並んだ画面と向き合う。",
+      "subtitle": "朝は決まった時刻の電車に乗り、取引先の機嫌を読み、後輩の仕事を引き受け、夕方には数字の並んだ画面と向き合う。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 2,
+        "lineStart": 9,
+        "lineEnd": 9,
+        "sentenceStart": 3,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 238,
+        "endOffsetExclusiveUTF16": 292,
+        "columnStart1Based": 41,
+        "columnEndExclusive1Based": 95
+      }
+    },
+    {
+      "id": "V46-P006",
+      "visual": "V46-P006",
+      "narration": "会社の売上の一部は、間違いなく彼の時間によって作られている。",
+      "subtitle": "会社の売上の一部は、間違いなく彼の時間によって作られている。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 2,
+        "lineStart": 9,
+        "lineEnd": 9,
+        "sentenceStart": 4,
+        "sentenceEnd": 4,
+        "startOffsetUTF16": 292,
+        "endOffsetExclusiveUTF16": 322,
+        "columnStart1Based": 95,
+        "columnEndExclusive1Based": 125
+      }
+    },
+    {
+      "id": "V46-P007",
+      "visual": "V46-P007",
+      "narration": "暮らしに困窮しているわけではない。けれど家賃を払い、食費を払い、老後のために幾らかを残すと、通帳の数字は思ったほど増えない。",
+      "subtitle": "暮らしに困窮しているわけではない。けれど家賃を払い、食費を払い、老後のために幾らかを残すと、通帳の数字は思ったほど増えない。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 3,
+        "lineStart": 11,
+        "lineEnd": 11,
+        "sentenceStart": 1,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 324,
+        "endOffsetExclusiveUTF16": 386,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 63
+      }
+    },
+    {
+      "id": "V46-P008",
+      "visual": "V46-P008",
+      "narration": "結婚するならもう少し広い部屋が要るだろう。子供が生まれれば、教育費もかかる。二人で働き続けられるとは限らない。",
+      "subtitle": "結婚するならもう少し広い部屋が要るだろう。子供が生まれれば、教育費もかかる。二人で働き続けられるとは限らない。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 3,
+        "lineStart": 11,
+        "lineEnd": 11,
+        "sentenceStart": 3,
+        "sentenceEnd": 5,
+        "startOffsetUTF16": 386,
+        "endOffsetExclusiveUTF16": 441,
+        "columnStart1Based": 63,
+        "columnEndExclusive1Based": 118
+      }
+    },
+    {
+      "id": "V46-P009",
+      "visual": "V46-P009",
+      "narration": "そんな計算を、彼はいつからか、恋愛の前にするようになっていた。",
+      "subtitle": "そんな計算を、彼はいつからか、恋愛の前にするようになっていた。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 3,
+        "lineStart": 11,
+        "lineEnd": 11,
+        "sentenceStart": 6,
+        "sentenceEnd": 6,
+        "startOffsetUTF16": 441,
+        "endOffsetExclusiveUTF16": 472,
+        "columnStart1Based": 118,
+        "columnEndExclusive1Based": 149
+      }
+    },
+    {
+      "id": "V46-P010",
+      "visual": "V46-P010",
+      "narration": "もう少し給料が上がったら。仕事が落ち着いたら。生活の見通しが立ったら。",
+      "subtitle": "もう少し給料が上がったら。仕事が落ち着いたら。生活の見通しが立ったら。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 4,
+        "lineStart": 13,
+        "lineEnd": 13,
+        "sentenceStart": 1,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 474,
+        "endOffsetExclusiveUTF16": 509,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 36
+      }
+    },
+    {
+      "id": "V46-P011",
+      "visual": "V46-P011",
+      "narration": "それらは、どれも慎重で、責任ある判断に思えた。ただ、条件が一つ満たされるたびに、次の条件が姿を現した。",
+      "subtitle": "それらは、どれも慎重で、責任ある判断に思えた。ただ、条件が一つ満たされるたびに、次の条件が姿を現した。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 5,
+        "lineStart": 15,
+        "lineEnd": 15,
+        "sentenceStart": 1,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 511,
+        "endOffsetExclusiveUTF16": 562,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 52
+      }
+    },
+    {
+      "id": "V46-P012",
+      "visual": "V46-P012",
+      "narration": "気がつけば、三十五歳になっていた。",
+      "subtitle": "気がつけば、三十五歳になっていた。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 5,
+        "lineStart": 15,
+        "lineEnd": 15,
+        "sentenceStart": 3,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 562,
+        "endOffsetExclusiveUTF16": 579,
+        "columnStart1Based": 52,
+        "columnEndExclusive1Based": 69
+      }
+    },
+    {
+      "id": "V46-P013",
+      "visual": "V46-P013",
+      "narration": "帰り道、スマートフォンが震える。",
+      "subtitle": "帰り道、スマートフォンが震える。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 6,
+        "lineStart": 17,
+        "lineEnd": 17,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 581,
+        "endOffsetExclusiveUTF16": 597,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 17
+      }
+    },
+    {
+      "id": "V46-P014",
+      "visual": "V46-P014",
+      "narration": "彼のスマートフォンには、大学の同期から送られてきた写真が表示されている。",
+      "subtitle": "彼のスマートフォンには、大学の同期から送られてきた写真が表示されている。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 6,
+        "lineStart": 17,
+        "lineEnd": 17,
+        "sentenceStart": 2,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 597,
+        "endOffsetExclusiveUTF16": 633,
+        "columnStart1Based": 17,
+        "columnEndExclusive1Based": 53
+      }
+    },
+    {
+      "id": "V46-P015",
+      "visual": "V46-P015",
+      "narration": "広いリビングの中央で、妻と二人の子供に囲まれた男が、誕生日のケーキを前に笑っていた。",
+      "subtitle": "広いリビングの中央で、妻と二人の子供に囲まれた男が、誕生日のケーキを前に笑っていた。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 6,
+        "lineStart": 17,
+        "lineEnd": 17,
+        "sentenceStart": 3,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 633,
+        "endOffsetExclusiveUTF16": 675,
+        "columnStart1Based": 53,
+        "columnEndExclusive1Based": 95
+      }
+    },
+    {
+      "id": "V46-P016",
+      "visual": "V46-P016",
+      "narration": "その同期は卒業後に起業し、今では別の会社を経営している。",
+      "subtitle": "その同期は卒業後に起業し、今では別の会社を経営している。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 7,
+        "lineStart": 19,
+        "lineEnd": 19,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 677,
+        "endOffsetExclusiveUTF16": 705,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 29
+      }
+    },
+    {
+      "id": "V46-P017",
+      "visual": "V46-P017",
+      "narration": "彼の会社でも多くの従業員が働き、商品を作り、顧客に応え、利益を生み出している。",
+      "subtitle": "彼の会社でも多くの従業員が働き、商品を作り、顧客に応え、利益を生み出している。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 7,
+        "lineStart": 19,
+        "lineEnd": 19,
+        "sentenceStart": 2,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 705,
+        "endOffsetExclusiveUTF16": 744,
+        "columnStart1Based": 29,
+        "columnEndExclusive1Based": 68
+      }
+    },
+    {
+      "id": "V46-P018",
+      "visual": "V46-P018",
+      "narration": "その仕事に支えられた事業の成功は、経営者の家族に、広い住まいと、子供たちのためのさまざまな選択肢を与えている。",
+      "subtitle": "その仕事に支えられた事業の成功は、経営者の家族に、広い住まいと、子供たちのためのさまざまな選択肢を与えている。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 7,
+        "lineStart": 19,
+        "lineEnd": 19,
+        "sentenceStart": 3,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 744,
+        "endOffsetExclusiveUTF16": 799,
+        "columnStart1Based": 68,
+        "columnEndExclusive1Based": 123
+      }
+    },
+    {
+      "id": "V46-P019",
+      "visual": "V46-P019",
+      "narration": "一方、そこで働く人々の中には、自分の家庭を築くための時間や余裕を、まだ手にできずにいる者もいるだろう。",
+      "subtitle": "一方、そこで働く人々の中には、自分の家庭を築くための時間や余裕を、まだ手にできずにいる者もいるだろう。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 7,
+        "lineStart": 19,
+        "lineEnd": 19,
+        "sentenceStart": 4,
+        "sentenceEnd": 4,
+        "startOffsetUTF16": 799,
+        "endOffsetExclusiveUTF16": 850,
+        "columnStart1Based": 123,
+        "columnEndExclusive1Based": 174
+      }
+    },
+    {
+      "id": "V46-P020",
+      "visual": "V46-P020",
+      "narration": "十三年前、二人は同じ大学の門をくぐって社会へ出た。",
+      "subtitle": "十三年前、二人は同じ大学の門をくぐって社会へ出た。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 8,
+        "lineStart": 21,
+        "lineEnd": 21,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 852,
+        "endOffsetExclusiveUTF16": 877,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 26
+      }
+    },
+    {
+      "id": "V46-P021",
+      "visual": "V46-P021",
+      "narration": "一方の食卓には子供の声があり、もう一方の部屋には、明日の会議の資料が置かれている。",
+      "subtitle": "一方の食卓には子供の声があり、もう一方の部屋には、明日の会議の資料が置かれている。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 8,
+        "lineStart": 21,
+        "lineEnd": 21,
+        "sentenceStart": 2,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 877,
+        "endOffsetExclusiveUTF16": 918,
+        "columnStart1Based": 26,
+        "columnEndExclusive1Based": 67
+      }
+    },
+    {
+      "id": "V46-P022",
+      "visual": "V46-P022",
+      "narration": "ここで、こんな声が聞こえてくるかもしれない。",
+      "subtitle": "ここで、こんな声が聞こえてくるかもしれない。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 9,
+        "lineStart": 23,
+        "lineEnd": 23,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 920,
+        "endOffsetExclusiveUTF16": 942,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 23
+      }
+    },
+    {
+      "id": "V46-P023",
+      "visual": "V46-P023",
+      "narration": "彼は子供を諦めたのではない。自分の意思で、子供を持たない人生を選んだのだ、と。",
+      "subtitle": "彼は子供を諦めたのではない。自分の意思で、子供を持たない人生を選んだのだ、と。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 9,
+        "lineStart": 23,
+        "lineEnd": 23,
+        "sentenceStart": 2,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 942,
+        "endOffsetExclusiveUTF16": 981,
+        "columnStart1Based": 23,
+        "columnEndExclusive1Based": 62
+      }
+    },
+    {
+      "id": "V46-P024",
+      "visual": "V46-P024",
+      "narration": "その通りである。誰も彼に結婚を禁じていない。会社も、法律も、彼の繁殖を命令によって止めてはいない。",
+      "subtitle": "その通りである。誰も彼に結婚を禁じていない。会社も、法律も、彼の繁殖を命令によって止めてはいない。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 10,
+        "lineStart": 25,
+        "lineEnd": 25,
+        "sentenceStart": 1,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 983,
+        "endOffsetExclusiveUTF16": 1032,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 50
+      }
+    },
+    {
+      "id": "V46-P025",
+      "visual": "V46-P025",
+      "narration": "彼は自分で働き、自分で暮らし、自分で人生を選んでいる。",
+      "subtitle": "彼は自分で働き、自分で暮らし、自分で人生を選んでいる。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 10,
+        "lineStart": 25,
+        "lineEnd": 25,
+        "sentenceStart": 4,
+        "sentenceEnd": 4,
+        "startOffsetUTF16": 1032,
+        "endOffsetExclusiveUTF16": 1059,
+        "columnStart1Based": 50,
+        "columnEndExclusive1Based": 77
+      }
+    },
+    {
+      "id": "V46-P026",
+      "visual": "V46-P026",
+      "narration": "だが、もし彼の家賃が今の半分で、夕方には仕事を終えられ、子供の教育費に怯えずに済む世界があったなら、その世界でも、彼は同じ選択をしただろうか。",
+      "subtitle": "だが、もし彼の家賃が今の半分で、夕方には仕事を終えられ、子供の教育費に怯えずに済む世界があったなら、その世界でも、彼は同じ選択をしただろうか。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 11,
+        "lineStart": 27,
+        "lineEnd": 27,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 1061,
+        "endOffsetExclusiveUTF16": 1132,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 72
+      }
+    },
+    {
+      "id": "V46-P027",
+      "visual": "V46-P027",
+      "narration": "自分で選んだことと、その選択が社会によって形作られていることは、果たして矛盾するのだろうか。",
+      "subtitle": "自分で選んだことと、その選択が社会によって形作られていることは、果たして矛盾するのだろうか。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 12,
+        "lineStart": 29,
+        "lineEnd": 29,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 1134,
+        "endOffsetExclusiveUTF16": 1180,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 47
+      }
+    },
+    {
+      "id": "V46-P028",
+      "visual": "V46-P028",
+      "narration": "我々は誰からも繁殖を禁じられていない。",
+      "subtitle": "我々は誰からも繁殖を禁じられていない。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 13,
+        "lineStart": 31,
+        "lineEnd": 31,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 1182,
+        "endOffsetExclusiveUTF16": 1201,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 20
+      }
+    },
+    {
+      "id": "V46-P029",
+      "visual": "V46-P029",
+      "narration": "それでも、社会を動かすために働き、暮らしを守ろうとするうちに、子供を持たない人生を選ぶ者がいる。",
+      "subtitle": "それでも、社会を動かすために働き、暮らしを守ろうとするうちに、子供を持たない人生を選ぶ者がいる。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 13,
+        "lineStart": 31,
+        "lineEnd": 31,
+        "sentenceStart": 2,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 1201,
+        "endOffsetExclusiveUTF16": 1249,
+        "columnStart1Based": 20,
+        "columnEndExclusive1Based": 68
+      }
+    },
+    {
+      "id": "V46-P030",
+      "visual": "V46-P030",
+      "narration": "その者たちの仕事は、どこかで子供を育てる家庭の生活を支えている。",
+      "subtitle": "その者たちの仕事は、どこかで子供を育てる家庭の生活を支えている。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 13,
+        "lineStart": 31,
+        "lineEnd": 31,
+        "sentenceStart": 3,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 1249,
+        "endOffsetExclusiveUTF16": 1281,
+        "columnStart1Based": 68,
+        "columnEndExclusive1Based": 100
+      }
+    },
+    {
+      "id": "V46-P031",
+      "visual": "V46-P031",
+      "narration": "誰も命じていないのに、繁殖する者と、繁殖せずに社会を支える者が分かれていく。",
+      "subtitle": "誰も命じていないのに、繁殖する者と、繁殖せずに社会を支える者が分かれていく。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 14,
+        "lineStart": 33,
+        "lineEnd": 33,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 1283,
+        "endOffsetExclusiveUTF16": 1321,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 39
+      }
+    },
+    {
+      "id": "V46-P032",
+      "visual": "V46-P032",
+      "narration": "もしそうだとすれば、我々を分けているものは、一体何なのだろうか。",
+      "subtitle": "もしそうだとすれば、我々を分けているものは、一体何なのだろうか。",
+      "sourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 14,
+        "lineStart": 33,
+        "lineEnd": 33,
+        "sentenceStart": 2,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 1321,
+        "endOffsetExclusiveUTF16": 1353,
+        "columnStart1Based": 39,
+        "columnEndExclusive1Based": 71
+      }
+    }
+  ]
+}
