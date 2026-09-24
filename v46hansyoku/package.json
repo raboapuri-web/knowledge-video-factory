@@ -9,7 +9,8 @@
     "check": "tsc --noEmit",
     "voice:prologue": "node scripts/generate-voicevox.mjs",
     "subtitles": "node scripts/build-subtitles.mjs",
-    "render:prologue": "remotion render src/index.tsx V46HansyokuPrologue out/v46-prologue.mp4 --codec=h264 --crf=18 --concurrency=2"
+    "render:prologue": "remotion render src/index.tsx V46HansyokuPrologue out/v46-prologue.mp4 --codec=h264 --crf=18 --concurrency=4",
+    "render:revised": "remotion render src/index.tsx V46HansyokuPrologue out/v46-prologue-review-r1.mp4 --codec=h264 --crf=18 --concurrency=4"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
