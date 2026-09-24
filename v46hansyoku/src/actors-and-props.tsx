@@ -27,7 +27,7 @@ export const Actor=({kind,x,y,scale=.58,motion='idle',pose={},mirror=false,varia
    case 'mother':return <ParentMotherRig x={x} y={y} scale={scale} action={motion==='walk'?'walk':'idle'} pose={breathing} topColor={variant?"#596d8c":"#9a766b"} hairColor={variant?"#353f52":"#453340"} mirror={mirror}/>;
    case 'boy':return <V46_CHILD_RIG_BOY x={x} y={y} scale={scale} action={motion==='run'?'run':'front'} pose={breathing} topColor={variant?"#88aa64":"#5a9ec2"} mirror={mirror}/>;
    case 'girl':return <V46_CHILD_RIG_GIRL x={x} y={y} scale={scale} action={motion==='run'?'run':'front'} pose={breathing} mirror={mirror}/>;
-   case 'crowd':return <PASSERBY x={x} y={y} scale={scale} action={motion==='walk'?'walk':'idle'} mirror={mirror} pose={breathing}/>;
+   case 'crowd':return <PASSERBY x={x} y={y} scale={scale} action={motion==='walk'?'walk':'idle'} mirror={mirror}/>;
   }
 };
 export const Surface=({x,y,w,h,children,bg='rgba(12,17,23,.91)',border='1px solid rgba(255,255,255,.22)',radius=7,opacity=1,rotate=0,style={}}:{x:number;y:number;w:number;h:number;children?:React.ReactNode;bg?:string;border?:string;radius?:number;opacity?:number;rotate?:number;style?:React.CSSProperties})=><div style={{position:'absolute',left:x,top:y,width:w,height:h,background:bg,border,borderRadius:radius,opacity,transform:`rotate(${rotate}deg)`,boxSizing:'border-box',overflow:'hidden',...style}}>{children}</div>;
