@@ -1,0 +1,3584 @@
+{
+  "schemaVersion": "v46-scene-plan-v1",
+  "videoId": "v46",
+  "projectSlug": "v46hansyoku",
+  "chapterId": "prologue",
+  "chapterTitle": "誰も、彼に子供を持つなとは言っていない",
+  "status": "scene_design_completed_awaiting_asset_inventory",
+  "source": {
+    "repository": "raboapuri-web/knowledge-video-factory",
+    "branch": "main",
+    "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+    "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+    "chapterHeadingLine": 5,
+    "bodyFirstLine": 7,
+    "bodyLastLine": 33,
+    "bodyStartOffsetUTF16": 89,
+    "bodyEndOffsetExclusiveUTF16": 1353,
+    "headingExcludedFromVoice": true,
+    "paragraphSeparator": "\\n\\n",
+    "narrationPolicy": "各sceneのnarrationTextは原稿の引用部分であり改変不可。段落内の結合・段落間の元の改行2個を挿入して完全原文に一致させる。"
+  },
+  "storyContext": {
+    "wholeVideo": "人間が子を持たない選択をする社会的条件を問い、後の章で経済・社会的比較・生態学・進化学を接続する。プロローグは人間の会社員から開始し、動物の説明を先取りしない。",
+    "previousChapter": "なし",
+    "nextChapter": "第1章｜子供を育てるために、子供を持たない（冒頭は給料・家賃・教育費）。この章の設計は実施しない。",
+    "identity": "主人公は35歳・勤続13年の会社員。大学同期は別会社を経営する別人物。同期から届く妻と子2人の写真は静止画。主人公の将来の家族は確定した現実として描かない。"
+  },
+  "engine": {
+    "render": "Remotion / React / TypeScript 2D",
+    "sourceOfTiming": "VOICEVOXの実測尺。推定秒数はシーン割用で最終時刻ではない。",
+    "subtitles": "narrationText原文のまま独立レイヤー。"
+  },
+  "sceneCount": 32,
+  "estimatedDurationSeconds": 228.9,
+  "scenes": [
+    {
+      "sceneId": "V46-P001",
+      "chapterId": "prologue",
+      "narrationText": "金曜日の夜、東京のオフィス街は、巨大な生き物が一日の呼吸を終えるように、ゆっくりと明かりを落としていく。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 1,
+        "lineStart": 7,
+        "lineEnd": 7,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 89,
+        "endOffsetExclusiveUTF16": 141,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 53
+      },
+      "visualDescription": "金曜夜の東京オフィス街。ガラスビルの窓が上層から徐々に消灯し、退勤する人影が出口に集まる。",
+      "backgroundId": "BG_TOWN_NIGHT_WIDE",
+      "characters": [
+        {
+          "id": "crowd",
+          "templateId": "character-passerby-crowd",
+          "identity": "通勤する匿名の人々。群衆の服装・顔は場面ごとに差分",
+          "position": "歩道中景",
+          "facing": "画面奥の地下鉄",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "通行人はガラス扉へ向かい順に通り抜け、駅の方へ進む。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "NEW_GLASS_OFFICE_EXIT",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "窓群（上→下に減光）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "ビル出口ドア（人の通過ごとに開閉）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "高所広角から歩道高さへ下降し、出口と駅方向の導線を確保。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。通行人はガラス扉へ向かい順に通り抜け、駅の方へ進む。",
+        "transitionOut": "ビル出口に集まる人波の方向を維持して次場面へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 9.4,
+      "previousSceneContinuity": "金曜夜の街並みから開始。",
+      "nextSceneContinuity": "次シーン V46-P002：ビル出口に集まる人波の方向を維持して次場面へ。",
+      "id": "V46-P001",
+      "summary": "金曜夜の東京オフィス街。ガラスビルの窓が上層から徐々に消灯し、退勤する人影が出口に集まる。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "金曜夜の東京オフィス街。ガラスビルの窓が上層から徐々に消灯し、退勤する人影が出口に集まる。",
+      "estimatedSeconds": 9.4
+    },
+    {
+      "sceneId": "V46-P002",
+      "chapterId": "prologue",
+      "narrationText": "ガラス張りのビルから吐き出された人々が、同じ方角へ流れていく。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 1,
+        "lineStart": 7,
+        "lineEnd": 7,
+        "sentenceStart": 2,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 141,
+        "endOffsetExclusiveUTF16": 172,
+        "columnStart1Based": 53,
+        "columnEndExclusive1Based": 84
+      },
+      "visualDescription": "ビルのガラスドアから人々が同じ向きに歩き出し、主人公もまだ目立たず群れの一人として出てくる。",
+      "backgroundId": "BG_TOWN_NIGHT_WIDE",
+      "characters": [
+        {
+          "id": "crowd",
+          "templateId": "character-passerby-crowd",
+          "identity": "通勤する匿名の人々。群衆の服装・顔は場面ごとに差分",
+          "position": "前景から奥",
+          "facing": "地下鉄方向",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "群衆中央",
+          "facing": "地下鉄方向",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "通行人が順にドアを通過。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        },
+        {
+          "order": 2,
+          "action": "主人公は鞄を左手に持ち、人の間を縫って右奥へ歩く。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "NEW_GLASS_OFFICE_EXIT",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "part-auto-c9b46e7fff0c7899",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "ガラス自動ドア（左右に開閉）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "鞄（腕と同期して揺れる）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "出口の斜め前から腰の高さで横追従。前後の人で主人公を一度遮蔽。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。通行人が順にドアを通過。主人公は鞄を左手に持ち、人の間を縫って右奥へ歩く。",
+        "transitionOut": "歩く方向を右奥に保って地下鉄階段へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 5.9,
+      "previousSceneContinuity": "前シーン V46-P001 の遷移：ビル出口に集まる人波の方向を維持して次場面へ。",
+      "nextSceneContinuity": "次シーン V46-P003：歩く方向を右奥に保って地下鉄階段へ。",
+      "id": "V46-P002",
+      "summary": "ビルのガラスドアから人々が同じ向きに歩き出し、主人公もまだ目立たず群れの一人として出てくる。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "ビルのガラスドアから人々が同じ向きに歩き出し、主人公もまだ目立たず群れの一人として出てくる。",
+      "estimatedSeconds": 5.9
+    },
+    {
+      "sceneId": "V46-P003",
+      "chapterId": "prologue",
+      "narrationText": "地下鉄の入口は、その流れを黙々と飲み込んでいた。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 1,
+        "lineStart": 7,
+        "lineEnd": 7,
+        "sentenceStart": 3,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 172,
+        "endOffsetExclusiveUTF16": 196,
+        "columnStart1Based": 84,
+        "columnEndExclusive1Based": 108
+      },
+      "visualDescription": "地下鉄入口へ歩行者が途切れず入り、階段を下って暗い構内へ消えていく。主人公は人の最後尾近く。",
+      "backgroundId": "BG_subway",
+      "characters": [
+        {
+          "id": "crowd",
+          "templateId": "character-passerby-crowd",
+          "identity": "通勤する匿名の人々。群衆の服装・顔は場面ごとに差分",
+          "position": "階段手前から奥",
+          "facing": "下り方向",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "画面右手前",
+          "facing": "地下鉄入口",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "通行人が手すり間を通って段を下り、主人公は一歩止まり再び列に続く。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-subway",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "NEW_SUBWAY_STAIRS_FOREGROUND",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "手すり（人物を前後で遮蔽）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "階段（足を段に接地して下る）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "斜め上から階段の奥へ向け、主人公の鞄と後頭部を追う。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。通行人が手すり間を通って段を下り、主人公は一歩止まり再び列に続く。",
+        "transitionOut": "同じ鞄を目印に主人公の横顔へ切り替える。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.7,
+      "previousSceneContinuity": "前シーン V46-P002 の遷移：歩く方向を右奥に保って地下鉄階段へ。",
+      "nextSceneContinuity": "次シーン V46-P004：同じ鞄を目印に主人公の横顔へ切り替える。",
+      "id": "V46-P003",
+      "summary": "地下鉄入口へ歩行者が途切れず入り、階段を下って暗い構内へ消えていく。主人公は人の最後尾近く。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "地下鉄入口へ歩行者が途切れず入り、階段を下って暗い構内へ消えていく。主人公は人の最後尾近く。",
+      "estimatedSeconds": 4.7
+    },
+    {
+      "sceneId": "V46-P004",
+      "chapterId": "prologue",
+      "narrationText": "その群れの中に、三十五歳の男がいる。大学を出て十三年、彼は同じ会社に勤めてきた。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 2,
+        "lineStart": 9,
+        "lineEnd": 9,
+        "sentenceStart": 1,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 198,
+        "endOffsetExclusiveUTF16": 238,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 41
+      },
+      "visualDescription": "群衆の中で街灯の下に入った主人公の顔が初めて分かる。大学を出た13年前の短い回想は、同じ顔の若い姿で大学門を通る動作に限定。",
+      "backgroundId": "BG_town",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "画面中央",
+          "facing": "歩行方向右",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "crowd",
+          "templateId": "character-passerby-crowd",
+          "identity": "通勤する匿名の人々。群衆の服装・顔は場面ごとに差分",
+          "position": "前後景",
+          "facing": "駅方向",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公が歩きながら鞄を握り直し顔を上げる。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        },
+        {
+          "order": 2,
+          "action": "回想では若い主人公が門を抜ける。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        },
+        {
+          "order": 3,
+          "action": "通行人は途切れず歩く。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "NEW_UNIVERSITY_GATE",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_YOUNG_HERO_VARIANT",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "part-auto-c9b46e7fff0c7899",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "街灯（顔を照らす）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "鞄（握り直し）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "大学門（過去の場面の仕切り）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "現在の横顔アップ→過去の大学門の全身→同じ歩行方向で現代へ戻る。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が歩きながら鞄を握り直し顔を上げる。回想では若い主人公が門を抜ける。通行人は途切れず歩く。",
+        "transitionOut": "大学門の縦柱を朝の通勤電車ドア枠へマッチカット。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.4,
+      "previousSceneContinuity": "前シーン V46-P003 の遷移：同じ鞄を目印に主人公の横顔へ切り替える。",
+      "nextSceneContinuity": "次シーン V46-P005：大学門の縦柱を朝の通勤電車ドア枠へマッチカット。",
+      "id": "V46-P004",
+      "summary": "群衆の中で街灯の下に入った主人公の顔が初めて分かる。大学を出た13年前の短い回想は、同じ顔の若い姿で大学門を通る動作に限定。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "群衆の中で街灯の下に入った主人公の顔が初めて分かる。大学を出た13年前の短い回想は、同じ顔の若い姿で大学門を通る動作に限定。",
+      "estimatedSeconds": 7.4
+    },
+    {
+      "sceneId": "V46-P005",
+      "chapterId": "prologue",
+      "narrationText": "朝は決まった時刻の電車に乗り、取引先の機嫌を読み、後輩の仕事を引き受け、夕方には数字の並んだ画面と向き合う。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 2,
+        "lineStart": 9,
+        "lineEnd": 9,
+        "sentenceStart": 3,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 238,
+        "endOffsetExclusiveUTF16": 292,
+        "columnStart1Based": 41,
+        "columnEndExclusive1Based": 95
+      },
+      "visualDescription": "朝の定時電車、取引先との資料確認、後輩の仕事の受け取り、夕方の数値画面という職務の連鎖。仕事先の移動は動作に合わせたカットで区別する。",
+      "backgroundId": "BG_densha",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "電車中央→会議室左→自席右",
+          "facing": "吊革→取引先→PC",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "male_worker",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "同僚・取引先・同期会社の従業員など場面別の一般人物。主人公との顔を区別",
+          "position": "会議室右→オフィス左",
+          "facing": "主人公",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公が吊革をつかむ→取引先の表情を確認し資料を差し出す→後輩の書類を受け取る→PCの数字を点検。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        },
+        {
+          "order": 2,
+          "action": "補助男性は資料を渡す。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-densha",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "bg-bg-office",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "別カットの背景既存候補"
+        },
+        {
+          "assetId": "NEW_CLIENT_MEETING_ROOM",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_WORK_DESK_SCREEN",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "電車ドア（開閉）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "吊革（揺れ）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "書類（手渡し）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 4,
+          "description": "PC（数値画面が操作に伴い更新）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "電車の半身→会議室の対面二人→オフィス肩越しの指先の3カット。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が吊革をつかむ→取引先の表情を確認し資料を差し出す→後輩の書類を受け取る→PCの数字を点検。補助男性は資料を渡す。",
+        "transitionOut": "PCの数値画面のまま次の成果描写へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 9.7,
+      "previousSceneContinuity": "前シーン V46-P004 の遷移：大学門の縦柱を朝の通勤電車ドア枠へマッチカット。",
+      "nextSceneContinuity": "次シーン V46-P006：PCの数値画面のまま次の成果描写へ。",
+      "id": "V46-P005",
+      "summary": "朝の定時電車、取引先との資料確認、後輩の仕事の受け取り、夕方の数値画面という職務の連鎖。仕事先の移動は動作に合わせたカットで区別する。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "朝の定時電車、取引先との資料確認、後輩の仕事の受け取り、夕方の数値画面という職務の連鎖。仕事先の移動は動作に合わせたカットで区別する。",
+      "estimatedSeconds": 9.7
+    },
+    {
+      "sceneId": "V46-P006",
+      "chapterId": "prologue",
+      "narrationText": "会社の売上の一部は、間違いなく彼の時間によって作られている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 2,
+        "lineStart": 9,
+        "lineEnd": 9,
+        "sentenceStart": 4,
+        "sentenceEnd": 4,
+        "startOffsetUTF16": 292,
+        "endOffsetExclusiveUTF16": 322,
+        "columnStart1Based": 95,
+        "columnEndExclusive1Based": 125
+      },
+      "visualDescription": "同じ職場の夜。主人公の作業が会社の業務に組み込まれている様子を、画面の資料完成と隣の部署の仕事で示す。",
+      "backgroundId": "BG_office",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "画面右の机",
+          "facing": "PC正面",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "other_worker",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "仕事場の補助人物。主人公の大学同期と混同させない",
+          "position": "奥の別机",
+          "facing": "作業端末",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公が最後の数字を入力し資料を確認して送信。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        },
+        {
+          "order": 2,
+          "action": "奥の従業員は自分の仕事を続ける。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-office",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "NEW_WORK_DESK_SCREEN",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "PC（入力欄が更新し作業完了状態へ）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "書類（手元で整える）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "主人公肩越しのPC画面から引いて別のデスクも入れる。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が最後の数字を入力し資料を確認して送信。奥の従業員は自分の仕事を続ける。",
+        "transitionOut": "PC画面の白い用紙を帰宅後の家計書類へつなぐ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 5.7,
+      "previousSceneContinuity": "前シーン V46-P005 の遷移：PCの数値画面のまま次の成果描写へ。",
+      "nextSceneContinuity": "次シーン V46-P007：PC画面の白い用紙を帰宅後の家計書類へつなぐ。",
+      "id": "V46-P006",
+      "summary": "同じ職場の夜。主人公の作業が会社の業務に組み込まれている様子を、画面の資料完成と隣の部署の仕事で示す。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "同じ職場の夜。主人公の作業が会社の業務に組み込まれている様子を、画面の資料完成と隣の部署の仕事で示す。",
+      "estimatedSeconds": 5.7
+    },
+    {
+      "sceneId": "V46-P007",
+      "chapterId": "prologue",
+      "narrationText": "暮らしに困窮しているわけではない。けれど家賃を払い、食費を払い、老後のために幾らかを残すと、通帳の数字は思ったほど増えない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 3,
+        "lineStart": 11,
+        "lineEnd": 11,
+        "sentenceStart": 1,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 324,
+        "endOffsetExclusiveUTF16": 386,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 63
+      },
+      "visualDescription": "帰宅後の部屋。困窮はしていないが、給料から家賃・食費・老後の貯えを差し引くと残額が思うほど増えない。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "机左側",
+          "facing": "家計書類正面",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公が上着を椅子に置いて座り、端末で振込を確認。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        },
+        {
+          "order": 2,
+          "action": "家賃、食費、貯蓄の紙を順に並べ残額を見直す。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "part-invoice",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        },
+        {
+          "assetId": "part-phone",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        },
+        {
+          "assetId": "part-auto-2679868ba4e74a25",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        },
+        {
+          "assetId": "NEW_HOUSEHOLD_LEDGER_UI",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "請求書（左から家賃・食費・貯蓄の順に置く）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "スマホ（支出確認ごとに残額が減るがゼロにはならない）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "財布（右端）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "横の半身→机上45度俯瞰で指と書類に寄る。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が上着を椅子に置いて座り、端末で振込を確認。家賃、食費、貯蓄の紙を順に並べ残額を見直す。",
+        "transitionOut": "家計書類の隣に間取り図を置く動作へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 11,
+      "previousSceneContinuity": "前シーン V46-P006 の遷移：PC画面の白い用紙を帰宅後の家計書類へつなぐ。",
+      "nextSceneContinuity": "次シーン V46-P008：家計書類の隣に間取り図を置く動作へ。",
+      "id": "V46-P007",
+      "summary": "帰宅後の部屋。困窮はしていないが、給料から家賃・食費・老後の貯えを差し引くと残額が思うほど増えない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "帰宅後の部屋。困窮はしていないが、給料から家賃・食費・老後の貯えを差し引くと残額が思うほど増えない。",
+      "estimatedSeconds": 11
+    },
+    {
+      "sceneId": "V46-P008",
+      "chapterId": "prologue",
+      "narrationText": "結婚するならもう少し広い部屋が要るだろう。子供が生まれれば、教育費もかかる。二人で働き続けられるとは限らない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 3,
+        "lineStart": 11,
+        "lineEnd": 11,
+        "sentenceStart": 3,
+        "sentenceEnd": 5,
+        "startOffsetUTF16": 386,
+        "endOffsetExclusiveUTF16": 441,
+        "columnStart1Based": 63,
+        "columnEndExclusive1Based": 118
+      },
+      "visualDescription": "主人公は将来の結婚に必要な部屋の広さ、子供の教育費、共働きを続けられるかどうかを順に検討する。妻や子供が現在いると描かない。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "机中央",
+          "facing": "間取りと家計表",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公は今の間取りの壁を指でなぞり広い物件の資料を重ね、教育費のメモを付け、勤務継続の欄でペン先を止める。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "NEW_RENTAL_FLOORPLANS",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_EDUCATION_BUDGET_PAPERS",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "現住居／候補間取り（重なって広さが変わる）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "教育費メモ（机中央へ置く）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "勤務予定（未確定欄にペンが止まる）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "同じ机の反対側から紙のトップショット→迷う横顔。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公は今の間取りの壁を指でなぞり広い物件の資料を重ね、教育費のメモを付け、勤務継続の欄でペン先を止める。",
+        "transitionOut": "計算書類から私的な連絡先を開く携帯へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 9.9,
+      "previousSceneContinuity": "前シーン V46-P007 の遷移：家計書類の隣に間取り図を置く動作へ。",
+      "nextSceneContinuity": "次シーン V46-P009：計算書類から私的な連絡先を開く携帯へ。",
+      "id": "V46-P008",
+      "summary": "主人公は将来の結婚に必要な部屋の広さ、子供の教育費、共働きを続けられるかどうかを順に検討する。妻や子供が現在いると描かない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "主人公は将来の結婚に必要な部屋の広さ、子供の教育費、共働きを続けられるかどうかを順に検討する。妻や子供が現在いると描かない。",
+      "estimatedSeconds": 9.9
+    },
+    {
+      "sceneId": "V46-P009",
+      "chapterId": "prologue",
+      "narrationText": "そんな計算を、彼はいつからか、恋愛の前にするようになっていた。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 3,
+        "lineStart": 11,
+        "lineEnd": 11,
+        "sentenceStart": 6,
+        "sentenceEnd": 6,
+        "startOffsetUTF16": 441,
+        "endOffsetExclusiveUTF16": 472,
+        "columnStart1Based": 118,
+        "columnEndExclusive1Based": 149
+      },
+      "visualDescription": "彼が恋愛の前にお金を計算するようになった変化を、連絡先を開いても会話を始めず書類に戻る身ぶりで示す。交際相手は創作しない。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "机中央",
+          "facing": "携帯から家計表へ",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公は連絡先一覧を一度開き、画面を伏せ、家計書類の欄を指で追う。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "part-phone",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        },
+        {
+          "assetId": "NEW_HOUSEHOLD_LEDGER_UI",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "スマホ（連絡先一覧→画面消灯）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "家計表（指が収支欄を往復）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "端末を挟んで主人公の顔→紙へ視線を誘導。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公は連絡先一覧を一度開き、画面を伏せ、家計書類の欄を指で追う。",
+        "transitionOut": "書類に残る未完了条件を次場面で引き継ぐ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 5.9,
+      "previousSceneContinuity": "前シーン V46-P008 の遷移：計算書類から私的な連絡先を開く携帯へ。",
+      "nextSceneContinuity": "次シーン V46-P010：書類に残る未完了条件を次場面で引き継ぐ。",
+      "id": "V46-P009",
+      "summary": "彼が恋愛の前にお金を計算するようになった変化を、連絡先を開いても会話を始めず書類に戻る身ぶりで示す。交際相手は創作しない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "彼が恋愛の前にお金を計算するようになった変化を、連絡先を開いても会話を始めず書類に戻る身ぶりで示す。交際相手は創作しない。",
+      "estimatedSeconds": 5.9
+    },
+    {
+      "sceneId": "V46-P010",
+      "chapterId": "prologue",
+      "narrationText": "もう少し給料が上がったら。仕事が落ち着いたら。生活の見通しが立ったら。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 4,
+        "lineStart": 13,
+        "lineEnd": 13,
+        "sentenceStart": 1,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 474,
+        "endOffsetExclusiveUTF16": 509,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 36
+      },
+      "visualDescription": "昇給、仕事の落ち着き、生活の見通しの三つの『まだ』を具体的な書類で検討する。均一なアイコン点滅にはしない。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "机右",
+          "facing": "三種類の書類",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公が給与明細を持ち上げ戻す→仕事予定をめくる→生活費の表を開き、順にペンを止める。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "NEW_THREE_CONDITIONS_PAPERS",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "part-clock",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "給与明細（右へ重ねる）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "予定表（ページをめくる）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "家計表（机手前へ引く）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "机上斜め45度、手の動きに合わせ書類の形が変わる位置まで追う。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が給与明細を持ち上げ戻す→仕事予定をめくる→生活費の表を開き、順にペンを止める。",
+        "transitionOut": "三枚目の書類の下の新しい未完了欄を次へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 6.5,
+      "previousSceneContinuity": "前シーン V46-P009 の遷移：書類に残る未完了条件を次場面で引き継ぐ。",
+      "nextSceneContinuity": "次シーン V46-P011：三枚目の書類の下の新しい未完了欄を次へ。",
+      "id": "V46-P010",
+      "summary": "昇給、仕事の落ち着き、生活の見通しの三つの『まだ』を具体的な書類で検討する。均一なアイコン点滅にはしない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "昇給、仕事の落ち着き、生活の見通しの三つの『まだ』を具体的な書類で検討する。均一なアイコン点滅にはしない。",
+      "estimatedSeconds": 6.5
+    },
+    {
+      "sceneId": "V46-P011",
+      "chapterId": "prologue",
+      "narrationText": "それらは、どれも慎重で、責任ある判断に思えた。ただ、条件が一つ満たされるたびに、次の条件が姿を現した。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 5,
+        "lineStart": 15,
+        "lineEnd": 15,
+        "sentenceStart": 1,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 511,
+        "endOffsetExclusiveUTF16": 562,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 52
+      },
+      "visualDescription": "慎重に準備した一項目を終えたと思うと、次に満たすべき条件を見つける。物事が前進しても準備完了にはならない。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "机中央",
+          "facing": "条件表",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公が一項目にチェックし紙をめくると別欄が未完了で、指が止まる。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "NEW_PROGRESSIVE_CONDITION_PAPERS",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "条件表（チェック後にページをめくり別欄が現れる）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "ペン（右手から机へ戻す）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "手元俯瞰から主人公の迷う顔へ引く。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が一項目にチェックし紙をめくると別欄が未完了で、指が止まる。",
+        "transitionOut": "書類をしまい暦を見る次場面へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 9.2,
+      "previousSceneContinuity": "前シーン V46-P010 の遷移：三枚目の書類の下の新しい未完了欄を次へ。",
+      "nextSceneContinuity": "次シーン V46-P012：書類をしまい暦を見る次場面へ。",
+      "id": "V46-P011",
+      "summary": "慎重に準備した一項目を終えたと思うと、次に満たすべき条件を見つける。物事が前進しても準備完了にはならない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "慎重に準備した一項目を終えたと思うと、次に満たすべき条件を見つける。物事が前進しても準備完了にはならない。",
+      "estimatedSeconds": 9.2
+    },
+    {
+      "sceneId": "V46-P012",
+      "chapterId": "prologue",
+      "narrationText": "気がつけば、三十五歳になっていた。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 5,
+        "lineStart": 15,
+        "lineEnd": 15,
+        "sentenceStart": 3,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 562,
+        "endOffsetExclusiveUTF16": 579,
+        "columnStart1Based": 52,
+        "columnEndExclusive1Based": 69
+      },
+      "visualDescription": "気がつけば35歳。前の書類を閉じ、壁の暦を見る動作と照明の短い経年表現で時間の経過を示す。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "椅子右→立ち姿左",
+          "facing": "引き出し→壁暦",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公は紙を引き出しにしまい、暦を見上げ、鞄を持ち上げる。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "NEW_NEUTRAL_CALENDAR",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "part-auto-c9b46e7fff0c7899",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "引き出し（開閉）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "暦（以前の月→現在へ自然に切替）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "鞄（手に取る）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "机の横顔から暦と人物が一画に入るミディアム。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公は紙を引き出しにしまい、暦を見上げ、鞄を持ち上げる。",
+        "transitionOut": "鞄を手にしたシルエットを帰り道の同じ男性につなぐ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 3.5,
+      "previousSceneContinuity": "前シーン V46-P011 の遷移：書類をしまい暦を見る次場面へ。",
+      "nextSceneContinuity": "次シーン V46-P013：鞄を手にしたシルエットを帰り道の同じ男性につなぐ。",
+      "id": "V46-P012",
+      "summary": "気がつけば35歳。前の書類を閉じ、壁の暦を見る動作と照明の短い経年表現で時間の経過を示す。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "気がつけば35歳。前の書類を閉じ、壁の暦を見る動作と照明の短い経年表現で時間の経過を示す。",
+      "estimatedSeconds": 3.5
+    },
+    {
+      "sceneId": "V46-P013",
+      "chapterId": "prologue",
+      "narrationText": "帰り道、スマートフォンが震える。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 6,
+        "lineStart": 17,
+        "lineEnd": 17,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 581,
+        "endOffsetExclusiveUTF16": 597,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 17
+      },
+      "visualDescription": "夜の帰路、主人公のポケットで携帯が振動する。",
+      "backgroundId": "BG_TOWN_NIGHT_WIDE",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "画面左手前",
+          "facing": "進行方向右",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公が歩みを緩め、左手に鞄を持ったまま右手をポケットに入れ携帯を取り出す。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "part-phone",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        },
+        {
+          "assetId": "part-auto-c9b46e7fff0c7899",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "スマホ（振動→持ち上げる）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "鞄（歩く速度と同期）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "街沿いの横追従→端末を持つ手の寄り。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が歩みを緩め、左手に鞄を持ったまま右手をポケットに入れ携帯を取り出す。",
+        "transitionOut": "画面の通知を次場面で開く。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 3.4,
+      "previousSceneContinuity": "前シーン V46-P012 の遷移：鞄を手にしたシルエットを帰り道の同じ男性につなぐ。",
+      "nextSceneContinuity": "次シーン V46-P014：画面の通知を次場面で開く。",
+      "id": "V46-P013",
+      "summary": "夜の帰路、主人公のポケットで携帯が振動する。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "夜の帰路、主人公のポケットで携帯が振動する。",
+      "estimatedSeconds": 3.4
+    },
+    {
+      "sceneId": "V46-P014",
+      "chapterId": "prologue",
+      "narrationText": "彼のスマートフォンには、大学の同期から送られてきた写真が表示されている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 6,
+        "lineStart": 17,
+        "lineEnd": 17,
+        "sentenceStart": 2,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 597,
+        "endOffsetExclusiveUTF16": 633,
+        "columnStart1Based": 17,
+        "columnEndExclusive1Based": 53
+      },
+      "visualDescription": "大学同期からの私的な写真メッセージを確認する。主人公の会社の同僚からの業務連絡に見せない。",
+      "backgroundId": "BG_TOWN_NIGHT_WIDE",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "画面左",
+          "facing": "スマホ正面",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公が通知をタップし、大学同期から届いた家族写真のサムネイルを拡大する。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "part-phone",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        },
+        {
+          "assetId": "NEW_FAMILY_MESSAGE_PHOTO_UI",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "スマホ画面（通知→サムネイル→写真全画面",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "固有名・会社名なし）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "肩越しに端末中心、背景に夜の街のボケを残す。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が通知をタップし、大学同期から届いた家族写真のサムネイルを拡大する。",
+        "transitionOut": "写真を画面いっぱいに拡げ、端末内の一枚と分かる画角へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 6.7,
+      "previousSceneContinuity": "前シーン V46-P013 の遷移：画面の通知を次場面で開く。",
+      "nextSceneContinuity": "次シーン V46-P015：写真を画面いっぱいに拡げ、端末内の一枚と分かる画角へ。",
+      "id": "V46-P014",
+      "summary": "大学同期からの私的な写真メッセージを確認する。主人公の会社の同僚からの業務連絡に見せない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "大学同期からの私的な写真メッセージを確認する。主人公の会社の同僚からの業務連絡に見せない。",
+      "estimatedSeconds": 6.7
+    },
+    {
+      "sceneId": "V46-P015",
+      "chapterId": "prologue",
+      "narrationText": "広いリビングの中央で、妻と二人の子供に囲まれた男が、誕生日のケーキを前に笑っていた。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 6,
+        "lineStart": 17,
+        "lineEnd": 17,
+        "sentenceStart": 3,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 633,
+        "endOffsetExclusiveUTF16": 675,
+        "columnStart1Based": 53,
+        "columnEndExclusive1Based": 95
+      },
+      "visualDescription": "広いリビングで同期と妻と二人の子供がケーキを囲み笑う一枚の写真。写真の中の人物を動かして新しい出来事にしない。",
+      "backgroundId": "NEW_PEER_LIVING_ROOM",
+      "characters": [
+        {
+          "id": "peer_parent",
+          "templateId": "character-parent-father",
+          "identity": "大学同期の父親としての姿。大学同期と同一顔。主人公とは別",
+          "position": "写真中央",
+          "facing": "ケーキ",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "peer_wife",
+          "templateId": "character-parent-mother",
+          "identity": "大学同期の妻。商品を買う一般の母親として流用する場合は別顔・別服",
+          "position": "写真左",
+          "facing": "ケーキ",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "child_one",
+          "templateId": "NEW_CHILD_RIG",
+          "identity": "同期の子供1。まだ登録のない子供可動素材の候補",
+          "position": "写真右前",
+          "facing": "ケーキ",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "child_two",
+          "templateId": "NEW_CHILD_RIG",
+          "identity": "同期の子供2。子供1と容姿差分を付ける",
+          "position": "写真左前",
+          "facing": "ケーキ",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "同期は笑顔で家族の方を向き、妻は子供の方を向き、二人の子供はケーキへ顔を寄せた静止ポーズ。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "NEW_PEER_LIVING_ROOM",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "背景の新規候補"
+        },
+        {
+          "assetId": "NEW_TWO_CHILD_RIGS",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_BIRTHDAY_CAKE",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_PHOTO_FRAME",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_CHILD_RIG",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "二人の子供の可動人物候補"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "誕生日ケーキ（食卓中央・静止）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "スマホ写真の枠（外周に保持）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "端末内の画像に寄る→家族全員が入る写真正面へ引く。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。同期は笑顔で家族の方を向き、妻は子供の方を向き、二人の子供はケーキへ顔を寄せた静止ポーズ。",
+        "transitionOut": "同期の顔から、彼の別会社での仕事を説明する場面へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.7,
+      "previousSceneContinuity": "前シーン V46-P014 の遷移：写真を画面いっぱいに拡げ、端末内の一枚と分かる画角へ。",
+      "nextSceneContinuity": "次シーン V46-P016：同期の顔から、彼の別会社での仕事を説明する場面へ。",
+      "id": "V46-P015",
+      "summary": "広いリビングで同期と妻と二人の子供がケーキを囲み笑う一枚の写真。写真の中の人物を動かして新しい出来事にしない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "広いリビングで同期と妻と二人の子供がケーキを囲み笑う一枚の写真。写真の中の人物を動かして新しい出来事にしない。",
+      "estimatedSeconds": 7.7
+    },
+    {
+      "sceneId": "V46-P016",
+      "chapterId": "prologue",
+      "narrationText": "その同期は卒業後に起業し、今では別の会社を経営している。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 7,
+        "lineStart": 19,
+        "lineEnd": 19,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 677,
+        "endOffsetExclusiveUTF16": 705,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 29
+      },
+      "visualDescription": "大学同期が卒業後に起業し、主人公とは別の会社を経営している。家族写真から同期の別会社へ遷移させ、会社を混同させない。",
+      "backgroundId": "NEW_PEER_COMPANY_OFFICE",
+      "characters": [
+        {
+          "id": "university_peer",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "主人公の大学同期。卒業後別会社を起業して経営。主人公と別顔・別衣装",
+          "position": "自社執務室中央",
+          "facing": "仕事机",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "同期は自社の机で企画書を受け取り開き、担当者の方へ体を向けて確認する。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "NEW_PEER_COMPANY_OFFICE",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "背景の新規候補"
+        },
+        {
+          "assetId": "NEW_GENERIC_BUSINESS_BRIEF",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "事業資料（手前で開く）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "別会社の事務所の扉（背景左）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "写真の同期の顔アップ→事務所横顔→室内全景。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。同期は自社の机で企画書を受け取り開き、担当者の方へ体を向けて確認する。",
+        "transitionOut": "同期の資料から仕事を担う従業員の作業場へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 5.4,
+      "previousSceneContinuity": "前シーン V46-P015 の遷移：同期の顔から、彼の別会社での仕事を説明する場面へ。",
+      "nextSceneContinuity": "次シーン V46-P017：同期の資料から仕事を担う従業員の作業場へ。",
+      "id": "V46-P016",
+      "summary": "大学同期が卒業後に起業し、主人公とは別の会社を経営している。家族写真から同期の別会社へ遷移させ、会社を混同させない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "大学同期が卒業後に起業し、主人公とは別の会社を経営している。家族写真から同期の別会社へ遷移させ、会社を混同させない。",
+      "estimatedSeconds": 5.4
+    },
+    {
+      "sceneId": "V46-P017",
+      "chapterId": "prologue",
+      "narrationText": "彼の会社でも多くの従業員が働き、商品を作り、顧客に応え、利益を生み出している。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 7,
+        "lineStart": 19,
+        "lineEnd": 19,
+        "sentenceStart": 2,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 705,
+        "endOffsetExclusiveUTF16": 744,
+        "columnStart1Based": 29,
+        "columnEndExclusive1Based": 68
+      },
+      "visualDescription": "同期の会社の従業員が商品を作り、顧客に応え、利益を生む仕事の連鎖を、業種不明の汎用商品で見せる。",
+      "backgroundId": "NEW_PEER_COMPANY_WORKSPACE",
+      "characters": [
+        {
+          "id": "male_worker",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "同僚・取引先・同期会社の従業員など場面別の一般人物。主人公との顔を区別",
+          "position": "作業台左",
+          "facing": "商品",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "other_worker",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "仕事場の補助人物。主人公の大学同期と混同させない",
+          "position": "窓口右",
+          "facing": "商品から端末へ",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "従業員が無地箱を整えもう一人へ渡す。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        },
+        {
+          "order": 2,
+          "action": "受け取った担当者が顧客対応端末を操作し処理を終える。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "NEW_PEER_COMPANY_WORKSPACE",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "背景の新規候補"
+        },
+        {
+          "assetId": "NEW_GENERIC_PRODUCT_AND_COUNTER",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "無地の商品箱（左作業台→右の手→窓口）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "端末（受付中→完了）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "箱の動きに合わせ左から右へ水平追従、業種の断定表現は避ける。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。従業員が無地箱を整えもう一人へ渡す。受け取った担当者が顧客対応端末を操作し処理を終える。",
+        "transitionOut": "担当者の手から生活の扉へつなぎ家族を映す。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.2,
+      "previousSceneContinuity": "前シーン V46-P016 の遷移：同期の資料から仕事を担う従業員の作業場へ。",
+      "nextSceneContinuity": "次シーン V46-P018：担当者の手から生活の扉へつなぎ家族を映す。",
+      "id": "V46-P017",
+      "summary": "同期の会社の従業員が商品を作り、顧客に応え、利益を生む仕事の連鎖を、業種不明の汎用商品で見せる。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "同期の会社の従業員が商品を作り、顧客に応え、利益を生む仕事の連鎖を、業種不明の汎用商品で見せる。",
+      "estimatedSeconds": 7.2
+    },
+    {
+      "sceneId": "V46-P018",
+      "chapterId": "prologue",
+      "narrationText": "その仕事に支えられた事業の成功は、経営者の家族に、広い住まいと、子供たちのためのさまざまな選択肢を与えている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 7,
+        "lineStart": 19,
+        "lineEnd": 19,
+        "sentenceStart": 3,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 744,
+        "endOffsetExclusiveUTF16": 799,
+        "columnStart1Based": 68,
+        "columnEndExclusive1Based": 123
+      },
+      "visualDescription": "事業の成功が経営者の家族に与える住まいや子供の選択肢を、同期の帰宅と広い居間での家族の読書として表現。特定の習い事や進学先は創作しない。",
+      "backgroundId": "NEW_PEER_LIVING_ROOM",
+      "characters": [
+        {
+          "id": "university_peer",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "主人公の大学同期。卒業後別会社を起業して経営。主人公と別顔・別衣装",
+          "position": "玄関左",
+          "facing": "家族へ",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "peer_wife",
+          "templateId": "character-parent-mother",
+          "identity": "大学同期の妻。商品を買う一般の母親として流用する場合は別顔・別服",
+          "position": "食卓右",
+          "facing": "絵本",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "child_one",
+          "templateId": "NEW_CHILD_RIG",
+          "identity": "同期の子供1。まだ登録のない子供可動素材の候補",
+          "position": "テーブル手前左",
+          "facing": "絵本",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "child_two",
+          "templateId": "NEW_CHILD_RIG",
+          "identity": "同期の子供2。子供1と容姿差分を付ける",
+          "position": "テーブル手前右",
+          "facing": "絵本",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "同期が自宅ドアを開いて家族へ近づく。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        },
+        {
+          "order": 2,
+          "action": "妻は絵本を示し、一人の子はページをめくり、もう一人も別の本を見る。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "NEW_PEER_LIVING_ROOM",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "背景の新規候補"
+        },
+        {
+          "assetId": "NEW_TWO_CHILD_RIGS",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_BOOKS_AND_TABLE",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_HOME_DOOR_FOREGROUND",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_CHILD_RIG",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "二人の子供の可動人物候補"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "自宅ドア（開閉）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "絵本二冊（1枚だけページをめくる）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "広い食卓（写真と配置を統一）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "玄関から居間への中景→読書する手元と家族の視線を追う。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。同期が自宅ドアを開いて家族へ近づく。妻は絵本を示し、一人の子はページをめくり、もう一人も別の本を見る。",
+        "transitionOut": "家族がめくる本の白ページを別会社の従業員の部屋の資料へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 9.9,
+      "previousSceneContinuity": "前シーン V46-P017 の遷移：担当者の手から生活の扉へつなぎ家族を映す。",
+      "nextSceneContinuity": "次シーン V46-P019：家族がめくる本の白ページを別会社の従業員の部屋の資料へ。",
+      "id": "V46-P018",
+      "summary": "事業の成功が経営者の家族に与える住まいや子供の選択肢を、同期の帰宅と広い居間での家族の読書として表現。特定の習い事や進学先は創作しない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "事業の成功が経営者の家族に与える住まいや子供の選択肢を、同期の帰宅と広い居間での家族の読書として表現。特定の習い事や進学先は創作しない。",
+      "estimatedSeconds": 9.9
+    },
+    {
+      "sceneId": "V46-P019",
+      "chapterId": "prologue",
+      "narrationText": "一方、そこで働く人々の中には、自分の家庭を築くための時間や余裕を、まだ手にできずにいる者もいるだろう。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 7,
+        "lineStart": 19,
+        "lineEnd": 19,
+        "sentenceStart": 4,
+        "sentenceEnd": 4,
+        "startOffsetUTF16": 799,
+        "endOffsetExclusiveUTF16": 850,
+        "columnStart1Based": 123,
+        "columnEndExclusive1Based": 174
+      },
+      "visualDescription": "同期の会社で働く人の中には、家庭のための時間と余裕を確保できていない者もいるかもしれない。特定従業員の事実として断言せず、一例の仮想場面として描写。",
+      "backgroundId": "NEW_PEER_COMPANY_OFFICE",
+      "characters": [
+        {
+          "id": "male_worker",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "同僚・取引先・同期会社の従業員など場面別の一般人物。主人公との顔を区別",
+          "position": "夕方の机右",
+          "facing": "間取り→PC",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "従業員が間取り候補を眺め、時計を見て二つ折りにしまい、仕事端末へ戻る。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "NEW_PEER_COMPANY_OFFICE",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "背景の新規候補"
+        },
+        {
+          "assetId": "NEW_GENERIC_FLOORPLAN",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "part-clock",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "部屋の間取り（机上→引き出し）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "時計（日没の時刻）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "業務端末（作業中に戻る）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "従業員の横姿と外の夕暮れを同フレームに置き、手元へ寄る。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。従業員が間取り候補を眺め、時計を見て二つ折りにしまい、仕事端末へ戻る。",
+        "transitionOut": "しまった資料の白紙を13年前の大学の門へフェード。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 9.2,
+      "previousSceneContinuity": "前シーン V46-P018 の遷移：家族がめくる本の白ページを別会社の従業員の部屋の資料へ。",
+      "nextSceneContinuity": "次シーン V46-P020：しまった資料の白紙を13年前の大学の門へフェード。",
+      "id": "V46-P019",
+      "summary": "同期の会社で働く人の中には、家庭のための時間と余裕を確保できていない者もいるかもしれない。特定従業員の事実として断言せず、一例の仮想場面",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "同期の会社で働く人の中には、家庭のための時間と余裕を確保できていない者もいるかもしれない。特定従業員の事実として断言せず、一例の仮想場面として描写。",
+      "estimatedSeconds": 9.2
+    },
+    {
+      "sceneId": "V46-P020",
+      "chapterId": "prologue",
+      "narrationText": "十三年前、二人は同じ大学の門をくぐって社会へ出た。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 8,
+        "lineStart": 21,
+        "lineEnd": 21,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 852,
+        "endOffsetExclusiveUTF16": 877,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 26
+      },
+      "visualDescription": "13年前、二人が同じ大学から社会へ出た時点を短い回想として描く。卒業後の経路はこの場面で明示しない。",
+      "backgroundId": "NEW_UNIVERSITY_GATE",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "門左",
+          "facing": "門の外へ",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "university_peer",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "主人公の大学同期。卒業後別会社を起業して経営。主人公と別顔・別衣装",
+          "position": "門右",
+          "facing": "門の外へ",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "若い主人公と同期が並んで門を抜け、二人とも前を向いて歩く。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "NEW_UNIVERSITY_GATE",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "背景の新規候補"
+        },
+        {
+          "assetId": "NEW_YOUNG_HERO_PEER_VARIANTS",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "大学門（足元と縦柱を前景に）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "学生鞄（左右で差分）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "大学門の内側正面から二人の全身。左右同じ歩幅で門を出る。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。若い主人公と同期が並んで門を抜け、二人とも前を向いて歩く。",
+        "transitionOut": "門の左右を次の二つの生活空間の分割境界へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.9,
+      "previousSceneContinuity": "前シーン V46-P019 の遷移：しまった資料の白紙を13年前の大学の門へフェード。",
+      "nextSceneContinuity": "次シーン V46-P021：門の左右を次の二つの生活空間の分割境界へ。",
+      "id": "V46-P020",
+      "summary": "13年前、二人が同じ大学から社会へ出た時点を短い回想として描く。卒業後の経路はこの場面で明示しない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "13年前、二人が同じ大学から社会へ出た時点を短い回想として描く。卒業後の経路はこの場面で明示しない。",
+      "estimatedSeconds": 4.9
+    },
+    {
+      "sceneId": "V46-P021",
+      "chapterId": "prologue",
+      "narrationText": "一方の食卓には子供の声があり、もう一方の部屋には、明日の会議の資料が置かれている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 8,
+        "lineStart": 21,
+        "lineEnd": 21,
+        "sentenceStart": 2,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 877,
+        "endOffsetExclusiveUTF16": 918,
+        "columnStart1Based": 26,
+        "columnEndExclusive1Based": 67
+      },
+      "visualDescription": "左に同期の食卓で家族が暮らし、右に主人公の部屋で翌日の会議資料が置かれる。二者を貧富の優劣としてではなく異なる日常の事実として同時に映す。",
+      "backgroundId": "NEW_PEER_LIVING_ROOM",
+      "characters": [
+        {
+          "id": "peer_parent",
+          "templateId": "character-parent-father",
+          "identity": "大学同期の父親としての姿。大学同期と同一顔。主人公とは別",
+          "position": "左画面の食卓奥",
+          "facing": "子供",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "peer_wife",
+          "templateId": "character-parent-mother",
+          "identity": "大学同期の妻。商品を買う一般の母親として流用する場合は別顔・別服",
+          "position": "左画面手前",
+          "facing": "子供",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "child_one",
+          "templateId": "NEW_CHILD_RIG",
+          "identity": "同期の子供1。まだ登録のない子供可動素材の候補",
+          "position": "左画面の父の隣",
+          "facing": "親",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "child_two",
+          "templateId": "NEW_CHILD_RIG",
+          "identity": "同期の子供2。子供1と容姿差分を付ける",
+          "position": "左画面の母の隣",
+          "facing": "親",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "右画面の机",
+          "facing": "会議資料",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "左で子供がコップを持ち父がそちらを見て微笑み、妻はもう一人の子の手元を見る。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        },
+        {
+          "order": 2,
+          "action": "右で主人公は資料をめくり付箋を貼る。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "NEW_PEER_LIVING_ROOM",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "背景の新規候補"
+        },
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "別カットの背景既存候補"
+        },
+        {
+          "assetId": "NEW_TWO_CHILD_RIGS",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_MEETING_DOCUMENTS",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_SPLIT_INTERIOR_MASK",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_CHILD_RIG",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "二人の子供の可動人物候補"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "左の食卓・コップ（持ち上げ下ろす）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "右の会議資料（ページめくり",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "付箋）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 4,
+          "description": "二画面境界（大学門柱から変形）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "左右の各空間に別の透視カメラを持つsplit画面。最後は右の主人公の手元へ寄る。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。左で子供がコップを持ち父がそちらを見て微笑み、妻はもう一人の子の手元を見る。右で主人公は資料をめくり付箋を貼る。",
+        "transitionOut": "右の机上で資料を閉じる動作に合わせ、彼に向けられる反論へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.5,
+      "previousSceneContinuity": "前シーン V46-P020 の遷移：門の左右を次の二つの生活空間の分割境界へ。",
+      "nextSceneContinuity": "次シーン V46-P022：右の机上で資料を閉じる動作に合わせ、彼に向けられる反論へ。",
+      "id": "V46-P021",
+      "summary": "左に同期の食卓で家族が暮らし、右に主人公の部屋で翌日の会議資料が置かれる。二者を貧富の優劣としてではなく異なる日常の事実として同時に映す",
+      "sceneType": "Existing",
+      "templateSource": "dual_compare",
+      "visualIntent": "左に同期の食卓で家族が暮らし、右に主人公の部屋で翌日の会議資料が置かれる。二者を貧富の優劣としてではなく異なる日常の事実として同時に映す。",
+      "estimatedSeconds": 7.5
+    },
+    {
+      "sceneId": "V46-P022",
+      "chapterId": "prologue",
+      "narrationText": "ここで、こんな声が聞こえてくるかもしれない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 9,
+        "lineStart": 23,
+        "lineEnd": 23,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 920,
+        "endOffsetExclusiveUTF16": 942,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 23
+      },
+      "visualDescription": "『諦めたのではない』という反論の導入。視聴者代理の架空の話者や追加セリフを創作せず、主人公の一瞬の沈黙として表現。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "机右",
+          "facing": "資料→スマホ",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公は会議資料を閉じ、写真が映るスマホを机に伏せて顔を上げる。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "part-phone",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        },
+        {
+          "assetId": "NEW_MEETING_DOCUMENTS",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "会議資料（重ねて閉じる）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "スマホ（写真面を伏せる）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "机の斜め前から手元、顔へ切り替える。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公は会議資料を閉じ、写真が映るスマホを机に伏せて顔を上げる。",
+        "transitionOut": "伏せたスマホを次の本人の選択描写で再び手に取る。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.4,
+      "previousSceneContinuity": "前シーン V46-P021 の遷移：右の机上で資料を閉じる動作に合わせ、彼に向けられる反論へ。",
+      "nextSceneContinuity": "次シーン V46-P023：伏せたスマホを次の本人の選択描写で再び手に取る。",
+      "id": "V46-P022",
+      "summary": "『諦めたのではない』という反論の導入。視聴者代理の架空の話者や追加セリフを創作せず、主人公の一瞬の沈黙として表現。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "『諦めたのではない』という反論の導入。視聴者代理の架空の話者や追加セリフを創作せず、主人公の一瞬の沈黙として表現。",
+      "estimatedSeconds": 4.4
+    },
+    {
+      "sceneId": "V46-P023",
+      "chapterId": "prologue",
+      "narrationText": "彼は子供を諦めたのではない。自分の意思で、子供を持たない人生を選んだのだ、と。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 9,
+        "lineStart": 23,
+        "lineEnd": 23,
+        "sentenceStart": 2,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 942,
+        "endOffsetExclusiveUTF16": 981,
+        "columnStart1Based": 23,
+        "columnEndExclusive1Based": 62
+      },
+      "visualDescription": "本人が選んだ子供を持たない暮らしとして、写真と自室の両方を見つめる。『諦め』を示すバツ印や強制された表情は描かない。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "机中央",
+          "facing": "スマホ→部屋",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公は写真を見直した後、自室に視線を移し、スマホを置き読書灯を点ける。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "part-phone",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        },
+        {
+          "assetId": "NEW_READING_LAMP_PROP",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "スマホ（写真→画面消灯）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "読書灯（指でスイッチを入れる）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "端末のある手前から自室全景へ引き、主人公の視線を中心にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公は写真を見直した後、自室に視線を移し、スマホを置き読書灯を点ける。",
+        "transitionOut": "部屋の暮らしを続けているまま制度的禁止の不在へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.2,
+      "previousSceneContinuity": "前シーン V46-P022 の遷移：伏せたスマホを次の本人の選択描写で再び手に取る。",
+      "nextSceneContinuity": "次シーン V46-P024：部屋の暮らしを続けているまま制度的禁止の不在へ。",
+      "id": "V46-P023",
+      "summary": "本人が選んだ子供を持たない暮らしとして、写真と自室の両方を見つめる。『諦め』を示すバツ印や強制された表情は描かない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "本人が選んだ子供を持たない暮らしとして、写真と自室の両方を見つめる。『諦め』を示すバツ印や強制された表情は描かない。",
+      "estimatedSeconds": 7.2
+    },
+    {
+      "sceneId": "V46-P024",
+      "chapterId": "prologue",
+      "narrationText": "その通りである。誰も彼に結婚を禁じていない。会社も、法律も、彼の繁殖を命令によって止めてはいない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 10,
+        "lineStart": 25,
+        "lineEnd": 25,
+        "sentenceStart": 1,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 983,
+        "endOffsetExclusiveUTF16": 1032,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 50
+      },
+      "visualDescription": "誰も主人公に結婚や出産を禁じていないことを、通常の出勤・帰宅が遮られず続く様子で示す。禁止命令を読み上げる上司や法律書などは創作しない。",
+      "backgroundId": "BG_office",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "朝の入口左→夜の街右",
+          "facing": "通路の奥",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公は朝の職場入口を通り席へ進み、夕方は鞄を持って建物を出る。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-office",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "別カットの背景既存候補"
+        },
+        {
+          "assetId": "part-auto-c9b46e7fff0c7899",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "自動ドア（出入りに応じて開閉）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "鞄（歩行に合わせ揺れる）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "朝の入口正面→夕方の歩道の背後ショット。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公は朝の職場入口を通り席へ進み、夕方は鞄を持って建物を出る。",
+        "transitionOut": "帰宅した男性が自分の住居で生活を整える行動に連続。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 8.9,
+      "previousSceneContinuity": "前シーン V46-P023 の遷移：部屋の暮らしを続けているまま制度的禁止の不在へ。",
+      "nextSceneContinuity": "次シーン V46-P025：帰宅した男性が自分の住居で生活を整える行動に連続。",
+      "id": "V46-P024",
+      "summary": "誰も主人公に結婚や出産を禁じていないことを、通常の出勤・帰宅が遮られず続く様子で示す。禁止命令を読み上げる上司や法律書などは創作しない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "誰も主人公に結婚や出産を禁じていないことを、通常の出勤・帰宅が遮られず続く様子で示す。禁止命令を読み上げる上司や法律書などは創作しない。",
+      "estimatedSeconds": 8.9
+    },
+    {
+      "sceneId": "V46-P025",
+      "chapterId": "prologue",
+      "narrationText": "彼は自分で働き、自分で暮らし、自分で人生を選んでいる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 10,
+        "lineStart": 25,
+        "lineEnd": 25,
+        "sentenceStart": 4,
+        "sentenceEnd": 4,
+        "startOffsetUTF16": 1032,
+        "endOffsetExclusiveUTF16": 1059,
+        "columnStart1Based": 50,
+        "columnEndExclusive1Based": 77
+      },
+      "visualDescription": "自分で働き暮らしを選ぶという主体性を、帰宅後の身の回りの動作で具体化する。未来の結婚や出産の決定を誇張しない。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "入口左→食卓右→机中央",
+          "facing": "家の中",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公が上着をハンガーへ掛け、皿を食卓へ運び、翌日の予定表を開いて考えペンを置く。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "bg-bg-kitchen",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "別カットの背景既存候補"
+        },
+        {
+          "assetId": "NEW_SIMPLE_MEAL_AND_HANGER",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_WORK_SCHEDULE",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "ハンガー（上着を掛け揺れる）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "皿（机に置く）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "予定表（開いて空欄を見る）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "玄関側の半身→食卓の横姿→予定表の手元。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が上着をハンガーへ掛け、皿を食卓へ運び、翌日の予定表を開いて考えペンを置く。",
+        "transitionOut": "予定表の空欄を同じ手元の反実仮想へ変換。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 5.2,
+      "previousSceneContinuity": "前シーン V46-P024 の遷移：帰宅した男性が自分の住居で生活を整える行動に連続。",
+      "nextSceneContinuity": "次シーン V46-P026：予定表の空欄を同じ手元の反実仮想へ変換。",
+      "id": "V46-P025",
+      "summary": "自分で働き暮らしを選ぶという主体性を、帰宅後の身の回りの動作で具体化する。未来の結婚や出産の決定を誇張しない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "自分で働き暮らしを選ぶという主体性を、帰宅後の身の回りの動作で具体化する。未来の結婚や出産の決定を誇張しない。",
+      "estimatedSeconds": 5.2
+    },
+    {
+      "sceneId": "V46-P026",
+      "chapterId": "prologue",
+      "narrationText": "だが、もし彼の家賃が今の半分で、夕方には仕事を終えられ、子供の教育費に怯えずに済む世界があったなら、その世界でも、彼は同じ選択をしただろうか。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 11,
+        "lineStart": 27,
+        "lineEnd": 27,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 1061,
+        "endOffsetExclusiveUTF16": 1132,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 72
+      },
+      "visualDescription": "家賃が半額、夕方に退勤、教育費への不安が小さい世界を、現在と分岐した仮定として明示。同じ男・同じ机の条件だけを変更し、どちらを選ぶかは描かない。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "机の現実側左→仮想側右",
+          "facing": "条件の書類",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公が現実の家計表を見る→仮想側で半額家賃を確認→夕方に終わる予定表を閉じる→教育費の紙を重ね→二つの選択肢の前で指を止める。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "NEW_ALTERNATIVE_BUDGET_SCHEDULE",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_ALTERNATIVE_WORLD_LIGHTING",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "家賃欄（半額の仮定へ置換）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "勤務予定（夜予定→夕方終了へ）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "教育費の紙（負担感を軽く見せるが費用ゼロにはしない）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "同一の机を左右分岐する一回限りの反実仮想画面。別世界は淡い枠で明示し、左右同じ顔を保つ。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が現実の家計表を見る→仮想側で半額家賃を確認→夕方に終わる予定表を閉じる→教育費の紙を重ね→二つの選択肢の前で指を止める。",
+        "transitionOut": "分岐した二画面を同じ一冊の予定表へ戻す。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 12.5,
+      "previousSceneContinuity": "前シーン V46-P025 の遷移：予定表の空欄を同じ手元の反実仮想へ変換。",
+      "nextSceneContinuity": "次シーン V46-P027：分岐した二画面を同じ一冊の予定表へ戻す。",
+      "id": "V46-P026",
+      "summary": "家賃が半額、夕方に退勤、教育費への不安が小さい世界を、現在と分岐した仮定として明示。同じ男・同じ机の条件だけを変更し、どちらを選ぶかは描",
+      "sceneType": "Existing",
+      "templateSource": "split_world",
+      "visualIntent": "家賃が半額、夕方に退勤、教育費への不安が小さい世界を、現在と分岐した仮定として明示。同じ男・同じ机の条件だけを変更し、どちらを選ぶかは描かない。",
+      "estimatedSeconds": 12.5
+    },
+    {
+      "sceneId": "V46-P027",
+      "chapterId": "prologue",
+      "narrationText": "自分で選んだことと、その選択が社会によって形作られていることは、果たして矛盾するのだろうか。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 12,
+        "lineStart": 29,
+        "lineEnd": 29,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 1134,
+        "endOffsetExclusiveUTF16": 1180,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 47
+      },
+      "visualDescription": "本人が選ぶ指先と、住まいの広さ・家賃・労働時間という社会条件を同じ画面に置き、二つが矛盾するかという問いを残す。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "机中央",
+          "facing": "予定表→部屋",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公は自分で予定表を開き空欄をなぞり、請求書と部屋の広さを見回し、決めずに目を落とす。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "part-invoice",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        },
+        {
+          "assetId": "NEW_RENTAL_FLOORPLANS",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_WORK_SCHEDULE",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "予定表（指先に従って開く）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "家賃請求書（机の端に現物）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "間取り（予定表の隣）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "指先のアップから部屋全体への引き。主人公と机の書類を同じフレームで示す。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公は自分で予定表を開き空欄をなぞり、請求書と部屋の広さを見回し、決めずに目を落とす。",
+        "transitionOut": "部屋の壁の縦線を都市のビル群へマッチカット。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 8.4,
+      "previousSceneContinuity": "前シーン V46-P026 の遷移：分岐した二画面を同じ一冊の予定表へ戻す。",
+      "nextSceneContinuity": "次シーン V46-P028：部屋の壁の縦線を都市のビル群へマッチカット。",
+      "id": "V46-P027",
+      "summary": "本人が選ぶ指先と、住まいの広さ・家賃・労働時間という社会条件を同じ画面に置き、二つが矛盾するかという問いを残す。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "本人が選ぶ指先と、住まいの広さ・家賃・労働時間という社会条件を同じ画面に置き、二つが矛盾するかという問いを残す。",
+      "estimatedSeconds": 8.4
+    },
+    {
+      "sceneId": "V46-P028",
+      "chapterId": "prologue",
+      "narrationText": "我々は誰からも繁殖を禁じられていない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 13,
+        "lineStart": 31,
+        "lineEnd": 31,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 1182,
+        "endOffsetExclusiveUTF16": 1201,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 20
+      },
+      "visualDescription": "街の人々は誰にも止められず各自の帰路を選び、主人公も自宅側へ歩く。物理的な門や制止人物を登場させない。",
+      "backgroundId": "BG_TOWN_NIGHT_WIDE",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "交差点中央",
+          "facing": "家側",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "crowd",
+          "templateId": "character-passerby-crowd",
+          "identity": "通勤する匿名の人々。群衆の服装・顔は場面ごとに差分",
+          "position": "奥と手前",
+          "facing": "それぞれの帰路",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "歩行者は信号が青になってからそれぞれ異なる道へ歩き、主人公は右奥の住宅方向へ曲がる。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "NEW_CITY_CROSSWALK_LAYER",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "信号（赤→青）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "横断歩道（複数方向に足跡ではなく実人物が動く）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "交差点を斜め上から引いて人物の選ぶ進路を見せる。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。歩行者は信号が青になってからそれぞれ異なる道へ歩き、主人公は右奥の住宅方向へ曲がる。",
+        "transitionOut": "主人公の進路を追って働き生活費を払う日常に戻る。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 3.9,
+      "previousSceneContinuity": "前シーン V46-P027 の遷移：部屋の壁の縦線を都市のビル群へマッチカット。",
+      "nextSceneContinuity": "次シーン V46-P029：主人公の進路を追って働き生活費を払う日常に戻る。",
+      "id": "V46-P028",
+      "summary": "街の人々は誰にも止められず各自の帰路を選び、主人公も自宅側へ歩く。物理的な門や制止人物を登場させない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "街の人々は誰にも止められず各自の帰路を選び、主人公も自宅側へ歩く。物理的な門や制止人物を登場させない。",
+      "estimatedSeconds": 3.9
+    },
+    {
+      "sceneId": "V46-P029",
+      "chapterId": "prologue",
+      "narrationText": "それでも、社会を動かすために働き、暮らしを守ろうとするうちに、子供を持たない人生を選ぶ者がいる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 13,
+        "lineStart": 31,
+        "lineEnd": 31,
+        "sentenceStart": 2,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 1201,
+        "endOffsetExclusiveUTF16": 1249,
+        "columnStart1Based": 20,
+        "columnEndExclusive1Based": 68
+      },
+      "visualDescription": "社会を支える仕事と自分の暮らしを守る生活が続くうち、子供を持たない人生を選ぶ者がいる、という因果を主人公の一日で追う。",
+      "backgroundId": "BG_office",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "仕事机右→自室机中央",
+          "facing": "作業画面から家計表",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "other_worker",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "仕事場の補助人物。主人公の大学同期と混同させない",
+          "position": "奥の机",
+          "facing": "業務画面",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公がPCで仕事を保存し帰宅、家賃の請求書を家計表へしまう。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        },
+        {
+          "order": 2,
+          "action": "奥の別の従業員も仕事を続ける。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-office",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "別カットの背景既存候補"
+        },
+        {
+          "assetId": "part-invoice",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        },
+        {
+          "assetId": "NEW_WORK_DESK_SCREEN",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "PC（保存→画面消灯）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "家賃明細（家計表へ重ねる）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "仕事鞄（退勤時に持つ）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "オフィス肩越しの手元→退勤→帰宅後の机へ動作つながりで切替。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公がPCで仕事を保存し帰宅、家賃の請求書を家計表へしまう。奥の別の従業員も仕事を続ける。",
+        "transitionOut": "彼が作る仕事の成果を必要とする別の家庭の日常へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 8.7,
+      "previousSceneContinuity": "前シーン V46-P028 の遷移：主人公の進路を追って働き生活費を払う日常に戻る。",
+      "nextSceneContinuity": "次シーン V46-P030：彼が作る仕事の成果を必要とする別の家庭の日常へ。",
+      "id": "V46-P029",
+      "summary": "社会を支える仕事と自分の暮らしを守る生活が続くうち、子供を持たない人生を選ぶ者がいる、という因果を主人公の一日で追う。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "社会を支える仕事と自分の暮らしを守る生活が続くうち、子供を持たない人生を選ぶ者がいる、という因果を主人公の一日で追う。",
+      "estimatedSeconds": 8.7
+    },
+    {
+      "sceneId": "V46-P030",
+      "chapterId": "prologue",
+      "narrationText": "その者たちの仕事は、どこかで子供を育てる家庭の生活を支えている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 13,
+        "lineStart": 31,
+        "lineEnd": 31,
+        "sentenceStart": 3,
+        "sentenceEnd": 3,
+        "startOffsetUTF16": 1249,
+        "endOffsetExclusiveUTF16": 1281,
+        "columnStart1Based": 68,
+        "columnEndExclusive1Based": 100
+      },
+      "visualDescription": "社会で働く人々の仕事が、別の場所で子供を育てる家庭の生活を支える。主人公が同期の家族へ直接奉仕するという未記載の関係は作らない。",
+      "backgroundId": "BG_supermarket",
+      "characters": [
+        {
+          "id": "male_worker",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "同僚・取引先・同期会社の従業員など場面別の一般人物。主人公との顔を区別",
+          "position": "棚左",
+          "facing": "商品棚",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "peer_wife",
+          "templateId": "character-parent-mother",
+          "identity": "大学同期の妻。商品を買う一般の母親として流用する場合は別顔・別服",
+          "position": "店内右",
+          "facing": "買い物かご",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "child_one",
+          "templateId": "NEW_CHILD_RIG",
+          "identity": "同期の子供1。まだ登録のない子供可動素材の候補",
+          "position": "親の隣",
+          "facing": "棚の商品",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "従業員が棚に日用品を補充し、一般の母親と子供がそれを手に取る。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        },
+        {
+          "order": 2,
+          "action": "親は買い物かごへ入れ、子は親の横で棚を指さす。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-supermarket",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "NEW_CHILD_RIG",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        },
+        {
+          "assetId": "NEW_GENERIC_DAILY_GOODS",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "無地の日用品箱（棚の左→母親の手→かご）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "買い物かご（親が持ち上げる）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "従業員側の斜め前→棚を境に親子側へ切替。商品が両カットの連続物。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。従業員が棚に日用品を補充し、一般の母親と子供がそれを手に取る。親は買い物かごへ入れ、子は親の横で棚を指さす。",
+        "transitionOut": "かごに入る商品を街の他の生活へ広げる引き画へ。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 6,
+      "previousSceneContinuity": "前シーン V46-P029 の遷移：彼が作る仕事の成果を必要とする別の家庭の日常へ。",
+      "nextSceneContinuity": "次シーン V46-P031：かごに入る商品を街の他の生活へ広げる引き画へ。",
+      "id": "V46-P030",
+      "summary": "社会で働く人々の仕事が、別の場所で子供を育てる家庭の生活を支える。主人公が同期の家族へ直接奉仕するという未記載の関係は作らない。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "社会で働く人々の仕事が、別の場所で子供を育てる家庭の生活を支える。主人公が同期の家族へ直接奉仕するという未記載の関係は作らない。",
+      "estimatedSeconds": 6
+    },
+    {
+      "sceneId": "V46-P031",
+      "chapterId": "prologue",
+      "narrationText": "誰も命じていないのに、繁殖する者と、繁殖せずに社会を支える者が分かれていく。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 14,
+        "lineStart": 33,
+        "lineEnd": 33,
+        "sentenceStart": 1,
+        "sentenceEnd": 1,
+        "startOffsetUTF16": 1283,
+        "endOffsetExclusiveUTF16": 1321,
+        "columnStart1Based": 1,
+        "columnEndExclusive1Based": 39
+      },
+      "visualDescription": "ある人々は家庭のある住居へ、主人公らは仕事を終えてそれぞれの生活へ帰る。個々の繁殖状況を集団ラベルで断定せず、直前の人物の生活だけを対比させる。",
+      "backgroundId": "BG_TOWN_NIGHT_WIDE",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "右手前",
+          "facing": "自宅側",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        },
+        {
+          "id": "crowd",
+          "templateId": "character-passerby-crowd",
+          "identity": "通勤する匿名の人々。群衆の服装・顔は場面ごとに差分",
+          "position": "左右中景",
+          "facing": "複数の帰路",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公と通行人が街角で異なる帰路を取り、奥の住宅に灯りがともる。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-night-wide",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "NEW_RESIDENTIAL_WINDOWS_LAYER",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "住居の窓明かり（家ごとに順不同で点灯）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "帰路の交差点（人物が実際に分岐）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "やや高所の横ワイドから主人公の方向に緩やかに追う。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公と通行人が街角で異なる帰路を取り、奥の住宅に灯りがともる。",
+        "transitionOut": "主人公が住む一室の灯りを残し街全体を遠ざける。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7,
+      "previousSceneContinuity": "前シーン V46-P030 の遷移：かごに入る商品を街の他の生活へ広げる引き画へ。",
+      "nextSceneContinuity": "次シーン V46-P032：主人公が住む一室の灯りを残し街全体を遠ざける。",
+      "id": "V46-P031",
+      "summary": "ある人々は家庭のある住居へ、主人公らは仕事を終えてそれぞれの生活へ帰る。個々の繁殖状況を集団ラベルで断定せず、直前の人物の生活だけを対比",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "ある人々は家庭のある住居へ、主人公らは仕事を終えてそれぞれの生活へ帰る。個々の繁殖状況を集団ラベルで断定せず、直前の人物の生活だけを対比させる。",
+      "estimatedSeconds": 7
+    },
+    {
+      "sceneId": "V46-P032",
+      "chapterId": "prologue",
+      "narrationText": "もしそうだとすれば、我々を分けているものは、一体何なのだろうか。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 5,
+        "paragraph": 14,
+        "lineStart": 33,
+        "lineEnd": 33,
+        "sentenceStart": 2,
+        "sentenceEnd": 2,
+        "startOffsetUTF16": 1321,
+        "endOffsetExclusiveUTF16": 1353,
+        "columnStart1Based": 39,
+        "columnEndExclusive1Based": 71
+      },
+      "visualDescription": "問いの結び。主人公は窓の外を見て同期の家族写真に目を落とし、端末を消して家賃明細へ手を置く。何が人々を分けるのかを断言せず、第1章冒頭のお金の話へ画を受け渡す。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "35歳、同じ会社で13年間働く主人公。スーツ・顔・鞄を統一",
+          "position": "窓際左→机中央",
+          "facing": "街→スマホ→家賃書類",
+          "initialPose": "説明文とcharacterActionsに従う",
+          "characterContinuity": "同一idは顔・髪・衣装の統一を守る。シーン内の汎用補助人物は個別に差分を付ける"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "主人公が窓外を見つめ、端末の家族写真を一度見て消し、家賃明細に右手を置く。",
+          "positioning": "characters[].position と人物の視線・接地・手元の位置を各カットで整合"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "背景既存候補"
+        },
+        {
+          "assetId": "part-phone",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        },
+        {
+          "assetId": "part-invoice",
+          "origin": "registered_shared",
+          "review": "candidate_needs_visual_fit_confirmation",
+          "role": "小道具既存候補"
+        },
+        {
+          "assetId": "NEW_RESIDENTIAL_WINDOWS_LAYER",
+          "origin": "proposed_new",
+          "review": "pending_material_inventory",
+          "role": "新規候補・次工程で要否確認"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "窓外の住宅灯（遠景）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 2,
+          "description": "スマホ（写真→画面消灯）",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "家賃書類（手に触れて少し動く）。",
+          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        }
+      ],
+      "camera": {
+        "description": "後ろ姿から部屋全景→机上の家賃書類へ寄り、画面の余白を残して停止。",
+        "screen": "1920x1080/16:9",
+        "motion": "単なるズームで進行させず視点・人物の動きに従って切り替える"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が窓外を見つめ、端末の家族写真を一度見て消し、家賃明細に右手を置く。",
+        "transitionOut": "ここでプロローグを終える。第1章のシーン設計・制作には進まない。",
+        "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 6,
+      "previousSceneContinuity": "前シーン V46-P031 の遷移：主人公が住む一室の灯りを残し街全体を遠ざける。",
+      "nextSceneContinuity": "プロローグ終端で停止。第1章の設計はこの作業対象外。",
+      "id": "V46-P032",
+      "summary": "問いの結び。主人公は窓の外を見て同期の家族写真に目を落とし、端末を消して家賃明細へ手を置く。何が人々を分けるのかを断言せず、第1章冒頭の",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/prologue/scene-specific",
+      "visualIntent": "問いの結び。主人公は窓の外を見て同期の家族写真に目を落とし、端末を消して家賃明細へ手を置く。何が人々を分けるのかを断言せず、第1章冒頭のお金の話へ画を受け渡す。",
+      "estimatedSeconds": 6
+    }
+  ],
+  "coverageValidation": {
+    "method": "GitHub確定台本全文のUTF-16文字オフセットと段落・文番号を原文substringで照合。元段落の全内容と元の段落間改行を完全一致検証。",
+    "paragraphCount": 14,
+    "paragraphs": [
+      {
+        "paragraph": 1,
+        "line": 7,
+        "sourceUTF16Length": 107,
+        "coveredUTF16Length": 107,
+        "sceneIds": [
+          "V46-P001",
+          "V46-P002",
+          "V46-P003"
+        ],
+        "exactMatch": true
+      },
+      {
+        "paragraph": 2,
+        "line": 9,
+        "sourceUTF16Length": 124,
+        "coveredUTF16Length": 124,
+        "sceneIds": [
+          "V46-P004",
+          "V46-P005",
+          "V46-P006"
+        ],
+        "exactMatch": true
+      },
+      {
+        "paragraph": 3,
+        "line": 11,
+        "sourceUTF16Length": 148,
+        "coveredUTF16Length": 148,
+        "sceneIds": [
+          "V46-P007",
+          "V46-P008",
+          "V46-P009"
+        ],
+        "exactMatch": true
+      },
+      {
+        "paragraph": 4,
+        "line": 13,
+        "sourceUTF16Length": 35,
+        "coveredUTF16Length": 35,
+        "sceneIds": [
+          "V46-P010"
+        ],
+        "exactMatch": true
+      },
+      {
+        "paragraph": 5,
+        "line": 15,
+        "sourceUTF16Length": 68,
+        "coveredUTF16Length": 68,
+        "sceneIds": [
+          "V46-P011",
+          "V46-P012"
+        ],
+        "exactMatch": true
+      },
+      {
+        "paragraph": 6,
+        "line": 17,
+        "sourceUTF16Length": 94,
+        "coveredUTF16Length": 94,
+        "sceneIds": [
+          "V46-P013",
+          "V46-P014",
+          "V46-P015"
+        ],
+        "exactMatch": true
+      },
+      {
+        "paragraph": 7,
+        "line": 19,
+        "sourceUTF16Length": 173,
+        "coveredUTF16Length": 173,
+        "sceneIds": [
+          "V46-P016",
+          "V46-P017",
+          "V46-P018",
+          "V46-P019"
+        ],
+        "exactMatch": true
+      },
+      {
+        "paragraph": 8,
+        "line": 21,
+        "sourceUTF16Length": 66,
+        "coveredUTF16Length": 66,
+        "sceneIds": [
+          "V46-P020",
+          "V46-P021"
+        ],
+        "exactMatch": true
+      },
+      {
+        "paragraph": 9,
+        "line": 23,
+        "sourceUTF16Length": 61,
+        "coveredUTF16Length": 61,
+        "sceneIds": [
+          "V46-P022",
+          "V46-P023"
+        ],
+        "exactMatch": true
+      },
+      {
+        "paragraph": 10,
+        "line": 25,
+        "sourceUTF16Length": 76,
+        "coveredUTF16Length": 76,
+        "sceneIds": [
+          "V46-P024",
+          "V46-P025"
+        ],
+        "exactMatch": true
+      },
+      {
+        "paragraph": 11,
+        "line": 27,
+        "sourceUTF16Length": 71,
+        "coveredUTF16Length": 71,
+        "sceneIds": [
+          "V46-P026"
+        ],
+        "exactMatch": true
+      },
+      {
+        "paragraph": 12,
+        "line": 29,
+        "sourceUTF16Length": 46,
+        "coveredUTF16Length": 46,
+        "sceneIds": [
+          "V46-P027"
+        ],
+        "exactMatch": true
+      },
+      {
+        "paragraph": 13,
+        "line": 31,
+        "sourceUTF16Length": 99,
+        "coveredUTF16Length": 99,
+        "sceneIds": [
+          "V46-P028",
+          "V46-P029",
+          "V46-P030"
+        ],
+        "exactMatch": true
+      },
+      {
+        "paragraph": 14,
+        "line": 33,
+        "sourceUTF16Length": 70,
+        "coveredUTF16Length": 70,
+        "sceneIds": [
+          "V46-P031",
+          "V46-P032"
+        ],
+        "exactMatch": true
+      }
+    ],
+    "sourceBodyUTF16Length": 1264,
+    "allSceneNarrationUTF16Length": 1238,
+    "noMissingParagraphs": true,
+    "allOriginalSentencesCovered": true,
+    "noOverlap": true,
+    "noReordering": true,
+    "noAddedNarration": true,
+    "wholeBodyExactMatch": true
+  },
+  "preproductionReview": {
+    "sceneClassification": {
+      "Existing": 2,
+      "New": 0,
+      "One-off": 30
+    },
+    "existingTemplateUsage": [
+      {
+        "sceneId": "V46-P021",
+        "templateId": "dual_compare"
+      },
+      {
+        "sceneId": "V46-P026",
+        "templateId": "split_world"
+      }
+    ],
+    "newTemplateCandidates": [],
+    "oneOffScenes": [
+      "V46-P001",
+      "V46-P002",
+      "V46-P003",
+      "V46-P004",
+      "V46-P005",
+      "V46-P006",
+      "V46-P007",
+      "V46-P008",
+      "V46-P009",
+      "V46-P010",
+      "V46-P011",
+      "V46-P012",
+      "V46-P013",
+      "V46-P014",
+      "V46-P015",
+      "V46-P016",
+      "V46-P017",
+      "V46-P018",
+      "V46-P019",
+      "V46-P020",
+      "V46-P022",
+      "V46-P023",
+      "V46-P024",
+      "V46-P025",
+      "V46-P027",
+      "V46-P028",
+      "V46-P029",
+      "V46-P030",
+      "V46-P031",
+      "V46-P032"
+    ],
+    "diversityMetrics": {
+      "sceneCount": 32,
+      "uniqueSceneKeys": 32,
+      "maxExistingTemplateShare": 0.03125,
+      "maxConsecutiveSameTemplate": 1
+    },
+    "warnings": [
+      "背景・人物・パーツのIDは登録照合済み。ただし全候補の画像の構図適合と必要素材は次の素材洗い出し工程で判断。",
+      "NEW_* は提案候補。正式な不足素材・個数・権利確認は次工程で確定。",
+      "動画・ナレーション・字幕・プレビューは未制作。"
+    ]
+  },
+  "nextStep": "プロローグに限ってシーン別の必要素材と不足素材を洗い出し、ユーザーによる素材制作・登録の工程へ。第1章の設計・レンダリングには進まない。"
+}
