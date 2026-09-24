@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "v46hansyoku-chapter-approvals-v1",
+  "scriptPath": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+  "scriptBlobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+  "orderedChapters": [
+    {
+      "id": "prologue",
+      "label": "プロローグ",
+      "title": "誰も、彼に子供を持つなとは言っていない",
+      "status": "not_started",
+      "explicitUserApproval": false,
+      "approvedAt": null,
+      "approvedCommit": null,
+      "approvedArtifact": null,
+      "audioLocked": false,
+      "subtitlesLocked": false,
+      "timingLocked": false,
+      "videoLocked": false
+    },
+    {
+      "id": "chapter1",
+      "label": "第1章",
+      "title": "子供を育てるために、子供を持たない",
+      "status": "not_started",
+      "explicitUserApproval": false,
+      "approvedAt": null,
+      "approvedCommit": null,
+      "approvedArtifact": null,
+      "audioLocked": false,
+      "subtitlesLocked": false,
+      "timingLocked": false,
+      "videoLocked": false
+    },
+    {
+      "id": "chapter2",
+      "label": "第2章",
+      "title": "「自分で選んだ」という言葉の向こう側",
+      "status": "not_started",
+      "explicitUserApproval": false,
+      "approvedAt": null,
+      "approvedCommit": null,
+      "approvedArtifact": null,
+      "audioLocked": false,
+      "subtitlesLocked": false,
+      "timingLocked": false,
+      "videoLocked": false
+    },
+    {
+      "id": "chapter3",
+      "label": "第3章",
+      "title": "地下の王国には、子供を産まない働き手がいる",
+      "status": "not_started",
+      "explicitUserApproval": false,
+      "approvedAt": null,
+      "approvedCommit": null,
+      "approvedArtifact": null,
+      "audioLocked": false,
+      "subtitlesLocked": false,
+      "timingLocked": false,
+      "videoLocked": false
+    },
+    {
+      "id": "chapter4",
+      "label": "第4章",
+      "title": "女王の正体は、誰の顔もしていない",
+      "status": "not_started",
+      "explicitUserApproval": false,
+      "approvedAt": null,
+      "approvedCommit": null,
+      "approvedArtifact": null,
+      "audioLocked": false,
+      "subtitlesLocked": false,
+      "timingLocked": false,
+      "videoLocked": false
+    },
+    {
+      "id": "epilogue",
+      "label": "エピローグ",
+      "title": "明日も、誰かの子供のために働く",
+      "status": "not_started",
+      "explicitUserApproval": false,
+      "approvedAt": null,
+      "approvedCommit": null,
+      "approvedArtifact": null,
+      "audioLocked": false,
+      "subtitlesLocked": false,
+      "timingLocked": false,
+      "videoLocked": false
+    }
+  ],
+  "assemblyPolicy": "No later chapter until previous chapter has explicit user approval. Never re-render an approved chapter; assemble only after all six approved."
+}
