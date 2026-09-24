@@ -1,0 +1,299 @@
+{
+  "videoId": "v46hansyoku/prologue",
+  "title": "誰も、彼に子供を持つなとは言っていない",
+  "sourceScenePlan": "scene-plans/prologue.json",
+  "reviewedBeforeImplementation": true,
+  "reviewBasis": "User explicitly supplied finalized scene-design JSON as production authority; only prologue is in scope. No completed-render approval is implied.",
+  "scenes": [
+    {
+      "id": "V46-P001",
+      "summary": "金曜夜の東京オフィス街。ガラスビルの窓が上層から徐々に消灯し、退勤する人影が出口に集まる。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "金曜夜の東京オフィス街。ガラスビルの窓が上層から徐々に消灯し、退勤する人影が出口に集まる。",
+      "estimatedSeconds": 9.4,
+      "visualKey": "V46-P001"
+    },
+    {
+      "id": "V46-P002",
+      "summary": "ビルのガラスドアから人々が同じ向きに歩き出し、主人公もまだ目立たず群れの一人として出てくる。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "ビルのガラスドアから人々が同じ向きに歩き出し、主人公もまだ目立たず群れの一人として出てくる。",
+      "estimatedSeconds": 5.9,
+      "visualKey": "V46-P002"
+    },
+    {
+      "id": "V46-P003",
+      "summary": "地下鉄入口へ歩行者が途切れず入り、階段を下って暗い構内へ消えていく。主人公は人の最後尾近く。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "地下鉄入口へ歩行者が途切れず入り、階段を下って暗い構内へ消えていく。主人公は人の最後尾近く。",
+      "estimatedSeconds": 4.7,
+      "visualKey": "V46-P003"
+    },
+    {
+      "id": "V46-P004",
+      "summary": "群衆の中で街灯の下に入った主人公の顔が初めて分かる。大学を出た13年前の短い回想は、同じ顔の若い姿で大学門を通る動作に限定。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "群衆の中で街灯の下に入った主人公の顔が初めて分かる。大学を出た13年前の短い回想は、同じ顔の若い姿で大学門を通る動作に限定。",
+      "estimatedSeconds": 7.4,
+      "visualKey": "V46-P004"
+    },
+    {
+      "id": "V46-P005",
+      "summary": "朝の定時電車、取引先との資料確認、後輩の仕事の受け取り、夕方の数値画面という職務の連鎖。仕事先の移動は動作に合わせたカットで区別する。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "朝の定時電車、取引先との資料確認、後輩の仕事の受け取り、夕方の数値画面という職務の連鎖。仕事先の移動は動作に合わせたカットで区別する。",
+      "estimatedSeconds": 9.7,
+      "visualKey": "V46-P005"
+    },
+    {
+      "id": "V46-P006",
+      "summary": "同じ職場の夜。主人公の作業が会社の業務に組み込まれている様子を、画面の資料完成と隣の部署の仕事で示す。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "同じ職場の夜。主人公の作業が会社の業務に組み込まれている様子を、画面の資料完成と隣の部署の仕事で示す。",
+      "estimatedSeconds": 5.7,
+      "visualKey": "V46-P006"
+    },
+    {
+      "id": "V46-P007",
+      "summary": "帰宅後の部屋。困窮はしていないが、給料から家賃・食費・老後の貯えを差し引くと残額が思うほど増えない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "帰宅後の部屋。困窮はしていないが、給料から家賃・食費・老後の貯えを差し引くと残額が思うほど増えない。",
+      "estimatedSeconds": 11,
+      "visualKey": "V46-P007"
+    },
+    {
+      "id": "V46-P008",
+      "summary": "主人公は将来の結婚に必要な部屋の広さ、子供の教育費、共働きを続けられるかどうかを順に検討する。妻や子供が現在いると描かない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "主人公は将来の結婚に必要な部屋の広さ、子供の教育費、共働きを続けられるかどうかを順に検討する。妻や子供が現在いると描かない。",
+      "estimatedSeconds": 9.9,
+      "visualKey": "V46-P008"
+    },
+    {
+      "id": "V46-P009",
+      "summary": "彼が恋愛の前にお金を計算するようになった変化を、連絡先を開いても会話を始めず書類に戻る身ぶりで示す。交際相手は創作しない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "彼が恋愛の前にお金を計算するようになった変化を、連絡先を開いても会話を始めず書類に戻る身ぶりで示す。交際相手は創作しない。",
+      "estimatedSeconds": 5.9,
+      "visualKey": "V46-P009"
+    },
+    {
+      "id": "V46-P010",
+      "summary": "昇給、仕事の落ち着き、生活の見通しの三つの『まだ』を具体的な書類で検討する。均一なアイコン点滅にはしない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "昇給、仕事の落ち着き、生活の見通しの三つの『まだ』を具体的な書類で検討する。均一なアイコン点滅にはしない。",
+      "estimatedSeconds": 6.5,
+      "visualKey": "V46-P010"
+    },
+    {
+      "id": "V46-P011",
+      "summary": "慎重に準備した一項目を終えたと思うと、次に満たすべき条件を見つける。物事が前進しても準備完了にはならない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "慎重に準備した一項目を終えたと思うと、次に満たすべき条件を見つける。物事が前進しても準備完了にはならない。",
+      "estimatedSeconds": 9.2,
+      "visualKey": "V46-P011"
+    },
+    {
+      "id": "V46-P012",
+      "summary": "気がつけば35歳。前の書類を閉じ、壁の暦を見る動作と照明の短い経年表現で時間の経過を示す。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "気がつけば35歳。前の書類を閉じ、壁の暦を見る動作と照明の短い経年表現で時間の経過を示す。",
+      "estimatedSeconds": 3.5,
+      "visualKey": "V46-P012"
+    },
+    {
+      "id": "V46-P013",
+      "summary": "夜の帰路、主人公のポケットで携帯が振動する。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "夜の帰路、主人公のポケットで携帯が振動する。",
+      "estimatedSeconds": 3.4,
+      "visualKey": "V46-P013"
+    },
+    {
+      "id": "V46-P014",
+      "summary": "大学同期からの私的な写真メッセージを確認する。主人公の会社の同僚からの業務連絡に見せない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "大学同期からの私的な写真メッセージを確認する。主人公の会社の同僚からの業務連絡に見せない。",
+      "estimatedSeconds": 6.7,
+      "visualKey": "V46-P014"
+    },
+    {
+      "id": "V46-P015",
+      "summary": "広いリビングで同期と妻と二人の子供がケーキを囲み笑う一枚の写真。写真の中の人物を動かして新しい出来事にしない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "広いリビングで同期と妻と二人の子供がケーキを囲み笑う一枚の写真。写真の中の人物を動かして新しい出来事にしない。",
+      "estimatedSeconds": 7.7,
+      "visualKey": "V46-P015"
+    },
+    {
+      "id": "V46-P016",
+      "summary": "大学同期が卒業後に起業し、主人公とは別の会社を経営している。家族写真から同期の別会社へ遷移させ、会社を混同させない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "大学同期が卒業後に起業し、主人公とは別の会社を経営している。家族写真から同期の別会社へ遷移させ、会社を混同させない。",
+      "estimatedSeconds": 5.4,
+      "visualKey": "V46-P016"
+    },
+    {
+      "id": "V46-P017",
+      "summary": "同期の会社の従業員が商品を作り、顧客に応え、利益を生む仕事の連鎖を、業種不明の汎用商品で見せる。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "同期の会社の従業員が商品を作り、顧客に応え、利益を生む仕事の連鎖を、業種不明の汎用商品で見せる。",
+      "estimatedSeconds": 7.2,
+      "visualKey": "V46-P017"
+    },
+    {
+      "id": "V46-P018",
+      "summary": "事業の成功が経営者の家族に与える住まいや子供の選択肢を、同期の帰宅と広い居間での家族の読書として表現。特定の習い事や進学先は創作しない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "事業の成功が経営者の家族に与える住まいや子供の選択肢を、同期の帰宅と広い居間での家族の読書として表現。特定の習い事や進学先は創作しない。",
+      "estimatedSeconds": 9.9,
+      "visualKey": "V46-P018"
+    },
+    {
+      "id": "V46-P019",
+      "summary": "同期の会社で働く人の中には、家庭のための時間と余裕を確保できていない者もいるかもしれない。特定従業員の事実として断言せず、一例の仮想場面として描写。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "同期の会社で働く人の中には、家庭のための時間と余裕を確保できていない者もいるかもしれない。特定従業員の事実として断言せず、一例の仮想場面として描写。",
+      "estimatedSeconds": 9.2,
+      "visualKey": "V46-P019"
+    },
+    {
+      "id": "V46-P020",
+      "summary": "13年前、二人が同じ大学から社会へ出た時点を短い回想として描く。卒業後の経路はこの場面で明示しない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "13年前、二人が同じ大学から社会へ出た時点を短い回想として描く。卒業後の経路はこの場面で明示しない。",
+      "estimatedSeconds": 4.9,
+      "visualKey": "V46-P020"
+    },
+    {
+      "id": "V46-P021",
+      "summary": "左に同期の食卓で家族が暮らし、右に主人公の部屋で翌日の会議資料が置かれる。二者を貧富の優劣としてではなく異なる日常の事実として同時に映す。",
+      "sceneType": "Existing",
+      "templateSource": "Existing",
+      "templateId": "dual_compare",
+      "visualIntent": "左に同期の食卓で家族が暮らし、右に主人公の部屋で翌日の会議資料が置かれる。二者を貧富の優劣としてではなく異なる日常の事実として同時に映す。",
+      "estimatedSeconds": 7.5,
+      "visualKey": "V46-P021"
+    },
+    {
+      "id": "V46-P022",
+      "summary": "『諦めたのではない』という反論の導入。視聴者代理の架空の話者や追加セリフを創作せず、主人公の一瞬の沈黙として表現。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "『諦めたのではない』という反論の導入。視聴者代理の架空の話者や追加セリフを創作せず、主人公の一瞬の沈黙として表現。",
+      "estimatedSeconds": 4.4,
+      "visualKey": "V46-P022"
+    },
+    {
+      "id": "V46-P023",
+      "summary": "本人が選んだ子供を持たない暮らしとして、写真と自室の両方を見つめる。『諦め』を示すバツ印や強制された表情は描かない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "本人が選んだ子供を持たない暮らしとして、写真と自室の両方を見つめる。『諦め』を示すバツ印や強制された表情は描かない。",
+      "estimatedSeconds": 7.2,
+      "visualKey": "V46-P023"
+    },
+    {
+      "id": "V46-P024",
+      "summary": "誰も主人公に結婚や出産を禁じていないことを、通常の出勤・帰宅が遮られず続く様子で示す。禁止命令を読み上げる上司や法律書などは創作しない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "誰も主人公に結婚や出産を禁じていないことを、通常の出勤・帰宅が遮られず続く様子で示す。禁止命令を読み上げる上司や法律書などは創作しない。",
+      "estimatedSeconds": 8.9,
+      "visualKey": "V46-P024"
+    },
+    {
+      "id": "V46-P025",
+      "summary": "自分で働き暮らしを選ぶという主体性を、帰宅後の身の回りの動作で具体化する。未来の結婚や出産の決定を誇張しない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "自分で働き暮らしを選ぶという主体性を、帰宅後の身の回りの動作で具体化する。未来の結婚や出産の決定を誇張しない。",
+      "estimatedSeconds": 5.2,
+      "visualKey": "V46-P025"
+    },
+    {
+      "id": "V46-P026",
+      "summary": "家賃が半額、夕方に退勤、教育費への不安が小さい世界を、現在と分岐した仮定として明示。同じ男・同じ机の条件だけを変更し、どちらを選ぶかは描かない。",
+      "sceneType": "Existing",
+      "templateSource": "Existing",
+      "templateId": "split_world",
+      "visualIntent": "家賃が半額、夕方に退勤、教育費への不安が小さい世界を、現在と分岐した仮定として明示。同じ男・同じ机の条件だけを変更し、どちらを選ぶかは描かない。",
+      "estimatedSeconds": 12.5,
+      "visualKey": "V46-P026"
+    },
+    {
+      "id": "V46-P027",
+      "summary": "本人が選ぶ指先と、住まいの広さ・家賃・労働時間という社会条件を同じ画面に置き、二つが矛盾するかという問いを残す。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "本人が選ぶ指先と、住まいの広さ・家賃・労働時間という社会条件を同じ画面に置き、二つが矛盾するかという問いを残す。",
+      "estimatedSeconds": 8.4,
+      "visualKey": "V46-P027"
+    },
+    {
+      "id": "V46-P028",
+      "summary": "街の人々は誰にも止められず各自の帰路を選び、主人公も自宅側へ歩く。物理的な門や制止人物を登場させない。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "街の人々は誰にも止められず各自の帰路を選び、主人公も自宅側へ歩く。物理的な門や制止人物を登場させない。",
+      "estimatedSeconds": 3.9,
+      "visualKey": "V46-P028"
+    },
+    {
+      "id": "V46-P029",
+      "summary": "社会を支える仕事と自分の暮らしを守る生活が続くうち、子供を持たない人生を選ぶ者がいる、という因果を主人公の一日で追う。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "社会を支える仕事と自分の暮らしを守る生活が続くうち、子供を持たない人生を選ぶ者がいる、という因果を主人公の一日で追う。",
+      "estimatedSeconds": 8.7,
+      "visualKey": "V46-P029"
+    },
+    {
+      "id": "V46-P030",
+      "summary": "社会で働く人々の仕事が、別の場所で子供を育てる家庭の生活を支える。主人公が同期の家族へ直接奉仕するという未記載の関係は作らない。 店舗の親子は同期一家と別人の衣装・顔を使用する。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "社会で働く人々の仕事が、別の場所で子供を育てる家庭の生活を支える。主人公が同期の家族へ直接奉仕するという未記載の関係は作らない。 店舗の親子は同期一家と別人の衣装・顔を使用する。",
+      "estimatedSeconds": 6,
+      "visualKey": "V46-P030"
+    },
+    {
+      "id": "V46-P031",
+      "summary": "ある人々は家庭のある住居へ、主人公らは仕事を終えてそれぞれの生活へ帰る。個々の繁殖状況を集団ラベルで断定せず、直前の人物の生活だけを対比させる。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "ある人々は家庭のある住居へ、主人公らは仕事を終えてそれぞれの生活へ帰る。個々の繁殖状況を集団ラベルで断定せず、直前の人物の生活だけを対比させる。",
+      "estimatedSeconds": 7,
+      "visualKey": "V46-P031"
+    },
+    {
+      "id": "V46-P032",
+      "summary": "問いの結び。主人公は窓の外を見て同期の家族写真に目を落とし、端末を消して家賃明細へ手を置く。何が人々を分けるのかを断言せず、第1章冒頭のお金の話へ画を受け渡す。",
+      "sceneType": "One-off",
+      "templateSource": "One-off",
+      "visualIntent": "問いの結び。主人公は窓の外を見て同期の家族写真に目を落とし、端末を消して家賃明細へ手を置く。何が人々を分けるのかを断言せず、第1章冒頭のお金の話へ画を受け渡す。",
+      "estimatedSeconds": 6,
+      "visualKey": "V46-P032"
+    }
+  ]
+}
