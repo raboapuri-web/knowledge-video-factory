@@ -4,7 +4,7 @@
   "projectSlug": "v46hansyoku",
   "chapterId": "prologue",
   "chapterTitle": "誰も、彼に子供を持つなとは言っていない",
-  "status": "assets_registered_pending_visual_staging_and_implementation",
+  "status": "review_corrections_applied_pending_re_render",
   "source": {
     "repository": "raboapuri-web/knowledge-video-factory",
     "branch": "main",
@@ -775,7 +775,7 @@
         "columnStart1Based": 1,
         "columnEndExclusive1Based": 63
       },
-      "visualDescription": "帰宅後の部屋。困窮はしていないが、給料から家賃・食費・老後の貯えを差し引くと残額が思うほど増えない。",
+      "visualDescription": "帰宅後の部屋。困窮はしていないが、給料から家賃・食費・老後の貯えを差し引くと残額が思うほど増えない。 【ユーザー修正①】背景・登場人物・既存小道具をそのまま維持し、画面上部の独立した図解文字レイヤーに『[収入]-[家賃]-[食費]-[老後資金]＝残念ながら増えない通帳の数字』を、P007からP009までナレーションの実測シーン長に対して順番に加算表示する。P007で収入・各支出、P008で等号と通帳の結論、P009で完成した式を保つ。字幕の位置は変更せず重なり防止。",
       "backgroundId": "BG_oneroom_night",
       "characters": [
         {
@@ -856,6 +856,11 @@
           "order": 3,
           "description": "財布（右端）。",
           "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 4,
+          "description": "家計式の文字を分割して順に出す。式は3シーンを通じて保持し、字幕領域は避ける。",
+          "positioning": "画面上部・中央、字幕のある画面下端に干渉しない"
         }
       ],
       "camera": {
@@ -865,10 +870,11 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が上着を椅子に置いて座り、端末で振込を確認。家賃、食費、貯蓄の紙を順に並べ残額を見直す。",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が上着を椅子に置いて座り、端末で振込を確認。家賃、食費、貯蓄の紙を順に並べ残額を見直す。 【修正①】3シーンを連続した一枚の家計式でつなぎ、前シーンで表示した文字は次シーンで消さない。式表示はシーン内の実測音声長に従って補間する。",
         "transitionOut": "家計書類の隣に間取り図を置く動作へ。",
         "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
-        "voiceTiming": "VOICEVOX実音声による後決め"
+        "voiceTiming": "VOICEVOX実音声による後決め",
+        "reviewRevision": "2026-09-25/01 budget-formula overlay; unchanged voice/subtitles/scene order"
       },
       "estimatedDuration": 11,
       "previousSceneContinuity": "前シーン V46-P006 の遷移：PC画面の白い用紙を帰宅後の家計書類へつなぐ。",
@@ -908,7 +914,7 @@
         "columnStart1Based": 63,
         "columnEndExclusive1Based": 118
       },
-      "visualDescription": "主人公は将来の結婚に必要な部屋の広さ、子供の教育費、共働きを続けられるかどうかを順に検討する。妻や子供が現在いると描かない。",
+      "visualDescription": "主人公は将来の結婚に必要な部屋の広さ、子供の教育費、共働きを続けられるかどうかを順に検討する。妻や子供が現在いると描かない。 【ユーザー修正①】背景・登場人物・既存小道具をそのまま維持し、画面上部の独立した図解文字レイヤーに『[収入]-[家賃]-[食費]-[老後資金]＝残念ながら増えない通帳の数字』を、P007からP009までナレーションの実測シーン長に対して順番に加算表示する。P007で収入・各支出、P008で等号と通帳の結論、P009で完成した式を保つ。字幕の位置は変更せず重なり防止。",
       "backgroundId": "BG_oneroom_night",
       "characters": [
         {
@@ -960,6 +966,11 @@
           "order": 3,
           "description": "勤務予定（未確定欄にペンが止まる）。",
           "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 4,
+          "description": "家計式の文字を分割して順に出す。式は3シーンを通じて保持し、字幕領域は避ける。",
+          "positioning": "画面上部・中央、字幕のある画面下端に干渉しない"
         }
       ],
       "camera": {
@@ -969,10 +980,11 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公は今の間取りの壁を指でなぞり広い物件の資料を重ね、教育費のメモを付け、勤務継続の欄でペン先を止める。",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公は今の間取りの壁を指でなぞり広い物件の資料を重ね、教育費のメモを付け、勤務継続の欄でペン先を止める。 【修正①】3シーンを連続した一枚の家計式でつなぎ、前シーンで表示した文字は次シーンで消さない。式表示はシーン内の実測音声長に従って補間する。",
         "transitionOut": "計算書類から私的な連絡先を開く携帯へ。",
         "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
-        "voiceTiming": "VOICEVOX実音声による後決め"
+        "voiceTiming": "VOICEVOX実音声による後決め",
+        "reviewRevision": "2026-09-25/01 budget-formula overlay; unchanged voice/subtitles/scene order"
       },
       "estimatedDuration": 9.9,
       "previousSceneContinuity": "前シーン V46-P007 の遷移：家計書類の隣に間取り図を置く動作へ。",
@@ -1012,7 +1024,7 @@
         "columnStart1Based": 118,
         "columnEndExclusive1Based": 149
       },
-      "visualDescription": "彼が恋愛の前にお金を計算するようになった変化を、連絡先を開いても会話を始めず書類に戻る身ぶりで示す。交際相手は創作しない。",
+      "visualDescription": "彼が恋愛の前にお金を計算するようになった変化を、連絡先を開いても会話を始めず書類に戻る身ぶりで示す。交際相手は創作しない。 【ユーザー修正①】背景・登場人物・既存小道具をそのまま維持し、画面上部の独立した図解文字レイヤーに『[収入]-[家賃]-[食費]-[老後資金]＝残念ながら増えない通帳の数字』を、P007からP009までナレーションの実測シーン長に対して順番に加算表示する。P007で収入・各支出、P008で等号と通帳の結論、P009で完成した式を保つ。字幕の位置は変更せず重なり防止。",
       "backgroundId": "BG_oneroom_night",
       "characters": [
         {
@@ -1067,6 +1079,11 @@
           "order": 2,
           "description": "家計表（指が収支欄を往復）。",
           "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+        },
+        {
+          "order": 3,
+          "description": "家計式の文字を分割して順に出す。式は3シーンを通じて保持し、字幕領域は避ける。",
+          "positioning": "画面上部・中央、字幕のある画面下端に干渉しない"
         }
       ],
       "camera": {
@@ -1076,10 +1093,11 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公は連絡先一覧を一度開き、画面を伏せ、家計書類の欄を指で追う。",
+        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公は連絡先一覧を一度開き、画面を伏せ、家計書類の欄を指で追う。 【修正①】3シーンを連続した一枚の家計式でつなぎ、前シーンで表示した文字は次シーンで消さない。式表示はシーン内の実測音声長に従って補間する。",
         "transitionOut": "書類に残る未完了条件を次場面で引き継ぐ。",
         "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
-        "voiceTiming": "VOICEVOX実音声による後決め"
+        "voiceTiming": "VOICEVOX実音声による後決め",
+        "reviewRevision": "2026-09-25/01 budget-formula overlay; unchanged voice/subtitles/scene order"
       },
       "estimatedDuration": 5.9,
       "previousSceneContinuity": "前シーン V46-P008 の遷移：計算書類から私的な連絡先を開く携帯へ。",
@@ -3027,7 +3045,7 @@
         "columnStart1Based": 1,
         "columnEndExclusive1Based": 72
       },
-      "visualDescription": "家賃が半額、夕方に退勤、教育費への不安が小さい世界を、現在と分岐した仮定として明示。同じ男・同じ机の条件だけを変更し、どちらを選ぶかは描かない。",
+      "visualDescription": "【ユーザー修正②】左右比較の左は従来どおりBG_oneroom_nightで現在の主人公が家計表を見る。右はBG_ROOM_NIGHT_ON.pngへ差し替え、同じ主人公と登録済み子供人物を配置して家庭を持つ仮想の暮らしを映す。右半分では書類や予定表を一切出さず、子供が自然に父親の近くに現れて腕を動かし、左右の生活の対比を強める。右は反実仮想であり現時点の主人公に子供がいると断定しない。",
       "backgroundId": "BG_oneroom_night",
       "characters": [
         {
@@ -3069,23 +3087,39 @@
           "review": "not_implemented",
           "role": "新規候補・次工程で要否確認",
           "description": "Remotion / React の編集可能な動き・小道具。追加の画像アップロード不要。"
+        },
+        {
+          "assetId": "bg-bg-room-night-on",
+          "origin": "registered_shared",
+          "filePath": "shared/asset-library/背景/BG_ROOM_NIGHT_ON.png",
+          "license": "cleared-commercial",
+          "review": "user_specified_background_to_render",
+          "role": "P026 alternative right panel background"
+        },
+        {
+          "assetId": "character-v46-child-boy",
+          "origin": "registered_character_template",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "license": "cleared-commercial",
+          "review": "existing rig to render",
+          "role": "P026 hypothetical child on right"
         }
       ],
       "objectActions": [
         {
           "order": 1,
-          "description": "家賃欄（半額の仮定へ置換）",
-          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+          "description": "左側だけ家計表・書類を残す。",
+          "positioning": "画面左半分のみ"
         },
         {
           "order": 2,
-          "description": "勤務予定（夜予定→夕方終了へ）",
-          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+          "description": "右側の子供が主人公に近づき小さく手を上げる。右側の書類は表示しない。",
+          "positioning": "右側BG_ROOM_NIGHT_ON.pngの床前景・父親より一歩右の位置"
         },
         {
           "order": 3,
-          "description": "教育費の紙（負担感を軽く見せるが費用ゼロにはしない）。",
-          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+          "description": "左右の境界線を維持し右の室内背景を切り替える。",
+          "positioning": "画面中央"
         }
       ],
       "camera": {
@@ -3095,10 +3129,11 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が現実の家計表を見る→仮想側で半額家賃を確認→夕方に終わる予定表を閉じる→教育費の紙を重ね→二つの選択肢の前で指を止める。",
+        "description": "【修正②】左右に分けた実測音声長のタイミングは維持。左は今の仕事と家計、右は登録済み子供2Dリグの関節モーションと家庭の明るいBG_ROOM_NIGHT_ONを対比。右には紙・文字を追加しない。",
         "transitionOut": "分岐した二画面を同じ一冊の予定表へ戻す。",
         "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
-        "voiceTiming": "VOICEVOX実音声による後決め"
+        "voiceTiming": "VOICEVOX実音声による後決め",
+        "reviewRevision": "2026-09-25/02 alternative background and child without papers"
       },
       "estimatedDuration": 12.5,
       "previousSceneContinuity": "前シーン V46-P025 の遷移：予定表の空欄を同じ手元の反実仮想へ変換。",
@@ -3116,6 +3151,13 @@
           "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
           "usage": "primary",
           "visualReview": "pending"
+        },
+        {
+          "backgroundId": "BG_ROOM_NIGHT_ON",
+          "catalogId": "bg-bg-room-night-on",
+          "filePath": "shared/asset-library/背景/BG_ROOM_NIGHT_ON.png",
+          "usage": "right_half_hypothetical_scene",
+          "visualReview": "user_selected"
         }
       ],
       "materialRegistration": "requested_user_backgrounds_and_child_rigs_registered; visual_fit_and_scene_poses_pending"
@@ -3250,7 +3292,7 @@
         "columnStart1Based": 1,
         "columnEndExclusive1Based": 20
       },
-      "visualDescription": "街の人々は誰にも止められず各自の帰路を選び、主人公も自宅側へ歩く。物理的な門や制止人物を登場させない。",
+      "visualDescription": "【ユーザー修正③】完全な黒背景に白い図解文字『繁殖禁止令』を中央に置き、大きい赤色の×を文字の真ん中へ2画で時間差描画する。人物・街・信号の既存映像は表示しない。元ナレーション『我々は誰からも繁殖を禁じられていない。』と字幕は変えない。",
       "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
       "characters": [
         {
@@ -3299,13 +3341,13 @@
       "objectActions": [
         {
           "order": 1,
-          "description": "信号（赤→青）",
-          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+          "description": "白い『繁殖禁止令』が黒背景にフェードイン",
+          "positioning": "画面中央・字幕領域より上"
         },
         {
           "order": 2,
-          "description": "横断歩道（複数方向に足跡ではなく実人物が動く）。",
-          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+          "description": "赤い×を左斜線から右斜線へ動的描画し、禁止令という仮定を否定する",
+          "positioning": "『繁殖禁止令』の中央に大きく重ねる"
         }
       ],
       "camera": {
@@ -3315,10 +3357,11 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。歩行者は信号が青になってからそれぞれ異なる道へ歩き、主人公は右奥の住宅方向へ曲がる。",
+        "description": "【修正③】音声シーン開始から文字を表示し、発話中盤から赤い×の2本を順番に描画。黒背景のまま次シーンへ切り替える。",
         "transitionOut": "主人公の進路を追って働き生活費を払う日常に戻る。",
         "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
-        "voiceTiming": "VOICEVOX実音声による後決め"
+        "voiceTiming": "VOICEVOX実音声による後決め",
+        "reviewRevision": "2026-09-25/03 black card white ban label animated red cross"
       },
       "estimatedDuration": 3.9,
       "previousSceneContinuity": "前シーン V46-P027 の遷移：部屋の壁の縦線を都市のビル群へマッチカット。",
@@ -3632,7 +3675,7 @@
         "columnStart1Based": 1,
         "columnEndExclusive1Based": 39
       },
-      "visualDescription": "ある人々は家庭のある住居へ、主人公らは仕事を終えてそれぞれの生活へ帰る。個々の繁殖状況を集団ラベルで断定せず、直前の人物の生活だけを対比させる。",
+      "visualDescription": "【ユーザー修正④】夜の街・自室の既存映像をこの対象シーンのみ差し替え、暗い無地の背景と立体的な金属製レリーフの大きなアイコン2点で描く。左側は家族と子供の『繁殖する者』、右側は仕事道具を持つ『社会を支える者』。画面上部中央の分岐点から左右のアイコンへ銀・金の矢印が枝分かれして進む。P031で矢印とアイコンを段階表示し、P032では同じ位置と表示内容を維持して問いの余韻を残す。人物への優劣評価は追加しない。",
       "backgroundId": "BG_V46_RESIDENTIAL_STREET_NIGHT",
       "characters": [
         {
@@ -3681,13 +3724,13 @@
       "objectActions": [
         {
           "order": 1,
-          "description": "住居の窓明かり（家ごとに順不同で点灯）",
-          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+          "description": "金属製の分岐点から左右へ矢印を描画。",
+          "positioning": "画面上部中央から左・右下へそれぞれ枝分かれ"
         },
         {
           "order": 2,
-          "description": "帰路の交差点（人物が実際に分岐）。",
-          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+          "description": "左に親子レリーフ／右に仕事道具レリーフ。アイコン下の短い説明文字のみ使用。",
+          "positioning": "左右対称に同サイズで、字幕表示下端と重ならない"
         }
       ],
       "camera": {
@@ -3697,10 +3740,11 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公と通行人が街角で異なる帰路を取り、奥の住宅に灯りがともる。",
+        "description": "【修正④】P031で発話に合わせて2本の枝分かれ矢印を描き、金属レリーフのアイコンをフェードイン。P032は同じ図像・位置を維持し中央の分岐点をわずかに光らせて問いで終える。ナレーション・字幕は原文のまま。",
         "transitionOut": "主人公が住む一室の灯りを残し街全体を遠ざける。",
         "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
-        "voiceTiming": "VOICEVOX実音声による後決め"
+        "voiceTiming": "VOICEVOX実音声による後決め",
+        "reviewRevision": "2026-09-25/04 metallic split icons and branch arrows"
       },
       "estimatedDuration": 7,
       "previousSceneContinuity": "前シーン V46-P030 の遷移：かごに入る商品を街の他の生活へ広げる引き画へ。",
@@ -3740,7 +3784,7 @@
         "columnStart1Based": 39,
         "columnEndExclusive1Based": 71
       },
-      "visualDescription": "問いの結び。主人公は窓の外を見て同期の家族写真に目を落とし、端末を消して家賃明細へ手を置く。何が人々を分けるのかを断言せず、第1章冒頭のお金の話へ画を受け渡す。",
+      "visualDescription": "【ユーザー修正④】夜の街・自室の既存映像をこの対象シーンのみ差し替え、暗い無地の背景と立体的な金属製レリーフの大きなアイコン2点で描く。左側は家族と子供の『繁殖する者』、右側は仕事道具を持つ『社会を支える者』。画面上部中央の分岐点から左右のアイコンへ銀・金の矢印が枝分かれして進む。P031で矢印とアイコンを段階表示し、P032では同じ位置と表示内容を維持して問いの余韻を残す。人物への優劣評価は追加しない。",
       "backgroundId": "BG_oneroom_night",
       "characters": [
         {
@@ -3804,18 +3848,13 @@
       "objectActions": [
         {
           "order": 1,
-          "description": "窓外の住宅灯（遠景）",
-          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+          "description": "金属製の分岐点から左右へ矢印を描画。",
+          "positioning": "画面上部中央から左・右下へそれぞれ枝分かれ"
         },
         {
           "order": 2,
-          "description": "スマホ（写真→画面消灯）",
-          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
-        },
-        {
-          "order": 3,
-          "description": "家賃書類（手に触れて少し動く）。",
-          "positioning": "visualDescription に指定の画面左・右・中央・手前・奥の関係を優先。Remotionの1920×1080座標に換算して設置"
+          "description": "左に親子レリーフ／右に仕事道具レリーフ。アイコン下の短い説明文字のみ使用。",
+          "positioning": "左右対称に同サイズで、字幕表示下端と重ならない"
         }
       ],
       "camera": {
@@ -3825,10 +3864,11 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物は関節付き2Dの個別モーション、物体は持ち手・接地・遮蔽の関係を維持。主人公が窓外を見つめ、端末の家族写真を一度見て消し、家賃明細に右手を置く。",
+        "description": "【修正④】P031で発話に合わせて2本の枝分かれ矢印を描き、金属レリーフのアイコンをフェードイン。P032は同じ図像・位置を維持し中央の分岐点をわずかに光らせて問いで終える。ナレーション・字幕は原文のまま。",
         "transitionOut": "ここでプロローグを終える。第1章のシーン設計・制作には進まない。",
         "subtitle": "正式原稿のnarrationTextを別レイヤーで厳密一致。画面内の無関係な説明文字なし",
-        "voiceTiming": "VOICEVOX実音声による後決め"
+        "voiceTiming": "VOICEVOX実音声による後決め",
+        "reviewRevision": "2026-09-25/04 metallic split icons and branch arrows"
       },
       "estimatedDuration": 6,
       "previousSceneContinuity": "前シーン V46-P031 の遷移：主人公が住む一室の灯りを残し街全体を遠ざける。",
@@ -4093,7 +4133,7 @@
       "既存背景の実画像の画角、遮蔽、人物の接地は未検証。Remotion可変小道具は実装前。"
     ]
   },
-  "nextStep": "登録済みの背景8枚と人物2種類をプロローグ32シーンに合成して実画像の構図・可動域を検証。必要なRemotion小道具を実装する。今回は動画制作を開始しない。",
+  "nextStep": "Remotion re-render prologue after visual corrections, compare 32 scene contact frames, send corrected MP4 to user, keep chapter1 locked.",
   "assetReferences": {
     "materialInventory": "v46hansyoku/chapters/prologue/required-assets.json",
     "registrationStatus": "v46hansyoku/chapters/prologue/material-status.json",
@@ -4114,9 +4154,38 @@
     "validation": "All required background images and child rig files/catalog records confirmed; pixel-level visual fit and scene-specific movements still need review."
   },
   "productionGate": {
-    "next": "Stage and visually verify 8 registered backgrounds, check rig pose requirements, implement Remotion scene props. No video render or work on later chapters without user approval.",
+    "next": "Review fixes integrated; re-render prologue only and publish revision preview for user review",
     "doNotStartOtherChapters": true,
     "renderStarted": false,
     "approved": false
+  },
+  "reviewRevision": {
+    "revisionId": "v46-prologue-review-r1",
+    "date": "2026-09-25",
+    "affectedSceneIds": [
+      "V46-P007",
+      "V46-P008",
+      "V46-P009",
+      "V46-P026",
+      "V46-P028",
+      "V46-P031",
+      "V46-P032"
+    ],
+    "narrationUnchanged": true,
+    "subtitleUnchanged": true,
+    "original32ScenesPreserved": true,
+    "userApprovedFinalVideo": false,
+    "assetAdditions": [
+      {
+        "id": "bg-bg-room-night-on",
+        "path": "shared/asset-library/背景/BG_ROOM_NIGHT_ON.png",
+        "usage": "P026 right side"
+      },
+      {
+        "id": "character-v46-child-boy",
+        "usage": "P026 right side existing rig"
+      }
+    ],
+    "renderStrategy": "Remotion CLI --concurrency=4"
   }
 }
