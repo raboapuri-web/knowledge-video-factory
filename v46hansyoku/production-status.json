@@ -20,7 +20,7 @@
     "v46DedicatedRenderingWorkflow": "not_created",
     "projectMetadata": "prepared"
   },
-  "overallStatus": "prologue_scene_design_completed_awaiting_material_inventory",
+  "overallStatus": "prologue_missing_assets_identified_awaiting_user_registration",
   "firstWorkUnit": "prologue",
   "chapters": [
     {
@@ -28,9 +28,9 @@
       "label": "プロローグ",
       "title": "誰も、彼に子供を持つなとは言っていない",
       "sceneDesign": "completed",
-      "requiredAssets": "not_assessed",
-      "missingAssets": "not_assessed",
-      "assetRegistration": "not_started",
+      "requiredAssets": "inventory_complete",
+      "missingAssets": "8_background_images_including_2_conditional_plus_1_editable_child_rig_to_implement",
+      "assetRegistration": "awaiting_user_background_uploads_and_visual_validation",
       "voice": "not_started",
       "subtitles": "not_started",
       "video": "not_started",
@@ -39,7 +39,9 @@
       "locked": false,
       "scenePlanPath": "v46hansyoku/scene-plans/prologue.json",
       "sceneCount": 32,
-      "narrationCoverage": "14_of_14_paragraphs_verified_exact"
+      "narrationCoverage": "14_of_14_paragraphs_verified_exact",
+      "assetInventoryPath": "v46hansyoku/chapters/prologue/required-assets.json",
+      "assetStatusPath": "v46hansyoku/chapters/prologue/material-status.json"
     },
     {
       "id": "chapter1",
@@ -118,7 +120,7 @@
     }
   ],
   "renderStarted": false,
-  "nextAction": "Inventory material needs for the prologue only from approved scene plan, present missing assets for user creation/registration; do not render or begin chapter 1.",
+  "nextAction": "User creates or confirms prologue-only 8 candidate background images (P0 6, P1 2 conditional) and uploads to shared/asset-library/背景; verify registration and visual fit. Child rig and dynamic props to be coded during implementation. No voice/subtitles/render until approved.",
   "warnings": [
     "The supplied display title uses 社会構造, whereas the unchanged script header uses 行動経済学; do not silently edit either.",
     "Other workflows in this repository contain video number v46 for a different project; use the unique v46hansyoku slug for paths, composition IDs and workflows.",
