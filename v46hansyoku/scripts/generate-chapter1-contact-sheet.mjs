@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {spawn} from 'node:child_process';
+import {execFileSync} from 'node:child_process';
+const root=path.resolve(import.meta.dirname,'..');
+const video=path.resolve(process.argv[2]||path.join(root,'out/v46-chapter1.mp4'));
+const output=path.resolve(process.argv[3]||path.join(root,'out/chapter1-contact-sheet.jpg'));
+const sync=JSON.parse(fs.readFileSync(path.join(root,'src/chapter1-sync-timing.json'),'utf8'));
+const beats=sync.beats||[];if(beats.length!==36)throw Error('Expected 36 Chapter1 timings');
+const tmp=path.join(root,'.qa-chapter1-frames');fs.rmSync(tmp,{recursive:true,force:true});fs.mkdirSync(tmp,{recursive:true});
+const tasks=beats.map((b,i)=>({i,t:(Number(b.start)+Number(b.end))/2,out:path.join(tmp,'scene-'+String(i+1).padStart(3,'0')+'.jpg')}));
+const run=t=>new Promise((resolve,reject)=>{const p=spawn('ffmpeg',['-y','-loglevel','error','-ss',t.t.toFixed(3),'-i',video,'-frames:v','1','-vf',"scale=320:180,drawbox=x=0:y=0:w=180:h=34:color=black@0.70:t=fill,drawtext=text='C1-"+String(t.i+1).padStart(2,'0')+" "+t.t.toFixed(1)+"s':x=8:y=5:fontsize=20:fontcolor=white",t.out],{stdio:'inherit'});p.on('exit',c=>c===0?resolve():reject(new Error('ffmpeg frame '+t.i+' exit '+c)));});
+const concurrency=4;let cursor=0;
+await Promise.all(Array.from({length:concurrency},async()=>{while(cursor<tasks.length){const task=tasks[cursor++];await run(task);}}));
+const pattern=path.join(tmp,'scene-%03d.jpg');
+execFileSync('ffmpeg',['-y','-loglevel','error','-framerate','1','-i',pattern,'-vf','tile=8x5','-frames:v','1','-q:v','2',output]);
+console.log('Parallel Chapter1 QA frames: 36 scenes / concurrency='+concurrency+' -> '+output);
