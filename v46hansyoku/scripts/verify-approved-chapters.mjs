@@ -8,4 +8,10 @@ if(p1.videoId!=='V46'||p1.chapterId!=='chapter1'||p1.approval?.status!=='approve
 const bytes=fs.readFileSync(path.join(repo,p1.approvedDesign.path));
 const hash=crypto.createHash('sha1').update(Buffer.from('blob '+bytes.length+'\0')).update(bytes).digest('hex');
 if(hash!==p1.approvedDesign.blobSha)throw Error('Approved Chapter1 scene plan changed');
-console.log('V46 Chapter1 LOCKED: '+hash+' / run '+p1.approvedVideo.originalArtifact.runId);
+const rel=p1.approvedVideo?.durableStorage?.path;
+if(!rel||rel!=='v46hansyoku/approved-video/V46_CHAPTER1_APPROVED_20260925.mp4')throw Error('Approved Chapter1 MP4 path changed');
+const mp4=path.join(repo,rel);
+if(!fs.existsSync(mp4)||!fs.statSync(mp4).size)throw Error('Approved Chapter1 MP4 missing');
+const mp4sha=crypto.createHash('sha256').update(fs.readFileSync(mp4)).digest('hex');
+if(mp4sha!==p1.approvedVideo.sha256||mp4sha!=='aeeefeab11452fc7b708c5905f3b5096597dab2892f5c05b4698287283e2cbdd')throw Error('Approved Chapter1 MP4 changed');
+console.log('V46 Chapter1 LOCKED: scene-plan '+hash+' / MP4 '+mp4sha+' / run '+p1.approvedVideo.originalArtifact.runId);
