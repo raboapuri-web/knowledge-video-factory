@@ -1,0 +1,56 @@
+name: V46 Preserve Approved Prologue MP4 in Git
+# One-off content-addressed preservation. Never re-render, transcode, or recreate narration.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v46-store-approved-mp4.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: v46-preserve-approved-mp4
+  cancel-in-progress: false
+jobs:
+  preserve:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Verify original approved manifest and absence of existing permanent media
+        run: |
+          set -euo pipefail
+          test -f v46hansyoku/approvals/prologue.json
+          if test -e v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4; then
+            echo "::error::Approved MP4 is already archived; refusing replacement."
+            exit 1
+          fi
+      - name: Download already-approved R1 video (not a render)
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 36030111027
+          github-token: ${{ github.token }}
+          name: v46hansyoku-prologue-review-r1-parallel-32-scenes
+          path: original-approved-artifact
+      - name: Copy the original approved MP4 bytes to the immutable archive path
+        run: |
+          set -euo pipefail
+          original="$(find original-approved-artifact -type f -name 'v46-prologue-review-r1.mp4' -print -quit)"
+          test -s "$original"
+          mkdir -p v46hansyoku/approved-video
+          cp "$original" v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4
+          cd v46hansyoku/approved-video
+          echo '7c3c8f76fd8819bf02174ea600ca211889bbf45f8be152719ad7a420664d5384  V46_PROLOGUE_APPROVED_20260925.mp4' | sha256sum --check --status
+          sha256sum V46_PROLOGUE_APPROVED_20260925.mp4
+      - name: Commit and push exact approved 39.9 MB file without running any render
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4
+          git commit -m "archive(v46): preserve byte-identical user-approved prologue MP4 [skip ci]"
+          git push origin HEAD:main
+          echo "PRESERVED_VIDEO_COMMIT=$(git rev-parse HEAD)"
