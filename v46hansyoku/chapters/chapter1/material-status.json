@@ -5,30 +5,27 @@
   "chapterId": "chapter1",
   "sourceScenePlan": "v46hansyoku/scene-plans/chapter1.json",
   "sourceInventory": "v46hansyoku/chapters/chapter1/required-assets.json",
-  "state": "scene_design_complete_waiting_for_8_user_assets",
-  "missingUserAssetCount": 8,
-  "missingAssetIds": [
-    "bg-bg-v46-ch1-rural-home",
-    "bg-bg-v46-ch1-rural-field",
-    "bg-bg-v46-ch1-couple-apartment",
-    "bg-bg-v46-ch1-couple-apartment-wide",
-    "character-v46-ch1-farm-adult",
-    "character-v46-ch1-farm-child",
-    "character-v46-ch1-couple-man",
-    "character-v46-ch1-couple-woman"
-  ],
+  "state": "scene_design_complete_all_user_assets_resolved_ready_for_implementation",
+  "missingUserAssetCount": 0,
+  "missingAssetIds": [],
   "identityContinuityStatus": "locked_against_approved_prologue",
   "identityRules": [
     "プロローグ hero はC1-001〜003のみ同一外見で再利用。",
     "peer/youngPeer、同期の妻 mother、同期の boy/girl は第1章には登場させない。",
-    "共働き夫婦は章専用リグ、農村家族は歴史専用リグを新規作成する。",
+    "農村夫婦はPARENT_FATHER/MOTHER、農村児童はV46_CHILDリグ、共働き夫婦はOfficeWorker/OfficeWomanをベースに章専用差分を動画化時に作る。",
     "承認済みプロローグMP4・シーン設計は再レンダリング・改変禁止。"
   ],
   "reusableRegisteredAssetsVerifiedByCatalog": true,
   "codeOnlyPropsNeedImplementation": true,
-  "assetGateOpen": false,
-  "voiceGenerationAllowed": false,
-  "videoRenderAllowed": false,
+  "assetGateOpen": true,
+  "voiceGenerationAllowed": true,
+  "videoRenderAllowed": true,
   "chapter2Blocked": true,
-  "nextStep": "8素材の作成・登録後にcatalog照合し、Chapter1素材ゲートを開く。"
+  "nextStep": "Chapter1の人物React差分とRemotion実装へ進める。音声・字幕生成も可。第2章はChapter1承認まで進めない。",
+  "backgroundResolution": {
+    "BG_V46_CH1_RURAL_HOME": "registered",
+    "BG_V46_CH1_RURAL_FIELD": "registered",
+    "BG_ROOM_DAY": "registered_and_selected_instead_of_BG_V46_CH1_COUPLE_APARTMENT",
+    "BG_V46_CH1_COUPLE_APARTMENT_WIDE": "registered"
+  }
 }
