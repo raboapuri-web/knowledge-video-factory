@@ -1,0 +1,572 @@
+{
+  "schemaVersion": "v46-chapter1-required-assets-v1",
+  "videoId": "V46",
+  "chapterId": "chapter1",
+  "generatedAt": "2026-09-25",
+  "sourceScenePlan": "v46hansyoku/scene-plans/chapter1.json",
+  "sourceScenePlanBlobSha": "7169ca436d39f120d88f1163ac16ca08fb18a4af",
+  "prologueIdentityLock": {
+    "approvalRecord": "v46hansyoku/approvals/prologue.json",
+    "approvedVideoPath": "v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4",
+    "rule": "承認済みプロローグの人物外見と関係性を変更しない。同期一家の人物テンプレートを第1章の一般夫婦・一般家庭へ流用しない。"
+  },
+  "countSummary": {
+    "sceneCount": 36,
+    "missingUserAssets": 8,
+    "registeredReusableAssets": 18,
+    "codeOnlyGroups": 32
+  },
+  "missingUserAssets": [
+    {
+      "assetId": "bg-bg-v46-ch1-rural-home",
+      "name": "BG_V46_CH1_RURAL_HOME",
+      "type": "background",
+      "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+      "priority": "P0",
+      "promptSpec": "16:9、Remotion用2Dベクター。前近代・産業化以前を想起させる一般的な農村家屋の室内。木・土・簡素な家具、食卓、保存食、作業道具。特定の国・宗教・民族を断定する記号を避ける。電気製品、プラスチック、現代照明、現代衣料を置かない。成人2人＋子供3人を配置できる左右の空間を確保。文字なし。",
+      "continuity": "プロローグの主人公自室 BG_oneroom_night、同期宅 BG_V46_PEER_LIVING_ROOM と視覚的に完全分離。",
+      "sceneIds": [
+        "V46-C1-005",
+        "V46-C1-006",
+        "V46-C1-011",
+        "V46-C1-013"
+      ],
+      "status": "missing_user_creation_required",
+      "registerToCatalog": true,
+      "rightsStatusRequired": "確定/cleared-commercial"
+    },
+    {
+      "assetId": "character-v46-ch1-farm-adult",
+      "name": "V46_CH1_FARM_ADULT_RIG",
+      "type": "character-rig",
+      "filePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_ADULT_RIG.tsx",
+      "priority": "P0",
+      "promptSpec": "前近代農村の成人用関節付きReact SVG。male/femaleの2バリアントを1テンプレート内で切替可。簡素な天然素材風の衣服、現代スーツ・カーディガン不可。idle / walk / handFood / harvest の最低4動作。顔・髪・服色はプロローグのhero/peer/father/motherと似せない。",
+      "continuity": "主人公、大学同期、同期の妻と別人。現代人物への流用禁止。",
+      "sceneIds": [
+        "V46-C1-005",
+        "V46-C1-006",
+        "V46-C1-011",
+        "V46-C1-013",
+        "V46-C1-014"
+      ],
+      "status": "missing_user_creation_required",
+      "registerToCatalog": true,
+      "rightsStatusRequired": "確定/cleared-commercial"
+    },
+    {
+      "assetId": "character-v46-ch1-farm-child",
+      "name": "V46_CH1_FARM_CHILD_RIG",
+      "type": "character-rig",
+      "filePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
+      "priority": "P0",
+      "promptSpec": "前近代農村の子供用関節付きReact SVG。A/B/Cの3バリアントを髪・服色・背丈で識別。front / walk / carryWater / watchAnimal / harvest の動作。現代パーカー、スニーカー、学校制服などを使わない。",
+      "continuity": "プロローグのV46_CHILD_RIG_BOY / GIRLとは別人・別衣装。同期の子供に見えないこと。",
+      "sceneIds": [
+        "V46-C1-005",
+        "V46-C1-006",
+        "V46-C1-011",
+        "V46-C1-012",
+        "V46-C1-013",
+        "V46-C1-014",
+        "V46-C1-031"
+      ],
+      "status": "missing_user_creation_required",
+      "registerToCatalog": true,
+      "rightsStatusRequired": "確定/cleared-commercial"
+    },
+    {
+      "assetId": "bg-bg-v46-ch1-rural-field",
+      "name": "BG_V46_CH1_RURAL_FIELD",
+      "type": "background",
+      "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
+      "priority": "P0",
+      "promptSpec": "16:9、同じ農村家屋と時代感の屋外。畑、土の道、水桶を運べる水場または井戸方向、家畜用の簡素な柵、収穫物を置く余白。大型近代農機、電線、舗装道路、現代建築なし。人物を3〜5体置いても重ならない奥行き。文字なし。",
+      "continuity": "BG_V46_CH1_RURAL_HOMEと同一地域・季節・色調に見えること。",
+      "sceneIds": [
+        "V46-C1-012",
+        "V46-C1-014",
+        "V46-C1-031"
+      ],
+      "status": "missing_user_creation_required",
+      "registerToCatalog": true,
+      "rightsStatusRequired": "確定/cleared-commercial"
+    },
+    {
+      "assetId": "character-v46-ch1-couple-man",
+      "name": "V46_CH1_COUPLE_MAN_RIG",
+      "type": "character-rig",
+      "filePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
+      "priority": "P0",
+      "promptSpec": "第1章『ある共働きの夫婦』専用男性。30代前後、現代の会社員だがプロローグ主人公・大学同期と顔、髪型、服色を明確に変える。ビジネスカジュアル寄り、青やえんじ中心の既存人物配色は避ける。idle / walk / sit / work / study / lookAtPartner を実装。",
+      "continuity": "hero/peer/youngHero/youngPeerを使い回さない。第1章C1-023〜035で同一人物として固定。",
+      "sceneIds": [
+        "V46-C1-023",
+        "V46-C1-024",
+        "V46-C1-025",
+        "V46-C1-026",
+        "V46-C1-027",
+        "V46-C1-028",
+        "V46-C1-029",
+        "V46-C1-030",
+        "V46-C1-032",
+        "V46-C1-033",
+        "V46-C1-035"
+      ],
+      "status": "missing_user_creation_required",
+      "registerToCatalog": true,
+      "rightsStatusRequired": "確定/cleared-commercial"
+    },
+    {
+      "assetId": "character-v46-ch1-couple-woman",
+      "name": "V46_CH1_COUPLE_WOMAN_RIG",
+      "type": "character-rig",
+      "filePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
+      "priority": "P0",
+      "promptSpec": "第1章『ある共働きの夫婦』専用女性。30代前後。プロローグの同期の妻 ParentMotherRig、OfficeWomanRigと混同しない髪型・配色。ビジネスカジュアルと自宅服の差分可。idle / walk / sit / work / study / lookAtPartner を実装。",
+      "continuity": "プロローグのmother/femaleと別人。第1章C1-023〜035で外見固定。",
+      "sceneIds": [
+        "V46-C1-023",
+        "V46-C1-024",
+        "V46-C1-025",
+        "V46-C1-026",
+        "V46-C1-027",
+        "V46-C1-028",
+        "V46-C1-029",
+        "V46-C1-030",
+        "V46-C1-032",
+        "V46-C1-033",
+        "V46-C1-035"
+      ],
+      "status": "missing_user_creation_required",
+      "registerToCatalog": true,
+      "rightsStatusRequired": "確定/cleared-commercial"
+    },
+    {
+      "assetId": "bg-bg-v46-ch1-couple-apartment",
+      "name": "BG_V46_CH1_COUPLE_APARTMENT",
+      "type": "background",
+      "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
+      "priority": "P0",
+      "promptSpec": "16:9、共働き二人暮らしの現代1LDK〜コンパクト2LDK。清潔だが広すぎない。小さなダイニング、ソファ、収納、二人分の生活用品。子供用品は置かない。机上で家計・保育園・将来計画を見られる構図。夜の室内照明。文字なし。",
+      "continuity": "主人公のBG_oneroom_night、同期宅BG_V46_PEER_LIVING_ROOM、修正用BG_ROOM_NIGHT_ONとは別の間取り・家具・色調。",
+      "sceneIds": [
+        "V46-C1-024",
+        "V46-C1-025",
+        "V46-C1-027",
+        "V46-C1-029"
+      ],
+      "status": "missing_user_creation_required",
+      "registerToCatalog": true,
+      "rightsStatusRequired": "確定/cleared-commercial"
+    },
+    {
+      "assetId": "bg-bg-v46-ch1-couple-apartment-wide",
+      "name": "BG_V46_CH1_COUPLE_APARTMENT_WIDE",
+      "type": "background",
+      "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
+      "priority": "P0",
+      "promptSpec": "16:9、同じ共働き夫婦が数年後に引っ越した広い住居。前の住居と家具の一部・配色を引き継ぎ同じ夫婦の生活に見せるが、明確に広いLDKと追加の空間がある。生活は整っているが、二人が同時に座る時間が減った演出に使える余白。子供が既にいる描写は禁止。文字なし。",
+      "continuity": "BG_V46_CH1_COUPLE_APARTMENTの後年版。同一人物の住み替えと分かる家具モチーフを一部継承。",
+      "sceneIds": [
+        "V46-C1-030",
+        "V46-C1-032",
+        "V46-C1-035"
+      ],
+      "status": "missing_user_creation_required",
+      "registerToCatalog": true,
+      "rightsStatusRequired": "確定/cleared-commercial"
+    }
+  ],
+  "registeredReusableAssets": [
+    {
+      "assetId": "bg-bg-oneroom-night",
+      "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+      "license": "cleared-commercial",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-001",
+        "V46-C1-002",
+        "V46-C1-003"
+      ]
+    },
+    {
+      "assetId": "part-auto-2679868ba4e74a25",
+      "filePath": "shared/asset-library/パーツ/WALLET.png",
+      "license": "cleared-commercial",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-001",
+        "V46-C1-024"
+      ]
+    },
+    {
+      "assetId": "part-invoice",
+      "filePath": "shared/asset-library/パーツ/invoice.svg",
+      "license": "original-project",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-001",
+        "V46-C1-002"
+      ]
+    },
+    {
+      "assetId": "character-modern-male-office-worker",
+      "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+      "license": "original-project",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-001",
+        "V46-C1-002",
+        "V46-C1-003"
+      ]
+    },
+    {
+      "assetId": "bg-bg-honndana",
+      "filePath": "shared/asset-library/背景/BG_honndana.png",
+      "license": "cleared-commercial",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-004"
+      ]
+    },
+    {
+      "assetId": "bg-bg-town",
+      "filePath": "shared/asset-library/背景/BG_town.png",
+      "license": "cleared-commercial",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-007",
+        "V46-C1-009",
+        "V46-C1-023"
+      ]
+    },
+    {
+      "assetId": "bg-bg-hospital",
+      "filePath": "shared/asset-library/背景/BG_hospital.png",
+      "license": "cleared-commercial",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-007",
+        "V46-C1-017",
+        "V46-C1-025"
+      ]
+    },
+    {
+      "assetId": "bg-bg-office",
+      "filePath": "shared/asset-library/背景/BG_office.png",
+      "license": "cleared-commercial",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-007",
+        "V46-C1-015",
+        "V46-C1-028",
+        "V46-C1-030",
+        "V46-C1-033"
+      ]
+    },
+    {
+      "assetId": "character-passerby-crowd",
+      "filePath": "shared/asset-library/人物テンプレート/PASSERBY.tsx",
+      "license": "original-project",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-007",
+        "V46-C1-009"
+      ]
+    },
+    {
+      "assetId": "bg-bg-darkroom",
+      "filePath": "shared/asset-library/背景/BG_darkroom.png",
+      "license": "cleared-commercial",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-008",
+        "V46-C1-010",
+        "V46-C1-019",
+        "V46-C1-021",
+        "V46-C1-022",
+        "V46-C1-034"
+      ]
+    },
+    {
+      "assetId": "bg-bg-kitchen",
+      "filePath": "shared/asset-library/背景/BG_kitchen.png",
+      "license": "cleared-commercial",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-016"
+      ]
+    },
+    {
+      "assetId": "bg-bg-school",
+      "filePath": "shared/asset-library/背景/BG_school.png",
+      "license": "cleared-commercial",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-016",
+        "V46-C1-018",
+        "V46-C1-026"
+      ]
+    },
+    {
+      "assetId": "bg-bg-syosai",
+      "filePath": "shared/asset-library/背景/BG_syosai.png",
+      "license": "cleared-commercial",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-020"
+      ]
+    },
+    {
+      "assetId": "bg-bg-cafenaiso",
+      "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+      "license": "cleared-commercial",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-023"
+      ]
+    },
+    {
+      "assetId": "bg-bg-tosyokan",
+      "filePath": "shared/asset-library/背景/BG_tosyokan.png",
+      "license": "cleared-commercial",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-028"
+      ]
+    },
+    {
+      "assetId": "part-clock",
+      "filePath": "shared/asset-library/パーツ/clock.svg",
+      "license": "original-project",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-028",
+        "V46-C1-029",
+        "V46-C1-030",
+        "V46-C1-033",
+        "V46-C1-034"
+      ]
+    },
+    {
+      "assetId": "bg-bg-sns",
+      "filePath": "shared/asset-library/背景/BG_SNS.png",
+      "license": "cleared-commercial",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-036"
+      ]
+    },
+    {
+      "assetId": "part-phone",
+      "filePath": "shared/asset-library/パーツ/phone.svg",
+      "license": "original-project",
+      "status": "registered_reuse",
+      "sceneIds": [
+        "V46-C1-036"
+      ]
+    }
+  ],
+  "codeProducedNoUpload": [
+    {
+      "assetId": "remotion:expense-labels",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:budget-closeup",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:history-book-transition",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:hardship-overlay",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:progress-montage",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:birthrate-chart",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:family-choice-silhouettes",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:old-new-role-bridge",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:livestock-and-harvest-props",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:food-clothing-costs",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:urban-family-flow",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:long-parental-support",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:future-child-silhouette",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:choice-paths",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:resource-rings",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:becker-paper-1960",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:quantity-quality-budget",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:one-child-resource-stack",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:travel-props",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:room-measure-and-savings",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:nursery-calendar",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:school-cost-stack",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:foundation-checklist",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:career-study-overtime",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:empty-time-slot",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:income-space-time-paradox",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:historical-modern-split",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:requirements-wall",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:years-passing-calendar",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:work-pushes-family-away",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:high-condition-question",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    },
+    {
+      "assetId": "remotion:social-gaze-transition",
+      "status": "implement_in_remotion",
+      "userUploadRequired": false
+    }
+  ],
+  "characterContinuity": {
+    "prologueCharactersLocked": [
+      {
+        "id": "hero",
+        "rule": "第1章冒頭C1-001〜003のみ同一人物として使用。外見変更禁止。"
+      },
+      {
+        "id": "peer",
+        "rule": "第1章では使用禁止。"
+      },
+      {
+        "id": "mother",
+        "rule": "同期の妻として固定。第1章の共働き女性には流用禁止。"
+      },
+      {
+        "id": "boy",
+        "rule": "同期の息子として固定。第1章の歴史児童・将来児童には流用禁止。"
+      },
+      {
+        "id": "girl",
+        "rule": "同期の娘として固定。第1章の歴史児童・将来児童には流用禁止。"
+      }
+    ],
+    "newChapter1Characters": [
+      "character-v46-ch1-couple-man",
+      "character-v46-ch1-couple-woman",
+      "character-v46-ch1-farm-adult",
+      "character-v46-ch1-farm-child"
+    ]
+  },
+  "gate": {
+    "sceneDesignComplete": true,
+    "userMissingAssetsReady": false,
+    "catalogRegistrationComplete": false,
+    "chapter1RenderAllowed": false,
+    "chapter2Blocked": true,
+    "approvedPrologueMustNotRender": true
+  },
+  "nextStep": "上記8素材を作成し指定パスへ追加→catalog登録・権利確定→scene planの素材ゲートを更新→第1章の音声・字幕・Remotion実装。"
+}
