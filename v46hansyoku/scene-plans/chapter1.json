@@ -1,0 +1,3890 @@
+{
+  "schemaVersion": "v46-chapter-scene-plan-v2",
+  "videoId": "V46",
+  "projectSlug": "v46hansyoku",
+  "chapterId": "chapter1",
+  "chapterTitle": "子供を育てるために、子供を持たない",
+  "status": "scene_design_complete_missing_assets_gate",
+  "source": {
+    "repository": "raboapuri-web/knowledge-video-factory",
+    "branch": "main",
+    "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+    "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+    "chapterHeadingLine": 36,
+    "bodyFirstLine": 38,
+    "bodyLastLine": 64,
+    "narrationPolicy": "narrationTextは確定原稿の連続部分。文言改変不可。全sceneを元順序で連結し段落区切りを戻すと第1章本文と完全一致すること。"
+  },
+  "approvedPrologueDependency": {
+    "approvalRecord": "v46hansyoku/approvals/prologue.json",
+    "approvedVideoPath": "v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4",
+    "approvedVideoSha256": "7c3c8f76fd8819bf02174ea600ca211889bbf45f8be152719ad7a420664d5384",
+    "locked": true,
+    "doNotRerender": true
+  },
+  "continuityContract": {
+    "rules": [
+      "主人公 hero はプロローグ承認済み OfficeWorkerRig の同一人物。顔・髪・スーツ配色・年齢設定を変更しない。",
+      "大学同期 peer / youngPeer は第1章に登場させない。同期の妻 mother と同期の子供 boy/girl も第1章に流用しない。",
+      "第1章の『ある共働きの夫婦』は coupleMan / coupleWoman の新規専用人物。プロローグの主人公・大学同期・同期一家とは完全に別人。",
+      "歴史上の農村家族は farmAdult / farmChild の新規専用人物。現代のV46子供リグを歴史衣装のまま使い回さない。",
+      "匿名群衆 PASSERBY は個人同一性を持たない背景人物としてのみ再利用可。",
+      "プロローグ承認済みMP4とscene-planは変更・再レンダリングしない。"
+    ],
+    "lockedPrologueCharacterReferences": {
+      "hero": {
+        "templateId": "character-modern-male-office-worker",
+        "actorKind": "hero",
+        "usageInChapter1": "V46-C1-001〜003 only as visual bridge"
+      },
+      "peer": {
+        "actorKind": "peer",
+        "usageInChapter1": "forbidden"
+      },
+      "peerSpouse": {
+        "actorKind": "mother",
+        "variant": false,
+        "usageInChapter1": "forbidden"
+      },
+      "peerBoy": {
+        "actorKind": "boy",
+        "variant": false,
+        "usageInChapter1": "forbidden"
+      },
+      "peerGirl": {
+        "actorKind": "girl",
+        "usageInChapter1": "forbidden"
+      }
+    }
+  },
+  "engine": "Remotion React TypeScript",
+  "sceneCount": 36,
+  "estimatedDurationSeconds": 228.4,
+  "scenes": [
+    {
+      "sceneId": "V46-C1-001",
+      "chapterId": "chapter1",
+      "narrationText": "子供を持たない理由を問われれば、我々はまず金の話をする。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 38,
+        "lineEnd": 38,
+        "startOffsetUTF16": 1379,
+        "endOffsetExclusiveUTF16": 1407
+      },
+      "visualDescription": "プロローグ承認済み主人公の自室から連続。机の上の財布・給与明細・家賃明細に視線を落とし、『金の話』へ自然につなぐ。主人公の顔・スーツ色・髪型はプロローグと完全一致。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "プロローグ承認済みの35歳主人公。顔・髪・スーツ配色を一切変更しない。",
+          "continuity": "locked_from_prologue",
+          "prologueReference": "V46-P002〜P032 / Actor kind='hero'",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "財布を開き、請求書を順に机へ置く。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "ac284b13b883d64559b03cee442699aef5bd0c538c4412b194d37b1e7d5dc152",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "part-auto-2679868ba4e74a25",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/パーツ/WALLET.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "32b548e32f398c49f8861c69bba9ab94e29fc08d90ea709a70ad87b0687e3d49",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "part-invoice",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/パーツ/invoice.svg",
+          "license": "original-project",
+          "sourceSha256": null,
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "sourceSha256": null,
+          "review": "registered_existing_asset"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "財布を開き、請求書を順に机へ置く。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "財布を開き、請求書を順に机へ置く。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 5.2,
+      "previousSceneContinuity": "承認済みプロローグの主人公と家計の問いを引き継ぐ。",
+      "nextSceneContinuity": "次シーン V46-C1-002 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "プロローグ承認済み主人公の自室から連続。机の上の財布・給与明細・家賃明細に視線を落とし、『金の話』へ自然につなぐ。主人公の顔・スーツ色・髪型はプロローグと完全一致。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-002",
+      "chapterId": "chapter1",
+      "narrationText": "給料が足りない。家賃が高い。教育費がかかる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 38,
+        "lineEnd": 38,
+        "startOffsetUTF16": 1407,
+        "endOffsetExclusiveUTF16": 1429
+      },
+      "visualDescription": "主人公の机上に給料・家賃・教育費を示す三つの無地カードが順に現れる。プロローグの承認済み家計演出を再利用するが、新しい事実は加えない。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "プロローグ承認済みの35歳主人公。顔・髪・スーツ配色を一切変更しない。",
+          "continuity": "locked_from_prologue",
+          "prologueReference": "V46-P002〜P032 / Actor kind='hero'",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "カードが給料→家賃→教育費の順に置かれる。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "ac284b13b883d64559b03cee442699aef5bd0c538c4412b194d37b1e7d5dc152",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "part-invoice",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/パーツ/invoice.svg",
+          "license": "original-project",
+          "sourceSha256": null,
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "sourceSha256": null,
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:expense-labels",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "カードが給料→家賃→教育費の順に置かれる。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "カードが給料→家賃→教育費の順に置かれる。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.4,
+      "previousSceneContinuity": "前シーン V46-C1-001 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-003 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "主人公の机上に給料・家賃・教育費を示す三つの無地カードが順に現れる。プロローグの承認済み家計演出を再利用するが、新しい事実は加えない。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-003",
+      "chapterId": "chapter1",
+      "narrationText": "いずれも、日々の暮らしに触れた、切実な理由である。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 38,
+        "lineEnd": 38,
+        "startOffsetUTF16": 1429,
+        "endOffsetExclusiveUTF16": 1454
+      },
+      "visualDescription": "主人公の手元へ寄り、生活費のカード群を見つめる。『切実な理由』を表情ではなく手が止まる動作で示す。",
+      "backgroundId": "BG_oneroom_night",
+      "characters": [
+        {
+          "id": "hero",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "プロローグ承認済みの35歳主人公。顔・髪・スーツ配色を一切変更しない。",
+          "continuity": "locked_from_prologue",
+          "prologueReference": "V46-P002〜P032 / Actor kind='hero'",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "ペン先が家計表の上で止まる。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-oneroom-night",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "ac284b13b883d64559b03cee442699aef5bd0c538c4412b194d37b1e7d5dc152",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "sourceSha256": null,
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:budget-closeup",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "ペン先が家計表の上で止まる。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "ペン先が家計表の上で止まる。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.8,
+      "previousSceneContinuity": "前シーン V46-C1-002 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-004 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "主人公の手元へ寄り、生活費のカード群を見つめる。『切実な理由』を表情ではなく手が止まる動作で示す。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_oneroom_night",
+          "catalogId": "bg-bg-oneroom-night",
+          "filePath": "shared/asset-library/背景/BG_oneroom_night.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-004",
+      "chapterId": "chapter1",
+      "narrationText": "しかし、歴史の頁をめくると、妙な光景が現れる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 40,
+        "lineEnd": 40,
+        "startOffsetUTF16": 1456,
+        "endOffsetExclusiveUTF16": 1479
+      },
+      "visualDescription": "本棚から一冊の古い本を開き、ページの中へカメラが入る。現代の家計から歴史へ視点を切り替える。",
+      "backgroundId": "BG_honndana",
+      "characters": [],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "ページをめくるたびに現代の数字が古い農村の輪郭へ変わる。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-honndana",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_honndana.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "9bfddc7a02aa190adb34ee47b1c8df50d9d9529976d09e3e6367c095f1825bff",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:history-book-transition",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "ページをめくるたびに現代の数字が古い農村の輪郭へ変わる。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "ページをめくるたびに現代の数字が古い農村の輪郭へ変わる。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.5,
+      "previousSceneContinuity": "前シーン V46-C1-003 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-005 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "本棚から一冊の古い本を開き、ページの中へカメラが入る。現代の家計から歴史へ視点を切り替える。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_honndana",
+          "catalogId": "bg-bg-honndana",
+          "filePath": "shared/asset-library/背景/BG_honndana.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-005",
+      "chapterId": "chapter1",
+      "narrationText": "現在よりもずっと貧しく、医療も十分ではなかった時代、人々は多くの子供を育てていた。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 40,
+        "lineEnd": 40,
+        "startOffsetUTF16": 1479,
+        "endOffsetExclusiveUTF16": 1520
+      },
+      "visualDescription": "前近代の一般的な農村家屋。質素な室内で複数の子供と大人が生活している。特定の国・年代を断定する装飾は避ける。",
+      "backgroundId": "BG_V46_CH1_RURAL_HOME",
+      "characters": [
+        {
+          "id": "farmAdultA",
+          "templateId": "character-v46-ch1-farm-adult",
+          "identity": "歴史説明用の農村成人A。現代人物とは別人。",
+          "variant": "male",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmAdultB",
+          "templateId": "character-v46-ch1-farm-adult",
+          "identity": "歴史説明用の農村成人B。現代人物とは別人。",
+          "variant": "female",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildA",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "variant": "A",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildB",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の子供B。プロローグの子供とは別人。",
+          "variant": "B",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildC",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の子供C。プロローグの子供とは別人。",
+          "variant": "C",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "大人が食事を分け、子供たちが狭い室内を行き交う。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-rural-home",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+          "type": "background",
+          "displayName": "前近代の農村家屋・室内",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-farm-adult",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_ADULT_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・前近代農村の成人（男女バリアント）",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-farm-child",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "大人が食事を分け、子供たちが狭い室内を行き交う。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "大人が食事を分け、子供たちが狭い室内を行き交う。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 6.9,
+      "previousSceneContinuity": "前シーン V46-C1-004 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-006 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "前近代の一般的な農村家屋。質素な室内で複数の子供と大人が生活している。特定の国・年代を断定する装飾は避ける。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_RURAL_HOME",
+          "catalogId": "bg-bg-v46-ch1-rural-home",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-006",
+      "chapterId": "chapter1",
+      "narrationText": "飢えや病が身近にあった世界で、家々には幼い声が満ちていたのである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 40,
+        "lineEnd": 40,
+        "startOffsetUTF16": 1520,
+        "endOffsetExclusiveUTF16": 1553
+      },
+      "visualDescription": "同じ農村家屋。薬箱が乏しく、食事も簡素だが、家の中には複数の子供の動きがある。病気や飢えは記号的に示し、露骨な苦痛描写はしない。",
+      "backgroundId": "BG_V46_CH1_RURAL_HOME",
+      "characters": [
+        {
+          "id": "farmAdultA",
+          "templateId": "character-v46-ch1-farm-adult",
+          "identity": "歴史説明用の農村成人A。現代人物とは別人。",
+          "variant": "male",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildA",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "variant": "A",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildB",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の子供B。プロローグの子供とは別人。",
+          "variant": "B",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildC",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の子供C。プロローグの子供とは別人。",
+          "variant": "C",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "少ない食料を分ける手元と、奥を走る子供を同時に見せる。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-rural-home",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+          "type": "background",
+          "displayName": "前近代の農村家屋・室内",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-farm-adult",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_ADULT_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・前近代農村の成人（男女バリアント）",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-farm-child",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "remotion:hardship-overlay",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "少ない食料を分ける手元と、奥を走る子供を同時に見せる。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "少ない食料を分ける手元と、奥を走る子供を同時に見せる。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 5.9,
+      "previousSceneContinuity": "前シーン V46-C1-005 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-007 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "同じ農村家屋。薬箱が乏しく、食事も簡素だが、家の中には複数の子供の動きがある。病気や飢えは記号的に示し、露骨な苦痛描写はしない。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_RURAL_HOME",
+          "catalogId": "bg-bg-v46-ch1-rural-home",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-007",
+      "chapterId": "chapter1",
+      "narrationText": "やがて産業が育ち、医療が進み、暮らしは豊かになった。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 42,
+        "lineEnd": 42,
+        "startOffsetUTF16": 1555,
+        "endOffsetExclusiveUTF16": 1581
+      },
+      "visualDescription": "街並み・病院・オフィスを連続モンタージュし、産業化・医療・生活水準の上昇を一方向の時間軸で見せる。",
+      "backgroundId": "BG_town",
+      "characters": [
+        {
+          "id": "crowd",
+          "templateId": "character-passerby-crowd",
+          "identity": "匿名の一般人。個人同一性を持たせない。",
+          "continuity": "generic",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "街の設備が増え、人々の移動が速くなる。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "6f4ef686a3ce848c7d1a3b1dd924b8ebe20c09a799d901483f93af256aeb8712",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "bg-bg-hospital",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_hospital.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "13ecea4c422b5c0fdb1bd7f937eaa65a3f2c680427ec9ae1c727701bef4d67a0",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "bg-bg-office",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "947572b3fe999417a751de1ea3656b43a352027f4f25391902a6e8473d70c0d3",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "character-passerby-crowd",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/PASSERBY.tsx",
+          "license": "original-project",
+          "sourceSha256": null,
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:progress-montage",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "街の設備が増え、人々の移動が速くなる。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "街の設備が増え、人々の移動が速くなる。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.9,
+      "previousSceneContinuity": "前シーン V46-C1-006 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-008 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "街並み・病院・オフィスを連続モンタージュし、産業化・医療・生活水準の上昇を一方向の時間軸で見せる。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-008",
+      "chapterId": "chapter1",
+      "narrationText": "ところが多くの社会で、出生率は下がっていった。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 42,
+        "lineEnd": 42,
+        "startOffsetUTF16": 1581,
+        "endOffsetExclusiveUTF16": 1604
+      },
+      "visualDescription": "暗い空間に社会の豊かさを示す上向きの線と、出生率を示す下向きの線を重ねる。国別の実測値ではなく概念図として表示する。",
+      "backgroundId": "BG_darkroom",
+      "characters": [],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "豊かさの線が上がる一方、出生率の線がゆっくり下がる。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "9be8ce85248293737246b0bb61a49cb920f242da6a944399177a491c0b11a381",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:birthrate-chart",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "豊かさの線が上がる一方、出生率の線がゆっくり下がる。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "豊かさの線が上がる一方、出生率の線がゆっくり下がる。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.5,
+      "previousSceneContinuity": "前シーン V46-C1-007 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-009 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "暗い空間に社会の豊かさを示す上向きの線と、出生率を示す下向きの線を重ねる。国別の実測値ではなく概念図として表示する。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-009",
+      "chapterId": "chapter1",
+      "narrationText": "豊かさを手に入れた人類は、なぜか、子供を持つことにいっそう慎重になったのである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 42,
+        "lineEnd": 42,
+        "startOffsetUTF16": 1604,
+        "endOffsetExclusiveUTF16": 1644
+      },
+      "visualDescription": "豊かな現代都市。生活は便利だが、親子のシルエットが群衆の中で少数に見える構図。出生率の数値断定は行わない。",
+      "backgroundId": "BG_town",
+      "characters": [
+        {
+          "id": "crowd",
+          "templateId": "character-passerby-crowd",
+          "identity": "匿名の一般人。個人同一性を持たせない。",
+          "continuity": "generic",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "大人の流れの中を少数の親子シルエットが横切る。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "6f4ef686a3ce848c7d1a3b1dd924b8ebe20c09a799d901483f93af256aeb8712",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "character-passerby-crowd",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/PASSERBY.tsx",
+          "license": "original-project",
+          "sourceSha256": null,
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:family-choice-silhouettes",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "大人の流れの中を少数の親子シルエットが横切る。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "大人の流れの中を少数の親子シルエットが横切る。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 6.8,
+      "previousSceneContinuity": "前シーン V46-C1-008 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-010 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "豊かな現代都市。生活は便利だが、親子のシルエットが群衆の中で少数に見える構図。出生率の数値断定は行わない。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-010",
+      "chapterId": "chapter1",
+      "narrationText": "その変化を理解するには、子供が家族の中で担ってきた役割を見なければならない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 44,
+        "lineEnd": 44,
+        "startOffsetUTF16": 1646,
+        "endOffsetExclusiveUTF16": 1684
+      },
+      "visualDescription": "左に農村の家、右に現代都市の家を円形フレームで並べ、中央の『子供の役割』を示す無文字の天秤へ視線を集める。",
+      "backgroundId": "BG_darkroom",
+      "characters": [],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "左右のフレームが同じ大きさで並び、中央の天秤が静かに水平へ戻る。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "9be8ce85248293737246b0bb61a49cb920f242da6a944399177a491c0b11a381",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:old-new-role-bridge",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "左右のフレームが同じ大きさで並び、中央の天秤が静かに水平へ戻る。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "左右のフレームが同じ大きさで並び、中央の天秤が静かに水平へ戻る。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 6.5,
+      "previousSceneContinuity": "前シーン V46-C1-009 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-011 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "左に農村の家、右に現代都市の家を円形フレームで並べ、中央の『子供の役割』を示す無文字の天秤へ視線を集める。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-011",
+      "chapterId": "chapter1",
+      "narrationText": "かつて農村の家では、子供は守られる存在であると同時に、成長すれば家の仕事を担う存在でもあった。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 46,
+        "lineEnd": 46,
+        "startOffsetUTF16": 1686,
+        "endOffsetExclusiveUTF16": 1733
+      },
+      "visualDescription": "農村の家。子供は守られる側として食事を受け取りつつ、年長の子は作業道具を手にする。",
+      "backgroundId": "BG_V46_CH1_RURAL_HOME",
+      "characters": [
+        {
+          "id": "farmAdultA",
+          "templateId": "character-v46-ch1-farm-adult",
+          "identity": "歴史説明用の農村成人A。現代人物とは別人。",
+          "variant": "male",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmAdultB",
+          "templateId": "character-v46-ch1-farm-adult",
+          "identity": "歴史説明用の農村成人B。現代人物とは別人。",
+          "variant": "female",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildA",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "variant": "A",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildB",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の子供B。プロローグの子供とは別人。",
+          "variant": "B",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "大人が幼い子に食事を渡し、年長の子が水桶を持って外へ向かう。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-rural-home",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+          "type": "background",
+          "displayName": "前近代の農村家屋・室内",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-farm-adult",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_ADULT_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・前近代農村の成人（男女バリアント）",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-farm-child",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "大人が幼い子に食事を渡し、年長の子が水桶を持って外へ向かう。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "大人が幼い子に食事を渡し、年長の子が水桶を持って外へ向かう。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.7,
+      "previousSceneContinuity": "前シーン V46-C1-010 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-012 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "農村の家。子供は守られる側として食事を受け取りつつ、年長の子は作業道具を手にする。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_RURAL_HOME",
+          "catalogId": "bg-bg-v46-ch1-rural-home",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-012",
+      "chapterId": "chapter1",
+      "narrationText": "畑に水を運び、家畜を見守り、収穫を手伝う。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 46,
+        "lineEnd": 46,
+        "startOffsetUTF16": 1733,
+        "endOffsetExclusiveUTF16": 1754
+      },
+      "visualDescription": "農村の畑。三人の子供が水運び・家畜見守り・収穫を別々に行う。近代的機械は置かない。",
+      "backgroundId": "BG_V46_CH1_RURAL_FIELD",
+      "characters": [
+        {
+          "id": "farmChildA",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "variant": "A",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildB",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の子供B。プロローグの子供とは別人。",
+          "variant": "B",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildC",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の子供C。プロローグの子供とは別人。",
+          "variant": "C",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "水桶を運ぶ、柵越しに家畜を見る、束を集める動きを同時進行。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-rural-field",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
+          "type": "background",
+          "displayName": "前近代の農村・畑と家畜",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-farm-child",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "remotion:livestock-and-harvest-props",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "水桶を運ぶ、柵越しに家畜を見る、束を集める動きを同時進行。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "水桶を運ぶ、柵越しに家畜を見る、束を集める動きを同時進行。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.2,
+      "previousSceneContinuity": "前シーン V46-C1-011 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-013 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "農村の畑。三人の子供が水運び・家畜見守り・収穫を別々に行う。近代的機械は置かない。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_RURAL_FIELD",
+          "catalogId": "bg-bg-v46-ch1-rural-field",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-013",
+      "chapterId": "chapter1",
+      "narrationText": "子供を育てるにはもちろん食料も衣服も必要だったが、",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 46,
+        "lineEnd": 46,
+        "startOffsetUTF16": 1754,
+        "endOffsetExclusiveUTF16": 1779
+      },
+      "visualDescription": "農村の家で食料と衣服を子供に分ける。育児に費用が不要だったとは描かず、家計負担も存在したことを視覚化する。",
+      "backgroundId": "BG_V46_CH1_RURAL_HOME",
+      "characters": [
+        {
+          "id": "farmAdultB",
+          "templateId": "character-v46-ch1-farm-adult",
+          "identity": "歴史説明用の農村成人B。現代人物とは別人。",
+          "variant": "female",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildA",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "variant": "A",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildB",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の子供B。プロローグの子供とは別人。",
+          "variant": "B",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "親がパン・衣服を手渡し、棚の備蓄が少し減る。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-rural-home",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+          "type": "background",
+          "displayName": "前近代の農村家屋・室内",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-farm-adult",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_ADULT_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・前近代農村の成人（男女バリアント）",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-farm-child",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "remotion:food-clothing-costs",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "親がパン・衣服を手渡し、棚の備蓄が少し減る。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "親がパン・衣服を手渡し、棚の備蓄が少し減る。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.8,
+      "previousSceneContinuity": "前シーン V46-C1-012 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-014 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "農村の家で食料と衣服を子供に分ける。育児に費用が不要だったとは描かず、家計負担も存在したことを視覚化する。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_RURAL_HOME",
+          "catalogId": "bg-bg-v46-ch1-rural-home",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-014",
+      "chapterId": "chapter1",
+      "narrationText": "その成長は、家族の働き手が増えることでもあった。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 46,
+        "lineEnd": 46,
+        "startOffsetUTF16": 1779,
+        "endOffsetExclusiveUTF16": 1803
+      },
+      "visualDescription": "同じ家族の畑仕事。成長した子供が大人と横並びで作業し、家族の働き手が増える構造を見せる。",
+      "backgroundId": "BG_V46_CH1_RURAL_FIELD",
+      "characters": [
+        {
+          "id": "farmAdultA",
+          "templateId": "character-v46-ch1-farm-adult",
+          "identity": "歴史説明用の農村成人A。現代人物とは別人。",
+          "variant": "male",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildA",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "variant": "A",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "farmChildB",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の子供B。プロローグの子供とは別人。",
+          "variant": "B",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "畑の列に一人ずつ加わり、作業列が長くなる。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-rural-field",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
+          "type": "background",
+          "displayName": "前近代の農村・畑と家畜",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-farm-adult",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_ADULT_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・前近代農村の成人（男女バリアント）",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-farm-child",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "畑の列に一人ずつ加わり、作業列が長くなる。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "畑の列に一人ずつ加わり、作業列が長くなる。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.6,
+      "previousSceneContinuity": "前シーン V46-C1-013 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-015 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "同じ家族の畑仕事。成長した子供が大人と横並びで作業し、家族の働き手が増える構造を見せる。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_RURAL_FIELD",
+          "catalogId": "bg-bg-v46-ch1-rural-field",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-015",
+      "chapterId": "chapter1",
+      "narrationText": "都市の会社員の家庭では、事情が違う。幼い子供が家計に収入をもたらすことは、通常ない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 48,
+        "lineEnd": 48,
+        "startOffsetUTF16": 1805,
+        "endOffsetExclusiveUTF16": 1847
+      },
+      "visualDescription": "現代の都市生活。会社員の収入が家庭へ流れる一方、幼い子供から家計へ収入が戻る矢印は出さない。特定の既存家族は登場させない。",
+      "backgroundId": "BG_office",
+      "characters": [],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "給与→住居・食事・教育へ矢印が分岐する。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-office",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "947572b3fe999417a751de1ea3656b43a352027f4f25391902a6e8473d70c0d3",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:urban-family-flow",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "給与→住居・食事・教育へ矢印が分岐する。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "給与→住居・食事・教育へ矢印が分岐する。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.1,
+      "previousSceneContinuity": "前シーン V46-C1-014 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-016 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "現代の都市生活。会社員の収入が家庭へ流れる一方、幼い子供から家計へ収入が戻る矢印は出さない。特定の既存家族は登場させない。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_office",
+          "catalogId": "bg-bg-office",
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-016",
+      "chapterId": "chapter1",
+      "narrationText": "むしろ親は、子供が大人になるまで、住まいを整え、食事を用意し、長い教育の道を支える。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 48,
+        "lineEnd": 48,
+        "startOffsetUTF16": 1847,
+        "endOffsetExclusiveUTF16": 1889
+      },
+      "visualDescription": "台所から学校へ連続する生活のモンタージュ。食事、住まい、通学用品を親側が準備する構図で長期支援を示す。既存の同期一家の人物は使わない。",
+      "backgroundId": "BG_kitchen",
+      "characters": [],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "食卓→ランドセル風の無地バッグ→教室の順に物が受け渡される。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-kitchen",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_kitchen.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "d52c5181ea7ed85793f7043b021fd6e8c728e8bc6a7f878e3ce562875f8d903d",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "bg-bg-school",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_school.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "44a304e695e3d15be46480ddb26774d256e251e1a6735568447ec5c6c095f8f3",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:long-parental-support",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "食卓→ランドセル風の無地バッグ→教室の順に物が受け渡される。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "食卓→ランドセル風の無地バッグ→教室の順に物が受け渡される。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.1,
+      "previousSceneContinuity": "前シーン V46-C1-015 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-017 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "台所から学校へ連続する生活のモンタージュ。食事、住まい、通学用品を親側が準備する構図で長期支援を示す。既存の同期一家の人物は使わない。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_kitchen",
+          "catalogId": "bg-bg-kitchen",
+          "filePath": "shared/asset-library/背景/BG_kitchen.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-017",
+      "chapterId": "chapter1",
+      "narrationText": "そして、ただ生き延びてほしいだけではない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 48,
+        "lineEnd": 48,
+        "startOffsetUTF16": 1889,
+        "endOffsetExclusiveUTF16": 1910
+      },
+      "visualDescription": "健康と生存だけでなく、その先の将来を考える親の願いを、病院から明るい将来の分岐へ画面が開く形で表現する。",
+      "backgroundId": "BG_hospital",
+      "characters": [],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "病院の白い光が、複数の将来の扉の輪郭へ変わる。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-hospital",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_hospital.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "13ecea4c422b5c0fdb1bd7f937eaa65a3f2c680427ec9ae1c727701bef4d67a0",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:future-child-silhouette",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "病院の白い光が、複数の将来の扉の輪郭へ変わる。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "病院の白い光が、複数の将来の扉の輪郭へ変わる。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.2,
+      "previousSceneContinuity": "前シーン V46-C1-016 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-018 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "健康と生存だけでなく、その先の将来を考える親の願いを、病院から明るい将来の分岐へ画面が開く形で表現する。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_hospital",
+          "catalogId": "bg-bg-hospital",
+          "filePath": "shared/asset-library/背景/BG_hospital.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-018",
+      "chapterId": "chapter1",
+      "narrationText": "できることなら、自分より苦労せず、十分な選択肢を持って生きてほしいと願う。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 48,
+        "lineEnd": 48,
+        "startOffsetUTF16": 1910,
+        "endOffsetExclusiveUTF16": 1947
+      },
+      "visualDescription": "教室の机から複数の進路を示す抽象的な道が伸びる。『十分な選択肢』を特定の進学先や所得に限定しない。",
+      "backgroundId": "BG_school",
+      "characters": [],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "一本の道が三方向に分岐し、照明が順に点灯する。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-school",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_school.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "44a304e695e3d15be46480ddb26774d256e251e1a6735568447ec5c6c095f8f3",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:choice-paths",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "一本の道が三方向に分岐し、照明が順に点灯する。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "一本の道が三方向に分岐し、照明が順に点灯する。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 6.4,
+      "previousSceneContinuity": "前シーン V46-C1-017 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-019 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "教室の机から複数の進路を示す抽象的な道が伸びる。『十分な選択肢』を特定の進学先や所得に限定しない。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_school",
+          "catalogId": "bg-bg-school",
+          "filePath": "shared/asset-library/背景/BG_school.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-019",
+      "chapterId": "chapter1",
+      "narrationText": "その願いは温かい。だが、願いに応えようとするほど、子供一人に必要だと考える資源は増えていく。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 50,
+        "lineEnd": 50,
+        "startOffsetUTF16": 1949,
+        "endOffsetExclusiveUTF16": 1995
+      },
+      "visualDescription": "中央の子供シルエットの周囲に住居・食事・教育・時間のリングが一層ずつ増える。温かな願いが必要資源の増大へつながる構図。",
+      "backgroundId": "BG_darkroom",
+      "characters": [],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "資源リングが外側へ一枚ずつ増える。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "9be8ce85248293737246b0bb61a49cb920f242da6a944399177a491c0b11a381",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:resource-rings",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "資源リングが外側へ一枚ずつ増える。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "資源リングが外側へ一枚ずつ増える。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.6,
+      "previousSceneContinuity": "前シーン V46-C1-018 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-020 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "中央の子供シルエットの周囲に住居・食事・教育・時間のリングが一層ずつ増える。温かな願いが必要資源の増大へつながる構図。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-020",
+      "chapterId": "chapter1",
+      "narrationText": "経済学者ゲーリー・ベッカーは、一九六〇年の研究で、子供の数と、一人ひとりに投じる資源とを結びつけて考えた。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 52,
+        "lineEnd": 52,
+        "startOffsetUTF16": 1997,
+        "endOffsetExclusiveUTF16": 2050
+      },
+      "visualDescription": "書斎の机上に1960年を示す研究ノートと『子供の人数／一人当たり資源』を図で表した紙を置く。ベッカー本人の顔は創作しない。",
+      "backgroundId": "BG_syosai",
+      "characters": [],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "二つの軸と複数の子供アイコンが紙上に描かれる。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-syosai",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_syosai.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "7b55fc152e1a9e1992959b7e30ba75fc8a710db3af9a0aa8bfb6cd211b095a47",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:becker-paper-1960",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "二つの軸と複数の子供アイコンが紙上に描かれる。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "二つの軸と複数の子供アイコンが紙上に描かれる。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 8.6,
+      "previousSceneContinuity": "前シーン V46-C1-019 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-021 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "書斎の机上に1960年を示す研究ノートと『子供の人数／一人当たり資源』を図で表した紙を置く。ベッカー本人の顔は創作しない。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_syosai",
+          "catalogId": "bg-bg-syosai",
+          "filePath": "shared/asset-library/背景/BG_syosai.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-021",
+      "chapterId": "chapter1",
+      "narrationText": "使える予算が同じなら、三人に分ける場合と、一人に集中させる場合とでは、育て方が変わる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 52,
+        "lineEnd": 52,
+        "startOffsetUTF16": 2050,
+        "endOffsetExclusiveUTF16": 2093
+      },
+      "visualDescription": "同じ予算箱から左は三人へ小さく、右は一人へ大きく資源が分配される比較図。人物の価値比較ではなく配分だけを表す。",
+      "backgroundId": "BG_darkroom",
+      "characters": [],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "一つの予算バーが3分割と1集中に分岐する。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "9be8ce85248293737246b0bb61a49cb920f242da6a944399177a491c0b11a381",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:quantity-quality-budget",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "一つの予算バーが3分割と1集中に分岐する。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "一つの予算バーが3分割と1集中に分岐する。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.2,
+      "previousSceneContinuity": "前シーン V46-C1-020 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-022 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "同じ予算箱から左は三人へ小さく、右は一人へ大きく資源が分配される比較図。人物の価値比較ではなく配分だけを表す。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-022",
+      "chapterId": "chapter1",
+      "narrationText": "一人に多くを与えようとすれば、同じ条件で育てられる人数には限りが生じる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 52,
+        "lineEnd": 52,
+        "startOffsetUTF16": 2093,
+        "endOffsetExclusiveUTF16": 2129
+      },
+      "visualDescription": "一人の子供アイコンの周囲に資源カードが積み上がるほど、横に並べられる同条件の子供アイコン数が減る概念図。",
+      "backgroundId": "BG_darkroom",
+      "characters": [],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "中央の資源スタックが増え、横の空き枠が減る。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "9be8ce85248293737246b0bb61a49cb920f242da6a944399177a491c0b11a381",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:one-child-resource-stack",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "中央の資源スタックが増え、横の空き枠が減る。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "中央の資源スタックが増え、横の空き枠が減る。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 6.3,
+      "previousSceneContinuity": "前シーン V46-C1-021 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-023 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "一人の子供アイコンの周囲に資源カードが積み上がるほど、横に並べられる同条件の子供アイコン数が減る概念図。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-023",
+      "chapterId": "chapter1",
+      "narrationText": "ここに、ある共働きの夫婦がいる。二人で暮らすには十分な収入があり、休日には外食をし、ときには旅行にも出かけられる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 54,
+        "lineEnd": 54,
+        "startOffsetUTF16": 2131,
+        "endOffsetExclusiveUTF16": 2188
+      },
+      "visualDescription": "第1章専用の共働き夫婦を初登場。カフェで外食し、別カットで旅行写真を撮る。主人公、大学同期、その妻とは髪型・服色・体格を明確に変える。",
+      "backgroundId": "BG_cafenaiso",
+      "characters": [
+        {
+          "id": "coupleMan",
+          "templateId": "character-v46-ch1-couple-man",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "coupleWoman",
+          "templateId": "character-v46-ch1-couple-woman",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "二人で食事→小さな旅行鞄を持って街を歩く。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-cafenaiso",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "acbb81492613220e6b4269457a3754a83eb348ec2dfb9480b71d24218b356dbc",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "6f4ef686a3ce848c7d1a3b1dd924b8ebe20c09a799d901483f93af256aeb8712",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-man",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の男性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-woman",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の女性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "remotion:travel-props",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "二人で食事→小さな旅行鞄を持って街を歩く。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "二人で食事→小さな旅行鞄を持って街を歩く。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 9.1,
+      "previousSceneContinuity": "前シーン V46-C1-022 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-024 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "第1章専用の共働き夫婦を初登場。カフェで外食し、別カットで旅行写真を撮る。主人公、大学同期、その妻とは髪型・服色・体格を明確に変える。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_cafenaiso",
+          "catalogId": "bg-bg-cafenaiso",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-024",
+      "chapterId": "chapter1",
+      "narrationText": "けれど子供のことを考え始めた途端、部屋は狭く見え、貯金は心もとなく感じられる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 54,
+        "lineEnd": 54,
+        "startOffsetUTF16": 2188,
+        "endOffsetExclusiveUTF16": 2227
+      },
+      "visualDescription": "同じ夫婦の現在の住まい。子供の話を始めると部屋の寸法線が狭く見え、貯金表示が相対的に小さく感じられる。主人公のワンルームとは別デザイン。",
+      "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
+      "characters": [
+        {
+          "id": "coupleMan",
+          "templateId": "character-v46-ch1-couple-man",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "coupleWoman",
+          "templateId": "character-v46-ch1-couple-woman",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "二人が部屋を見回し、机上の貯金メモへ視線を戻す。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-couple-apartment",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
+          "type": "background",
+          "displayName": "第1章専用・共働き夫婦の現在の住居",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-man",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の男性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-woman",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の女性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "part-auto-2679868ba4e74a25",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/パーツ/WALLET.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "32b548e32f398c49f8861c69bba9ab94e29fc08d90ea709a70ad87b0687e3d49",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:room-measure-and-savings",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "二人が部屋を見回し、机上の貯金メモへ視線を戻す。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "二人が部屋を見回し、机上の貯金メモへ視線を戻す。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 6.7,
+      "previousSceneContinuity": "前シーン V46-C1-023 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-025 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "同じ夫婦の現在の住まい。子供の話を始めると部屋の寸法線が狭く見え、貯金表示が相対的に小さく感じられる。主人公のワンルームとは別デザイン。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
+          "catalogId": "bg-bg-v46-ch1-couple-apartment",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-025",
+      "chapterId": "chapter1",
+      "narrationText": "保育園の送り迎えはどうするのか。病気で仕事を休むのは誰か。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 54,
+        "lineEnd": 54,
+        "startOffsetUTF16": 2227,
+        "endOffsetExclusiveUTF16": 2256
+      },
+      "visualDescription": "夫婦の机上に保育園送迎の時刻表を置き、画面端に病院の休業・欠勤を示すカレンダーを重ねる。実在制度の数値は出さない。",
+      "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
+      "characters": [
+        {
+          "id": "coupleMan",
+          "templateId": "character-v46-ch1-couple-man",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "coupleWoman",
+          "templateId": "character-v46-ch1-couple-woman",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "朝夕の送迎矢印が交差し、病院アイコンの日だけ勤務予定が消える。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-couple-apartment",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
+          "type": "background",
+          "displayName": "第1章専用・共働き夫婦の現在の住居",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-man",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の男性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-woman",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の女性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "bg-bg-hospital",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_hospital.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "13ecea4c422b5c0fdb1bd7f937eaa65a3f2c680427ec9ae1c727701bef4d67a0",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:nursery-calendar",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "朝夕の送迎矢印が交差し、病院アイコンの日だけ勤務予定が消える。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "朝夕の送迎矢印が交差し、病院アイコンの日だけ勤務予定が消える。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 5.3,
+      "previousSceneContinuity": "前シーン V46-C1-024 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-026 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "夫婦の机上に保育園送迎の時刻表を置き、画面端に病院の休業・欠勤を示すカレンダーを重ねる。実在制度の数値は出さない。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
+          "catalogId": "bg-bg-v46-ch1-couple-apartment",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-026",
+      "chapterId": "chapter1",
+      "narrationText": "学校へ上がった後の費用は、幾ら必要なのか。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 54,
+        "lineEnd": 54,
+        "startOffsetUTF16": 2256,
+        "endOffsetExclusiveUTF16": 2277
+      },
+      "visualDescription": "学校背景の前に、将来の教育費カードが学年の進行とともに積み上がる。夫婦は画面手前の小さなシルエットとして見る側に置く。",
+      "backgroundId": "BG_school",
+      "characters": [
+        {
+          "id": "coupleMan",
+          "templateId": "character-v46-ch1-couple-man",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "coupleWoman",
+          "templateId": "character-v46-ch1-couple-woman",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "学年が上がるごとに費用カードが一枚ずつ追加される。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-school",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_school.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "44a304e695e3d15be46480ddb26774d256e251e1a6735568447ec5c6c095f8f3",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-man",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の男性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-woman",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の女性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "remotion:school-cost-stack",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "学年が上がるごとに費用カードが一枚ずつ追加される。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "学年が上がるごとに費用カードが一枚ずつ追加される。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.2,
+      "previousSceneContinuity": "前シーン V46-C1-025 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-027 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "学校背景の前に、将来の教育費カードが学年の進行とともに積み上がる。夫婦は画面手前の小さなシルエットとして見る側に置く。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_school",
+          "catalogId": "bg-bg-school",
+          "filePath": "shared/asset-library/背景/BG_school.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-027",
+      "chapterId": "chapter1",
+      "narrationText": "二人は、子供を迎える前に、まず生活の土台を固めようと決める。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 56,
+        "lineEnd": 56,
+        "startOffsetUTF16": 2279,
+        "endOffsetExclusiveUTF16": 2309
+      },
+      "visualDescription": "夫婦が生活の土台を整えるチェックリストを作る。『十分な貯蓄』『安定した仕事』『住まい』を文字ではなく記号中心に積み上げる。",
+      "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
+      "characters": [
+        {
+          "id": "coupleMan",
+          "templateId": "character-v46-ch1-couple-man",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "coupleWoman",
+          "templateId": "character-v46-ch1-couple-woman",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "二人が順番にチェックを付け、最後に未来の子供の空席を残す。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-couple-apartment",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
+          "type": "background",
+          "displayName": "第1章専用・共働き夫婦の現在の住居",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-man",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の男性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-woman",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の女性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "remotion:foundation-checklist",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "二人が順番にチェックを付け、最後に未来の子供の空席を残す。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "二人が順番にチェックを付け、最後に未来の子供の空席を残す。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 5.5,
+      "previousSceneContinuity": "前シーン V46-C1-026 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-028 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "夫婦が生活の土台を整えるチェックリストを作る。『十分な貯蓄』『安定した仕事』『住まい』を文字ではなく記号中心に積み上げる。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
+          "catalogId": "bg-bg-v46-ch1-couple-apartment",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-028",
+      "chapterId": "chapter1",
+      "narrationText": "昇進を目指し、資格を取り、残業を引き受ける。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 56,
+        "lineEnd": 56,
+        "startOffsetUTF16": 2309,
+        "endOffsetExclusiveUTF16": 2331
+      },
+      "visualDescription": "夫はオフィスで昇進案件、妻は図書館で資格勉強、その後二人とも夜の仕事へ。性別役割を固定せず、途中で役割を入れ替えるカットも入れる。",
+      "backgroundId": "BG_office",
+      "characters": [
+        {
+          "id": "coupleMan",
+          "templateId": "character-v46-ch1-couple-man",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "coupleWoman",
+          "templateId": "character-v46-ch1-couple-woman",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "書類に判を押す→参考書を閉じる→時計が夜へ進む。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-office",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "947572b3fe999417a751de1ea3656b43a352027f4f25391902a6e8473d70c0d3",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "bg-bg-tosyokan",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_tosyokan.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "8ad56daf6804c8f92259d72f029346c546939500f5a5e0fe392104e8a2d317fd",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-man",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の男性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-woman",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の女性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "part-clock",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/パーツ/clock.svg",
+          "license": "original-project",
+          "sourceSha256": null,
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:career-study-overtime",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "書類に判を押す→参考書を閉じる→時計が夜へ進む。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "書類に判を押す→参考書を閉じる→時計が夜へ進む。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.4,
+      "previousSceneContinuity": "前シーン V46-C1-027 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-029 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "夫はオフィスで昇進案件、妻は図書館で資格勉強、その後二人とも夜の仕事へ。性別役割を固定せず、途中で役割を入れ替えるカットも入れる。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_office",
+          "catalogId": "bg-bg-office",
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-029",
+      "chapterId": "chapter1",
+      "narrationText": "ところが、将来の家族のために差し出した時間は、今ここで家族を築くための時間でもあった。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 56,
+        "lineEnd": 56,
+        "startOffsetUTF16": 2331,
+        "endOffsetExclusiveUTF16": 2374
+      },
+      "visualDescription": "家族のために働いた時間が、同時に二人の共有時間から抜け落ちる。食卓の二脚の椅子が時間差で空席になる。",
+      "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
+      "characters": [
+        {
+          "id": "coupleMan",
+          "templateId": "character-v46-ch1-couple-man",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "coupleWoman",
+          "templateId": "character-v46-ch1-couple-woman",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "一人が帰宅した時にはもう一人が出勤、時計だけが進む。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-couple-apartment",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
+          "type": "background",
+          "displayName": "第1章専用・共働き夫婦の現在の住居",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-man",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の男性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-woman",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の女性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "part-clock",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/パーツ/clock.svg",
+          "license": "original-project",
+          "sourceSha256": null,
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:empty-time-slot",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "一人が帰宅した時にはもう一人が出勤、時計だけが進む。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "一人が帰宅した時にはもう一人が出勤、時計だけが進む。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.2,
+      "previousSceneContinuity": "前シーン V46-C1-028 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-030 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "家族のために働いた時間が、同時に二人の共有時間から抜け落ちる。食卓の二脚の椅子が時間差で空席になる。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
+          "catalogId": "bg-bg-v46-ch1-couple-apartment",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-030",
+      "chapterId": "chapter1",
+      "narrationText": "収入が増える頃には、仕事の責任も増している。広い部屋に引っ越せる頃には、二人でゆっくり話す夜が減っている。子供のために始めた準備が、子供を持つという出来事を、いつまでも未来へ押しやっていく。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 58,
+        "lineEnd": 58,
+        "startOffsetUTF16": 2376,
+        "endOffsetExclusiveUTF16": 2471
+      },
+      "visualDescription": "同じ夫婦の数年後を一画面三段で表現。収入は上がり、部屋は広くなるが、仕事の書類と時計が二人の間に増える。人物の服・髪は同一で年齢差だけ控えめに示す。",
+      "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT_WIDE",
+      "characters": [
+        {
+          "id": "coupleMan",
+          "templateId": "character-v46-ch1-couple-man",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "coupleWoman",
+          "templateId": "character-v46-ch1-couple-woman",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "給与バー上昇→広い部屋へ切替→二人の間を時計と仕事資料が横切る。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-couple-apartment-wide",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
+          "type": "background",
+          "displayName": "第1章専用・数年後の広い住居",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-man",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の男性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-woman",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の女性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "bg-bg-office",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "947572b3fe999417a751de1ea3656b43a352027f4f25391902a6e8473d70c0d3",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "part-clock",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/パーツ/clock.svg",
+          "license": "original-project",
+          "sourceSha256": null,
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:income-space-time-paradox",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "給与バー上昇→広い部屋へ切替→二人の間を時計と仕事資料が横切る。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "給与バー上昇→広い部屋へ切替→二人の間を時計と仕事資料が横切る。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 14.2,
+      "previousSceneContinuity": "前シーン V46-C1-029 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-031 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "同じ夫婦の数年後を一画面三段で表現。収入は上がり、部屋は広くなるが、仕事の書類と時計が二人の間に増える。人物の服・髪は同一で年齢差だけ控えめに示す。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT_WIDE",
+          "catalogId": "bg-bg-v46-ch1-couple-apartment-wide",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-031",
+      "chapterId": "chapter1",
+      "narrationText": "昔、子供は家の仕事を支える一員でもあった。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 60,
+        "lineEnd": 60,
+        "startOffsetUTF16": 2473,
+        "endOffsetExclusiveUTF16": 2494
+      },
+      "visualDescription": "左に昔の畑で家の仕事を担う子供、右に現代都市で親になる前から仕事と資源を積み上げる大人を対比。人物は時代ごとに完全に別。",
+      "backgroundId": "BG_V46_CH1_RURAL_FIELD",
+      "characters": [
+        {
+          "id": "farmChildA",
+          "templateId": "character-v46-ch1-farm-child",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "variant": "A",
+          "continuity": "chapter1_only",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "左は収穫物を家へ運び、右は仕事と貯蓄のカードを家へ運ぶ。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-rural-field",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
+          "type": "background",
+          "displayName": "前近代の農村・畑と家畜",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-farm-child",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "remotion:historical-modern-split",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "左は収穫物を家へ運び、右は仕事と貯蓄のカードを家へ運ぶ。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "左は収穫物を家へ運び、右は仕事と貯蓄のカードを家へ運ぶ。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 4.2,
+      "previousSceneContinuity": "前シーン V46-C1-030 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-032 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "左に昔の畑で家の仕事を担う子供、右に現代都市で親になる前から仕事と資源を積み上げる大人を対比。人物は時代ごとに完全に別。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_RURAL_FIELD",
+          "catalogId": "bg-bg-v46-ch1-rural-field",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-032",
+      "chapterId": "chapter1",
+      "narrationText": "今、親になろうとする者は、まず子供を支えられるだけの仕事と資源を求められる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 60,
+        "lineEnd": 60,
+        "startOffsetUTF16": 2494,
+        "endOffsetExclusiveUTF16": 2532
+      },
+      "visualDescription": "親になるための条件が壁一面に増える。夫婦は広い部屋にいるが、子供用の空席の前に条件カードが積み上がる。",
+      "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT_WIDE",
+      "characters": [
+        {
+          "id": "coupleMan",
+          "templateId": "character-v46-ch1-couple-man",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "coupleWoman",
+          "templateId": "character-v46-ch1-couple-woman",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "条件カードが一枚ずつ増え、空席までの距離が遠くなる。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-couple-apartment-wide",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
+          "type": "background",
+          "displayName": "第1章専用・数年後の広い住居",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-man",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の男性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-woman",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の女性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "remotion:requirements-wall",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "条件カードが一枚ずつ増え、空席までの距離が遠くなる。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "条件カードが一枚ずつ増え、空席までの距離が遠くなる。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 6.5,
+      "previousSceneContinuity": "前シーン V46-C1-031 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-033 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "親になるための条件が壁一面に増える。夫婦は広い部屋にいるが、子供用の空席の前に条件カードが積み上がる。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT_WIDE",
+          "catalogId": "bg-bg-v46-ch1-couple-apartment-wide",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-033",
+      "chapterId": "chapter1",
+      "narrationText": "そして、それを手に入れるために働き続けるうちに、子供を持たないまま歳月が過ぎていくことがある。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 60,
+        "lineEnd": 60,
+        "startOffsetUTF16": 2532,
+        "endOffsetExclusiveUTF16": 2579
+      },
+      "visualDescription": "二人が働き続ける間にカレンダーだけが季節を跨いで進む。外見は同一人物として維持し、急激な老化表現はしない。",
+      "backgroundId": "BG_office",
+      "characters": [
+        {
+          "id": "coupleMan",
+          "templateId": "character-v46-ch1-couple-man",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "coupleWoman",
+          "templateId": "character-v46-ch1-couple-woman",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "作業動作をループしながらカレンダーが複数年分めくられる。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-office",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "947572b3fe999417a751de1ea3656b43a352027f4f25391902a6e8473d70c0d3",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-man",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の男性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-woman",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の女性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "part-clock",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/パーツ/clock.svg",
+          "license": "original-project",
+          "sourceSha256": null,
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:years-passing-calendar",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "作業動作をループしながらカレンダーが複数年分めくられる。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "作業動作をループしながらカレンダーが複数年分めくられる。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.7,
+      "previousSceneContinuity": "前シーン V46-C1-032 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-034 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "二人が働き続ける間にカレンダーだけが季節を跨いで進む。外見は同一人物として維持し、急激な老化表現はしない。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_office",
+          "catalogId": "bg-bg-office",
+          "filePath": "shared/asset-library/背景/BG_office.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-034",
+      "chapterId": "chapter1",
+      "narrationText": "人類は、子供を育てるために働いているはずなのに、働くことによって子供を持つ機会を遠ざけてしまうのである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 62,
+        "lineEnd": 62,
+        "startOffsetUTF16": 2581,
+        "endOffsetExclusiveUTF16": 2633
+      },
+      "visualDescription": "中央の大きな時計。仕事アイコンを積むほど、遠景の家族シルエットが奥へ移動する逆説図。誰かが禁止している描写にはしない。",
+      "backgroundId": "BG_darkroom",
+      "characters": [],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "仕事カードが増えるたび、家族シルエットまでの距離が少しずつ伸びる。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "9be8ce85248293737246b0bb61a49cb920f242da6a944399177a491c0b11a381",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "part-clock",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/パーツ/clock.svg",
+          "license": "original-project",
+          "sourceSha256": null,
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:work-pushes-family-away",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "仕事カードが増えるたび、家族シルエットまでの距離が少しずつ伸びる。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "仕事カードが増えるたび、家族シルエットまでの距離が少しずつ伸びる。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 8.4,
+      "previousSceneContinuity": "前シーン V46-C1-033 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-035 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "中央の大きな時計。仕事アイコンを積むほど、遠景の家族シルエットが奥へ移動する逆説図。誰かが禁止している描写にはしない。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    },
+    {
+      "sceneId": "V46-C1-035",
+      "chapterId": "chapter1",
+      "narrationText": "だが、なぜ我々は、子供を育てるために必要な条件を、これほど高く見積もるようになったのだろうか。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 64,
+        "lineEnd": 64,
+        "startOffsetUTF16": 2635,
+        "endOffsetExclusiveUTF16": 2682
+      },
+      "visualDescription": "広い住まい、貯蓄、安定した仕事を得た夫婦の前に、さらに新しい条件の空枠が現れる。条件水準が高くなる問いを視覚化する。",
+      "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT_WIDE",
+      "characters": [
+        {
+          "id": "coupleMan",
+          "templateId": "character-v46-ch1-couple-man",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        },
+        {
+          "id": "coupleWoman",
+          "templateId": "character-v46-ch1-couple-woman",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "continuity": "chapter1_scenes_23_to_35",
+          "position": "visualDescriptionに従う",
+          "facing": "主動作対象",
+          "initialPose": "characterActionsに従う"
+        }
+      ],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "満たした条件の上に、もう一段高い空枠が静かに出現する。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-ch1-couple-apartment-wide",
+          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
+          "type": "background",
+          "displayName": "第1章専用・数年後の広い住居",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-man",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の男性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "character-v46-ch1-couple-woman",
+          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
+          "type": "character-rig",
+          "displayName": "第1章専用・共働き夫婦の女性",
+          "mustCreate": true,
+          "origin": "user_asset_required",
+          "status": "missing",
+          "review": "must_be_registered_before_chapter1_render"
+        },
+        {
+          "assetId": "remotion:high-condition-question",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "満たした条件の上に、もう一段高い空枠が静かに出現する。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "満たした条件の上に、もう一段高い空枠が静かに出現する。",
+        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.7,
+      "previousSceneContinuity": "前シーン V46-C1-034 から連続。",
+      "nextSceneContinuity": "次シーン V46-C1-036 へ接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "広い住まい、貯蓄、安定した仕事を得た夫婦の前に、さらに新しい条件の空枠が現れる。条件水準が高くなる問いを視覚化する。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT_WIDE",
+          "catalogId": "bg-bg-v46-ch1-couple-apartment-wide",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
+          "usage": "primary",
+          "visualReview": "missing_user_asset"
+        }
+      ],
+      "materialRegistration": "missing_assets_gate"
+    },
+    {
+      "sceneId": "V46-C1-036",
+      "chapterId": "chapter1",
+      "narrationText": "答えは財布の中だけでなく、我々が他人の暮らしを見つめる、その視線の中にも潜んでいる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "chapterHeadingLine": 36,
+        "lineStart": 64,
+        "lineEnd": 64,
+        "startOffsetUTF16": 2682,
+        "endOffsetExclusiveUTF16": 2724
+      },
+      "visualDescription": "スマートフォンのSNS空間に、広い家、教育、旅行など他人の暮らしを示す抽象投稿が流れる。実在SNSロゴや実在人物は使わず、第2章『他人との比較』へ接続する。",
+      "backgroundId": "BG_SNS",
+      "characters": [],
+      "characterActions": [
+        {
+          "order": 1,
+          "action": "投稿カードが増え、最後に一枚の画面が鏡のように視聴者側へ向く。",
+          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+        }
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-sns",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_SNS.png",
+          "license": "cleared-commercial",
+          "sourceSha256": "4bae1c267149e371b76756070a27e5e4069ce3419bfbc7e5f72b7ca598891b44",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "part-phone",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/パーツ/phone.svg",
+          "license": "original-project",
+          "sourceSha256": null,
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:social-gaze-transition",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+        }
+      ],
+      "objectActions": [
+        {
+          "order": 1,
+          "description": "投稿カードが増え、最後に一枚の画面が鏡のように視聴者側へ向く。",
+          "positioning": "1920×1080内で字幕領域を避ける"
+        }
+      ],
+      "camera": {
+        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "screen": "1920x1080/16:9",
+        "motion": "scene-specific"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "投稿カードが増え、最後に一枚の画面が鏡のように視聴者側へ向く。",
+        "transitionOut": "第2章冒頭の他者比較へ接続。",
+        "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
+        "voiceTiming": "VOICEVOX実音声による後決め"
+      },
+      "estimatedDuration": 7.1,
+      "previousSceneContinuity": "前シーン V46-C1-035 から連続。",
+      "nextSceneContinuity": "第2章『自分で選んだという言葉の向こう側』へ視線を接続。",
+      "sceneType": "One-off",
+      "templateSource": "v46hansyoku/chapter1/scene-specific",
+      "visualIntent": "スマートフォンのSNS空間に、広い家、教育、旅行など他人の暮らしを示す抽象投稿が流れる。実在SNSロゴや実在人物は使わず、第2章『他人との比較』へ接続する。",
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_SNS",
+          "catalogId": "bg-bg-sns",
+          "filePath": "shared/asset-library/背景/BG_SNS.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "materialRegistration": "existing_assets_or_code_only"
+    }
+  ],
+  "coverageValidation": {
+    "chapterCharacters": 1319,
+    "sceneNarrationCharacters": 1319,
+    "exactCoverageVerified": true,
+    "sceneOrderVerified": true,
+    "prologueLockVerified": true
+  },
+  "missingAssets": {
+    "count": 8,
+    "assetIds": [
+      "bg-bg-v46-ch1-rural-home",
+      "character-v46-ch1-farm-adult",
+      "character-v46-ch1-farm-child",
+      "bg-bg-v46-ch1-rural-field",
+      "character-v46-ch1-couple-man",
+      "character-v46-ch1-couple-woman",
+      "bg-bg-v46-ch1-couple-apartment",
+      "bg-bg-v46-ch1-couple-apartment-wide"
+    ],
+    "inventoryPath": "v46hansyoku/chapters/chapter1/required-assets.json"
+  },
+  "nextStep": "ユーザーが不足素材を作成し shared/asset-library に登録 → catalog反映 → Chapter1素材ゲート確認 → 音声・字幕と映像を制作。プロローグは再レンダリング禁止。",
+  "productionGate": {
+    "scenePlanComplete": true,
+    "missingAssetsResolved": false,
+    "renderAllowed": false,
+    "userReviewScenePlan": "pending",
+    "doNotStartChapter2": true,
+    "approvedPrologueLocked": true
+  }
+}
