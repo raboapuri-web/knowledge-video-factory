@@ -1072,50 +1072,106 @@
         "startOffsetUTF16": 1646,
         "endOffsetExclusiveUTF16": 1684
       },
-      "visualDescription": "暗い空間で、中央に同じ大きさの『子供』シルエットを置く。左の農村側では子供から家族の仕事・収穫へ矢印が伸び、右の現代側では住居・食事・教育・時間が家族から子供へ流れ込む。『子供の価値』ではなく、家族内での資源と役割の流れが変わったことだけを示す。",
-      "backgroundId": "BG_darkroom",
-      "characters": [],
+      "visualDescription": "画面を左右2分割。左側はBG_V46_CH1_RURAL_HOMEの農村家屋と農村の子供、右側はBG_ROOM_DAYの現代の家と現代の子供を配置する。同じ『子供』でも家族の中で置かれる環境と役割が変わってきたことを、抽象図ではなく生活空間の直接比較で見せる。左の子供は農村衣装差分、右の子供は現代衣装の章専用一般児童として描き、プロローグの同期の子供とは別人物に見せる。",
+      "backgroundId": "SPLIT_BG_V46_CH1_RURAL_HOME_BG_ROOM_DAY",
+      "characters": [
+        {
+          "id": "farmChildA",
+          "templateId": "character-v46-child-boy",
+          "identity": "歴史説明用の農村の子供。プロローグの子供とは別人。農村衣装差分を使用。",
+          "variant": "A",
+          "continuity": "chapter1_only",
+          "position": "左半分・農村家屋の前景",
+          "facing": "正面〜家の作業方向",
+          "initialPose": "立ち姿",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
+        },
+        {
+          "id": "modernChild",
+          "templateId": "character-v46-child-girl",
+          "identity": "現代家庭を示す章専用の一般児童。プロローグの同期の子供とは別人物に見える髪・服色差分を使用。",
+          "variant": "chapter1-modern-generic",
+          "continuity": "chapter1_only",
+          "position": "右半分・現代の家の前景",
+          "facing": "正面〜室内",
+          "initialPose": "立ち姿",
+          "baseTemplatePolicy": "existing_react_template_costume_palette_variant_at_render"
+        }
+      ],
       "characterActions": [
         {
           "order": 1,
-          "action": "中央の子供シルエットを固定し、左では子供→家の仕事、右では親の資源→子供という逆向きの流れを順に描く。",
-          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+          "action": "左の農村の子供は家の作業道具の近くに立ち、家の仕事へ関わる位置関係を示す。",
+          "positioning": "左半分"
+        },
+        {
+          "order": 2,
+          "action": "右の現代の子供は生活用品のある室内に立ち、親から支えられる生活空間として見せる。",
+          "positioning": "右半分"
         }
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-darkroom",
+          "assetId": "bg-bg-v46-ch1-rural-home",
           "origin": "registered_shared",
           "status": "registered",
-          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
           "license": "cleared-commercial",
-          "sourceSha256": "9be8ce85248293737246b0bb61a49cb920f242da6a944399177a491c0b11a381",
-          "review": "registered_existing_asset"
+          "review": "user_added_and_confirmed_2026-09-25"
         },
         {
-          "assetId": "remotion:old-new-role-bridge",
+          "assetId": "bg-bg-room-day",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
+          "license": "cleared-commercial",
+          "review": "user_selected_for_chapter1_2026-09-25"
+        },
+        {
+          "assetId": "character-v46-child-boy",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "character-v46-child-girl",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-rural-modern-child-split",
           "origin": "scene_implementation",
           "status": "code_to_implement",
           "review": "no_user_upload_required",
-          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+          "description": "左=農村家屋＋農村児童、右=BG_ROOM_DAY＋現代一般児童の2分割比較。中央に境界線。"
         }
       ],
       "objectActions": [
         {
           "order": 1,
-          "description": "中央の子供シルエットを固定し、左では子供→家の仕事、右では親の資源→子供という逆向きの流れを順に描く。",
-          "positioning": "1920×1080内で字幕領域を避ける"
+          "description": "画面を中央で2分割し、左に農村家屋、右に現代の家を同時表示。",
+          "positioning": "50/50 split"
+        },
+        {
+          "order": 2,
+          "description": "左右それぞれに子供を一人ずつ配置し、生活環境の違いを直接比較。",
+          "positioning": "左右前景"
         }
       ],
       "camera": {
-        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "description": "左右を同時に見せる固定比較画面。カメラ移動なし。",
         "screen": "1920x1080/16:9",
-        "motion": "scene-specific"
+        "motion": "static split screen"
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "左右のフレームが同じ大きさで並び、中央の天秤が静かに水平へ戻る。",
-        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "description": "左右背景と子供が短いフェードで立ち上がり、中央境界線が下から上へ描画される。",
+        "transitionOut": "次の農村生活の具体描写へ左側を引き継ぐ。",
         "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
         "voiceTiming": "VOICEVOX実音声による後決め"
       },
@@ -1124,14 +1180,21 @@
       "nextSceneContinuity": "次シーン V46-C1-011 へ接続。",
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/chapter1/scene-specific",
-      "visualIntent": "左に農村の家、右に現代都市の家を円形フレームで並べ、中央の『子供の役割』を示す無文字の天秤へ視線を集める。",
+      "visualIntent": "画面を左右2分割。左側はBG_V46_CH1_RURAL_HOMEの農村家屋と農村の子供、右側はBG_ROOM_DAYの現代の家と現代の子供を配置する。同じ『子供』でも家族の中で置かれる環境と役割が変わってきたことを、抽象図ではなく生活空間の直接比較で見せる。左の子供は農村衣装差分、右の子供は現代衣装の章専用一般児童として描き、プロローグの同期の子供とは別人物に見せる。",
       "backgroundBindings": [
         {
-          "backgroundId": "BG_darkroom",
-          "catalogId": "bg-bg-darkroom",
-          "filePath": "shared/asset-library/背景/BG_darkroom.png",
-          "usage": "primary",
-          "visualReview": "registered"
+          "backgroundId": "BG_V46_CH1_RURAL_HOME",
+          "catalogId": "bg-bg-v46-ch1-rural-home",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+          "usage": "left_half",
+          "visualReview": "user_confirmed_2026-09-25"
+        },
+        {
+          "backgroundId": "BG_ROOM_DAY",
+          "catalogId": "bg-bg-room-day",
+          "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
+          "usage": "right_half",
+          "visualReview": "user_selected_2026-09-25"
         }
       ],
       "materialRegistration": "existing_assets_or_code_only"
@@ -1442,7 +1505,7 @@
         "startOffsetUTF16": 1754,
         "endOffsetExclusiveUTF16": 1779
       },
-      "visualDescription": "農村の家で食料と衣服を子供に分ける。育児に費用が不要だったとは描かず、家計負担も存在したことを視覚化する。",
+      "visualDescription": "農村の家で、親が食料だけでなく衣服を丁寧に子供へ用意している場面。衣服は曖昧な布ではなく、襟・袖・前身頃が分かる簡素な上着、畳んだ衣類の束、補修跡のある布として明確に描写する。親が上着を両手で広げて子供の体に合わせ、横の籠には替えの衣類を数枚重ねる。食料と衣服の両方が育児コストであったことを視覚化する。",
       "backgroundId": "BG_V46_CH1_RURAL_HOME",
       "characters": [
         {
@@ -1482,8 +1545,13 @@
       "characterActions": [
         {
           "order": 1,
-          "action": "親がパン・衣服を手渡し、棚の備蓄が少し減る。",
-          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+          "action": "農村の母親が簡素な上着を両手で広げ、子供の体に合わせて見せる。",
+          "positioning": "画面中央左"
+        },
+        {
+          "order": 2,
+          "action": "子供は衣服を見る。もう一人の子供の近くには食料を置く。",
+          "positioning": "中央〜右"
         }
       ],
       "requiredAssets": [
@@ -1542,18 +1610,23 @@
           "description": "V46_CHILD_RIG_BOY / GIRLをベースに、A/B/Cの農村児童差分を服色・背丈・髪・農作業小道具で作成。同期の子供とは明確に別人物。"
         },
         {
-          "assetId": "remotion:food-clothing-costs",
+          "assetId": "remotion:detailed-rural-clothing-cost",
           "origin": "scene_implementation",
           "status": "code_to_implement",
           "review": "no_user_upload_required",
-          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+          "description": "襟・袖・前身頃・補修跡が分かる農村衣服、折り畳んだ衣類の束、衣類籠をReact/SVGで描画。"
         }
       ],
       "objectActions": [
         {
           "order": 1,
-          "description": "親がパン・衣服を手渡し、棚の備蓄が少し減る。",
-          "positioning": "1920×1080内で字幕領域を避ける"
+          "description": "親が袖と襟の形が明確な上着を広げる。",
+          "positioning": "親と子供の間"
+        },
+        {
+          "order": 2,
+          "description": "衣類籠に畳んだ衣服を2〜3枚見せ、食料と並べる。",
+          "positioning": "画面下部・字幕領域を避ける"
         }
       ],
       "camera": {
@@ -1563,7 +1636,7 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "親がパン・衣服を手渡し、棚の備蓄が少し減る。",
+        "description": "親が衣服を持ち上げて広げ、子供に合わせる。衣類籠の服は静物として形状が読めるよう保持する。",
         "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
         "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
         "voiceTiming": "VOICEVOX実音声による後決め"
@@ -1573,7 +1646,7 @@
       "nextSceneContinuity": "次シーン V46-C1-014 へ接続。",
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/chapter1/scene-specific",
-      "visualIntent": "農村の家で食料と衣服を子供に分ける。育児に費用が不要だったとは描かず、家計負担も存在したことを視覚化する。",
+      "visualIntent": "農村の家で、親が食料だけでなく衣服を丁寧に子供へ用意している場面。衣服は曖昧な布ではなく、襟・袖・前身頃が分かる簡素な上着、畳んだ衣類の束、補修跡のある布として明確に描写する。親が上着を両手で広げて子供の体に合わせ、横の籠には替えの衣類を数枚重ねる。食料と衣服の両方が育児コストであったことを視覚化する。",
       "backgroundBindings": [
         {
           "backgroundId": "BG_V46_CH1_RURAL_HOME",
@@ -1825,50 +1898,72 @@
         "startOffsetUTF16": 1889,
         "endOffsetExclusiveUTF16": 1910
       },
-      "visualDescription": "健康と生存だけでなく、その先の将来を考える親の願いを、病院から明るい将来の分岐へ画面が開く形で表現する。",
-      "backgroundId": "BG_hospital",
+      "visualDescription": "黒い背景の中に複数の扉が浮かんでいる。扉は最初すべて閉じており、ナレーションに合わせて左から一つずつ開いていく。開いた扉の奥には暗闇ではなく、明るい未来の背景画像が少しずつ見える。『ただ生き延びる』からその先の人生へ視線が移る導入として、扉の開閉そのものを主役にする。",
+      "backgroundId": "BG_darkroom",
       "characters": [],
-      "characterActions": [
-        {
-          "order": 1,
-          "action": "病院の白い光が、複数の将来の扉の輪郭へ変わる。",
-          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
-        }
-      ],
+      "characterActions": [],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-hospital",
+          "assetId": "bg-bg-darkroom",
           "origin": "registered_shared",
           "status": "registered",
-          "filePath": "shared/asset-library/背景/BG_hospital.png",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
           "license": "cleared-commercial",
-          "sourceSha256": "13ecea4c422b5c0fdb1bd7f937eaa65a3f2c680427ec9ae1c727701bef4d67a0",
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:future-child-silhouette",
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "bg-bg-school",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_school.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "bg-bg-room-day",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:future-doors-opening",
           "origin": "scene_implementation",
           "status": "code_to_implement",
           "review": "no_user_upload_required",
-          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+          "description": "黒背景に3枚の扉を浮かべ、左から順に開く。各扉の奥に既存の明るい背景画像をクリップ表示する。"
         }
       ],
       "objectActions": [
         {
           "order": 1,
-          "description": "病院の白い光が、複数の将来の扉の輪郭へ変わる。",
-          "positioning": "1920×1080内で字幕領域を避ける"
+          "description": "3枚の閉じた扉を黒背景に浮かべる。",
+          "positioning": "左・中央・右"
+        },
+        {
+          "order": 2,
+          "description": "左から一つずつ扉を開き、奥の明るい背景を見せ始める。",
+          "positioning": "各扉の内側"
         }
       ],
       "camera": {
-        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "description": "黒背景の正面固定。3枚の扉全体が同時に見える。",
         "screen": "1920x1080/16:9",
-        "motion": "scene-specific"
+        "motion": "static doors"
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "病院の白い光が、複数の将来の扉の輪郭へ変わる。",
-        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "description": "3枚の扉を時間差で開く。扉の開きに合わせて奥の未来背景の明度を上げる。",
+        "transitionOut": "開いた扉をそのままC1-018へ連続保持する。",
         "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
         "voiceTiming": "VOICEVOX実音声による後決め"
       },
@@ -1877,13 +1972,13 @@
       "nextSceneContinuity": "次シーン V46-C1-018 へ接続。",
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/chapter1/scene-specific",
-      "visualIntent": "健康と生存だけでなく、その先の将来を考える親の願いを、病院から明るい将来の分岐へ画面が開く形で表現する。",
+      "visualIntent": "黒い背景の中に複数の扉が浮かんでいる。扉は最初すべて閉じており、ナレーションに合わせて左から一つずつ開いていく。開いた扉の奥には暗闇ではなく、明るい未来の背景画像が少しずつ見える。『ただ生き延びる』からその先の人生へ視線が移る導入として、扉の開閉そのものを主役にする。",
       "backgroundBindings": [
         {
-          "backgroundId": "BG_hospital",
-          "catalogId": "bg-bg-hospital",
-          "filePath": "shared/asset-library/背景/BG_hospital.png",
-          "usage": "primary",
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "base",
           "visualReview": "registered"
         }
       ],
@@ -1902,50 +1997,72 @@
         "startOffsetUTF16": 1910,
         "endOffsetExclusiveUTF16": 1947
       },
-      "visualDescription": "教室の机から複数の進路を示す抽象的な道が伸びる。『十分な選択肢』を特定の進学先や所得に限定しない。",
-      "backgroundId": "BG_school",
+      "visualDescription": "C1-017から連続して、開いた複数の扉の奥に輝かしい未来の背景画像をはっきり見せる。左の扉には晴天の都市、中央には学校・学びの空間、右には明るい住まいを配置し、『十分な選択肢』を一つの成功像に限定せず複数の人生の可能性として表現する。各扉は順に完全に開き、奥から柔らかな光が黒背景へ漏れる。",
+      "backgroundId": "BG_darkroom",
       "characters": [],
-      "characterActions": [
-        {
-          "order": 1,
-          "action": "一本の道が三方向に分岐し、照明が順に点灯する。",
-          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
-        }
-      ],
+      "characterActions": [],
       "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
         {
           "assetId": "bg-bg-school",
           "origin": "registered_shared",
           "status": "registered",
           "filePath": "shared/asset-library/背景/BG_school.png",
           "license": "cleared-commercial",
-          "sourceSha256": "44a304e695e3d15be46480ddb26774d256e251e1a6735568447ec5c6c095f8f3",
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:choice-paths",
+          "assetId": "bg-bg-room-day",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:future-doors-open-bright-backgrounds",
           "origin": "scene_implementation",
           "status": "code_to_implement",
           "review": "no_user_upload_required",
-          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+          "description": "3枚の扉を完全に開き、BG_TOWN_DAY_WIDE / BG_school / BG_ROOM_DAYを奥に表示。光漏れを追加。"
         }
       ],
       "objectActions": [
         {
           "order": 1,
-          "description": "一本の道が三方向に分岐し、照明が順に点灯する。",
-          "positioning": "1920×1080内で字幕領域を避ける"
+          "description": "左=晴天都市、中央=学校、右=明るい住まいを各扉の奥に表示する。",
+          "positioning": "3扉の内部"
+        },
+        {
+          "order": 2,
+          "description": "扉を一つずつ完全に開き、光が黒背景に広がる。",
+          "positioning": "扉周辺"
         }
       ],
       "camera": {
-        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "description": "C1-017と同じ正面固定構図を維持し、扉の奥の背景が読み取れる大きさにする。",
         "screen": "1920x1080/16:9",
-        "motion": "scene-specific"
+        "motion": "continuation static doors"
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "一本の道が三方向に分岐し、照明が順に点灯する。",
-        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "description": "C1-017の開き途中から継続し、3扉すべてを完全に開く。背景画像を明るく保持し、最後に全扉を同時表示。",
+        "transitionOut": "未来の選択肢から、次の『一人に必要な資源が増える』図解へ接続。",
         "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
         "voiceTiming": "VOICEVOX実音声による後決め"
       },
@@ -1954,13 +2071,13 @@
       "nextSceneContinuity": "次シーン V46-C1-019 へ接続。",
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/chapter1/scene-specific",
-      "visualIntent": "教室の机から複数の進路を示す抽象的な道が伸びる。『十分な選択肢』を特定の進学先や所得に限定しない。",
+      "visualIntent": "C1-017から連続して、開いた複数の扉の奥に輝かしい未来の背景画像をはっきり見せる。左の扉には晴天の都市、中央には学校・学びの空間、右には明るい住まいを配置し、『十分な選択肢』を一つの成功像に限定せず複数の人生の可能性として表現する。各扉は順に完全に開き、奥から柔らかな光が黒背景へ漏れる。",
       "backgroundBindings": [
         {
-          "backgroundId": "BG_school",
-          "catalogId": "bg-bg-school",
-          "filePath": "shared/asset-library/背景/BG_school.png",
-          "usage": "primary",
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "base",
           "visualReview": "registered"
         }
       ],
@@ -4111,5 +4228,16 @@
     ],
     "narrationChanged": false,
     "note": "User-specified visual replacements before Chapter1 implementation."
+  },
+  "userRevision20260925_feedback2": {
+    "revisionId": "chapter1-feedback-r3",
+    "revisedSceneIds": [
+      "V46-C1-010",
+      "V46-C1-013",
+      "V46-C1-017",
+      "V46-C1-018"
+    ],
+    "narrationChanged": false,
+    "note": "User feedback: rural-vs-modern split, detailed clothing, sequential opening doors with bright future background images."
   }
 }
