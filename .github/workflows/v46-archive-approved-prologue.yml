@@ -1,5 +1,6 @@
 name: V46 Archive Approved Prologue MP4
 # Archive exactly the user-approved R1 video; no Remotion render, VOICEVOX synthesis or editing.
+# Preserve the release MP4 without transcoding and lock the approved prologue.
 on:
   push:
     branches: [main]
