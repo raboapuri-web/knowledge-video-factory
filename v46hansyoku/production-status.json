@@ -20,7 +20,7 @@
     "v46DedicatedRenderingWorkflow": "implemented_and_verified",
     "projectMetadata": "prepared"
   },
-  "overallStatus": "prologue_r1_approved_locked_mp4_preserved_in_git_chapter1_design_ready",
+  "overallStatus": "prologue_approved_locked_chapter1_scene_design_complete_waiting_for_8_assets",
   "firstWorkUnit": "prologue",
   "chapters": [
     {
@@ -83,16 +83,23 @@
       "id": "chapter1",
       "label": "第1章",
       "title": "子供を育てるために、子供を持たない",
-      "sceneDesign": "ready_to_start",
-      "requiredAssets": "awaiting_chapter1_scene_design",
-      "missingAssets": "not_assessed",
-      "assetRegistration": "not_started",
-      "voice": "not_started",
-      "subtitles": "not_started",
+      "sceneDesign": "completed_36_scenes",
+      "requiredAssets": "inventory_complete",
+      "missingAssets": "8_user_assets_required",
+      "assetRegistration": "waiting_for_user_assets",
+      "voice": "blocked_until_assets_registered",
+      "subtitles": "blocked_until_assets_registered",
       "video": "not_started",
       "preview": "not_started",
-      "userApproval": "pending",
-      "locked": false
+      "userApproval": "scene_plan_pending_review",
+      "locked": false,
+      "scenePlanPath": "v46hansyoku/scene-plans/chapter1.json",
+      "sceneCount": 36,
+      "narrationCoverage": "14_of_14_paragraphs_1319_chars_exact",
+      "assetInventoryPath": "v46hansyoku/chapters/chapter1/required-assets.json",
+      "assetStatusPath": "v46hansyoku/chapters/chapter1/material-status.json",
+      "missingAssetCount": 8,
+      "identityContinuity": "prologue_characters_locked; chapter1 couple and historical family separated"
     },
     {
       "id": "chapter2",
@@ -156,7 +163,7 @@
     }
   ],
   "renderStarted": true,
-  "nextAction": "Chapter1 scene design can start when requested. Always reuse Git-pinned v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4; do not modify or rerender the approved prologue.",
+  "nextAction": "Create/register the 8 Chapter1-only assets listed in v46hansyoku/chapters/chapter1/required-assets.json, then verify catalog and begin Chapter1 production. Do not modify or rerender approved prologue.",
   "warnings": [
     "The supplied display title uses 社会構造, whereas the unchanged script header uses 行動経済学; do not silently edit either.",
     "Other workflows in this repository contain video number v46 for a different project; use the unique v46hansyoku slug for paths, composition IDs and workflows."
@@ -185,5 +192,5 @@
       "archiveStatus": "verified_published_in_git"
     }
   },
-  "currentWorkUnit": "chapter1_scene_design"
+  "currentWorkUnit": "chapter1_assets"
 }
