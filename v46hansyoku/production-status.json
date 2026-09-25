@@ -20,29 +20,29 @@
     "v46DedicatedRenderingWorkflow": "implemented_and_verified",
     "projectMetadata": "prepared"
   },
-  "overallStatus": "prologue_r1_rendered_actions_success_user_review_pending",
+  "overallStatus": "prologue_approved_locked_chapter1_scene_design_ready",
   "firstWorkUnit": "prologue",
   "chapters": [
     {
       "id": "prologue",
       "label": "プロローグ",
       "title": "誰も、彼に子供を持つなとは言っていない",
-      "sceneDesign": "32_scenes_review_r1_visual_corrections_applied",
+      "sceneDesign": "approved_locked_32_scenes_r1",
       "requiredAssets": "20_distinct_registered_assets_stage_verified",
       "missingAssets": "none_for_user_upload",
       "assetRegistration": "20_registered_assets_verified_by_actions",
-      "voice": "prior_review_soundtrack_restored_without_resynthesis",
-      "subtitles": "63_exact_original_cues_restored",
-      "video": "r1_mp4_rendered_1920x1080_30fps_h264_aac",
-      "preview": "github_actions_artifact_ready_for_review",
-      "userApproval": "pending_r1_video_review",
-      "locked": false,
+      "voice": "approved_original_voice_locked",
+      "subtitles": "approved_original_63_cues_locked",
+      "video": "approved_r1_mp4_reused_for_all_later_chapters",
+      "preview": "user_reviewed_and_approved",
+      "userApproval": "approved_2026-09-25",
+      "locked": true,
       "scenePlanPath": "v46hansyoku/scene-plans/prologue.json",
       "sceneCount": 32,
       "narrationCoverage": "14_of_14_paragraphs_verified_exact",
       "assetInventoryPath": "v46hansyoku/chapters/prologue/required-assets.json",
       "assetStatusPath": "v46hansyoku/chapters/prologue/material-status.json",
-      "imageVisualReview": "32_scene_contact_frames_generated_visual_review_by_user_pending",
+      "imageVisualReview": "user_approved_final_preview",
       "sceneMotionImplementation": "32_scenes_implemented_including_7_review_corrections",
       "revision": {
         "id": "r1",
@@ -68,21 +68,27 @@
         "artifactName": "v46hansyoku-prologue-review-r1-parallel-32-scenes",
         "githubReviewUrl": "https://github.com/raboapuri-web/knowledge-video-factory/actions/runs/36030111027/artifacts/10822210855",
         "videoFilename": "out/v46-prologue-review-r1.mp4",
-        "finalVideoUserApproval": false
-      }
+        "finalVideoUserApproval": true,
+        "finalStatus": "user_approved_locked",
+        "doNotRerender": true
+      },
+      "approved": true,
+      "approvalRecordPath": "v46hansyoku/approvals/prologue.json",
+      "approvedVideoFileName": "V46_PROLOGUE_APPROVED_20260925.mp4",
+      "approvedVideoStorage": "github_release_tag_v46-prologue-approved-r1_archive_upload_pending"
     },
     {
       "id": "chapter1",
       "label": "第1章",
       "title": "子供を育てるために、子供を持たない",
-      "sceneDesign": "not_started",
-      "requiredAssets": "not_assessed",
+      "sceneDesign": "ready_to_start",
+      "requiredAssets": "awaiting_chapter1_scene_design",
       "missingAssets": "not_assessed",
       "assetRegistration": "not_started",
       "voice": "not_started",
       "subtitles": "not_started",
       "video": "not_started",
-      "preview": "not_submitted",
+      "preview": "not_started",
       "userApproval": "pending",
       "locked": false
     },
@@ -148,9 +154,23 @@
     }
   ],
   "renderStarted": true,
-  "nextAction": "User checks prologue R1 artifact and requests corrections or explicitly approves. Do not start chapter1 before user approval.",
+  "nextAction": "Start V46 chapter1 scene design only on user request. Reuse approved prologue MP4 from GitHub release without rerender or modification; do not reopen prologue unless user explicitly requests a new revision.",
   "warnings": [
     "The supplied display title uses 社会構造, whereas the unchanged script header uses 行動経済学; do not silently edit either.",
     "Other workflows in this repository contain video number v46 for a different project; use the unique v46hansyoku slug for paths, composition IDs and workflows."
-  ]
+  ],
+  "approvedChapters": {
+    "prologue": {
+      "approvedOn": "2026-09-25",
+      "approvalRecordPath": "v46hansyoku/approvals/prologue.json",
+      "sourceRenderCommit": "d5fd8d21f7f3fe8100396911e0d7c83a0166cf40",
+      "sourceRenderRunId": 36030111027,
+      "approvedAssetFileName": "V46_PROLOGUE_APPROVED_20260925.mp4",
+      "archiveReleaseTag": "v46-prologue-approved-r1",
+      "releasePublicationStatus": "pending_workflow_confirmation",
+      "doNotRerender": true,
+      "doNotReplaceWithoutExplicitNewUserDirection": true
+    }
+  },
+  "currentWorkUnit": "chapter1_scene_design"
 }
