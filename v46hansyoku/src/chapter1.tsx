@@ -131,6 +131,73 @@ const Checklist=({t}:{t:number})=><AbsoluteFill style={{background:'rgba(4,8,12,
  {['貯蓄','仕事','住まい'].map((x,i)=>{const q=phase(t,.12+i*.22,.3+i*.22);return <div key={x} style={{position:'absolute',left:570,top:240+i*170,width:780,height:110,borderRadius:16,border:'3px solid #c7c0aa',background:'#1a222bcf',color:'#f4ead1',fontFamily:'Noto Sans CJK JP',fontSize:48,fontWeight:800,padding:'22px 36px',boxSizing:'border-box'}}><span style={{display:'inline-block',width:68,height:68,border:'4px solid #d7cbab',marginRight:35,verticalAlign:'middle',position:'relative'}}>{q>.5?<span style={{position:'absolute',left:10,top:-8,fontSize:62}}>✓</span>:null}</span>{x}</div>})}
 </AbsoluteFill>;
 
+
+const SplitChildRoles=({t}:{t:number})=><AbsoluteFill style={{background:'#04070b'}}>
+ <P x={0} y={0} w={950} h={1080} style={{overflow:'hidden'}}>
+  <Img src={asset('shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png')} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+  <AbsoluteFill style={{background:'rgba(24,15,8,.15)'}}/>
+  <FarmBoy x={330} y={430} scale={.66} variant={0}/>
+  <P x={180} y={760} w={190} h={105} style={{background:'#7b5b38',borderRadius:14,boxShadow:'0 12px 28px #0008'}}/>
+ </P>
+ <P x={970} y={0} w={950} h={1080} style={{overflow:'hidden'}}>
+  <Img src={asset('shared/asset-library/背景/BG_ROOM_DAY.png')} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+  <AbsoluteFill style={{background:'rgba(245,223,175,.08)'}}/>
+  <V46_CHILD_RIG_GIRL x={330} y={430} scale={.66} topColor="#7991a7" pantsColor="#556171" hairColor="#3e342f" shoeColor="#3a3d43"/>
+ </P>
+ <div style={{position:'absolute',left:950,top:0,width:20,height:1080,background:'linear-gradient(#d8cfb3,#7d8791,#d8cfb3)',transformOrigin:'bottom',transform:`scaleY(${phase(t,.05,.3)})`,boxShadow:'0 0 22px #fff4'}}/>
+</AbsoluteFill>;
+
+const DetailedRuralClothing=({scene,t}:{scene:any;t:number})=>{
+ const lift=phase(t,.15,.55);
+ return <AbsoluteFill>
+  <Background scene={scene} shade={.17}/>
+  <FarmMother x={330} y={320} scale={.68}/>
+  <FarmBoy x={1040} y={510} scale={.55}/>
+  <FarmGirl x={1320} y={535} scale={.48}/>
+  <svg viewBox="0 0 360 380" style={{position:'absolute',left:730,top:330-lift*28,width:360,height:380,filter:'drop-shadow(0 16px 24px #0008)'}}>
+   <path d="M120 55 L80 100 L36 116 L65 202 L103 188 L103 320 L258 320 L258 188 L296 202 L325 116 L281 100 L240 55 L209 74 Q180 94 151 74Z" fill="#a88f68" stroke="#e4d7b5" strokeWidth="7"/>
+   <path d="M151 74 Q180 112 209 74" fill="none" stroke="#6f5b43" strokeWidth="8"/>
+   <path d="M118 205 H246M130 255 H235" stroke="#7a6349" strokeWidth="5" strokeDasharray="12 8"/>
+   <rect x="196" y="196" width="47" height="55" rx="5" fill="#8e7555" stroke="#d5c39d" strokeWidth="4"/>
+  </svg>
+  <svg viewBox="0 0 420 250" style={{position:'absolute',left:690,top:720,width:420,height:250}}>
+   <path d="M45 95 Q210 28 375 95 L345 222 H75Z" fill="#765b3d" stroke="#b49a6b" strokeWidth="9"/>
+   <path d="M95 98 Q210 8 325 98" fill="none" stroke="#b49a6b" strokeWidth="11"/>
+   <rect x="115" y="110" width="190" height="45" rx="7" fill="#907754"/>
+   <rect x="130" y="145" width="165" height="42" rx="7" fill="#b09a72"/>
+   <rect x="145" y="177" width="135" height="35" rx="7" fill="#796348"/>
+   <path d="M150 123 H275M165 158 H270M176 188 H254" stroke="#e0d1aa" strokeWidth="4" opacity=".7"/>
+  </svg>
+  <P x={1160} y={790} w={180} h={95} style={{background:'#c5a36d',borderRadius:16,boxShadow:'0 10px 25px #0008'}}/>
+ </AbsoluteFill>;
+};
+
+const FutureDoors=({t,continuation=false}:{t:number;continuation?:boolean})=>{
+ const g=continuation?.42+.58*t:.42*t;
+ const doorData=[
+  {x:245,img:'shared/asset-library/背景/BG_TOWN_DAY_WIDE.png',a:.04,b:.28},
+  {x:765,img:'shared/asset-library/背景/BG_school.png',a:.34,b:.58},
+  {x:1285,img:'shared/asset-library/背景/BG_ROOM_DAY.png',a:.64,b:.88}
+ ];
+ return <AbsoluteFill style={{background:'radial-gradient(circle at 50% 42%,#111722,#020305 72%)'}}>
+  {doorData.map((d,i)=>{
+   const q=phase(g,d.a,d.b);
+   return <div key={d.x} style={{position:'absolute',left:d.x,top:190,width:390,height:650,perspective:1000}}>
+    <div style={{position:'absolute',inset:18,overflow:'hidden',background:'#0a0d11',boxShadow:`0 0 ${25+65*q}px rgba(245,221,153,${.14+.36*q})`}}>
+     <Img src={asset(d.img)} style={{width:'100%',height:'100%',objectFit:'cover',filter:`brightness(${.62+.62*q}) saturate(${.8+.25*q})`,transform:`scale(${1.08-.08*q})`}}/>
+     <div style={{position:'absolute',inset:0,background:`rgba(255,239,180,${.18*q})`}}/>
+    </div>
+    <div style={{position:'absolute',left:0,top:0,width:390,height:650,border:'18px solid #8d7852',boxSizing:'border-box',boxShadow:'0 20px 50px #000b'}}/>
+    <div style={{position:'absolute',left:18,top:18,width:354,height:614,background:'linear-gradient(90deg,#3a2d22,#6e5740 55%,#32261e)',border:'8px solid #a98e61',boxSizing:'border-box',transformOrigin:'left center',transform:`rotateY(${-86*q}deg)`,boxShadow:'12px 12px 32px #000a'}}>
+     <div style={{position:'absolute',right:24,top:292,width:18,height:18,borderRadius:'50%',background:'#dbc47d',boxShadow:'0 0 8px #f2df9d'}}/>
+     <div style={{position:'absolute',left:42,top:72,right:42,bottom:72,border:'5px solid #8e7252'}}/>
+    </div>
+   </div>
+  })}
+  <div style={{position:'absolute',left:0,right:0,bottom:0,height:180,background:'linear-gradient(transparent,rgba(0,0,0,.78))'}}/>
+ </AbsoluteFill>;
+};
+
 export const Chapter1Scene=({scene,index,frames}:{scene:any;index:number;frames:number})=>{
  const frame=useCurrentFrame(),t=clamp(frame/Math.max(1,frames-1));
  switch(index){
@@ -143,15 +210,15 @@ export const Chapter1Scene=({scene,index,frames}:{scene:any;index:number;frames:
   case 6:return <AbsoluteFill><Background scene={scene} shade={.24}/><P x={50} y={80} w={560} h={790}><Img src={asset('shared/asset-library/背景/BG_town.png')} style={{width:'100%',height:'100%',objectFit:'cover',borderRadius:20}}/></P><P x={680} y={80} w={560} h={790}><Img src={asset('shared/asset-library/背景/BG_hospital.png')} style={{width:'100%',height:'100%',objectFit:'cover',borderRadius:20}}/></P><P x={1310} y={80} w={560} h={790}><Img src={asset('shared/asset-library/背景/BG_office.png')} style={{width:'100%',height:'100%',objectFit:'cover',borderRadius:20}}/></P></AbsoluteFill>;
   case 7:return <SimpleChart t={t}/>;
   case 8:return <WealthBadge t={t}/>;
-  case 9:return <ResourceFlow t={t}/>;
+  case 9:return <SplitChildRoles t={t}/>;
   case 10:return <AbsoluteFill><Background scene={scene} shade={.14}/><FarmFather x={260} y={350}/><FarmMother x={1300} y={350}/><FarmBoy x={770} y={520}/><FarmGirl x={990} y={530}/><P x={720} y={820} w={150} h={90} style={{background:'#9a7049',borderRadius:10}}/></AbsoluteFill>;
   case 11:return <AbsoluteFill><Background scene={scene} shade={.1}/><FarmBoy x={260+450*t} y={520} variant={0}/><FarmGirl x={820} y={525}/><FarmBoy x={1260} y={535} scale={.5} variant={1}/><P x={640} y={770} w={120} h={120} style={{background:'#8f6d3e',borderRadius:16}}/><P x={1390} y={720} w={180} h={90} style={{background:'#79623d',borderRadius:10}}/></AbsoluteFill>;
-  case 12:return <AbsoluteFill><Background scene={scene} shade={.2}/><FarmMother x={430} y={350}/><FarmBoy x={900} y={520}/><FarmGirl x={1170} y={530}/><P x={760} y={735} w={210} h={100} style={{background:'#c7a876',borderRadius:14}}/><P x={1100} y={760} w={180} h={80} style={{background:'#90775b',borderRadius:14}}/></AbsoluteFill>;
+  case 12:return <DetailedRuralClothing scene={scene} t={t}/>;
   case 13:return <WorkerIcons t={t}/>;
   case 14:return <AbsoluteFill style={{background:'#060a10'}}><Text x={680} y={115} w={560} size={48}>現代の家庭</Text><P x={760} y={360} w={400} h={180} style={{borderRadius:24,background:'#263746',border:'3px solid #9fb4c5'}}><Text x={20} y={45} w={360} size={38}>給与</Text></P><svg viewBox="0 0 1920 1080" style={{position:'absolute',inset:0}}><path d="M960 545 L520 790M960 545 L960 820M960 545 L1400 790" stroke="#d9c987" strokeWidth="14"/></svg><Text x={280} y={820} w={460} size={34}>住まい</Text><Text x={730} y={850} w={460} size={34}>食事</Text><Text x={1190} y={820} w={460} size={34}>教育</Text></AbsoluteFill>;
   case 15:return <WindingRoad t={t}/>;
-  case 16:return <AbsoluteFill><Background scene={scene} shade={.38}/><svg viewBox="0 0 1920 1080" style={{position:'absolute',inset:0}}><circle cx="960" cy="520" r={160+250*phase(t,.25,.85)} fill="none" stroke="#ecdfb9" strokeWidth="10" opacity={.7}/><path d="M960 520 L690 280M960 520 L1260 280M960 520 L960 130" stroke="#e9e1ca" strokeWidth="9"/></svg></AbsoluteFill>;
-  case 17:return <AbsoluteFill><Background scene={scene} shade={.42}/><P x={750} y={680} w={420} h={140} style={{background:'#e1d6bc',borderRadius:70}}/><svg viewBox="0 0 1920 1080" style={{position:'absolute',inset:0}}>{[0,1,2].map(i=><path key={i} d={`M960 680 C${860+i*110} 500 ${630+i*330} 340 ${470+i*500} 180`} stroke={i===1?'#e1c66f':'#92aec1'} strokeWidth="16" fill="none"/>)}</svg></AbsoluteFill>;
+  case 16:return <FutureDoors t={t}/>;
+  case 17:return <FutureDoors t={t} continuation/>;
   case 18:return <AbsoluteFill style={{background:'#05090f'}}><IconPerson x={875} y={390} scale={1.4}/>{['住居','食事','教育','時間'].map((x,i)=>{const r=150+i*78;return <div key={x} style={{position:'absolute',left:960-r,top:505-r,width:r*2,height:r*2,borderRadius:'50%',border:`7px solid rgba(210,190,130,${.9-i*.12})`,opacity:phase(t,.12+i*.14,.3+i*.14)}}/>})}</AbsoluteFill>;
   case 19:return <AbsoluteFill><Background scene={scene} shade={.25}/><P x={500} y={180} w={920} h={700} style={{background:'#e8e0cc',border:'9px solid #675d4c',transform:'rotate(-2deg)',boxShadow:'0 20px 60px #0009'}}><Text x={130} y={90} w={660} size={46}>1960</Text><Text x={120} y={210} w={680} size={38}>子供の人数</Text><Text x={120} y={370} w={680} size={38}>一人あたりの資源</Text><div style={{position:'absolute',left:140,top:540,width:600,height:18,background:'#866f4e'}}/></P></AbsoluteFill>;
   case 20:return <BudgetSplit t={t}/>;
