@@ -1,0 +1,338 @@
+{
+  "status": "pending_voicevox_chapter4",
+  "approvedNarration": true,
+  "sourceBlobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+  "durationSeconds": 315.5,
+  "beats": [
+    {
+      "id": "V46-C4-001",
+      "index": 0,
+      "start": 0,
+      "end": 1
+    },
+    {
+      "id": "V46-C4-002",
+      "index": 1,
+      "start": 1,
+      "end": 2
+    },
+    {
+      "id": "V46-C4-003",
+      "index": 2,
+      "start": 2,
+      "end": 3
+    },
+    {
+      "id": "V46-C4-004",
+      "index": 3,
+      "start": 3,
+      "end": 4
+    },
+    {
+      "id": "V46-C4-005",
+      "index": 4,
+      "start": 4,
+      "end": 5
+    },
+    {
+      "id": "V46-C4-006",
+      "index": 5,
+      "start": 5,
+      "end": 6
+    },
+    {
+      "id": "V46-C4-007",
+      "index": 6,
+      "start": 6,
+      "end": 7
+    },
+    {
+      "id": "V46-C4-008",
+      "index": 7,
+      "start": 7,
+      "end": 8
+    },
+    {
+      "id": "V46-C4-009",
+      "index": 8,
+      "start": 8,
+      "end": 9
+    },
+    {
+      "id": "V46-C4-010",
+      "index": 9,
+      "start": 9,
+      "end": 10
+    },
+    {
+      "id": "V46-C4-011",
+      "index": 10,
+      "start": 10,
+      "end": 11
+    },
+    {
+      "id": "V46-C4-012",
+      "index": 11,
+      "start": 11,
+      "end": 12
+    },
+    {
+      "id": "V46-C4-013",
+      "index": 12,
+      "start": 12,
+      "end": 13
+    },
+    {
+      "id": "V46-C4-014",
+      "index": 13,
+      "start": 13,
+      "end": 14
+    },
+    {
+      "id": "V46-C4-015",
+      "index": 14,
+      "start": 14,
+      "end": 15
+    },
+    {
+      "id": "V46-C4-016",
+      "index": 15,
+      "start": 15,
+      "end": 16
+    },
+    {
+      "id": "V46-C4-017",
+      "index": 16,
+      "start": 16,
+      "end": 17
+    },
+    {
+      "id": "V46-C4-018",
+      "index": 17,
+      "start": 17,
+      "end": 18
+    },
+    {
+      "id": "V46-C4-019",
+      "index": 18,
+      "start": 18,
+      "end": 19
+    },
+    {
+      "id": "V46-C4-020",
+      "index": 19,
+      "start": 19,
+      "end": 20
+    },
+    {
+      "id": "V46-C4-021",
+      "index": 20,
+      "start": 20,
+      "end": 21
+    },
+    {
+      "id": "V46-C4-022",
+      "index": 21,
+      "start": 21,
+      "end": 22
+    },
+    {
+      "id": "V46-C4-023",
+      "index": 22,
+      "start": 22,
+      "end": 23
+    },
+    {
+      "id": "V46-C4-024",
+      "index": 23,
+      "start": 23,
+      "end": 24
+    },
+    {
+      "id": "V46-C4-025",
+      "index": 24,
+      "start": 24,
+      "end": 25
+    },
+    {
+      "id": "V46-C4-026",
+      "index": 25,
+      "start": 25,
+      "end": 26
+    },
+    {
+      "id": "V46-C4-027",
+      "index": 26,
+      "start": 26,
+      "end": 27
+    },
+    {
+      "id": "V46-C4-028",
+      "index": 27,
+      "start": 27,
+      "end": 28
+    },
+    {
+      "id": "V46-C4-029",
+      "index": 28,
+      "start": 28,
+      "end": 29
+    },
+    {
+      "id": "V46-C4-030",
+      "index": 29,
+      "start": 29,
+      "end": 30
+    },
+    {
+      "id": "V46-C4-031",
+      "index": 30,
+      "start": 30,
+      "end": 31
+    },
+    {
+      "id": "V46-C4-032",
+      "index": 31,
+      "start": 31,
+      "end": 32
+    },
+    {
+      "id": "V46-C4-033",
+      "index": 32,
+      "start": 32,
+      "end": 33
+    },
+    {
+      "id": "V46-C4-034",
+      "index": 33,
+      "start": 33,
+      "end": 34
+    },
+    {
+      "id": "V46-C4-035",
+      "index": 34,
+      "start": 34,
+      "end": 35
+    },
+    {
+      "id": "V46-C4-036",
+      "index": 35,
+      "start": 35,
+      "end": 36
+    },
+    {
+      "id": "V46-C4-037",
+      "index": 36,
+      "start": 36,
+      "end": 37
+    },
+    {
+      "id": "V46-C4-038",
+      "index": 37,
+      "start": 37,
+      "end": 38
+    },
+    {
+      "id": "V46-C4-039",
+      "index": 38,
+      "start": 38,
+      "end": 39
+    },
+    {
+      "id": "V46-C4-040",
+      "index": 39,
+      "start": 39,
+      "end": 40
+    },
+    {
+      "id": "V46-C4-041",
+      "index": 40,
+      "start": 40,
+      "end": 41
+    },
+    {
+      "id": "V46-C4-042",
+      "index": 41,
+      "start": 41,
+      "end": 42
+    },
+    {
+      "id": "V46-C4-043",
+      "index": 42,
+      "start": 42,
+      "end": 43
+    },
+    {
+      "id": "V46-C4-044",
+      "index": 43,
+      "start": 43,
+      "end": 44
+    },
+    {
+      "id": "V46-C4-045",
+      "index": 44,
+      "start": 44,
+      "end": 45
+    },
+    {
+      "id": "V46-C4-046",
+      "index": 45,
+      "start": 45,
+      "end": 46
+    },
+    {
+      "id": "V46-C4-047",
+      "index": 46,
+      "start": 46,
+      "end": 47
+    },
+    {
+      "id": "V46-C4-048",
+      "index": 47,
+      "start": 47,
+      "end": 48
+    },
+    {
+      "id": "V46-C4-049",
+      "index": 48,
+      "start": 48,
+      "end": 49
+    },
+    {
+      "id": "V46-C4-050",
+      "index": 49,
+      "start": 49,
+      "end": 50
+    },
+    {
+      "id": "V46-C4-051",
+      "index": 50,
+      "start": 50,
+      "end": 51
+    },
+    {
+      "id": "V46-C4-052",
+      "index": 51,
+      "start": 51,
+      "end": 52
+    },
+    {
+      "id": "V46-C4-053",
+      "index": 52,
+      "start": 52,
+      "end": 53
+    },
+    {
+      "id": "V46-C4-054",
+      "index": 53,
+      "start": 53,
+      "end": 54
+    },
+    {
+      "id": "V46-C4-055",
+      "index": 54,
+      "start": 54,
+      "end": 55
+    }
+  ]
+}
