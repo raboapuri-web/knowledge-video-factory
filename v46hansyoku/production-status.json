@@ -20,7 +20,7 @@
     "v46DedicatedRenderingWorkflow": "implemented_and_verified",
     "projectMetadata": "prepared"
   },
-  "overallStatus": "prologue_approved_locked_chapter1_scene_design_complete_waiting_for_8_assets",
+  "overallStatus": "prologue_approved_locked_chapter1_assets_resolved_ready_for_implementation",
   "firstWorkUnit": "prologue",
   "chapters": [
     {
@@ -84,22 +84,22 @@
       "label": "第1章",
       "title": "子供を育てるために、子供を持たない",
       "sceneDesign": "completed_36_scenes",
-      "requiredAssets": "inventory_complete",
-      "missingAssets": "8_user_assets_required",
-      "assetRegistration": "waiting_for_user_assets",
-      "voice": "blocked_until_assets_registered",
-      "subtitles": "blocked_until_assets_registered",
-      "video": "not_started",
+      "requiredAssets": "all_user_assets_resolved",
+      "missingAssets": "none_for_user_upload",
+      "assetRegistration": "backgrounds_verified_and_character_variants_deferred_to_react_implementation",
+      "voice": "ready_to_generate",
+      "subtitles": "ready_to_generate",
+      "video": "ready_for_implementation",
       "preview": "not_started",
-      "userApproval": "scene_plan_pending_review",
+      "userApproval": "scene_plan_updated_with_user_asset_decisions",
       "locked": false,
       "scenePlanPath": "v46hansyoku/scene-plans/chapter1.json",
       "sceneCount": 36,
       "narrationCoverage": "14_of_14_paragraphs_1319_chars_exact",
       "assetInventoryPath": "v46hansyoku/chapters/chapter1/required-assets.json",
       "assetStatusPath": "v46hansyoku/chapters/chapter1/material-status.json",
-      "missingAssetCount": 8,
-      "identityContinuity": "prologue_characters_locked; chapter1 couple and historical family separated"
+      "missingAssetCount": 0,
+      "identityContinuity": "prologue characters locked; farm/couple roles use existing React templates with chapter-specific variants"
     },
     {
       "id": "chapter2",
@@ -163,7 +163,7 @@
     }
   ],
   "renderStarted": true,
-  "nextAction": "Create/register the 8 Chapter1-only assets listed in v46hansyoku/chapters/chapter1/required-assets.json, then verify catalog and begin Chapter1 production. Do not modify or rerender approved prologue.",
+  "nextAction": "Implement Chapter1 Remotion scenes and React character variants using the resolved backgrounds; generate VOICEVOX/subtitles and render Chapter1 only. Never rerender or modify approved prologue.",
   "warnings": [
     "The supplied display title uses 社会構造, whereas the unchanged script header uses 行動経済学; do not silently edit either.",
     "Other workflows in this repository contain video number v46 for a different project; use the unique v46hansyoku slug for paths, composition IDs and workflows."
@@ -192,5 +192,5 @@
       "archiveStatus": "verified_published_in_git"
     }
   },
-  "currentWorkUnit": "chapter1_assets"
+  "currentWorkUnit": "chapter1_implementation"
 }
