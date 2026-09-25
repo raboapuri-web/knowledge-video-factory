@@ -21,6 +21,7 @@ on:
       - 'v46hansyoku/scripts/generate-remaining-voicevox.mjs'
       - 'v46hansyoku/scripts/build-remaining-subtitles.mjs'
       - 'v46hansyoku/scripts/generate-remaining-contact-sheet.mjs'
+      - 'v46hansyoku/scripts/check-adjacent-scene-similarity.mjs'
       - 'v46hansyoku/scripts/verify-approved-chapters.mjs'
       - 'v46hansyoku/package.json'
       - 'v46hansyoku/tsconfig.remaining.json'
@@ -133,6 +134,9 @@ jobs:
         run: |
           npm run qa:${{ matrix.chapter }}
           test -s out/${{ matrix.chapter }}-contact-sheet.jpg
+      - name: Reject adjacent near-duplicate scenes
+        working-directory: v46hansyoku
+        run: node scripts/check-adjacent-scene-similarity.mjs ${{ matrix.chapter }}
       - name: Publish chapter review artifact
         uses: actions/upload-artifact@v4
         with:
