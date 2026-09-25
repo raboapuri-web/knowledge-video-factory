@@ -20,7 +20,7 @@
     "v46DedicatedRenderingWorkflow": "implemented_and_verified",
     "projectMetadata": "prepared"
   },
-  "overallStatus": "prologue_approved_locked_chapter1_assets_resolved_ready_for_implementation",
+  "overallStatus": "prologue_approved_locked_chapter1_alignment_reviewed_ready_for_implementation",
   "firstWorkUnit": "prologue",
   "chapters": [
     {
@@ -83,7 +83,7 @@
       "id": "chapter1",
       "label": "第1章",
       "title": "子供を育てるために、子供を持たない",
-      "sceneDesign": "completed_36_scenes",
+      "sceneDesign": "completed_36_scenes_alignment_reviewed",
       "requiredAssets": "all_user_assets_resolved",
       "missingAssets": "none_for_user_upload",
       "assetRegistration": "backgrounds_verified_and_character_variants_deferred_to_react_implementation",
@@ -91,7 +91,7 @@
       "subtitles": "ready_to_generate",
       "video": "ready_for_implementation",
       "preview": "not_started",
-      "userApproval": "scene_plan_updated_with_user_asset_decisions",
+      "userApproval": "scene_plan_alignment_review_ready",
       "locked": false,
       "scenePlanPath": "v46hansyoku/scene-plans/chapter1.json",
       "sceneCount": 36,
@@ -99,7 +99,20 @@
       "assetInventoryPath": "v46hansyoku/chapters/chapter1/required-assets.json",
       "assetStatusPath": "v46hansyoku/chapters/chapter1/material-status.json",
       "missingAssetCount": 0,
-      "identityContinuity": "prologue characters locked; farm/couple roles use existing React templates with chapter-specific variants"
+      "identityContinuity": "prologue characters locked; farm/couple roles use existing React templates with chapter-specific variants",
+      "scenePlanBlobSha": "15d54735385a10101a9dce58d4c2c41064f8ddbf",
+      "alignmentReview": {
+        "date": "2026-09-25",
+        "fixCount": 5,
+        "fixes": [
+          "C1-006",
+          "C1-010",
+          "C1-028",
+          "C1-031",
+          "C1-036"
+        ],
+        "narrationChanged": false
+      }
     },
     {
       "id": "chapter2",
@@ -163,7 +176,7 @@
     }
   ],
   "renderStarted": true,
-  "nextAction": "Implement Chapter1 Remotion scenes and React character variants using the resolved backgrounds; generate VOICEVOX/subtitles and render Chapter1 only. Never rerender or modify approved prologue.",
+  "nextAction": "User reviews the displayed Chapter1 narration-to-scene mapping. If approved, implement Chapter1 only. Do not modify or rerender the approved prologue.",
   "warnings": [
     "The supplied display title uses 社会構造, whereas the unchanged script header uses 行動経済学; do not silently edit either.",
     "Other workflows in this repository contain video number v46 for a different project; use the unique v46hansyoku slug for paths, composition IDs and workflows."
