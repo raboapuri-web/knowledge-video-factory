@@ -30,9 +30,20 @@
     "audioCodec": "aac",
     "renderParallelWorkers": 4,
     "durableStorage": {
-      "kind": "pending-git-preservation",
-      "path": "v46hansyoku/approved-video/V46_CHAPTER1_APPROVED_20260925.mp4"
-    }
+      "kind": "git-repository-file",
+      "repository": "raboapuri-web/knowledge-video-factory",
+      "branch": "main",
+      "path": "v46hansyoku/approved-video/V46_CHAPTER1_APPROVED_20260925.mp4",
+      "fileName": "V46_CHAPTER1_APPROVED_20260925.mp4",
+      "gitObjectSha": "28c249042760359313d8a93030267c25d04be981",
+      "preservationCommit": "5ef913660978358e1218ae35d9b0d7a55b98c3bc",
+      "browserUrl": "https://github.com/raboapuri-web/knowledge-video-factory/blob/5ef913660978358e1218ae35d9b0d7a55b98c3bc/v46hansyoku/approved-video/V46_CHAPTER1_APPROVED_20260925.mp4",
+      "downloadUrl": "https://raw.githubusercontent.com/raboapuri-web/knowledge-video-factory/5ef913660978358e1218ae35d9b0d7a55b98c3bc/v46hansyoku/approved-video/V46_CHAPTER1_APPROVED_20260925.mp4",
+      "publicationStatus": "verified_published_in_git",
+      "byteForByteOriginalArtifact": true,
+      "immutableReferenceType": "commit-pinned-blob"
+    },
+    "sha256": "aeeefeab11452fc7b708c5905f3b5096597dab2892f5c05b4698287283e2cbdd"
   },
   "approvedDesign": {
     "path": "v46hansyoku/scene-plans/chapter1.json",
@@ -60,5 +71,10 @@
     "chapterId": "chapter2",
     "status": "scene_design_and_render_permitted",
     "chapter1RerenderForbidden": true
+  },
+  "github": {
+    "approvedMp4PreservationRunId": 36143903491,
+    "approvedMp4PreservationCommit": "5ef913660978358e1218ae35d9b0d7a55b98c3bc",
+    "approvedMp4PreservationConclusion": "success"
   }
 }
