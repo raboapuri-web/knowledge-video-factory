@@ -1,25 +1,5 @@
 name: V46 Hansyoku Chapter1 Parallel Production
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'v46hansyoku/scene-plans/chapter1.json'
-      - 'v46hansyoku/src/chapter1.tsx'
-      - 'v46hansyoku/src/chapter1-index.tsx'
-      - 'v46hansyoku/src/chapter1-script-data.json'
-      - 'v46hansyoku/scripts/check-chapter1-source.mjs'
-      - 'v46hansyoku/scripts/stage-chapter1-assets.mjs'
-      - 'v46hansyoku/scripts/generate-chapter1-voicevox.mjs'
-      - 'v46hansyoku/scripts/build-chapter1-subtitles.mjs'
-      - 'v46hansyoku/scripts/generate-chapter1-contact-sheet.mjs'
-      - 'v46hansyoku/package.json'
-      - 'v46hansyoku/tsconfig.chapter1.json'
-      - 'shared/asset-library/catalog.json'
-      - 'shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png'
-      - 'shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png'
-      - 'shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png'
-      - 'shared/asset-library/背景/BG_ROOM_DAY.png'
-      - '.github/workflows/v46hansyoku-chapter1.yml'
   workflow_dispatch:
 permissions:
   contents: read
