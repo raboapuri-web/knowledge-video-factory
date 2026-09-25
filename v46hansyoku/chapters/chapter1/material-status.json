@@ -5,7 +5,7 @@
   "chapterId": "chapter1",
   "sourceScenePlan": "v46hansyoku/scene-plans/chapter1.json",
   "sourceInventory": "v46hansyoku/chapters/chapter1/required-assets.json",
-  "state": "scene_design_complete_all_user_assets_resolved_ready_for_implementation",
+  "state": "chapter1_rendered_visual_qa_passed_user_review_pending",
   "missingUserAssetCount": 0,
   "missingAssetIds": [],
   "identityContinuityStatus": "locked_against_approved_prologue",
@@ -21,11 +21,20 @@
   "voiceGenerationAllowed": true,
   "videoRenderAllowed": true,
   "chapter2Blocked": true,
-  "nextStep": "Chapter1の人物React差分とRemotion実装へ進める。音声・字幕生成も可。第2章はChapter1承認まで進めない。",
+  "nextStep": "ユーザーが第1章レビュー動画を確認。修正指示があれば第1章のみ再レンダー。承認まで第2章は開始しない。",
   "backgroundResolution": {
     "BG_V46_CH1_RURAL_HOME": "registered",
     "BG_V46_CH1_RURAL_FIELD": "registered",
     "BG_ROOM_DAY": "registered_and_selected_instead_of_BG_V46_CH1_COUPLE_APARTMENT",
     "BG_V46_CH1_COUPLE_APARTMENT_WIDE": "registered"
+  },
+  "renderStatus": {
+    "runId": 36135480064,
+    "conclusion": "success",
+    "artifactId": 10864585866,
+    "durationSeconds": 195.456,
+    "parallelWorkers": 4,
+    "qaFrames": 36,
+    "userApproval": "pending"
   }
 }
