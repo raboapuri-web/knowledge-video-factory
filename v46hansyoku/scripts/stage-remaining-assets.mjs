@@ -10,8 +10,15 @@ for(const s of plan.scenes)for(const a of s.requiredAssets||[]){
  else paths.add(a.filePath);
 }
 if(errors.length)throw Error(errors.join('\n'));
+const backgroundRoot=path.join(repo,'shared/asset-library/背景');
+if(fs.existsSync(backgroundRoot)){
+ for(const name of fs.readdirSync(backgroundRoot)){
+  const full=path.join(backgroundRoot,name);
+  if(fs.statSync(full).isFile())paths.add('shared/asset-library/背景/'+name);
+ }
+}
 for(const src of paths){
  const from=path.join(repo,src),to=path.join(root,'public/assets/library',src.slice('shared/asset-library/'.length));
  fs.mkdirSync(path.dirname(to),{recursive:true});fs.copyFileSync(from,to);
 }
-console.log('Staged '+paths.size+' registered assets for '+chapter+' / '+plan.scenes.length+' scenes.');
+console.log('Staged '+paths.size+' registered/dynamic assets for '+chapter+' / '+plan.scenes.length+' scenes.');
