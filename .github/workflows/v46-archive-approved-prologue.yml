@@ -1,0 +1,114 @@
+name: V46 Archive Approved Prologue MP4
+# Archive exactly the user-approved R1 video; no Remotion render, VOICEVOX synthesis or editing.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v46-archive-approved-prologue.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: v46-approved-prologue-archive
+  cancel-in-progress: false
+jobs:
+  archive-approved-prologue:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate explicit approval, source pin and one-time release destination
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, pathlib
+          p=json.loads(pathlib.Path('v46hansyoku/approvals/prologue.json').read_text())
+          assert p['approval']['status']=='approved' and p['approval']['locked'] is True
+          assert p['approvedVideo']['originalArtifact']['runId']==36030111027
+          assert p['github']['renderCommit']=='d5fd8d21f7f3fe8100396911e0d7c83a0166cf40'
+          assert p['approvedDesign']['sceneCount']==32
+          assert p['approvedVideo']['originalArtifactFileName']=='v46-prologue-review-r1.mp4'
+          print('User approval and exact original render source verified.')
+          PY
+          if gh release view v46-prologue-approved-r1 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "::error::The approved video release already exists. Refusing to overwrite the approved file."
+            exit 1
+          fi
+      - name: Download the exact user-reviewed GitHub Actions artifact (do not re-render)
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 36030111027
+          github-token: ${{ github.token }}
+          name: v46hansyoku-prologue-review-r1-parallel-32-scenes
+          path: approved-artifact
+      - name: Preserve MP4 bytes, approved subtitles, alignment and 32-scene contact sheet
+        run: |
+          set -euo pipefail
+          mkdir -p approval-archive
+          original_video="$(find approved-artifact -type f -name v46-prologue-review-r1.mp4 -print -quit)"
+          original_srt="$(find approved-artifact -type f -name v46-prologue.srt -print -quit)"
+          timing="$(find approved-artifact -type f -name sync-timing.json -print -quit)"
+          cues="$(find approved-artifact -type f -name subtitle-cues.json -print -quit)"
+          contact="$(find approved-artifact -type f -name scene-contact-sheet.jpg -print -quit)"
+          for source in "$original_video" "$original_srt" "$timing" "$cues" "$contact"; do test -s "$source"; done
+          cp "$original_video" approval-archive/V46_PROLOGUE_APPROVED_20260925.mp4
+          cp "$original_srt" approval-archive/V46_PROLOGUE_APPROVED_20260925.srt
+          cp "$timing" approval-archive/V46_PROLOGUE_APPROVED_20260925-sync-timing.json
+          cp "$cues" approval-archive/V46_PROLOGUE_APPROVED_20260925-subtitle-cues.json
+          cp "$contact" approval-archive/V46_PROLOGUE_APPROVED_20260925-contact-sheet.jpg
+          cmp "$original_video" approval-archive/V46_PROLOGUE_APPROVED_20260925.mp4
+          cd approval-archive
+          sha256sum V46_PROLOGUE_APPROVED_20260925.mp4 > V46_PROLOGUE_APPROVED_20260925.mp4.sha256
+          cat V46_PROLOGUE_APPROVED_20260925.mp4.sha256
+          ffprobe -v error -show_entries stream=codec_type,codec_name,width,height,avg_frame_rate -show_entries format=duration -of json V46_PROLOGUE_APPROVED_20260925.mp4 > V46_PROLOGUE_APPROVED_20260925-technical.json
+          python3 - <<'PY'
+          import json
+          j=json.load(open('V46_PROLOGUE_APPROVED_20260925-technical.json'))
+          v=next(s for s in j['streams'] if s['codec_type']=='video')
+          a=next(s for s in j['streams'] if s['codec_type']=='audio')
+          assert (v['width'],v['height'],v['avg_frame_rate'],v['codec_name'])==(1920,1080,'30/1','h264')
+          assert a['codec_name']=='aac'
+          assert abs(float(j['format']['duration'])-183.125333)<.2
+          print('Original approved file verified: 1920x1080 / 30 fps / AAC / expected duration.')
+          PY
+      - name: Publish durable GitHub Release without modifying the MP4
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cat > approval-archive/RELEASE-NOTES.md <<'EOF'
+          # V46・プロローグ／正式承認済み動画
+          Approved by the user on 2026-09-25. This release stores the exact, already-rendered
+          R1 MP4 from successful GitHub Actions run 36030111027, artifact 10822210855.
+          No Remotion rendering, transcoding or voice synthesis occurs in this archive workflow.
+          Render source commit: d5fd8d21f7f3fe8100396911e0d7c83a0166cf40.
+          Approved scene plan: v46hansyoku/scene-plans/prologue.json
+          at Git blob SHA 13a69eb77cd7b7c3918c2b1ec7dd78cad212cab9.
+          Fixed approval metadata: v46hansyoku/approvals/prologue.json on main.
+          Source script, approved VOICEVOX narration and 63 subtitles remain unchanged.
+          Do not re-render or replace this approved prologue when producing chapter 1 or later.
+          EOF
+          gh release create v46-prologue-approved-r1 \
+            approval-archive/V46_PROLOGUE_APPROVED_20260925.mp4 \
+            approval-archive/V46_PROLOGUE_APPROVED_20260925.mp4.sha256 \
+            approval-archive/V46_PROLOGUE_APPROVED_20260925.srt \
+            approval-archive/V46_PROLOGUE_APPROVED_20260925-sync-timing.json \
+            approval-archive/V46_PROLOGUE_APPROVED_20260925-subtitle-cues.json \
+            approval-archive/V46_PROLOGUE_APPROVED_20260925-contact-sheet.jpg \
+            approval-archive/V46_PROLOGUE_APPROVED_20260925-technical.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --target d5fd8d21f7f3fe8100396911e0d7c83a0166cf40 \
+            --title 'V46 プロローグ／正式承認済み R1' \
+            --notes-file approval-archive/RELEASE-NOTES.md
+      - name: Verify approved video and supplementary release assets are published
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release view v46-prologue-approved-r1 --repo "$GITHUB_REPOSITORY" --json tagName,isDraft,assets \
+            --jq '.tagName+" draft="+(.isDraft|tostring)+" assets="+([.assets[].name]|join(","))'
+          gh release view v46-prologue-approved-r1 --repo "$GITHUB_REPOSITORY" --json isDraft,assets \
+            --jq '(.isDraft|not) and ([.assets[].name]|index("V46_PROLOGUE_APPROVED_20260925.mp4")!=null) and ([.assets[].name]|index("V46_PROLOGUE_APPROVED_20260925.mp4.sha256")!=null)' | grep -x true
