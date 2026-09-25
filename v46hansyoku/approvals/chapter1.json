@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "v46-approved-chapter-v1",
+  "videoId": "V46",
+  "chapterId": "chapter1",
+  "chapterName": "第1章｜子供を育てるために、子供を持たない",
+  "approval": {
+    "status": "approved",
+    "approvedBy": "user",
+    "approvedOn": "2026-09-25",
+    "approvalBasis": "User explicitly approved the Chapter1 feedback R3 rendered MP4.",
+    "locked": true,
+    "doNotModifyWithoutExplicitNewUserApproval": true,
+    "doNotRerenderInSubsequentChapterProduction": true
+  },
+  "approvedVideo": {
+    "fileName": "V46_CHAPTER1_APPROVED_20260925.mp4",
+    "originalArtifactFileName": "v46-chapter1.mp4",
+    "originalArtifact": {
+      "runId": 36137608832,
+      "artifactId": 10865049586,
+      "artifactName": "v46hansyoku-chapter1-36-scenes-parallel-review",
+      "url": "https://github.com/raboapuri-web/knowledge-video-factory/actions/runs/36137608832/artifacts/10865049586",
+      "expiresAt": "2026-10-09T13:00:23Z"
+    },
+    "durationSeconds": 195.456,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "videoCodec": "h264",
+    "audioCodec": "aac",
+    "renderParallelWorkers": 4,
+    "durableStorage": {
+      "kind": "pending-git-preservation",
+      "path": "v46hansyoku/approved-video/V46_CHAPTER1_APPROVED_20260925.mp4"
+    }
+  },
+  "approvedDesign": {
+    "path": "v46hansyoku/scene-plans/chapter1.json",
+    "blobSha": "be61e33547f88e3d96003ecab0d250f21a22943f",
+    "sceneCount": 36,
+    "approvedReviewRevision": "chapter1-feedback-r3",
+    "narrationUnmodified": true,
+    "sourceScript": {
+      "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+      "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d"
+    }
+  },
+  "voiceAndSubtitles": {
+    "voiceStatus": "approved_reuse_from_run_36134552133",
+    "voiceEngine": "VOICEVOX",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speedScale": 1.13,
+    "pitchScale": -0.026,
+    "intonationScale": 0.86,
+    "voiceMeasuredSeconds": 195.130667,
+    "subtitleCount": 62
+  },
+  "nextChapter": {
+    "chapterId": "chapter2",
+    "status": "scene_design_and_render_permitted",
+    "chapter1RerenderForbidden": true
+  }
+}
