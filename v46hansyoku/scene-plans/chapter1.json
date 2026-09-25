@@ -182,7 +182,7 @@
         "startOffsetUTF16": 1407,
         "endOffsetExclusiveUTF16": 1429
       },
-      "visualDescription": "主人公の机上に給料・家賃・教育費を示す三つの無地カードが順に現れる。プロローグの承認済み家計演出を再利用するが、新しい事実は加えない。",
+      "visualDescription": "机を真上から撮影した俯瞰構図。主人公の顔や上半身は映さず、男の手だけを描写する。その手が机上に『給料』『家賃』『教育費』のカードを1枚ずつ順番に置いていく。生活の計算が始まる瞬間を、支出項目が増えていく構図で見せる。",
       "backgroundId": "BG_oneroom_night",
       "characters": [
         {
@@ -191,16 +191,26 @@
           "identity": "プロローグ承認済みの35歳主人公。顔・髪・スーツ配色を一切変更しない。",
           "continuity": "locked_from_prologue",
           "prologueReference": "V46-P002〜P032 / Actor kind='hero'",
-          "position": "visualDescriptionに従う",
-          "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "position": "画面外。手のみを机上へ入れる",
+          "facing": "机",
+          "initialPose": "真上俯瞰で手元のみ"
         }
       ],
       "characterActions": [
         {
           "order": 1,
-          "action": "カードが給料→家賃→教育費の順に置かれる。",
-          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+          "action": "男の手が『給料』カードを置く。",
+          "positioning": "机中央左"
+        },
+        {
+          "order": 2,
+          "action": "同じ手が『家賃』カードを置く。",
+          "positioning": "給料カードの右"
+        },
+        {
+          "order": 3,
+          "action": "同じ手が『教育費』カードを置く。",
+          "positioning": "家賃カードの右"
         }
       ],
       "requiredAssets": [
@@ -214,15 +224,6 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "part-invoice",
-          "origin": "registered_shared",
-          "status": "registered",
-          "filePath": "shared/asset-library/パーツ/invoice.svg",
-          "license": "original-project",
-          "sourceSha256": null,
-          "review": "registered_existing_asset"
-        },
-        {
           "assetId": "character-modern-male-office-worker",
           "origin": "registered_shared",
           "status": "approved",
@@ -232,29 +233,29 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:expense-labels",
+          "assetId": "remotion:topdown-salary-rent-education-cards",
           "origin": "scene_implementation",
           "status": "code_to_implement",
           "review": "no_user_upload_required",
-          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+          "description": "真上俯瞰の机。主人公の手のみが給料・家賃・教育費のカードを順番に置く。"
         }
       ],
       "objectActions": [
         {
           "order": 1,
-          "description": "カードが給料→家賃→教育費の順に置かれる。",
-          "positioning": "1920×1080内で字幕領域を避ける"
+          "description": "給料→家賃→教育費のカードをナレーションに合わせて1枚ずつ置く。",
+          "positioning": "机中央、字幕領域を避ける"
         }
       ],
       "camera": {
-        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "description": "机を真上から見る固定俯瞰。顔・胴体は映さず手とカードのみを主役にする。",
         "screen": "1920x1080/16:9",
-        "motion": "scene-specific"
+        "motion": "top-down static"
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "カードが給料→家賃→教育費の順に置かれる。",
-        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "description": "三つの発話に同期して男の手がカードを1枚ずつ置く。",
+        "transitionOut": "最後の教育費カードが置かれた直後、主人公の全身が見える部屋へカット。",
         "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
         "voiceTiming": "VOICEVOX実音声による後決め"
       },
@@ -263,7 +264,7 @@
       "nextSceneContinuity": "次シーン V46-C1-003 へ接続。",
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/chapter1/scene-specific",
-      "visualIntent": "主人公の机上に給料・家賃・教育費を示す三つの無地カードが順に現れる。プロローグの承認済み家計演出を再利用するが、新しい事実は加えない。",
+      "visualIntent": "机を真上から撮影した俯瞰構図。主人公の顔や上半身は映さず、男の手だけを描写する。その手が机上に『給料』『家賃』『教育費』のカードを1枚ずつ順番に置いていく。生活の計算が始まる瞬間を、支出項目が増えていく構図で見せる。",
       "backgroundBindings": [
         {
           "backgroundId": "BG_oneroom_night",
@@ -288,7 +289,7 @@
         "startOffsetUTF16": 1429,
         "endOffsetExclusiveUTF16": 1454
       },
-      "visualDescription": "主人公の手元へ寄り、生活費のカード群を見つめる。『切実な理由』を表情ではなく手が止まる動作で示す。",
+      "visualDescription": "部屋の中で主人公を中景〜やや引きで見せる。主人公は肩を落とし、視線を下げ、静かに涙を流す。前シーンの給料・家賃・教育費のカードを近くに残し、計算の現実が感情の重さへつながったことを示す。",
       "backgroundId": "BG_oneroom_night",
       "characters": [
         {
@@ -297,16 +298,21 @@
           "identity": "プロローグ承認済みの35歳主人公。顔・髪・スーツ配色を一切変更しない。",
           "continuity": "locked_from_prologue",
           "prologueReference": "V46-P002〜P032 / Actor kind='hero'",
-          "position": "visualDescriptionに従う",
-          "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "position": "部屋中央〜机脇",
+          "facing": "やや下向き",
+          "initialPose": "肩を落として座る"
         }
       ],
       "characterActions": [
         {
           "order": 1,
-          "action": "ペン先が家計表の上で止まる。",
-          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
+          "action": "主人公が肩を落として視線を下げる。",
+          "positioning": "部屋中央〜机脇"
+        },
+        {
+          "order": 2,
+          "action": "伏せ気味の顔から涙が一筋流れる。",
+          "positioning": "同位置。誇張せず静かな感情表現"
         }
       ],
       "requiredAssets": [
@@ -329,29 +335,29 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:budget-closeup",
+          "assetId": "remotion:hero-shoulders-down-tear",
           "origin": "scene_implementation",
           "status": "code_to_implement",
           "review": "no_user_upload_required",
-          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+          "description": "承認済み主人公リグに肩を落とす姿勢と一筋の涙を追加。"
         }
       ],
       "objectActions": [
         {
           "order": 1,
-          "description": "ペン先が家計表の上で止まる。",
-          "positioning": "1920×1080内で字幕領域を避ける"
+          "description": "前シーンの3枚のカードを机上または前景に残す。",
+          "positioning": "主人公の近く、字幕を避ける"
         }
       ],
       "camera": {
-        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "description": "中景〜やや引き。主人公の肩の落ち方と涙が読める距離。",
         "screen": "1920x1080/16:9",
-        "motion": "scene-specific"
+        "motion": "gentle hold"
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "ペン先が家計表の上で止まる。",
-        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "description": "肩が落ちる→視線が下がる→涙が流れる、を静かに進める。",
+        "transitionOut": "感情を受け止める短いホールドから歴史の本へ。",
         "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
         "voiceTiming": "VOICEVOX実音声による後決め"
       },
@@ -360,7 +366,7 @@
       "nextSceneContinuity": "次シーン V46-C1-004 へ接続。",
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/chapter1/scene-specific",
-      "visualIntent": "主人公の手元へ寄り、生活費のカード群を見つめる。『切実な理由』を表情ではなく手が止まる動作で示す。",
+      "visualIntent": "部屋の中で主人公を中景〜やや引きで見せる。主人公は肩を落とし、視線を下げ、静かに涙を流す。前シーンの給料・家賃・教育費のカードを近くに残し、計算の現実が感情の重さへつながったことを示す。",
       "backgroundBindings": [
         {
           "backgroundId": "BG_oneroom_night",
@@ -991,69 +997,48 @@
         "startOffsetUTF16": 1604,
         "endOffsetExclusiveUTF16": 1644
       },
-      "visualDescription": "豊かな現代都市。生活は便利だが、親子のシルエットが群衆の中で少数に見える構図。出生率の数値断定は行わない。",
-      "backgroundId": "BG_town",
-      "characters": [
-        {
-          "id": "crowd",
-          "templateId": "character-passerby-crowd",
-          "identity": "匿名の一般人。個人同一性を持たせない。",
-          "continuity": "generic",
-          "position": "visualDescriptionに従う",
-          "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
-        }
-      ],
-      "characterActions": [
-        {
-          "order": 1,
-          "action": "大人の流れの中を少数の親子シルエットが横切る。",
-          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
-        }
-      ],
+      "visualDescription": "黒に近い暗背景の中央に、『豊かさを手に入れる』ことを概念的に表現した金属製のバッジを大きく表示する。バッジが立体的に裏返ると、裏面は『子供を拒否する・避ける・慎重になる』ことを概念的に示す別の金属バッジへ変わる。豊かさと子供への慎重さが同じ構造の裏表である逆説を一つの物体で見せる。",
+      "backgroundId": "BG_darkroom",
+      "characters": [],
+      "characterActions": [],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-town",
+          "assetId": "bg-bg-darkroom",
           "origin": "registered_shared",
           "status": "registered",
-          "filePath": "shared/asset-library/背景/BG_town.png",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
           "license": "cleared-commercial",
-          "sourceSha256": "6f4ef686a3ce848c7d1a3b1dd924b8ebe20c09a799d901483f93af256aeb8712",
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "character-passerby-crowd",
-          "origin": "registered_shared",
-          "status": "approved",
-          "filePath": "shared/asset-library/人物テンプレート/PASSERBY.tsx",
-          "license": "original-project",
-          "sourceSha256": null,
-          "review": "registered_existing_asset"
-        },
-        {
-          "assetId": "remotion:family-choice-silhouettes",
+          "assetId": "remotion:wealth-to-child-avoidance-metal-badge",
           "origin": "scene_implementation",
           "status": "code_to_implement",
           "review": "no_user_upload_required",
-          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+          "description": "豊かさの金属バッジがY軸回転で裏返り、子供への拒否・回避・慎重さを示す裏面バッジになる。"
         }
       ],
       "objectActions": [
         {
           "order": 1,
-          "description": "大人の流れの中を少数の親子シルエットが横切る。",
-          "positioning": "1920×1080内で字幕領域を避ける"
+          "description": "豊かさを象徴する金属バッジを中央に出す。",
+          "positioning": "画面中央"
+        },
+        {
+          "order": 2,
+          "description": "バッジを裏返し、子供への慎重さを示す裏面へ変える。",
+          "positioning": "同位置"
         }
       ],
       "camera": {
-        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "description": "中央固定。金属バッジの立体反転を主役にする。",
         "screen": "1920x1080/16:9",
-        "motion": "scene-specific"
+        "motion": "centered emblem focus"
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "大人の流れの中を少数の親子シルエットが横切る。",
-        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "description": "光沢を持つ金属バッジが180度裏返り、表裏の意味が反転する。",
+        "transitionOut": "裏面で一拍止めて、子供の役割を説明する次の図解へ。",
         "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
         "voiceTiming": "VOICEVOX実音声による後決め"
       },
@@ -1062,12 +1047,12 @@
       "nextSceneContinuity": "次シーン V46-C1-010 へ接続。",
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/chapter1/scene-specific",
-      "visualIntent": "豊かな現代都市。生活は便利だが、親子のシルエットが群衆の中で少数に見える構図。出生率の数値断定は行わない。",
+      "visualIntent": "黒に近い暗背景の中央に、『豊かさを手に入れる』ことを概念的に表現した金属製のバッジを大きく表示する。バッジが立体的に裏返ると、裏面は『子供を拒否する・避ける・慎重になる』ことを概念的に示す別の金属バッジへ変わる。豊かさと子供への慎重さが同じ構造の裏表である逆説を一つの物体で見せる。",
       "backgroundBindings": [
         {
-          "backgroundId": "BG_town",
-          "catalogId": "bg-bg-town",
-          "filePath": "shared/asset-library/背景/BG_town.png",
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
           "usage": "primary",
           "visualReview": "registered"
         }
@@ -1613,122 +1598,48 @@
         "startOffsetUTF16": 1779,
         "endOffsetExclusiveUTF16": 1803
       },
-      "visualDescription": "同じ家族の畑仕事。成長した子供が大人と横並びで作業し、家族の働き手が増える構造を見せる。",
-      "backgroundId": "BG_V46_CH1_RURAL_FIELD",
-      "characters": [
-        {
-          "id": "farmAdultA",
-          "templateId": "character-parent-father",
-          "identity": "歴史説明用の農村成人A。現代人物とは別人。 既存Parent系Reactリグを農村衣装差分で使用。",
-          "variant": "male",
-          "continuity": "chapter1_only",
-          "position": "visualDescriptionに従う",
-          "facing": "主動作対象",
-          "initialPose": "characterActionsに従う",
-          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
-        },
-        {
-          "id": "farmChildA",
-          "templateId": "character-v46-child-boy",
-          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
-          "variant": "A",
-          "continuity": "chapter1_only",
-          "position": "visualDescriptionに従う",
-          "facing": "主動作対象",
-          "initialPose": "characterActionsに従う",
-          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
-        },
-        {
-          "id": "farmChildB",
-          "templateId": "character-v46-child-girl",
-          "identity": "歴史説明用の子供B。プロローグの子供とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
-          "variant": "B",
-          "continuity": "chapter1_only",
-          "position": "visualDescriptionに従う",
-          "facing": "主動作対象",
-          "initialPose": "characterActionsに従う",
-          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
-        }
-      ],
-      "characterActions": [
-        {
-          "order": 1,
-          "action": "畑の列に一人ずつ加わり、作業列が長くなる。",
-          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
-        }
-      ],
+      "visualDescription": "黒い背景の中に人型アイコンを並べる。最初は少数の働き手だけだが、ナレーションに合わせて人のアイコンが1個ずつ増え、家族の働き手の列が長くなる。単なる人口増ではなく『家族の働き手が増える』ことが分かるよう同じ向き・同じ作業列として見せる。",
+      "backgroundId": "BG_darkroom",
+      "characters": [],
+      "characterActions": [],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-v46-ch1-rural-field",
+          "assetId": "bg-bg-darkroom",
           "origin": "registered_shared",
           "status": "registered",
-          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
           "license": "cleared-commercial",
-          "review": "user_added_and_confirmed_2026-09-25"
+          "review": "registered_existing_asset"
         },
         {
-          "assetId": "character-parent-father",
-          "origin": "registered_shared",
-          "status": "approved",
-          "filePath": "shared/asset-library/人物テンプレート/PARENT_FATHER.tsx",
-          "license": "original-project",
-          "review": "existing_react_template_base"
-        },
-        {
-          "assetId": "character-parent-mother",
-          "origin": "registered_shared",
-          "status": "approved",
-          "filePath": "shared/asset-library/人物テンプレート/PARENT_MOTHER.tsx",
-          "license": "original-project",
-          "review": "existing_react_template_base"
-        },
-        {
-          "assetId": "remotion:chapter1-farm-adult-costume-variants",
+          "assetId": "remotion:worker-icons-increasing",
           "origin": "scene_implementation",
           "status": "code_to_implement",
           "review": "no_user_upload_required",
-          "description": "PARENT_FATHER / PARENT_MOTHERをベースに、前近代農村の簡素な服・髪・小道具へ差分化。プロローグ人物とは別人に見える配色・衣装。動画実装時にReact props/派生コンポーネントで作成。"
-        },
-        {
-          "assetId": "character-v46-child-boy",
-          "origin": "registered_shared",
-          "status": "approved",
-          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
-          "license": "cleared-commercial",
-          "review": "existing_react_template_base"
-        },
-        {
-          "assetId": "character-v46-child-girl",
-          "origin": "registered_shared",
-          "status": "approved",
-          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
-          "license": "cleared-commercial",
-          "review": "existing_react_template_base"
-        },
-        {
-          "assetId": "remotion:chapter1-farm-child-costume-variants",
-          "origin": "scene_implementation",
-          "status": "code_to_implement",
-          "review": "no_user_upload_required",
-          "description": "V46_CHILD_RIG_BOY / GIRLをベースに、A/B/Cの農村児童差分を服色・背丈・髪・農作業小道具で作成。同期の子供とは明確に別人物。"
+          "description": "黒背景で人型アイコンが1個ずつ増え、家族の働き手の列が伸びる。"
         }
       ],
       "objectActions": [
         {
           "order": 1,
-          "description": "畑の列に一人ずつ加わり、作業列が長くなる。",
-          "positioning": "1920×1080内で字幕領域を避ける"
+          "description": "少数の働き手アイコンから開始。",
+          "positioning": "画面中央"
+        },
+        {
+          "order": 2,
+          "description": "人型アイコンを1個ずつ追加して横一列を伸ばす。",
+          "positioning": "同一列"
         }
       ],
       "camera": {
-        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "description": "黒背景上の中央図解を正面固定で見せる。",
         "screen": "1920x1080/16:9",
-        "motion": "scene-specific"
+        "motion": "static diagram"
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "畑の列に一人ずつ加わり、作業列が長くなる。",
-        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "description": "人型アイコンを一定間隔で1個ずつ追加する。",
+        "transitionOut": "増えた列を短く保持して現代家庭の資源フローへ切り替える。",
         "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
         "voiceTiming": "VOICEVOX実音声による後決め"
       },
@@ -1737,17 +1648,17 @@
       "nextSceneContinuity": "次シーン V46-C1-015 へ接続。",
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/chapter1/scene-specific",
-      "visualIntent": "同じ家族の畑仕事。成長した子供が大人と横並びで作業し、家族の働き手が増える構造を見せる。",
+      "visualIntent": "黒い背景の中に人型アイコンを並べる。最初は少数の働き手だけだが、ナレーションに合わせて人のアイコンが1個ずつ増え、家族の働き手の列が長くなる。単なる人口増ではなく『家族の働き手が増える』ことが分かるよう同じ向き・同じ作業列として見せる。",
       "backgroundBindings": [
         {
-          "backgroundId": "BG_V46_CH1_RURAL_FIELD",
-          "catalogId": "bg-bg-v46-ch1-rural-field",
-          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
           "usage": "primary",
-          "visualReview": "user_confirmed_2026-09-25"
+          "visualReview": "registered"
         }
       ],
-      "materialRegistration": "missing_assets_gate"
+      "materialRegistration": "existing_assets_or_code_only"
     },
     {
       "sceneId": "V46-C1-015",
@@ -1839,59 +1750,48 @@
         "startOffsetUTF16": 1847,
         "endOffsetExclusiveUTF16": 1889
       },
-      "visualDescription": "台所から学校へ連続する生活のモンタージュ。食事、住まい、通学用品を親側が準備する構図で長期支援を示す。既存の同期一家の人物は使わない。",
-      "backgroundId": "BG_kitchen",
+      "visualDescription": "黒い背景の中で、長いうねった道が画面下から上へ縦方向に伸びていく。道は子供が大人になるまでの長い時間と、親が支え続ける期間を象徴する。道の途中に住まい・食事・教育を示す小さな記号を控えめに置くが、主役はあくまで終わりが遠く見える長いうねった道とする。",
+      "backgroundId": "BG_darkroom",
       "characters": [],
-      "characterActions": [
-        {
-          "order": 1,
-          "action": "食卓→ランドセル風の無地バッグ→教室の順に物が受け渡される。",
-          "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
-        }
-      ],
+      "characterActions": [],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-kitchen",
+          "assetId": "bg-bg-darkroom",
           "origin": "registered_shared",
           "status": "registered",
-          "filePath": "shared/asset-library/背景/BG_kitchen.png",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
           "license": "cleared-commercial",
-          "sourceSha256": "d52c5181ea7ed85793f7043b021fd6e8c728e8bc6a7f878e3ce562875f8d903d",
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "bg-bg-school",
-          "origin": "registered_shared",
-          "status": "registered",
-          "filePath": "shared/asset-library/背景/BG_school.png",
-          "license": "cleared-commercial",
-          "sourceSha256": "44a304e695e3d15be46480ddb26774d256e251e1a6735568447ec5c6c095f8f3",
-          "review": "registered_existing_asset"
-        },
-        {
-          "assetId": "remotion:long-parental-support",
+          "assetId": "remotion:long-winding-support-road",
           "origin": "scene_implementation",
           "status": "code_to_implement",
           "review": "no_user_upload_required",
-          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+          "description": "黒背景で長いうねった道が下から上へ伸び、途中に住まい・食事・教育の小記号が現れる。"
         }
       ],
       "objectActions": [
         {
           "order": 1,
-          "description": "食卓→ランドセル風の無地バッグ→教室の順に物が受け渡される。",
-          "positioning": "1920×1080内で字幕領域を避ける"
+          "description": "長いうねった道が画面下から上へ伸びる。",
+          "positioning": "画面中央縦方向"
+        },
+        {
+          "order": 2,
+          "description": "道沿いに住まい・食事・教育の小記号を順に出す。",
+          "positioning": "道の途中"
         }
       ],
       "camera": {
-        "description": "ナレーション内容に合わせ、人物・物体の主動作が読めるカットへ切り替える。単純ズームのみで済ませない。",
+        "description": "長い道の縦方向の広がりを見せる固定図解。",
         "screen": "1920x1080/16:9",
-        "motion": "scene-specific"
+        "motion": "vertical emphasis"
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "食卓→ランドセル風の無地バッグ→教室の順に物が受け渡される。",
-        "transitionOut": "次の因果・時間軸へ視線方向を維持して接続。",
+        "description": "一本の道を下から上へ描画し、進行に合わせて支援項目の記号を出す。",
+        "transitionOut": "道の先の光から将来の選択肢を示す次シーンへ。",
         "subtitle": "確定原稿のnarrationTextを別レイヤーで厳密一致",
         "voiceTiming": "VOICEVOX実音声による後決め"
       },
@@ -1900,12 +1800,12 @@
       "nextSceneContinuity": "次シーン V46-C1-017 へ接続。",
       "sceneType": "One-off",
       "templateSource": "v46hansyoku/chapter1/scene-specific",
-      "visualIntent": "台所から学校へ連続する生活のモンタージュ。食事、住まい、通学用品を親側が準備する構図で長期支援を示す。既存の同期一家の人物は使わない。",
+      "visualIntent": "黒い背景の中で、長いうねった道が画面下から上へ縦方向に伸びていく。道は子供が大人になるまでの長い時間と、親が支え続ける期間を象徴する。道の途中に住まい・食事・教育を示す小さな記号を控えめに置くが、主役はあくまで終わりが遠く見える長いうねった道とする。",
       "backgroundBindings": [
         {
-          "backgroundId": "BG_kitchen",
-          "catalogId": "bg-bg-kitchen",
-          "filePath": "shared/asset-library/背景/BG_kitchen.png",
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
           "usage": "primary",
           "visualReview": "registered"
         }
@@ -4199,5 +4099,17 @@
     "narrationChanged": false,
     "sceneCountChanged": false,
     "sourceCoverageChanged": false
+  },
+  "userRevision20260925": {
+    "revisionId": "chapter1-scene-review-r2",
+    "revisedSceneIds": [
+      "V46-C1-002",
+      "V46-C1-003",
+      "V46-C1-009",
+      "V46-C1-014",
+      "V46-C1-016"
+    ],
+    "narrationChanged": false,
+    "note": "User-specified visual replacements before Chapter1 implementation."
   }
 }
