@@ -17,11 +17,18 @@
     "originalArtifactFileName": "v46-prologue-review-r1.mp4",
     "originalArtifactRelativePath": "out/v46-prologue-review-r1.mp4",
     "durableStorage": {
-      "kind": "github-release-asset",
+      "kind": "git-repository-file",
       "repository": "raboapuri-web/knowledge-video-factory",
-      "tag": "v46-prologue-approved-r1",
-      "destination": "https://github.com/raboapuri-web/knowledge-video-factory/releases/download/v46-prologue-approved-r1/V46_PROLOGUE_APPROVED_20260925.mp4",
-      "publicationStatus": "pending_archive_workflow_confirmation"
+      "branch": "main",
+      "path": "v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4",
+      "fileName": "V46_PROLOGUE_APPROVED_20260925.mp4",
+      "gitObjectSha": "b1651ab23ddfad5dd2ab806a830b2ad895fb5ab4",
+      "preservationCommit": "b17afeff4cb92c958712eacba0c3b4d93b13671c",
+      "downloadUrl": "https://raw.githubusercontent.com/raboapuri-web/knowledge-video-factory/b17afeff4cb92c958712eacba0c3b4d93b13671c/v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4",
+      "browserUrl": "https://github.com/raboapuri-web/knowledge-video-factory/blob/b17afeff4cb92c958712eacba0c3b4d93b13671c/v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4",
+      "publicationStatus": "verified_published_in_git",
+      "byteForByteOriginalArtifact": true,
+      "immutableReferenceType": "commit-pinned-blob"
     },
     "originalArtifact": {
       "runId": 36030111027,
@@ -37,7 +44,8 @@
     "videoCodec": "h264",
     "audioCodec": "aac",
     "renderParallelWorkers": 4,
-    "sha256": null
+    "sha256": "7c3c8f76fd8819bf02174ea600ca211889bbf45f8be152719ad7a420664d5384",
+    "sizeBytes": 39867269
   },
   "approvedDesign": {
     "path": "v46hansyoku/scene-plans/prologue.json",
@@ -312,14 +320,25 @@
     "renderWorkflow": ".github/workflows/v46hansyoku-prologue.yml",
     "renderRunId": 36030111027,
     "renderRunConclusion": "success",
-    "approvalMetadataCommit": null,
-    "archiveWorkflowRunId": null,
-    "archiveWorkflowConclusion": "pending"
+    "approvalMetadataCommit": "65e2dc059b878a7ded34e54b17c0dbda739dee61",
+    "archiveWorkflowRunId": 36081739744,
+    "archiveWorkflowConclusion": "failed_release_write_permission_403",
+    "approvedMp4PreservationCommit": "b17afeff4cb92c958712eacba0c3b4d93b13671c",
+    "approvedMp4PreservationRunId": 36081887676,
+    "approvedMp4PreservationConclusion": "success",
+    "releaseArchiveAttempt": {
+      "status": "not_published",
+      "reason": "GitHub Actions token returned HTTP 403 for Release creation. Git repository file archived successfully instead.",
+      "fallback": "The exact original approved MP4 is stored as a Git blob under v46hansyoku/approved-video on main."
+    }
   },
   "nextChapter": {
     "chapterId": "chapter1",
     "status": "scene_design_permitted",
     "requiresReusingApprovedPrologueAsset": true,
-    "prologueRerenderForbidden": true
+    "prologueRerenderForbidden": true,
+    "approvedPrologueFilePath": "v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4",
+    "approvedPrologueFileSha256": "7c3c8f76fd8819bf02174ea600ca211889bbf45f8be152719ad7a420664d5384",
+    "mustReadApprovalManifestBeforeRendering": true
   }
 }
