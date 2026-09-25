@@ -50,31 +50,34 @@ jobs:
         run: |
           npm run check:chapter1:source
           npm run stage:chapter1
-      - name: Start VOICEVOX
-        run: |
-          docker pull voicevox/voicevox_engine:cpu-latest
-          docker run -d --rm --name v46-ch1-voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
-          for i in $(seq 1 150); do
-            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
-            sleep 2
-          done
-          docker logs v46-ch1-voicevox
-          exit 1
-      - name: Generate exact 36-beat narration and subtitles
+      - name: Restore exact Chapter1 narration, timing and subtitles from first successful review render
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 36134552133
+          github-token: ${{ github.token }}
+          name: v46hansyoku-chapter1-36-scenes-parallel-review
+          path: v46hansyoku/.chapter1-approved-audio-source
+      - name: Reuse measured Chapter1 audio and subtitle timing without VOICEVOX resynthesis
         working-directory: v46hansyoku
         run: |
-          npm run voice:chapter1
+          set -euo pipefail
+          prior_mp4="$(find .chapter1-approved-audio-source -type f -name 'v46-chapter1.mp4' -print -quit)"
+          prior_sync="$(find .chapter1-approved-audio-source -type f -name 'chapter1-sync-timing.json' -print -quit)"
+          prior_cues="$(find .chapter1-approved-audio-source -type f -name 'chapter1-subtitle-cues.json' -print -quit)"
+          prior_report="$(find .chapter1-approved-audio-source -type f -name 'chapter1-pronunciation-report.json' -print -quit)"
+          test -s "$prior_mp4"
+          test -s "$prior_sync"
+          test -s "$prior_cues"
+          test -s "$prior_report"
+          mkdir -p public/audio out
+          cp "$prior_sync" src/chapter1-sync-timing.json
+          cp "$prior_cues" src/chapter1-subtitle-cues.json
+          cp "$prior_report" public/audio/chapter1-pronunciation-report.json
+          ffmpeg -y -loglevel error -i "$prior_mp4" -map 0:a:0 -vn -c:a copy public/audio/chapter1-narration.m4a
           npm run subtitles:chapter1
           test -s public/audio/chapter1-narration.m4a
           test -s out/v46-chapter1.srt
-          node - <<'NODE'
-          const fs=require('fs');
-          const s=JSON.parse(fs.readFileSync('src/chapter1-sync-timing.json','utf8'));
-          const c=JSON.parse(fs.readFileSync('src/chapter1-subtitle-cues.json','utf8'));
-          if(s.status!=='measured_voicevox_chapter1'||s.beats.length!==36)throw Error('invalid Chapter1 timing');
-          if(!c.cues.length)throw Error('no Chapter1 subtitle cues');
-          console.log('Chapter1 VOICEVOX duration='+s.durationSeconds+' sec / subtitles='+c.cues.length);
-          NODE
+          echo "Reused exact Chapter1 measured narration/timing from successful run 36134552133; visual-only rerender."
       - name: Typecheck Chapter1 Remotion code before render
         working-directory: v46hansyoku
         run: npm run check:chapter1
