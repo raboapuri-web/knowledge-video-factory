@@ -1,0 +1,26 @@
+name: V46 Approved Prologue Integrity Guard
+# This job only checks checksums; it never renders or mutates the user's approved chapter.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'v46hansyoku/**'
+      - '.github/workflows/v46-approved-prologue-guard.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'v46hansyoku/**'
+      - '.github/workflows/v46-approved-prologue-guard.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  immutable-approved-prologue:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify approved MP4 bytes, pinned scene JSON and chapter lock without rendering
+        run: node v46hansyoku/scripts/verify-approved-prologue.mjs
