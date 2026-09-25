@@ -1,0 +1,140 @@
+name: V46 Hansyoku Chapter1 Parallel Production
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'v46hansyoku/scene-plans/chapter1.json'
+      - 'v46hansyoku/src/chapter1.tsx'
+      - 'v46hansyoku/src/chapter1-index.tsx'
+      - 'v46hansyoku/src/chapter1-script-data.json'
+      - 'v46hansyoku/scripts/check-chapter1-source.mjs'
+      - 'v46hansyoku/scripts/stage-chapter1-assets.mjs'
+      - 'v46hansyoku/scripts/generate-chapter1-voicevox.mjs'
+      - 'v46hansyoku/scripts/build-chapter1-subtitles.mjs'
+      - 'v46hansyoku/scripts/generate-chapter1-contact-sheet.mjs'
+      - 'v46hansyoku/package.json'
+      - 'shared/asset-library/catalog.json'
+      - 'shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png'
+      - 'shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png'
+      - 'shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png'
+      - 'shared/asset-library/背景/BG_ROOM_DAY.png'
+      - '.github/workflows/v46hansyoku-chapter1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: v46hansyoku-chapter1-production
+  cancel-in-progress: true
+jobs:
+  render-chapter1:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify approved prologue remains byte-identical and locked
+        run: node v46hansyoku/scripts/verify-approved-prologue.mjs
+      - name: Install ffmpeg, fonts and Chapter1 Remotion dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          cd v46hansyoku
+          npm install --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Validate exact Chapter1 narration and stage registered assets
+        working-directory: v46hansyoku
+        run: |
+          npm run check:chapter1:source
+          npm run stage:chapter1
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name v46-ch1-voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 150); do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs v46-ch1-voicevox
+          exit 1
+      - name: Generate exact 36-beat narration and subtitles
+        working-directory: v46hansyoku
+        run: |
+          npm run voice:chapter1
+          npm run subtitles:chapter1
+          test -s public/audio/chapter1-narration.m4a
+          test -s out/v46-chapter1.srt
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=JSON.parse(fs.readFileSync('src/chapter1-sync-timing.json','utf8'));
+          const c=JSON.parse(fs.readFileSync('src/chapter1-subtitle-cues.json','utf8'));
+          if(s.status!=='measured_voicevox_chapter1'||s.beats.length!==36)throw Error('invalid Chapter1 timing');
+          if(!c.cues.length)throw Error('no Chapter1 subtitle cues');
+          console.log('Chapter1 VOICEVOX duration='+s.durationSeconds+' sec / subtitles='+c.cues.length);
+          NODE
+      - name: Typecheck all Remotion code before render
+        working-directory: v46hansyoku
+        run: npm run check
+      - name: Parallel render Chapter1 with four Remotion workers
+        working-directory: v46hansyoku
+        run: |
+          mkdir -p out
+          npm run render:chapter1
+          test -s out/v46-chapter1.mp4
+      - name: Verify MP4 technical properties and exact 36-scene audio timeline
+        working-directory: v46hansyoku
+        run: |
+          python3 - <<'PY'
+          import json,subprocess
+          p='out/v46-chapter1.mp4'
+          meta=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams','-show_format','-of','json',p],text=True))
+          v=[x for x in meta['streams'] if x['codec_type']=='video']
+          a=[x for x in meta['streams'] if x['codec_type']=='audio']
+          assert len(v)==1 and len(a)>=1
+          assert (v[0]['width'],v[0]['height'])==(1920,1080)
+          assert v[0]['codec_name']=='h264' and v[0]['avg_frame_rate']=='30/1'
+          assert any(x['codec_name']=='aac' for x in a)
+          duration=float(meta['format']['duration'])
+          sync=json.load(open('src/chapter1-sync-timing.json'))
+          assert len(sync['beats'])==36
+          assert abs(duration-float(sync['durationSeconds']))<1.0,(duration,sync['durationSeconds'])
+          assert 120<duration<360,duration
+          print(f'Chapter1 MP4 verified: {duration:.3f}s / 1920x1080 / 30fps / H264+AАC / 36 scenes')
+          PY
+      - name: Generate 36 representative scene frames four-way in parallel
+        working-directory: v46hansyoku
+        run: |
+          npm run qa:chapter1
+          test "$(find .qa-chapter1-frames -name 'scene-*.jpg' | wc -l)" -eq 36
+          test -s out/chapter1-contact-sheet.jpg
+      - name: Publish Chapter1 review artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: v46hansyoku-chapter1-36-scenes-parallel-review
+          path: |
+            v46hansyoku/out/v46-chapter1.mp4
+            v46hansyoku/out/v46-chapter1.srt
+            v46hansyoku/out/chapter1-contact-sheet.jpg
+            v46hansyoku/.qa-chapter1-frames/scene-*.jpg
+            v46hansyoku/public/audio/chapter1-pronunciation-report.json
+            v46hansyoku/src/chapter1-sync-timing.json
+            v46hansyoku/src/chapter1-subtitle-cues.json
+            v46hansyoku/src/chapter1-script-data.json
+            v46hansyoku/scene-plans/chapter1.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload diagnostics if Chapter1 production fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v46hansyoku-chapter1-failed-diagnostics
+          path: |
+            v46hansyoku/src/chapter1-sync-timing.json
+            v46hansyoku/src/chapter1-subtitle-cues.json
+            v46hansyoku/public/audio/chapter1-pronunciation-report.json
+            v46hansyoku/out/*.srt
+            v46hansyoku/out/*.jpg
+          if-no-files-found: ignore
+          retention-days: 5
