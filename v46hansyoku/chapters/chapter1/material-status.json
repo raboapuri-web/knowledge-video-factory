@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "v46-chapter1-material-status-v1",
+  "updatedAt": "2026-09-25",
+  "videoId": "V46",
+  "chapterId": "chapter1",
+  "sourceScenePlan": "v46hansyoku/scene-plans/chapter1.json",
+  "sourceInventory": "v46hansyoku/chapters/chapter1/required-assets.json",
+  "state": "scene_design_complete_waiting_for_8_user_assets",
+  "missingUserAssetCount": 8,
+  "missingAssetIds": [
+    "bg-bg-v46-ch1-rural-home",
+    "bg-bg-v46-ch1-rural-field",
+    "bg-bg-v46-ch1-couple-apartment",
+    "bg-bg-v46-ch1-couple-apartment-wide",
+    "character-v46-ch1-farm-adult",
+    "character-v46-ch1-farm-child",
+    "character-v46-ch1-couple-man",
+    "character-v46-ch1-couple-woman"
+  ],
+  "identityContinuityStatus": "locked_against_approved_prologue",
+  "identityRules": [
+    "プロローグ hero はC1-001〜003のみ同一外見で再利用。",
+    "peer/youngPeer、同期の妻 mother、同期の boy/girl は第1章には登場させない。",
+    "共働き夫婦は章専用リグ、農村家族は歴史専用リグを新規作成する。",
+    "承認済みプロローグMP4・シーン設計は再レンダリング・改変禁止。"
+  ],
+  "reusableRegisteredAssetsVerifiedByCatalog": true,
+  "codeOnlyPropsNeedImplementation": true,
+  "assetGateOpen": false,
+  "voiceGenerationAllowed": false,
+  "videoRenderAllowed": false,
+  "chapter2Blocked": true,
+  "nextStep": "8素材の作成・登録後にcatalog照合し、Chapter1素材ゲートを開く。"
+}
