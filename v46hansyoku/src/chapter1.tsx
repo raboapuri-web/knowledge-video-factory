@@ -59,7 +59,7 @@ const HeroTear=({scene,t}:{scene:any;t:number})=>{
  const q=phase(t,.05,.45),tear=phase(t,.42,.75);
  return <AbsoluteFill><Background scene={scene} shade={.32}/>
   <Hero x={730} y={250+22*q} scale={.78} pose={{bodyLean:8*q,headTilt:10*q,leftShoulder:18*q,rightShoulder:-18*q}}/>
-  <svg viewBox="0 0 80 130" style={{position:'absolute',left:940,top:405+tear*42,width:38,height:64,opacity:tear,filter:'drop-shadow(0 0 8px #aee8ff)'}}>
+  <svg viewBox="0 0 80 130" style={{position:'absolute',left:912,top:332+tear*46,width:30,height:54,opacity:tear,filter:'drop-shadow(0 0 8px #aee8ff)'}}>
    <path d="M40 0 C64 38 72 55 72 78 A32 32 0 1 1 8 78 C8 55 16 38 40 0Z" fill="#8ed7f0"/>
   </svg>
   <Card x={285} y={790} label="給料" opacity={.75} scale={.62}/><Card x={510} y={790} label="家賃" opacity={.75} scale={.62}/><Card x={735} y={790} label="教育費" opacity={.75} scale={.62}/>
