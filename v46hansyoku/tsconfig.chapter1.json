@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/chapter1.tsx",
+    "src/chapter1-index.tsx"
+  ]
+}
