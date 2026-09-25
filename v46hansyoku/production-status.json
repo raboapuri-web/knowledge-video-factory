@@ -20,7 +20,7 @@
     "v46DedicatedRenderingWorkflow": "implemented_and_verified",
     "projectMetadata": "prepared"
   },
-  "overallStatus": "prologue_approved_locked_chapter1_scene_design_ready",
+  "overallStatus": "prologue_r1_approved_locked_mp4_preserved_in_git_chapter1_design_ready",
   "firstWorkUnit": "prologue",
   "chapters": [
     {
@@ -33,8 +33,8 @@
       "assetRegistration": "20_registered_assets_verified_by_actions",
       "voice": "approved_original_voice_locked",
       "subtitles": "approved_original_63_cues_locked",
-      "video": "approved_r1_mp4_reused_for_all_later_chapters",
-      "preview": "user_reviewed_and_approved",
+      "video": "approved_r1_mp4_saved_in_git_do_not_rerender",
+      "preview": "user_reviewed_approved_and_archived_in_git",
       "userApproval": "approved_2026-09-25",
       "locked": true,
       "scenePlanPath": "v46hansyoku/scene-plans/prologue.json",
@@ -75,7 +75,9 @@
       "approved": true,
       "approvalRecordPath": "v46hansyoku/approvals/prologue.json",
       "approvedVideoFileName": "V46_PROLOGUE_APPROVED_20260925.mp4",
-      "approvedVideoStorage": "github_release_tag_v46-prologue-approved-r1_archive_upload_pending"
+      "approvedVideoStorage": "v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4",
+      "approvedVideoSha256": "7c3c8f76fd8819bf02174ea600ca211889bbf45f8be152719ad7a420664d5384",
+      "videoApprovalStatus": "formal_approval_locked"
     },
     {
       "id": "chapter1",
@@ -154,7 +156,7 @@
     }
   ],
   "renderStarted": true,
-  "nextAction": "Start V46 chapter1 scene design only on user request. Reuse approved prologue MP4 from GitHub release without rerender or modification; do not reopen prologue unless user explicitly requests a new revision.",
+  "nextAction": "Chapter1 scene design can start when requested. Always reuse Git-pinned v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4; do not modify or rerender the approved prologue.",
   "warnings": [
     "The supplied display title uses 社会構造, whereas the unchanged script header uses 行動経済学; do not silently edit either.",
     "Other workflows in this repository contain video number v46 for a different project; use the unique v46hansyoku slug for paths, composition IDs and workflows."
@@ -167,9 +169,20 @@
       "sourceRenderRunId": 36030111027,
       "approvedAssetFileName": "V46_PROLOGUE_APPROVED_20260925.mp4",
       "archiveReleaseTag": "v46-prologue-approved-r1",
-      "releasePublicationStatus": "pending_workflow_confirmation",
+      "releasePublicationStatus": "not_used_release_api_403; canonical MP4 saved directly in Git repository",
       "doNotRerender": true,
-      "doNotReplaceWithoutExplicitNewUserDirection": true
+      "doNotReplaceWithoutExplicitNewUserDirection": true,
+      "approvedVideoPath": "v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4",
+      "approvedVideoSha256": "7c3c8f76fd8819bf02174ea600ca211889bbf45f8be152719ad7a420664d5384",
+      "approvedVideoGitBlobSha": "b1651ab23ddfad5dd2ab806a830b2ad895fb5ab4",
+      "approvedVideoCommit": "b17afeff4cb92c958712eacba0c3b4d93b13671c",
+      "approvedVideoUrl": "https://github.com/raboapuri-web/knowledge-video-factory/blob/b17afeff4cb92c958712eacba0c3b4d93b13671c/v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4",
+      "approvedSourcePlanCommit": "d5fd8d21f7f3fe8100396911e0d7c83a0166cf40",
+      "approvedSourcePlanBlobSha": "13a69eb77cd7b7c3918c2b1ec7dd78cad212cab9",
+      "immutableByPolicy": true,
+      "archiveWorkflowRunId": 36081887676,
+      "archiveWorkflowConclusion": "success",
+      "archiveStatus": "verified_published_in_git"
     }
   },
   "currentWorkUnit": "chapter1_scene_design"
