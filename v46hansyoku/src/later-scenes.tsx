@@ -352,13 +352,22 @@ const Actors=({scene,t}:{scene:any;t:number})=>{
  })}</>;
 };
 
+
 const EpilogueSpecial=({scene,t}:{scene:any;t:number})=>{
- const m=scene.visualMode;
- if(m==='hero_station_photo')return <><Actors scene={scene} t={t}/><Phone x={1060} y={400} scale={2.1} screen="photo" tilt={-5+5*Math.sin(t*3)}/></>;
- if(m==='peer_family_photo')return <AbsoluteFill style={{background:'rgba(5,7,10,.55)'}}><Actor kind="peer" x={360} y={300} scale={.62}/><Actor kind="mother" x={1110} y={310} scale={.62}/><Actor kind="boy" x={650} y={510} scale={.50}/><Actor kind="girl" x={1000} y={510} scale={.50}/><Cake x={810} y={760} scale={1.8}/></AbsoluteFill>;
- if(m==='close_photo')return <><Actors scene={scene} t={t}/><Phone x={1050} y={400} scale={2.0} screen="photo" tilt={-8} glow/><div style={{position:'absolute',left:1030,top:380,width:220,height:380,background:`rgba(0,0,0,${ph(t,.3,.8)})`,borderRadius:28}}/></>;
+ const m=scene.visualMode,sid=String(scene.sceneId||'');
+ if(m==='hero_station_photo'){
+  if(sid==='V46-E-026')return <AbsoluteFill style={{background:'rgba(6,10,15,.35)'}}><div style={{position:'absolute',left:1920-2100*ph(t,.05,.8),top:280,width:2200,height:560,background:'#354753',border:'14px solid #1c252c'}}>{Array.from({length:8},(_,i)=><div key={i} style={{position:'absolute',left:85+i*255,top:80,width:190,height:210,background:'#94aeb988',border:'8px solid #202a31'}}><PersonIcon x={35} y={35} s={.7}/></div>)}</div></AbsoluteFill>;
+  if(sid==='V46-E-025')return <><Actors scene={scene} t={t}/><Phone x={1060} y={400} scale={2.1} screen="photo" tilt={-5}/><div style={{position:'absolute',left:1040,top:390,width:230,height:390,borderRadius:28,background:'rgba(0,0,0,'+ph(t,.25,.82)+')'}}/></>;
+  return <><Actors scene={scene} t={t}/><Phone x={1060} y={400} scale={2.1} screen="photo" tilt={-5+5*Math.sin(t*3)}/></>;
+ }
+ if(m==='peer_family_photo'){
+  if(sid==='V46-E-004')return <AbsoluteFill style={{background:'rgba(5,7,10,.6)'}}><Actor kind="boy" x={520} y={390} scale={.86}/><Actor kind="girl" x={1040} y={390} scale={.86}/><Cake x={810} y={760} scale={2.1}/><Actor kind="peer" x={250} y={210} scale={.38}/><Actor kind="mother" x={1400} y={210} scale={.38}/></AbsoluteFill>;
+  return <AbsoluteFill style={{background:'rgba(5,7,10,.55)'}}><Actor kind="peer" x={420} y={300} scale={.78}/><Actor kind="mother" x={1050} y={300} scale={.78}/><Actor kind="boy" x={720} y={650} scale={.36}/><Actor kind="girl" x={980} y={650} scale={.36}/><Cake x={850} y={785} scale={1.3}/></AbsoluteFill>;
+ }
+ if(m==='close_photo')return <><Actors scene={scene} t={t}/><Phone x={1050} y={400} scale={2.0} screen="photo" tilt={-8} glow/><div style={{position:'absolute',left:1030,top:380,width:220,height:380,background:'rgba(0,0,0,'+ph(t,.3,.8)+')',borderRadius:28}}/></>;
  return null;
 };
+
 export const LaterScene=({scene,index,frames}:{scene:any;index:number;frames:number})=>{
  const frame=useCurrentFrame(),t=clamp(frame/Math.max(1,frames-1));
  const special=scene.chapterId==='epilogue'?<EpilogueSpecial scene={scene} t={t}/>:null;
