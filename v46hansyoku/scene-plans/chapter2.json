@@ -1,0 +1,3888 @@
+{
+  "schemaVersion": "v46-dynamic-scene-plan-v1",
+  "videoId": "V46",
+  "projectSlug": "v46hansyoku",
+  "chapterId": "chapter2",
+  "chapterTitle": "「自分で選んだ」という言葉の向こう側",
+  "status": "scene_design_complete_ready_for_dynamic_render",
+  "source": {
+    "repository": "raboapuri-web/knowledge-video-factory",
+    "branch": "main",
+    "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+    "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+    "heading": "第2章｜「自分で選んだ」という言葉の向こう側",
+    "narrationPolicy": "exact source sentences; no wording changes"
+  },
+  "approvedDependencies": {
+    "prologue": "locked",
+    "chapter1": "locked",
+    "doNotRerenderApprovedChapters": true
+  },
+  "sceneCount": 62,
+  "estimatedDurationSeconds": 312.6,
+  "motionPolicy": {
+    "density": "high",
+    "rules": [
+      "各シーン最低1つ主要要素を動かす",
+      "カメラ微細パン/ズーム/パララックス常用",
+      "図解は静止せず生成/移動/反転/伸縮",
+      "同じ構図を3シーン連続させない"
+    ]
+  },
+  "scenes": [
+    {
+      "sceneId": "V46-C2-001",
+      "chapterId": "chapter2",
+      "narrationText": "地方都市で暮らしていた男が、東京へ転職したとしよう。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 69,
+        "lineEnd": 69,
+        "startOffsetUTF16": 2751,
+        "endOffsetExclusiveUTF16": 2777
+      },
+      "visualMode": "city_arrival",
+      "visualDescription": "地方都市から東京へ移る人物を、電車・荷物・ビルの横移動で見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_arrival",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "地方都市から東京へ移る人物を、電車・荷物・ビルの横移動で見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "地方都市から東京へ移る人物を、電車・荷物・ビルの横移動で見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.5
+    },
+    {
+      "sceneId": "V46-C2-002",
+      "chapterId": "chapter2",
+      "narrationText": "給料は上がった。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 69,
+        "lineEnd": 69,
+        "startOffsetUTF16": 2777,
+        "endOffsetExclusiveUTF16": 2785
+      },
+      "visualMode": "salary_up",
+      "visualDescription": "給与バーを上昇させ、生活カードを増やす。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:salary_up",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "給与バーを上昇させ、生活カードを増やす。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "給与バーを上昇させ、生活カードを増やす。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 2.1
+    },
+    {
+      "sceneId": "V46-C2-003",
+      "chapterId": "chapter2",
+      "narrationText": "以前より高い店にも入れるし、買えるものも増えた。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 69,
+        "lineEnd": 69,
+        "startOffsetUTF16": 2785,
+        "endOffsetExclusiveUTF16": 2809
+      },
+      "visualMode": "consumption_up",
+      "visualDescription": "飲食・買い物のカードを流して増やす。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:consumption_up",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "飲食・買い物のカードを流して増やす。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "飲食・買い物のカードを流して増やす。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.2
+    },
+    {
+      "sceneId": "V46-C2-004",
+      "chapterId": "chapter2",
+      "narrationText": "ところが、彼は前よりも貧しくなったような気がしている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 69,
+        "lineEnd": 69,
+        "startOffsetUTF16": 2809,
+        "endOffsetExclusiveUTF16": 2836
+      },
+      "visualMode": "relative_poverty",
+      "visualDescription": "本人の豊かさより速く周囲の基準がせり上がる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:relative_poverty",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "本人の豊かさより速く周囲の基準がせり上がる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "本人の豊かさより速く周囲の基準がせり上がる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.6
+    },
+    {
+      "sceneId": "V46-C2-005",
+      "chapterId": "chapter2",
+      "narrationText": "駅から近い部屋は驚くほど高い。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 71,
+        "lineEnd": 71,
+        "startOffsetUTF16": 2838,
+        "endOffsetExclusiveUTF16": 2853
+      },
+      "visualMode": "city_choice",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3
+    },
+    {
+      "sceneId": "V46-C2-006",
+      "chapterId": "chapter2",
+      "narrationText": "職場の同僚は、都心のマンションを買ったという。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 71,
+        "lineEnd": 71,
+        "startOffsetUTF16": 2853,
+        "endOffsetExclusiveUTF16": 2876
+      },
+      "visualMode": "status_pressure",
+      "visualDescription": "家賃・マンション・私立・習い事の象徴が周囲から迫る。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:status_pressure",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "家賃・マンション・私立・習い事の象徴が周囲から迫る。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "家賃・マンション・私立・習い事の象徴が周囲から迫る。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.1
+    },
+    {
+      "sceneId": "V46-C2-007",
+      "chapterId": "chapter2",
+      "narrationText": "友人は子供を私立学校へ通わせ、週末には習い事の送り迎えをしている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 71,
+        "lineEnd": 71,
+        "startOffsetUTF16": 2876,
+        "endOffsetExclusiveUTF16": 2909
+      },
+      "visualMode": "status_pressure",
+      "visualDescription": "家賃・マンション・私立・習い事の象徴が周囲から迫る。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:status_pressure",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "家賃・マンション・私立・習い事の象徴が周囲から迫る。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "家賃・マンション・私立・習い事の象徴が周囲から迫る。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.5
+    },
+    {
+      "sceneId": "V46-C2-008",
+      "chapterId": "chapter2",
+      "narrationText": "男は、自分の給料では、家庭を持つにはまだ足りないのではないかと思い始める。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 71,
+        "lineEnd": 71,
+        "startOffsetUTF16": 2909,
+        "endOffsetExclusiveUTF16": 2946
+      },
+      "visualMode": "city_choice",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 6
+    },
+    {
+      "sceneId": "V46-C2-009",
+      "chapterId": "chapter2",
+      "narrationText": "収入は増えたのに、家庭を築く自信は減っている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 73,
+        "lineEnd": 73,
+        "startOffsetUTF16": 2948,
+        "endOffsetExclusiveUTF16": 2971
+      },
+      "visualMode": "city_choice",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.1
+    },
+    {
+      "sceneId": "V46-C2-010",
+      "chapterId": "chapter2",
+      "narrationText": "彼が比べているのは、昨日の自分の暮らしだけではない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 73,
+        "lineEnd": 73,
+        "startOffsetUTF16": 2971,
+        "endOffsetExclusiveUTF16": 2997
+      },
+      "visualMode": "social_comparison",
+      "visualDescription": "他人の暮らしの窓を次々開き、視線ラインを移動させる。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:social_comparison",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "他人の暮らしの窓を次々開き、視線ラインを移動させる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "他人の暮らしの窓を次々開き、視線ラインを移動させる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.5
+    },
+    {
+      "sceneId": "V46-C2-011",
+      "chapterId": "chapter2",
+      "narrationText": "目の前に並ぶ、他人の暮らしなのである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 73,
+        "lineEnd": 73,
+        "startOffsetUTF16": 2997,
+        "endOffsetExclusiveUTF16": 3016
+      },
+      "visualMode": "social_comparison",
+      "visualDescription": "他人の暮らしの窓を次々開き、視線ラインを移動させる。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:social_comparison",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "他人の暮らしの窓を次々開き、視線ラインを移動させる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "他人の暮らしの窓を次々開き、視線ラインを移動させる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.6
+    },
+    {
+      "sceneId": "V46-C2-012",
+      "chapterId": "chapter2",
+      "narrationText": "心理学者レオン・フェスティンガーは、一九五四年、人間が自分自身を評価するとき、他者との比較を用いるという社会的比較の理論を発表した。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 75,
+        "lineEnd": 75,
+        "startOffsetUTF16": 3018,
+        "endOffsetExclusiveUTF16": 3084
+      },
+      "visualMode": "social_comparison",
+      "visualDescription": "他人の暮らしの窓を次々開き、視線ラインを移動させる。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:social_comparison",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "他人の暮らしの窓を次々開き、視線ラインを移動させる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "他人の暮らしの窓を次々開き、視線ラインを移動させる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 9.9
+    },
+    {
+      "sceneId": "V46-C2-013",
+      "chapterId": "chapter2",
+      "narrationText": "我々は、自分の能力や生活を測る物差しが見つからないとき、周囲の人々を見つめる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 75,
+        "lineEnd": 75,
+        "startOffsetUTF16": 3084,
+        "endOffsetExclusiveUTF16": 3123
+      },
+      "visualMode": "social_comparison",
+      "visualDescription": "他人の暮らしの窓を次々開き、視線ラインを移動させる。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:social_comparison",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "他人の暮らしの窓を次々開き、視線ラインを移動させる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "他人の暮らしの窓を次々開き、視線ラインを移動させる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 6.3
+    },
+    {
+      "sceneId": "V46-C2-014",
+      "chapterId": "chapter2",
+      "narrationText": "子育てにも、同じ視線が入り込む。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 77,
+        "lineEnd": 77,
+        "startOffsetUTF16": 3125,
+        "endOffsetExclusiveUTF16": 3141
+      },
+      "visualMode": "parenting_standard",
+      "visualDescription": "他家庭を見るたび子育て条件のハードルが一段上がる。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:parenting_standard",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "他家庭を見るたび子育て条件のハードルが一段上がる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "他家庭を見るたび子育て条件のハードルが一段上がる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.2
+    },
+    {
+      "sceneId": "V46-C2-015",
+      "chapterId": "chapter2",
+      "narrationText": "隣の家の子供が塾へ通えば、自分の子供にも何かを与えなければと感じる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 77,
+        "lineEnd": 77,
+        "startOffsetUTF16": 3141,
+        "endOffsetExclusiveUTF16": 3175
+      },
+      "visualMode": "parenting_standard",
+      "visualDescription": "他家庭を見るたび子育て条件のハードルが一段上がる。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:parenting_standard",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "他家庭を見るたび子育て条件のハードルが一段上がる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "他家庭を見るたび子育て条件のハードルが一段上がる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.6
+    },
+    {
+      "sceneId": "V46-C2-016",
+      "chapterId": "chapter2",
+      "narrationText": "周囲の家族が広い住まいを持てば、自分もまず住まいを整えるべきだと思う。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 77,
+        "lineEnd": 77,
+        "startOffsetUTF16": 3175,
+        "endOffsetExclusiveUTF16": 3210
+      },
+      "visualMode": "parenting_standard",
+      "visualDescription": "他家庭を見るたび子育て条件のハードルが一段上がる。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:parenting_standard",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "他家庭を見るたび子育て条件のハードルが一段上がる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "他家庭を見るたび子育て条件のハードルが一段上がる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.7
+    },
+    {
+      "sceneId": "V46-C2-017",
+      "chapterId": "chapter2",
+      "narrationText": "誰も「そこまでしなければ親になってはいけない」と命じていない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 77,
+        "lineEnd": 77,
+        "startOffsetUTF16": 3210,
+        "endOffsetExclusiveUTF16": 3241
+      },
+      "visualMode": "city_choice",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.2
+    },
+    {
+      "sceneId": "V46-C2-018",
+      "chapterId": "chapter2",
+      "narrationText": "それでも、見えない基準は、少しずつ高くなっていく。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 77,
+        "lineEnd": 77,
+        "startOffsetUTF16": 3241,
+        "endOffsetExclusiveUTF16": 3266
+      },
+      "visualMode": "parenting_standard",
+      "visualDescription": "他家庭を見るたび子育て条件のハードルが一段上がる。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:parenting_standard",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "他家庭を見るたび子育て条件のハードルが一段上がる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "他家庭を見るたび子育て条件のハードルが一段上がる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.4
+    },
+    {
+      "sceneId": "V46-C2-019",
+      "chapterId": "chapter2",
+      "narrationText": "ここで、反論があるだろう。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 79,
+        "lineEnd": 79,
+        "startOffsetUTF16": 3268,
+        "endOffsetExclusiveUTF16": 3281
+      },
+      "visualMode": "freedom_lifestyle",
+      "visualDescription": "映画・食事・旅行・仕事を短い動くモンタージュで巡る。",
+      "backgroundId": "BG_cafenaiso",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-cafenaiso",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:freedom_lifestyle",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "映画・食事・旅行・仕事を短い動くモンタージュで巡る。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_cafenaiso",
+          "catalogId": "bg-bg-cafenaiso",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "映画・食事・旅行・仕事を短い動くモンタージュで巡る。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 2.8
+    },
+    {
+      "sceneId": "V46-C2-020",
+      "chapterId": "chapter2",
+      "narrationText": "そもそも子供を欲しいと思っていない人もいる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 79,
+        "lineEnd": 79,
+        "startOffsetUTF16": 3281,
+        "endOffsetExclusiveUTF16": 3303
+      },
+      "visualMode": "freedom_lifestyle",
+      "visualDescription": "映画・食事・旅行・仕事を短い動くモンタージュで巡る。",
+      "backgroundId": "BG_cafenaiso",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-cafenaiso",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:freedom_lifestyle",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "映画・食事・旅行・仕事を短い動くモンタージュで巡る。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_cafenaiso",
+          "catalogId": "bg-bg-cafenaiso",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "映画・食事・旅行・仕事を短い動くモンタージュで巡る。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4
+    },
+    {
+      "sceneId": "V46-C2-021",
+      "chapterId": "chapter2",
+      "narrationText": "旅行が好きで、趣味が好きで、仕事に打ち込みたいから、自分から子供を持たないと決めたのだ。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 79,
+        "lineEnd": 79,
+        "startOffsetUTF16": 3303,
+        "endOffsetExclusiveUTF16": 3347
+      },
+      "visualMode": "freedom_lifestyle",
+      "visualDescription": "映画・食事・旅行・仕事を短い動くモンタージュで巡る。",
+      "backgroundId": "BG_cafenaiso",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-cafenaiso",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:freedom_lifestyle",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "映画・食事・旅行・仕事を短い動くモンタージュで巡る。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_cafenaiso",
+          "catalogId": "bg-bg-cafenaiso",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "映画・食事・旅行・仕事を短い動くモンタージュで巡る。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 6.9
+    },
+    {
+      "sceneId": "V46-C2-022",
+      "chapterId": "chapter2",
+      "narrationText": "そこに「諦めた」という物語を押しつけるのはおかしい、と。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 79,
+        "lineEnd": 79,
+        "startOffsetUTF16": 3347,
+        "endOffsetExclusiveUTF16": 3375
+      },
+      "visualMode": "city_choice",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.8
+    },
+    {
+      "sceneId": "V46-C2-023",
+      "chapterId": "chapter2",
+      "narrationText": "その通りである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 81,
+        "lineEnd": 81,
+        "startOffsetUTF16": 3377,
+        "endOffsetExclusiveUTF16": 3385
+      },
+      "visualMode": "choice_respect",
+      "visualDescription": "二つの人生の扉を同じ明るさで開き、優劣を付けない。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:choice_respect",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "二つの人生の扉を同じ明るさで開き、優劣を付けない。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "二つの人生の扉を同じ明るさで開き、優劣を付けない。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 2.1
+    },
+    {
+      "sceneId": "V46-C2-024",
+      "chapterId": "chapter2",
+      "narrationText": "子供を持たない人生を心から望む人がいる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 81,
+        "lineEnd": 81,
+        "startOffsetUTF16": 3385,
+        "endOffsetExclusiveUTF16": 3405
+      },
+      "visualMode": "city_choice",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.7
+    },
+    {
+      "sceneId": "V46-C2-025",
+      "chapterId": "chapter2",
+      "narrationText": "その選択を、何かの欠落として扱う理由はない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 81,
+        "lineEnd": 81,
+        "startOffsetUTF16": 3405,
+        "endOffsetExclusiveUTF16": 3427
+      },
+      "visualMode": "choice_respect",
+      "visualDescription": "二つの人生の扉を同じ明るさで開き、優劣を付けない。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:choice_respect",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "二つの人生の扉を同じ明るさで開き、優劣を付けない。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "二つの人生の扉を同じ明るさで開き、優劣を付けない。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4
+    },
+    {
+      "sceneId": "V46-C2-026",
+      "chapterId": "chapter2",
+      "narrationText": "だが、ここで我々が問いたいのは、選択の正しさではない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 83,
+        "lineEnd": 83,
+        "startOffsetUTF16": 3429,
+        "endOffsetExclusiveUTF16": 3456
+      },
+      "visualMode": "choice_origin",
+      "visualDescription": "選択の背後から環境条件の歯車を出す。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:choice_origin",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "選択の背後から環境条件の歯車を出す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "選択の背後から環境条件の歯車を出す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.6
+    },
+    {
+      "sceneId": "V46-C2-027",
+      "chapterId": "chapter2",
+      "narrationText": "選択が、どのように生まれるかである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 83,
+        "lineEnd": 83,
+        "startOffsetUTF16": 3456,
+        "endOffsetExclusiveUTF16": 3474
+      },
+      "visualMode": "choice_origin",
+      "visualDescription": "選択の背後から環境条件の歯車を出す。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:choice_origin",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "選択の背後から環境条件の歯車を出す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "選択の背後から環境条件の歯車を出す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.4
+    },
+    {
+      "sceneId": "V46-C2-028",
+      "chapterId": "chapter2",
+      "narrationText": "ある独身男性は、仕事を終えると映画を見て、休日には友人と食事をし、年に一度は一人旅に出る。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 85,
+        "lineEnd": 85,
+        "startOffsetUTF16": 3476,
+        "endOffsetExclusiveUTF16": 3521
+      },
+      "visualMode": "single_life",
+      "visualDescription": "仕事後の映画、友人との食事、一人旅へ人物を移動させる。",
+      "backgroundId": "BG_cafenaiso",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-cafenaiso",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:single_life",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "仕事後の映画、友人との食事、一人旅へ人物を移動させる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_cafenaiso",
+          "catalogId": "bg-bg-cafenaiso",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "仕事後の映画、友人との食事、一人旅へ人物を移動させる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 7.1
+    },
+    {
+      "sceneId": "V46-C2-029",
+      "chapterId": "chapter2",
+      "narrationText": "今の暮らしが好きだ。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 85,
+        "lineEnd": 85,
+        "startOffsetUTF16": 3521,
+        "endOffsetExclusiveUTF16": 3531
+      },
+      "visualMode": "single_life",
+      "visualDescription": "仕事後の映画、友人との食事、一人旅へ人物を移動させる。",
+      "backgroundId": "BG_cafenaiso",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-cafenaiso",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:single_life",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "仕事後の映画、友人との食事、一人旅へ人物を移動させる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_cafenaiso",
+          "catalogId": "bg-bg-cafenaiso",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "仕事後の映画、友人との食事、一人旅へ人物を移動させる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 2.4
+    },
+    {
+      "sceneId": "V46-C2-030",
+      "chapterId": "chapter2",
+      "narrationText": "子供を持てば、自由に使える金も時間も減るだろう。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 85,
+        "lineEnd": 85,
+        "startOffsetUTF16": 3531,
+        "endOffsetExclusiveUTF16": 3555
+      },
+      "visualMode": "city_choice",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.2
+    },
+    {
+      "sceneId": "V46-C2-031",
+      "chapterId": "chapter2",
+      "narrationText": "だから、自分は子供を持たない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 85,
+        "lineEnd": 85,
+        "startOffsetUTF16": 3555,
+        "endOffsetExclusiveUTF16": 3570
+      },
+      "visualMode": "city_choice",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3
+    },
+    {
+      "sceneId": "V46-C2-032",
+      "chapterId": "chapter2",
+      "narrationText": "そう考えている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 85,
+        "lineEnd": 85,
+        "startOffsetUTF16": 3570,
+        "endOffsetExclusiveUTF16": 3578
+      },
+      "visualMode": "city_choice",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 2.1
+    },
+    {
+      "sceneId": "V46-C2-033",
+      "chapterId": "chapter2",
+      "narrationText": "では、彼が毎日夕方に帰宅でき、家賃に追われず、近くに育児を手伝ってくれる人々がいる世界に暮らしていたとしても、同じ結論に至っただろうか。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 87,
+        "lineEnd": 87,
+        "startOffsetUTF16": 3580,
+        "endOffsetExclusiveUTF16": 3648
+      },
+      "visualMode": "status_pressure",
+      "visualDescription": "家賃・マンション・私立・習い事の象徴が周囲から迫る。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:status_pressure",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "家賃・マンション・私立・習い事の象徴が周囲から迫る。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "家賃・マンション・私立・習い事の象徴が周囲から迫る。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 10.2
+    },
+    {
+      "sceneId": "V46-C2-034",
+      "chapterId": "chapter2",
+      "narrationText": "もちろん、同じ選択をしたかもしれない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 89,
+        "lineEnd": 89,
+        "startOffsetUTF16": 3650,
+        "endOffsetExclusiveUTF16": 3669
+      },
+      "visualMode": "choice_fork",
+      "visualDescription": "一本道を二つに分岐し条件カードで角度を変える。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:choice_fork",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "一本道を二つに分岐し条件カードで角度を変える。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "一本道を二つに分岐し条件カードで角度を変える。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.6
+    },
+    {
+      "sceneId": "V46-C2-035",
+      "chapterId": "chapter2",
+      "narrationText": "けれど、別の選択をしたかもしれない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 89,
+        "lineEnd": 89,
+        "startOffsetUTF16": 3669,
+        "endOffsetExclusiveUTF16": 3687
+      },
+      "visualMode": "choice_fork",
+      "visualDescription": "一本道を二つに分岐し条件カードで角度を変える。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:choice_fork",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "一本道を二つに分岐し条件カードで角度を変える。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "一本道を二つに分岐し条件カードで角度を変える。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.4
+    },
+    {
+      "sceneId": "V46-C2-036",
+      "chapterId": "chapter2",
+      "narrationText": "重要なのは、その違いを生む条件が、本人の心の外にも存在していることである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 89,
+        "lineEnd": 89,
+        "startOffsetUTF16": 3687,
+        "endOffsetExclusiveUTF16": 3724
+      },
+      "visualMode": "choice_fork",
+      "visualDescription": "一本道を二つに分岐し条件カードで角度を変える。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:choice_fork",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "一本道を二つに分岐し条件カードで角度を変える。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "一本道を二つに分岐し条件カードで角度を変える。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 6
+    },
+    {
+      "sceneId": "V46-C2-037",
+      "chapterId": "chapter2",
+      "narrationText": "一九七九年、ダニエル・カーネマンとエイモス・トベルスキーは、利益と損失を伴う意思決定について、プロスペクト理論を発表した。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 91,
+        "lineEnd": 91,
+        "startOffsetUTF16": 3726,
+        "endOffsetExclusiveUTF16": 3787
+      },
+      "visualMode": "prospect_theory",
+      "visualDescription": "利益・損失・基準点の曲線を描画する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:prospect_theory",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "利益・損失・基準点の曲線を描画する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "利益・損失・基準点の曲線を描画する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 9.2
+    },
+    {
+      "sceneId": "V46-C2-038",
+      "chapterId": "chapter2",
+      "narrationText": "人間は、最終的に何を手にするかだけでなく、今の状態から何を得て、何を失うかによって、選択肢の価値を感じ取る。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 91,
+        "lineEnd": 91,
+        "startOffsetUTF16": 3787,
+        "endOffsetExclusiveUTF16": 3841
+      },
+      "visualMode": "loss_present",
+      "visualDescription": "時間・金・静かな夜のカードを手元から離す。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:loss_present",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "時間・金・静かな夜のカードを手元から離す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "時間・金・静かな夜のカードを手元から離す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 8.3
+    },
+    {
+      "sceneId": "V46-C2-039",
+      "chapterId": "chapter2",
+      "narrationText": "これを、独身男性の暮らしに重ねてみよう。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 93,
+        "lineEnd": 93,
+        "startOffsetUTF16": 3843,
+        "endOffsetExclusiveUTF16": 3863
+      },
+      "visualMode": "single_life",
+      "visualDescription": "仕事後の映画、友人との食事、一人旅へ人物を移動させる。",
+      "backgroundId": "BG_cafenaiso",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-cafenaiso",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:single_life",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "仕事後の映画、友人との食事、一人旅へ人物を移動させる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_cafenaiso",
+          "catalogId": "bg-bg-cafenaiso",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "仕事後の映画、友人との食事、一人旅へ人物を移動させる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.7
+    },
+    {
+      "sceneId": "V46-C2-040",
+      "chapterId": "chapter2",
+      "narrationText": "子供を持てば、今ある静かな夜や、自由に使える給料の一部は、確かに手放すことになる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 93,
+        "lineEnd": 93,
+        "startOffsetUTF16": 3863,
+        "endOffsetExclusiveUTF16": 3904
+      },
+      "visualMode": "loss_present",
+      "visualDescription": "時間・金・静かな夜のカードを手元から離す。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:loss_present",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "時間・金・静かな夜のカードを手元から離す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "時間・金・静かな夜のカードを手元から離す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 6.5
+    },
+    {
+      "sceneId": "V46-C2-041",
+      "chapterId": "chapter2",
+      "narrationText": "一方、子供と過ごす時間がどのような喜びをもたらすかは、まだ経験していない未来のことである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 93,
+        "lineEnd": 93,
+        "startOffsetUTF16": 3904,
+        "endOffsetExclusiveUTF16": 3949
+      },
+      "visualMode": "future_gain_blur",
+      "visualDescription": "未来の親子像を遠くぼかし、近づくと輪郭を出す。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:future_gain_blur",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "未来の親子像を遠くぼかし、近づくと輪郭を出す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "未来の親子像を遠くぼかし、近づくと輪郭を出す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 7.1
+    },
+    {
+      "sceneId": "V46-C2-042",
+      "chapterId": "chapter2",
+      "narrationText": "現在の暮らしを失うことは、具体的に思い描ける。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 93,
+        "lineEnd": 93,
+        "startOffsetUTF16": 3949,
+        "endOffsetExclusiveUTF16": 3972
+      },
+      "visualMode": "loss_present",
+      "visualDescription": "時間・金・静かな夜のカードを手元から離す。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:loss_present",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "時間・金・静かな夜のカードを手元から離す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "時間・金・静かな夜のカードを手元から離す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.1
+    },
+    {
+      "sceneId": "V46-C2-043",
+      "chapterId": "chapter2",
+      "narrationText": "新しい暮らしで得るものは、まだ輪郭が曖昧である。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 93,
+        "lineEnd": 93,
+        "startOffsetUTF16": 3972,
+        "endOffsetExclusiveUTF16": 3996
+      },
+      "visualMode": "future_gain_blur",
+      "visualDescription": "未来の親子像を遠くぼかし、近づくと輪郭を出す。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:future_gain_blur",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "未来の親子像を遠くぼかし、近づくと輪郭を出す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "未来の親子像を遠くぼかし、近づくと輪郭を出す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.2
+    },
+    {
+      "sceneId": "V46-C2-044",
+      "chapterId": "chapter2",
+      "narrationText": "プロスペクト理論の実験が、子供を持たない理由を直接証明したわけではない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 95,
+        "lineEnd": 95,
+        "startOffsetUTF16": 3998,
+        "endOffsetExclusiveUTF16": 4034
+      },
+      "visualMode": "prospect_theory",
+      "visualDescription": "利益・損失・基準点の曲線を描画する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:prospect_theory",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "利益・損失・基準点の曲線を描画する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "利益・損失・基準点の曲線を描画する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.9
+    },
+    {
+      "sceneId": "V46-C2-045",
+      "chapterId": "chapter2",
+      "narrationText": "それでも、我々が現在の暮らしを基準にして未来を選ぶという視点は、この問題を考える手がかりになる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 95,
+        "lineEnd": 95,
+        "startOffsetUTF16": 4034,
+        "endOffsetExclusiveUTF16": 4082
+      },
+      "visualMode": "parenting_standard",
+      "visualDescription": "他家庭を見るたび子育て条件のハードルが一段上がる。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:parenting_standard",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "他家庭を見るたび子育て条件のハードルが一段上がる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "他家庭を見るたび子育て条件のハードルが一段上がる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 7.5
+    },
+    {
+      "sceneId": "V46-C2-046",
+      "chapterId": "chapter2",
+      "narrationText": "長時間労働と高い住宅費が当たり前の社会では、子供を持つことは、今の生活を大きく変える選択に見えやすい。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 97,
+        "lineEnd": 97,
+        "startOffsetUTF16": 4084,
+        "endOffsetExclusiveUTF16": 4135
+      },
+      "visualMode": "hard_world",
+      "visualDescription": "労働時間と住宅費が左右から生活空間を狭める。",
+      "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-v46-office-street-night",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:hard_world",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "労働時間と住宅費が左右から生活空間を狭める。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
+          "catalogId": "bg-bg-v46-office-street-night",
+          "filePath": "shared/asset-library/背景/BG_V46_OFFICE_STREET_NIGHT.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "労働時間と住宅費が左右から生活空間を狭める。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 7.9
+    },
+    {
+      "sceneId": "V46-C2-047",
+      "chapterId": "chapter2",
+      "narrationText": "仕事と子育てを両立しやすく、周囲に助け手がいる社会では、同じ出来事が、もっと身近な未来として見えるかもしれない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 97,
+        "lineEnd": 97,
+        "startOffsetUTF16": 4135,
+        "endOffsetExclusiveUTF16": 4191
+      },
+      "visualMode": "parenting_standard",
+      "visualDescription": "他家庭を見るたび子育て条件のハードルが一段上がる。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:parenting_standard",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "他家庭を見るたび子育て条件のハードルが一段上がる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "他家庭を見るたび子育て条件のハードルが一段上がる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 8.6
+    },
+    {
+      "sceneId": "V46-C2-048",
+      "chapterId": "chapter2",
+      "narrationText": "どちらの世界でも、決めるのは本人である。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 99,
+        "lineEnd": 99,
+        "startOffsetUTF16": 4193,
+        "endOffsetExclusiveUTF16": 4213
+      },
+      "visualMode": "world_shapes_choice",
+      "visualDescription": "人物を固定し左右の世界だけを変形する。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:world_shapes_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物を固定し左右の世界だけを変形する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物を固定し左右の世界だけを変形する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.7
+    },
+    {
+      "sceneId": "V46-C2-049",
+      "chapterId": "chapter2",
+      "narrationText": "しかし、本人が見つめる選択肢の形は、世界によって違う。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 99,
+        "lineEnd": 99,
+        "startOffsetUTF16": 4213,
+        "endOffsetExclusiveUTF16": 4240
+      },
+      "visualMode": "world_shapes_choice",
+      "visualDescription": "人物を固定し左右の世界だけを変形する。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:world_shapes_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物を固定し左右の世界だけを変形する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物を固定し左右の世界だけを変形する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.6
+    },
+    {
+      "sceneId": "V46-C2-050",
+      "chapterId": "chapter2",
+      "narrationText": "「自分で選んだ」。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 101,
+        "lineEnd": 101,
+        "startOffsetUTF16": 4242,
+        "endOffsetExclusiveUTF16": 4251
+      },
+      "visualMode": "choice_stamp",
+      "visualDescription": "自分で選ぶ印章の下から環境条件の層を出す。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:choice_stamp",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "自分で選ぶ印章の下から環境条件の層を出す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "自分で選ぶ印章の下から環境条件の層を出す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 2.2
+    },
+    {
+      "sceneId": "V46-C2-051",
+      "chapterId": "chapter2",
+      "narrationText": "その言葉は真実である。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 101,
+        "lineEnd": 101,
+        "startOffsetUTF16": 4251,
+        "endOffsetExclusiveUTF16": 4262
+      },
+      "visualMode": "city_choice",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 2.5
+    },
+    {
+      "sceneId": "V46-C2-052",
+      "chapterId": "chapter2",
+      "narrationText": "だが、それだけでは、なぜ今、この選択が多くの人にとって魅力的で、現実的なものとして映るのかを説明できない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 101,
+        "lineEnd": 101,
+        "startOffsetUTF16": 4262,
+        "endOffsetExclusiveUTF16": 4315
+      },
+      "visualMode": "city_choice",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 8.2
+    },
+    {
+      "sceneId": "V46-C2-053",
+      "chapterId": "chapter2",
+      "narrationText": "誰かが繁殖を禁じる必要はない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 103,
+        "lineEnd": 103,
+        "startOffsetUTF16": 4317,
+        "endOffsetExclusiveUTF16": 4332
+      },
+      "visualMode": "self_selection",
+      "visualDescription": "禁止なしでも明るい道へ人が流れる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:self_selection",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "禁止なしでも明るい道へ人が流れる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "禁止なしでも明るい道へ人が流れる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3
+    },
+    {
+      "sceneId": "V46-C2-054",
+      "chapterId": "chapter2",
+      "narrationText": "子供を持たないほうが、今の暮らしを守りやすいと感じられる社会なら、人々は自分の意思で、子供を持たない人生を選びうるのである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 103,
+        "lineEnd": 103,
+        "startOffsetUTF16": 4332,
+        "endOffsetExclusiveUTF16": 4394
+      },
+      "visualMode": "single_life",
+      "visualDescription": "仕事後の映画、友人との食事、一人旅へ人物を移動させる。",
+      "backgroundId": "BG_cafenaiso",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-cafenaiso",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:single_life",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "仕事後の映画、友人との食事、一人旅へ人物を移動させる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_cafenaiso",
+          "catalogId": "bg-bg-cafenaiso",
+          "filePath": "shared/asset-library/背景/BG_cafenaiso.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "仕事後の映画、友人との食事、一人旅へ人物を移動させる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 9.4
+    },
+    {
+      "sceneId": "V46-C2-055",
+      "chapterId": "chapter2",
+      "narrationText": "そして、この逆転は、進化生物学の問いへとつながっていく。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 105,
+        "lineEnd": 105,
+        "startOffsetUTF16": 4396,
+        "endOffsetExclusiveUTF16": 4424
+      },
+      "visualMode": "resource_allocation",
+      "visualDescription": "資源の粒を成長・生存・繁殖へ配分する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:resource_allocation",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "資源の粒を成長・生存・繁殖へ配分する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "資源の粒を成長・生存・繁殖へ配分する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.8
+    },
+    {
+      "sceneId": "V46-C2-056",
+      "chapterId": "chapter2",
+      "narrationText": "生物は限られた資源を、成長し、生き延び、次の世代を残すために配分する。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 105,
+        "lineEnd": 105,
+        "startOffsetUTF16": 4424,
+        "endOffsetExclusiveUTF16": 4459
+      },
+      "visualMode": "resource_allocation",
+      "visualDescription": "資源の粒を成長・生存・繁殖へ配分する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:resource_allocation",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "資源の粒を成長・生存・繁殖へ配分する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "資源の粒を成長・生存・繁殖へ配分する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.7
+    },
+    {
+      "sceneId": "V46-C2-057",
+      "chapterId": "chapter2",
+      "narrationText": "人間も例外ではない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 105,
+        "lineEnd": 105,
+        "startOffsetUTF16": 4459,
+        "endOffsetExclusiveUTF16": 4469
+      },
+      "visualMode": "city_choice",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 2.4
+    },
+    {
+      "sceneId": "V46-C2-058",
+      "chapterId": "chapter2",
+      "narrationText": "ところが我々は、繁殖のために資源を集めるうちに、資源を集め続けること自体を人生の中心に据えてしまうことがある。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 105,
+        "lineEnd": 105,
+        "startOffsetUTF16": 4469,
+        "endOffsetExclusiveUTF16": 4524
+      },
+      "visualMode": "resource_loop",
+      "visualDescription": "資源収集ベルトが加速し家族アイコンを追い越す。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:resource_loop",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "資源収集ベルトが加速し家族アイコンを追い越す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "資源収集ベルトが加速し家族アイコンを追い越す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 8.4
+    },
+    {
+      "sceneId": "V46-C2-059",
+      "chapterId": "chapter2",
+      "narrationText": "生き延びるための仕事が、次の世代を残すための時間を奪う。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 107,
+        "lineEnd": 107,
+        "startOffsetUTF16": 4526,
+        "endOffsetExclusiveUTF16": 4554
+      },
+      "visualMode": "work_pushes_family",
+      "visualDescription": "仕事が増えるほど家族像を遠ざける。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:work_pushes_family",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "仕事が増えるほど家族像を遠ざける。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "仕事が増えるほど家族像を遠ざける。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.8
+    },
+    {
+      "sceneId": "V46-C2-060",
+      "chapterId": "chapter2",
+      "narrationText": "未来の家族のための準備が、未来の家族を遠ざける。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 107,
+        "lineEnd": 107,
+        "startOffsetUTF16": 4554,
+        "endOffsetExclusiveUTF16": 4578
+      },
+      "visualMode": "future_gain_blur",
+      "visualDescription": "未来の親子像を遠くぼかし、近づくと輪郭を出す。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [
+        "chapter2Man"
+      ],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:future_gain_blur",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "未来の親子像を遠くぼかし、近づくと輪郭を出す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "未来の親子像を遠くぼかし、近づくと輪郭を出す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.2
+    },
+    {
+      "sceneId": "V46-C2-061",
+      "chapterId": "chapter2",
+      "narrationText": "この奇妙な分業は、人間だけのものなのだろうか。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 109,
+        "lineEnd": 109,
+        "startOffsetUTF16": 4580,
+        "endOffsetExclusiveUTF16": 4603
+      },
+      "visualMode": "city_choice",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_TOWN_DAY_WIDE",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town-day-wide",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_choice",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_TOWN_DAY_WIDE",
+          "catalogId": "bg-bg-town-day-wide",
+          "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.1
+    },
+    {
+      "sceneId": "V46-C2-062",
+      "chapterId": "chapter2",
+      "narrationText": "地上の街から視線を移し、アフリカの乾いた大地、その足元に広がる暗い世界を覗いてみよう。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 109,
+        "lineEnd": 109,
+        "startOffsetUTF16": 4603,
+        "endOffsetExclusiveUTF16": 4646
+      },
+      "visualMode": "descent_to_underground",
+      "visualDescription": "都市から地面を突き抜け地下へカメラ降下。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:descent_to_underground",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "都市から地面を突き抜け地下へカメラ降下。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "都市から地面を突き抜け地下へカメラ降下。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 6.8
+    }
+  ],
+  "coverageValidation": {
+    "sceneNarrationCharacters": 1855,
+    "sceneOrderVerified": true,
+    "sourceRangesVerified": true
+  },
+  "missingAssets": {
+    "count": 0,
+    "assetIds": [],
+    "note": "No new user image assets required; chapter-specific animals/objects/diagrams are React/SVG."
+  },
+  "productionGate": {
+    "scenePlanComplete": true,
+    "missingAssetsResolved": true,
+    "renderAllowed": true,
+    "approvedEarlierChaptersLocked": true
+  }
+}
