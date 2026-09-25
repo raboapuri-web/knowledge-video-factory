@@ -1,10 +1,7 @@
 name: V46 Hansyoku Prologue Review R1 Parallel Render
+# V46 prologue was approved on 2026-09-25. No push-triggered re-render is permitted.
+# A manual dispatch also fails before any video work while the approval lock exists.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'v46hansyoku/**'
-      - '.github/workflows/v46hansyoku-prologue.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -18,6 +15,12 @@ jobs:
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce approved-prologue no-re-render lock
+        run: |
+          if test -f v46hansyoku/approvals/prologue.json; then
+            echo "::error::V46 prologue is approved. Re-render is locked; use the archived approved MP4."
+            exit 1
+          fi
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
