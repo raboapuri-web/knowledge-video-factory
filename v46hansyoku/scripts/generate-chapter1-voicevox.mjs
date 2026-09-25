@@ -6,7 +6,8 @@ const source=JSON.parse(fs.readFileSync(path.join(root,'src/chapter1-script-data
 const genericScript=path.join(root,'src/script-data.json');
 const genericSync=path.join(root,'src/sync-timing.json');
 const backupScript=fs.readFileSync(genericScript);
-const backupSync=fs.readFileSync(genericSync);
+const hadGenericSync=fs.existsSync(genericSync);
+const backupSync=hadGenericSync?fs.readFileSync(genericSync):null;
 try{
  fs.writeFileSync(genericScript,JSON.stringify(source,null,2)+'\n');
  const result=await generateVoicevox(root,{speaker:'青山龍星',style:'ノーマル',speed:1.13,pitchScale:-0.026,intonationScale:0.86,volumeScale:0.96,prePhonemeLength:0.09,postPhonemeLength:0.11,padDuration:0.18});
@@ -19,5 +20,6 @@ try{
  fs.copyFileSync(path.join(root,'public/audio/pronunciation-report.json'),path.join(root,'public/audio/chapter1-pronunciation-report.json'));
  console.log('Chapter1 exact VOICEVOX beats measured: '+result.durationSeconds+' sec');
 }finally{
- fs.writeFileSync(genericScript,backupScript);fs.writeFileSync(genericSync,backupSync);
+ fs.writeFileSync(genericScript,backupScript);
+ if(hadGenericSync&&backupSync)fs.writeFileSync(genericSync,backupSync);else fs.rmSync(genericSync,{force:true});
 }
