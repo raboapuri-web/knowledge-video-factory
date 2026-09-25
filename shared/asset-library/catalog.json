@@ -2228,7 +2228,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2239,8 +2239,9 @@
       "sourceSha256": "ea1caac088aa6b235afb38c6993604d0d3bf05d787469ea4bde6690770bd45e6",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "ユーザー指定またはユーザー追加済みの第1章背景。2026-09-25にV46 Chapter1での使用を明示確定。権利情報は既存の運用ルールに従い確定扱い。構図適合は本番映像QAで確認する。",
+        "usageApproval": "user-approved-2026-09-25"
       }
     },
     {
@@ -2947,7 +2948,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2958,8 +2959,9 @@
       "sourceSha256": "be547d8256f4746ee5f449679ecd5c65c6cfc07810df363316e620867f77533a",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "ユーザー指定またはユーザー追加済みの第1章背景。2026-09-25にV46 Chapter1での使用を明示確定。権利情報は既存の運用ルールに従い確定扱い。構図適合は本番映像QAで確認する。",
+        "usageApproval": "user-approved-2026-09-25"
       }
     },
     {
@@ -2980,7 +2982,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -2991,8 +2993,9 @@
       "sourceSha256": "8b711c1dbfcff90dc6bdc5110e314dc61d1c401cbd7e11ea3085000d72e06208",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "ユーザー指定またはユーザー追加済みの第1章背景。2026-09-25にV46 Chapter1での使用を明示確定。権利情報は既存の運用ルールに従い確定扱い。構図適合は本番映像QAで確認する。",
+        "usageApproval": "user-approved-2026-09-25"
       }
     },
     {
@@ -3013,7 +3016,7 @@
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -3024,8 +3027,9 @@
       "sourceSha256": "b37053f840fee0028935c020d3ebfa90611b5b76ff4d45108cd3d3f3f5849682",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "ユーザー指定またはユーザー追加済みの第1章背景。2026-09-25にV46 Chapter1での使用を明示確定。権利情報は既存の運用ルールに従い確定扱い。構図適合は本番映像QAで確認する。",
+        "usageApproval": "user-approved-2026-09-25"
       }
     }
   ]
