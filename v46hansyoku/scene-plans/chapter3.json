@@ -1,0 +1,2978 @@
+{
+  "schemaVersion": "v46-dynamic-scene-plan-v1",
+  "videoId": "V46",
+  "projectSlug": "v46hansyoku",
+  "chapterId": "chapter3",
+  "chapterTitle": "地下の王国には、子供を産まない働き手がいる",
+  "status": "scene_design_complete_ready_for_dynamic_render",
+  "source": {
+    "repository": "raboapuri-web/knowledge-video-factory",
+    "branch": "main",
+    "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+    "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+    "heading": "第3章｜地下の王国には、子供を産まない働き手がいる",
+    "narrationPolicy": "exact source sentences; no wording changes"
+  },
+  "approvedDependencies": {
+    "prologue": "locked",
+    "chapter1": "locked",
+    "doNotRerenderApprovedChapters": true
+  },
+  "sceneCount": 48,
+  "estimatedDurationSeconds": 266.3,
+  "motionPolicy": {
+    "density": "high",
+    "rules": [
+      "各シーン最低1つ主要要素を動かす",
+      "カメラ微細パン/ズーム/パララックス常用",
+      "図解は静止せず生成/移動/反転/伸縮",
+      "同じ構図を3シーン連続させない"
+    ]
+  },
+  "scenes": [
+    {
+      "sceneId": "V46-C3-001",
+      "chapterId": "chapter3",
+      "narrationText": "アフリカ東部の乾燥した大地。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 114,
+        "lineEnd": 114,
+        "startOffsetUTF16": 4676,
+        "endOffsetExclusiveUTF16": 4690
+      },
+      "visualMode": "dry_land",
+      "visualDescription": "乾いた大地の断面を開き地下へ誘導する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:dry_land",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "乾いた大地の断面を開き地下へ誘導する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "乾いた大地の断面を開き地下へ誘導する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 2.9
+    },
+    {
+      "sceneId": "V46-C3-002",
+      "chapterId": "chapter3",
+      "narrationText": "その下には、日の光の届かない、長いトンネルが延びている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 114,
+        "lineEnd": 114,
+        "startOffsetUTF16": 4690,
+        "endOffsetExclusiveUTF16": 4718
+      },
+      "visualMode": "tunnel_rush",
+      "visualDescription": "地下トンネルを個体が高速で行き交う。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:tunnel_rush",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "地下トンネルを個体が高速で行き交う。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "地下トンネルを個体が高速で行き交う。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.8
+    },
+    {
+      "sceneId": "V46-C3-003",
+      "chapterId": "chapter3",
+      "narrationText": "土を削る前歯の音が響き、細い通路を、小さな身体が忙しく行き交う。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 114,
+        "lineEnd": 114,
+        "startOffsetUTF16": 4718,
+        "endOffsetExclusiveUTF16": 4750
+      },
+      "visualMode": "tunnel_rush",
+      "visualDescription": "地下トンネルを個体が高速で行き交う。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:tunnel_rush",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "地下トンネルを個体が高速で行き交う。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "地下トンネルを個体が高速で行き交う。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.3
+    },
+    {
+      "sceneId": "V46-C3-004",
+      "chapterId": "chapter3",
+      "narrationText": "ハダカデバネズミである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 116,
+        "lineEnd": 116,
+        "startOffsetUTF16": 4752,
+        "endOffsetExclusiveUTF16": 4764
+      },
+      "visualMode": "molerat_reveal",
+      "visualDescription": "暗闇からハダカデバネズミSVGを出す。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:molerat_reveal",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "暗闇からハダカデバネズミSVGを出す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "暗闇からハダカデバネズミSVGを出す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 2.6
+    },
+    {
+      "sceneId": "V46-C3-005",
+      "chapterId": "chapter3",
+      "narrationText": "ある個体は土を掘り、別の個体は土を運ぶ。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 118,
+        "lineEnd": 118,
+        "startOffsetUTF16": 4766,
+        "endOffsetExclusiveUTF16": 4786
+      },
+      "visualMode": "colony_jobs",
+      "visualDescription": "掘る・運ぶ・探す・幼体を守る動作を同時進行。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:colony_jobs",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "掘る・運ぶ・探す・幼体を守る動作を同時進行。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "掘る・運ぶ・探す・幼体を守る動作を同時進行。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.7
+    },
+    {
+      "sceneId": "V46-C3-006",
+      "chapterId": "chapter3",
+      "narrationText": "食料を探す者がいて、巣の奥で幼い個体のそばにとどまる者がいる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 118,
+        "lineEnd": 118,
+        "startOffsetUTF16": 4786,
+        "endOffsetExclusiveUTF16": 4817
+      },
+      "visualMode": "colony_jobs",
+      "visualDescription": "掘る・運ぶ・探す・幼体を守る動作を同時進行。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:colony_jobs",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "掘る・運ぶ・探す・幼体を守る動作を同時進行。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "掘る・運ぶ・探す・幼体を守る動作を同時進行。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.2
+    },
+    {
+      "sceneId": "V46-C3-007",
+      "chapterId": "chapter3",
+      "narrationText": "集団は、一匹では成し遂げられない仕事を分け合いながら、地下の生活を維持している。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 118,
+        "lineEnd": 118,
+        "startOffsetUTF16": 4817,
+        "endOffsetExclusiveUTF16": 4857
+      },
+      "visualMode": "molerat_motion",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:molerat_motion",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 6.4
+    },
+    {
+      "sceneId": "V46-C3-008",
+      "chapterId": "chapter3",
+      "narrationText": "だが、この王国には、我々の常識から見れば奇妙な決まりがある。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 120,
+        "lineEnd": 120,
+        "startOffsetUTF16": 4859,
+        "endOffsetExclusiveUTF16": 4889
+      },
+      "visualMode": "colony_rule",
+      "visualDescription": "多数の働き手の中で一部だけ繁殖室へ入る。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:colony_rule",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "多数の働き手の中で一部だけ繁殖室へ入る。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "多数の働き手の中で一部だけ繁殖室へ入る。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.1
+    },
+    {
+      "sceneId": "V46-C3-009",
+      "chapterId": "chapter3",
+      "narrationText": "ほとんどの個体は、自分の子供を残さない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 120,
+        "lineEnd": 120,
+        "startOffsetUTF16": 4889,
+        "endOffsetExclusiveUTF16": 4909
+      },
+      "visualMode": "colony_rule",
+      "visualDescription": "多数の働き手の中で一部だけ繁殖室へ入る。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:colony_rule",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "多数の働き手の中で一部だけ繁殖室へ入る。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "多数の働き手の中で一部だけ繁殖室へ入る。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.7
+    },
+    {
+      "sceneId": "V46-C3-010",
+      "chapterId": "chapter3",
+      "narrationText": "繁殖を担うのは、女王と呼ばれる一匹の雌と、ごく少数の雄である。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 120,
+        "lineEnd": 120,
+        "startOffsetUTF16": 4909,
+        "endOffsetExclusiveUTF16": 4940
+      },
+      "visualMode": "queen_colony",
+      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:queen_colony",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.2
+    },
+    {
+      "sceneId": "V46-C3-011",
+      "chapterId": "chapter3",
+      "narrationText": "ほかの個体は、巣を掘り、食料を集め、女王の産んだ子供を育てる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 120,
+        "lineEnd": 120,
+        "startOffsetUTF16": 4940,
+        "endOffsetExclusiveUTF16": 4971
+      },
+      "visualMode": "queen_colony",
+      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:queen_colony",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.2
+    },
+    {
+      "sceneId": "V46-C3-012",
+      "chapterId": "chapter3",
+      "narrationText": "繁殖する者と、集団を維持する者が分かれている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 122,
+        "lineEnd": 122,
+        "startOffsetUTF16": 4973,
+        "endOffsetExclusiveUTF16": 4996
+      },
+      "visualMode": "molerat_motion",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:molerat_motion",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.1
+    },
+    {
+      "sceneId": "V46-C3-013",
+      "chapterId": "chapter3",
+      "narrationText": "このような社会は、真社会性と呼ばれる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 122,
+        "lineEnd": 122,
+        "startOffsetUTF16": 4996,
+        "endOffsetExclusiveUTF16": 5015
+      },
+      "visualMode": "eusociality",
+      "visualDescription": "アリ・ハチ・ハダカデバネズミの構造を重ねる。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:eusociality",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "アリ・ハチ・ハダカデバネズミの構造を重ねる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "アリ・ハチ・ハダカデバネズミの構造を重ねる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.6
+    },
+    {
+      "sceneId": "V46-C3-014",
+      "chapterId": "chapter3",
+      "narrationText": "アリやハチで知られる仕組みが、同じ哺乳類であるハダカデバネズミにも見られるのである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 122,
+        "lineEnd": 122,
+        "startOffsetUTF16": 5015,
+        "endOffsetExclusiveUTF16": 5057
+      },
+      "visualMode": "eusociality",
+      "visualDescription": "アリ・ハチ・ハダカデバネズミの構造を重ねる。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:eusociality",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "アリ・ハチ・ハダカデバネズミの構造を重ねる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "アリ・ハチ・ハダカデバネズミの構造を重ねる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 6.7
+    },
+    {
+      "sceneId": "V46-C3-015",
+      "chapterId": "chapter3",
+      "narrationText": "なぜ、自分の子供を持たずに、ほかの個体の子供を育てるのか。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 124,
+        "lineEnd": 124,
+        "startOffsetUTF16": 5059,
+        "endOffsetExclusiveUTF16": 5088
+      },
+      "visualMode": "colony_rule",
+      "visualDescription": "多数の働き手の中で一部だけ繁殖室へ入る。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:colony_rule",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "多数の働き手の中で一部だけ繁殖室へ入る。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "多数の働き手の中で一部だけ繁殖室へ入る。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.9
+    },
+    {
+      "sceneId": "V46-C3-016",
+      "chapterId": "chapter3",
+      "narrationText": "一九六四年、生物学者ウィリアム・ハミルトンは、血縁者への援助が進化しうる条件を理論化した。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 126,
+        "lineEnd": 126,
+        "startOffsetUTF16": 5090,
+        "endOffsetExclusiveUTF16": 5135
+      },
+      "visualMode": "kin_selection",
+      "visualDescription": "遺伝子光点を血縁ネットワークへ流す。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:kin_selection",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "遺伝子光点を血縁ネットワークへ流す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "遺伝子光点を血縁ネットワークへ流す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 7.1
+    },
+    {
+      "sceneId": "V46-C3-017",
+      "chapterId": "chapter3",
+      "narrationText": "自分が子供を残さなくても、血縁者の子供が生き延びれば、自分と共通する遺伝子が次の世代へ受け継がれる可能性がある。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 126,
+        "lineEnd": 126,
+        "startOffsetUTF16": 5135,
+        "endOffsetExclusiveUTF16": 5191
+      },
+      "visualMode": "kin_selection",
+      "visualDescription": "遺伝子光点を血縁ネットワークへ流す。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:kin_selection",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "遺伝子光点を血縁ネットワークへ流す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "遺伝子光点を血縁ネットワークへ流す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 8.6
+    },
+    {
+      "sceneId": "V46-C3-018",
+      "chapterId": "chapter3",
+      "narrationText": "繁殖の利益は、自分の子供を産むことだけで測れるものではない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 126,
+        "lineEnd": 126,
+        "startOffsetUTF16": 5191,
+        "endOffsetExclusiveUTF16": 5221
+      },
+      "visualMode": "colony_rule",
+      "visualDescription": "多数の働き手の中で一部だけ繁殖室へ入る。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:colony_rule",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "多数の働き手の中で一部だけ繁殖室へ入る。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "多数の働き手の中で一部だけ繁殖室へ入る。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.1
+    },
+    {
+      "sceneId": "V46-C3-019",
+      "chapterId": "chapter3",
+      "narrationText": "ハダカデバネズミの集団には血縁関係にある個体が多い。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 128,
+        "lineEnd": 128,
+        "startOffsetUTF16": 5223,
+        "endOffsetExclusiveUTF16": 5249
+      },
+      "visualMode": "kin_network",
+      "visualDescription": "個体間を線で結び援助を流す。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:kin_network",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "個体間を線で結び援助を流す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "個体間を線で結び援助を流す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.5
+    },
+    {
+      "sceneId": "V46-C3-020",
+      "chapterId": "chapter3",
+      "narrationText": "女王の子供を育てることは、血縁者の繁殖を助ける行為にもなる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 128,
+        "lineEnd": 128,
+        "startOffsetUTF16": 5249,
+        "endOffsetExclusiveUTF16": 5279
+      },
+      "visualMode": "queen_colony",
+      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:queen_colony",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.1
+    },
+    {
+      "sceneId": "V46-C3-021",
+      "chapterId": "chapter3",
+      "narrationText": "しかも、地下で単独の巣を作り、食料を見つけ、子供を育てることは容易ではない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 128,
+        "lineEnd": 128,
+        "startOffsetUTF16": 5279,
+        "endOffsetExclusiveUTF16": 5317
+      },
+      "visualMode": "survival_together",
+      "visualDescription": "単独の細い道と集団の太い道を比較する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:survival_together",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "単独の細い道と集団の太い道を比較する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "単独の細い道と集団の太い道を比較する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 6.1
+    },
+    {
+      "sceneId": "V46-C3-022",
+      "chapterId": "chapter3",
+      "narrationText": "集団にとどまることには、生き延びるための意味もある。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 128,
+        "lineEnd": 128,
+        "startOffsetUTF16": 5317,
+        "endOffsetExclusiveUTF16": 5343
+      },
+      "visualMode": "kin_network",
+      "visualDescription": "個体間を線で結び援助を流す。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:kin_network",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "個体間を線で結び援助を流す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "個体間を線で結び援助を流す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.5
+    },
+    {
+      "sceneId": "V46-C3-023",
+      "chapterId": "chapter3",
+      "narrationText": "しかし、さらに不思議なのは、働き手の中には、繁殖する能力そのものを完全に失ったわけではない個体がいることである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 130,
+        "lineEnd": 130,
+        "startOffsetUTF16": 5345,
+        "endOffsetExclusiveUTF16": 5401
+      },
+      "visualMode": "latent_reproduction",
+      "visualDescription": "働き手内部の繁殖可能性ランプを点灯する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:latent_reproduction",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "働き手内部の繁殖可能性ランプを点灯する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "働き手内部の繁殖可能性ランプを点灯する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 8.6
+    },
+    {
+      "sceneId": "V46-C3-024",
+      "chapterId": "chapter3",
+      "narrationText": "一九九五年、研究者たちは、飼育下の集団から女王と繁殖雄を取り除き、残された雌たちの行動とホルモンの変化を調べた。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 132,
+        "lineEnd": 132,
+        "startOffsetUTF16": 5403,
+        "endOffsetExclusiveUTF16": 5459
+      },
+      "visualMode": "queen_colony",
+      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:queen_colony",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 8.6
+    },
+    {
+      "sceneId": "V46-C3-025",
+      "chapterId": "chapter3",
+      "narrationText": "女王がいる間は目立たなかった、ほかの個体を押しのける行動が増え、新たな繁殖個体の地位をめぐる競争が始まった。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 132,
+        "lineEnd": 132,
+        "startOffsetUTF16": 5459,
+        "endOffsetExclusiveUTF16": 5513
+      },
+      "visualMode": "queen_colony",
+      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:queen_colony",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 8.3
+    },
+    {
+      "sceneId": "V46-C3-026",
+      "chapterId": "chapter3",
+      "narrationText": "集団の中で繁殖していなかった雌たちの一部は、女王の不在によって、別の振る舞いを見せ始めたのである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 132,
+        "lineEnd": 132,
+        "startOffsetUTF16": 5513,
+        "endOffsetExclusiveUTF16": 5562
+      },
+      "visualMode": "queen_colony",
+      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:queen_colony",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 7.6
+    },
+    {
+      "sceneId": "V46-C3-027",
+      "chapterId": "chapter3",
+      "narrationText": "また、非繁殖個体を元の集団から離すと、繁殖に関わる身体の働きや行動が変化することも調べられている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 134,
+        "lineEnd": 134,
+        "startOffsetUTF16": 5564,
+        "endOffsetExclusiveUTF16": 5613
+      },
+      "visualMode": "environment_switch",
+      "visualDescription": "個体を別環境へ移し波形と行動を変える。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:environment_switch",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "個体を別環境へ移し波形と行動を変える。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "個体を別環境へ移し波形と行動を変える。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 7.6
+    },
+    {
+      "sceneId": "V46-C3-028",
+      "chapterId": "chapter3",
+      "narrationText": "繁殖するかどうかは、その個体の身体だけでなく、集団の中でどのような環境に置かれているかとも結びついている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 134,
+        "lineEnd": 134,
+        "startOffsetUTF16": 5613,
+        "endOffsetExclusiveUTF16": 5666
+      },
+      "visualMode": "environment_switch",
+      "visualDescription": "個体を別環境へ移し波形と行動を変える。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:environment_switch",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "個体を別環境へ移し波形と行動を変える。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "個体を別環境へ移し波形と行動を変える。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 8.2
+    },
+    {
+      "sceneId": "V46-C3-029",
+      "chapterId": "chapter3",
+      "narrationText": "さて、地下のトンネルから、再び東京の街へ戻ろう。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 136,
+        "lineEnd": 136,
+        "startOffsetUTF16": 5668,
+        "endOffsetExclusiveUTF16": 5692
+      },
+      "visualMode": "tunnel_rush",
+      "visualDescription": "地下トンネルを個体が高速で行き交う。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:tunnel_rush",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "地下トンネルを個体が高速で行き交う。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "地下トンネルを個体が高速で行き交う。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.2
+    },
+    {
+      "sceneId": "V46-C3-030",
+      "chapterId": "chapter3",
+      "narrationText": "人間社会に、ハダカデバネズミの女王はいない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 138,
+        "lineEnd": 138,
+        "startOffsetUTF16": 5694,
+        "endOffsetExclusiveUTF16": 5716
+      },
+      "visualMode": "queen_colony",
+      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:queen_colony",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4
+    },
+    {
+      "sceneId": "V46-C3-031",
+      "chapterId": "chapter3",
+      "narrationText": "誰かがほかの人々の繁殖を、同じ生物学的な仕組みで抑えているわけではない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 138,
+        "lineEnd": 138,
+        "startOffsetUTF16": 5716,
+        "endOffsetExclusiveUTF16": 5752
+      },
+      "visualMode": "molerat_motion",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:molerat_motion",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.9
+    },
+    {
+      "sceneId": "V46-C3-032",
+      "chapterId": "chapter3",
+      "narrationText": "それでも街には、子供を育てるための時間と資源を持つ人々がいて、その時間と資源をまだ確保できない人々がいる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 138,
+        "lineEnd": 138,
+        "startOffsetUTF16": 5752,
+        "endOffsetExclusiveUTF16": 5805
+      },
+      "visualMode": "time_resource_split",
+      "visualDescription": "時間と資源メーターを家庭/仕事へ動かす。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:time_resource_split",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "時間と資源メーターを家庭/仕事へ動かす。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "時間と資源メーターを家庭/仕事へ動かす。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 8.2
+    },
+    {
+      "sceneId": "V46-C3-033",
+      "chapterId": "chapter3",
+      "narrationText": "ある者は家庭を築き、子供を育てる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 140,
+        "lineEnd": 140,
+        "startOffsetUTF16": 5807,
+        "endOffsetExclusiveUTF16": 5824
+      },
+      "visualMode": "city_division",
+      "visualDescription": "家庭と仕事の人物を動かし仕事成果を家庭へ流す。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_division",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "家庭と仕事の人物を動かし仕事成果を家庭へ流す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "家庭と仕事の人物を動かし仕事成果を家庭へ流す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.3
+    },
+    {
+      "sceneId": "V46-C3-034",
+      "chapterId": "chapter3",
+      "narrationText": "別の者は仕事に時間を費やし、自分の子供を持たない人生を選ぶ。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 140,
+        "lineEnd": 140,
+        "startOffsetUTF16": 5824,
+        "endOffsetExclusiveUTF16": 5854
+      },
+      "visualMode": "colony_rule",
+      "visualDescription": "多数の働き手の中で一部だけ繁殖室へ入る。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:colony_rule",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "多数の働き手の中で一部だけ繁殖室へ入る。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "多数の働き手の中で一部だけ繁殖室へ入る。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.1
+    },
+    {
+      "sceneId": "V46-C3-035",
+      "chapterId": "chapter3",
+      "narrationText": "その仕事によって生み出された食料、住まい、交通、医療、教育は、子供を育てる家庭の暮らしにも届いていく。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 140,
+        "lineEnd": 140,
+        "startOffsetUTF16": 5854,
+        "endOffsetExclusiveUTF16": 5905
+      },
+      "visualMode": "city_division",
+      "visualDescription": "家庭と仕事の人物を動かし仕事成果を家庭へ流す。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:city_division",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "家庭と仕事の人物を動かし仕事成果を家庭へ流す。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "家庭と仕事の人物を動かし仕事成果を家庭へ流す。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 7.9
+    },
+    {
+      "sceneId": "V46-C3-036",
+      "chapterId": "chapter3",
+      "narrationText": "繁殖する個体がいて、繁殖しない個体が集団を支える。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 142,
+        "lineEnd": 142,
+        "startOffsetUTF16": 5907,
+        "endOffsetExclusiveUTF16": 5932
+      },
+      "visualMode": "molerat_motion",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:molerat_motion",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 4.4
+    },
+    {
+      "sceneId": "V46-C3-037",
+      "chapterId": "chapter3",
+      "narrationText": "この構造は、地下の王国とよく似ている。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 142,
+        "lineEnd": 142,
+        "startOffsetUTF16": 5932,
+        "endOffsetExclusiveUTF16": 5951
+      },
+      "visualMode": "colony_rule",
+      "visualDescription": "多数の働き手の中で一部だけ繁殖室へ入る。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:colony_rule",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "多数の働き手の中で一部だけ繁殖室へ入る。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "多数の働き手の中で一部だけ繁殖室へ入る。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.6
+    },
+    {
+      "sceneId": "V46-C3-038",
+      "chapterId": "chapter3",
+      "narrationText": "ただし、人間社会で女王の役割を果たすのは、特定の経営者でも、政治家でもない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 144,
+        "lineEnd": 144,
+        "startOffsetUTF16": 5953,
+        "endOffsetExclusiveUTF16": 5991
+      },
+      "visualMode": "queen_colony",
+      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:queen_colony",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 6.1
+    },
+    {
+      "sceneId": "V46-C3-039",
+      "chapterId": "chapter3",
+      "narrationText": "家賃であり、給料であり、労働時間であり、子供に与えるべきだと考えられている生活水準である。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 144,
+        "lineEnd": 144,
+        "startOffsetUTF16": 5991,
+        "endOffsetExclusiveUTF16": 6036
+      },
+      "visualMode": "faceless_conditions",
+      "visualDescription": "家賃・給料・時間・生活水準バッジを王冠形へ集める。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:faceless_conditions",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "家賃・給料・時間・生活水準バッジを王冠形へ集める。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "家賃・給料・時間・生活水準バッジを王冠形へ集める。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 7.1
+    },
+    {
+      "sceneId": "V46-C3-040",
+      "chapterId": "chapter3",
+      "narrationText": "それらが重なり合い、人々の前に、選びやすい人生と、選びにくい人生を並べる。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 144,
+        "lineEnd": 144,
+        "startOffsetUTF16": 6036,
+        "endOffsetExclusiveUTF16": 6073
+      },
+      "visualMode": "molerat_motion",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:molerat_motion",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 6
+    },
+    {
+      "sceneId": "V46-C3-041",
+      "chapterId": "chapter3",
+      "narrationText": "地下では、女王の存在が繁殖を抑える。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 146,
+        "lineEnd": 146,
+        "startOffsetUTF16": 6075,
+        "endOffsetExclusiveUTF16": 6093
+      },
+      "visualMode": "queen_colony",
+      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:queen_colony",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.4
+    },
+    {
+      "sceneId": "V46-C3-042",
+      "chapterId": "chapter3",
+      "narrationText": "地上では、社会が作り出した条件の中で、人々が自ら繁殖を見送る。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 146,
+        "lineEnd": 146,
+        "startOffsetUTF16": 6093,
+        "endOffsetExclusiveUTF16": 6124
+      },
+      "visualMode": "underground_surface_split",
+      "visualDescription": "地下女王と地上条件を同時に動かす。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:underground_surface_split",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "地下女王と地上条件を同時に動かす。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "地下女王と地上条件を同時に動かす。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.2
+    },
+    {
+      "sceneId": "V46-C3-043",
+      "chapterId": "chapter3",
+      "narrationText": "我々の社会そのものが、女王のような役割を果たしているのではないだろうか。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 148,
+        "lineEnd": 148,
+        "startOffsetUTF16": 6126,
+        "endOffsetExclusiveUTF16": 6162
+      },
+      "visualMode": "queen_colony",
+      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:queen_colony",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 5.9
+    },
+    {
+      "sceneId": "V46-C3-044",
+      "chapterId": "chapter3",
+      "narrationText": "しかも、この女王は命令しない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 150,
+        "lineEnd": 150,
+        "startOffsetUTF16": 6164,
+        "endOffsetExclusiveUTF16": 6179
+      },
+      "visualMode": "queen_colony",
+      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:queen_colony",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3
+    },
+    {
+      "sceneId": "V46-C3-045",
+      "chapterId": "chapter3",
+      "narrationText": "子供を持つなとも、働き続けろとも言わない。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 150,
+        "lineEnd": 150,
+        "startOffsetUTF16": 6179,
+        "endOffsetExclusiveUTF16": 6200
+      },
+      "visualMode": "molerat_motion",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:molerat_motion",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 3.8
+    },
+    {
+      "sceneId": "V46-C3-046",
+      "chapterId": "chapter3",
+      "narrationText": "ただ、目の前にある家賃を払い、明日の仕事に備え、将来の不安を減らそうとする。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 150,
+        "lineEnd": 150,
+        "startOffsetUTF16": 6200,
+        "endOffsetExclusiveUTF16": 6238
+      },
+      "visualMode": "faceless_conditions",
+      "visualDescription": "家賃・給料・時間・生活水準バッジを王冠形へ集める。",
+      "backgroundId": "BG_town",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-town",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:faceless_conditions",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "家賃・給料・時間・生活水準バッジを王冠形へ集める。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "家賃・給料・時間・生活水準バッジを王冠形へ集める。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 6.1
+    },
+    {
+      "sceneId": "V46-C3-047",
+      "chapterId": "chapter3",
+      "narrationText": "その一つひとつの判断が積み重なった先に、子供を持たないという選択が現れるのである。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 150,
+        "lineEnd": 150,
+        "startOffsetUTF16": 6238,
+        "endOffsetExclusiveUTF16": 6279
+      },
+      "visualMode": "molerat_motion",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:molerat_motion",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 6.5
+    },
+    {
+      "sceneId": "V46-C3-048",
+      "chapterId": "chapter3",
+      "narrationText": "では、その選択が何千、何万という人生の中で繰り返されたとき、社会全体には何が起こるのだろうか。",
+      "narrationSourceRange": {
+        "path": "v46hansyoku/考える夜_繁殖の権利_文学的改稿.txt",
+        "blobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+        "lineStart": 152,
+        "lineEnd": 152,
+        "startOffsetUTF16": 6281,
+        "endOffsetExclusiveUTF16": 6328
+      },
+      "visualMode": "zoom_out_mass",
+      "visualDescription": "一人の選択から数千の点へズームアウト。",
+      "backgroundId": "BG_darkroom",
+      "motionDensity": "high",
+      "motionPlan": [
+        "主要オブジェクト/人物の継続動作",
+        "カメラのパン・ズーム・パララックス",
+        "図解の生成・移動・反転・拡大縮小のいずれか"
+      ],
+      "actors": [],
+      "requiredAssets": [
+        {
+          "assetId": "bg-bg-darkroom",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "license": "cleared-commercial",
+          "review": "registered_existing_asset"
+        },
+        {
+          "assetId": "remotion:zoom_out_mass",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "一人の選択から数千の点へズームアウト。"
+        }
+      ],
+      "backgroundBindings": [
+        {
+          "backgroundId": "BG_darkroom",
+          "catalogId": "bg-bg-darkroom",
+          "filePath": "shared/asset-library/背景/BG_darkroom.png",
+          "usage": "primary",
+          "visualReview": "registered"
+        }
+      ],
+      "camera": {
+        "description": "固定画面を避け、ゆるいパン・ズーム・レイヤーパララックスを基本にする。",
+        "screen": "1920x1080/16:9",
+        "motion": "high-motion"
+      },
+      "animation": {
+        "engine": "Remotion React TypeScript",
+        "description": "一人の選択から数千の点へズームアウト。",
+        "subtitle": "確定原稿を厳密一致",
+        "voiceTiming": "VOICEVOX実音声"
+      },
+      "estimatedDuration": 7.3
+    }
+  ],
+  "coverageValidation": {
+    "sceneNarrationCharacters": 1614,
+    "sceneOrderVerified": true,
+    "sourceRangesVerified": true
+  },
+  "missingAssets": {
+    "count": 0,
+    "assetIds": [],
+    "note": "No new user image assets required; chapter-specific animals/objects/diagrams are React/SVG."
+  },
+  "productionGate": {
+    "scenePlanComplete": true,
+    "missingAssetsResolved": true,
+    "renderAllowed": true,
+    "approvedEarlierChaptersLocked": true
+  }
+}
