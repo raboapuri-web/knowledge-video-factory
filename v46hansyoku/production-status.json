@@ -20,7 +20,7 @@
     "v46DedicatedRenderingWorkflow": "implemented_and_verified",
     "projectMetadata": "prepared"
   },
-  "overallStatus": "prologue_approved_locked_chapter1_rendered_review_pending",
+  "overallStatus": "prologue_approved_locked_chapter1_rendered_visual_qa_passed_user_review_pending",
   "firstWorkUnit": "prologue",
   "chapters": [
     {
@@ -83,24 +83,24 @@
       "id": "chapter1",
       "label": "第1章",
       "title": "子供を育てるために、子供を持たない",
-      "sceneDesign": "completed_36_scenes_alignment_reviewed",
+      "sceneDesign": "completed_36_scenes_user_revision_r2",
       "requiredAssets": "all_user_assets_resolved",
       "missingAssets": "none_for_user_upload",
       "assetRegistration": "backgrounds_verified_and_character_variants_deferred_to_react_implementation",
-      "voice": "36_beats_voicevox_generated",
-      "subtitles": "62_cues_generated",
-      "video": "rendered_review_pending",
+      "voice": "generated_and_measured_36_beats_195.130667s_then_reused_exactly_for_final_visual_rerender",
+      "subtitles": "62_exact_cues",
+      "video": "rendered_review_mp4_1920x1080_30fps_h264_aac",
       "preview": "github_actions_artifact_ready",
       "userApproval": "pending_video_review",
       "locked": false,
       "scenePlanPath": "v46hansyoku/scene-plans/chapter1.json",
       "sceneCount": 36,
-      "narrationCoverage": "14_of_14_paragraphs_1319_chars_exact",
+      "narrationCoverage": "36_of_36_scenes_exact_1319_chars",
       "assetInventoryPath": "v46hansyoku/chapters/chapter1/required-assets.json",
       "assetStatusPath": "v46hansyoku/chapters/chapter1/material-status.json",
       "missingAssetCount": 0,
       "identityContinuity": "prologue characters locked; farm/couple roles use existing React templates with chapter-specific variants",
-      "scenePlanBlobSha": "15d54735385a10101a9dce58d4c2c41064f8ddbf",
+      "scenePlanBlobSha": "ff61277648f7630a49b8beda4bbf9b0310cb00ca",
       "alignmentReview": {
         "date": "2026-09-25",
         "fixCount": 5,
@@ -114,22 +114,26 @@
         "narrationChanged": false
       },
       "render": {
-        "runId": 36134552133,
-        "conclusion": "success",
-        "headSha": "ae1a57c4e2c96348f52c57729352fa3193996fee",
-        "fileName": "v46-chapter1.mp4",
-        "artifactId": 10863656146,
+        "finalRunId": 36135480064,
+        "finalRunConclusion": "success",
+        "finalHeadSha": "c6320585d7a648d6da320c71f1693fa6f8d0b798",
+        "artifactId": 10864585866,
         "artifactName": "v46hansyoku-chapter1-36-scenes-parallel-review",
+        "artifactUrl": "https://github.com/raboapuri-web/knowledge-video-factory/actions/runs/36135480064/artifacts/10864585866",
+        "videoFileName": "v46-chapter1.mp4",
         "durationSeconds": 195.456,
-        "width": 1920,
-        "height": 1080,
+        "voiceMeasuredSeconds": 195.130667,
+        "subtitleCueCount": 62,
+        "sceneCount": 36,
+        "dimensions": "1920x1080",
         "fps": 30,
         "videoCodec": "h264",
         "audioCodec": "aac",
         "remotionConcurrency": 4,
-        "qaFrameCount": 36,
-        "qaFrameConcurrency": 4
-      }
+        "qaFrameConcurrency": 4,
+        "finalVisualOnlyRerenderReusedAudioFromRun": 36134552133
+      },
+      "visualQA": "36_scene_frames_generated; user-directed C1-002/C1-003/C1-009/C1-014/C1-016 inspected; C1-003 tear position corrected and rechecked"
     },
     {
       "id": "chapter2",
@@ -193,7 +197,7 @@
     }
   ],
   "renderStarted": true,
-  "nextAction": "User reviews Chapter1 MP4 and requests corrections or approves. Do not start Chapter2 and do not rerender approved prologue.",
+  "nextAction": "User reviews Chapter1 MP4. Apply only requested Chapter1 corrections; do not start Chapter2 until Chapter1 is explicitly approved. Never modify or rerender approved prologue.",
   "warnings": [
     "The supplied display title uses 社会構造, whereas the unchanged script header uses 行動経済学; do not silently edit either.",
     "Other workflows in this repository contain video number v46 for a different project; use the unique v46hansyoku slug for paths, composition IDs and workflows."
@@ -222,5 +226,5 @@
       "archiveStatus": "verified_published_in_git"
     }
   },
-  "currentWorkUnit": "chapter1_review"
+  "currentWorkUnit": "chapter1_user_review"
 }
