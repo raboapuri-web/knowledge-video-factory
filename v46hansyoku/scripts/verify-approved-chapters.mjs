@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+const root=path.resolve(import.meta.dirname,'..');
+const repo=path.resolve(root,'..');
+const p1=JSON.parse(fs.readFileSync(path.join(root,'approvals/chapter1.json'),'utf8'));
+if(p1.videoId!=='V46'||p1.chapterId!=='chapter1'||p1.approval?.status!=='approved'||p1.approval?.locked!==true||p1.approval?.doNotRerenderInSubsequentChapterProduction!==true)throw Error('Chapter1 approval lock missing');
+const bytes=fs.readFileSync(path.join(repo,p1.approvedDesign.path));
+const hash=crypto.createHash('sha1').update(Buffer.from('blob '+bytes.length+'\0')).update(bytes).digest('hex');
+if(hash!==p1.approvedDesign.blobSha)throw Error('Approved Chapter1 scene plan changed');
+console.log('V46 Chapter1 LOCKED: '+hash+' / run '+p1.approvedVideo.originalArtifact.runId);
