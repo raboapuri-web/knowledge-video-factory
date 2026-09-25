@@ -20,7 +20,7 @@
     "v46DedicatedRenderingWorkflow": "implemented_and_verified",
     "projectMetadata": "prepared"
   },
-  "overallStatus": "prologue_and_chapter1_approved_locked_chapter2_to_epilogue_rendered_review_pending",
+  "overallStatus": "full_video_assembled_review_ready",
   "firstWorkUnit": "prologue",
   "chapters": [
     {
@@ -315,7 +315,7 @@
     }
   ],
   "renderStarted": true,
-  "nextAction": "User reviews Chapter2, Chapter3, Chapter4 and epilogue rendered artifacts. Apply scene-specific corrections if requested. Do not rerender approved prologue or Chapter1.",
+  "nextAction": "User reviews the assembled full video. Preserve approved prologue and Chapter1; make later-part revisions only if requested.",
   "warnings": [
     "The supplied display title uses 社会構造, whereas the unchanged script header uses 行動経済学; do not silently edit either.",
     "Other workflows in this repository contain video number v46 for a different project; use the unique v46hansyoku slug for paths, composition IDs and workflows."
@@ -344,7 +344,7 @@
       "archiveStatus": "verified_published_in_git"
     }
   },
-  "currentWorkUnit": "chapter2_to_epilogue_review",
+  "currentWorkUnit": "full_video_review",
   "remainingRenderRun": {
     "runId": 36141633561,
     "conclusion": "success",
@@ -363,5 +363,37 @@
     },
     "totalSeconds": 1302.399333,
     "note": "Sum of approved prologue + approved Chapter1 + current review renders Chapter2-Epilogue. No final concatenation performed yet."
+  },
+  "fullAssembly": {
+    "status": "completed",
+    "fileName": "V46_HANSHOKU_FULL_20260925.mp4",
+    "runId": 36147133065,
+    "runConclusion": "success",
+    "artifactId": 10869847906,
+    "artifactName": "V46-HANSHOKU-FULL-VIDEO",
+    "artifactUrl": "https://github.com/raboapuri-web/knowledge-video-factory/actions/runs/36147133065/artifacts/10869847906",
+    "order": [
+      "prologue",
+      "chapter1",
+      "chapter2",
+      "chapter3",
+      "chapter4",
+      "epilogue"
+    ],
+    "durationSeconds": 1302.4,
+    "durationFormatted": "21:42.4",
+    "sizeBytes": 722449767,
+    "sha256": "710481e877551efa7476d3490252469a8b8056b5ccfcf5efc8fe17503305e200",
+    "assemblyMethod": "ffmpeg concat demuxer stream copy; no rerender/transcode",
+    "video": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "codec": "h264"
+    },
+    "audio": {
+      "codec": "aac"
+    },
+    "approvedLockedPartsPreservedWithoutRerender": true
   }
 }
