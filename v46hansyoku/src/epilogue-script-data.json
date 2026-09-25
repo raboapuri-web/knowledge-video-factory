@@ -1,0 +1,225 @@
+{
+  "approved": true,
+  "chapterId": "epilogue",
+  "sourceBlobSha": "0ee1e5978ca7567f853960801b6404616b5b149d",
+  "sourcePlanBlobSha": "fcb9d6e366deccfbe48587ba3ad81cf149f0ce7d",
+  "beats": [
+    {
+      "id": "V46-E-001",
+      "narration": "再び、金曜日の夜へ戻ろう。",
+      "subtitle": "再び、金曜日の夜へ戻ろう。",
+      "visual": "金曜夜へ時計と街の光で戻る。",
+      "visualMode": "friday_return"
+    },
+    {
+      "id": "V46-E-002",
+      "narration": "オフィスの窓から明かりが消え、駅へ向かう人の流れが細くなっていく。",
+      "subtitle": "オフィスの窓から明かりが消え、駅へ向かう人の流れが細くなっていく。",
+      "visual": "オフィス灯を消し人流を駅へ細くする。",
+      "visualMode": "night_flow"
+    },
+    {
+      "id": "V46-E-003",
+      "narration": "三十五歳の男はホームに立ち、大学の同期から送られてきた写真をもう一度開く。",
+      "subtitle": "三十五歳の男はホームに立ち、大学の同期から送られてきた写真をもう一度開く。",
+      "visual": "同じ主人公がホームでスマホ写真を見る。",
+      "visualMode": "hero_station_photo"
+    },
+    {
+      "id": "V46-E-004",
+      "narration": "ケーキの前で笑う二人の子供。",
+      "subtitle": "ケーキの前で笑う二人の子供。",
+      "visual": "同期一家の写真をケーキ前でパララックス表示。",
+      "visualMode": "peer_family_photo"
+    },
+    {
+      "id": "V46-E-005",
+      "narration": "その後ろで、同期と妻が肩を寄せ合っている。",
+      "subtitle": "その後ろで、同期と妻が肩を寄せ合っている。",
+      "visual": "同期一家の写真をケーキ前でパララックス表示。",
+      "visualMode": "peer_family_photo"
+    },
+    {
+      "id": "V46-E-006",
+      "narration": "彼は、自分の暮らしが嫌いなわけではない。",
+      "subtitle": "彼は、自分の暮らしが嫌いなわけではない。",
+      "visual": "主人公の買い物・休日・移動をモンタージュ。",
+      "visualMode": "hero_life"
+    },
+    {
+      "id": "V46-E-007",
+      "narration": "好きなものを買い、休日には好きな場所へ行ける。",
+      "subtitle": "好きなものを買い、休日には好きな場所へ行ける。",
+      "visual": "主人公の買い物・休日・移動をモンタージュ。",
+      "visualMode": "hero_life"
+    },
+    {
+      "id": "V46-E-008",
+      "narration": "今の仕事にも、積み重ねてきたものがある。",
+      "subtitle": "今の仕事にも、積み重ねてきたものがある。",
+      "visual": "仕事成果と一人の暮らしを穏やかに動かす。",
+      "visualMode": "hero_acceptance"
+    },
+    {
+      "id": "V46-E-009",
+      "narration": "子供を持たないまま生きることも、悪くないと思っている。",
+      "subtitle": "子供を持たないまま生きることも、悪くないと思っている。",
+      "visual": "仕事成果と一人の暮らしを穏やかに動かす。",
+      "visualMode": "hero_acceptance"
+    },
+    {
+      "id": "V46-E-010",
+      "narration": "彼は自分で選んでいる。",
+      "subtitle": "彼は自分で選んでいる。",
+      "visual": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "epilogue_flow"
+    },
+    {
+      "id": "V46-E-011",
+      "narration": "だが、その選択をした自分が、別の街で、別の給料を受け取り、別の時刻に帰宅する人間だったとしても、同じ人生を選んだかどうかは分からない。",
+      "subtitle": "だが、その選択をした自分が、別の街で、別の給料を受け取り、別の時刻に帰宅する人間だったとしても、同じ人生を選んだかどうかは分からない。",
+      "visual": "主人公固定で街・給料・帰宅時刻だけを交換。",
+      "visualMode": "alternate_self"
+    },
+    {
+      "id": "V46-E-012",
+      "narration": "我々は、人生を選ぶ。",
+      "subtitle": "我々は、人生を選ぶ。",
+      "visual": "人生の扉を並べ条件で開きやすさを変える。",
+      "visualMode": "choice_corridor"
+    },
+    {
+      "id": "V46-E-013",
+      "narration": "けれど、その選択肢がどのような形で目の前に現れるかを、一人で決めているわけではない。",
+      "subtitle": "けれど、その選択肢がどのような形で目の前に現れるかを、一人で決めているわけではない。",
+      "visual": "人生の扉を並べ条件で開きやすさを変える。",
+      "visualMode": "choice_corridor"
+    },
+    {
+      "id": "V46-E-014",
+      "narration": "地下に暮らすハダカデバネズミは、繁殖を担う少数の個体と、集団を支える多くの個体に分かれていた。",
+      "subtitle": "地下に暮らすハダカデバネズミは、繁殖を担う少数の個体と、集団を支える多くの個体に分かれていた。",
+      "visual": "地下コロニーを短く回想。",
+      "visualMode": "colony_memory"
+    },
+    {
+      "id": "V46-E-015",
+      "narration": "地上の人間社会にも、子供を育てる者と、子供を持たずに社会を支える者がいる。",
+      "subtitle": "地上の人間社会にも、子供を育てる者と、子供を持たずに社会を支える者がいる。",
+      "visual": "親子家庭と働く人を同一画面で結ぶ。",
+      "visualMode": "human_roles"
+    },
+    {
+      "id": "V46-E-016",
+      "narration": "その姿は、よく似ている。",
+      "subtitle": "その姿は、よく似ている。",
+      "visual": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "epilogue_flow"
+    },
+    {
+      "id": "V46-E-017",
+      "narration": "ただし、人間には、繁殖を命じたり禁じたりする女王はいない。",
+      "subtitle": "ただし、人間には、繁殖を命じたり禁じたりする女王はいない。",
+      "visual": "王冠の代わりに生活条件を周囲へ回す。",
+      "visualMode": "conditions_not_queen"
+    },
+    {
+      "id": "V46-E-018",
+      "narration": "代わりに、暮らしの条件がある。",
+      "subtitle": "代わりに、暮らしの条件がある。",
+      "visual": "王冠の代わりに生活条件を周囲へ回す。",
+      "visualMode": "conditions_not_queen"
+    },
+    {
+      "id": "V46-E-019",
+      "narration": "今の生活を守ろうとする、無数の小さな判断がある。",
+      "subtitle": "今の生活を守ろうとする、無数の小さな判断がある。",
+      "visual": "王冠の代わりに生活条件を周囲へ回す。",
+      "visualMode": "conditions_not_queen"
+    },
+    {
+      "id": "V46-E-020",
+      "narration": "子供を持たない人生を心から望む人はいる。",
+      "subtitle": "子供を持たない人生を心から望む人はいる。",
+      "visual": "子供を持たない人生の道を明るく開く。",
+      "visualMode": "valid_life"
+    },
+    {
+      "id": "V46-E-021",
+      "narration": "その人生を、誰かが欠けたものとして語ることはできない。",
+      "subtitle": "その人生を、誰かが欠けたものとして語ることはできない。",
+      "visual": "子供を持たない人生の道を明るく開く。",
+      "visualMode": "valid_life"
+    },
+    {
+      "id": "V46-E-022",
+      "narration": "一方で、子供を持ちたいと思いながら、生活の条件を整えようとするうちに、望んでいた未来が遠ざかっていく人もいる。",
+      "subtitle": "一方で、子供を持ちたいと思いながら、生活の条件を整えようとするうちに、望んでいた未来が遠ざかっていく人もいる。",
+      "visual": "家族像へ向かうほど条件壁を増やす。",
+      "visualMode": "future_recedes"
+    },
+    {
+      "id": "V46-E-023",
+      "narration": "同じ「子供を持たない」という結果の中には、異なる人生がある。",
+      "subtitle": "同じ「子供を持たない」という結果の中には、異なる人生がある。",
+      "visual": "異なる道を同じ結果へ合流させる。",
+      "visualMode": "same_outcome_many_paths"
+    },
+    {
+      "id": "V46-E-024",
+      "narration": "そして、その違いを見つめるためには、「本人が選んだ」という一言の先へ進まなければならない。",
+      "subtitle": "そして、その違いを見つめるためには、「本人が選んだ」という一言の先へ進まなければならない。",
+      "visual": "異なる道を同じ結果へ合流させる。",
+      "visualMode": "same_outcome_many_paths"
+    },
+    {
+      "id": "V46-E-025",
+      "narration": "男は写真を閉じる。",
+      "subtitle": "男は写真を閉じる。",
+      "visual": "同じ主人公がホームでスマホ写真を見る。",
+      "visualMode": "hero_station_photo"
+    },
+    {
+      "id": "V46-E-026",
+      "narration": "電車がホームに滑り込み、窓の向こうに、仕事帰りの人々の顔が並ぶ。",
+      "subtitle": "電車がホームに滑り込み、窓の向こうに、仕事帰りの人々の顔が並ぶ。",
+      "visual": "同じ主人公がホームでスマホ写真を見る。",
+      "visualMode": "hero_station_photo"
+    },
+    {
+      "id": "V46-E-027",
+      "narration": "彼もその一人として乗り込む。",
+      "subtitle": "彼もその一人として乗り込む。",
+      "visual": "電車を横から滑り込ませる。",
+      "visualMode": "train_arrives"
+    },
+    {
+      "id": "V46-E-028",
+      "narration": "明日も仕事がある。",
+      "subtitle": "明日も仕事がある。",
+      "visual": "乗車後に時計を翌朝へ進める。",
+      "visualMode": "tomorrow_work"
+    },
+    {
+      "id": "V46-E-029",
+      "narration": "彼が明日作る商品や、誰かに届けるサービスは、どこかで暮らす子供の生活も支えるだろう。",
+      "subtitle": "彼が明日作る商品や、誰かに届けるサービスは、どこかで暮らす子供の生活も支えるだろう。",
+      "visual": "仕事成果を都市内で別家庭の子供へ運ぶ。",
+      "visualMode": "supports_child_elsewhere"
+    },
+    {
+      "id": "V46-E-030",
+      "narration": "けれど、彼自身が子供を持つかどうかは、まだ分からない。",
+      "subtitle": "けれど、彼自身が子供を持つかどうかは、まだ分からない。",
+      "visual": "主人公と空席の距離を残す。",
+      "visualMode": "unknown_future"
+    },
+    {
+      "id": "V46-E-031",
+      "narration": "地下の女王を眺めているつもりだった我々は、いつの間にか、自分たちの社会を見つめていたのである。",
+      "subtitle": "地下の女王を眺めているつもりだった我々は、いつの間にか、自分たちの社会を見つめていたのである。",
+      "visual": "地下コロニーを短く回想。",
+      "visualMode": "colony_memory"
+    }
+  ]
+}
