@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/later-scenes.tsx",
+    "src/actors-and-props.tsx",
+    "src/chapter2-index.tsx",
+    "src/chapter3-index.tsx",
+    "src/chapter4-index.tsx",
+    "src/epilogue-index.tsx",
+    "src/chapter2-script-data.json",
+    "src/chapter2-sync-timing.json",
+    "src/chapter2-subtitle-cues.json",
+    "src/chapter3-script-data.json",
+    "src/chapter3-sync-timing.json",
+    "src/chapter3-subtitle-cues.json",
+    "src/chapter4-script-data.json",
+    "src/chapter4-sync-timing.json",
+    "src/chapter4-subtitle-cues.json",
+    "src/epilogue-script-data.json",
+    "src/epilogue-sync-timing.json",
+    "src/epilogue-subtitle-cues.json"
+  ],
+  "exclude": [
+    "src/index.tsx",
+    "src/prologue.tsx",
+    "src/review-overlays.tsx",
+    "src/chapter1.tsx",
+    "src/chapter1-index.tsx"
+  ]
+}
