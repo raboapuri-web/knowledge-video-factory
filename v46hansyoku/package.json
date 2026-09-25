@@ -16,7 +16,8 @@
     "voice:chapter1": "node scripts/generate-chapter1-voicevox.mjs",
     "subtitles:chapter1": "node scripts/build-chapter1-subtitles.mjs",
     "render:chapter1": "remotion render src/chapter1-index.tsx V46HansyokuChapter1 out/v46-chapter1.mp4 --codec=h264 --crf=18 --concurrency=4",
-    "qa:chapter1": "node scripts/generate-chapter1-contact-sheet.mjs out/v46-chapter1.mp4 out/chapter1-contact-sheet.jpg"
+    "qa:chapter1": "node scripts/generate-chapter1-contact-sheet.mjs out/v46-chapter1.mp4 out/chapter1-contact-sheet.jpg",
+    "check:chapter1": "tsc --noEmit -p tsconfig.chapter1.json"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
