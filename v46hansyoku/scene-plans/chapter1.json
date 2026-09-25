@@ -4,7 +4,7 @@
   "projectSlug": "v46hansyoku",
   "chapterId": "chapter1",
   "chapterTitle": "子供を育てるために、子供を持たない",
-  "status": "scene_design_complete_missing_assets_gate",
+  "status": "scene_design_complete_assets_ready_for_implementation",
   "source": {
     "repository": "raboapuri-web/knowledge-video-factory",
     "branch": "main",
@@ -26,8 +26,8 @@
     "rules": [
       "主人公 hero はプロローグ承認済み OfficeWorkerRig の同一人物。顔・髪・スーツ配色・年齢設定を変更しない。",
       "大学同期 peer / youngPeer は第1章に登場させない。同期の妻 mother と同期の子供 boy/girl も第1章に流用しない。",
-      "第1章の『ある共働きの夫婦』は coupleMan / coupleWoman の新規専用人物。プロローグの主人公・大学同期・同期一家とは完全に別人。",
-      "歴史上の農村家族は farmAdult / farmChild の新規専用人物。現代のV46子供リグを歴史衣装のまま使い回さない。",
+      "第1章の『ある共働きの夫婦』は既存OfficeWorkerRig / OfficeWomanRigをベースに、髪型・衣装・配色を章専用に変えた別人物として動画実装時に派生する。プロローグの主人公・大学同期・同期一家とは完全に別人。",
+      "歴史上の農村夫婦はPARENT_FATHER/MOTHER、農村の子供はV46_CHILD_RIG_BOY/GIRLをベースに、前近代衣装・髪・小道具へ差分化する。プロローグ人物とは別人物として扱う。",
       "匿名群衆 PASSERBY は個人同一性を持たない背景人物としてのみ再利用可。",
       "プロローグ承認済みMP4とscene-planは変更・再レンダリングしない。"
     ],
@@ -467,53 +467,58 @@
       "characters": [
         {
           "id": "farmAdultA",
-          "templateId": "character-v46-ch1-farm-adult",
-          "identity": "歴史説明用の農村成人A。現代人物とは別人。",
+          "templateId": "character-parent-father",
+          "identity": "歴史説明用の農村成人A。現代人物とは別人。 既存Parent系Reactリグを農村衣装差分で使用。",
           "variant": "male",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmAdultB",
-          "templateId": "character-v46-ch1-farm-adult",
-          "identity": "歴史説明用の農村成人B。現代人物とは別人。",
+          "templateId": "character-parent-mother",
+          "identity": "歴史説明用の農村成人B。現代人物とは別人。 既存Parent系Reactリグを農村衣装差分で使用。",
           "variant": "female",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildA",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "templateId": "character-v46-child-boy",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "A",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildB",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の子供B。プロローグの子供とは別人。",
+          "templateId": "character-v46-child-girl",
+          "identity": "歴史説明用の子供B。プロローグの子供とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "B",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildC",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の子供C。プロローグの子供とは別人。",
+          "templateId": "character-v46-child-boy",
+          "identity": "歴史説明用の子供C。プロローグの子供とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "C",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         }
       ],
       "characterActions": [
@@ -526,33 +531,57 @@
       "requiredAssets": [
         {
           "assetId": "bg-bg-v46-ch1-rural-home",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
-          "type": "background",
-          "displayName": "前近代の農村家屋・室内",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+          "license": "cleared-commercial",
+          "review": "user_added_and_confirmed_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-farm-adult",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_ADULT_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・前近代農村の成人（男女バリアント）",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-parent-father",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/PARENT_FATHER.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-farm-child",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-parent-mother",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/PARENT_MOTHER.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-farm-adult-costume-variants",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "PARENT_FATHER / PARENT_MOTHERをベースに、前近代農村の簡素な服・髪・小道具へ差分化。プロローグ人物とは別人に見える配色・衣装。動画実装時にReact props/派生コンポーネントで作成。"
+        },
+        {
+          "assetId": "character-v46-child-boy",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "character-v46-child-girl",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-farm-child-costume-variants",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "V46_CHILD_RIG_BOY / GIRLをベースに、A/B/Cの農村児童差分を服色・背丈・髪・農作業小道具で作成。同期の子供とは明確に別人物。"
         }
       ],
       "objectActions": [
@@ -586,7 +615,7 @@
           "catalogId": "bg-bg-v46-ch1-rural-home",
           "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -609,43 +638,47 @@
       "characters": [
         {
           "id": "farmAdultA",
-          "templateId": "character-v46-ch1-farm-adult",
-          "identity": "歴史説明用の農村成人A。現代人物とは別人。",
+          "templateId": "character-parent-father",
+          "identity": "歴史説明用の農村成人A。現代人物とは別人。 既存Parent系Reactリグを農村衣装差分で使用。",
           "variant": "male",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildA",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "templateId": "character-v46-child-boy",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "A",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildB",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の子供B。プロローグの子供とは別人。",
+          "templateId": "character-v46-child-girl",
+          "identity": "歴史説明用の子供B。プロローグの子供とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "B",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildC",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の子供C。プロローグの子供とは別人。",
+          "templateId": "character-v46-child-boy",
+          "identity": "歴史説明用の子供C。プロローグの子供とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "C",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         }
       ],
       "characterActions": [
@@ -658,33 +691,57 @@
       "requiredAssets": [
         {
           "assetId": "bg-bg-v46-ch1-rural-home",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
-          "type": "background",
-          "displayName": "前近代の農村家屋・室内",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+          "license": "cleared-commercial",
+          "review": "user_added_and_confirmed_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-farm-adult",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_ADULT_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・前近代農村の成人（男女バリアント）",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-parent-father",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/PARENT_FATHER.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-farm-child",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-parent-mother",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/PARENT_MOTHER.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-farm-adult-costume-variants",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "PARENT_FATHER / PARENT_MOTHERをベースに、前近代農村の簡素な服・髪・小道具へ差分化。プロローグ人物とは別人に見える配色・衣装。動画実装時にReact props/派生コンポーネントで作成。"
+        },
+        {
+          "assetId": "character-v46-child-boy",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "character-v46-child-girl",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-farm-child-costume-variants",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "V46_CHILD_RIG_BOY / GIRLをベースに、A/B/Cの農村児童差分を服色・背丈・髪・農作業小道具で作成。同期の子供とは明確に別人物。"
         },
         {
           "assetId": "remotion:hardship-overlay",
@@ -725,7 +782,7 @@
           "catalogId": "bg-bg-v46-ch1-rural-home",
           "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -1112,43 +1169,47 @@
       "characters": [
         {
           "id": "farmAdultA",
-          "templateId": "character-v46-ch1-farm-adult",
-          "identity": "歴史説明用の農村成人A。現代人物とは別人。",
+          "templateId": "character-parent-father",
+          "identity": "歴史説明用の農村成人A。現代人物とは別人。 既存Parent系Reactリグを農村衣装差分で使用。",
           "variant": "male",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmAdultB",
-          "templateId": "character-v46-ch1-farm-adult",
-          "identity": "歴史説明用の農村成人B。現代人物とは別人。",
+          "templateId": "character-parent-mother",
+          "identity": "歴史説明用の農村成人B。現代人物とは別人。 既存Parent系Reactリグを農村衣装差分で使用。",
           "variant": "female",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildA",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "templateId": "character-v46-child-boy",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "A",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildB",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の子供B。プロローグの子供とは別人。",
+          "templateId": "character-v46-child-girl",
+          "identity": "歴史説明用の子供B。プロローグの子供とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "B",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         }
       ],
       "characterActions": [
@@ -1161,33 +1222,57 @@
       "requiredAssets": [
         {
           "assetId": "bg-bg-v46-ch1-rural-home",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
-          "type": "background",
-          "displayName": "前近代の農村家屋・室内",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+          "license": "cleared-commercial",
+          "review": "user_added_and_confirmed_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-farm-adult",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_ADULT_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・前近代農村の成人（男女バリアント）",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-parent-father",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/PARENT_FATHER.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-farm-child",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-parent-mother",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/PARENT_MOTHER.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-farm-adult-costume-variants",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "PARENT_FATHER / PARENT_MOTHERをベースに、前近代農村の簡素な服・髪・小道具へ差分化。プロローグ人物とは別人に見える配色・衣装。動画実装時にReact props/派生コンポーネントで作成。"
+        },
+        {
+          "assetId": "character-v46-child-boy",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "character-v46-child-girl",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-farm-child-costume-variants",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "V46_CHILD_RIG_BOY / GIRLをベースに、A/B/Cの農村児童差分を服色・背丈・髪・農作業小道具で作成。同期の子供とは明確に別人物。"
         }
       ],
       "objectActions": [
@@ -1221,7 +1306,7 @@
           "catalogId": "bg-bg-v46-ch1-rural-home",
           "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -1244,33 +1329,36 @@
       "characters": [
         {
           "id": "farmChildA",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "templateId": "character-v46-child-boy",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "A",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildB",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の子供B。プロローグの子供とは別人。",
+          "templateId": "character-v46-child-girl",
+          "identity": "歴史説明用の子供B。プロローグの子供とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "B",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildC",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の子供C。プロローグの子供とは別人。",
+          "templateId": "character-v46-child-boy",
+          "identity": "歴史説明用の子供C。プロローグの子供とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "C",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         }
       ],
       "characterActions": [
@@ -1283,23 +1371,34 @@
       "requiredAssets": [
         {
           "assetId": "bg-bg-v46-ch1-rural-field",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
-          "type": "background",
-          "displayName": "前近代の農村・畑と家畜",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
+          "license": "cleared-commercial",
+          "review": "user_added_and_confirmed_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-farm-child",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-v46-child-boy",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "character-v46-child-girl",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-farm-child-costume-variants",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "V46_CHILD_RIG_BOY / GIRLをベースに、A/B/Cの農村児童差分を服色・背丈・髪・農作業小道具で作成。同期の子供とは明確に別人物。"
         },
         {
           "assetId": "remotion:livestock-and-harvest-props",
@@ -1340,7 +1439,7 @@
           "catalogId": "bg-bg-v46-ch1-rural-field",
           "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -1363,33 +1462,36 @@
       "characters": [
         {
           "id": "farmAdultB",
-          "templateId": "character-v46-ch1-farm-adult",
-          "identity": "歴史説明用の農村成人B。現代人物とは別人。",
+          "templateId": "character-parent-mother",
+          "identity": "歴史説明用の農村成人B。現代人物とは別人。 既存Parent系Reactリグを農村衣装差分で使用。",
           "variant": "female",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildA",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "templateId": "character-v46-child-boy",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "A",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildB",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の子供B。プロローグの子供とは別人。",
+          "templateId": "character-v46-child-girl",
+          "identity": "歴史説明用の子供B。プロローグの子供とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "B",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         }
       ],
       "characterActions": [
@@ -1402,33 +1504,57 @@
       "requiredAssets": [
         {
           "assetId": "bg-bg-v46-ch1-rural-home",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
-          "type": "background",
-          "displayName": "前近代の農村家屋・室内",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
+          "license": "cleared-commercial",
+          "review": "user_added_and_confirmed_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-farm-adult",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_ADULT_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・前近代農村の成人（男女バリアント）",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-parent-father",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/PARENT_FATHER.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-farm-child",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-parent-mother",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/PARENT_MOTHER.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-farm-adult-costume-variants",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "PARENT_FATHER / PARENT_MOTHERをベースに、前近代農村の簡素な服・髪・小道具へ差分化。プロローグ人物とは別人に見える配色・衣装。動画実装時にReact props/派生コンポーネントで作成。"
+        },
+        {
+          "assetId": "character-v46-child-boy",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "character-v46-child-girl",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-farm-child-costume-variants",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "V46_CHILD_RIG_BOY / GIRLをベースに、A/B/Cの農村児童差分を服色・背丈・髪・農作業小道具で作成。同期の子供とは明確に別人物。"
         },
         {
           "assetId": "remotion:food-clothing-costs",
@@ -1469,7 +1595,7 @@
           "catalogId": "bg-bg-v46-ch1-rural-home",
           "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -1492,33 +1618,36 @@
       "characters": [
         {
           "id": "farmAdultA",
-          "templateId": "character-v46-ch1-farm-adult",
-          "identity": "歴史説明用の農村成人A。現代人物とは別人。",
+          "templateId": "character-parent-father",
+          "identity": "歴史説明用の農村成人A。現代人物とは別人。 既存Parent系Reactリグを農村衣装差分で使用。",
           "variant": "male",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildA",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "templateId": "character-v46-child-boy",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "A",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         },
         {
           "id": "farmChildB",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の子供B。プロローグの子供とは別人。",
+          "templateId": "character-v46-child-girl",
+          "identity": "歴史説明用の子供B。プロローグの子供とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "B",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         }
       ],
       "characterActions": [
@@ -1531,33 +1660,57 @@
       "requiredAssets": [
         {
           "assetId": "bg-bg-v46-ch1-rural-field",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
-          "type": "background",
-          "displayName": "前近代の農村・畑と家畜",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
+          "license": "cleared-commercial",
+          "review": "user_added_and_confirmed_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-farm-adult",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_ADULT_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・前近代農村の成人（男女バリアント）",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-parent-father",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/PARENT_FATHER.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-farm-child",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-parent-mother",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/PARENT_MOTHER.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-farm-adult-costume-variants",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "PARENT_FATHER / PARENT_MOTHERをベースに、前近代農村の簡素な服・髪・小道具へ差分化。プロローグ人物とは別人に見える配色・衣装。動画実装時にReact props/派生コンポーネントで作成。"
+        },
+        {
+          "assetId": "character-v46-child-boy",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "character-v46-child-girl",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-farm-child-costume-variants",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "V46_CHILD_RIG_BOY / GIRLをベースに、A/B/Cの農村児童差分を服色・背丈・髪・農作業小道具で作成。同期の子供とは明確に別人物。"
         }
       ],
       "objectActions": [
@@ -1591,7 +1744,7 @@
           "catalogId": "bg-bg-v46-ch1-rural-field",
           "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -2239,21 +2392,23 @@
       "characters": [
         {
           "id": "coupleMan",
-          "templateId": "character-v46-ch1-couple-man",
-          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。 既存OfficeWorkerRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         },
         {
           "id": "coupleWoman",
-          "templateId": "character-v46-ch1-couple-woman",
-          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。 既存OfficeWomanRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         }
       ],
       "characterActions": [
@@ -2283,24 +2438,34 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "character-v46-ch1-couple-man",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の男性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-couple-woman",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の女性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "remotion:chapter1-working-couple-man-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWorkerRigをベースに、主人公・大学同期と混同しない髪型・服色・自宅服/仕事服差分を動画実装時に作成。"
+        },
+        {
+          "assetId": "character-modern-female-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-woman-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-working-couple-woman-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWomanRigをベースに、同期の妻や既存女性会社員の見た目と混同しない髪型・配色・自宅服/仕事服差分を動画実装時に作成。"
         },
         {
           "assetId": "remotion:travel-props",
@@ -2359,26 +2524,28 @@
         "startOffsetUTF16": 2188,
         "endOffsetExclusiveUTF16": 2227
       },
-      "visualDescription": "同じ夫婦の現在の住まい。子供の話を始めると部屋の寸法線が狭く見え、貯金表示が相対的に小さく感じられる。主人公のワンルームとは別デザイン。",
-      "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
+      "visualDescription": "同じ夫婦の現在の住まい。既存背景BG_ROOM_DAYを使用。子供の話を始めると部屋の寸法線が狭く見え、貯金表示が相対的に小さく感じられる。主人公のワンルームとは別デザイン。",
+      "backgroundId": "BG_ROOM_DAY",
       "characters": [
         {
           "id": "coupleMan",
-          "templateId": "character-v46-ch1-couple-man",
-          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。 既存OfficeWorkerRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         },
         {
           "id": "coupleWoman",
-          "templateId": "character-v46-ch1-couple-woman",
-          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。 既存OfficeWomanRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         }
       ],
       "characterActions": [
@@ -2390,34 +2557,42 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-v46-ch1-couple-apartment",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
-          "type": "background",
-          "displayName": "第1章専用・共働き夫婦の現在の住居",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "bg-bg-room-day",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
+          "license": "cleared-commercial",
+          "review": "user_selected_for_chapter1_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-couple-man",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の男性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-couple-woman",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の女性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "remotion:chapter1-working-couple-man-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWorkerRigをベースに、主人公・大学同期と混同しない髪型・服色・自宅服/仕事服差分を動画実装時に作成。"
+        },
+        {
+          "assetId": "character-modern-female-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-woman-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-working-couple-woman-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWomanRigをベースに、同期の妻や既存女性会社員の見た目と混同しない髪型・配色・自宅服/仕事服差分を動画実装時に作成。"
         },
         {
           "assetId": "part-auto-2679868ba4e74a25",
@@ -2463,11 +2638,11 @@
       "visualIntent": "同じ夫婦の現在の住まい。子供の話を始めると部屋の寸法線が狭く見え、貯金表示が相対的に小さく感じられる。主人公のワンルームとは別デザイン。",
       "backgroundBindings": [
         {
-          "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
-          "catalogId": "bg-bg-v46-ch1-couple-apartment",
-          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
+          "backgroundId": "BG_ROOM_DAY",
+          "catalogId": "bg-bg-room-day",
+          "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -2486,25 +2661,27 @@
         "endOffsetExclusiveUTF16": 2256
       },
       "visualDescription": "夫婦の机上に保育園送迎の時刻表を置き、画面端に病院の休業・欠勤を示すカレンダーを重ねる。実在制度の数値は出さない。",
-      "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
+      "backgroundId": "BG_ROOM_DAY",
       "characters": [
         {
           "id": "coupleMan",
-          "templateId": "character-v46-ch1-couple-man",
-          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。 既存OfficeWorkerRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         },
         {
           "id": "coupleWoman",
-          "templateId": "character-v46-ch1-couple-woman",
-          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。 既存OfficeWomanRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         }
       ],
       "characterActions": [
@@ -2516,34 +2693,42 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-v46-ch1-couple-apartment",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
-          "type": "background",
-          "displayName": "第1章専用・共働き夫婦の現在の住居",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "bg-bg-room-day",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
+          "license": "cleared-commercial",
+          "review": "user_selected_for_chapter1_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-couple-man",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の男性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-couple-woman",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の女性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "remotion:chapter1-working-couple-man-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWorkerRigをベースに、主人公・大学同期と混同しない髪型・服色・自宅服/仕事服差分を動画実装時に作成。"
+        },
+        {
+          "assetId": "character-modern-female-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-woman-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-working-couple-woman-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWomanRigをベースに、同期の妻や既存女性会社員の見た目と混同しない髪型・配色・自宅服/仕事服差分を動画実装時に作成。"
         },
         {
           "assetId": "bg-bg-hospital",
@@ -2589,11 +2774,11 @@
       "visualIntent": "夫婦の机上に保育園送迎の時刻表を置き、画面端に病院の休業・欠勤を示すカレンダーを重ねる。実在制度の数値は出さない。",
       "backgroundBindings": [
         {
-          "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
-          "catalogId": "bg-bg-v46-ch1-couple-apartment",
-          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
+          "backgroundId": "BG_ROOM_DAY",
+          "catalogId": "bg-bg-room-day",
+          "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -2616,21 +2801,23 @@
       "characters": [
         {
           "id": "coupleMan",
-          "templateId": "character-v46-ch1-couple-man",
-          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。 既存OfficeWorkerRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         },
         {
           "id": "coupleWoman",
-          "templateId": "character-v46-ch1-couple-woman",
-          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。 既存OfficeWomanRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         }
       ],
       "characterActions": [
@@ -2651,24 +2838,34 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "character-v46-ch1-couple-man",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の男性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-couple-woman",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の女性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "remotion:chapter1-working-couple-man-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWorkerRigをベースに、主人公・大学同期と混同しない髪型・服色・自宅服/仕事服差分を動画実装時に作成。"
+        },
+        {
+          "assetId": "character-modern-female-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-woman-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-working-couple-woman-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWomanRigをベースに、同期の妻や既存女性会社員の見た目と混同しない髪型・配色・自宅服/仕事服差分を動画実装時に作成。"
         },
         {
           "assetId": "remotion:school-cost-stack",
@@ -2728,25 +2925,27 @@
         "endOffsetExclusiveUTF16": 2309
       },
       "visualDescription": "夫婦が生活の土台を整えるチェックリストを作る。『十分な貯蓄』『安定した仕事』『住まい』を文字ではなく記号中心に積み上げる。",
-      "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
+      "backgroundId": "BG_ROOM_DAY",
       "characters": [
         {
           "id": "coupleMan",
-          "templateId": "character-v46-ch1-couple-man",
-          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。 既存OfficeWorkerRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         },
         {
           "id": "coupleWoman",
-          "templateId": "character-v46-ch1-couple-woman",
-          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。 既存OfficeWomanRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         }
       ],
       "characterActions": [
@@ -2758,34 +2957,42 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-v46-ch1-couple-apartment",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
-          "type": "background",
-          "displayName": "第1章専用・共働き夫婦の現在の住居",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "bg-bg-room-day",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
+          "license": "cleared-commercial",
+          "review": "user_selected_for_chapter1_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-couple-man",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の男性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-couple-woman",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の女性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "remotion:chapter1-working-couple-man-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWorkerRigをベースに、主人公・大学同期と混同しない髪型・服色・自宅服/仕事服差分を動画実装時に作成。"
+        },
+        {
+          "assetId": "character-modern-female-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-woman-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-working-couple-woman-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWomanRigをベースに、同期の妻や既存女性会社員の見た目と混同しない髪型・配色・自宅服/仕事服差分を動画実装時に作成。"
         },
         {
           "assetId": "remotion:foundation-checklist",
@@ -2822,11 +3029,11 @@
       "visualIntent": "夫婦が生活の土台を整えるチェックリストを作る。『十分な貯蓄』『安定した仕事』『住まい』を文字ではなく記号中心に積み上げる。",
       "backgroundBindings": [
         {
-          "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
-          "catalogId": "bg-bg-v46-ch1-couple-apartment",
-          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
+          "backgroundId": "BG_ROOM_DAY",
+          "catalogId": "bg-bg-room-day",
+          "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -2849,21 +3056,23 @@
       "characters": [
         {
           "id": "coupleMan",
-          "templateId": "character-v46-ch1-couple-man",
-          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。 既存OfficeWorkerRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         },
         {
           "id": "coupleWoman",
-          "templateId": "character-v46-ch1-couple-woman",
-          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。 既存OfficeWomanRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         }
       ],
       "characterActions": [
@@ -2893,24 +3102,34 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "character-v46-ch1-couple-man",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の男性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-couple-woman",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の女性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "remotion:chapter1-working-couple-man-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWorkerRigをベースに、主人公・大学同期と混同しない髪型・服色・自宅服/仕事服差分を動画実装時に作成。"
+        },
+        {
+          "assetId": "character-modern-female-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-woman-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-working-couple-woman-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWomanRigをベースに、同期の妻や既存女性会社員の見た目と混同しない髪型・配色・自宅服/仕事服差分を動画実装時に作成。"
         },
         {
           "assetId": "part-clock",
@@ -2979,25 +3198,27 @@
         "endOffsetExclusiveUTF16": 2374
       },
       "visualDescription": "家族のために働いた時間が、同時に二人の共有時間から抜け落ちる。食卓の二脚の椅子が時間差で空席になる。",
-      "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
+      "backgroundId": "BG_ROOM_DAY",
       "characters": [
         {
           "id": "coupleMan",
-          "templateId": "character-v46-ch1-couple-man",
-          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。 既存OfficeWorkerRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         },
         {
           "id": "coupleWoman",
-          "templateId": "character-v46-ch1-couple-woman",
-          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。 既存OfficeWomanRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         }
       ],
       "characterActions": [
@@ -3009,34 +3230,42 @@
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-v46-ch1-couple-apartment",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
-          "type": "background",
-          "displayName": "第1章専用・共働き夫婦の現在の住居",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "bg-bg-room-day",
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
+          "license": "cleared-commercial",
+          "review": "user_selected_for_chapter1_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-couple-man",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の男性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-couple-woman",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の女性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "remotion:chapter1-working-couple-man-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWorkerRigをベースに、主人公・大学同期と混同しない髪型・服色・自宅服/仕事服差分を動画実装時に作成。"
+        },
+        {
+          "assetId": "character-modern-female-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-woman-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-working-couple-woman-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWomanRigをベースに、同期の妻や既存女性会社員の見た目と混同しない髪型・配色・自宅服/仕事服差分を動画実装時に作成。"
         },
         {
           "assetId": "part-clock",
@@ -3082,11 +3311,11 @@
       "visualIntent": "家族のために働いた時間が、同時に二人の共有時間から抜け落ちる。食卓の二脚の椅子が時間差で空席になる。",
       "backgroundBindings": [
         {
-          "backgroundId": "BG_V46_CH1_COUPLE_APARTMENT",
-          "catalogId": "bg-bg-v46-ch1-couple-apartment",
-          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT.png",
+          "backgroundId": "BG_ROOM_DAY",
+          "catalogId": "bg-bg-room-day",
+          "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -3109,21 +3338,23 @@
       "characters": [
         {
           "id": "coupleMan",
-          "templateId": "character-v46-ch1-couple-man",
-          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。 既存OfficeWorkerRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         },
         {
           "id": "coupleWoman",
-          "templateId": "character-v46-ch1-couple-woman",
-          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。 既存OfficeWomanRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         }
       ],
       "characterActions": [
@@ -3136,33 +3367,41 @@
       "requiredAssets": [
         {
           "assetId": "bg-bg-v46-ch1-couple-apartment-wide",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
-          "type": "background",
-          "displayName": "第1章専用・数年後の広い住居",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "user_added_and_confirmed_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-couple-man",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の男性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-couple-woman",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の女性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "remotion:chapter1-working-couple-man-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWorkerRigをベースに、主人公・大学同期と混同しない髪型・服色・自宅服/仕事服差分を動画実装時に作成。"
+        },
+        {
+          "assetId": "character-modern-female-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-woman-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-working-couple-woman-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWomanRigをベースに、同期の妻や既存女性会社員の見た目と混同しない髪型・配色・自宅服/仕事服差分を動画実装時に作成。"
         },
         {
           "assetId": "bg-bg-office",
@@ -3221,7 +3460,7 @@
           "catalogId": "bg-bg-v46-ch1-couple-apartment-wide",
           "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -3244,13 +3483,14 @@
       "characters": [
         {
           "id": "farmChildA",
-          "templateId": "character-v46-ch1-farm-child",
-          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。",
+          "templateId": "character-v46-child-boy",
+          "identity": "歴史説明用の年長児A。プロローグの男児・女児とは別人。 既存V46_CHILD Reactリグを農村衣装・髪・小道具差分で使用。",
           "variant": "A",
           "continuity": "chapter1_only",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_variant_at_render"
         }
       ],
       "characterActions": [
@@ -3263,23 +3503,34 @@
       "requiredAssets": [
         {
           "assetId": "bg-bg-v46-ch1-rural-field",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
-          "type": "background",
-          "displayName": "前近代の農村・畑と家畜",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
+          "license": "cleared-commercial",
+          "review": "user_added_and_confirmed_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-farm-child",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_FARM_CHILD_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・前近代農村の子供（複数バリアント）",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-v46-child-boy",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_BOY.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "character-v46-child-girl",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/V46_CHILD_RIG_GIRL.tsx",
+          "license": "cleared-commercial",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-farm-child-costume-variants",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "V46_CHILD_RIG_BOY / GIRLをベースに、A/B/Cの農村児童差分を服色・背丈・髪・農作業小道具で作成。同期の子供とは明確に別人物。"
         },
         {
           "assetId": "remotion:historical-modern-split",
@@ -3320,7 +3571,7 @@
           "catalogId": "bg-bg-v46-ch1-rural-field",
           "filePath": "shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -3343,21 +3594,23 @@
       "characters": [
         {
           "id": "coupleMan",
-          "templateId": "character-v46-ch1-couple-man",
-          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。 既存OfficeWorkerRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         },
         {
           "id": "coupleWoman",
-          "templateId": "character-v46-ch1-couple-woman",
-          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。 既存OfficeWomanRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         }
       ],
       "characterActions": [
@@ -3370,33 +3623,41 @@
       "requiredAssets": [
         {
           "assetId": "bg-bg-v46-ch1-couple-apartment-wide",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
-          "type": "background",
-          "displayName": "第1章専用・数年後の広い住居",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "user_added_and_confirmed_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-couple-man",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の男性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-couple-woman",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の女性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "remotion:chapter1-working-couple-man-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWorkerRigをベースに、主人公・大学同期と混同しない髪型・服色・自宅服/仕事服差分を動画実装時に作成。"
+        },
+        {
+          "assetId": "character-modern-female-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-woman-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-working-couple-woman-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWomanRigをベースに、同期の妻や既存女性会社員の見た目と混同しない髪型・配色・自宅服/仕事服差分を動画実装時に作成。"
         },
         {
           "assetId": "remotion:requirements-wall",
@@ -3437,7 +3698,7 @@
           "catalogId": "bg-bg-v46-ch1-couple-apartment-wide",
           "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -3460,21 +3721,23 @@
       "characters": [
         {
           "id": "coupleMan",
-          "templateId": "character-v46-ch1-couple-man",
-          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。 既存OfficeWorkerRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         },
         {
           "id": "coupleWoman",
-          "templateId": "character-v46-ch1-couple-woman",
-          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。 既存OfficeWomanRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         }
       ],
       "characterActions": [
@@ -3495,24 +3758,34 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "character-v46-ch1-couple-man",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の男性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-couple-woman",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の女性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "remotion:chapter1-working-couple-man-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWorkerRigをベースに、主人公・大学同期と混同しない髪型・服色・自宅服/仕事服差分を動画実装時に作成。"
+        },
+        {
+          "assetId": "character-modern-female-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-woman-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-working-couple-woman-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWomanRigをベースに、同期の妻や既存女性会社員の見た目と混同しない髪型・配色・自宅服/仕事服差分を動画実装時に作成。"
         },
         {
           "assetId": "part-clock",
@@ -3671,21 +3944,23 @@
       "characters": [
         {
           "id": "coupleMan",
-          "templateId": "character-v46-ch1-couple-man",
-          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。",
+          "templateId": "character-modern-male-office-worker",
+          "identity": "第1章専用の共働き夫婦の男性。主人公・大学同期・同期の父親リグとは別人。 既存OfficeWorkerRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         },
         {
           "id": "coupleWoman",
-          "templateId": "character-v46-ch1-couple-woman",
-          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。",
+          "templateId": "character-modern-female-office-worker",
+          "identity": "第1章専用の共働き夫婦の女性。プロローグの同期の妻・母親リグとは別人。 既存OfficeWomanRigの章専用外見差分として実装。",
           "continuity": "chapter1_scenes_23_to_35",
           "position": "visualDescriptionに従う",
           "facing": "主動作対象",
-          "initialPose": "characterActionsに従う"
+          "initialPose": "characterActionsに従う",
+          "baseTemplatePolicy": "existing_react_template_costume_hair_palette_variant_at_render"
         }
       ],
       "characterActions": [
@@ -3698,33 +3973,41 @@
       "requiredAssets": [
         {
           "assetId": "bg-bg-v46-ch1-couple-apartment-wide",
-          "suggestedFilePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
-          "type": "background",
-          "displayName": "第1章専用・数年後の広い住居",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "origin": "registered_shared",
+          "status": "registered",
+          "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
+          "license": "cleared-commercial",
+          "review": "user_added_and_confirmed_2026-09-25"
         },
         {
-          "assetId": "character-v46-ch1-couple-man",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_MAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の男性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "character-modern-male-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-worker-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
         },
         {
-          "assetId": "character-v46-ch1-couple-woman",
-          "suggestedFilePath": "shared/asset-library/人物テンプレート/V46_CH1_COUPLE_WOMAN_RIG.tsx",
-          "type": "character-rig",
-          "displayName": "第1章専用・共働き夫婦の女性",
-          "mustCreate": true,
-          "origin": "user_asset_required",
-          "status": "missing",
-          "review": "must_be_registered_before_chapter1_render"
+          "assetId": "remotion:chapter1-working-couple-man-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWorkerRigをベースに、主人公・大学同期と混同しない髪型・服色・自宅服/仕事服差分を動画実装時に作成。"
+        },
+        {
+          "assetId": "character-modern-female-office-worker",
+          "origin": "registered_shared",
+          "status": "approved",
+          "filePath": "shared/asset-library/人物テンプレート/office-woman-rig.tsx",
+          "license": "original-project",
+          "review": "existing_react_template_base"
+        },
+        {
+          "assetId": "remotion:chapter1-working-couple-woman-variant",
+          "origin": "scene_implementation",
+          "status": "code_to_implement",
+          "review": "no_user_upload_required",
+          "description": "OfficeWomanRigをベースに、同期の妻や既存女性会社員の見た目と混同しない髪型・配色・自宅服/仕事服差分を動画実装時に作成。"
         },
         {
           "assetId": "remotion:high-condition-question",
@@ -3765,7 +4048,7 @@
           "catalogId": "bg-bg-v46-ch1-couple-apartment-wide",
           "filePath": "shared/asset-library/背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
           "usage": "primary",
-          "visualReview": "missing_user_asset"
+          "visualReview": "user_confirmed_2026-09-25"
         }
       ],
       "materialRegistration": "missing_assets_gate"
@@ -3865,26 +4148,28 @@
     "prologueLockVerified": true
   },
   "missingAssets": {
-    "count": 8,
-    "assetIds": [
-      "bg-bg-v46-ch1-rural-home",
-      "character-v46-ch1-farm-adult",
-      "character-v46-ch1-farm-child",
-      "bg-bg-v46-ch1-rural-field",
-      "character-v46-ch1-couple-man",
-      "character-v46-ch1-couple-woman",
-      "bg-bg-v46-ch1-couple-apartment",
-      "bg-bg-v46-ch1-couple-apartment-wide"
-    ],
+    "count": 0,
+    "assetIds": [],
     "inventoryPath": "v46hansyoku/chapters/chapter1/required-assets.json"
   },
-  "nextStep": "ユーザーが不足素材を作成し shared/asset-library に登録 → catalog反映 → Chapter1素材ゲート確認 → 音声・字幕と映像を制作。プロローグは再レンダリング禁止。",
+  "nextStep": "Chapter1のRemotion実装・VOICEVOX音声・字幕生成へ進める。人物は既存Reactテンプレートから章専用差分を実装。承認済みプロローグは再レンダリング禁止。",
   "productionGate": {
     "scenePlanComplete": true,
-    "missingAssetsResolved": false,
-    "renderAllowed": false,
-    "userReviewScenePlan": "pending",
+    "missingAssetsResolved": true,
+    "renderAllowed": true,
+    "userReviewScenePlan": "updated_with_user_asset_decisions",
     "doNotStartChapter2": true,
     "approvedPrologueLocked": true
+  },
+  "assetResolutionUpdate": {
+    "date": "2026-09-25",
+    "backgroundDecisions": {
+      "BG_V46_CH1_RURAL_HOME": "registered_existing_user_added",
+      "BG_V46_CH1_RURAL_FIELD": "registered_existing_user_added",
+      "BG_V46_CH1_COUPLE_APARTMENT": "replaced_with_BG_ROOM_DAY",
+      "BG_V46_CH1_COUPLE_APARTMENT_WIDE": "registered_existing_user_added"
+    },
+    "characterDecision": "Farm children, farm adults/couple, and working couple are no longer upload requirements. They will be derived at render time from approved existing React rigs with costume/hair/palette variants.",
+    "userUploadMissingCount": 0
   }
 }
