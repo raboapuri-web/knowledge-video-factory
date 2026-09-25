@@ -20,7 +20,7 @@
     "v46DedicatedRenderingWorkflow": "implemented_and_verified",
     "projectMetadata": "prepared"
   },
-  "overallStatus": "prologue_approved_locked_chapter1_alignment_reviewed_ready_for_implementation",
+  "overallStatus": "prologue_approved_locked_chapter1_rendered_review_pending",
   "firstWorkUnit": "prologue",
   "chapters": [
     {
@@ -87,11 +87,11 @@
       "requiredAssets": "all_user_assets_resolved",
       "missingAssets": "none_for_user_upload",
       "assetRegistration": "backgrounds_verified_and_character_variants_deferred_to_react_implementation",
-      "voice": "ready_to_generate",
-      "subtitles": "ready_to_generate",
-      "video": "ready_for_implementation",
-      "preview": "not_started",
-      "userApproval": "scene_plan_alignment_review_ready",
+      "voice": "36_beats_voicevox_generated",
+      "subtitles": "62_cues_generated",
+      "video": "rendered_review_pending",
+      "preview": "github_actions_artifact_ready",
+      "userApproval": "pending_video_review",
       "locked": false,
       "scenePlanPath": "v46hansyoku/scene-plans/chapter1.json",
       "sceneCount": 36,
@@ -112,6 +112,23 @@
           "C1-036"
         ],
         "narrationChanged": false
+      },
+      "render": {
+        "runId": 36134552133,
+        "conclusion": "success",
+        "headSha": "ae1a57c4e2c96348f52c57729352fa3193996fee",
+        "fileName": "v46-chapter1.mp4",
+        "artifactId": 10863656146,
+        "artifactName": "v46hansyoku-chapter1-36-scenes-parallel-review",
+        "durationSeconds": 195.456,
+        "width": 1920,
+        "height": 1080,
+        "fps": 30,
+        "videoCodec": "h264",
+        "audioCodec": "aac",
+        "remotionConcurrency": 4,
+        "qaFrameCount": 36,
+        "qaFrameConcurrency": 4
       }
     },
     {
@@ -176,7 +193,7 @@
     }
   ],
   "renderStarted": true,
-  "nextAction": "User reviews the displayed Chapter1 narration-to-scene mapping. If approved, implement Chapter1 only. Do not modify or rerender the approved prologue.",
+  "nextAction": "User reviews Chapter1 MP4 and requests corrections or approves. Do not start Chapter2 and do not rerender approved prologue.",
   "warnings": [
     "The supplied display title uses 社会構造, whereas the unchanged script header uses 行動経済学; do not silently edit either.",
     "Other workflows in this repository contain video number v46 for a different project; use the unique v46hansyoku slug for paths, composition IDs and workflows."
@@ -205,5 +222,5 @@
       "archiveStatus": "verified_published_in_git"
     }
   },
-  "currentWorkUnit": "chapter1_implementation"
+  "currentWorkUnit": "chapter1_review"
 }
