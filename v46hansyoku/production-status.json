@@ -148,7 +148,10 @@
         "audioChanged": false,
         "status": "rendered_review_pending"
       },
-      "approvalRecord": "v46hansyoku/approvals/chapter1.json"
+      "approvalRecord": "v46hansyoku/approvals/chapter1.json",
+      "approvedVideoStorage": "v46hansyoku/approved-video/V46_CHAPTER1_APPROVED_20260925.mp4",
+      "approvedVideoSha256": "aeeefeab11452fc7b708c5905f3b5096597dab2892f5c05b4698287283e2cbdd",
+      "approvedVideoPreservationCommit": "5ef913660978358e1218ae35d9b0d7a55b98c3bc"
     },
     {
       "id": "chapter2",
