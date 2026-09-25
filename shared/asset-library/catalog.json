@@ -2928,6 +2928,105 @@
         "basis": "ユーザーからの既存の包括的な権利確定指示に基づく管理上の確定。独立した権利調査・画像の目視適合検証は未実施。",
         "confirmedScope": "BG_V46 new user-supplied registered material"
       }
+    },
+    {
+      "id": "bg-bg-v46-ch1-couple-apartment-wide",
+      "category": "背景",
+      "file": "背景/BG_V46_CH1_COUPLE_APARTMENT_WIDE.png",
+      "name": "BG_V46_CH1_COUPLE_APARTMENT_WIDE",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_CH1_COUPLE_APARTMENT_WIDE",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_CH1_COUPLE_APARTMENT_WIDE"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "be547d8256f4746ee5f449679ecd5c65c6cfc07810df363316e620867f77533a",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-ch1-rural-field",
+      "category": "背景",
+      "file": "背景/BG_V46_CH1_RURAL_FIELD.png",
+      "name": "BG_V46_CH1_RURAL_FIELD",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_CH1_RURAL_FIELD",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_CH1_RURAL_FIELD"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "8b711c1dbfcff90dc6bdc5110e314dc61d1c401cbd7e11ea3085000d72e06208",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-ch1-rural-home",
+      "category": "背景",
+      "file": "背景/BG_V46_CH1_RURAL_HOME.png",
+      "name": "BG_V46_CH1_RURAL_HOME",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_CH1_RURAL_HOME",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_CH1_RURAL_HOME"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "b37053f840fee0028935c020d3ebfa90611b5b76ff4d45108cd3d3f3f5849682",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
     }
   ]
 }
