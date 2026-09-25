@@ -4,7 +4,7 @@
   "chapterId": "chapter1",
   "generatedAt": "2026-09-25",
   "sourceScenePlan": "v46hansyoku/scene-plans/chapter1.json",
-  "sourceScenePlanBlobSha": "170d619670f0ca5cfc4fc0c0482a6e4708d9f02c",
+  "sourceScenePlanBlobSha": "15d54735385a10101a9dce58d4c2c41064f8ddbf",
   "prologueIdentityLock": {
     "approvalRecord": "v46hansyoku/approvals/prologue.json",
     "approvedVideoPath": "v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4",
@@ -13,7 +13,7 @@
   "countSummary": {
     "sceneCount": 36,
     "missingUserAssets": 0,
-    "registeredReusableAssets": 27,
+    "registeredReusableAssets": 26,
     "codeOnlyGroups": 36,
     "userAddedOrSelectedBackgrounds": 4,
     "reactCharacterVariantGroups": 4
@@ -158,7 +158,8 @@
       "sceneIds": [
         "V46-C1-007",
         "V46-C1-009",
-        "V46-C1-023"
+        "V46-C1-023",
+        "V46-C1-036"
       ]
     },
     {
@@ -320,15 +321,6 @@
         "V46-C1-030",
         "V46-C1-032",
         "V46-C1-035"
-      ]
-    },
-    {
-      "assetId": "bg-bg-sns",
-      "filePath": "shared/asset-library/背景/BG_SNS.png",
-      "license": "cleared-commercial",
-      "status": "registered",
-      "sceneIds": [
-        "V46-C1-036"
       ]
     },
     {
@@ -643,9 +635,9 @@
       ]
     },
     {
-      "assetId": "remotion:historical-modern-split",
+      "assetId": "remotion:rural-child-household-contribution",
       "status": "code_to_implement",
-      "description": "Remotion/Reactで実装する可変図解・小道具・モーション",
+      "description": "農村の子供が収穫物を家へ運び、家族の作業列へ加わる動きをRemotionで実装。現代側の比較は次シーン以降へ送る。",
       "userUploadRequired": false,
       "sceneIds": [
         "V46-C1-031"
@@ -790,5 +782,18 @@
         "method": "動画化時に同期の妻と異なる髪型/衣装/配色差分を実装"
       }
     ]
+  },
+  "alignmentReview": {
+    "date": "2026-09-25",
+    "scenePlanBlobSha": "15d54735385a10101a9dce58d4c2c41064f8ddbf",
+    "reviewedScenes": 36,
+    "visualFixes": [
+      "V46-C1-006",
+      "V46-C1-010",
+      "V46-C1-028",
+      "V46-C1-031",
+      "V46-C1-036"
+    ],
+    "narrationChanged": false
   }
 }
