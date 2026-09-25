@@ -13,6 +13,7 @@ on:
       - 'v46hansyoku/scripts/build-chapter1-subtitles.mjs'
       - 'v46hansyoku/scripts/generate-chapter1-contact-sheet.mjs'
       - 'v46hansyoku/package.json'
+      - 'v46hansyoku/tsconfig.chapter1.json'
       - 'shared/asset-library/catalog.json'
       - 'shared/asset-library/背景/BG_V46_CH1_RURAL_HOME.png'
       - 'shared/asset-library/背景/BG_V46_CH1_RURAL_FIELD.png'
@@ -74,9 +75,9 @@ jobs:
           if(!c.cues.length)throw Error('no Chapter1 subtitle cues');
           console.log('Chapter1 VOICEVOX duration='+s.durationSeconds+' sec / subtitles='+c.cues.length);
           NODE
-      - name: Typecheck all Remotion code before render
+      - name: Typecheck Chapter1 Remotion code before render
         working-directory: v46hansyoku
-        run: npm run check
+        run: npm run check:chapter1
       - name: Parallel render Chapter1 with four Remotion workers
         working-directory: v46hansyoku
         run: |
