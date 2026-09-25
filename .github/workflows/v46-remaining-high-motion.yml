@@ -1,0 +1,163 @@
+name: V46 Chapters2-Epilogue High Motion Parallel Production
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'v46hansyoku/scene-plans/chapter2.json'
+      - 'v46hansyoku/scene-plans/chapter3.json'
+      - 'v46hansyoku/scene-plans/chapter4.json'
+      - 'v46hansyoku/scene-plans/epilogue.json'
+      - 'v46hansyoku/src/later-scenes.tsx'
+      - 'v46hansyoku/src/chapter2-index.tsx'
+      - 'v46hansyoku/src/chapter3-index.tsx'
+      - 'v46hansyoku/src/chapter4-index.tsx'
+      - 'v46hansyoku/src/epilogue-index.tsx'
+      - 'v46hansyoku/src/chapter2-script-data.json'
+      - 'v46hansyoku/src/chapter3-script-data.json'
+      - 'v46hansyoku/src/chapter4-script-data.json'
+      - 'v46hansyoku/src/epilogue-script-data.json'
+      - 'v46hansyoku/scripts/check-remaining-source.mjs'
+      - 'v46hansyoku/scripts/stage-remaining-assets.mjs'
+      - 'v46hansyoku/scripts/generate-remaining-voicevox.mjs'
+      - 'v46hansyoku/scripts/build-remaining-subtitles.mjs'
+      - 'v46hansyoku/scripts/generate-remaining-contact-sheet.mjs'
+      - 'v46hansyoku/scripts/verify-approved-chapters.mjs'
+      - 'v46hansyoku/package.json'
+      - 'v46hansyoku/tsconfig.remaining.json'
+      - '.github/workflows/v46-remaining-high-motion.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: v46-remaining-high-motion
+  cancel-in-progress: true
+jobs:
+  render:
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        include:
+          - chapter: chapter2
+            composition: V46HansyokuChapter2
+            min_seconds: 180
+            max_seconds: 420
+          - chapter: chapter3
+            composition: V46HansyokuChapter3
+            min_seconds: 150
+            max_seconds: 380
+          - chapter: chapter4
+            composition: V46HansyokuChapter4
+            min_seconds: 180
+            max_seconds: 430
+          - chapter: epilogue
+            composition: V46HansyokuEpilogue
+            min_seconds: 100
+            max_seconds: 300
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify approved prologue and Chapter1 locks
+        run: |
+          node v46hansyoku/scripts/verify-approved-prologue.mjs
+          node v46hansyoku/scripts/verify-approved-chapters.mjs
+      - name: Install render dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          cd v46hansyoku
+          npm install --no-audit --no-fund
+          ln -sfn "$PWD/node_modules" ../node_modules
+      - name: Validate exact narration and stage assets
+        working-directory: v46hansyoku
+        run: |
+          npm run check:${{ matrix.chapter }}:source
+          npm run stage:${{ matrix.chapter }}
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name v46-${{ matrix.chapter }}-voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 150); do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs v46-${{ matrix.chapter }}-voicevox
+          exit 1
+      - name: Generate narration and exact subtitles
+        working-directory: v46hansyoku
+        run: |
+          npm run voice:${{ matrix.chapter }}
+          npm run subtitles:${{ matrix.chapter }}
+          test -s public/audio/${{ matrix.chapter }}-narration.m4a
+          test -s out/v46-${{ matrix.chapter }}.srt
+      - name: Typecheck remaining high-motion renderer
+        working-directory: v46hansyoku
+        run: npm run check:remaining
+      - name: Render chapter with four Remotion workers
+        working-directory: v46hansyoku
+        run: |
+          mkdir -p out
+          npm run render:${{ matrix.chapter }}
+          test -s out/v46-${{ matrix.chapter }}.mp4
+      - name: Verify MP4 and scene timeline
+        working-directory: v46hansyoku
+        env:
+          CHAPTER: ${{ matrix.chapter }}
+          MIN_SECONDS: ${{ matrix.min_seconds }}
+          MAX_SECONDS: ${{ matrix.max_seconds }}
+        run: |
+          python3 - <<'PY'
+          import json,os,subprocess
+          ch=os.environ['CHAPTER'];p=f'out/v46-{ch}.mp4'
+          meta=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams','-show_format','-of','json',p],text=True))
+          v=[x for x in meta['streams'] if x['codec_type']=='video'];a=[x for x in meta['streams'] if x['codec_type']=='audio']
+          assert len(v)==1 and len(a)>=1
+          assert (v[0]['width'],v[0]['height'])==(1920,1080)
+          assert v[0]['codec_name']=='h264' and v[0]['avg_frame_rate']=='30/1'
+          assert any(x['codec_name']=='aac' for x in a)
+          duration=float(meta['format']['duration'])
+          sync=json.load(open(f'src/{ch}-sync-timing.json'))
+          plan=json.load(open(f'scene-plans/{ch}.json'))
+          assert len(sync['beats'])==len(plan['scenes'])
+          assert abs(duration-float(sync['durationSeconds']))<1.0,(duration,sync['durationSeconds'])
+          assert float(os.environ['MIN_SECONDS'])<duration<float(os.environ['MAX_SECONDS']),duration
+          print(f'{ch} verified: {duration:.3f}s / {len(plan["scenes"])} scenes / 1920x1080 / 30fps / H264+AAC')
+          PY
+      - name: Generate representative scene frames four-way in parallel
+        working-directory: v46hansyoku
+        run: |
+          npm run qa:${{ matrix.chapter }}
+          test -s out/${{ matrix.chapter }}-contact-sheet.jpg
+      - name: Publish chapter review artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: v46hansyoku-${{ matrix.chapter }}-high-motion-review
+          path: |
+            v46hansyoku/out/v46-${{ matrix.chapter }}.mp4
+            v46hansyoku/out/v46-${{ matrix.chapter }}.srt
+            v46hansyoku/out/${{ matrix.chapter }}-contact-sheet.jpg
+            v46hansyoku/.qa-${{ matrix.chapter }}-frames/scene-*.jpg
+            v46hansyoku/public/audio/${{ matrix.chapter }}-pronunciation-report.json
+            v46hansyoku/src/${{ matrix.chapter }}-sync-timing.json
+            v46hansyoku/src/${{ matrix.chapter }}-subtitle-cues.json
+            v46hansyoku/src/${{ matrix.chapter }}-script-data.json
+            v46hansyoku/scene-plans/${{ matrix.chapter }}.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v46hansyoku-${{ matrix.chapter }}-failed-diagnostics
+          path: |
+            v46hansyoku/src/${{ matrix.chapter }}-sync-timing.json
+            v46hansyoku/src/${{ matrix.chapter }}-subtitle-cues.json
+            v46hansyoku/out/*.srt
+            v46hansyoku/out/*.jpg
+          if-no-files-found: ignore
+          retention-days: 5
