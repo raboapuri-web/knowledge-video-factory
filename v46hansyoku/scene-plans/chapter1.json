@@ -633,7 +633,7 @@
         "startOffsetUTF16": 1520,
         "endOffsetExclusiveUTF16": 1553
       },
-      "visualDescription": "同じ農村家屋。薬箱が乏しく、食事も簡素だが、家の中には複数の子供の動きがある。病気や飢えは記号的に示し、露骨な苦痛描写はしない。",
+      "visualDescription": "同じ農村家屋。食事は簡素で、現代的な医療設備も見えない。簡素な寝具、水、布の手当道具だけを置き、飢えや病が生活の近くにあったことを記号的に示す。一方で家の中には複数の子供の動きがあり、幼い声が満ちる生活感を保つ。露骨な苦痛描写はしない。",
       "backgroundId": "BG_V46_CH1_RURAL_HOME",
       "characters": [
         {
@@ -684,7 +684,7 @@
       "characterActions": [
         {
           "order": 1,
-          "action": "少ない食料を分ける手元と、奥を走る子供を同時に見せる。",
+          "action": "少ない食料を分ける手元、簡素な寝具のそばの手当用の布、奥を行き交う子供たちを同じ画面内で見せる。",
           "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
         }
       ],
@@ -754,7 +754,7 @@
       "objectActions": [
         {
           "order": 1,
-          "description": "少ない食料を分ける手元と、奥を走る子供を同時に見せる。",
+          "description": "少ない食料を分ける手元、簡素な寝具のそばの手当用の布、奥を行き交う子供たちを同じ画面内で見せる。",
           "positioning": "1920×1080内で字幕領域を避ける"
         }
       ],
@@ -1087,13 +1087,13 @@
         "startOffsetUTF16": 1646,
         "endOffsetExclusiveUTF16": 1684
       },
-      "visualDescription": "左に農村の家、右に現代都市の家を円形フレームで並べ、中央の『子供の役割』を示す無文字の天秤へ視線を集める。",
+      "visualDescription": "暗い空間で、中央に同じ大きさの『子供』シルエットを置く。左の農村側では子供から家族の仕事・収穫へ矢印が伸び、右の現代側では住居・食事・教育・時間が家族から子供へ流れ込む。『子供の価値』ではなく、家族内での資源と役割の流れが変わったことだけを示す。",
       "backgroundId": "BG_darkroom",
       "characters": [],
       "characterActions": [
         {
           "order": 1,
-          "action": "左右のフレームが同じ大きさで並び、中央の天秤が静かに水平へ戻る。",
+          "action": "中央の子供シルエットを固定し、左では子供→家の仕事、右では親の資源→子供という逆向きの流れを順に描く。",
           "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
         }
       ],
@@ -1118,7 +1118,7 @@
       "objectActions": [
         {
           "order": 1,
-          "description": "左右のフレームが同じ大きさで並び、中央の天秤が静かに水平へ戻る。",
+          "description": "中央の子供シルエットを固定し、左では子供→家の仕事、右では親の資源→子供という逆向きの流れを順に描く。",
           "positioning": "1920×1080内で字幕領域を避ける"
         }
       ],
@@ -3051,7 +3051,7 @@
         "startOffsetUTF16": 2309,
         "endOffsetExclusiveUTF16": 2331
       },
-      "visualDescription": "夫はオフィスで昇進案件、妻は図書館で資格勉強、その後二人とも夜の仕事へ。性別役割を固定せず、途中で役割を入れ替えるカットも入れる。",
+      "visualDescription": "同じ共働き夫婦が、それぞれ仕事で昇進を目指す場面、資格勉強をする場面、夜まで残業する場面を交互に見せる。男性=昇進、女性=資格のように役割を固定せず、二人とも仕事・勉強・残業を引き受けて生活基盤を固めようとしていることを示す。",
       "backgroundId": "BG_office",
       "characters": [
         {
@@ -3078,7 +3078,7 @@
       "characterActions": [
         {
           "order": 1,
-          "action": "書類に判を押す→参考書を閉じる→時計が夜へ進む。",
+          "action": "二人それぞれについて、仕事の責任が増える→参考書やPCで勉強する→時計が夜へ進む、を交互に切り替える。",
           "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
         }
       ],
@@ -3151,7 +3151,7 @@
       "objectActions": [
         {
           "order": 1,
-          "description": "書類に判を押す→参考書を閉じる→時計が夜へ進む。",
+          "description": "二人それぞれについて、仕事の責任が増える→参考書やPCで勉強する→時計が夜へ進む、を交互に切り替える。",
           "positioning": "1920×1080内で字幕領域を避ける"
         }
       ],
@@ -3478,7 +3478,7 @@
         "startOffsetUTF16": 2473,
         "endOffsetExclusiveUTF16": 2494
       },
-      "visualDescription": "左に昔の畑で家の仕事を担う子供、右に現代都市で親になる前から仕事と資源を積み上げる大人を対比。人物は時代ごとに完全に別。",
+      "visualDescription": "昔の農村だけに画面を戻す。年長の子供が畑から収穫物を家へ運び、家族の作業列に加わる。ここでは現代の大人や共働き夫婦をまだ表示せず、『昔、子供は家の仕事を支える一員でもあった』という一文だけを純粋に描く。",
       "backgroundId": "BG_V46_CH1_RURAL_FIELD",
       "characters": [
         {
@@ -3496,7 +3496,7 @@
       "characterActions": [
         {
           "order": 1,
-          "action": "左は収穫物を家へ運び、右は仕事と貯蓄のカードを家へ運ぶ。",
+          "action": "農村の年長児が収穫物を抱えて畑から家の方向へ運び、最後に大人の作業列へ加わる。",
           "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
         }
       ],
@@ -3533,17 +3533,17 @@
           "description": "V46_CHILD_RIG_BOY / GIRLをベースに、A/B/Cの農村児童差分を服色・背丈・髪・農作業小道具で作成。同期の子供とは明確に別人物。"
         },
         {
-          "assetId": "remotion:historical-modern-split",
+          "assetId": "remotion:rural-child-household-contribution",
           "origin": "scene_implementation",
           "status": "code_to_implement",
           "review": "no_user_upload_required",
-          "description": "Remotion/Reactで実装する可変図解・小道具・モーション"
+          "description": "農村の子供が収穫物を家へ運び、家族の作業列へ加わる動きをRemotionで実装。現代側の比較は次シーン以降へ送る。"
         }
       ],
       "objectActions": [
         {
           "order": 1,
-          "description": "左は収穫物を家へ運び、右は仕事と貯蓄のカードを家へ運ぶ。",
+          "description": "農村の年長児が収穫物を抱えて畑から家の方向へ運び、最後に大人の作業列へ加わる。",
           "positioning": "1920×1080内で字幕領域を避ける"
         }
       ],
@@ -4066,24 +4066,23 @@
         "startOffsetUTF16": 2682,
         "endOffsetExclusiveUTF16": 2724
       },
-      "visualDescription": "スマートフォンのSNS空間に、広い家、教育、旅行など他人の暮らしを示す抽象投稿が流れる。実在SNSロゴや実在人物は使わず、第2章『他人との比較』へ接続する。",
-      "backgroundId": "BG_SNS",
+      "visualDescription": "現代の街を背景に、他人の暮らしを覗く複数の窓を重ねる。職場の同僚の生活、街ですれ違う親子、広い住まい、旅行、教育、スマートフォン上の投稿などを同列の『他人の暮らし』として短く見せる。SNSだけを原因のように扱わず、最後に視線が一つの画面へ集まり、第2章の社会的比較へ接続する。実在SNSロゴや実在人物は使わない。",
+      "backgroundId": "BG_town",
       "characters": [],
       "characterActions": [
         {
           "order": 1,
-          "action": "投稿カードが増え、最後に一枚の画面が鏡のように視聴者側へ向く。",
+          "action": "街の窓・同僚・親子・スマホ投稿のフレームが順に現れ、最後に複数の視線ラインが中央へ集まる。",
           "positioning": "人物の接地・視線・手元の整合を保ち、同一IDの外見は固定"
         }
       ],
       "requiredAssets": [
         {
-          "assetId": "bg-bg-sns",
+          "assetId": "bg-bg-town",
           "origin": "registered_shared",
           "status": "registered",
-          "filePath": "shared/asset-library/背景/BG_SNS.png",
+          "filePath": "shared/asset-library/背景/BG_town.png",
           "license": "cleared-commercial",
-          "sourceSha256": "4bae1c267149e371b76756070a27e5e4069ce3419bfbc7e5f72b7ca598891b44",
           "review": "registered_existing_asset"
         },
         {
@@ -4106,7 +4105,7 @@
       "objectActions": [
         {
           "order": 1,
-          "description": "投稿カードが増え、最後に一枚の画面が鏡のように視聴者側へ向く。",
+          "description": "街の窓・同僚・親子・スマホ投稿のフレームが順に現れ、最後に複数の視線ラインが中央へ集まる。",
           "positioning": "1920×1080内で字幕領域を避ける"
         }
       ],
@@ -4130,9 +4129,9 @@
       "visualIntent": "スマートフォンのSNS空間に、広い家、教育、旅行など他人の暮らしを示す抽象投稿が流れる。実在SNSロゴや実在人物は使わず、第2章『他人との比較』へ接続する。",
       "backgroundBindings": [
         {
-          "backgroundId": "BG_SNS",
-          "catalogId": "bg-bg-sns",
-          "filePath": "shared/asset-library/背景/BG_SNS.png",
+          "backgroundId": "BG_town",
+          "catalogId": "bg-bg-town",
+          "filePath": "shared/asset-library/背景/BG_town.png",
           "usage": "primary",
           "visualReview": "registered"
         }
@@ -4171,5 +4170,34 @@
     },
     "characterDecision": "Farm children, farm adults/couple, and working couple are no longer upload requirements. They will be derived at render time from approved existing React rigs with costume/hair/palette variants.",
     "userUploadMissingCount": 0
+  },
+  "sceneDesignReview": {
+    "date": "2026-09-25",
+    "reviewStatus": "narration_visual_alignment_reviewed",
+    "fixes": [
+      {
+        "sceneId": "V46-C1-006",
+        "reason": "前近代農村に現代的な薬箱を連想させる表現を削除"
+      },
+      {
+        "sceneId": "V46-C1-010",
+        "reason": "天秤の均衡ではなく、子供をめぐる資源・役割の流れの変化を直接表現"
+      },
+      {
+        "sceneId": "V46-C1-028",
+        "reason": "夫=昇進、妻=資格という性別役割の読みを避け、二人とも仕事・勉強・残業を担う設計へ"
+      },
+      {
+        "sceneId": "V46-C1-031",
+        "reason": "次のナレーション内容である現代側を先出しせず、昔の子供の役割だけに限定"
+      },
+      {
+        "sceneId": "V46-C1-036",
+        "reason": "『他人の暮らしを見る』をSNSだけに狭めず、職場・街・親子・住居・SNSを含む社会的比較への導線へ"
+      }
+    ],
+    "narrationChanged": false,
+    "sceneCountChanged": false,
+    "sourceCoverageChanged": false
   }
 }
