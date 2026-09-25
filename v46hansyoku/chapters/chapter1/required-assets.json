@@ -4,7 +4,7 @@
   "chapterId": "chapter1",
   "generatedAt": "2026-09-25",
   "sourceScenePlan": "v46hansyoku/scene-plans/chapter1.json",
-  "sourceScenePlanBlobSha": "15d54735385a10101a9dce58d4c2c41064f8ddbf",
+  "sourceScenePlanBlobSha": "be61e33547f88e3d96003ecab0d250f21a22943f",
   "prologueIdentityLock": {
     "approvalRecord": "v46hansyoku/approvals/prologue.json",
     "approvedVideoPath": "v46hansyoku/approved-video/V46_PROLOGUE_APPROVED_20260925.mp4",
@@ -14,7 +14,7 @@
     "sceneCount": 36,
     "missingUserAssets": 0,
     "registeredReusableAssets": 26,
-    "codeOnlyGroups": 36,
+    "codeOnlyGroups": 37,
     "userAddedOrSelectedBackgrounds": 4,
     "reactCharacterVariantGroups": 4
   },
@@ -47,8 +47,7 @@
       "license": "original-project",
       "status": "registered",
       "sceneIds": [
-        "V46-C1-001",
-        "V46-C1-002"
+        "V46-C1-001"
       ]
     },
     {
@@ -90,6 +89,7 @@
       "sceneIds": [
         "V46-C1-005",
         "V46-C1-006",
+        "V46-C1-010",
         "V46-C1-011",
         "V46-C1-013"
       ]
@@ -103,8 +103,7 @@
         "V46-C1-005",
         "V46-C1-006",
         "V46-C1-011",
-        "V46-C1-013",
-        "V46-C1-014"
+        "V46-C1-013"
       ]
     },
     {
@@ -116,8 +115,7 @@
         "V46-C1-005",
         "V46-C1-006",
         "V46-C1-011",
-        "V46-C1-013",
-        "V46-C1-014"
+        "V46-C1-013"
       ]
     },
     {
@@ -128,10 +126,10 @@
       "sceneIds": [
         "V46-C1-005",
         "V46-C1-006",
+        "V46-C1-010",
         "V46-C1-011",
         "V46-C1-012",
         "V46-C1-013",
-        "V46-C1-014",
         "V46-C1-031"
       ]
     },
@@ -143,10 +141,10 @@
       "sceneIds": [
         "V46-C1-005",
         "V46-C1-006",
+        "V46-C1-010",
         "V46-C1-011",
         "V46-C1-012",
         "V46-C1-013",
-        "V46-C1-014",
         "V46-C1-031"
       ]
     },
@@ -157,7 +155,6 @@
       "status": "registered",
       "sceneIds": [
         "V46-C1-007",
-        "V46-C1-009",
         "V46-C1-023",
         "V46-C1-036"
       ]
@@ -169,7 +166,6 @@
       "status": "registered",
       "sceneIds": [
         "V46-C1-007",
-        "V46-C1-017",
         "V46-C1-025"
       ]
     },
@@ -192,8 +188,7 @@
       "license": "original-project",
       "status": "approved",
       "sceneIds": [
-        "V46-C1-007",
-        "V46-C1-009"
+        "V46-C1-007"
       ]
     },
     {
@@ -203,11 +198,30 @@
       "status": "registered",
       "sceneIds": [
         "V46-C1-008",
-        "V46-C1-010",
+        "V46-C1-009",
+        "V46-C1-014",
+        "V46-C1-016",
+        "V46-C1-017",
+        "V46-C1-018",
         "V46-C1-019",
         "V46-C1-021",
         "V46-C1-022",
         "V46-C1-034"
+      ]
+    },
+    {
+      "assetId": "bg-bg-room-day",
+      "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
+      "license": "cleared-commercial",
+      "status": "registered",
+      "sceneIds": [
+        "V46-C1-010",
+        "V46-C1-017",
+        "V46-C1-018",
+        "V46-C1-024",
+        "V46-C1-025",
+        "V46-C1-027",
+        "V46-C1-029"
       ]
     },
     {
@@ -217,17 +231,17 @@
       "status": "registered",
       "sceneIds": [
         "V46-C1-012",
-        "V46-C1-014",
         "V46-C1-031"
       ]
     },
     {
-      "assetId": "bg-bg-kitchen",
-      "filePath": "shared/asset-library/背景/BG_kitchen.png",
+      "assetId": "bg-bg-town-day-wide",
+      "filePath": "shared/asset-library/背景/BG_TOWN_DAY_WIDE.png",
       "license": "cleared-commercial",
       "status": "registered",
       "sceneIds": [
-        "V46-C1-016"
+        "V46-C1-017",
+        "V46-C1-018"
       ]
     },
     {
@@ -236,7 +250,7 @@
       "license": "cleared-commercial",
       "status": "registered",
       "sceneIds": [
-        "V46-C1-016",
+        "V46-C1-017",
         "V46-C1-018",
         "V46-C1-026"
       ]
@@ -276,18 +290,6 @@
         "V46-C1-032",
         "V46-C1-033",
         "V46-C1-035"
-      ]
-    },
-    {
-      "assetId": "bg-bg-room-day",
-      "filePath": "shared/asset-library/背景/BG_ROOM_DAY.png",
-      "license": "cleared-commercial",
-      "status": "registered",
-      "sceneIds": [
-        "V46-C1-024",
-        "V46-C1-025",
-        "V46-C1-027",
-        "V46-C1-029"
       ]
     },
     {
@@ -335,18 +337,18 @@
   ],
   "codeProducedNoUpload": [
     {
-      "assetId": "remotion:expense-labels",
+      "assetId": "remotion:topdown-salary-rent-education-cards",
       "status": "code_to_implement",
-      "description": "Remotion/Reactで実装する可変図解・小道具・モーション",
+      "description": "真上俯瞰の机。主人公の手のみが給料・家賃・教育費のカードを順番に置く。",
       "userUploadRequired": false,
       "sceneIds": [
         "V46-C1-002"
       ]
     },
     {
-      "assetId": "remotion:budget-closeup",
+      "assetId": "remotion:hero-shoulders-down-tear",
       "status": "code_to_implement",
-      "description": "Remotion/Reactで実装する可変図解・小道具・モーション",
+      "description": "承認済み主人公リグに肩を落とす姿勢と一筋の涙を追加。",
       "userUploadRequired": false,
       "sceneIds": [
         "V46-C1-003"
@@ -370,8 +372,7 @@
         "V46-C1-005",
         "V46-C1-006",
         "V46-C1-011",
-        "V46-C1-013",
-        "V46-C1-014"
+        "V46-C1-013"
       ]
     },
     {
@@ -385,7 +386,6 @@
         "V46-C1-011",
         "V46-C1-012",
         "V46-C1-013",
-        "V46-C1-014",
         "V46-C1-031"
       ]
     },
@@ -417,18 +417,18 @@
       ]
     },
     {
-      "assetId": "remotion:family-choice-silhouettes",
+      "assetId": "remotion:wealth-to-child-avoidance-metal-badge",
       "status": "code_to_implement",
-      "description": "Remotion/Reactで実装する可変図解・小道具・モーション",
+      "description": "豊かさの金属バッジがY軸回転で裏返り、子供への拒否・回避・慎重さを示す裏面バッジになる。",
       "userUploadRequired": false,
       "sceneIds": [
         "V46-C1-009"
       ]
     },
     {
-      "assetId": "remotion:old-new-role-bridge",
+      "assetId": "remotion:chapter1-rural-modern-child-split",
       "status": "code_to_implement",
-      "description": "Remotion/Reactで実装する可変図解・小道具・モーション",
+      "description": "左=農村家屋＋農村児童、右=BG_ROOM_DAY＋現代一般児童の2分割比較。中央に境界線。",
       "userUploadRequired": false,
       "sceneIds": [
         "V46-C1-010"
@@ -444,12 +444,21 @@
       ]
     },
     {
-      "assetId": "remotion:food-clothing-costs",
+      "assetId": "remotion:detailed-rural-clothing-cost",
       "status": "code_to_implement",
-      "description": "Remotion/Reactで実装する可変図解・小道具・モーション",
+      "description": "襟・袖・前身頃・補修跡が分かる農村衣服、折り畳んだ衣類の束、衣類籠をReact/SVGで描画。",
       "userUploadRequired": false,
       "sceneIds": [
         "V46-C1-013"
+      ]
+    },
+    {
+      "assetId": "remotion:worker-icons-increasing",
+      "status": "code_to_implement",
+      "description": "黒背景で人型アイコンが1個ずつ増え、家族の働き手の列が伸びる。",
+      "userUploadRequired": false,
+      "sceneIds": [
+        "V46-C1-014"
       ]
     },
     {
@@ -462,27 +471,27 @@
       ]
     },
     {
-      "assetId": "remotion:long-parental-support",
+      "assetId": "remotion:long-winding-support-road",
       "status": "code_to_implement",
-      "description": "Remotion/Reactで実装する可変図解・小道具・モーション",
+      "description": "黒背景で長いうねった道が下から上へ伸び、途中に住まい・食事・教育の小記号が現れる。",
       "userUploadRequired": false,
       "sceneIds": [
         "V46-C1-016"
       ]
     },
     {
-      "assetId": "remotion:future-child-silhouette",
+      "assetId": "remotion:future-doors-opening",
       "status": "code_to_implement",
-      "description": "Remotion/Reactで実装する可変図解・小道具・モーション",
+      "description": "黒背景に3枚の扉を浮かべ、左から順に開く。各扉の奥に既存の明るい背景画像をクリップ表示する。",
       "userUploadRequired": false,
       "sceneIds": [
         "V46-C1-017"
       ]
     },
     {
-      "assetId": "remotion:choice-paths",
+      "assetId": "remotion:future-doors-open-bright-backgrounds",
       "status": "code_to_implement",
-      "description": "Remotion/Reactで実装する可変図解・小道具・モーション",
+      "description": "3枚の扉を完全に開き、BG_TOWN_DAY_WIDE / BG_school / BG_ROOM_DAYを奥に表示。光漏れを追加。",
       "userUploadRequired": false,
       "sceneIds": [
         "V46-C1-018"
@@ -795,5 +804,22 @@
       "V46-C1-036"
     ],
     "narrationChanged": false
+  },
+  "feedbackR3": {
+    "date": "2026-09-25",
+    "scenePlanBlobSha": "be61e33547f88e3d96003ecab0d250f21a22943f",
+    "revisedSceneIds": [
+      "V46-C1-010",
+      "V46-C1-013",
+      "V46-C1-017",
+      "V46-C1-018"
+    ],
+    "newBackgroundReuse": [
+      "BG_V46_CH1_RURAL_HOME",
+      "BG_ROOM_DAY",
+      "BG_TOWN_DAY_WIDE",
+      "BG_school"
+    ],
+    "userUploadRequired": false
   }
 }
