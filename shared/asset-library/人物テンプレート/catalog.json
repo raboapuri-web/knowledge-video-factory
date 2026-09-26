@@ -1280,6 +1280,111 @@
         "confirmedAgainst": "face bottom at headPivotY-36=170px, neck 158–193px, shirt starts at y≈190px",
         "description": "頭と首の間に肌色が切れる空白を作らず、首はワイシャツ内にごく少量だけ重ねる。"
       }
+    },
+    {
+      "id": "character-v46-adult-man",
+      "name": "V46 成人男性・都市部の独身会社員",
+      "category": "人物テンプレート",
+      "status": "approved",
+      "type": "react-svg-rig",
+      "file": "V46_ADULT_MAN_RIG.tsx",
+      "component": "V46_ADULT_MAN_RIG",
+      "tags": [
+        "成人男性",
+        "30代",
+        "会社員",
+        "独身",
+        "都市生活",
+        "オフィスカジュアル",
+        "2D",
+        "ベクター",
+        "可動関節"
+      ],
+      "usage": [
+        "V46第2章の主人公",
+        "通勤",
+        "自宅",
+        "外食",
+        "旅行",
+        "思案"
+      ],
+      "avoid": [
+        "父親であることを明示する必要がある場面",
+        "歴史的衣装"
+      ],
+      "actions": [
+        {
+          "id": "idle",
+          "name": "待機",
+          "description": "微細な頭・腕・身体の動き"
+        },
+        {
+          "id": "walk",
+          "name": "歩行",
+          "description": "既存会社員リグと同じ関節歩行"
+        },
+        {
+          "id": "wave",
+          "name": "手を振る",
+          "description": "既存会社員リグ互換"
+        },
+        {
+          "id": "point",
+          "name": "指さし",
+          "description": "既存会社員リグ互換"
+        }
+      ],
+      "adjustableJoints": [
+        "leftShoulder",
+        "leftElbow",
+        "rightShoulder",
+        "rightElbow",
+        "leftHip",
+        "leftKnee",
+        "rightHip",
+        "rightKnee",
+        "headTilt",
+        "bodyLean"
+      ],
+      "adjustableProps": [
+        "x",
+        "y",
+        "scale",
+        "action",
+        "walkSpeed",
+        "pose",
+        "talking",
+        "showBriefcase",
+        "mirror",
+        "suitColor",
+        "pantsColor",
+        "shirtColor",
+        "skinColor",
+        "hairColor",
+        "shoeColor"
+      ],
+      "dimensions": {
+        "width": 360,
+        "height": 640,
+        "coordinateSystem": "1920x1080"
+      },
+      "recommendedBackgrounds": [
+        "背景/BG_office.png",
+        "背景/BG_oneroom_night.png",
+        "背景/BG_V46_OFFICE_BREAK_ROOM.png",
+        "背景/BG_V46_RESTAURANT_DINING.png"
+      ],
+      "license": "cleared-commercial",
+      "rightsReview": {
+        "status": "user-confirmed",
+        "confirmedAt": "2026-09-26",
+        "note": "既存の承認済み office-worker-rig をベースにネクタイを外し配色を変更した第2章用派生人物。"
+      },
+      "knownLimitations": [
+        "関節構造と歩行は元のoffice-worker-rigと共通。"
+      ],
+      "updatedAt": "2026-09-26",
+      "note": "第2章の継続主人公。既存人物ベースの服装変更というユーザー指定に従い、オフィスカジュアル化。"
     }
   ]
 }
