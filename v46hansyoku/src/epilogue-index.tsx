@@ -4,7 +4,7 @@ import plan from '../scene-plans/epilogue.json';
 import script from './epilogue-script-data.json';
 import sync from './epilogue-sync-timing.json';
 import subtitles from './epilogue-subtitle-cues.json';
-import {LaterScene} from './later-scenes';
+import {EpilogueScene} from './epilogue';
 const FPS=30;
 const p:any=plan,s:any=script,sy:any=sync,sub:any=subtitles;
 if(p.chapterId!=='epilogue'||p.scenes.length!==s.beats.length||sy.beats.length!==s.beats.length)throw new Error('count mismatch epilogue');
@@ -14,6 +14,6 @@ if(timeline.some((b:any,i:number)=>b.frames<=0||(i>0&&b.from!==timeline[i-1].fro
 const totalFrames=Math.max(Math.ceil(sy.durationSeconds*FPS),timeline.at(-1).from+timeline.at(-1).frames);
 for(const b of s.beats)if(sub.cues.filter((x:any)=>x.sceneId===b.id).map((x:any)=>x.text).join('')!==b.narration)throw new Error('subtitle mismatch '+b.id);
 const Subs=()=>{const f=useCurrentFrame(),now=f/FPS;const cue=sub.cues.find((x:any)=>now>=x.start&&now<x.end);return cue?<AbsoluteFill style={{pointerEvents:'none',justifyContent:'flex-end',alignItems:'center',padding:'0 70px 32px',boxSizing:'border-box'}}><div style={{maxWidth:1600,borderRadius:12,background:'rgba(0,0,0,.82)',color:'#fff',fontFamily:'Noto Sans CJK JP,sans-serif',fontSize:36,fontWeight:700,lineHeight:1.38,textAlign:'center',textShadow:'0 3px 7px #000',padding:'13px 23px'}}>{cue.text}</div></AbsoluteFill>:null;};
-const Film=()=><AbsoluteFill style={{background:'#05080d'}}><Audio src={staticFile('audio/epilogue-narration.m4a')}/>{timeline.map(({scene,from,frames}:any,index:number)=><Sequence key={scene.sceneId} name={scene.sceneId} from={from} durationInFrames={frames}><LaterScene scene={scene} index={index} frames={frames}/></Sequence>)}<Subs/></AbsoluteFill>;
+const Film=()=><AbsoluteFill style={{background:'#05080d'}}><Audio src={staticFile('audio/epilogue-narration.m4a')}/>{timeline.map(({scene,from,frames}:any,index:number)=><Sequence key={scene.sceneId} name={scene.sceneId} from={from} durationInFrames={frames}><EpilogueScene scene={scene} index={index} frames={frames}/></Sequence>)}<Subs/></AbsoluteFill>;
 const Root=()=> <Composition id="V46HansyokuEpilogue" component={Film} durationInFrames={totalFrames} fps={FPS} width={1920} height={1080}/>;
 registerRoot(Root);
