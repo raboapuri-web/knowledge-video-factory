@@ -12,7 +12,7 @@ const frames=fs.readdirSync(dir).filter(x=>/^scene-\d+\.jpg$/.test(x)).sort();
 if(frames.length<2)throw new Error('Not enough QA frames: '+frames.length);
 
 let sampleScene=null;
-if(['chapter3','chapter4'].includes(chapter)){
+if(['chapter3','chapter4','epilogue'].includes(chapter)){
  const plan=JSON.parse(fs.readFileSync(path.join(root,'scene-plans',chapter+'.json'),'utf8'));
  sampleScene=[];
  for(let i=0;i<plan.scenes.length;i++){
@@ -40,7 +40,7 @@ scores.sort((x,y)=>y.score-x.score);
 console.log(chapter+' adjacent-frame SSIM top scores:');
 for(const x of scores.slice(0,16))console.log(String(x.a).padStart(3,'0')+' -> '+String(x.b).padStart(3,'0')+' : '+x.score.toFixed(6)+' / '+(x.sameScene?'intra-scene '+x.sceneA:'scene '+x.sceneA+' -> '+x.sceneB));
 
-const bad=['chapter3','chapter4'].includes(chapter)
+const bad=['chapter3','chapter4','epilogue'].includes(chapter)
  ?scores.filter(x=>(x.sameScene&&x.score>=exactIntraThreshold)||(!x.sameScene&&x.score>=boundaryThreshold))
  :scores.filter(x=>x.score>=boundaryThreshold);
 
@@ -49,7 +49,7 @@ if(bad.length){
  for(const x of bad)console.error('  '+x.a+' -> '+x.b+' SSIM='+x.score.toFixed(6)+' / '+(x.sameScene?'intra-scene '+x.sceneA:'scene '+x.sceneA+' -> '+x.sceneB));
  process.exit(1);
 }
-if(['chapter3','chapter4'].includes(chapter)){
+if(['chapter3','chapter4','epilogue'].includes(chapter)){
  const boundaries=scores.filter(x=>!x.sameScene);
  const intra=scores.filter(x=>x.sameScene);
  console.log(chapter.toUpperCase()+' DIVERSITY QA PASSED: '+boundaries.length+' scene boundaries below '+boundaryThreshold+'; '+intra.length+' intra-scene animation pairs contain no exact duplicate above '+exactIntraThreshold);
