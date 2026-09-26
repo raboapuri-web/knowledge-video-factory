@@ -3031,6 +3031,138 @@
         "note": "ユーザー指定またはユーザー追加済みの第1章背景。2026-09-25にV46 Chapter1での使用を明示確定。権利情報は既存の運用ルールに従い確定扱い。構図適合は本番映像QAで確認する。",
         "usageApproval": "user-approved-2026-09-25"
       }
+    },
+    {
+      "id": "bg-bg-v46-city-apartment-exterior",
+      "category": "背景",
+      "file": "背景/BG_V46_CITY_APARTMENT_EXTERIOR.png",
+      "name": "BG_V46_CITY_APARTMENT_EXTERIOR",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_CITY_APARTMENT_EXTERIOR",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_CITY_APARTMENT_EXTERIOR"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "a5ba2207ae920f374aa762f11919c82dccd0379c62441f143eb1acddc54bb876",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-office-break-room",
+      "category": "背景",
+      "file": "背景/BG_V46_OFFICE_BREAK_ROOM.png",
+      "name": "BG_V46_OFFICE_BREAK_ROOM",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_OFFICE_BREAK_ROOM",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_OFFICE_BREAK_ROOM"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "38d1ffb44152ca52e48d586da693d67416d94c2d8ce87d9be103cb31b8d80882",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-residential-day",
+      "category": "背景",
+      "file": "背景/BG_V46_RESIDENTIAL_DAY.png",
+      "name": "BG_V46_RESIDENTIAL_DAY",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_RESIDENTIAL_DAY",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_RESIDENTIAL_DAY"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "39f9966b4006ec4fbfbe981ead1b4f25a1e1461af0c7b651d4584acf798688f8",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
+    },
+    {
+      "id": "bg-bg-v46-restaurant-dining",
+      "category": "背景",
+      "file": "背景/BG_V46_RESTAURANT_DINING.png",
+      "name": "BG_V46_RESTAURANT_DINING",
+      "phases": [
+        "*"
+      ],
+      "tags": [
+        "BG_V46_RESTAURANT_DINING",
+        "背景素材"
+      ],
+      "mustMentionAny": [
+        "BG_V46_RESTAURANT_DINING"
+      ],
+      "avoid": [],
+      "style": "flat-vector",
+      "palette": "colorful",
+      "license": "pending-review",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "motion": "none",
+      "sourceSha256": "1e21de3d6d351470c0841973ccdc60ba674a0c6cbd5dfabba737313ce1595913",
+      "autoRegistration": {
+        "method": "filename-metadata",
+        "needsVisualReview": true,
+        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+      }
     }
   ]
 }
