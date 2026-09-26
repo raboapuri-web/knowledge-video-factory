@@ -12,14 +12,14 @@ const frames=fs.readdirSync(dir).filter(x=>/^scene-\d+\.jpg$/.test(x)).sort();
 if(frames.length<2)throw new Error('Not enough QA frames: '+frames.length);
 
 let sampleScene=null;
-if(chapter==='chapter3'){
- const plan=JSON.parse(fs.readFileSync(path.join(root,'scene-plans','chapter3.json'),'utf8'));
+if(['chapter3','chapter4'].includes(chapter)){
+ const plan=JSON.parse(fs.readFileSync(path.join(root,'scene-plans',chapter+'.json'),'utf8'));
  sampleScene=[];
  for(let i=0;i<plan.scenes.length;i++){
   const n=Math.max(2,Number(plan.scenes[i].shotCount||2));
   for(let k=0;k<n;k++)sampleScene.push(i+1);
  }
- if(sampleScene.length!==frames.length)throw new Error('chapter3 QA sample mapping mismatch: '+sampleScene.length+' / '+frames.length);
+ if(sampleScene.length!==frames.length)throw new Error(chapter+' QA sample mapping mismatch: '+sampleScene.length+' / '+frames.length);
 }
 
 const boundaryThreshold=0.95;
@@ -40,7 +40,7 @@ scores.sort((x,y)=>y.score-x.score);
 console.log(chapter+' adjacent-frame SSIM top scores:');
 for(const x of scores.slice(0,16))console.log(String(x.a).padStart(3,'0')+' -> '+String(x.b).padStart(3,'0')+' : '+x.score.toFixed(6)+' / '+(x.sameScene?'intra-scene '+x.sceneA:'scene '+x.sceneA+' -> '+x.sceneB));
 
-const bad=chapter==='chapter3'
+const bad=['chapter3','chapter4'].includes(chapter)
  ?scores.filter(x=>(x.sameScene&&x.score>=exactIntraThreshold)||(!x.sameScene&&x.score>=boundaryThreshold))
  :scores.filter(x=>x.score>=boundaryThreshold);
 
@@ -49,10 +49,10 @@ if(bad.length){
  for(const x of bad)console.error('  '+x.a+' -> '+x.b+' SSIM='+x.score.toFixed(6)+' / '+(x.sameScene?'intra-scene '+x.sceneA:'scene '+x.sceneA+' -> '+x.sceneB));
  process.exit(1);
 }
-if(chapter==='chapter3'){
+if(['chapter3','chapter4'].includes(chapter)){
  const boundaries=scores.filter(x=>!x.sameScene);
  const intra=scores.filter(x=>x.sameScene);
- console.log('CHAPTER3 DIVERSITY QA PASSED: '+boundaries.length+' scene boundaries below '+boundaryThreshold+'; '+intra.length+' intra-scene animation pairs contain no exact duplicate above '+exactIntraThreshold);
+ console.log(chapter.toUpperCase()+' DIVERSITY QA PASSED: '+boundaries.length+' scene boundaries below '+boundaryThreshold+'; '+intra.length+' intra-scene animation pairs contain no exact duplicate above '+exactIntraThreshold);
 }else{
  console.log('VISUAL DIVERSITY QA PASSED: '+(frames.length-1)+' adjacent pairs below '+boundaryThreshold);
 }
