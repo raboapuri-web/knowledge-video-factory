@@ -12,6 +12,7 @@ on:
       - 'v46hansyoku/src/chapter2-index.tsx'
       - 'v46hansyoku/src/chapter3.tsx'
       - 'v46hansyoku/src/chapter3-index.tsx'
+      - 'v46hansyoku/src/chapter4.tsx'
       - 'v46hansyoku/src/chapter4-index.tsx'
       - 'v46hansyoku/src/epilogue-index.tsx'
       - 'v46hansyoku/src/chapter2-script-data.json'
