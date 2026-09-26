@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill,Img,interpolate,staticFile,useCurrentFrame} from 'remotion';
+import {AbsoluteFill,Img,staticFile,useCurrentFrame} from 'remotion';
 import {V46_ADULT_MAN_RIG} from '../../shared/asset-library/人物テンプレート/V46_ADULT_MAN_RIG';
 import {ParentFatherRig} from '../../shared/asset-library/人物テンプレート/PARENT_FATHER';
 import {ParentMotherRig} from '../../shared/asset-library/人物テンプレート/PARENT_MOTHER';
@@ -55,7 +55,7 @@ export const Chapter2Scene=({scene,index,frames}:{scene:any;index:number;frames:
     case 5:return <AbsoluteFill><BG file="背景/BG_V46_OFFICE_BREAK_ROOM.png" t={t}/><Man x={240} y={260} s={.78}/><Man x={1180} y={245} s={.82} mirror phone/><Card x={900} y={95} w={540} h={290}><Img src={A('shared/asset-library/背景/BG_V46_CITY_APARTMENT_EXTERIOR.png')} style={{width:'100%',height:'100%',objectFit:'cover',borderRadius:18}}/></Card></AbsoluteFill>;
     case 6:return <AbsoluteFill><BG file="背景/BG_V46_RESIDENTIAL_DAY.png" t={t}/><Family x={1010} y={215} s={.78}/><School x={340} y={275} s={1.35}/><div style={{position:'absolute',left:360,top:610,width:1160,height:18,background:'#d9c47e'}}/><V46_CHILD_RIG_BOY x={630+510*q} y={410} scale={.48} action="walk"/></AbsoluteFill>;
     case 7:return <AbsoluteFill><BG file="背景/BG_oneroom_night.png" t={t}/><Man x={260} y={285} s={.78} think/><Money x={1010} y={190}/><House x={1270} y={220}/><School x={1500} y={250}/><Clock x={1180} y={560}/><div style={{position:'absolute',left:930,top:770,width:760,height:42,background:'#6f3337'}}/></AbsoluteFill>;
-    case 8:return <AbsoluteFill style={{background:'#0b1016'}}><div style={{position:'absolute',left:270,top:770,width:270,height:-500*q,background:'#6f8a70',transformOrigin:'bottom'}}/><div style={{position:'absolute',right:270,top:300,width:270,height:500*(1-q),background:'#9a6963'}}/><Arrow x1={540} y1={650} x2={1350} y2={430}/><Man x={780} y={285} s={.75}/></AbsoluteFill>;
+    case 8:return <AbsoluteFill style={{background:'#0b1016'}}><div style={{position:'absolute',left:270,top:770-500*q,width:270,height:500*q,background:'#6f8a70',transformOrigin:'bottom'}}/><div style={{position:'absolute',right:270,top:300,width:270,height:500*(1-q),background:'#9a6963'}}/><Arrow x1={540} y1={650} x2={1350} y2={430}/><Man x={780} y={285} s={.75}/></AbsoluteFill>;
     case 9:return <AbsoluteFill><BG file="背景/BG_TOWN_DAY_WIDE.png" t={t}/><Man x={280} y={290} s={.8}/><Man x={1180} y={280} s={.8} mirror/><div style={{position:'absolute',left:875,top:170,width:6,height:710,background:'#d6c388'}}/><Windows t={Math.min(1,t*1.3)}/></AbsoluteFill>;
     case 10:return <AbsoluteFill style={{background:'#0b0f15'}}><Man x={790} y={330} s={.7}/><Windows t={t}/></AbsoluteFill>;
     case 11:return <AbsoluteFill><BG file="背景/BG_kenkyu.png" t={t}/><div style={{position:'absolute',left:120,top:110,fontSize:112,fontWeight:900,color:'#dfcb8d',fontFamily:'serif'}}>1954</div><DotPerson x={780} y={360} s={1.1}/>{[0,1,2,3].map((i)=><React.Fragment key={i}><DotPerson x={240+i*420} y={730-(i%2)*120} s={.55}/><Arrow x1={960} y1={525} x2={300+i*420} y2={770-(i%2)*120} w={5}/></React.Fragment>)}</AbsoluteFill>;
