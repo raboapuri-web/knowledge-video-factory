@@ -3,7 +3,7 @@ import data from './scene-data.json';
 
 type Beat={id:string;phase:string;variant:number;narration:string;visual:string;bgGroup:string;bgSeed:number;shotKind:string};
 const beats=data as Beat[];
-const C={night:'#0d1722',ink:'#233544',slate:'#516775',mist:'#b9c7c5',paper:'#ece5d5',cream:'#f4efe4',gold:'#d8b26f',red:'#b7645f',teal:'#6ea6a1',blue:'#55748c',green:'#718c73',wood:'#7d6650',sand:'#c5ad8f',steel:'#94a3aa',snow:'#e4eceb',soil:'#9a6a4a',sky:'#8da9b8',yellow:'#d7c16f'};
+const C={white:'#f5f4ea',night:'#0d1722',ink:'#233544',slate:'#516775',mist:'#b9c7c5',paper:'#ece5d5',cream:'#f4efe4',gold:'#d8b26f',red:'#b7645f',teal:'#6ea6a1',blue:'#55748c',green:'#718c73',wood:'#7d6650',sand:'#c5ad8f',steel:'#94a3aa',snow:'#e4eceb',soil:'#9a6a4a',sky:'#8da9b8',yellow:'#d7c16f'};
 const q=(n:number)=>Math.max(0,Math.min(1,n));const lerp=(a:number,b:number,p:number)=>a+(b-a)*q(p);const rng=(s:number,i:number)=>((s*3947+i*2683+i*i*71)%10007)/10007;
 const R=({x,y,w,h,c=C.paper,rx=0,o=1,stroke,sw=4}:{x:number;y:number;w:number;h:number;c?:string;rx?:number;o?:number;stroke?:string;sw?:number})=><rect x={x} y={y} width={w} height={h} rx={rx} fill={c} opacity={o} stroke={stroke} strokeWidth={stroke?sw:0}/>;
 const L=({x,y,X,Y,c=C.paper,sw=8,o=1,p=1}:{x:number;y:number;X:number;Y:number;c?:string;sw?:number;o?:number;p?:number})=><line x1={x} y1={y} x2={lerp(x,X,p)} y2={lerp(y,Y,p)} stroke={c} strokeWidth={sw} opacity={o} strokeLinecap="round"/>;
