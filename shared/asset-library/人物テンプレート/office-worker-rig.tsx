@@ -21,7 +21,7 @@ export type OfficeWorkerRigProps={
   walkSpeed?:number;
   /** Override individual joint angles after the automatic action pose is computed. */
   pose?:Partial<OfficeWorkerJoints>;
-  talking?:boolean;showBriefcase?:boolean;mirror?:boolean;
+  talking?:boolean;showBriefcase?:boolean;mirror?:boolean;tieVisible?:boolean;
   suitColor?:string;pantsColor?:string;shirtColor?:string;
   skinColor?:string;hairColor?:string;shoeColor?:string;
 };
@@ -108,7 +108,7 @@ const Arm=({
 /** Transparent character layer. Place above the chosen scene background, below subtitles. */
 export const OfficeWorkerRig=({
   x=780,y=180,scale=1,action='idle',walkSpeed=1.05,pose,
-  talking=false,showBriefcase=false,mirror=false,
+  talking=false,showBriefcase=false,mirror=false,tieVisible=true,
   suitColor='#304966',pantsColor='#26394d',shirtColor='#f3f5f6',
   skinColor='#dbad8d',hairColor='#27303a',shoeColor='#1b2432'
 }:OfficeWorkerRigProps)=>{
@@ -134,8 +134,8 @@ export const OfficeWorkerRig=({
           <path d="M135 177 Q180 154 225 177 L249 222 L235 365 Q180 385 125 365 L111 222Z"
             fill={suitColor} stroke="#1b2b3b" strokeWidth={4} strokeLinejoin="round"/>
           <path d="M161 178 L180 274 L199 178Z" fill={shirtColor}/>
-          <path d="M180 193 L191 212 L180 224 L169 212Z" fill="#c25d5d"/>
-          <path d="M180 224 L193 296 L180 311 L168 296Z" fill="#ad484a"/>
+          {tieVisible?<><path d="M180 193 L191 212 L180 224 L169 212Z" fill="#c25d5d"/>
+          <path d="M180 224 L193 296 L180 311 L168 296Z" fill="#ad484a"/></>:null}
           <path d="M159 178 L180 269 L145 231 L158 213 L141 208Z" fill="#405f7f" stroke="#24394f" strokeWidth={2}/>
           <path d="M201 178 L180 269 L215 231 L202 213 L219 208Z" fill="#405f7f" stroke="#24394f" strokeWidth={2}/>
           <path d="M125 291 L144 292 M216 292 L235 291" stroke="#1a2a3b" strokeWidth={3}/>
