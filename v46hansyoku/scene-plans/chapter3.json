@@ -22,11 +22,16 @@
   "estimatedDurationSeconds": 266.3,
   "motionPolicy": {
     "density": "high",
+    "renderer": "chapter3.tsx individual switch(index)",
+    "sharedGenericRenderer": false,
+    "backgroundContinuityRule": "同一場所が連続する場合は背景を固定し、台本の意味に応じて前景オブジェクトを追加・削除する",
+    "shotSubdivision": "48 narration beats / 108 visual shots",
     "rules": [
-      "各シーン最低1つ主要要素を動かす",
-      "カメラ微細パン/ズーム/パララックス常用",
-      "図解は静止せず生成/移動/反転/伸縮",
-      "同じ構図を3シーン連続させない"
+      "ナレーション本文・字幕・VOICEVOXタイミングは変更しない",
+      "1ビート2〜3ショット相当",
+      "同じ背景を無意味にパン・ズームして変化扱いしない",
+      "意味転換時のみ背景を切り替える",
+      "前景オブジェクトの出入りで因果と役割変化を見せる"
     ]
   },
   "scenes": [
@@ -42,14 +47,14 @@
         "startOffsetUTF16": 4676,
         "endOffsetExclusiveUTF16": 4690
       },
-      "visualMode": "dry_land",
-      "visualDescription": "乾いた大地の断面を開き地下へ誘導する。",
+      "visualMode": "chapter3_individual_001",
+      "visualDescription": "乾燥した東アフリカの地表を固定し、地面の断面だけを開いて地下へ導く。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -62,11 +67,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:dry_land",
+          "assetId": "remotion:chapter3-individual-001",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "乾いた大地の断面を開き地下へ誘導する。"
+          "description": "乾燥した東アフリカの地表を固定し、地面の断面だけを開いて地下へ導く。"
         }
       ],
       "backgroundBindings": [
@@ -85,11 +90,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "乾いた大地の断面を開き地下へ誘導する。",
+        "description": "乾燥した東アフリカの地表を固定し、地面の断面だけを開いて地下へ導く。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.9
+      "estimatedDuration": 2.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-002",
@@ -103,14 +109,14 @@
         "startOffsetUTF16": 4690,
         "endOffsetExclusiveUTF16": 4718
       },
-      "visualMode": "tunnel_rush",
-      "visualDescription": "地下トンネルを個体が高速で行き交う。",
+      "visualMode": "chapter3_individual_002",
+      "visualDescription": "前シーンの地表下をそのまま受け、固定トンネル背景に暗闇と移動個体を追加する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -123,11 +129,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:tunnel_rush",
+          "assetId": "remotion:chapter3-individual-002",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "地下トンネルを個体が高速で行き交う。"
+          "description": "前シーンの地表下をそのまま受け、固定トンネル背景に暗闇と移動個体を追加する。"
         }
       ],
       "backgroundBindings": [
@@ -146,11 +152,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "地下トンネルを個体が高速で行き交う。",
+        "description": "前シーンの地表下をそのまま受け、固定トンネル背景に暗闇と移動個体を追加する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.8
+      "estimatedDuration": 4.8,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-003",
@@ -164,14 +171,14 @@
         "startOffsetUTF16": 4718,
         "endOffsetExclusiveUTF16": 4750
       },
-      "visualMode": "tunnel_rush",
-      "visualDescription": "地下トンネルを個体が高速で行き交う。",
+      "visualMode": "chapter3_individual_003",
+      "visualDescription": "同じトンネル背景を固定し、掘削の土粒・行き交う個体・逆方向個体を追加して密度を上げる。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -184,11 +191,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:tunnel_rush",
+          "assetId": "remotion:chapter3-individual-003",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "地下トンネルを個体が高速で行き交う。"
+          "description": "同じトンネル背景を固定し、掘削の土粒・行き交う個体・逆方向個体を追加して密度を上げる。"
         }
       ],
       "backgroundBindings": [
@@ -207,11 +214,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "地下トンネルを個体が高速で行き交う。",
+        "description": "同じトンネル背景を固定し、掘削の土粒・行き交う個体・逆方向個体を追加して密度を上げる。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.3
+      "estimatedDuration": 5.3,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-004",
@@ -225,14 +233,14 @@
         "startOffsetUTF16": 4752,
         "endOffsetExclusiveUTF16": 4764
       },
-      "visualMode": "molerat_reveal",
-      "visualDescription": "暗闇からハダカデバネズミSVGを出す。",
+      "visualMode": "chapter3_individual_004",
+      "visualDescription": "トンネル背景を維持したまま、暗闇からハダカデバネズミを大写しで出現させる。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -245,11 +253,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:molerat_reveal",
+          "assetId": "remotion:chapter3-individual-004",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "暗闇からハダカデバネズミSVGを出す。"
+          "description": "トンネル背景を維持したまま、暗闇からハダカデバネズミを大写しで出現させる。"
         }
       ],
       "backgroundBindings": [
@@ -268,11 +276,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "暗闇からハダカデバネズミSVGを出す。",
+        "description": "トンネル背景を維持したまま、暗闇からハダカデバネズミを大写しで出現させる。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.6
+      "estimatedDuration": 2.6,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-005",
@@ -286,14 +295,14 @@
         "startOffsetUTF16": 4766,
         "endOffsetExclusiveUTF16": 4786
       },
-      "visualMode": "colony_jobs",
-      "visualDescription": "掘る・運ぶ・探す・幼体を守る動作を同時進行。",
+      "visualMode": "chapter3_individual_005",
+      "visualDescription": "巣穴の作業区を固定し、掘る個体・土を運ぶ個体を別方向へ動かす。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -306,11 +315,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:colony_jobs",
+          "assetId": "remotion:chapter3-individual-005",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "掘る・運ぶ・探す・幼体を守る動作を同時進行。"
+          "description": "巣穴の作業区を固定し、掘る個体・土を運ぶ個体を別方向へ動かす。"
         }
       ],
       "backgroundBindings": [
@@ -329,11 +338,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "掘る・運ぶ・探す・幼体を守る動作を同時進行。",
+        "description": "巣穴の作業区を固定し、掘る個体・土を運ぶ個体を別方向へ動かす。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.7
+      "estimatedDuration": 3.7,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-006",
@@ -347,14 +357,14 @@
         "startOffsetUTF16": 4786,
         "endOffsetExclusiveUTF16": 4817
       },
-      "visualMode": "colony_jobs",
-      "visualDescription": "掘る・運ぶ・探す・幼体を守る動作を同時進行。",
+      "visualMode": "chapter3_individual_006",
+      "visualDescription": "同じ巣穴背景を固定し、食料探索個体を追加し、奥の育児室に幼体と世話個体を出す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -367,11 +377,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:colony_jobs",
+          "assetId": "remotion:chapter3-individual-006",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "掘る・運ぶ・探す・幼体を守る動作を同時進行。"
+          "description": "同じ巣穴背景を固定し、食料探索個体を追加し、奥の育児室に幼体と世話個体を出す。"
         }
       ],
       "backgroundBindings": [
@@ -390,11 +400,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "掘る・運ぶ・探す・幼体を守る動作を同時進行。",
+        "description": "同じ巣穴背景を固定し、食料探索個体を追加し、奥の育児室に幼体と世話個体を出す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.2
+      "estimatedDuration": 5.2,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-007",
@@ -408,14 +419,14 @@
         "startOffsetUTF16": 4817,
         "endOffsetExclusiveUTF16": 4857
       },
-      "visualMode": "molerat_motion",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter3_individual_007",
+      "visualDescription": "同じ巣穴背景を固定し、複数作業区の個体と仕事の流れを矢印で結ぶ。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -428,11 +439,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:molerat_motion",
+          "assetId": "remotion:chapter3-individual-007",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "同じ巣穴背景を固定し、複数作業区の個体と仕事の流れを矢印で結ぶ。"
         }
       ],
       "backgroundBindings": [
@@ -451,11 +462,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "同じ巣穴背景を固定し、複数作業区の個体と仕事の流れを矢印で結ぶ。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.4
+      "estimatedDuration": 6.4,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-008",
@@ -469,14 +481,14 @@
         "startOffsetUTF16": 4859,
         "endOffsetExclusiveUTF16": 4889
       },
-      "visualMode": "colony_rule",
-      "visualDescription": "多数の働き手の中で一部だけ繁殖室へ入る。",
+      "visualMode": "chapter3_individual_008",
+      "visualDescription": "巣穴背景を固定し、働き手の群れの外側に繁殖室の入口だけを出現させる。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -489,11 +501,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:colony_rule",
+          "assetId": "remotion:chapter3-individual-008",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "多数の働き手の中で一部だけ繁殖室へ入る。"
+          "description": "巣穴背景を固定し、働き手の群れの外側に繁殖室の入口だけを出現させる。"
         }
       ],
       "backgroundBindings": [
@@ -512,11 +524,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "多数の働き手の中で一部だけ繁殖室へ入る。",
+        "description": "巣穴背景を固定し、働き手の群れの外側に繁殖室の入口だけを出現させる。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.1
+      "estimatedDuration": 5.1,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-009",
@@ -530,14 +543,14 @@
         "startOffsetUTF16": 4889,
         "endOffsetExclusiveUTF16": 4909
       },
-      "visualMode": "colony_rule",
-      "visualDescription": "多数の働き手の中で一部だけ繁殖室へ入る。",
+      "visualMode": "chapter3_individual_009",
+      "visualDescription": "同じ巣穴背景で働き手だけを残し、繁殖室を空のままにして非繁殖多数を見せる。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -550,11 +563,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:colony_rule",
+          "assetId": "remotion:chapter3-individual-009",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "多数の働き手の中で一部だけ繁殖室へ入る。"
+          "description": "同じ巣穴背景で働き手だけを残し、繁殖室を空のままにして非繁殖多数を見せる。"
         }
       ],
       "backgroundBindings": [
@@ -573,11 +586,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "多数の働き手の中で一部だけ繁殖室へ入る。",
+        "description": "同じ巣穴背景で働き手だけを残し、繁殖室を空のままにして非繁殖多数を見せる。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.7
+      "estimatedDuration": 3.7,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-010",
@@ -591,14 +605,14 @@
         "startOffsetUTF16": 4909,
         "endOffsetExclusiveUTF16": 4940
       },
-      "visualMode": "queen_colony",
-      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "visualMode": "chapter3_individual_010",
+      "visualDescription": "同じ巣穴背景の繁殖室に女王と少数雄を追加し、働き手との空間差を見せる。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -611,11 +625,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:queen_colony",
+          "assetId": "remotion:chapter3-individual-010",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+          "description": "同じ巣穴背景の繁殖室に女王と少数雄を追加し、働き手との空間差を見せる。"
         }
       ],
       "backgroundBindings": [
@@ -634,11 +648,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "description": "同じ巣穴背景の繁殖室に女王と少数雄を追加し、働き手との空間差を見せる。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.2
+      "estimatedDuration": 5.2,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-011",
@@ -652,14 +667,14 @@
         "startOffsetUTF16": 4940,
         "endOffsetExclusiveUTF16": 4971
       },
-      "visualMode": "queen_colony",
-      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "visualMode": "chapter3_individual_011",
+      "visualDescription": "女王を残したまま幼体、採餌個体、運搬個体を追加し、女王の子を集団が育てる構造を見せる。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -672,11 +687,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:queen_colony",
+          "assetId": "remotion:chapter3-individual-011",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+          "description": "女王を残したまま幼体、採餌個体、運搬個体を追加し、女王の子を集団が育てる構造を見せる。"
         }
       ],
       "backgroundBindings": [
@@ -695,11 +710,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "description": "女王を残したまま幼体、採餌個体、運搬個体を追加し、女王の子を集団が育てる構造を見せる。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.2
+      "estimatedDuration": 5.2,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-012",
@@ -713,14 +729,14 @@
         "startOffsetUTF16": 4973,
         "endOffsetExclusiveUTF16": 4996
       },
-      "visualMode": "molerat_motion",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter3_individual_012",
+      "visualDescription": "巣穴を左右区画に分け、繁殖個体と維持個体の役割分離を固定構図で示す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -733,11 +749,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:molerat_motion",
+          "assetId": "remotion:chapter3-individual-012",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "巣穴を左右区画に分け、繁殖個体と維持個体の役割分離を固定構図で示す。"
         }
       ],
       "backgroundBindings": [
@@ -756,11 +772,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "巣穴を左右区画に分け、繁殖個体と維持個体の役割分離を固定構図で示す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.1
+      "estimatedDuration": 4.1,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-013",
@@ -774,14 +791,14 @@
         "startOffsetUTF16": 4996,
         "endOffsetExclusiveUTF16": 5015
       },
-      "visualMode": "eusociality",
-      "visualDescription": "アリ・ハチ・ハダカデバネズミの構造を重ねる。",
+      "visualMode": "chapter3_individual_013",
+      "visualDescription": "背景を暗い比較ステージへ替え、アリ・ハチ・ハダカデバネズミを横並びにする。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -794,11 +811,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:eusociality",
+          "assetId": "remotion:chapter3-individual-013",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "アリ・ハチ・ハダカデバネズミの構造を重ねる。"
+          "description": "背景を暗い比較ステージへ替え、アリ・ハチ・ハダカデバネズミを横並びにする。"
         }
       ],
       "backgroundBindings": [
@@ -817,11 +834,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "アリ・ハチ・ハダカデバネズミの構造を重ねる。",
+        "description": "背景を暗い比較ステージへ替え、アリ・ハチ・ハダカデバネズミを横並びにする。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.6
+      "estimatedDuration": 3.6,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-014",
@@ -835,14 +853,14 @@
         "startOffsetUTF16": 5015,
         "endOffsetExclusiveUTF16": 5057
       },
-      "visualMode": "eusociality",
-      "visualDescription": "アリ・ハチ・ハダカデバネズミの構造を重ねる。",
+      "visualMode": "chapter3_individual_014",
+      "visualDescription": "比較ステージを固定し、3種それぞれに社会構造の共通ラインを追加する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -855,11 +873,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:eusociality",
+          "assetId": "remotion:chapter3-individual-014",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "アリ・ハチ・ハダカデバネズミの構造を重ねる。"
+          "description": "比較ステージを固定し、3種それぞれに社会構造の共通ラインを追加する。"
         }
       ],
       "backgroundBindings": [
@@ -878,11 +896,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "アリ・ハチ・ハダカデバネズミの構造を重ねる。",
+        "description": "比較ステージを固定し、3種それぞれに社会構造の共通ラインを追加する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.7
+      "estimatedDuration": 6.7,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-015",
@@ -896,14 +915,14 @@
         "startOffsetUTF16": 5059,
         "endOffsetExclusiveUTF16": 5088
       },
-      "visualMode": "colony_rule",
-      "visualDescription": "多数の働き手の中で一部だけ繁殖室へ入る。",
+      "visualMode": "chapter3_individual_015",
+      "visualDescription": "巣穴へ戻り、働き手と他個体の幼体を矢印で結び、問いを視覚化する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -916,11 +935,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:colony_rule",
+          "assetId": "remotion:chapter3-individual-015",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "多数の働き手の中で一部だけ繁殖室へ入る。"
+          "description": "巣穴へ戻り、働き手と他個体の幼体を矢印で結び、問いを視覚化する。"
         }
       ],
       "backgroundBindings": [
@@ -939,11 +958,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "多数の働き手の中で一部だけ繁殖室へ入る。",
+        "description": "巣穴へ戻り、働き手と他個体の幼体を矢印で結び、問いを視覚化する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.9
+      "estimatedDuration": 4.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-016",
@@ -957,14 +977,14 @@
         "startOffsetUTF16": 5090,
         "endOffsetExclusiveUTF16": 5135
       },
-      "visualMode": "kin_selection",
-      "visualDescription": "遺伝子光点を血縁ネットワークへ流す。",
+      "visualMode": "chapter3_individual_016",
+      "visualDescription": "研究室へ切り替え、1964年と血縁ネットワークを段階的に生成する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -977,11 +997,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:kin_selection",
+          "assetId": "remotion:chapter3-individual-016",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "遺伝子光点を血縁ネットワークへ流す。"
+          "description": "研究室へ切り替え、1964年と血縁ネットワークを段階的に生成する。"
         }
       ],
       "backgroundBindings": [
@@ -1000,11 +1020,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "遺伝子光点を血縁ネットワークへ流す。",
+        "description": "研究室へ切り替え、1964年と血縁ネットワークを段階的に生成する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.1
+      "estimatedDuration": 7.1,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C3-017",
@@ -1018,14 +1039,14 @@
         "startOffsetUTF16": 5135,
         "endOffsetExclusiveUTF16": 5191
       },
-      "visualMode": "kin_selection",
-      "visualDescription": "遺伝子光点を血縁ネットワークへ流す。",
+      "visualMode": "chapter3_individual_017",
+      "visualDescription": "研究室背景を固定し、一個体から血縁家族へ遺伝子光点を流す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1038,11 +1059,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:kin_selection",
+          "assetId": "remotion:chapter3-individual-017",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "遺伝子光点を血縁ネットワークへ流す。"
+          "description": "研究室背景を固定し、一個体から血縁家族へ遺伝子光点を流す。"
         }
       ],
       "backgroundBindings": [
@@ -1061,11 +1082,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "遺伝子光点を血縁ネットワークへ流す。",
+        "description": "研究室背景を固定し、一個体から血縁家族へ遺伝子光点を流す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 8.6
+      "estimatedDuration": 8.6,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C3-018",
@@ -1079,14 +1101,14 @@
         "startOffsetUTF16": 5191,
         "endOffsetExclusiveUTF16": 5221
       },
-      "visualMode": "colony_rule",
-      "visualDescription": "多数の働き手の中で一部だけ繁殖室へ入る。",
+      "visualMode": "chapter3_individual_018",
+      "visualDescription": "抽象比較画面へ切り替え、直接繁殖と血縁者援助の二経路を同じ重さで並べる。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1099,11 +1121,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:colony_rule",
+          "assetId": "remotion:chapter3-individual-018",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "多数の働き手の中で一部だけ繁殖室へ入る。"
+          "description": "抽象比較画面へ切り替え、直接繁殖と血縁者援助の二経路を同じ重さで並べる。"
         }
       ],
       "backgroundBindings": [
@@ -1122,11 +1144,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "多数の働き手の中で一部だけ繁殖室へ入る。",
+        "description": "抽象比較画面へ切り替え、直接繁殖と血縁者援助の二経路を同じ重さで並べる。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.1
+      "estimatedDuration": 5.1,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-019",
@@ -1140,14 +1163,14 @@
         "startOffsetUTF16": 5223,
         "endOffsetExclusiveUTF16": 5249
       },
-      "visualMode": "kin_network",
-      "visualDescription": "個体間を線で結び援助を流す。",
+      "visualMode": "chapter3_individual_019",
+      "visualDescription": "巣穴背景を固定し、複数個体を線で結んで高い血縁性を可視化する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1160,11 +1183,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:kin_network",
+          "assetId": "remotion:chapter3-individual-019",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "個体間を線で結び援助を流す。"
+          "description": "巣穴背景を固定し、複数個体を線で結んで高い血縁性を可視化する。"
         }
       ],
       "backgroundBindings": [
@@ -1183,11 +1206,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "個体間を線で結び援助を流す。",
+        "description": "巣穴背景を固定し、複数個体を線で結んで高い血縁性を可視化する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.5
+      "estimatedDuration": 4.5,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-020",
@@ -1201,14 +1225,14 @@
         "startOffsetUTF16": 5249,
         "endOffsetExclusiveUTF16": 5279
       },
-      "visualMode": "queen_colony",
-      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "visualMode": "chapter3_individual_020",
+      "visualDescription": "同じ巣穴背景で女王の幼体と働き手を矢印で結ぶ。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1221,11 +1245,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:queen_colony",
+          "assetId": "remotion:chapter3-individual-020",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+          "description": "同じ巣穴背景で女王の幼体と働き手を矢印で結ぶ。"
         }
       ],
       "backgroundBindings": [
@@ -1244,11 +1268,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "description": "同じ巣穴背景で女王の幼体と働き手を矢印で結ぶ。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.1
+      "estimatedDuration": 5.1,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-021",
@@ -1262,14 +1287,14 @@
         "startOffsetUTF16": 5279,
         "endOffsetExclusiveUTF16": 5317
       },
-      "visualMode": "survival_together",
-      "visualDescription": "単独の細い道と集団の太い道を比較する。",
+      "visualMode": "chapter3_individual_021",
+      "visualDescription": "単独個体と集団巣を左右分割し、掘削・採餌・育児の負担差を見せる。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1282,11 +1307,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:survival_together",
+          "assetId": "remotion:chapter3-individual-021",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "単独の細い道と集団の太い道を比較する。"
+          "description": "単独個体と集団巣を左右分割し、掘削・採餌・育児の負担差を見せる。"
         }
       ],
       "backgroundBindings": [
@@ -1305,11 +1330,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "単独の細い道と集団の太い道を比較する。",
+        "description": "単独個体と集団巣を左右分割し、掘削・採餌・育児の負担差を見せる。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.1
+      "estimatedDuration": 6.1,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-022",
@@ -1323,14 +1349,14 @@
         "startOffsetUTF16": 5317,
         "endOffsetExclusiveUTF16": 5343
       },
-      "visualMode": "kin_network",
-      "visualDescription": "個体間を線で結び援助を流す。",
+      "visualMode": "chapter3_individual_022",
+      "visualDescription": "巣穴へ戻り、集団側の個体数と資源流を増やして生存上の利点を示す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1343,11 +1369,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:kin_network",
+          "assetId": "remotion:chapter3-individual-022",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "個体間を線で結び援助を流す。"
+          "description": "巣穴へ戻り、集団側の個体数と資源流を増やして生存上の利点を示す。"
         }
       ],
       "backgroundBindings": [
@@ -1366,11 +1392,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "個体間を線で結び援助を流す。",
+        "description": "巣穴へ戻り、集団側の個体数と資源流を増やして生存上の利点を示す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.5
+      "estimatedDuration": 4.5,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-023",
@@ -1384,14 +1411,14 @@
         "startOffsetUTF16": 5345,
         "endOffsetExclusiveUTF16": 5401
       },
-      "visualMode": "latent_reproduction",
-      "visualDescription": "働き手内部の繁殖可能性ランプを点灯する。",
+      "visualMode": "chapter3_individual_023",
+      "visualDescription": "同じ巣穴背景で非繁殖個体の一匹だけに繁殖可能性の光を点ける。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1404,11 +1431,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:latent_reproduction",
+          "assetId": "remotion:chapter3-individual-023",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "働き手内部の繁殖可能性ランプを点灯する。"
+          "description": "同じ巣穴背景で非繁殖個体の一匹だけに繁殖可能性の光を点ける。"
         }
       ],
       "backgroundBindings": [
@@ -1427,11 +1454,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "働き手内部の繁殖可能性ランプを点灯する。",
+        "description": "同じ巣穴背景で非繁殖個体の一匹だけに繁殖可能性の光を点ける。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 8.6
+      "estimatedDuration": 8.6,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C3-024",
@@ -1445,14 +1473,14 @@
         "startOffsetUTF16": 5403,
         "endOffsetExclusiveUTF16": 5459
       },
-      "visualMode": "queen_colony",
-      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "visualMode": "chapter3_individual_024",
+      "visualDescription": "1995年の研究室。飼育ケージから女王と繁殖雄を取り除き、計測グラフを表示する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1465,11 +1493,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:queen_colony",
+          "assetId": "remotion:chapter3-individual-024",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+          "description": "1995年の研究室。飼育ケージから女王と繁殖雄を取り除き、計測グラフを表示する。"
         }
       ],
       "backgroundBindings": [
@@ -1488,11 +1516,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "description": "1995年の研究室。飼育ケージから女王と繁殖雄を取り除き、計測グラフを表示する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 8.6
+      "estimatedDuration": 8.6,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C3-025",
@@ -1506,14 +1535,14 @@
         "startOffsetUTF16": 5459,
         "endOffsetExclusiveUTF16": 5513
       },
-      "visualMode": "queen_colony",
-      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "visualMode": "chapter3_individual_025",
+      "visualDescription": "研究室背景を固定し、残された雌の押し合いと上昇する行動指標を追加する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1526,11 +1555,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:queen_colony",
+          "assetId": "remotion:chapter3-individual-025",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+          "description": "研究室背景を固定し、残された雌の押し合いと上昇する行動指標を追加する。"
         }
       ],
       "backgroundBindings": [
@@ -1549,11 +1578,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "description": "研究室背景を固定し、残された雌の押し合いと上昇する行動指標を追加する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 8.3
+      "estimatedDuration": 8.3,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C3-026",
@@ -1567,14 +1597,14 @@
         "startOffsetUTF16": 5513,
         "endOffsetExclusiveUTF16": 5562
       },
-      "visualMode": "queen_colony",
-      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "visualMode": "chapter3_individual_026",
+      "visualDescription": "同じ研究室背景で一部個体だけを強調し、女王不在後の行動変化を示す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1587,11 +1617,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:queen_colony",
+          "assetId": "remotion:chapter3-individual-026",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+          "description": "同じ研究室背景で一部個体だけを強調し、女王不在後の行動変化を示す。"
         }
       ],
       "backgroundBindings": [
@@ -1610,11 +1640,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "description": "同じ研究室背景で一部個体だけを強調し、女王不在後の行動変化を示す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.6
+      "estimatedDuration": 7.6,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C3-027",
@@ -1628,14 +1659,14 @@
         "startOffsetUTF16": 5564,
         "endOffsetExclusiveUTF16": 5613
       },
-      "visualMode": "environment_switch",
-      "visualDescription": "個体を別環境へ移し波形と行動を変える。",
+      "visualMode": "chapter3_individual_027",
+      "visualDescription": "研究室背景を固定し、非繁殖個体を別ケージへ移動させる。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1648,11 +1679,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:environment_switch",
+          "assetId": "remotion:chapter3-individual-027",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "個体を別環境へ移し波形と行動を変える。"
+          "description": "研究室背景を固定し、非繁殖個体を別ケージへ移動させる。"
         }
       ],
       "backgroundBindings": [
@@ -1671,11 +1702,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "個体を別環境へ移し波形と行動を変える。",
+        "description": "研究室背景を固定し、非繁殖個体を別ケージへ移動させる。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.6
+      "estimatedDuration": 7.6,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C3-028",
@@ -1689,14 +1721,14 @@
         "startOffsetUTF16": 5613,
         "endOffsetExclusiveUTF16": 5666
       },
-      "visualMode": "environment_switch",
-      "visualDescription": "個体を別環境へ移し波形と行動を変える。",
+      "visualMode": "chapter3_individual_028",
+      "visualDescription": "左右の同じ研究室環境を比較し、所属集団の違いに応じて行動・身体指標が変わる様子を示す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1709,11 +1741,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:environment_switch",
+          "assetId": "remotion:chapter3-individual-028",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "個体を別環境へ移し波形と行動を変える。"
+          "description": "左右の同じ研究室環境を比較し、所属集団の違いに応じて行動・身体指標が変わる様子を示す。"
         }
       ],
       "backgroundBindings": [
@@ -1732,11 +1764,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "個体を別環境へ移し波形と行動を変える。",
+        "description": "左右の同じ研究室環境を比較し、所属集団の違いに応じて行動・身体指標が変わる様子を示す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 8.2
+      "estimatedDuration": 8.2,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C3-029",
@@ -1750,14 +1783,14 @@
         "startOffsetUTF16": 5668,
         "endOffsetExclusiveUTF16": 5692
       },
-      "visualMode": "tunnel_rush",
-      "visualDescription": "地下トンネルを個体が高速で行き交う。",
+      "visualMode": "chapter3_individual_029",
+      "visualDescription": "画面上半分の地下トンネルから下半分の東京へ連続的に視点を戻す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1770,11 +1803,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:tunnel_rush",
+          "assetId": "remotion:chapter3-individual-029",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "地下トンネルを個体が高速で行き交う。"
+          "description": "画面上半分の地下トンネルから下半分の東京へ連続的に視点を戻す。"
         }
       ],
       "backgroundBindings": [
@@ -1793,11 +1826,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "地下トンネルを個体が高速で行き交う。",
+        "description": "画面上半分の地下トンネルから下半分の東京へ連続的に視点を戻す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.2
+      "estimatedDuration": 4.2,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-030",
@@ -1811,14 +1845,14 @@
         "startOffsetUTF16": 5694,
         "endOffsetExclusiveUTF16": 5716
       },
-      "visualMode": "queen_colony",
-      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "visualMode": "chapter3_individual_030",
+      "visualDescription": "東京の街背景を固定し、王冠イメージを一度出してすぐ消し、人間には女王がいないと示す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1831,11 +1865,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:queen_colony",
+          "assetId": "remotion:chapter3-individual-030",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+          "description": "東京の街背景を固定し、王冠イメージを一度出してすぐ消し、人間には女王がいないと示す。"
         }
       ],
       "backgroundBindings": [
@@ -1854,11 +1888,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "description": "東京の街背景を固定し、王冠イメージを一度出してすぐ消し、人間には女王がいないと示す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4
+      "estimatedDuration": 4,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-031",
@@ -1872,14 +1907,14 @@
         "startOffsetUTF16": 5716,
         "endOffsetExclusiveUTF16": 5752
       },
-      "visualMode": "molerat_motion",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter3_individual_031",
+      "visualDescription": "同じ東京背景を固定し、大勢の人々に生物学的抑制を示す印を重ねて否定する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1892,11 +1927,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:molerat_motion",
+          "assetId": "remotion:chapter3-individual-031",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "同じ東京背景を固定し、大勢の人々に生物学的抑制を示す印を重ねて否定する。"
         }
       ],
       "backgroundBindings": [
@@ -1915,11 +1950,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "同じ東京背景を固定し、大勢の人々に生物学的抑制を示す印を重ねて否定する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.9
+      "estimatedDuration": 5.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-032",
@@ -1933,14 +1969,14 @@
         "startOffsetUTF16": 5752,
         "endOffsetExclusiveUTF16": 5805
       },
-      "visualMode": "time_resource_split",
-      "visualDescription": "時間と資源メーターを家庭/仕事へ動かす。",
+      "visualMode": "chapter3_individual_032",
+      "visualDescription": "同じ東京背景を固定し、左に時間と資源を持つ家庭、右に不足側の働く個人を置く。",
       "backgroundId": "BG_town",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1953,11 +1989,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:time_resource_split",
+          "assetId": "remotion:chapter3-individual-032",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "時間と資源メーターを家庭/仕事へ動かす。"
+          "description": "同じ東京背景を固定し、左に時間と資源を持つ家庭、右に不足側の働く個人を置く。"
         }
       ],
       "backgroundBindings": [
@@ -1976,11 +2012,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "時間と資源メーターを家庭/仕事へ動かす。",
+        "description": "同じ東京背景を固定し、左に時間と資源を持つ家庭、右に不足側の働く個人を置く。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 8.2
+      "estimatedDuration": 8.2,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C3-033",
@@ -1994,14 +2031,14 @@
         "startOffsetUTF16": 5807,
         "endOffsetExclusiveUTF16": 5824
       },
-      "visualMode": "city_division",
-      "visualDescription": "家庭と仕事の人物を動かし仕事成果を家庭へ流す。",
+      "visualMode": "chapter3_individual_033",
+      "visualDescription": "同じ東京背景で家庭・子供・住居を追加し、家庭形成側の生活を具体化する。",
       "backgroundId": "BG_town",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2014,11 +2051,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:city_division",
+          "assetId": "remotion:chapter3-individual-033",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "家庭と仕事の人物を動かし仕事成果を家庭へ流す。"
+          "description": "同じ東京背景で家庭・子供・住居を追加し、家庭形成側の生活を具体化する。"
         }
       ],
       "backgroundBindings": [
@@ -2037,11 +2074,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "家庭と仕事の人物を動かし仕事成果を家庭へ流す。",
+        "description": "同じ東京背景で家庭・子供・住居を追加し、家庭形成側の生活を具体化する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.3
+      "estimatedDuration": 3.3,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-034",
@@ -2055,14 +2093,14 @@
         "startOffsetUTF16": 5824,
         "endOffsetExclusiveUTF16": 5854
       },
-      "visualMode": "colony_rule",
-      "visualDescription": "多数の働き手の中で一部だけ繁殖室へ入る。",
+      "visualMode": "chapter3_individual_034",
+      "visualDescription": "オフィスへ切り替え、主人公の移動・時計・仕事ラインで労働に時間を使う生活を描く。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2075,11 +2113,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:colony_rule",
+          "assetId": "remotion:chapter3-individual-034",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "多数の働き手の中で一部だけ繁殖室へ入る。"
+          "description": "オフィスへ切り替え、主人公の移動・時計・仕事ラインで労働に時間を使う生活を描く。"
         }
       ],
       "backgroundBindings": [
@@ -2098,11 +2136,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "多数の働き手の中で一部だけ繁殖室へ入る。",
+        "description": "オフィスへ切り替え、主人公の移動・時計・仕事ラインで労働に時間を使う生活を描く。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.1
+      "estimatedDuration": 5.1,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-035",
@@ -2116,14 +2155,14 @@
         "startOffsetUTF16": 5854,
         "endOffsetExclusiveUTF16": 5905
       },
-      "visualMode": "city_division",
-      "visualDescription": "家庭と仕事の人物を動かし仕事成果を家庭へ流す。",
+      "visualMode": "chapter3_individual_035",
+      "visualDescription": "東京背景へ戻り、食料・住まい・交通・医療・教育を家庭へ流す。",
       "backgroundId": "BG_town",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2136,11 +2175,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:city_division",
+          "assetId": "remotion:chapter3-individual-035",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "家庭と仕事の人物を動かし仕事成果を家庭へ流す。"
+          "description": "東京背景へ戻り、食料・住まい・交通・医療・教育を家庭へ流す。"
         }
       ],
       "backgroundBindings": [
@@ -2159,11 +2198,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "家庭と仕事の人物を動かし仕事成果を家庭へ流す。",
+        "description": "東京背景へ戻り、食料・住まい・交通・医療・教育を家庭へ流す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.9
+      "estimatedDuration": 7.9,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C3-036",
@@ -2177,14 +2217,14 @@
         "startOffsetUTF16": 5907,
         "endOffsetExclusiveUTF16": 5932
       },
-      "visualMode": "molerat_motion",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter3_individual_036",
+      "visualDescription": "地下と東京を左右分割し、非繁殖個体が集団を支える構造だけを対応させる。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2197,11 +2237,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:molerat_motion",
+          "assetId": "remotion:chapter3-individual-036",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "地下と東京を左右分割し、非繁殖個体が集団を支える構造だけを対応させる。"
         }
       ],
       "backgroundBindings": [
@@ -2220,11 +2260,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "地下と東京を左右分割し、非繁殖個体が集団を支える構造だけを対応させる。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.4
+      "estimatedDuration": 4.4,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-037",
@@ -2238,14 +2279,14 @@
         "startOffsetUTF16": 5932,
         "endOffsetExclusiveUTF16": 5951
       },
-      "visualMode": "colony_rule",
-      "visualDescription": "多数の働き手の中で一部だけ繁殖室へ入る。",
+      "visualMode": "chapter3_individual_037",
+      "visualDescription": "左右分割を維持し、地下の働き手群と東京の働く人々の配置を対応させる。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2258,11 +2299,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:colony_rule",
+          "assetId": "remotion:chapter3-individual-037",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "多数の働き手の中で一部だけ繁殖室へ入る。"
+          "description": "左右分割を維持し、地下の働き手群と東京の働く人々の配置を対応させる。"
         }
       ],
       "backgroundBindings": [
@@ -2281,11 +2322,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "多数の働き手の中で一部だけ繁殖室へ入る。",
+        "description": "左右分割を維持し、地下の働き手群と東京の働く人々の配置を対応させる。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.6
+      "estimatedDuration": 3.6,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-038",
@@ -2299,14 +2341,14 @@
         "startOffsetUTF16": 5953,
         "endOffsetExclusiveUTF16": 5991
       },
-      "visualMode": "queen_colony",
-      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "visualMode": "chapter3_individual_038",
+      "visualDescription": "東京背景を固定し、経営者・政治家など特定個人を示す3枠を並べ、それが女王ではないことを示す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2319,11 +2361,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:queen_colony",
+          "assetId": "remotion:chapter3-individual-038",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+          "description": "東京背景を固定し、経営者・政治家など特定個人を示す3枠を並べ、それが女王ではないことを示す。"
         }
       ],
       "backgroundBindings": [
@@ -2342,11 +2384,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "description": "東京背景を固定し、経営者・政治家など特定個人を示す3枠を並べ、それが女王ではないことを示す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.1
+      "estimatedDuration": 6.1,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-039",
@@ -2360,14 +2403,14 @@
         "startOffsetUTF16": 5991,
         "endOffsetExclusiveUTF16": 6036
       },
-      "visualMode": "faceless_conditions",
-      "visualDescription": "家賃・給料・時間・生活水準バッジを王冠形へ集める。",
+      "visualMode": "chapter3_individual_039",
+      "visualDescription": "同じ東京背景に家賃・給料・労働時間・生活水準の条件を集め、顔のない王冠として形成する。",
       "backgroundId": "BG_town",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2380,11 +2423,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:faceless_conditions",
+          "assetId": "remotion:chapter3-individual-039",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "家賃・給料・時間・生活水準バッジを王冠形へ集める。"
+          "description": "同じ東京背景に家賃・給料・労働時間・生活水準の条件を集め、顔のない王冠として形成する。"
         }
       ],
       "backgroundBindings": [
@@ -2403,11 +2446,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "家賃・給料・時間・生活水準バッジを王冠形へ集める。",
+        "description": "同じ東京背景に家賃・給料・労働時間・生活水準の条件を集め、顔のない王冠として形成する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.1
+      "estimatedDuration": 7.1,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C3-040",
@@ -2421,14 +2465,14 @@
         "startOffsetUTF16": 6036,
         "endOffsetExclusiveUTF16": 6073
       },
-      "visualMode": "molerat_motion",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter3_individual_040",
+      "visualDescription": "同じ東京背景で条件オブジェクトを残し、人生の二本の道の幅を変えて選びやすさの差を示す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2441,11 +2485,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:molerat_motion",
+          "assetId": "remotion:chapter3-individual-040",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "同じ東京背景で条件オブジェクトを残し、人生の二本の道の幅を変えて選びやすさの差を示す。"
         }
       ],
       "backgroundBindings": [
@@ -2464,11 +2508,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "同じ東京背景で条件オブジェクトを残し、人生の二本の道の幅を変えて選びやすさの差を示す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6
+      "estimatedDuration": 6,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-041",
@@ -2482,14 +2527,14 @@
         "startOffsetUTF16": 6075,
         "endOffsetExclusiveUTF16": 6093
       },
-      "visualMode": "queen_colony",
-      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "visualMode": "chapter3_individual_041",
+      "visualDescription": "地下巣へ一度戻り、女王が繁殖室を占める構図で生物学的抑制を示す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2502,11 +2547,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:queen_colony",
+          "assetId": "remotion:chapter3-individual-041",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+          "description": "地下巣へ一度戻り、女王が繁殖室を占める構図で生物学的抑制を示す。"
         }
       ],
       "backgroundBindings": [
@@ -2525,11 +2570,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "description": "地下巣へ一度戻り、女王が繁殖室を占める構図で生物学的抑制を示す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.4
+      "estimatedDuration": 3.4,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-042",
@@ -2543,14 +2589,14 @@
         "startOffsetUTF16": 6093,
         "endOffsetExclusiveUTF16": 6124
       },
-      "visualMode": "underground_surface_split",
-      "visualDescription": "地下女王と地上条件を同時に動かす。",
+      "visualMode": "chapter3_individual_042",
+      "visualDescription": "地下と東京を左右分割し、地下は女王、地上は条件と本人の選択を対比する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2563,11 +2609,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:underground_surface_split",
+          "assetId": "remotion:chapter3-individual-042",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "地下女王と地上条件を同時に動かす。"
+          "description": "地下と東京を左右分割し、地下は女王、地上は条件と本人の選択を対比する。"
         }
       ],
       "backgroundBindings": [
@@ -2586,11 +2632,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "地下女王と地上条件を同時に動かす。",
+        "description": "地下と東京を左右分割し、地下は女王、地上は条件と本人の選択を対比する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.2
+      "estimatedDuration": 5.2,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-043",
@@ -2604,14 +2651,14 @@
         "startOffsetUTF16": 6126,
         "endOffsetExclusiveUTF16": 6162
       },
-      "visualMode": "queen_colony",
-      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "visualMode": "chapter3_individual_043",
+      "visualDescription": "東京背景を固定し、条件の王冠と群衆を重ねて社会そのものの役割を示す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2624,11 +2671,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:queen_colony",
+          "assetId": "remotion:chapter3-individual-043",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+          "description": "東京背景を固定し、条件の王冠と群衆を重ねて社会そのものの役割を示す。"
         }
       ],
       "backgroundBindings": [
@@ -2647,11 +2694,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "description": "東京背景を固定し、条件の王冠と群衆を重ねて社会そのものの役割を示す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.9
+      "estimatedDuration": 5.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-044",
@@ -2665,14 +2713,14 @@
         "startOffsetUTF16": 6164,
         "endOffsetExclusiveUTF16": 6179
       },
-      "visualMode": "queen_colony",
-      "visualDescription": "中央女王と少数雄の周囲を働き手が循環する。",
+      "visualMode": "chapter3_individual_044",
+      "visualDescription": "同じ東京背景で王冠を消し、命令文の否定パネルだけを残す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2685,11 +2733,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:queen_colony",
+          "assetId": "remotion:chapter3-individual-044",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "中央女王と少数雄の周囲を働き手が循環する。"
+          "description": "同じ東京背景で王冠を消し、命令文の否定パネルだけを残す。"
         }
       ],
       "backgroundBindings": [
@@ -2708,11 +2756,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "中央女王と少数雄の周囲を働き手が循環する。",
+        "description": "同じ東京背景で王冠を消し、命令文の否定パネルだけを残す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3
+      "estimatedDuration": 3,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-045",
@@ -2726,14 +2775,14 @@
         "startOffsetUTF16": 6179,
         "endOffsetExclusiveUTF16": 6200
       },
-      "visualMode": "molerat_motion",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter3_individual_045",
+      "visualDescription": "同じ東京背景で命令パネルを消し、主人公と家族の選択肢だけを置いて強制がないことを示す。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2746,11 +2795,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:molerat_motion",
+          "assetId": "remotion:chapter3-individual-045",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "同じ東京背景で命令パネルを消し、主人公と家族の選択肢だけを置いて強制がないことを示す。"
         }
       ],
       "backgroundBindings": [
@@ -2769,11 +2818,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "同じ東京背景で命令パネルを消し、主人公と家族の選択肢だけを置いて強制がないことを示す。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.8
+      "estimatedDuration": 3.8,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-046",
@@ -2787,14 +2837,14 @@
         "startOffsetUTF16": 6200,
         "endOffsetExclusiveUTF16": 6238
       },
-      "visualMode": "faceless_conditions",
-      "visualDescription": "家賃・給料・時間・生活水準バッジを王冠形へ集める。",
+      "visualMode": "chapter3_individual_046",
+      "visualDescription": "夜の部屋へ切り替え、家賃・時計・住居費を主人公の目の前に置く。",
       "backgroundId": "BG_town",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2807,11 +2857,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:faceless_conditions",
+          "assetId": "remotion:chapter3-individual-046",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "家賃・給料・時間・生活水準バッジを王冠形へ集める。"
+          "description": "夜の部屋へ切り替え、家賃・時計・住居費を主人公の目の前に置く。"
         }
       ],
       "backgroundBindings": [
@@ -2830,11 +2880,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "家賃・給料・時間・生活水準バッジを王冠形へ集める。",
+        "description": "夜の部屋へ切り替え、家賃・時計・住居費を主人公の目の前に置く。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.1
+      "estimatedDuration": 6.1,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-047",
@@ -2848,14 +2899,14 @@
         "startOffsetUTF16": 6238,
         "endOffsetExclusiveUTF16": 6279
       },
-      "visualMode": "molerat_motion",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter3_individual_047",
+      "visualDescription": "抽象画面で日々の判断カードを一段ずつ積み、最後に狭い選択路へ収束させる。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2868,11 +2919,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:molerat_motion",
+          "assetId": "remotion:chapter3-individual-047",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "抽象画面で日々の判断カードを一段ずつ積み、最後に狭い選択路へ収束させる。"
         }
       ],
       "backgroundBindings": [
@@ -2891,11 +2942,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "抽象画面で日々の判断カードを一段ずつ積み、最後に狭い選択路へ収束させる。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.5
+      "estimatedDuration": 6.5,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C3-048",
@@ -2909,14 +2961,14 @@
         "startOffsetUTF16": 6281,
         "endOffsetExclusiveUTF16": 6328
       },
-      "visualMode": "zoom_out_mass",
-      "visualDescription": "一人の選択から数千の点へズームアウト。",
+      "visualMode": "chapter3_individual_048",
+      "visualDescription": "東京の一人の人物から数十人へズームアウトし、同じ選択が社会規模へ広がる問いで章を閉じる。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "背景連続時は背景レイヤーを固定し前景オブジェクトのみ追加・削除",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・物体・図解の最低2要素を独立アニメーション"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2929,11 +2981,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:zoom_out_mass",
+          "assetId": "remotion:chapter3-individual-048",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "一人の選択から数千の点へズームアウト。"
+          "description": "東京の一人の人物から数十人へズームアウトし、同じ選択が社会規模へ広がる問いで章を閉じる。"
         }
       ],
       "backgroundBindings": [
@@ -2952,17 +3004,22 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "一人の選択から数千の点へズームアウト。",
+        "description": "東京の一人の人物から数十人へズームアウトし、同じ選択が社会規模へ広がる問いで章を閉じる。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.3
+      "estimatedDuration": 7.3,
+      "shotCount": 3
     }
   ],
   "coverageValidation": {
     "sceneNarrationCharacters": 1614,
     "sceneOrderVerified": true,
-    "sourceRangesVerified": true
+    "sourceRangesVerified": true,
+    "individualSceneDesign": true,
+    "individualBeatCount": 48,
+    "visualShotCount": 108,
+    "backgroundReusePolicy": "fixed-background-object-delta"
   },
   "missingAssets": {
     "count": 0,
@@ -2974,5 +3031,6 @@
     "missingAssetsResolved": true,
     "renderAllowed": true,
     "approvedEarlierChaptersLocked": true
-  }
+  },
+  "visualShotCount": 108
 }
