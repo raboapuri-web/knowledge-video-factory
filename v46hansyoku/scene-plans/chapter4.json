@@ -22,11 +22,16 @@
   "estimatedDurationSeconds": 315.5,
   "motionPolicy": {
     "density": "high",
+    "renderer": "chapter4.tsx individual switch(index)",
+    "sharedGenericRenderer": false,
+    "backgroundContinuityRule": "同一場所が連続する場合は背景を固定し、前景オブジェクトのみ追加・削除する",
+    "shotSubdivision": "55 narration beats / 125 visual shots",
     "rules": [
-      "各シーン最低1つ主要要素を動かす",
-      "カメラ微細パン/ズーム/パララックス常用",
-      "図解は静止せず生成/移動/反転/伸縮",
-      "同じ構図を3シーン連続させない"
+      "確定ナレーション・字幕・VOICEVOXタイミングは変更しない",
+      "1ビート2〜3ショット相当",
+      "同一背景の無意味なパン・ズームで差分扱いしない",
+      "背景変更は意味転換時のみ",
+      "オブジェクトの出入りと状態変化で因果を見せる"
     ]
   },
   "scenes": [
@@ -42,14 +47,15 @@
         "startOffsetUTF16": 6353,
         "endOffsetExclusiveUTF16": 6377
       },
-      "visualMode": "office_machine",
-      "visualDescription": "会社内の人・画面・商品・顧客を機械のように循環させる。",
+      "visualMode": "chapter4_individual_001",
+      "visualDescription": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "workerMan",
@@ -65,11 +71,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_machine",
+          "assetId": "remotion:chapter4-individual-001",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "会社内の人・画面・商品・顧客を機械のように循環させる。"
+          "description": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -88,11 +94,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "会社内の人・画面・商品・顧客を機械のように循環させる。",
+        "description": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.2
+      "estimatedDuration": 4.2,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-002",
@@ -106,14 +113,15 @@
         "startOffsetUTF16": 6377,
         "endOffsetExclusiveUTF16": 6412
       },
-      "visualMode": "office_machine",
-      "visualDescription": "会社内の人・画面・商品・顧客を機械のように循環させる。",
+      "visualMode": "chapter4_individual_002",
+      "visualDescription": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "workerMan",
@@ -129,11 +137,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_machine",
+          "assetId": "remotion:chapter4-individual-002",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "会社内の人・画面・商品・顧客を機械のように循環させる。"
+          "description": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -152,11 +160,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "会社内の人・画面・商品・顧客を機械のように循環させる。",
+        "description": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.7
+      "estimatedDuration": 5.7,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-003",
@@ -170,14 +179,15 @@
         "startOffsetUTF16": 6412,
         "endOffsetExclusiveUTF16": 6440
       },
-      "visualMode": "office_machine",
-      "visualDescription": "会社内の人・画面・商品・顧客を機械のように循環させる。",
+      "visualMode": "chapter4_individual_003",
+      "visualDescription": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "workerMan",
@@ -193,11 +203,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_machine",
+          "assetId": "remotion:chapter4-individual-003",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "会社内の人・画面・商品・顧客を機械のように循環させる。"
+          "description": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -216,11 +226,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "会社内の人・画面・商品・顧客を機械のように循環させる。",
+        "description": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.8
+      "estimatedDuration": 4.8,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-004",
@@ -234,14 +245,15 @@
         "startOffsetUTF16": 6442,
         "endOffsetExclusiveUTF16": 6485
       },
-      "visualMode": "owner_home",
-      "visualDescription": "事業成長の先に広い住まいを開く。",
+      "visualMode": "chapter4_individual_004",
+      "visualDescription": "事業成長の先に広い住まいを開く。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_ROOM_DAY",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -254,11 +266,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:owner_home",
+          "assetId": "remotion:chapter4-individual-004",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "事業成長の先に広い住まいを開く。"
+          "description": "事業成長の先に広い住まいを開く。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -277,11 +289,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "事業成長の先に広い住まいを開く。",
+        "description": "事業成長の先に広い住まいを開く。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.8
+      "estimatedDuration": 6.8,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-005",
@@ -295,14 +308,15 @@
         "startOffsetUTF16": 6485,
         "endOffsetExclusiveUTF16": 6532
       },
-      "visualMode": "worker_budget",
-      "visualDescription": "給与から家賃生活費を引き貯金バーを残す。",
+      "visualMode": "chapter4_individual_005",
+      "visualDescription": "給与から家賃生活費を引き貯金バーを残す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -315,11 +329,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:worker_budget",
+          "assetId": "remotion:chapter4-individual-005",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "給与から家賃生活費を引き貯金バーを残す。"
+          "description": "給与から家賃生活費を引き貯金バーを残す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -338,11 +352,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "給与から家賃生活費を引き貯金バーを残す。",
+        "description": "給与から家賃生活費を引き貯金バーを残す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.3
+      "estimatedDuration": 7.3,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-006",
@@ -356,14 +371,15 @@
         "startOffsetUTF16": 6534,
         "endOffsetExclusiveUTF16": 6555
       },
-      "visualMode": "promotion_overtime",
-      "visualDescription": "会社員と高速時計で残業を見せる。",
+      "visualMode": "chapter4_individual_006",
+      "visualDescription": "会社員と高速時計で残業を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "workerMan"
@@ -378,11 +394,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:promotion_overtime",
+          "assetId": "remotion:chapter4-individual-006",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "会社員と高速時計で残業を見せる。"
+          "description": "会社員と高速時計で残業を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -401,11 +417,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "会社員と高速時計で残業を見せる。",
+        "description": "会社員と高速時計で残業を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.8
+      "estimatedDuration": 3.8,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-007",
@@ -419,14 +436,15 @@
         "startOffsetUTF16": 6555,
         "endOffsetExclusiveUTF16": 6577
       },
-      "visualMode": "promotion_overtime",
-      "visualDescription": "会社員と高速時計で残業を見せる。",
+      "visualMode": "chapter4_individual_007",
+      "visualDescription": "会社員と高速時計で残業を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "workerMan"
@@ -441,11 +459,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:promotion_overtime",
+          "assetId": "remotion:chapter4-individual-007",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "会社員と高速時計で残業を見せる。"
+          "description": "会社員と高速時計で残業を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -464,11 +482,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "会社員と高速時計で残業を見せる。",
+        "description": "会社員と高速時計で残業を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4
+      "estimatedDuration": 4,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-008",
@@ -482,14 +501,15 @@
         "startOffsetUTF16": 6577,
         "endOffsetExclusiveUTF16": 6636
       },
-      "visualMode": "time_tradeoff",
-      "visualDescription": "仕事時間を伸ばし出会い・家庭時間を縮める。",
+      "visualMode": "chapter4_individual_008",
+      "visualDescription": "仕事時間を伸ばし出会い・家庭時間を縮める。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "workerMan"
@@ -504,11 +524,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:time_tradeoff",
+          "assetId": "remotion:chapter4-individual-008",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "仕事時間を伸ばし出会い・家庭時間を縮める。"
+          "description": "仕事時間を伸ばし出会い・家庭時間を縮める。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -527,11 +547,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "仕事時間を伸ばし出会い・家庭時間を縮める。",
+        "description": "仕事時間を伸ばし出会い・家庭時間を縮める。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 9
+      "estimatedDuration": 9,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-009",
@@ -545,14 +566,15 @@
         "startOffsetUTF16": 6638,
         "endOffsetExclusiveUTF16": 6686
       },
-      "visualMode": "career_fear",
-      "visualDescription": "職場の地位と将来の子供の扉を揺らす。",
+      "visualMode": "chapter4_individual_009",
+      "visualDescription": "職場の地位と将来の子供の扉を揺らす。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "workerWoman"
@@ -567,11 +589,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:career_fear",
+          "assetId": "remotion:chapter4-individual-009",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "職場の地位と将来の子供の扉を揺らす。"
+          "description": "職場の地位と将来の子供の扉を揺らす。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -590,11 +612,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "職場の地位と将来の子供の扉を揺らす。",
+        "description": "職場の地位と将来の子供の扉を揺らす。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.5
+      "estimatedDuration": 7.5,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-010",
@@ -608,14 +631,15 @@
         "startOffsetUTF16": 6686,
         "endOffsetExclusiveUTF16": 6723
       },
-      "visualMode": "worker_budget",
-      "visualDescription": "給与から家賃生活費を引き貯金バーを残す。",
+      "visualMode": "chapter4_individual_010",
+      "visualDescription": "給与から家賃生活費を引き貯金バーを残す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -628,11 +652,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:worker_budget",
+          "assetId": "remotion:chapter4-individual-010",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "給与から家賃生活費を引き貯金バーを残す。"
+          "description": "給与から家賃生活費を引き貯金バーを残す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -651,11 +675,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "給与から家賃生活費を引き貯金バーを残す。",
+        "description": "給与から家賃生活費を引き貯金バーを残す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6
+      "estimatedDuration": 6,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-011",
@@ -669,14 +694,15 @@
         "startOffsetUTF16": 6725,
         "endOffsetExclusiveUTF16": 6735
       },
-      "visualMode": "organization_zoomout",
-      "visualDescription": "異なる人物からカメラを引き会社全体へ。",
+      "visualMode": "chapter4_individual_011",
+      "visualDescription": "異なる人物からカメラを引き会社全体へ。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "workerMan",
@@ -692,11 +718,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:organization_zoomout",
+          "assetId": "remotion:chapter4-individual-011",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "異なる人物からカメラを引き会社全体へ。"
+          "description": "異なる人物からカメラを引き会社全体へ。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -715,11 +741,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "異なる人物からカメラを引き会社全体へ。",
+        "description": "異なる人物からカメラを引き会社全体へ。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.4
+      "estimatedDuration": 2.4,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-012",
@@ -733,14 +760,15 @@
         "startOffsetUTF16": 6735,
         "endOffsetExclusiveUTF16": 6753
       },
-      "visualMode": "office_system",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter4_individual_012",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -753,11 +781,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_system",
+          "assetId": "remotion:chapter4-individual-012",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -776,11 +804,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.4
+      "estimatedDuration": 3.4,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-013",
@@ -794,14 +823,15 @@
         "startOffsetUTF16": 6753,
         "endOffsetExclusiveUTF16": 6802
       },
-      "visualMode": "office_machine",
-      "visualDescription": "会社内の人・画面・商品・顧客を機械のように循環させる。",
+      "visualMode": "chapter4_individual_013",
+      "visualDescription": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "workerMan",
@@ -817,11 +847,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_machine",
+          "assetId": "remotion:chapter4-individual-013",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "会社内の人・画面・商品・顧客を機械のように循環させる。"
+          "description": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -840,11 +870,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "会社内の人・画面・商品・顧客を機械のように循環させる。",
+        "description": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.6
+      "estimatedDuration": 7.6,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-014",
@@ -858,14 +889,15 @@
         "startOffsetUTF16": 6804,
         "endOffsetExclusiveUTF16": 6829
       },
-      "visualMode": "owner_home",
-      "visualDescription": "事業成長の先に広い住まいを開く。",
+      "visualMode": "chapter4_individual_014",
+      "visualDescription": "事業成長の先に広い住まいを開く。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_ROOM_DAY",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -878,11 +910,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:owner_home",
+          "assetId": "remotion:chapter4-individual-014",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "事業成長の先に広い住まいを開く。"
+          "description": "事業成長の先に広い住まいを開く。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -901,11 +933,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "事業成長の先に広い住まいを開く。",
+        "description": "事業成長の先に広い住まいを開く。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.4
+      "estimatedDuration": 4.4,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-015",
@@ -919,14 +952,15 @@
         "startOffsetUTF16": 6829,
         "endOffsetExclusiveUTF16": 6868
       },
-      "visualMode": "owner_home",
-      "visualDescription": "事業成長の先に広い住まいを開く。",
+      "visualMode": "chapter4_individual_015",
+      "visualDescription": "事業成長の先に広い住まいを開く。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_ROOM_DAY",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -939,11 +973,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:owner_home",
+          "assetId": "remotion:chapter4-individual-015",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "事業成長の先に広い住まいを開く。"
+          "description": "事業成長の先に広い住まいを開く。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -962,11 +996,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "事業成長の先に広い住まいを開く。",
+        "description": "事業成長の先に広い住まいを開く。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.3
+      "estimatedDuration": 6.3,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-016",
@@ -980,14 +1015,15 @@
         "startOffsetUTF16": 6868,
         "endOffsetExclusiveUTF16": 6896
       },
-      "visualMode": "owner_home",
-      "visualDescription": "事業成長の先に広い住まいを開く。",
+      "visualMode": "chapter4_individual_016",
+      "visualDescription": "事業成長の先に広い住まいを開く。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_ROOM_DAY",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1000,11 +1036,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:owner_home",
+          "assetId": "remotion:chapter4-individual-016",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "事業成長の先に広い住まいを開く。"
+          "description": "事業成長の先に広い住まいを開く。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1023,11 +1059,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "事業成長の先に広い住まいを開く。",
+        "description": "事業成長の先に広い住まいを開く。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.8
+      "estimatedDuration": 4.8,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-017",
@@ -1041,14 +1078,15 @@
         "startOffsetUTF16": 6898,
         "endOffsetExclusiveUTF16": 6919
       },
-      "visualMode": "faceless_queen",
-      "visualDescription": "顔のない王冠を回転させ内部に条件を映す。",
+      "visualMode": "chapter4_individual_017",
+      "visualDescription": "顔のない王冠を回転させ内部に条件を映す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1061,11 +1099,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:faceless_queen",
+          "assetId": "remotion:chapter4-individual-017",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "顔のない王冠を回転させ内部に条件を映す。"
+          "description": "顔のない王冠を回転させ内部に条件を映す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1084,11 +1122,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "顔のない王冠を回転させ内部に条件を映す。",
+        "description": "顔のない王冠を回転させ内部に条件を映す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.8
+      "estimatedDuration": 3.8,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-018",
@@ -1102,14 +1141,15 @@
         "startOffsetUTF16": 6921,
         "endOffsetExclusiveUTF16": 6954
       },
-      "visualMode": "money_cycle",
-      "visualDescription": "売上→会社→給料→次月の矢印を回す。",
+      "visualMode": "chapter4_individual_018",
+      "visualDescription": "売上→会社→給料→次月の矢印を回す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1122,11 +1162,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:money_cycle",
+          "assetId": "remotion:chapter4-individual-018",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "売上→会社→給料→次月の矢印を回す。"
+          "description": "売上→会社→給料→次月の矢印を回す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1145,11 +1185,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "売上→会社→給料→次月の矢印を回す。",
+        "description": "売上→会社→給料→次月の矢印を回す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.5
+      "estimatedDuration": 5.5,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-019",
@@ -1163,14 +1204,15 @@
         "startOffsetUTF16": 6954,
         "endOffsetExclusiveUTF16": 6984
       },
-      "visualMode": "office_machine",
-      "visualDescription": "会社内の人・画面・商品・顧客を機械のように循環させる。",
+      "visualMode": "chapter4_individual_019",
+      "visualDescription": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "workerMan",
@@ -1186,11 +1228,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_machine",
+          "assetId": "remotion:chapter4-individual-019",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "会社内の人・画面・商品・顧客を機械のように循環させる。"
+          "description": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1209,11 +1251,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "会社内の人・画面・商品・顧客を機械のように循環させる。",
+        "description": "会社内の人・画面・商品・顧客を機械のように循環させる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.1
+      "estimatedDuration": 5.1,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-020",
@@ -1227,14 +1270,15 @@
         "startOffsetUTF16": 6984,
         "endOffsetExclusiveUTF16": 7027
       },
-      "visualMode": "worker_budget",
-      "visualDescription": "給与から家賃生活費を引き貯金バーを残す。",
+      "visualMode": "chapter4_individual_020",
+      "visualDescription": "給与から家賃生活費を引き貯金バーを残す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1247,11 +1291,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:worker_budget",
+          "assetId": "remotion:chapter4-individual-020",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "給与から家賃生活費を引き貯金バーを残す。"
+          "description": "給与から家賃生活費を引き貯金バーを残す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1270,11 +1314,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "給与から家賃生活費を引き貯金バーを残す。",
+        "description": "給与から家賃生活費を引き貯金バーを残す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.8
+      "estimatedDuration": 6.8,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-021",
@@ -1288,14 +1333,15 @@
         "startOffsetUTF16": 7029,
         "endOffsetExclusiveUTF16": 7064
       },
-      "visualMode": "city_demand",
-      "visualDescription": "都市へ人を流入させ住宅需要メーターを上げる。",
+      "visualMode": "chapter4_individual_021",
+      "visualDescription": "都市へ人を流入させ住宅需要メーターを上げる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_town",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1308,11 +1354,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:city_demand",
+          "assetId": "remotion:chapter4-individual-021",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "都市へ人を流入させ住宅需要メーターを上げる。"
+          "description": "都市へ人を流入させ住宅需要メーターを上げる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1331,11 +1377,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "都市へ人を流入させ住宅需要メーターを上げる。",
+        "description": "都市へ人を流入させ住宅需要メーターを上げる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.7
+      "estimatedDuration": 5.7,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-022",
@@ -1349,14 +1396,15 @@
         "startOffsetUTF16": 7064,
         "endOffsetExclusiveUTF16": 7108
       },
-      "visualMode": "housing_escalator",
-      "visualDescription": "住宅費の階段を上げ人物が追う。",
+      "visualMode": "chapter4_individual_022",
+      "visualDescription": "住宅費の階段を上げ人物が追う。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_town",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1369,11 +1417,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:housing_escalator",
+          "assetId": "remotion:chapter4-individual-022",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "住宅費の階段を上げ人物が追う。"
+          "description": "住宅費の階段を上げ人物が追う。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1392,11 +1440,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "住宅費の階段を上げ人物が追う。",
+        "description": "住宅費の階段を上げ人物が追う。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.9
+      "estimatedDuration": 6.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-023",
@@ -1410,14 +1459,15 @@
         "startOffsetUTF16": 7110,
         "endOffsetExclusiveUTF16": 7171
       },
-      "visualMode": "education_contagion",
-      "visualDescription": "教育投資の波紋を隣家へ伝播する。",
+      "visualMode": "chapter4_individual_023",
+      "visualDescription": "教育投資の波紋を隣家へ伝播する。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_school",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1430,11 +1480,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:education_contagion",
+          "assetId": "remotion:chapter4-individual-023",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "教育投資の波紋を隣家へ伝播する。"
+          "description": "教育投資の波紋を隣家へ伝播する。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1453,11 +1503,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "教育投資の波紋を隣家へ伝播する。",
+        "description": "教育投資の波紋を隣家へ伝播する。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 9.2
+      "estimatedDuration": 9.2,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-024",
@@ -1471,14 +1522,15 @@
         "startOffsetUTF16": 7171,
         "endOffsetExclusiveUTF16": 7218
       },
-      "visualMode": "pressure_on_all",
-      "visualDescription": "経営者と従業員双方へ圧力矢印。",
+      "visualMode": "chapter4_individual_024",
+      "visualDescription": "経営者と従業員双方へ圧力矢印。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "workerMan",
@@ -1494,11 +1546,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:pressure_on_all",
+          "assetId": "remotion:chapter4-individual-024",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "経営者と従業員双方へ圧力矢印。"
+          "description": "経営者と従業員双方へ圧力矢印。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1517,11 +1569,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "経営者と従業員双方へ圧力矢印。",
+        "description": "経営者と従業員双方へ圧力矢印。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.3
+      "estimatedDuration": 7.3,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-025",
@@ -1535,14 +1588,15 @@
         "startOffsetUTF16": 7220,
         "endOffsetExclusiveUTF16": 7249
       },
-      "visualMode": "office_system",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter4_individual_025",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1555,11 +1609,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_system",
+          "assetId": "remotion:chapter4-individual-025",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1578,11 +1632,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.9
+      "estimatedDuration": 4.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-026",
@@ -1596,14 +1651,15 @@
         "startOffsetUTF16": 7249,
         "endOffsetExclusiveUTF16": 7306
       },
-      "visualMode": "emergent_result",
-      "visualDescription": "個々の判断矢印を合流させ社会結果へ。",
+      "visualMode": "chapter4_individual_026",
+      "visualDescription": "個々の判断矢印を合流させ社会結果へ。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1616,11 +1672,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:emergent_result",
+          "assetId": "remotion:chapter4-individual-026",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "個々の判断矢印を合流させ社会結果へ。"
+          "description": "個々の判断矢印を合流させ社会結果へ。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1639,11 +1695,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "個々の判断矢印を合流させ社会結果へ。",
+        "description": "個々の判断矢印を合流させ社会結果へ。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 8.7
+      "estimatedDuration": 8.7,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-027",
@@ -1657,14 +1714,15 @@
         "startOffsetUTF16": 7308,
         "endOffsetExclusiveUTF16": 7320
       },
-      "visualMode": "no_ban",
-      "visualDescription": "禁止標識なしで生活防衛の道だけ明るくする。",
+      "visualMode": "chapter4_individual_027",
+      "visualDescription": "禁止標識なしで生活防衛の道だけ明るくする。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1677,11 +1735,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:no_ban",
+          "assetId": "remotion:chapter4-individual-027",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "禁止標識なしで生活防衛の道だけ明るくする。"
+          "description": "禁止標識なしで生活防衛の道だけ明るくする。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1700,11 +1758,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "禁止標識なしで生活防衛の道だけ明るくする。",
+        "description": "禁止標識なしで生活防衛の道だけ明るくする。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.6
+      "estimatedDuration": 2.6,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-028",
@@ -1718,14 +1777,15 @@
         "startOffsetUTF16": 7320,
         "endOffsetExclusiveUTF16": 7366
       },
-      "visualMode": "office_system",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter4_individual_028",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1738,11 +1798,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_system",
+          "assetId": "remotion:chapter4-individual-028",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1761,11 +1821,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.2
+      "estimatedDuration": 7.2,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-029",
@@ -1779,14 +1840,15 @@
         "startOffsetUTF16": 7368,
         "endOffsetExclusiveUTF16": 7389
       },
-      "visualMode": "history_pullback",
-      "visualDescription": "都市から人類史へ時間軸を逆行する。",
+      "visualMode": "chapter4_individual_029",
+      "visualDescription": "都市から人類史へ時間軸を逆行する。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1799,11 +1861,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:history_pullback",
+          "assetId": "remotion:chapter4-individual-029",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "都市から人類史へ時間軸を逆行する。"
+          "description": "都市から人類史へ時間軸を逆行する。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1822,11 +1884,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "都市から人類史へ時間軸を逆行する。",
+        "description": "都市から人類史へ時間軸を逆行する。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.8
+      "estimatedDuration": 3.8,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-030",
@@ -1840,14 +1903,15 @@
         "startOffsetUTF16": 7391,
         "endOffsetExclusiveUTF16": 7424
       },
-      "visualMode": "dependent_child",
-      "visualDescription": "子供へ大人の手から食料・安全を届ける。",
+      "visualMode": "chapter4_individual_030",
+      "visualDescription": "子供へ大人の手から食料・安全を届ける。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_school",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1860,11 +1924,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:dependent_child",
+          "assetId": "remotion:chapter4-individual-030",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "子供へ大人の手から食料・安全を届ける。"
+          "description": "子供へ大人の手から食料・安全を届ける。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1883,11 +1947,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "子供へ大人の手から食料・安全を届ける。",
+        "description": "子供へ大人の手から食料・安全を届ける。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.5
+      "estimatedDuration": 5.5,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-031",
@@ -1901,14 +1966,15 @@
         "startOffsetUTF16": 7424,
         "endOffsetExclusiveUTF16": 7454
       },
-      "visualMode": "dependent_child",
-      "visualDescription": "子供へ大人の手から食料・安全を届ける。",
+      "visualMode": "chapter4_individual_031",
+      "visualDescription": "子供へ大人の手から食料・安全を届ける。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_school",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1921,11 +1987,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:dependent_child",
+          "assetId": "remotion:chapter4-individual-031",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "子供へ大人の手から食料・安全を届ける。"
+          "description": "子供へ大人の手から食料・安全を届ける。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1944,11 +2010,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "子供へ大人の手から食料・安全を届ける。",
+        "description": "子供へ大人の手から食料・安全を届ける。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.1
+      "estimatedDuration": 5.1,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-032",
@@ -1962,14 +2029,15 @@
         "startOffsetUTF16": 7454,
         "endOffsetExclusiveUTF16": 7509
       },
-      "visualMode": "cooperative_circle",
-      "visualDescription": "祖父母・兄弟・周囲の大人の手で子供を囲む。",
+      "visualMode": "chapter4_individual_032",
+      "visualDescription": "祖父母・兄弟・周囲の大人の手で子供を囲む。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1982,11 +2050,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:cooperative_circle",
+          "assetId": "remotion:chapter4-individual-032",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "祖父母・兄弟・周囲の大人の手で子供を囲む。"
+          "description": "祖父母・兄弟・周囲の大人の手で子供を囲む。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2005,11 +2073,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "祖父母・兄弟・周囲の大人の手で子供を囲む。",
+        "description": "祖父母・兄弟・周囲の大人の手で子供を囲む。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 8.4
+      "estimatedDuration": 8.4,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-033",
@@ -2023,14 +2092,15 @@
         "startOffsetUTF16": 7511,
         "endOffsetExclusiveUTF16": 7579
       },
-      "visualMode": "kramer_theory",
-      "visualDescription": "研究ノート上に親以外からの援助矢印。",
+      "visualMode": "chapter4_individual_033",
+      "visualDescription": "研究ノート上に親以外からの援助矢印。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2043,11 +2113,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:kramer_theory",
+          "assetId": "remotion:chapter4-individual-033",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "研究ノート上に親以外からの援助矢印。"
+          "description": "研究ノート上に親以外からの援助矢印。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2066,11 +2136,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "研究ノート上に親以外からの援助矢印。",
+        "description": "研究ノート上に親以外からの援助矢印。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 10.2
+      "estimatedDuration": 10.2,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-034",
@@ -2084,14 +2155,15 @@
         "startOffsetUTF16": 7581,
         "endOffsetExclusiveUTF16": 7595
       },
-      "visualMode": "village_care",
-      "visualDescription": "母・祖母・年長児・大人が交代で幼児を支える。",
+      "visualMode": "chapter4_individual_034",
+      "visualDescription": "母・祖母・年長児・大人が交代で幼児を支える。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2104,11 +2176,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:village_care",
+          "assetId": "remotion:chapter4-individual-034",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "母・祖母・年長児・大人が交代で幼児を支える。"
+          "description": "母・祖母・年長児・大人が交代で幼児を支える。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2127,11 +2199,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "母・祖母・年長児・大人が交代で幼児を支える。",
+        "description": "母・祖母・年長児・大人が交代で幼児を支える。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.9
+      "estimatedDuration": 2.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-035",
@@ -2145,14 +2218,15 @@
         "startOffsetUTF16": 7595,
         "endOffsetExclusiveUTF16": 7619
       },
-      "visualMode": "dependent_child",
-      "visualDescription": "子供へ大人の手から食料・安全を届ける。",
+      "visualMode": "chapter4_individual_035",
+      "visualDescription": "子供へ大人の手から食料・安全を届ける。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_school",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2165,11 +2239,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:dependent_child",
+          "assetId": "remotion:chapter4-individual-035",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "子供へ大人の手から食料・安全を届ける。"
+          "description": "子供へ大人の手から食料・安全を届ける。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2188,11 +2262,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "子供へ大人の手から食料・安全を届ける。",
+        "description": "子供へ大人の手から食料・安全を届ける。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.2
+      "estimatedDuration": 4.2,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-036",
@@ -2206,14 +2281,15 @@
         "startOffsetUTF16": 7619,
         "endOffsetExclusiveUTF16": 7651
       },
-      "visualMode": "village_care",
-      "visualDescription": "母・祖母・年長児・大人が交代で幼児を支える。",
+      "visualMode": "chapter4_individual_036",
+      "visualDescription": "母・祖母・年長児・大人が交代で幼児を支える。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2226,11 +2302,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:village_care",
+          "assetId": "remotion:chapter4-individual-036",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "母・祖母・年長児・大人が交代で幼児を支える。"
+          "description": "母・祖母・年長児・大人が交代で幼児を支える。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2249,11 +2325,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "母・祖母・年長児・大人が交代で幼児を支える。",
+        "description": "母・祖母・年長児・大人が交代で幼児を支える。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.3
+      "estimatedDuration": 5.3,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-037",
@@ -2267,14 +2344,15 @@
         "startOffsetUTF16": 7651,
         "endOffsetExclusiveUTF16": 7683
       },
-      "visualMode": "office_system",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter4_individual_037",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2287,11 +2365,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_system",
+          "assetId": "remotion:chapter4-individual-037",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2310,11 +2388,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.3
+      "estimatedDuration": 5.3,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-038",
@@ -2328,14 +2407,15 @@
         "startOffsetUTF16": 7685,
         "endOffsetExclusiveUTF16": 7714
       },
-      "visualMode": "city_care_network",
-      "visualDescription": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。",
+      "visualMode": "chapter4_individual_038",
+      "visualDescription": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_TOWN_DAY_WIDE",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2348,11 +2428,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:city_care_network",
+          "assetId": "remotion:chapter4-individual-038",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。"
+          "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2371,11 +2451,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。",
+        "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.9
+      "estimatedDuration": 4.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-039",
@@ -2389,14 +2470,15 @@
         "startOffsetUTF16": 7714,
         "endOffsetExclusiveUTF16": 7743
       },
-      "visualMode": "city_care_network",
-      "visualDescription": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。",
+      "visualMode": "chapter4_individual_039",
+      "visualDescription": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_TOWN_DAY_WIDE",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2409,11 +2491,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:city_care_network",
+          "assetId": "remotion:chapter4-individual-039",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。"
+          "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2432,11 +2514,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。",
+        "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.9
+      "estimatedDuration": 4.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-040",
@@ -2450,14 +2533,15 @@
         "startOffsetUTF16": 7743,
         "endOffsetExclusiveUTF16": 7779
       },
-      "visualMode": "city_care_network",
-      "visualDescription": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。",
+      "visualMode": "chapter4_individual_040",
+      "visualDescription": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_TOWN_DAY_WIDE",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2470,11 +2554,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:city_care_network",
+          "assetId": "remotion:chapter4-individual-040",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。"
+          "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2493,11 +2577,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。",
+        "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.9
+      "estimatedDuration": 5.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-041",
@@ -2511,14 +2596,15 @@
         "startOffsetUTF16": 7779,
         "endOffsetExclusiveUTF16": 7817
       },
-      "visualMode": "office_system",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter4_individual_041",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2531,11 +2617,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_system",
+          "assetId": "remotion:chapter4-individual-041",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2554,11 +2640,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.1
+      "estimatedDuration": 6.1,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-042",
@@ -2572,14 +2659,15 @@
         "startOffsetUTF16": 7819,
         "endOffsetExclusiveUTF16": 7862
       },
-      "visualMode": "caregiver_paradox",
-      "visualDescription": "他家庭へ資源を流し自分の家のメーターは空に近くする。",
+      "visualMode": "chapter4_individual_042",
+      "visualDescription": "他家庭へ資源を流し自分の家のメーターは空に近くする。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2592,11 +2680,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:caregiver_paradox",
+          "assetId": "remotion:chapter4-individual-042",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "他家庭へ資源を流し自分の家のメーターは空に近くする。"
+          "description": "他家庭へ資源を流し自分の家のメーターは空に近くする。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2615,11 +2703,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "他家庭へ資源を流し自分の家のメーターは空に近くする。",
+        "description": "他家庭へ資源を流し自分の家のメーターは空に近くする。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.8
+      "estimatedDuration": 6.8,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-043",
@@ -2633,14 +2722,15 @@
         "startOffsetUTF16": 7864,
         "endOffsetExclusiveUTF16": 7913
       },
-      "visualMode": "care_worker_home",
-      "visualDescription": "保育者が帰宅し費用カードを計算する。",
+      "visualMode": "chapter4_individual_043",
+      "visualDescription": "保育者が帰宅し費用カードを計算する。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_ROOM_DAY",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2653,11 +2743,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:care_worker_home",
+          "assetId": "remotion:chapter4-individual-043",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "保育者が帰宅し費用カードを計算する。"
+          "description": "保育者が帰宅し費用カードを計算する。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2676,11 +2766,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "保育者が帰宅し費用カードを計算する。",
+        "description": "保育者が帰宅し費用カードを計算する。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.6
+      "estimatedDuration": 7.6,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-044",
@@ -2694,14 +2785,15 @@
         "startOffsetUTF16": 7913,
         "endOffsetExclusiveUTF16": 7959
       },
-      "visualMode": "city_care_network",
-      "visualDescription": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。",
+      "visualMode": "chapter4_individual_044",
+      "visualDescription": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_TOWN_DAY_WIDE",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2714,11 +2806,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:city_care_network",
+          "assetId": "remotion:chapter4-individual-044",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。"
+          "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2737,11 +2829,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。",
+        "description": "保育士・教師・医師・農家・建設・運転士を家庭へ接続。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.2
+      "estimatedDuration": 7.2,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-045",
@@ -2755,14 +2848,15 @@
         "startOffsetUTF16": 7961,
         "endOffsetExclusiveUTF16": 7983
       },
-      "visualMode": "collective_parenting",
-      "visualDescription": "支援ネットワーク全体へズームアウト。",
+      "visualMode": "chapter4_individual_045",
+      "visualDescription": "支援ネットワーク全体へズームアウト。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2775,11 +2869,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:collective_parenting",
+          "assetId": "remotion:chapter4-individual-045",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "支援ネットワーク全体へズームアウト。"
+          "description": "支援ネットワーク全体へズームアウト。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2798,11 +2892,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "支援ネットワーク全体へズームアウト。",
+        "description": "支援ネットワーク全体へズームアウト。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4
+      "estimatedDuration": 4,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-046",
@@ -2816,14 +2911,15 @@
         "startOffsetUTF16": 7983,
         "endOffsetExclusiveUTF16": 8034
       },
-      "visualMode": "office_system",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter4_individual_046",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2836,11 +2932,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_system",
+          "assetId": "remotion:chapter4-individual-046",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2859,11 +2955,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.9
+      "estimatedDuration": 7.9,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-047",
@@ -2877,14 +2974,15 @@
         "startOffsetUTF16": 8036,
         "endOffsetExclusiveUTF16": 8080
       },
-      "visualMode": "choice_weight",
-      "visualDescription": "選択皿に家賃・時間・仕事・支援の重りを落とす。",
+      "visualMode": "chapter4_individual_047",
+      "visualDescription": "選択皿に家賃・時間・仕事・支援の重りを落とす。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2897,11 +2995,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:choice_weight",
+          "assetId": "remotion:chapter4-individual-047",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "選択皿に家賃・時間・仕事・支援の重りを落とす。"
+          "description": "選択皿に家賃・時間・仕事・支援の重りを落とす。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2920,11 +3018,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "選択皿に家賃・時間・仕事・支援の重りを落とす。",
+        "description": "選択皿に家賃・時間・仕事・支援の重りを落とす。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.9
+      "estimatedDuration": 6.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-048",
@@ -2938,14 +3037,15 @@
         "startOffsetUTF16": 8080,
         "endOffsetExclusiveUTF16": 8092
       },
-      "visualMode": "office_system",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter4_individual_048",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -2958,11 +3058,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_system",
+          "assetId": "remotion:chapter4-individual-048",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -2981,11 +3081,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.6
+      "estimatedDuration": 2.6,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-049",
@@ -2999,14 +3100,15 @@
         "startOffsetUTF16": 8092,
         "endOffsetExclusiveUTF16": 8128
       },
-      "visualMode": "office_system",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter4_individual_049",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -3019,11 +3121,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_system",
+          "assetId": "remotion:chapter4-individual-049",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -3042,11 +3144,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.9
+      "estimatedDuration": 5.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-050",
@@ -3060,14 +3163,15 @@
         "startOffsetUTF16": 8130,
         "endOffsetExclusiveUTF16": 8156
       },
-      "visualMode": "question_not_command",
-      "visualDescription": "命令矢印を消し理由を問う視線へ。",
+      "visualMode": "chapter4_individual_050",
+      "visualDescription": "命令矢印を消し理由を問う視線へ。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -3080,11 +3184,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:question_not_command",
+          "assetId": "remotion:chapter4-individual-050",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "命令矢印を消し理由を問う視線へ。"
+          "description": "命令矢印を消し理由を問う視線へ。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -3103,11 +3207,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "命令矢印を消し理由を問う視線へ。",
+        "description": "命令矢印を消し理由を問う視線へ。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.5
+      "estimatedDuration": 4.5,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-051",
@@ -3121,14 +3226,15 @@
         "startOffsetUTF16": 8156,
         "endOffsetExclusiveUTF16": 8209
       },
-      "visualMode": "office_system",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "chapter4_individual_051",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -3141,11 +3247,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:office_system",
+          "assetId": "remotion:chapter4-individual-051",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -3164,11 +3270,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 8.2
+      "estimatedDuration": 8.2,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-052",
@@ -3182,14 +3289,15 @@
         "startOffsetUTF16": 8211,
         "endOffsetExclusiveUTF16": 8224
       },
-      "visualMode": "queen_overlay",
-      "visualDescription": "地下女王と都市条件を重ねる。",
+      "visualMode": "chapter4_individual_052",
+      "visualDescription": "地下女王と都市条件を重ねる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_town",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -3202,11 +3310,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:queen_overlay",
+          "assetId": "remotion:chapter4-individual-052",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "地下女王と都市条件を重ねる。"
+          "description": "地下女王と都市条件を重ねる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -3225,11 +3333,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "地下女王と都市条件を重ねる。",
+        "description": "地下女王と都市条件を重ねる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.8
+      "estimatedDuration": 2.8,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-053",
@@ -3243,14 +3352,15 @@
         "startOffsetUTF16": 8224,
         "endOffsetExclusiveUTF16": 8240
       },
-      "visualMode": "queen_overlay",
-      "visualDescription": "地下女王と都市条件を重ねる。",
+      "visualMode": "chapter4_individual_053",
+      "visualDescription": "地下女王と都市条件を重ねる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_town",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -3263,11 +3373,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:queen_overlay",
+          "assetId": "remotion:chapter4-individual-053",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "地下女王と都市条件を重ねる。"
+          "description": "地下女王と都市条件を重ねる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -3286,11 +3396,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "地下女王と都市条件を重ねる。",
+        "description": "地下女王と都市条件を重ねる。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.2
+      "estimatedDuration": 3.2,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-C4-054",
@@ -3304,14 +3415,15 @@
         "startOffsetUTF16": 8240,
         "endOffsetExclusiveUTF16": 8286
       },
-      "visualMode": "money_cycle",
-      "visualDescription": "売上→会社→給料→次月の矢印を回す。",
+      "visualMode": "chapter4_individual_054",
+      "visualDescription": "売上→会社→給料→次月の矢印を回す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_office",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -3324,11 +3436,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:money_cycle",
+          "assetId": "remotion:chapter4-individual-054",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "売上→会社→給料→次月の矢印を回す。"
+          "description": "売上→会社→給料→次月の矢印を回す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -3347,11 +3459,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "売上→会社→給料→次月の矢印を回す。",
+        "description": "売上→会社→給料→次月の矢印を回す。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.2
+      "estimatedDuration": 7.2,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-C4-055",
@@ -3365,14 +3478,15 @@
         "startOffsetUTF16": 8288,
         "endOffsetExclusiveUTF16": 8329
       },
-      "visualMode": "society_is_queen",
-      "visualDescription": "都市条件で巨大な透明王冠を作る。",
+      "visualMode": "chapter4_individual_055",
+      "visualDescription": "都市条件で巨大な透明王冠を作る。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_town",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -3385,11 +3499,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:society_is_queen",
+          "assetId": "remotion:chapter4-individual-055",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "都市条件で巨大な透明王冠を作る。"
+          "description": "都市条件で巨大な透明王冠を作る。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -3408,17 +3522,22 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "都市条件で巨大な透明王冠を作る。",
+        "description": "都市条件で巨大な透明王冠を作る。 背景連続時は背景を固定し、ナレーション進行に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.5
+      "estimatedDuration": 6.5,
+      "shotCount": 2
     }
   ],
   "coverageValidation": {
     "sceneNarrationCharacters": 1930,
     "sceneOrderVerified": true,
-    "sourceRangesVerified": true
+    "sourceRangesVerified": true,
+    "individualSceneDesign": true,
+    "individualBeatCount": 55,
+    "visualShotCount": 125,
+    "backgroundReusePolicy": "fixed-background-object-delta"
   },
   "missingAssets": {
     "count": 0,
@@ -3430,5 +3549,6 @@
     "missingAssetsResolved": true,
     "renderAllowed": true,
     "approvedEarlierChaptersLocked": true
-  }
+  },
+  "visualShotCount": 125
 }
