@@ -78,11 +78,22 @@ const Scene=({scene,index,frames}:{scene:any,index:number,frames:number})=>{
   <div style={{position:'absolute',left:64,top:44,width:118,height:4,background:colors[['P','C1','C2','C3','C4','E'].indexOf(scene.chapter)%5],opacity:.75}}/>
  </AbsoluteFill>;
 };
+const splitSubtitle=(source:string)=>{
+ const out:string[]=[];let remaining=source;
+ while(remaining.length){
+  if(remaining.length<=34){out.push(remaining);break;}
+  const candidates=[...remaining.slice(22,35).matchAll(/[、。！？]/gu)].map(m=>22+(m.index??0)+1);
+  const cut=candidates.length?candidates[candidates.length-1]:34;
+  out.push(remaining.slice(0,cut));remaining=remaining.slice(cut);
+ }
+ if(out.join('')!==source)throw Error('Subtitle text mismatch');
+ return out;
+};
 const Subs=()=>{
  const f=useCurrentFrame(),idx=beats.findIndex(b=>f>=b.start&&f<b.start+b.frames);
  if(idx<0)return null;
  const b=beats[idx],rel=(f-b.start)/b.frames;
- const chunks=(b.narration.match(/.{1,33}(?:[、。！？]|$)/gu)||[b.narration]).flatMap(s=>s.length>38?[s.slice(0,34),s.slice(34)]:[s]);
+ const chunks=splitSubtitle(b.narration);
  const chunk=chunks[Math.min(chunks.length-1,Math.floor(rel*chunks.length))];
  return <AbsoluteFill style={{justifyContent:'flex-end',alignItems:'center',paddingBottom:32,pointerEvents:'none'}}><div style={{maxWidth:1680,padding:'12px 30px',borderRadius:12,background:'rgba(2,5,9,.88)',color:'#f6f5f0',fontFamily:'Noto Sans CJK JP,sans-serif',fontSize:42,fontWeight:700,textAlign:'center',lineHeight:1.4,textShadow:'0 3px 8px #000'}}>{chunk}</div></AbsoluteFill>;
 };
