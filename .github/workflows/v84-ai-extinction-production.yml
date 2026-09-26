@@ -16,15 +16,8 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
       - uses: actions/setup-node@v4
         with: {node-version: 20}
-      - name: Validate approved shared assets
-        run: node shared/asset-library/test-assets.mjs
-      - name: Prepare reusable part candidates
-        run: node shared/asset-library/prepare.mjs v84-ai-extinction
-      - name: Stage approved template backgrounds
-        run: |
-          for bg in BG_office.png BG_kenkyu.png BG_syosai.png BG_bank.png BG_town.png BG_darkroom.png; do
-            node shared/asset-library/人物テンプレート/stage-background.mjs v84-ai-extinction "$bg"
-          done
+      - name: Stage only V84-approved shared backgrounds
+        run: node shared/v84/stage-assets.mjs v84-ai-extinction
       - working-directory: v84-ai-extinction
         run: npm install
       - working-directory: v84-ai-extinction
@@ -153,4 +146,4 @@ jobs:
           TAG="v84-ai-extinction-${GITHUB_RUN_ID}"
           NAME="knowledge-video-v84-ai-extinction-${GITHUB_RUN_ID}.mp4"
           cp out/v84-final.mp4 "out/$NAME"
-          gh release create "$TAG" "out/$NAME" out/v84-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V84_PRODUCTION_SPEC.md qa/asset-report.json --repo "$GITHUB_REPOSITORY" --title "V84 AI Extinction Production ${GITHUB_RUN_ID}" --notes "Original AI safety and civilization documentary: 26 distinct story worlds, ~190 narration-aligned scenes, approved shared template assets only where semantically matched, moving internal background elements, synchronized Japanese narration, BGM and automated QA."
+          gh release create "$TAG" "out/$NAME" out/v84-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V84_PRODUCTION_SPEC.md qa/v84-template-assets.json --repo "$GITHUB_REPOSITORY" --title "V84 AI Extinction Production ${GITHUB_RUN_ID}" --notes "Original AI safety and civilization documentary: 26 distinct story worlds, ~190 narration-aligned scenes, approved shared template assets only where semantically matched, moving internal background elements, synchronized Japanese narration, BGM and automated QA."
