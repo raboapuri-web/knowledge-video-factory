@@ -3,6 +3,7 @@
   "include": [
     "src/later-scenes.tsx",
     "src/actors-and-props.tsx",
+    "src/chapter2.tsx",
     "src/chapter2-index.tsx",
     "src/chapter3-index.tsx",
     "src/chapter4-index.tsx",
