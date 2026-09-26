@@ -1,0 +1,107 @@
+name: V82 Basic Income Production
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/v82-basic-income-production.yml','shared/bootstrap/v82-basic-income.mjs','shared/v82/**']
+permissions: {contents: write}
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    outputs: {matrix: '${{ steps.plan.outputs.matrix }}'}
+    steps:
+      - uses: actions/checkout@v4
+      - run: node shared/bootstrap/v82-basic-income.mjs
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - working-directory: v82-basic-income
+        run: npm install
+      - working-directory: v82-basic-income
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - working-directory: v82-basic-income
+        run: node scripts/build-preproduction.mjs
+      - name: Fine scene and static-background guard
+        run: |
+          node - <<'NODE'
+          const s=require('./v82-basic-income/src/script-data.json'),d=require('./v82-basic-income/src/scene-data.json');const n=s.beats.length;if(n<270||n>360)throw Error(`scene count ${n}`);if(d.length!==n)throw Error('scene mismatch');if(new Set(s.beats.map(x=>x.visual)).size!==n)throw Error('visual key reuse');const g={},seen=new Set(),phases=new Set();let prev='';for(const x of d){phases.add(x.phase);g[x.bgGroup]=(g[x.bgGroup]||0)+1;if(x.bgGroup!==prev&&seen.has(x.bgGroup))throw Error(`nonconsecutive background reuse ${x.bgGroup}`);seen.add(x.bgGroup);prev=x.bgGroup;}for(const [k,v] of Object.entries(g))if(v>2)throw Error(`background ${k} used ${v} scenes`);if(Object.keys(g).length<150)throw Error(`too few backgrounds ${Object.keys(g).length}`);if(phases.size!==38)throw Error(`expected 38 distinct narrative phases, got ${phases.size}`);const src=require('fs').readFileSync('./shared/v82/scenes.tsx','utf8');if(!src.includes("const WORLD:Record<string,string>"))throw Error('Missing WORLD map');for(const p of phases)if(!src.includes(p+":'"))throw Error(`Missing world mapping for ${p}`);for(const pose of ["'sit'","'rise'","'sitphone'","'walkphone'"])if(!src.includes(pose))throw Error(`Missing required action ${pose}`);if(src.includes('useCurrentFrame'))throw Error('Visual background is not frame-static');console.log(`${n} micro-scenes / ${Object.keys(g).length} unique continuity backgrounds / ${phases.size} bespoke story worlds`);
+          NODE
+      - working-directory: v82-basic-income
+        run: npm run check
+      - name: Preview critical original shots
+        working-directory: v82-basic-income
+        run: |
+          mkdir -p out/preview
+          for FRAME in 0 800 1600 2400 3200 4000 4800 6000; do
+            npx remotion still src/index.tsx V82ScenePreview "out/preview/scene-${FRAME}.png" --frame="$FRAME" --log=error
+          done
+          test "$(find out/preview -name '*.png' | wc -l)" -eq 8
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; exit 1
+      - working-directory: v82-basic-income
+        run: node scripts/generate-voicevox.mjs
+      - id: plan
+        working-directory: v82-basic-income
+        run: echo "matrix=$(node scripts/plan-segments.mjs)" >> "$GITHUB_OUTPUT"
+      - run: tar --exclude='v82-basic-income/node_modules' -czf v82-prepared.tar.gz v82-basic-income
+      - uses: actions/upload-artifact@v4
+        with: {name: v82-prepared, path: v82-prepared.tar.gz, retention-days: 1}
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v82-prepared}
+      - run: tar -xzf v82-prepared.tar.gz
+      - working-directory: v82-basic-income
+        run: npm install
+      - working-directory: v82-basic-income
+        run: mkdir -p out && npx remotion render src/index.tsx V82BasicIncome "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with: {name: 'v82-segment-${{ matrix.id }}', path: 'v82-basic-income/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
+  finalize:
+    needs: [prepare,render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v82-prepared}
+      - run: tar -xzf v82-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'v82-segment-*', path: v82-basic-income/parts, merge-multiple: true}
+      - working-directory: v82-basic-income
+        run: node scripts/generate-bgm.mjs
+      - working-directory: v82-basic-income
+        run: |
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v82-final.mp4
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v82-final.mp4 | head -1)" = '1920'
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v82-final.mp4 | head -1)" = '1080'
+          test "$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v82-final.mp4 | cut -d. -f1)" -gt 1000
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v82-basic-income v82-basic-income/out/v82-final.mp4 v82-basic-income/out/v82-contact-sheet.jpg
+      - working-directory: v82-basic-income
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG="v82-basic-income-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v82-basic-income-${GITHUB_RUN_ID}.mp4"
+          cp out/v82-final.mp4 "out/$NAME"
+          gh release create "$TAG" "out/$NAME" out/v82-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V82_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V82 Basic Income Production ${GITHUB_RUN_ID}" --notes "V81 educational documentary: 38 historical, experimental and economic phases, 270–360 detailed micro-scenes, static adjacent plates and illustrative symbolic foreground only. No sexuality, nudity, suggestive gestures or injuries. VOICEVOX subtitles and BGM."
