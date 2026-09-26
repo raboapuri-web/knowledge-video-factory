@@ -46,7 +46,7 @@ jobs:
           const fs=require('fs'),s=require('./src/script-data.json').beats,m=new Map();
           for(const [i,b] of s.entries())if(!m.has(b.phase))m.set(b.phase,i);
           fs.writeFileSync('out/preview/frames.json',JSON.stringify([...m.entries()].map(([phase,i])=>({phase,frame:i*24+9}))));
-          if(m.size!==26throw Error('preview phase coverage is incomplete');
+          if(m.size!==26)throw Error('preview phase coverage is incomplete');
           NODE
           node - <<'NODE'
           const {execFileSync}=require('child_process'),fs=require('fs');
