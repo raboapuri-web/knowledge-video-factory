@@ -8,6 +8,7 @@ on:
       - 'v46hansyoku/scene-plans/chapter4.json'
       - 'v46hansyoku/scene-plans/epilogue.json'
       - 'v46hansyoku/src/later-scenes.tsx'
+      - 'v46hansyoku/src/chapter2.tsx'
       - 'v46hansyoku/src/chapter2-index.tsx'
       - 'v46hansyoku/src/chapter3-index.tsx'
       - 'v46hansyoku/src/chapter4-index.tsx'
@@ -25,6 +26,8 @@ on:
       - 'v46hansyoku/scripts/verify-approved-chapters.mjs'
       - 'v46hansyoku/package.json'
       - 'v46hansyoku/tsconfig.remaining.json'
+      - 'shared/asset-library/人物テンプレート/V46_ADULT_MAN_RIG.tsx'
+      - 'shared/asset-library/人物テンプレート/office-worker-rig.tsx'
       - '.github/workflows/v46-remaining-high-motion.yml'
   workflow_dispatch:
 permissions:
