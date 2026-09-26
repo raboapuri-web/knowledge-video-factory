@@ -10,7 +10,7 @@ const tmp=path.join(root,'.qa-'+chapter+'-frames');fs.rmSync(tmp,{recursive:true
 const tasks=[];let serial=0;
 for(let i=0;i<sync.beats.length;i++){
  const b=sync.beats[i],scene=plan.scenes[i];
- const n=chapter==='chapter3'?Math.max(2,Number(scene.shotCount||2)):1;
+ const n=['chapter3','chapter4'].includes(chapter)?Math.max(2,Number(scene.shotCount||2)):1;
  for(let k=0;k<n;k++){
   const frac=(k+1)/(n+1);
   tasks.push({i:serial++,label:String(i+1).padStart(2,'0')+'-'+String(k+1),t:Number(b.start)+(Number(b.end)-Number(b.start))*frac,out:path.join(tmp,'scene-'+String(serial).padStart(3,'0')+'.jpg')});
