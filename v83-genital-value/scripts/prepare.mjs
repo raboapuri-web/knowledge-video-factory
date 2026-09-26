@@ -6,11 +6,15 @@ const lines=fs.readFileSync(path.join(root,'src/narration.txt'),'utf8').trim().s
 const b=[0,8,21,32,45,59,63], prefixes=['P','C1','C2','C3','C4','E'];
 const groups=prefixes.map(p=>plan.scenes.filter(s=>s[0].startsWith(p)));
 const beats=[];
+let previousAsset='';
 for(let c=0;c<6;c++){
  const n=b[c+1]-b[c], m=groups[c].length;
  for(let j=0;j<m;j++){
   const from=b[c]+Math.round(j*n/m),to=b[c]+Math.round((j+1)*n/m);
-  const [id,location,asset,action]=groups[c][j];
+  const [id,location,requestedAsset,action]=groups[c][j];
+  const asset=requestedAsset==='same'?previousAsset:requestedAsset;
+  if(!asset)throw Error('Missing background for '+id);
+  previousAsset=asset;
   beats.push({id,narration:lines.slice(from,to).join(''),location,asset,action,chapter:prefixes[c]});
  }
 }
