@@ -3041,16 +3041,28 @@
         "*"
       ],
       "tags": [
-        "BG_V46_CITY_APARTMENT_EXTERIOR",
-        "背景素材"
+        "東京",
+        "マンション",
+        "集合住宅",
+        "高層住宅",
+        "中高層マンション",
+        "都心",
+        "住宅",
+        "住まい",
+        "生活水準",
+        "住宅費"
       ],
       "mustMentionAny": [
-        "BG_V46_CITY_APARTMENT_EXTERIOR"
+        "マンション",
+        "住まい",
+        "住宅",
+        "都心",
+        "家"
       ],
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -3061,8 +3073,14 @@
       "sourceSha256": "a5ba2207ae920f374aa762f11919c82dccd0379c62441f143eb1acddc54bb876",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "V46第2章用にユーザーが追加した確定背景。東京の中〜高層マンション外観・生活水準比較に使用。構図と内容は制作会話内で確認済み。",
+        "usageApproval": "user-approved-2026-09-26"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーの包括的な権利確定指示および当該素材の追加・使用指示に基づく管理上の確定。独立した第三者権利調査を行ったことを意味しない。",
+        "confirmedScope": "V46 Chapter2 user-supplied/generated background material"
       }
     },
     {
@@ -3074,16 +3092,26 @@
         "*"
       ],
       "tags": [
-        "BG_V46_OFFICE_BREAK_ROOM",
-        "背景素材"
+        "オフィス",
+        "休憩室",
+        "談話スペース",
+        "職場",
+        "同僚",
+        "コーヒー",
+        "会社",
+        "ラウンジ"
       ],
       "mustMentionAny": [
-        "BG_V46_OFFICE_BREAK_ROOM"
+        "オフィス",
+        "職場",
+        "同僚",
+        "会社",
+        "休憩"
       ],
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -3094,8 +3122,14 @@
       "sourceSha256": "38d1ffb44152ca52e48d586da693d67416d94c2d8ce87d9be103cb31b8d80882",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "V46第2章用にユーザーが追加した確定背景。職場の同僚との会話・休憩・談話シーンに使用。構図と内容は制作会話内で確認済み。",
+        "usageApproval": "user-approved-2026-09-26"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーの包括的な権利確定指示および当該素材の追加・使用指示に基づく管理上の確定。独立した第三者権利調査を行ったことを意味しない。",
+        "confirmedScope": "V46 Chapter2 user-supplied/generated background material"
       }
     },
     {
@@ -3107,16 +3141,29 @@
         "*"
       ],
       "tags": [
-        "BG_V46_RESIDENTIAL_DAY",
-        "背景素材"
+        "住宅街",
+        "昼",
+        "近隣",
+        "子育て",
+        "家庭",
+        "住宅",
+        "塾",
+        "送迎",
+        "近所",
+        "戸建て"
       ],
       "mustMentionAny": [
-        "BG_V46_RESIDENTIAL_DAY"
+        "住宅街",
+        "近所",
+        "家庭",
+        "子供",
+        "塾",
+        "住まい"
       ],
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -3127,8 +3174,14 @@
       "sourceSha256": "39f9966b4006ec4fbfbe981ead1b4f25a1e1461af0c7b651d4584acf798688f8",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "V46第2章用にユーザーが追加した確定背景。昼の住宅街、子育て家庭、塾、近隣比較、支援環境の描写に使用。構図と内容は制作会話内で確認済み。",
+        "usageApproval": "user-approved-2026-09-26"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーの包括的な権利確定指示および当該素材の追加・使用指示に基づく管理上の確定。独立した第三者権利調査を行ったことを意味しない。",
+        "confirmedScope": "V46 Chapter2 user-supplied/generated background material"
       }
     },
     {
@@ -3140,16 +3193,26 @@
         "*"
       ],
       "tags": [
-        "BG_V46_RESTAURANT_DINING",
-        "背景素材"
+        "レストラン",
+        "飲食店",
+        "外食",
+        "食事",
+        "友人",
+        "ディナー",
+        "都会",
+        "上品な店"
       ],
       "mustMentionAny": [
-        "BG_V46_RESTAURANT_DINING"
+        "レストラン",
+        "食事",
+        "外食",
+        "友人",
+        "店"
       ],
       "avoid": [],
       "style": "flat-vector",
       "palette": "colorful",
-      "license": "pending-review",
+      "license": "cleared-commercial",
       "layout": {
         "x": 0,
         "y": 0,
@@ -3160,8 +3223,14 @@
       "sourceSha256": "1e21de3d6d351470c0841973ccdc60ba674a0c6cbd5dfabba737313ce1595913",
       "autoRegistration": {
         "method": "filename-metadata",
-        "needsVisualReview": true,
-        "note": "画像の内容ではなくファイル名から仮登録。権利・構図・映像の整合性を要確認。"
+        "needsVisualReview": false,
+        "note": "V46第2章用にユーザーが追加した確定背景。友人との食事や少し上品な外食シーンに使用。構図と内容は制作会話内で確認済み。",
+        "usageApproval": "user-approved-2026-09-26"
+      },
+      "rightsReview": {
+        "status": "user-confirmed",
+        "basis": "ユーザーの包括的な権利確定指示および当該素材の追加・使用指示に基づく管理上の確定。独立した第三者権利調査を行ったことを意味しない。",
+        "confirmedScope": "V46 Chapter2 user-supplied/generated background material"
       }
     }
   ]
