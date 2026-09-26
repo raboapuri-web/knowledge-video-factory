@@ -33,7 +33,7 @@ jobs:
         working-directory: v96-goosebumps
         run: |
           mkdir -p out/preview
-          for FRAME in 0 900 1800 2700 3600 4500 5400 6300; do
+          for FRAME in 0 750 1500 2250 3000 3750 4500 5500; do
             npx remotion still src/index.tsx V96ScenePreview "out/preview/scene-${FRAME}.png" --frame="$FRAME" --log=error
           done
           test "$(find out/preview -name '*.png' | wc -l)" -eq 8
