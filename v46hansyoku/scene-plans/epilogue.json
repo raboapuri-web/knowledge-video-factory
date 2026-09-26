@@ -22,11 +22,16 @@
   "estimatedDurationSeconds": 146.8,
   "motionPolicy": {
     "density": "high",
+    "renderer": "epilogue.tsx individual switch(index)",
+    "sharedGenericRenderer": false,
+    "backgroundContinuityRule": "同一場所が連続する場合は背景を固定し、前景オブジェクトのみ追加・削除する",
+    "shotSubdivision": "31 narration beats / 67 visual shots",
     "rules": [
-      "各シーン最低1つ主要要素を動かす",
-      "カメラ微細パン/ズーム/パララックス常用",
-      "図解は静止せず生成/移動/反転/伸縮",
-      "同じ構図を3シーン連続させない"
+      "確定ナレーション・字幕・VOICEVOXタイミングは変更しない",
+      "1ビート2〜3ショット相当",
+      "同一背景の無意味なパン・ズームで差分扱いしない",
+      "背景変更は意味転換時のみ",
+      "冒頭と終盤の駅ホームを同一空間として回収する"
     ]
   },
   "scenes": [
@@ -42,14 +47,15 @@
         "startOffsetUTF16": 8355,
         "endOffsetExclusiveUTF16": 8368
       },
-      "visualMode": "friday_return",
-      "visualDescription": "金曜夜へ時計と街の光で戻る。",
+      "visualMode": "epilogue_individual_001",
+      "visualDescription": "金曜夜へ時計と街の光で戻る。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -64,11 +70,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:friday_return",
+          "assetId": "remotion:epilogue-individual-001",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "金曜夜へ時計と街の光で戻る。"
+          "description": "金曜夜へ時計と街の光で戻る。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -87,11 +93,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "金曜夜へ時計と街の光で戻る。",
+        "description": "金曜夜へ時計と街の光で戻る。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.8
+      "estimatedDuration": 2.8,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-002",
@@ -105,14 +112,15 @@
         "startOffsetUTF16": 8370,
         "endOffsetExclusiveUTF16": 8403
       },
-      "visualMode": "night_flow",
-      "visualDescription": "オフィス灯を消し人流を駅へ細くする。",
+      "visualMode": "epilogue_individual_002",
+      "visualDescription": "オフィス灯を消し人流を駅へ細くする。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_V46_OFFICE_STREET_NIGHT",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -127,11 +135,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:night_flow",
+          "assetId": "remotion:epilogue-individual-002",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "オフィス灯を消し人流を駅へ細くする。"
+          "description": "オフィス灯を消し人流を駅へ細くする。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -150,11 +158,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "オフィス灯を消し人流を駅へ細くする。",
+        "description": "オフィス灯を消し人流を駅へ細くする。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.5
+      "estimatedDuration": 5.5,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-003",
@@ -168,14 +177,15 @@
         "startOffsetUTF16": 8403,
         "endOffsetExclusiveUTF16": 8440
       },
-      "visualMode": "hero_station_photo",
-      "visualDescription": "同じ主人公がホームでスマホ写真を見る。",
+      "visualMode": "epilogue_individual_003",
+      "visualDescription": "同じ主人公がホームでスマホ写真を見る。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_densha",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -190,11 +200,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:hero_station_photo",
+          "assetId": "remotion:epilogue-individual-003",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "同じ主人公がホームでスマホ写真を見る。"
+          "description": "同じ主人公がホームでスマホ写真を見る。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -213,11 +223,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "同じ主人公がホームでスマホ写真を見る。",
+        "description": "同じ主人公がホームでスマホ写真を見る。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6
+      "estimatedDuration": 6,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-004",
@@ -231,14 +242,15 @@
         "startOffsetUTF16": 8440,
         "endOffsetExclusiveUTF16": 8454
       },
-      "visualMode": "peer_family_photo",
-      "visualDescription": "同期一家の写真をケーキ前でパララックス表示。",
+      "visualMode": "epilogue_individual_004",
+      "visualDescription": "同期一家の写真をケーキ前でパララックス表示。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_V46_PEER_LIVING_ROOM",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "peer",
@@ -256,11 +268,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:peer_family_photo",
+          "assetId": "remotion:epilogue-individual-004",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "同期一家の写真をケーキ前でパララックス表示。"
+          "description": "同期一家の写真をケーキ前でパララックス表示。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -279,11 +291,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "同期一家の写真をケーキ前でパララックス表示。",
+        "description": "同期一家の写真をケーキ前でパララックス表示。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.9
+      "estimatedDuration": 2.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-005",
@@ -297,14 +310,15 @@
         "startOffsetUTF16": 8454,
         "endOffsetExclusiveUTF16": 8475
       },
-      "visualMode": "peer_family_photo",
-      "visualDescription": "同期一家の写真をケーキ前でパララックス表示。",
+      "visualMode": "epilogue_individual_005",
+      "visualDescription": "同期一家の写真をケーキ前でパララックス表示。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_V46_PEER_LIVING_ROOM",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "peer",
@@ -322,11 +336,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:peer_family_photo",
+          "assetId": "remotion:epilogue-individual-005",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "同期一家の写真をケーキ前でパララックス表示。"
+          "description": "同期一家の写真をケーキ前でパララックス表示。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -345,11 +359,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "同期一家の写真をケーキ前でパララックス表示。",
+        "description": "同期一家の写真をケーキ前でパララックス表示。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.8
+      "estimatedDuration": 3.8,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-006",
@@ -363,14 +378,15 @@
         "startOffsetUTF16": 8477,
         "endOffsetExclusiveUTF16": 8497
       },
-      "visualMode": "hero_life",
-      "visualDescription": "主人公の買い物・休日・移動をモンタージュ。",
+      "visualMode": "epilogue_individual_006",
+      "visualDescription": "主人公の買い物・休日・移動をモンタージュ。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_oneroom_night",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -385,11 +401,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:hero_life",
+          "assetId": "remotion:epilogue-individual-006",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "主人公の買い物・休日・移動をモンタージュ。"
+          "description": "主人公の買い物・休日・移動をモンタージュ。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -408,11 +424,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "主人公の買い物・休日・移動をモンタージュ。",
+        "description": "主人公の買い物・休日・移動をモンタージュ。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.7
+      "estimatedDuration": 3.7,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-007",
@@ -426,14 +443,15 @@
         "startOffsetUTF16": 8497,
         "endOffsetExclusiveUTF16": 8520
       },
-      "visualMode": "hero_life",
-      "visualDescription": "主人公の買い物・休日・移動をモンタージュ。",
+      "visualMode": "epilogue_individual_007",
+      "visualDescription": "主人公の買い物・休日・移動をモンタージュ。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_oneroom_night",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -448,11 +466,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:hero_life",
+          "assetId": "remotion:epilogue-individual-007",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "主人公の買い物・休日・移動をモンタージュ。"
+          "description": "主人公の買い物・休日・移動をモンタージュ。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -471,11 +489,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "主人公の買い物・休日・移動をモンタージュ。",
+        "description": "主人公の買い物・休日・移動をモンタージュ。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.1
+      "estimatedDuration": 4.1,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-008",
@@ -489,14 +508,15 @@
         "startOffsetUTF16": 8520,
         "endOffsetExclusiveUTF16": 8540
       },
-      "visualMode": "hero_acceptance",
-      "visualDescription": "仕事成果と一人の暮らしを穏やかに動かす。",
+      "visualMode": "epilogue_individual_008",
+      "visualDescription": "仕事成果と一人の暮らしを穏やかに動かす。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_oneroom_night",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -511,11 +531,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:hero_acceptance",
+          "assetId": "remotion:epilogue-individual-008",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "仕事成果と一人の暮らしを穏やかに動かす。"
+          "description": "仕事成果と一人の暮らしを穏やかに動かす。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -534,11 +554,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "仕事成果と一人の暮らしを穏やかに動かす。",
+        "description": "仕事成果と一人の暮らしを穏やかに動かす。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.7
+      "estimatedDuration": 3.7,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-009",
@@ -552,14 +573,15 @@
         "startOffsetUTF16": 8540,
         "endOffsetExclusiveUTF16": 8567
       },
-      "visualMode": "hero_acceptance",
-      "visualDescription": "仕事成果と一人の暮らしを穏やかに動かす。",
+      "visualMode": "epilogue_individual_009",
+      "visualDescription": "仕事成果と一人の暮らしを穏やかに動かす。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_oneroom_night",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -574,11 +596,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:hero_acceptance",
+          "assetId": "remotion:epilogue-individual-009",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "仕事成果と一人の暮らしを穏やかに動かす。"
+          "description": "仕事成果と一人の暮らしを穏やかに動かす。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -597,11 +619,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "仕事成果と一人の暮らしを穏やかに動かす。",
+        "description": "仕事成果と一人の暮らしを穏やかに動かす。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.6
+      "estimatedDuration": 4.6,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-010",
@@ -615,14 +638,15 @@
         "startOffsetUTF16": 8569,
         "endOffsetExclusiveUTF16": 8580
       },
-      "visualMode": "epilogue_flow",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "epilogue_individual_010",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -635,11 +659,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:epilogue_flow",
+          "assetId": "remotion:epilogue-individual-010",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -658,11 +682,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.5
+      "estimatedDuration": 2.5,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-011",
@@ -676,14 +701,15 @@
         "startOffsetUTF16": 8580,
         "endOffsetExclusiveUTF16": 8647
       },
-      "visualMode": "alternate_self",
-      "visualDescription": "主人公固定で街・給料・帰宅時刻だけを交換。",
+      "visualMode": "epilogue_individual_011",
+      "visualDescription": "主人公固定で街・給料・帰宅時刻だけを交換。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -698,11 +724,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:alternate_self",
+          "assetId": "remotion:epilogue-individual-011",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "主人公固定で街・給料・帰宅時刻だけを交換。"
+          "description": "主人公固定で街・給料・帰宅時刻だけを交換。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -721,11 +747,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "主人公固定で街・給料・帰宅時刻だけを交換。",
+        "description": "主人公固定で街・給料・帰宅時刻だけを交換。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 10
+      "estimatedDuration": 10,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-E-012",
@@ -739,14 +766,15 @@
         "startOffsetUTF16": 8649,
         "endOffsetExclusiveUTF16": 8659
       },
-      "visualMode": "choice_corridor",
-      "visualDescription": "人生の扉を並べ条件で開きやすさを変える。",
+      "visualMode": "epilogue_individual_012",
+      "visualDescription": "人生の扉を並べ条件で開きやすさを変える。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -759,11 +787,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:choice_corridor",
+          "assetId": "remotion:epilogue-individual-012",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人生の扉を並べ条件で開きやすさを変える。"
+          "description": "人生の扉を並べ条件で開きやすさを変える。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -782,11 +810,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人生の扉を並べ条件で開きやすさを変える。",
+        "description": "人生の扉を並べ条件で開きやすさを変える。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.4
+      "estimatedDuration": 2.4,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-013",
@@ -800,14 +829,15 @@
         "startOffsetUTF16": 8659,
         "endOffsetExclusiveUTF16": 8701
       },
-      "visualMode": "choice_corridor",
-      "visualDescription": "人生の扉を並べ条件で開きやすさを変える。",
+      "visualMode": "epilogue_individual_013",
+      "visualDescription": "人生の扉を並べ条件で開きやすさを変える。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -820,11 +850,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:choice_corridor",
+          "assetId": "remotion:epilogue-individual-013",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人生の扉を並べ条件で開きやすさを変える。"
+          "description": "人生の扉を並べ条件で開きやすさを変える。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -843,11 +873,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人生の扉を並べ条件で開きやすさを変える。",
+        "description": "人生の扉を並べ条件で開きやすさを変える。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.7
+      "estimatedDuration": 6.7,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-014",
@@ -861,14 +892,15 @@
         "startOffsetUTF16": 8703,
         "endOffsetExclusiveUTF16": 8750
       },
-      "visualMode": "colony_memory",
-      "visualDescription": "地下コロニーを短く回想。",
+      "visualMode": "epilogue_individual_014",
+      "visualDescription": "地下コロニーを短く回想。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -881,11 +913,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:colony_memory",
+          "assetId": "remotion:epilogue-individual-014",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "地下コロニーを短く回想。"
+          "description": "地下コロニーを短く回想。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -904,11 +936,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "地下コロニーを短く回想。",
+        "description": "地下コロニーを短く回想。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.3
+      "estimatedDuration": 7.3,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-E-015",
@@ -922,14 +955,15 @@
         "startOffsetUTF16": 8750,
         "endOffsetExclusiveUTF16": 8787
       },
-      "visualMode": "human_roles",
-      "visualDescription": "親子家庭と働く人を同一画面で結ぶ。",
+      "visualMode": "epilogue_individual_015",
+      "visualDescription": "親子家庭と働く人を同一画面で結ぶ。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -942,11 +976,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:human_roles",
+          "assetId": "remotion:epilogue-individual-015",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "親子家庭と働く人を同一画面で結ぶ。"
+          "description": "親子家庭と働く人を同一画面で結ぶ。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -965,11 +999,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "親子家庭と働く人を同一画面で結ぶ。",
+        "description": "親子家庭と働く人を同一画面で結ぶ。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6
+      "estimatedDuration": 6,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-016",
@@ -983,14 +1018,15 @@
         "startOffsetUTF16": 8787,
         "endOffsetExclusiveUTF16": 8799
       },
-      "visualMode": "epilogue_flow",
-      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。",
+      "visualMode": "epilogue_individual_016",
+      "visualDescription": "人物・図解・カメラを同時に動かして因果を見せる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1003,11 +1039,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:epilogue_flow",
+          "assetId": "remotion:epilogue-individual-016",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "人物・図解・カメラを同時に動かして因果を見せる。"
+          "description": "人物・図解・カメラを同時に動かして因果を見せる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1026,11 +1062,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "人物・図解・カメラを同時に動かして因果を見せる。",
+        "description": "人物・図解・カメラを同時に動かして因果を見せる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.6
+      "estimatedDuration": 2.6,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-017",
@@ -1044,14 +1081,15 @@
         "startOffsetUTF16": 8801,
         "endOffsetExclusiveUTF16": 8830
       },
-      "visualMode": "conditions_not_queen",
-      "visualDescription": "王冠の代わりに生活条件を周囲へ回す。",
+      "visualMode": "epilogue_individual_017",
+      "visualDescription": "王冠の代わりに生活条件を周囲へ回す。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1064,11 +1102,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:conditions_not_queen",
+          "assetId": "remotion:epilogue-individual-017",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "王冠の代わりに生活条件を周囲へ回す。"
+          "description": "王冠の代わりに生活条件を周囲へ回す。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1087,11 +1125,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "王冠の代わりに生活条件を周囲へ回す。",
+        "description": "王冠の代わりに生活条件を周囲へ回す。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.9
+      "estimatedDuration": 4.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-018",
@@ -1105,14 +1144,15 @@
         "startOffsetUTF16": 8830,
         "endOffsetExclusiveUTF16": 8845
       },
-      "visualMode": "conditions_not_queen",
-      "visualDescription": "王冠の代わりに生活条件を周囲へ回す。",
+      "visualMode": "epilogue_individual_018",
+      "visualDescription": "王冠の代わりに生活条件を周囲へ回す。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1125,11 +1165,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:conditions_not_queen",
+          "assetId": "remotion:epilogue-individual-018",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "王冠の代わりに生活条件を周囲へ回す。"
+          "description": "王冠の代わりに生活条件を周囲へ回す。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1148,11 +1188,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "王冠の代わりに生活条件を周囲へ回す。",
+        "description": "王冠の代わりに生活条件を周囲へ回す。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3
+      "estimatedDuration": 3,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-019",
@@ -1166,14 +1207,15 @@
         "startOffsetUTF16": 8845,
         "endOffsetExclusiveUTF16": 8869
       },
-      "visualMode": "conditions_not_queen",
-      "visualDescription": "王冠の代わりに生活条件を周囲へ回す。",
+      "visualMode": "epilogue_individual_019",
+      "visualDescription": "王冠の代わりに生活条件を周囲へ回す。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1186,11 +1228,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:conditions_not_queen",
+          "assetId": "remotion:epilogue-individual-019",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "王冠の代わりに生活条件を周囲へ回す。"
+          "description": "王冠の代わりに生活条件を周囲へ回す。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1209,11 +1251,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "王冠の代わりに生活条件を周囲へ回す。",
+        "description": "王冠の代わりに生活条件を周囲へ回す。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.2
+      "estimatedDuration": 4.2,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-020",
@@ -1227,14 +1270,15 @@
         "startOffsetUTF16": 8871,
         "endOffsetExclusiveUTF16": 8891
       },
-      "visualMode": "valid_life",
-      "visualDescription": "子供を持たない人生の道を明るく開く。",
+      "visualMode": "epilogue_individual_020",
+      "visualDescription": "子供を持たない人生の道を明るく開く。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1247,11 +1291,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:valid_life",
+          "assetId": "remotion:epilogue-individual-020",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "子供を持たない人生の道を明るく開く。"
+          "description": "子供を持たない人生の道を明るく開く。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1270,11 +1314,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "子供を持たない人生の道を明るく開く。",
+        "description": "子供を持たない人生の道を明るく開く。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 3.7
+      "estimatedDuration": 3.7,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-021",
@@ -1288,14 +1333,15 @@
         "startOffsetUTF16": 8891,
         "endOffsetExclusiveUTF16": 8918
       },
-      "visualMode": "valid_life",
-      "visualDescription": "子供を持たない人生の道を明るく開く。",
+      "visualMode": "epilogue_individual_021",
+      "visualDescription": "子供を持たない人生の道を明るく開く。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1308,11 +1354,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:valid_life",
+          "assetId": "remotion:epilogue-individual-021",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "子供を持たない人生の道を明るく開く。"
+          "description": "子供を持たない人生の道を明るく開く。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1331,11 +1377,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "子供を持たない人生の道を明るく開く。",
+        "description": "子供を持たない人生の道を明るく開く。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.6
+      "estimatedDuration": 4.6,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-022",
@@ -1349,14 +1396,15 @@
         "startOffsetUTF16": 8918,
         "endOffsetExclusiveUTF16": 8973
       },
-      "visualMode": "future_recedes",
-      "visualDescription": "家族像へ向かうほど条件壁を増やす。",
+      "visualMode": "epilogue_individual_022",
+      "visualDescription": "家族像へ向かうほど条件壁を増やす。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1369,11 +1417,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:future_recedes",
+          "assetId": "remotion:epilogue-individual-022",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "家族像へ向かうほど条件壁を増やす。"
+          "description": "家族像へ向かうほど条件壁を増やす。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1392,11 +1440,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "家族像へ向かうほど条件壁を増やす。",
+        "description": "家族像へ向かうほど条件壁を増やす。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 8.4
+      "estimatedDuration": 8.4,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-E-023",
@@ -1410,14 +1459,15 @@
         "startOffsetUTF16": 8975,
         "endOffsetExclusiveUTF16": 9005
       },
-      "visualMode": "same_outcome_many_paths",
-      "visualDescription": "異なる道を同じ結果へ合流させる。",
+      "visualMode": "epilogue_individual_023",
+      "visualDescription": "異なる道を同じ結果へ合流させる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1430,11 +1480,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:same_outcome_many_paths",
+          "assetId": "remotion:epilogue-individual-023",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "異なる道を同じ結果へ合流させる。"
+          "description": "異なる道を同じ結果へ合流させる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1453,11 +1503,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "異なる道を同じ結果へ合流させる。",
+        "description": "異なる道を同じ結果へ合流させる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.1
+      "estimatedDuration": 5.1,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-024",
@@ -1471,14 +1522,15 @@
         "startOffsetUTF16": 9005,
         "endOffsetExclusiveUTF16": 9050
       },
-      "visualMode": "same_outcome_many_paths",
-      "visualDescription": "異なる道を同じ結果へ合流させる。",
+      "visualMode": "epilogue_individual_024",
+      "visualDescription": "異なる道を同じ結果へ合流させる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1491,11 +1543,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:same_outcome_many_paths",
+          "assetId": "remotion:epilogue-individual-024",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "異なる道を同じ結果へ合流させる。"
+          "description": "異なる道を同じ結果へ合流させる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1514,11 +1566,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "異なる道を同じ結果へ合流させる。",
+        "description": "異なる道を同じ結果へ合流させる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.1
+      "estimatedDuration": 7.1,
+      "shotCount": 3
     },
     {
       "sceneId": "V46-E-025",
@@ -1532,14 +1585,15 @@
         "startOffsetUTF16": 9052,
         "endOffsetExclusiveUTF16": 9061
       },
-      "visualMode": "hero_station_photo",
-      "visualDescription": "同じ主人公がホームでスマホ写真を見る。",
+      "visualMode": "epilogue_individual_025",
+      "visualDescription": "同じ主人公がホームでスマホ写真を見る。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_densha",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -1554,11 +1608,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:hero_station_photo",
+          "assetId": "remotion:epilogue-individual-025",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "同じ主人公がホームでスマホ写真を見る。"
+          "description": "同じ主人公がホームでスマホ写真を見る。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1577,11 +1631,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "同じ主人公がホームでスマホ写真を見る。",
+        "description": "同じ主人公がホームでスマホ写真を見る。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.2
+      "estimatedDuration": 2.2,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-026",
@@ -1595,14 +1650,15 @@
         "startOffsetUTF16": 9061,
         "endOffsetExclusiveUTF16": 9093
       },
-      "visualMode": "hero_station_photo",
-      "visualDescription": "同じ主人公がホームでスマホ写真を見る。",
+      "visualMode": "epilogue_individual_026",
+      "visualDescription": "同じ主人公がホームでスマホ写真を見る。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_densha",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -1617,11 +1673,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:hero_station_photo",
+          "assetId": "remotion:epilogue-individual-026",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "同じ主人公がホームでスマホ写真を見る。"
+          "description": "同じ主人公がホームでスマホ写真を見る。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1640,11 +1696,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "同じ主人公がホームでスマホ写真を見る。",
+        "description": "同じ主人公がホームでスマホ写真を見る。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 5.3
+      "estimatedDuration": 5.3,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-027",
@@ -1658,14 +1715,15 @@
         "startOffsetUTF16": 9093,
         "endOffsetExclusiveUTF16": 9107
       },
-      "visualMode": "train_arrives",
-      "visualDescription": "電車を横から滑り込ませる。",
+      "visualMode": "epilogue_individual_027",
+      "visualDescription": "電車を横から滑り込ませる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_densha",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -1680,11 +1738,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:train_arrives",
+          "assetId": "remotion:epilogue-individual-027",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "電車を横から滑り込ませる。"
+          "description": "電車を横から滑り込ませる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1703,11 +1761,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "電車を横から滑り込ませる。",
+        "description": "電車を横から滑り込ませる。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.9
+      "estimatedDuration": 2.9,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-028",
@@ -1721,14 +1780,15 @@
         "startOffsetUTF16": 9107,
         "endOffsetExclusiveUTF16": 9116
       },
-      "visualMode": "tomorrow_work",
-      "visualDescription": "乗車後に時計を翌朝へ進める。",
+      "visualMode": "epilogue_individual_028",
+      "visualDescription": "乗車後に時計を翌朝へ進める。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -1743,11 +1803,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:tomorrow_work",
+          "assetId": "remotion:epilogue-individual-028",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "乗車後に時計を翌朝へ進める。"
+          "description": "乗車後に時計を翌朝へ進める。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1766,11 +1826,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "乗車後に時計を翌朝へ進める。",
+        "description": "乗車後に時計を翌朝へ進める。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 2.2
+      "estimatedDuration": 2.2,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-029",
@@ -1784,14 +1845,15 @@
         "startOffsetUTF16": 9118,
         "endOffsetExclusiveUTF16": 9160
       },
-      "visualMode": "supports_child_elsewhere",
-      "visualDescription": "仕事成果を都市内で別家庭の子供へ運ぶ。",
+      "visualMode": "epilogue_individual_029",
+      "visualDescription": "仕事成果を都市内で別家庭の子供へ運ぶ。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_TOWN_DAY_WIDE",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -1806,11 +1868,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:supports_child_elsewhere",
+          "assetId": "remotion:epilogue-individual-029",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "仕事成果を都市内で別家庭の子供へ運ぶ。"
+          "description": "仕事成果を都市内で別家庭の子供へ運ぶ。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1829,11 +1891,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "仕事成果を都市内で別家庭の子供へ運ぶ。",
+        "description": "仕事成果を都市内で別家庭の子供へ運ぶ。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 6.7
+      "estimatedDuration": 6.7,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-030",
@@ -1847,14 +1910,15 @@
         "startOffsetUTF16": 9160,
         "endOffsetExclusiveUTF16": 9187
       },
-      "visualMode": "unknown_future",
-      "visualDescription": "主人公と空席の距離を残す。",
+      "visualMode": "epilogue_individual_030",
+      "visualDescription": "主人公と空席の距離を残す。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_oneroom_night",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [
         "hero"
@@ -1869,11 +1933,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:unknown_future",
+          "assetId": "remotion:epilogue-individual-030",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "主人公と空席の距離を残す。"
+          "description": "主人公と空席の距離を残す。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1892,11 +1956,12 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "主人公と空席の距離を残す。",
+        "description": "主人公と空席の距離を残す。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 4.6
+      "estimatedDuration": 4.6,
+      "shotCount": 2
     },
     {
       "sceneId": "V46-E-031",
@@ -1910,14 +1975,15 @@
         "startOffsetUTF16": 9189,
         "endOffsetExclusiveUTF16": 9236
       },
-      "visualMode": "colony_memory",
-      "visualDescription": "地下コロニーを短く回想。",
+      "visualMode": "epilogue_individual_031",
+      "visualDescription": "地下コロニーを短く回想。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
       "backgroundId": "BG_darkroom",
       "motionDensity": "high",
       "motionPlan": [
-        "主要オブジェクト/人物の継続動作",
-        "カメラのパン・ズーム・パララックス",
-        "図解の生成・移動・反転・拡大縮小のいずれか"
+        "同一場所が続く場合は背景レイヤーを固定",
+        "1ナレーションビート内を2〜3ショット相当に細分化",
+        "人物・小物・図解・照明を台本の意味に合わせて追加・削除",
+        "意味転換時のみ背景を変更"
       ],
       "actors": [],
       "requiredAssets": [
@@ -1930,11 +1996,11 @@
           "review": "registered_existing_asset"
         },
         {
-          "assetId": "remotion:colony_memory",
+          "assetId": "remotion:epilogue-individual-031",
           "origin": "scene_implementation",
-          "status": "code_to_implement",
+          "status": "implemented",
           "review": "no_user_upload_required",
-          "description": "地下コロニーを短く回想。"
+          "description": "地下コロニーを短く回想。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。"
         }
       ],
       "backgroundBindings": [
@@ -1953,17 +2019,22 @@
       },
       "animation": {
         "engine": "Remotion React TypeScript",
-        "description": "地下コロニーを短く回想。",
+        "description": "地下コロニーを短く回想。 同一場所が続く場合は背景を固定し、台本の意味に合わせて前景オブジェクトを追加・削除する。",
         "subtitle": "確定原稿を厳密一致",
         "voiceTiming": "VOICEVOX実音声"
       },
-      "estimatedDuration": 7.3
+      "estimatedDuration": 7.3,
+      "shotCount": 3
     }
   ],
   "coverageValidation": {
     "sceneNarrationCharacters": 859,
     "sceneOrderVerified": true,
-    "sourceRangesVerified": true
+    "sourceRangesVerified": true,
+    "individualSceneDesign": true,
+    "individualBeatCount": 31,
+    "visualShotCount": 67,
+    "backgroundReusePolicy": "fixed-background-object-delta"
   },
   "missingAssets": {
     "count": 0,
@@ -1975,5 +2046,6 @@
     "missingAssetsResolved": true,
     "renderAllowed": true,
     "approvedEarlierChaptersLocked": true
-  }
+  },
+  "visualShotCount": 67
 }
