@@ -1,0 +1,156 @@
+name: V84 AI Extinction Production
+on:
+  workflow_dispatch:
+  push:
+    branches: [v84-ai-extinction-production]
+    paths: ['.github/workflows/v84-ai-extinction-production.yml', 'shared/v84/**', 'shared/bootstrap/v84-ai-extinction.mjs', 'shared/asset-library/**']
+permissions: {contents: write}
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    outputs: {matrix: '${{ steps.plan.outputs.matrix }}'}
+    steps:
+      - uses: actions/checkout@v4
+      - run: node shared/bootstrap/v84-ai-extinction.mjs
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - name: Validate approved shared assets
+        run: node shared/asset-library/test-assets.mjs
+      - name: Prepare reusable part candidates
+        run: node shared/asset-library/prepare.mjs v84-ai-extinction
+      - name: Stage approved template backgrounds
+        run: |
+          for bg in BG_office.png BG_kenkyu.png BG_syosai.png BG_bank.png BG_town.png BG_darkroom.png; do
+            node shared/asset-library/人物テンプレート/stage-background.mjs v84-ai-extinction "$bg"
+          done
+      - working-directory: v84-ai-extinction
+        run: npm install
+      - working-directory: v84-ai-extinction
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - working-directory: v84-ai-extinction
+        run: node scripts/build-preproduction.mjs
+      - name: Semantic scene / unique background / animated world guard
+        run: |
+          node - <<'NODE'
+          const s=require('./v84-ai-extinction/src/script-data.json'),d=require('./v84-ai-extinction/src/scene-data.json');const n=s.beats.length;if(n<180||n>340)throw Error(`scene count ${n}`);if(d.length!==n)throw Error('scene mismatch');if(new Set(s.beats.map(x=>x.visual)).size!==n)throw Error('visual key reuse');const g={},seen=new Set(),phases=new Set();let prev='';for(const x of d){phases.add(x.phase);g[x.bgGroup]=(g[x.bgGroup]||0)+1;if(x.bgGroup!==prev&&seen.has(x.bgGroup))throw Error(`nonconsecutive background reuse ${x.bgGroup}`);seen.add(x.bgGroup);prev=x.bgGroup;}for(const [k,v] of Object.entries(g))if(v>1)throw Error(`background ${k} used ${v} scenes`);if(Object.keys(g).length<180)throw Error(`too few backgrounds ${Object.keys(g).length}`);if(phases.size!==26)throw Error(`expected 26 distinct narrative phases, got ${phases.size}`);const src=require('fs').readFileSync('./shared/v84/scenes.tsx','utf8');if(!src.includes('export const SceneVisual')||!src.includes('phaseBackground'))throw Error('Missing V84 animation renderer');for(const ph of phases)if(!src.includes("case '"+ph+"'"))throw Error('missing illustrated story world '+ph);for(const token of ['ServerHall','Warehouse','DataFlow','CommandCenter','TemplateBg','TemplateCharacters'])if(!src.includes(token))throw Error('missing animation system '+token);console.log(`${n} micro-scenes / ${Object.keys(g).length} unique continuity backgrounds / ${phases.size} bespoke story worlds`);
+          NODE
+      - working-directory: v84-ai-extinction
+        run: npm run check
+      - name: Preview every world and verify moving background imagery
+        working-directory: v84-ai-extinction
+        run: |
+          mkdir -p out/preview
+          node - <<'NODE'
+          const fs=require('fs'),s=require('./src/script-data.json').beats,m=new Map();
+          for(const [i,b] of s.entries())if(!m.has(b.phase))m.set(b.phase,i);
+          fs.writeFileSync('out/preview/frames.json',JSON.stringify([...m.entries()].map(([phase,i])=>({phase,frame:i*24+9}))));
+          if(m.size!==26throw Error('preview phase coverage is incomplete');
+          NODE
+          node - <<'NODE'
+          const {execFileSync}=require('child_process'),fs=require('fs');
+          for(const {phase,frame} of JSON.parse(fs.readFileSync('out/preview/frames.json','utf8'))){
+            execFileSync('npx',['remotion','still','src/index.tsx','V84ScenePreview','out/preview/'+phase+'.png','--frame='+frame,'--log=error'],{stdio:'inherit'});
+          }
+          const crypto=require('crypto');
+          const frames=JSON.parse(fs.readFileSync('out/preview/frames.json','utf8'));
+          for(const {phase,frame} of frames.filter((x,i)=>i%2===0)){
+            const i=Math.floor(frame/24),a=i*24+2,b=i*24+20;
+            const one='out/preview/bg-'+phase+'-a.png',two='out/preview/bg-'+phase+'-b.png';
+            for(const [path,f] of [[one,a],[two,b]])execFileSync('npx',['remotion','still','src/index.tsx','V84BackgroundPreview',path,'--frame='+f,'--log=error'],{stdio:'inherit'});
+            const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+            if(hash(one)===hash(two))throw Error('Background not animated: '+phase);
+          }
+          NODE
+          test "$(find out/preview -maxdepth 1 -name '*.png' | wc -l)" -eq 52
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; exit 1
+      - working-directory: v84-ai-extinction
+        run: node scripts/generate-voicevox.mjs
+      - name: Check measured voice timing and narration coverage
+        working-directory: v84-ai-extinction
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'),s=require('./src/script-data.json').beats,t=require('./src/sync-timing.json');
+          if(t.beats.length!==s.length)throw Error('voice-timing beat coverage mismatch');
+          if(!Number.isFinite(t.durationSeconds)||t.durationSeconds<700)throw Error('narration unreasonably short or missing');
+          for(const [i,b] of t.beats.entries())if(!(b.end>b.start)||b.index!==i)throw Error('invalid beat timing '+i);
+          console.log('Validated '+s.length+' measured voice beats, duration '+t.durationSeconds.toFixed(2)+' seconds');
+          NODE
+      - id: plan
+        working-directory: v84-ai-extinction
+        run: echo "matrix=$(node scripts/plan-segments.mjs)" >> "$GITHUB_OUTPUT"
+      - run: tar --exclude='v84-ai-extinction/node_modules' -czf v84-prepared.tar.gz v84-ai-extinction
+      - uses: actions/upload-artifact@v4
+        with: {name: v84-prepared, path: v84-prepared.tar.gz, retention-days: 1}
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v84-prepared}
+      - run: tar -xzf v84-prepared.tar.gz
+      - working-directory: v84-ai-extinction
+        run: npm install
+      - working-directory: v84-ai-extinction
+        run: mkdir -p out && npx remotion render src/index.tsx V84AIExtinction "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with: {name: 'v84-segment-${{ matrix.id }}', path: 'v84-ai-extinction/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
+  finalize:
+    needs: [prepare,render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v84-prepared}
+      - run: tar -xzf v84-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'v84-segment-*', path: v84-ai-extinction/parts, merge-multiple: true}
+      - working-directory: v84-ai-extinction
+        run: node scripts/generate-bgm.mjs
+      - working-directory: v84-ai-extinction
+        run: |
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v84-final.mp4
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v84-final.mp4 | head -1)" = '1920'
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v84-final.mp4 | head -1)" = '1080'
+          test "$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v84-final.mp4 | cut -d. -f1)" -gt 700
+      - name: Check complete audio/video streams and alignment
+        working-directory: v84-ai-extinction
+        run: |
+          node - <<'NODE'
+          const {execFileSync}=require('child_process'),fs=require('fs');
+          const file='out/v84-final.mp4',t=require('./src/sync-timing.json');
+          const d=Number(execFileSync('ffprobe',['-v','error','-show_entries','format=duration','-of','default=nw=1:nk=1',file],{encoding:'utf8'}).trim());
+          const meta=JSON.parse(execFileSync('ffprobe',['-v','error','-show_entries','stream=codec_type,width,height','-of','json',file],{encoding:'utf8'}));
+          if(Math.abs(d-t.durationSeconds)>2.5)throw Error('MP4 and voice differ in duration '+d+' '+t.durationSeconds);
+          if(!meta.streams.some(x=>x.codec_type==='video'&&x.width===1920&&x.height===1080)||!meta.streams.some(x=>x.codec_type==='audio'))throw Error('missing video or audio stream');
+          if(fs.statSync(file).size<5000000)throw Error('abnormally small render');
+          NODE
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v84-ai-extinction v84-ai-extinction/out/v84-final.mp4 v84-ai-extinction/out/v84-contact-sheet.jpg
+      - working-directory: v84-ai-extinction
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG="v84-ai-extinction-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v84-ai-extinction-${GITHUB_RUN_ID}.mp4"
+          cp out/v84-final.mp4 "out/$NAME"
+          gh release create "$TAG" "out/$NAME" out/v84-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V84_PRODUCTION_SPEC.md qa/asset-report.json --repo "$GITHUB_REPOSITORY" --title "V84 AI Extinction Production ${GITHUB_RUN_ID}" --notes "Original AI safety and civilization documentary: 26 distinct story worlds, ~190 narration-aligned scenes, approved shared template assets only where semantically matched, moving internal background elements, synchronized Japanese narration, BGM and automated QA."
