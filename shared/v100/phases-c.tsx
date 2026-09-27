@@ -81,6 +81,7 @@ export const renderInstitutionAndStory=(v:number,p:number)=>{
   case 1:return <g><R x={0} y={0} w={1920} h={1080} c="#374952"/><Vehicle x={520} y={720} p={p} kind="truck"/><R x={1150} y={290} w={420} h={340} c="#c0cbc8"/><Person x={980} y={500} s={.62} pose="walk" p={p} role="nurse"/></g>;
   case 2:return <g><R x={0} y={0} w={1920} h={1080} c="#14232d"/><Paper x={350} y={240} w={360} h={460} chart/><circle cx={1400} cy={500} r="140" fill={C.gold}/><L x={710} y={500} X={1260} Y={500} c={C.paper} sw={11} p={p}/><Ring x={1000} y={500} p={p} c={C.teal}/></g>;
   case 3:return <g><R x={0} y={0} w={1920} h={1080} c="#0e1922"/><circle cx={960} cy={540} r={lerp(80,190,p)} fill={C.paper}/>{Array.from({length:16},(_,i)=>{const a=i/16*Math.PI*2,x=960+Math.cos(a)*570,y=540+Math.sin(a)*350;return <g key={i}><circle cx={x} cy={y} r="28" fill={i%2?C.teal:C.gold}/><L x={x} y={y} X={960} Y={540} c={C.steel} sw={3} p={q(p-i*.035)}/></g>})}</g>;
+  case 4:return <g><R x={0} y={0} w={1920} h={1080} c="#172833"/><R x={260} y={220} w={420} h={500} c="#6e7e83"/><R x={1240} y={220} w={420} h={500} c="#8a7867"/><Person x={470} y={500} s={.58} pose="write" p={p} role="clerk"/><Person x={1450} y={500} s={.58} pose="stand" p={p}/><L x={680} y={500} X={1240} Y={500} c={C.gold} sw={12} p={p}/><Ring x={960} y={500} p={p} r={190} c={C.teal}/></g>;
   default:throw new Error('institution_and_story variant '+v);
  }
 };
