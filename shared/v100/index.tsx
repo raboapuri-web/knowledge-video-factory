@@ -61,6 +61,6 @@ const ScenePreview=()=>{const frame=useCurrentFrame();return <AbsoluteFill style
 
 const Root=()=>{
   const duration=Math.max(30,Math.ceil(Number(sync.durationSeconds||1200)*30));
-  return <><Composition id='V100StateMythsOriginalScenes' component={V100} durationInFrames={duration} fps={30} width={1920} height={1200}/><Composition id='V100ScenePreview' component={ScenePreview} durationInFrames={beats.length*20} fps={30} width={1920} height={1200}/></>;
+  return <><Composition id='V100StateMythsOriginalScenes' component={V100} durationInFrames={duration} fps={30} width={1920} height={1080}/><Composition id='V100ScenePreview' component={ScenePreview} durationInFrames={beats.length*20} fps={30} width={1920} height={1080}/></>;
 };
 registerRoot(Root);
