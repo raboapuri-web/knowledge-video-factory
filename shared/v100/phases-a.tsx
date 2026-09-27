@@ -56,7 +56,7 @@ export const renderPrintStation=(v:number,p:number)=>{
 export const renderImaginedCommunity=(v:number,p:number)=>{
  switch(v){
   case 0:return <g><R x={0} y={0} w={1920} h={1080} c="#172530"/><circle cx={960} cy={540} r="150" fill={C.paper}/>{Array.from({length:14},(_,i)=>{const a=i/14*Math.PI*2,x=960+Math.cos(a)*560,y=540+Math.sin(a)*340;return <g key={i}><circle cx={x} cy={y} r="36" fill={i%2?C.teal:C.gold}/><L x={x} y={y} X={960} Y={540} c={C.steel} sw={4} p={q(p-i*.04)}/></g>})}</g>;
-  case 1:return <g><R x={0} y={0} w={1920} h={1080} c="#263a46"/>{Array.from({length:12},(_,i)=><Person key={i} x={170+(i%6)*300} y={310+Math.floor(i/6)*420} s={.48} pose="stand" p={p} role={i%4===0?'child':'modern'}/>)}<R x={830} y={160} w={260} h={760} c="none" stroke={C.red} strokeWidth="18" opacity={q(p)}/></g>;
+  case 1:return <g><R x={0} y={0} w={1920} h={1080} c="#263a46"/>{Array.from({length:12},(_,i)=><Person key={i} x={170+(i%6)*300} y={310+Math.floor(i/6)*420} s={.48} pose="stand" p={p} role={i%4===0?'child':'modern'}/>)}<R x={830} y={160} w={260} h={760} c="none" stroke={C.red} sw={18} o={q(p)}/></g>;
   case 2:return <g><R x={0} y={0} w={1920} h={1080} c="#5d5348"/><PrintingPress x={520} y={540} p={p} s={1.05}/><Newspaper x={1350} y={480} p={p} s={1.1}/><L x={760} y={540} X={1200} Y={500} c={C.gold} sw={12} p={p}/></g>;
   case 3:return <g><R x={0} y={0} w={1920} h={1080} c="#718177"/><R x={0} y={700} w={1920} h={380} c="#7f715f"/>{Array.from({length:5},(_,i)=><R key={i} x={90+i*370} y={370+(i%2)*60} w={280} h={280} c={i%2?'#8a735d':'#987f66'}/>)}<Person x={350} y={500} s={.62} pose="walk" p={p}/><Person x={1450} y={500} s={.62} pose="walk" p={1-p}/></g>;
   default:throw new Error('imagined_community variant '+v);
