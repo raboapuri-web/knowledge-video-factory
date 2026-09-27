@@ -1,5 +1,5 @@
 import React from 'react';
-import {C,q,lerp,R,L,P,Ring,Person,Vehicle,Gate,Paper,Coin,Hospital,School,FireStation,Factory,MapBlob} from './primitives';
+import {C,q,lerp,R,L,P,Ring,Person,Vehicle,Gate,Paper,Coin,Hospital,School,FireStation,Factory,MapBlob,House} from './primitives';
 
 const Dispatch=()=> <><R x={0} y={0} w={1920} h={1080} c="#1b2e38"/><R x={160} y={120} w={1600} h={520} rx={26} c="#2b424e"/><R x={260} y={690} w={1400} h={100} rx={20} c={C.wood}/></>;
 const Coins=({p,count=5,x=760,y=580}:{p:number;count?:number;x?:number;y?:number})=><>{Array.from({length:count},(_,i)=><Coin key={i} x={x+i*58} y={y+(i%2)*24} p={q(p-i*.08)} r={23}/>)}</>;
