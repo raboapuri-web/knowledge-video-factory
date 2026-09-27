@@ -1,5 +1,5 @@
 import React from 'react';
-import {C,q,lerp,R,L,P,Ring,Person,Vehicle,Gate,Paper,Tripod,Coin,BorderSign,House,Church,Castle,MapBlob} from './primitives';
+import {C,q,lerp,R,L,P,Ring,Person,Vehicle,Gate,Paper,Tripod,Coin,BorderSign,House,Church,Castle,MapBlob,Hospital} from './primitives';
 
 const Sky=({night=false}:{night?:boolean})=><><R x={0} y={0} w={1920} h={1080} c={night?'#263945':C.sky}/><R x={0} y={760} w={1920} h={320} c="#6c746a"/></>;
 const Road=({curve=false}:{curve?:boolean})=>curve?<P d="M0 980 C420 700 760 690 1010 790 C1260 890 1540 720 1920 610 L1920 900 C1510 1030 1270 1050 990 920 C710 790 430 870 0 1080Z" c="#4c5455"/>:<P d="M560 1080 L820 610 H1100 L1370 1080Z" c="#4c5455"/>;
@@ -29,7 +29,7 @@ export const renderSameWorld=(v:number,p:number)=>{
   case 2:return <g><R x={0} y={0} w={1920} h={1080} c="#6f6558"/><Paper x={170} y={160} w={700} h={720}/><Paper x={1050} y={160} w={700} h={720}/><g opacity={1-p}><L x={280} y={360} X={760} Y={640} c={C.wood} sw={20}/><L x={330} y={700} X={700} Y={300} c={C.wood} sw={14}/></g><g opacity={p}><L x={1400} y={230} X={1400} Y={800} c={C.red} sw={13}/><P d="M1150 370 C1280 250 1480 260 1640 420 C1490 580 1280 620 1130 520Z" c={C.green}/></g></g>;
   case 3:return <g><R x={0} y={0} w={960} h={1080} c="#4c565b"/><R x={960} y={0} w={960} h={1080} c="#24404b"/><P d="M620 1080 V360 H800 V1080Z" c="#8c8277"/><P d="M1120 800 L1320 500 L1520 800Z" c={C.gold}/><L x={960} y={120} X={960} Y={970} c={C.red} sw={16} p={p}/><Ring x={960} y={540} p={p}/></g>;
   case 4:return <g><R x={0} y={0} w={1920} h={1080} c="#202f39"/>{[{x:60,y:80,type:0},{x:990,y:80,type:1},{x:60,y:560,type:2},{x:990,y:560,type:3}].map((m,i)=><g key={i}><R x={m.x} y={m.y} w={870} h={430} rx={26} c={i%2?'#72868b':'#8b8071'}/>{m.type===0&&<Vehicle x={m.x+420} y={m.y+300} p={p} kind="fire"/>}{m.type===1&&<P d={'M'+(m.x+250)+' '+(m.y+320)+' L'+(m.x+450)+' '+(m.y+140)+' L'+(m.x+650)+' '+(m.y+320)+'Z'} c="#6d655c"/>}{m.type===2&&<Vehicle x={m.x+400} y={m.y+300} p={p} kind="police"/>}{m.type===3&&<><Coins p={p} count={5} x={m.x+250} y={m.y+260}/><Paper x={m.x+530} y={m.y+150} w={220} h={220}/></>}</g>)}</g>;
-  case 5:return <g><R x={0} y={0} w={1920} h={1080} c="#182733"/><g transform={'scale('+lerp(1.7,.72,p)+') translate('+lerp(-510,260,p)+' '+lerp(-260,120,p)+')'}><villageBase variant={2}/></g><Ring x={960} y={540} p={p} c={C.gold}/></g>;
+  case 5:return <g><R x={0} y={0} w={1920} h={1080} c="#182733"/><g transform={'scale('+lerp(1.7,.72,p)+') translate('+lerp(-510,260,p)+' '+lerp(-260,120,p)+')'}>{villageBase(2)}</g><Ring x={960} y={540} p={p} c={C.gold}/></g>;
   default:throw new Error('same_world variant '+v);
  }
 };
