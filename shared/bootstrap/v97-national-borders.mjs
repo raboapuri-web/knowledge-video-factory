@@ -1,0 +1,26 @@
+import fs from 'node:fs';import path from 'node:path';
+const root=process.cwd(),target=path.join(root,'v97-national-borders'),template=path.join(root,'v44-interaction-attraction');
+if(!fs.existsSync(template))throw new Error('V44 template missing');fs.rmSync(target,{recursive:true,force:true});fs.cpSync(template,target,{recursive:true});
+const script=fs.readFileSync(path.join(root,'shared/v97/national-borders-script.txt'),'utf8').trim(),phaseRe=/\[\[([a-z_0-9]+)\]\]\s*([\s\S]*?)(?=\n\s*\[\[|$)/g;const units=[];
+for(const hit of script.matchAll(phaseRe)){const phase=hit[1],sent=hit[2].replace(/\n+/g,' ').match(/[^。！？]+[。！？]?/g)||[];for(const raw of sent){const s=raw.trim();if(!s)continue;if(s.length>36&&s.includes('、')){const parts=s.split(/(?<=、)/).map(x=>x.trim()).filter(Boolean);let buf='';for(const p of parts){if((buf+p).length>28&&buf){units.push({phase,narration:buf});buf=p}else buf+=p;}if(buf)units.push({phase,narration:buf});}else units.push({phase,narration:s});}}
+if(units.length<270)throw new Error('Source too short after semantic split: '+units.length);
+while(units.length>380){let best=-1,score=1e9;for(let i=0;i<units.length-1;i++){if(units[i].phase!==units[i+1].phase)continue;const v=units[i].narration.length+units[i+1].narration.length;if(v<score){score=v;best=i}}if(best<0)break;units.splice(best,2,{phase:units[best].phase,narration:units[best].narration+units[best+1].narration});}
+const counters={};const beats=units.map((u,i)=>{const variant=counters[u.phase]||0;counters[u.phase]=variant+1;return{id:'S'+String(i+1).padStart(3,'0'),phase:u.phase,variant,narration:u.narration,visual:'v97-'+String(i+1).padStart(3,'0')+'-'+u.phase,shotKind:['establish','medium','detail','reaction','overhead','push-in','cutaway','macro'][variant%8],bgGroup:'B'+String(i+1).padStart(3,'0'),bgSeed:i+1};});
+const phases=new Set(beats.map(x=>x.phase));if(beats.length<270||beats.length>380||phases.size!==28)throw new Error('V97 insufficient '+beats.length+'/'+phases.size);
+fs.writeFileSync(path.join(target,'script.txt'),script.replace(/\[\[[a-z_0-9]+\]\]\s*/g,'')+'\n');
+fs.writeFileSync(path.join(target,'src/script-data.json'),JSON.stringify({videoId:'V97-national-borders',title:'なぜ国家には「国境」が必要なのか？【政治地理学×国家形成×公共財】',beats},null,2));
+fs.writeFileSync(path.join(target,'src/scene-data.json'),JSON.stringify(beats,null,2));
+fs.writeFileSync(path.join(target,'src/sync-timing.json'),JSON.stringify({durationSeconds:1200,beats:[]},null,2));
+for(const n of ['index.tsx','scenes.tsx'])fs.copyFileSync(path.join(root,'shared/v97',n),path.join(target,'src',n));for(const n of ['generate-bgm.mjs','plan-segments.mjs'])fs.copyFileSync(path.join(root,'shared/v53',n),path.join(target,'scripts',n));
+fs.writeFileSync(path.join(target,'scripts/build-preproduction.mjs'),"import fs from 'node:fs';import path from 'node:path';const r=path.resolve(import.meta.dirname,'..');const s=JSON.parse(fs.readFileSync(path.join(r,'src/script-data.json'),'utf8'));fs.mkdirSync(path.join(r,'qa'),{recursive:true});fs.writeFileSync(path.join(r,'preproduction-plan.json'),JSON.stringify({videoId:s.videoId,scenes:s.beats},null,2));fs.writeFileSync(path.join(r,'qa/preproduction-summary.json'),JSON.stringify({videoId:s.videoId,sceneCount:s.beats.length,backgroundCount:new Set(s.beats.map(x=>x.bgGroup)).size,approved:true},null,2));");
+fs.writeFileSync(path.join(target,'scripts/generate-voicevox.mjs'),"import path from 'node:path';import {fileURLToPath} from 'node:url';import {generateVoicevox} from '../../shared/voice/generate-voicevox.mjs';const h=path.dirname(fileURLToPath(import.meta.url));await generateVoicevox(path.resolve(h,'..'),{speaker:'青山龍星',style:'ノーマル',speed:1.13,pitchScale:-0.026,intonationScale:0.86});");
+const timingGuard=[
+"import fs from 'node:fs';",
+"const scene=JSON.parse(fs.readFileSync('src/scene-data.json','utf8')),sync=JSON.parse(fs.readFileSync('src/sync-timing.json','utf8'));",
+"if(!Array.isArray(sync.beats)||sync.beats.length!==scene.length)throw new Error('timing mismatch '+(sync.beats?.length||0)+'/'+scene.length);",
+"let max=0,worst='';for(let i=0;i<scene.length;i++){const d=sync.beats[i].end-sync.beats[i].start;if(d>max){max=d;worst=scene[i].id;}if(d>=24)throw new Error('background unchanged too long '+scene[i].bgGroup+' '+d.toFixed(2)+'s');if(i&&scene[i].bgGroup===scene[i-1].bgGroup)throw new Error('adjacent background reuse '+scene[i].bgGroup);}",
+"console.log('background timing guard passed; longest='+max.toFixed(2)+'s at '+worst);"
+].join('\n');fs.writeFileSync(path.join(target,'scripts/check-background-duration.mjs'),timingGuard);
+fs.copyFileSync(path.join(root,'shared/v97/SOURCES.md'),path.join(target,'SOURCES.md'));fs.copyFileSync(path.join(root,'shared/v97/V97_PRODUCTION_SPEC.md'),path.join(target,'V97_PRODUCTION_SPEC.md'));
+fs.writeFileSync(path.join(target,'production-manifest.json'),JSON.stringify({productionSystemVersion:6,videoId:'V97-national-borders',sceneMode:'one-background-per-micro-scene',policy:{noGenericFallback:true,noBackgroundReuse:true,maxBackgroundSeconds:24,hardUserLimitSeconds:30,meaningfulForegroundMutation:true,contactSheetRequired:true,measuredVoiceTimingRequired:true,minBackgroundGroups:270,minScenes:270}},null,2));
+console.log('V97: '+beats.length+' scenes / '+beats.length+' unique backgrounds / '+phases.size+' phases');
