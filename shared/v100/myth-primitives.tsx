@@ -1,5 +1,5 @@
 import React from 'react';
-import {C,R,L,P,Ring,Person,Vehicle,Paper,q,lerp} from './primitives';
+import {C,R,L,P,Ring,Person,Vehicle,Paper,School,Hospital,q,lerp} from './primitives';
 
 export const Stadium=({p=0,night=false}:{p?:number;night?:boolean})=><g>
  <R x={0} y={0} w={1920} h={1080} c={night?'#111b25':'#7190a0'}/>
@@ -96,7 +96,7 @@ export const FutureCity=({p=0,model=false}:{p?:number;model?:boolean})=><g trans
  <L x={80} y={710} X={1840} Y={620} c={C.teal} sw={22} p={p}/><Vehicle x={lerp(250,1600,p)} y={690} p={0} kind="bus"/>
  </g>;
 
-export const SchoolPhoto=({p=0,narrow=false}:{p?:number;narrow?:boolean})=><g><R x={0} y={0} w={1920} h={1080} c="#b8c6c0"/><R x={0} y={760} w={1920} h={320} c="#7c8b75"/><R x={250} y={160} w={1420} h={640} fill="none" stroke={narrow?C.red:C.paper} strokeWidth={narrow?36:18}/>
+export const SchoolPhoto=({p=0,narrow=false}:{p?:number;narrow?:boolean})=><g><R x={0} y={0} w={1920} h={1080} c="#b8c6c0"/><R x={0} y={760} w={1920} h={320} c="#7c8b75"/><R x={250} y={160} w={1420} h={640} c="none" stroke={narrow?C.red:C.paper} sw={narrow?36:18}/>
  {Array.from({length:20},(_,i)=>{const x=390+(i%5)*285,y=360+Math.floor(i/5)*135;const out=narrow&&(i%5===0||i%5===4);return <g key={i} opacity={out?lerp(1,.16,p):1}><Person x={x} y={y} s={.32} pose="stand" p={p} role="child"/></g>})}
  {narrow&&<g><R x={250} y={160} w={lerp(0,250,p)} h={640} c={C.black} o={.72}/><R x={lerp(1670,1420,p)} y={160} w={250} h={640} c={C.black} o={.72}/></g>}
  </g>;
