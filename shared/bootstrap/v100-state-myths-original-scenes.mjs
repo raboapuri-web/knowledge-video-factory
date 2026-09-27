@@ -12,7 +12,7 @@ for(const hit of script.matchAll(phaseRe)){
   const sentences=(hit[2].replace(/\n+/g,' ').match(/[^。！？]+[。！？]?/g)||[]).map(x=>x.trim()).filter(Boolean);
   const phaseIndex=phasesInOrder.length-1;
   sentences.forEach((narration,variant)=>{
-    const family=familySeq[(phaseIndex*7+variant*5)%familySeq.length];
+    const family=familySeq[(sceneIndex*5)%familySeq.length];
     beats.push({id:'S'+String(++sceneIndex).padStart(3,'0'),phase,variant,narration,family,sceneKey:phase+'__'+String(variant+1).padStart(2,'0'),visual:'v100-'+String(sceneIndex).padStart(3,'0')+'-'+phase,bgGroup:'V100BG'+String(sceneIndex).padStart(3,'0'),bgSeed:sceneIndex,shotKind:['establish','medium','detail','reaction','overhead','pushIn','cutaway','macro'][variant%8]});
   });
   phaseCounts[phase]=sentences.length;
