@@ -1,0 +1,60 @@
+name: V100 State Myths Finalize Only
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/v100-state-myths-finalize-only.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: v100-recovery-prepared
+          run-id: 36327974679
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: tar -xzf v100-recovery-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v100-recovery-segment-*
+          path: v100-state-myths-original-scenes/parts
+          merge-multiple: true
+          run-id: 36327974679
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Join, mux and strict verify
+        working-directory: v100-state-myths-original-scenes
+        run: |
+          node scripts/generate-bgm.mjs
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          test "$(wc -l < out/concat.txt)" -eq 8
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v100-final.mp4
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v100-final.mp4 | head -1 | tr -cd '0-9')
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v100-final.mp4 | head -1 | tr -cd '0-9')
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v100-final.mp4 | tr -d '\r')
+          echo "final: ${W}x${H} duration=${D}"
+          test "$W" = "1920"
+          test "$H" = "1080"
+          awk "BEGIN{exit !($D > 1200 && $D < 1230)}"
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v100-state-myths-original-scenes v100-state-myths-original-scenes/out/v100-final.mp4 v100-state-myths-original-scenes/out/v100-contact-sheet.jpg
+      - name: Publish final V100 release
+        working-directory: v100-state-myths-original-scenes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="v100-state-myths-original-scenes-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v100-state-myths-original-scenes-${GITHUB_RUN_ID}.mp4"
+          cp out/v100-final.mp4 "out/$NAME"
+          gh release create "$TAG" "out/$NAME" out/v100-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V100_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V100 State Myths Original Scenes ${GITHUB_RUN_ID}" --notes "Final V100 V99-method production. 195 narration-specific original scenes, 29 explicit narrative phases, 18 visual rhythm families, no generic fallback, no adjacent same visual family, rolling six-shot diversity guard, measured max scene 14.96s, 1920x1080, synced narration/subtitles/BGM."
