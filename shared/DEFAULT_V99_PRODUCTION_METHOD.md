@@ -9,8 +9,9 @@ User production default: when a future video-production request does not specify
 5. Use explicit topic/phase renderers. Generic visual fallback is prohibited.
 6. Every scene gets a unique scene key and background group.
 7. No adjacent identical visual family. In any rolling six-scene window, target at least five different visual families.
-8. Voice timing is measured before render; scenes 15 seconds or longer fail preflight.
-9. TypeScript/Remotion and representative still-preview QA must pass before expensive rendering.
-10. Final render uses narration, synchronized subtitles, low BGM, segmented parallel rendering, final resolution/duration QA and a contact sheet.
+8. Renderer coverage must be checked before voice generation: every narration sentence/variant must have an explicit authored renderer case, and the maximum case index must exactly match the sentence count for that phase.
+9. Voice timing is measured before render; scenes 15 seconds or longer fail preflight.
+10. TypeScript/Remotion and representative still-preview QA must pass before expensive rendering.
+11. Final render uses narration, synchronized subtitles, low BGM, segmented parallel rendering, final resolution/duration QA and a contact sheet.
 
 This is a quality rule, not a requirement to copy V99 visual assets. Each new video must design topic-specific original scenes.
