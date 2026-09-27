@@ -8,7 +8,7 @@ V100 follows the V99 method as the default production philosophy:
 - every sentence gets a scene-specific visual action;
 - no imported generic background plate may carry a long passage;
 - no generic renderer fallback;
-- 28 explicit narrative-phase renderers;
+- 29 explicit narrative-phase renderers;
 - unique scene key and unique background group for every sentence;
 - similar composition families may not repeat consecutively;
 - any rolling six scenes must contain at least five distinct visual rhythm families;
@@ -40,7 +40,7 @@ Do not allow the same main object to dominate more than two consecutive scenes. 
 
 ## QA
 - exactly 195 sentence-scenes from the approved narration;
-- exactly 28 phases;
+- exactly 29 phases;
 - 195 unique scene keys and 195 unique background IDs;
 - all phases explicitly dispatched; no generic fallback;
 - TypeScript / Remotion check before voice generation;
