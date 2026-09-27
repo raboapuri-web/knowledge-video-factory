@@ -33,7 +33,7 @@ jobs:
         working-directory: v99-national-borders-original-scenes
         run: |
           mkdir -p out/preview
-          for FRAME in 0 300 600 900 1200 1500 1800 2100 2400 2700 3000 3300 3600 3900 4200 4500 4800 5100 5400 5700; do
+          for FRAME in 0 200 400 600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800; do
             npx remotion still src/index.tsx V99ScenePreview "out/preview/scene-${FRAME}.png" --frame="$FRAME" --log=error
           done
           test "$(find out/preview -name '*.png' | wc -l)" -eq 20
