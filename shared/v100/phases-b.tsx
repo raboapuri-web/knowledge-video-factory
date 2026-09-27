@@ -1,5 +1,5 @@
 import React from 'react';
-import {C,R,L,Ring,Person,Paper,q,lerp} from './primitives';
+import {C,R,L,P,Ring,Person,Paper,q,lerp} from './primitives';
 import {FestivalHill,Procession,CeremonyAging,LectureHall,Museum,Cemetery,Flag} from './myth-primitives';
 
 export const renderFestivalSupreme=(v:number,p:number)=>{
@@ -71,7 +71,7 @@ export const renderMuseumSelection=(v:number,p:number)=>{
  switch(v){
   case 0:return <Museum p={p} storage/>;
   case 1:return <Museum p={p} storage={false}/>;
-  case 2:return <g><R x={0} y={0} w={1920} h={1080} c="#151f27"/><R x={180} y={180} w={1560} h={600} c="none" stroke={C.paper} strokeWidth="10"/>{Array.from({length:16},(_,i)=><circle key={i} cx={300+(i%8)*180} cy={330+Math.floor(i/8)*300} r="50" fill={i===5||i===10?C.gold:C.steel} opacity={i===5||i===10?1:.25}/>)}<Ring x={1200} y={630} p={p} c={C.red}/></g>;
+  case 2:return <g><R x={0} y={0} w={1920} h={1080} c="#151f27"/><R x={180} y={180} w={1560} h={600} c="none" stroke={C.paper} sw={10}/>{Array.from({length:16},(_,i)=><circle key={i} cx={300+(i%8)*180} cy={330+Math.floor(i/8)*300} r="50" fill={i===5||i===10?C.gold:C.steel} opacity={i===5||i===10?1:.25}/>)}<Ring x={1200} y={630} p={p} c={C.red}/></g>;
   case 3:return <g><R x={0} y={0} w={1920} h={1080} c="#5d5248"/><Paper x={260} y={220} w={360} h={500}/><Paper x={780} y={220} w={360} h={500}/><Paper x={1300} y={220} w={360} h={500}/><Ring x={960} y={480} p={p} r={360} c={C.gold}/></g>;
   case 4:return <g><R x={0} y={0} w={1920} h={1080} c="#1b2b35"/><Person x={960} y={480} s={.8} pose="stand" p={p} role="diplomat"/><Ring x={960} y={480} p={p} r={260} c={C.gold}/></g>;
   case 5:return <g><R x={0} y={0} w={1920} h={1080} c="#111c25"/><R x={640} y={240} w={640} h={420} c="#4c5860"/><P d="M620 660 L960 340 L1300 660Z" c={C.red}/><Ring x={960} y={530} p={p} c={C.paper}/></g>;
