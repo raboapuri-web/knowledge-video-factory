@@ -48,11 +48,11 @@ jobs:
 
   render:
     needs: prepare
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
-      fail-fast: true
-      matrix:
-        include: ${{ fromJson(needs.prepare.outputs.matrix) }}
+      fail-fast: false
+      max-parallel: 8
+      matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -77,7 +77,7 @@ jobs:
 
   finalize:
     needs: render
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
