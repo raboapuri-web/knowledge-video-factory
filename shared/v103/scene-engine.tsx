@@ -76,7 +76,7 @@ export const V103Visual=({beat,progress}:{beat:Beat;progress:number})=>{
  if(['expand','transform'].includes(v))s=lerp(.73,1.1,t);
  if(disappear.has(v)){op=lerp(1,.14,t);s=lerp(1,.88,t);}
  if(['open','unveil','reveal','unroll','enter'].includes(v))op=lerp(.35,1,t);
- const mainScale=beat.primary==='portrait'?1.13:beat.primary==='frames'||beat.primary==='courtiers'||beat.primary==='audience'?.95:beat.primary==='statues'?.92:1.13;
+ const mainScale=beat.primary==='portrait'?1.13:['frames','courtiers','audience'].includes(beat.primary)?0.95:beat.primary==='statues'?0.92:1.13;
  return <g data-v103-action={beat.actionId} data-environment={beat.environment}>
    <Backdrop environment={beat.environment}/>
    <g opacity={.42} transform={'translate('+(beat.variant%2?160:310)+' 570) scale(.53)'}>{isWork?<VisualProp kind="worktable" p={p}/>:isDual?<VisualProp kind={comp} p={1-p}/>:beat.primary==='portrait'?<VisualProp kind="crown" p={p}/>:<VisualProp kind={beat.phase==='greek_ideal'?'statue':beat.phase==='social_presentation'?'mannequin':'curtain'} p={p}/>}</g>
