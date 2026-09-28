@@ -38,8 +38,8 @@ export const renderUsSupermarket=(v:number,p:number):React.ReactNode=>{
 
 export const renderBenefitCliff=(v:number,p:number):React.ReactNode=>{
  switch(v){
- case 0:return <g><FlatB/><Mother x={1120} y={475} s={.75} which="b" pose="read" p={p}/><Letter x={1240} y={650} p={p} approved={false} s={.54}/><R x={430} y={305} w={410} h={180} c={C.paper}/><T x={635} y={410} size={51} c={C.ink}>所得基準</T></g>;
- case 1:return <g><HomeBudget p={p}/><R x={1380} y={175} w={290} h={190} rx={17} c={C.teal}/><T x={1525} y={285} size={66}>＋$200</T><Ring x={960} y={495} p={p} r={230} c={C.red}/></g>;
+ case 0:return <g><R x={0} y={0} w={1920} h={1080} c="#182834"/><Letter x={960} y={485} p={p} approved={false} s={1.5}/><R x={1130} y={705} w={465} h={117} rx={15} c={C.paper}/><T x={1362} y={786} size={54} c={C.ink}>所得基準を超過</T><Ring x={950} y={480} p={p} r={305} c={C.red}/></g>;
+ case 1:return <g><R x={0} y={0} w={1920} h={1080} c="#243842"/><R x={225} y={195} w={580} h={650} rx={28} c="#467374"/><R x={1115} y={195} w={580} h={650} rx={28} c="#785b57"/><T x={515} y={310} size={59}>給料 ＋$200</T><T x={1405} y={310} size={58}>給付の減少</T>{Array.from({length:8},(_,i)=><Coin key={i} x={lerp(590,1330,q(p-i*.06))} y={480+(i%3)*86} p={1} r={31}/>)}<L x={835} y={780} X={1090} Y={780} c={C.gold} sw={17} p={p}/></g>;
  case 2:return <g><StepGraph p={p}/><T x={960} y={940} size={45}>一定の基準で給付が減る</T></g>;
  case 3:return <g><ResearchDesk p={p}/><g transform="translate(835 230) scale(.42)"><StepGraph p={p}/></g><T x={960} y={870} size={50}>給付の崖を分析</T></g>;
  case 4:return <g><R x={0} y={0} w={1920} h={1080} c="#20313b"/><R x={185} y={235} w={620} h={630} c="#526f71"/><R x={1115} y={235} w={620} h={630} c="#6f6060"/><Mother x={480} y={495} s={.76} which="b" pose="reach" p={p}/><Child x={1410} y={650} s={.67} p={p}/><L x={790} y={565} X={1120} Y={565} c={C.gold} sw={15} p={p}/></g>;
