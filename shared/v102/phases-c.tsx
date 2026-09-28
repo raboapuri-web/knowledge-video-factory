@@ -1,6 +1,6 @@
 import React from 'react';
 import {C,R,L,P,Ring,Person,Vehicle,Paper,Coin,House,Factory,q,lerp} from './primitives';
-import {T,Mother,Child,FlatA,FlatB,RentalStreet,Realtor,Diner,SickHome,MedicaidDesk,Letter,Phone,HomeBudget,StepGraph,PriceTag,FlowCoins,SupplyMap,SymbolicBoundary,ResearchDesk,Deadline,FormDesk,Construction} from './welfare-primitives';
+import {T,Mother,Child,FlatA,FlatB,Office,RentalStreet,Realtor,Diner,SickHome,MedicaidDesk,Letter,Phone,HomeBudget,StepGraph,PriceTag,FlowCoins,SupplyMap,SymbolicBoundary,ResearchDesk,Deadline,FormDesk,Construction} from './welfare-primitives';
 
 export const renderLandlordDecision=(v:number,p:number):React.ReactNode=>{
  switch(v){
