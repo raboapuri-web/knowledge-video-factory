@@ -4,7 +4,7 @@ import scriptData from './script-data.json';
 import sync from './sync-timing.json';
 import {SceneVisual} from './scenes';
 
-type Beat={id:string;visual:string;narration:string;phase:string;variant:number;shotKind:string;bgGroup:string;bgSeed:number};
+type Beat={id:string;visual:string;narration:string;phase:string;variant:number;shotKind:string;bgGroup:string};
 type SyncBeat={index:number;start:number;end:number};
 const beats=scriptData.beats as Beat[];
 const font='Noto Sans JP, sans-serif';
