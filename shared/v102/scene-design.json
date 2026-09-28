@@ -1,0 +1,627 @@
+{
+  "videoId": "V102-welfare-paradox",
+  "phases": {
+    "intro_mother_a": [
+      {
+        "family": "exterior",
+        "action": "suburban_apartment_approach"
+      },
+      {
+        "family": "interior",
+        "action": "mother_opens_letter_as_child_stacks_blocks"
+      },
+      {
+        "family": "macro",
+        "action": "daycare_acceptance_letter_rises_from_envelope"
+      },
+      {
+        "family": "split",
+        "action": "mother_calls_supervisor_across_two_workspaces"
+      },
+      {
+        "family": "prop",
+        "action": "work_bag_pack_before_daycare"
+      }
+    ],
+    "intro_mother_b": [
+      {
+        "family": "interior",
+        "action": "mother_reads_daycare_refusal"
+      },
+      {
+        "family": "document",
+        "action": "job_vacancies_crossed_off"
+      },
+      {
+        "family": "phone",
+        "action": "workplace_delays_return_by_phone"
+      },
+      {
+        "family": "split",
+        "action": "two_mothers_future_diverges"
+      },
+      {
+        "family": "transit",
+        "action": "daycare_commute_compared_with_staying_home"
+      },
+      {
+        "family": "montage",
+        "action": "two_distinct_apartment_lives"
+      }
+    ],
+    "childcare_evidence": [
+      {
+        "family": "research",
+        "action": "analyst_reviews_municipal_records"
+      },
+      {
+        "family": "data",
+        "action": "matched_households_pair_by_probability"
+      },
+      {
+        "family": "chart",
+        "action": "zero_one_age_employment_effect_bars"
+      },
+      {
+        "family": "macro",
+        "action": "two_similar_applications_separated_by_rule"
+      },
+      {
+        "family": "institution",
+        "action": "limited_nursery_slots_redistributed"
+      }
+    ],
+    "opening_paradox": [
+      {
+        "family": "symbolic",
+        "action": "beneficiary_and_outsider_separated"
+      },
+      {
+        "family": "diagram",
+        "action": "finance_facilities_staff_resource_limit"
+      },
+      {
+        "family": "split",
+        "action": "within_qualification_and_outside_qualification"
+      },
+      {
+        "family": "system",
+        "action": "income_rent_forms_generate_side_effects"
+      },
+      {
+        "family": "concept",
+        "action": "helping_household_shifts_other_lives"
+      },
+      {
+        "family": "historical",
+        "action": "flashback_to_1834_industrial_britain"
+      }
+    ],
+    "britain_village": [
+      {
+        "family": "industrial",
+        "action": "milltown_workers_and_wagon"
+      },
+      {
+        "family": "interior",
+        "action": "unemployed_father_at_hearth"
+      },
+      {
+        "family": "human",
+        "action": "mother_sews_childs_coat"
+      },
+      {
+        "family": "transaction",
+        "action": "clerk_meets_unemployed_worker"
+      },
+      {
+        "family": "document",
+        "action": "poor_relief_tax_ledger"
+      }
+    ],
+    "workhouse_gates": [
+      {
+        "family": "archive",
+        "action": "1834_poor_law_form_signed"
+      },
+      {
+        "family": "exterior",
+        "action": "family_crosses_workhouse_gate"
+      },
+      {
+        "family": "interior",
+        "action": "workhouse_beds_and_regulated_space"
+      },
+      {
+        "family": "split",
+        "action": "parents_and_children_separated"
+      },
+      {
+        "family": "document",
+        "action": "regional_relief_variation_records"
+      }
+    ],
+    "less_eligibility": [
+      {
+        "family": "split",
+        "action": "working_poor_compared_with_relief_recipient"
+      },
+      {
+        "family": "macro",
+        "action": "workhouse_door_test_and_entry"
+      },
+      {
+        "family": "desk",
+        "action": "taxpayer_relief_cost_entries"
+      },
+      {
+        "family": "interior",
+        "action": "conditions_inside_workhouse"
+      },
+      {
+        "family": "concept",
+        "action": "relief_threshold_affects_two_families"
+      }
+    ],
+    "workhouse_debate": [
+      {
+        "family": "historical",
+        "action": "member_rises_in_commons"
+      },
+      {
+        "family": "document",
+        "action": "parliamentary_text_and_protest"
+      },
+      {
+        "family": "split",
+        "action": "cottage_and_workhouse_consequences"
+      },
+      {
+        "family": "concept",
+        "action": "employment_vs_relief_comparison"
+      },
+      {
+        "family": "desk",
+        "action": "qualifying_forms_rejected_or_accepted"
+      }
+    ],
+    "eligibility_line": [
+      {
+        "family": "diagram",
+        "action": "eligibility_boundary_applied_to_people"
+      },
+      {
+        "family": "institution",
+        "action": "clerk_cannot_infer_real_need"
+      },
+      {
+        "family": "split",
+        "action": "different_needs_same_paper_rules"
+      },
+      {
+        "family": "comparison",
+        "action": "strict_versus_broad_coverage_cost"
+      },
+      {
+        "family": "exterior",
+        "action": "household_approaches_workhouse_gate"
+      },
+      {
+        "family": "chart",
+        "action": "old_relief_rules_link_to_modern_benefits"
+      }
+    ],
+    "us_supermarket": [
+      {
+        "family": "grocery",
+        "action": "mother_shops_with_child"
+      },
+      {
+        "family": "phone",
+        "action": "mother_checks_bank_balance_in_aisle"
+      },
+      {
+        "family": "institution",
+        "action": "supervisor_awards_pay_raise"
+      },
+      {
+        "family": "interior",
+        "action": "mother_updates_home_budget"
+      },
+      {
+        "family": "desk",
+        "action": "paystub_and_benefit_rules_side_by_side"
+      }
+    ],
+    "benefit_cliff": [
+      {
+        "family": "macro",
+        "action": "threshold_notice_qualifications_up_close"
+      },
+      {
+        "family": "finance",
+        "action": "pay_raise_coins_move_between_balances"
+      },
+      {
+        "family": "graph",
+        "action": "benefit_cliff_downward_step"
+      },
+      {
+        "family": "research",
+        "action": "atlanta_fed_analyzes_cliff"
+      },
+      {
+        "family": "split",
+        "action": "benefit_loss_affects_childcare"
+      }
+    ],
+    "us_choice": [
+      {
+        "family": "desk",
+        "action": "mother_calculates_net_resources"
+      },
+      {
+        "family": "exterior",
+        "action": "nursery_continuation_at_risk"
+      },
+      {
+        "family": "route",
+        "action": "woman_faces_job_choice_fork"
+      },
+      {
+        "family": "institution",
+        "action": "uncertain_rehire_phone_call"
+      },
+      {
+        "family": "interior",
+        "action": "mother_decides_to_protect_household"
+      }
+    ],
+    "program_overlap": [
+      {
+        "family": "triptych",
+        "action": "separate_food_childcare_tax_agencies"
+      },
+      {
+        "family": "diagram",
+        "action": "multiple_rules_link_to_single_household"
+      },
+      {
+        "family": "paperTable",
+        "action": "receipts_benefits_tax_on_dining_table"
+      },
+      {
+        "family": "system",
+        "action": "three_eligibility_calculations_collide"
+      },
+      {
+        "family": "desk",
+        "action": "home_budget_combines_agencies"
+      },
+      {
+        "family": "graph",
+        "action": "tapering_interacts_with_other_rules"
+      }
+    ],
+    "france_apartment": [
+      {
+        "family": "exterior",
+        "action": "young_paris_tenant_inspects_street"
+      },
+      {
+        "family": "institution",
+        "action": "tenancy_agreement_and_household_budget"
+      },
+      {
+        "family": "document",
+        "action": "housing_benefit_approval_received"
+      },
+      {
+        "family": "transaction",
+        "action": "tenant_files_housing_benefit_claim"
+      },
+      {
+        "family": "concept",
+        "action": "housing_access_with_subsidy"
+      }
+    ],
+    "landlord_decision": [
+      {
+        "family": "institution",
+        "action": "landlord_consults_estate_agent"
+      },
+      {
+        "family": "diagram",
+        "action": "house_listing_and_higher_bids"
+      },
+      {
+        "family": "overhead",
+        "action": "housing_demand_outgrows_supply"
+      },
+      {
+        "family": "transaction",
+        "action": "agent_reprices_listing"
+      },
+      {
+        "family": "system",
+        "action": "subsidy_money_flows_to_rent"
+      }
+    ],
+    "fack_analysis": [
+      {
+        "family": "research",
+        "action": "economist_compares_french_reform_data"
+      },
+      {
+        "family": "chart",
+        "action": "seventy_eight_and_twenty_two_cent_distribution"
+      },
+      {
+        "family": "macro",
+        "action": "one_euro_flows_to_landlord"
+      },
+      {
+        "family": "exterior",
+        "action": "fixed_housing_supply_limits_response"
+      },
+      {
+        "family": "split",
+        "action": "findings_specific_to_studied_market"
+      }
+    ],
+    "rental_outsider": [
+      {
+        "family": "institution",
+        "action": "subsidized_tenant_pays_rent"
+      },
+      {
+        "family": "research",
+        "action": "unsubsidized_applicant_exceeds_threshold"
+      },
+      {
+        "family": "transaction",
+        "action": "higher_price_offer_rejected"
+      },
+      {
+        "family": "transit",
+        "action": "applicant_searches_farther_commute"
+      },
+      {
+        "family": "split",
+        "action": "market_impact_on_eligible_and_ineligible"
+      }
+    ],
+    "market_spillover": [
+      {
+        "family": "construction",
+        "action": "additional_supply_under_construction"
+      },
+      {
+        "family": "exterior",
+        "action": "new_homes_take_time_to_build"
+      },
+      {
+        "family": "overhead",
+        "action": "housing_map_with_excess_demand"
+      },
+      {
+        "family": "diagram",
+        "action": "demand_grows_with_fixed_stock"
+      },
+      {
+        "family": "desk",
+        "action": "evaluate_market_with_program"
+      }
+    ],
+    "working_family": [
+      {
+        "family": "timeline",
+        "action": "post_1990_inwork_support_transition"
+      },
+      {
+        "family": "grocery",
+        "action": "low_paid_mother_finishes_diner_shift"
+      },
+      {
+        "family": "interior",
+        "action": "family_checks_earned_income_credit"
+      },
+      {
+        "family": "research",
+        "action": "economists_measure_child_program_distribution"
+      },
+      {
+        "family": "split",
+        "action": "employed_and_unemployed_low_income_families"
+      }
+    ],
+    "unable_to_work": [
+      {
+        "family": "interior",
+        "action": "ill_parent_facing_medical_limits"
+      },
+      {
+        "family": "human",
+        "action": "caregiving_time_prevents_regular_work"
+      },
+      {
+        "family": "diagram",
+        "action": "earned_income_condition_narrows_access"
+      },
+      {
+        "family": "split",
+        "action": "two_struggling_households_under_different_rules"
+      },
+      {
+        "family": "symbolic",
+        "action": "institutional_definition_excludes_some"
+      }
+    ],
+    "medicaid_envelopes": [
+      {
+        "family": "institution",
+        "action": "pandemic_continuous_enrollment_ends"
+      },
+      {
+        "family": "document",
+        "action": "renewal_notices_mailed_by_states"
+      },
+      {
+        "family": "interior",
+        "action": "mother_opens_medical_renewal_letter"
+      },
+      {
+        "family": "desk",
+        "action": "missing_documents_found"
+      },
+      {
+        "family": "phone",
+        "action": "working_mother_has_no_office_hours"
+      }
+    ],
+    "medicaid_procedural": [
+      {
+        "family": "network",
+        "action": "call_center_cannot_process_renewal_in_time"
+      },
+      {
+        "family": "deadline",
+        "action": "renewal_deadline_calendar"
+      },
+      {
+        "family": "data",
+        "action": "kff_disenrollment_25m_69_percent"
+      },
+      {
+        "family": "institution",
+        "action": "claim_ended_for_process_reason"
+      },
+      {
+        "family": "split",
+        "action": "qualification_versus_completed_paperwork"
+      }
+    ],
+    "administrative_burden": [
+      {
+        "family": "desk",
+        "action": "full_application_paperwork_arrives"
+      },
+      {
+        "family": "diagram",
+        "action": "learn_collect_submit_process"
+      },
+      {
+        "family": "split",
+        "action": "time_wealth_changes_access"
+      },
+      {
+        "family": "interior",
+        "action": "most_struggling_parent_faces_process"
+      },
+      {
+        "family": "concept",
+        "action": "two_separate_barriers_to_actual_support"
+      }
+    ],
+    "support_benefits": [
+      {
+        "family": "symbolic",
+        "action": "avoid_claim_all_social_help_fails"
+      },
+      {
+        "family": "market",
+        "action": "food_assistance_purchases"
+      },
+      {
+        "family": "grocery",
+        "action": "child_gets_adequate_nutrition"
+      },
+      {
+        "family": "timeline",
+        "action": "long_term_childhood_effects"
+      },
+      {
+        "family": "split",
+        "action": "assess_benefits_and_exclusion_together"
+      }
+    ],
+    "policy_tradeoffs": [
+      {
+        "family": "graph",
+        "action": "smooth_benefit_taper_reduces_cliff"
+      },
+      {
+        "family": "desk",
+        "action": "broader_eligibility_raises_finance_question"
+      },
+      {
+        "family": "construction",
+        "action": "housing_supply_with_subsidy"
+      },
+      {
+        "family": "exterior",
+        "action": "new_building_requires_land_and_time"
+      },
+      {
+        "family": "institution",
+        "action": "simpler_application_with_fraud_checks"
+      },
+      {
+        "family": "system",
+        "action": "weigh_effects_budgets_and_spillovers"
+      }
+    ],
+    "epilogue_two_rooms": [
+      {
+        "family": "exterior",
+        "action": "two_apartment_windows_illuminated"
+      },
+      {
+        "family": "interior",
+        "action": "accepted_mother_labels_clothes"
+      },
+      {
+        "family": "phone",
+        "action": "other_mother_rewrites_work_email"
+      },
+      {
+        "family": "split",
+        "action": "two_lives_diverge_next_morning"
+      },
+      {
+        "family": "symbolic",
+        "action": "support_needs_on_both_sides"
+      }
+    ],
+    "epilogue_thesis": [
+      {
+        "family": "historical",
+        "action": "workhouse_rules_constrain_family"
+      },
+      {
+        "family": "graph",
+        "action": "modern_cliff_reduces_income_gain"
+      },
+      {
+        "family": "concept",
+        "action": "housing_support_moves_market_price"
+      },
+      {
+        "family": "desk",
+        "action": "documents_exclude_eligible_people"
+      },
+      {
+        "family": "system",
+        "action": "count_direct_and_indirect_impacts"
+      },
+      {
+        "family": "symbolic",
+        "action": "rescue_line_excludes_others"
+      },
+      {
+        "family": "final",
+        "action": "camera_returns_to_support_boundary"
+      }
+    ]
+  }
+}
