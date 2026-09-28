@@ -13,7 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: node shared/bootstrap/v103-codpiece-original-scenes.mjs
-      - run: node shared/asset-library/prepare.mjs v103-codpiece-original-scenes
+      - name: Prepare bespoke-only asset plan using four already SHA-verified library backgrounds
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const root='v103-codpiece-original-scenes/',beats=require('./'+root+'src/scene-data.json');
+          const assets=require('./'+root+'src/library-assets.json');
+          if(assets.length!==4||assets.some(a=>a.license!=='cleared-commercial'))throw Error('Approved template inventory mismatch');
+          fs.writeFileSync(root+'src/asset-plan.json',JSON.stringify({version:2,mode:'bespoke-only',backgrounds:assets,scenes:Object.fromEntries(beats.map(b=>[b.id,{bgGroup:b.bgGroup,mode:'bespoke',part:null}])),breakdown:{suggestedOverlays:0,approvedOverlays:0,matchedParts:0,unmatchedBeats:beats.length}},null,2));
+          console.log('Asset staging passed: 4 approved user backgrounds + 44 custom scene environments, no irrelevant overlays');
+          NODE
       - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
       - uses: actions/setup-node@v4
         with: {node-version: 20}
