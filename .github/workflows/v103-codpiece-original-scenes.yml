@@ -1,0 +1,125 @@
+name: V103 Codpiece Original Scenes
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/v103-codpiece-original-scenes.yml','shared/bootstrap/v103-codpiece-original-scenes.mjs','shared/v103/**']
+permissions: {contents: write}
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    outputs: {matrix: '${{ steps.plan.outputs.matrix }}'}
+    steps:
+      - uses: actions/checkout@v4
+      - run: node shared/bootstrap/v103-codpiece-original-scenes.mjs
+      - run: node shared/asset-library/prepare.mjs v103-codpiece-original-scenes
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - working-directory: v103-codpiece-original-scenes
+        run: npm install
+      - working-directory: v103-codpiece-original-scenes
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - working-directory: v103-codpiece-original-scenes
+        run: node scripts/build-preproduction.mjs
+      - name: Verify 193 specifically authored Tudor scenes and fixed historic backgrounds
+        run: |
+          node - <<'NODE'
+          const d=require('./v103-codpiece-original-scenes/src/scene-data.json'),s=require('./v103-codpiece-original-scenes/src/script-data.json');
+          if(d.length!==193||s.beats.length!==193)throw Error('Expected 193 one-sentence scenes');
+          if(new Set(d.map(x=>x.actionId)).size!==193||new Set(d.map(x=>x.sceneKey)).size!==193)throw Error('Reused scene action or ID');
+          if(new Set(d.map(x=>x.phase)).size!==6)throw Error('Missing narrative phase');
+          if(new Set(d.map(x=>x.bgGroup)).size!==44)throw Error('Expected 44 unique historical environments');
+          const seen=new Set();
+          for(let i=0;i<d.length;i++){
+            const b=d[i];if(!b.actionLabel||!b.primary||!b.verb)throw Error('Generic or empty scene '+b.id);
+            if(seen.has(b.bgGroup)&&(i===0||d[i-1].bgGroup!==b.bgGroup))throw Error('Noncontiguous background reuse '+b.bgGroup);
+            seen.add(b.bgGroup);
+            if(i&&d[i-1].family===b.family)throw Error('Adjacent composition repeat '+b.id);
+            const w=d.slice(Math.max(0,i-5),i+1);if(w.length===6&&new Set(w.map(x=>x.family)).size<5)throw Error('Too many similar compositions '+b.id);
+          }
+          console.log('V103 QA passed: 193 original actions / 44 unique contiguous backgrounds / 6 phases');
+          NODE
+      - working-directory: v103-codpiece-original-scenes
+        run: npm run check
+      - name: Render thirty original-scene visual previews across all chapters
+        working-directory: v103-codpiece-original-scenes
+        run: |
+          mkdir -p out/preview
+          for I in $(seq 0 29); do
+            FRAME=$(( I * (193 * 20 - 1) / 29 ))
+            npx remotion still src/index.tsx V103ScenePreview "out/preview/scene-${I}.png" --frame="$FRAME" --log=error
+          done
+          test "$(find out/preview -name '*.png' | wc -l)" -eq 30
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; exit 1
+      - working-directory: v103-codpiece-original-scenes
+        run: node scripts/generate-voicevox.mjs
+      - name: Enforce one-sentence original-scene timing
+        working-directory: v103-codpiece-original-scenes
+        run: node scripts/check-original-scenes.mjs
+      - id: plan
+        working-directory: v103-codpiece-original-scenes
+        run: echo "matrix=$(node scripts/plan-segments.mjs)" >> "$GITHUB_OUTPUT"
+      - run: tar --exclude='v103-codpiece-original-scenes/node_modules' -czf v103-prepared.tar.gz v103-codpiece-original-scenes
+      - uses: actions/upload-artifact@v4
+        with: {name: v103-prepared, path: v103-prepared.tar.gz, retention-days: 1}
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v103-prepared}
+      - run: tar -xzf v103-prepared.tar.gz
+      - working-directory: v103-codpiece-original-scenes
+        run: npm install
+      - working-directory: v103-codpiece-original-scenes
+        run: mkdir -p out && npx remotion render src/index.tsx V103CodpieceOriginalScenes "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with: {name: 'v103-segment-${{ matrix.id }}', path: 'v103-codpiece-original-scenes/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
+  finalize:
+    needs: [prepare,render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v103-prepared}
+      - run: tar -xzf v103-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'v103-segment-*', path: v103-codpiece-original-scenes/parts, merge-multiple: true}
+      - working-directory: v103-codpiece-original-scenes
+        run: node scripts/generate-bgm.mjs
+      - working-directory: v103-codpiece-original-scenes
+        run: |
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v103-final.mp4
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v103-final.mp4 | head -1 | tr -cd '0-9')" = '1920'
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v103-final.mp4 | head -1 | tr -cd '0-9')" = '1080'
+          test "$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v103-final.mp4 | cut -d. -f1)" -gt 650
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v103-codpiece-original-scenes v103-codpiece-original-scenes/out/v103-final.mp4 v103-codpiece-original-scenes/out/v103-contact-sheet.jpg
+      - working-directory: v103-codpiece-original-scenes
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG="v103-codpiece-original-scenes-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v103-codpiece-original-scenes-${GITHUB_RUN_ID}.mp4"
+          cp out/v103-final.mp4 "out/$NAME"
+          gh release create "$TAG" "out/$NAME" out/v103-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V103_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V103 Codpiece Original Scenes ${GITHUB_RUN_ID}" --notes "V103: 193 manually authored sentence-specific Tudor and Greek scenes, 44 nonrepeating contiguous static environments, 4 approved asset library backgrounds, articulated fully clothed characters, bespoke tailoring and armor actions, measured VOICEVOX narration, subtitles, subdued BGM and visual contact sheet."
