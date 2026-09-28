@@ -1,0 +1,111 @@
+name: V102 Welfare Paradox Original Scenes
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/v102-welfare-paradox.yml','shared/bootstrap/v102-welfare-paradox.mjs','shared/v102/**']
+permissions: {contents: write}
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    outputs: {matrix: '${{ steps.plan.outputs.matrix }}'}
+    steps:
+      - uses: actions/checkout@v4
+      - run: node shared/bootstrap/v102-welfare-paradox.mjs
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - working-directory: v102-welfare-paradox
+        run: npm install
+      - working-directory: v102-welfare-paradox
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - working-directory: v102-welfare-paradox
+        run: node scripts/build-preproduction.mjs
+      - name: Explicit V99 scene and visual-similarity guard
+        run: |
+          node - <<'NODE'
+          const s=require('./v102-welfare-paradox/src/script-data.json'),d=require('./v102-welfare-paradox/src/scene-data.json');const n=s.beats.length;if(n!==142)throw Error('expected 142 authored scenes, got '+n);if(d.length!==n)throw Error('scene mismatch');for(const k of ['visual','bgGroup','sceneKey','actionId'])if(new Set(d.map(x=>x[k])).size!==n)throw Error('reused '+k);const phases=new Set(d.map(x=>x.phase)),families=new Set(d.map(x=>x.family));if(phases.size!==27)throw Error('expected 27 phases');if(families.size<14)throw Error('not enough visual families');for(let i=0;i<d.length;i++){if(i&&d[i].family===d[i-1].family)throw Error('adjacent repetition '+d[i].id);const w=d.slice(Math.max(0,i-5),i+1);if(w.length===6&&new Set(w.map(x=>x.family)).size<5)throw Error('repetitive six-shot window '+d[i].id);}const fs=require('fs');const sources=['phases-a.tsx','phases-b.tsx','phases-c.tsx','phases-d.tsx'].map(x=>fs.readFileSync('./shared/v102/'+x,'utf8')).join('\n');const dispatcher=fs.readFileSync('./shared/v102/scenes.tsx','utf8');for(const ph of phases){if(!dispatcher.includes("case'"+ph+"'"))throw Error('missing explicit phase '+ph);const fn='render'+ph.split('_').map(x=>x[0].toUpperCase()+x.slice(1)).join(''),start=sources.indexOf('export const '+fn+'=');if(start<0)throw Error('missing renderer '+fn);const end=sources.indexOf('export const render',start+15),body=sources.slice(start,end<0?undefined:end),count=d.filter(x=>x.phase===ph).length,variants=[...body.matchAll(/case\s+(\d+):return/g)].map(x=>Number(x[1]));if(variants.length!==count||variants.some((v,i)=>v!==i))throw Error('renderer coverage '+fn+' '+variants.length+'/'+count);if(!body.includes('default:throw new Error'))throw Error('fallback in '+fn);}if(dispatcher.includes('default:return'))throw Error('generic visual fallback');console.log(n+' narrated original actions / '+phases.size+' explicit phases / '+families.size+' visual families');
+          NODE
+      - working-directory: v102-welfare-paradox
+        run: npm run check
+      - name: Preview critical original shots
+        working-directory: v102-welfare-paradox
+        run: |
+          mkdir -p out/preview
+          node -e "const d=require('./src/scene-data.json');let a=[];for(let i=0;i<d.length;i++)if(i===0||d[i].phase!==d[i-1].phase)a.push(i*20+10);console.log(a.join(' '))" > out/preview-frames.txt
+          for FRAME in $(cat out/preview-frames.txt); do
+            npx remotion still src/index.tsx V102ScenePreview "out/preview/scene-${FRAME}.png" --frame="$FRAME" --log=error
+          done
+          test "$(find out/preview -name '*.png' | wc -l)" -eq 27
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; exit 1
+      - working-directory: v102-welfare-paradox
+        run: node scripts/generate-voicevox.mjs
+      - name: Enforce one-sentence original-scene timing
+        working-directory: v102-welfare-paradox
+        run: node scripts/check-original-scenes.mjs
+      - id: plan
+        working-directory: v102-welfare-paradox
+        run: echo "matrix=$(node scripts/plan-segments.mjs)" >> "$GITHUB_OUTPUT"
+      - run: tar --exclude='v102-welfare-paradox/node_modules' -czf v102-prepared.tar.gz v102-welfare-paradox
+      - uses: actions/upload-artifact@v4
+        with: {name: v102-prepared, path: v102-prepared.tar.gz, retention-days: 1}
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v102-prepared}
+      - run: tar -xzf v102-prepared.tar.gz
+      - working-directory: v102-welfare-paradox
+        run: npm install
+      - working-directory: v102-welfare-paradox
+        run: mkdir -p out && npx remotion render src/index.tsx V102WelfareParadoxOriginalScenes "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with: {name: 'v102-segment-${{ matrix.id }}', path: 'v102-welfare-paradox/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
+  finalize:
+    needs: [prepare,render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v102-prepared}
+      - run: tar -xzf v102-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'v102-segment-*', path: v102-welfare-paradox/parts, merge-multiple: true}
+      - working-directory: v102-welfare-paradox
+        run: node scripts/generate-bgm.mjs
+      - working-directory: v102-welfare-paradox
+        run: |
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v102-final.mp4
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v102-final.mp4 | head -1 | tr -cd '0-9')" = '1920'
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v102-final.mp4 | head -1 | tr -cd '0-9')" = '1080'
+          test "$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v102-final.mp4 | cut -d. -f1)" -gt 650
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v102-welfare-paradox v102-welfare-paradox/out/v102-final.mp4 v102-welfare-paradox/out/v102-contact-sheet.jpg
+      - working-directory: v102-welfare-paradox
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG="v102-welfare-paradox-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v102-welfare-paradox-${GITHUB_RUN_ID}.mp4"
+          cp out/v102-final.mp4 "out/$NAME"
+          gh release create "$TAG" "out/$NAME" out/v102-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V102_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V102 Welfare Paradox Original Scenes ${GITHUB_RUN_ID}" --notes "V102 V99-method production: 142 full-sentence original welfare scenes, 27 explicit narrative phases, bespoke childcare, Poor Law, benefit cliff, rent incidence, Medicaid and policy tradeoff animations; no generic fallback, unique scene action/background per sentence, 27 preview stills, measured under-15-second guard, narration/subtitles/BGM."
