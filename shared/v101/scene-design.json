@@ -1,0 +1,1251 @@
+{
+  "version": "v101-storyboard-1",
+  "note": "Each indexed row is an explicitly authored semantic event for the same-index full narration sentence. Environment repeats only in immediate contiguous shots, with a static background and changed foreground action.",
+  "phases": {
+    "prologue": [
+      {
+        "environment": "port-present",
+        "primary": "scroll",
+        "secondaries": [
+          "book"
+        ],
+        "motion": "unroll",
+        "label": "ギリシア神話の入り口",
+        "originalActionId": "prologue-00-unroll"
+      },
+      {
+        "environment": "olympus-dawn",
+        "primary": "zeus",
+        "secondaries": [
+          "poseidon",
+          "athena"
+        ],
+        "motion": "summon",
+        "label": "三柱が現れる",
+        "originalActionId": "prologue-01-summon"
+      },
+      {
+        "environment": "temple-entrance",
+        "primary": "temple",
+        "secondaries": [
+          "worshippers"
+        ],
+        "motion": "approach",
+        "label": "人々は神々へ祈る",
+        "originalActionId": "prologue-02-approach"
+      },
+      {
+        "environment": "olympus-council",
+        "primary": "zeus",
+        "secondaries": [
+          "hera",
+          "poseidon"
+        ],
+        "motion": "argue",
+        "label": "神々の家族喧嘩",
+        "originalActionId": "prologue-03-argue"
+      },
+      {
+        "environment": "olympus-council",
+        "primary": "gods",
+        "secondaries": [
+          "throne"
+        ],
+        "motion": "orbit",
+        "label": "強大な権力と人間性",
+        "originalActionId": "prologue-04-orbit"
+      },
+      {
+        "environment": "temple-archive",
+        "primary": "poet",
+        "secondaries": [
+          "scroll"
+        ],
+        "motion": "write",
+        "label": "不完全な神々の理由",
+        "originalActionId": "prologue-05-write"
+      },
+      {
+        "environment": "temple-archive",
+        "primary": "scale",
+        "secondaries": [
+          "gods",
+          "human"
+        ],
+        "motion": "weigh",
+        "label": "人間と神々の違い",
+        "originalActionId": "prologue-06-weigh"
+      },
+      {
+        "environment": "harbor-dawn",
+        "primary": "ship",
+        "secondaries": [
+          "fishermen",
+          "rope"
+        ],
+        "motion": "load",
+        "label": "夜明けの漁師が出航を準備",
+        "originalActionId": "prologue-07-load"
+      },
+      {
+        "environment": "market-opening",
+        "primary": "merchant",
+        "secondaries": [
+          "smith",
+          "farmer"
+        ],
+        "motion": "work",
+        "label": "店と炉と畑が動き始める",
+        "originalActionId": "prologue-08-work"
+      },
+      {
+        "environment": "hellas-map",
+        "primary": "map",
+        "secondaries": [
+          "ship",
+          "grain",
+          "temple"
+        ],
+        "motion": "connect",
+        "label": "暮らしの各所へ神々",
+        "originalActionId": "prologue-09-connect"
+      },
+      {
+        "environment": "poets-library",
+        "primary": "homer",
+        "secondaries": [
+          "hesiod",
+          "scroll"
+        ],
+        "motion": "unroll",
+        "label": "詩人と地方の伝承",
+        "originalActionId": "prologue-10-unroll"
+      },
+      {
+        "environment": "poets-library",
+        "primary": "scrolls",
+        "secondaries": [
+          "storyteller"
+        ],
+        "motion": "branch",
+        "label": "異なる伝承が広がる",
+        "originalActionId": "prologue-11-branch"
+      },
+      {
+        "environment": "myth-celestial-map",
+        "primary": "globe",
+        "secondaries": [
+          "gods",
+          "hero"
+        ],
+        "motion": "reveal",
+        "label": "神々から英雄へ",
+        "originalActionId": "prologue-12-reveal"
+      }
+    ],
+    "cosmogony": [
+      {
+        "environment": "pre-zeus-vacuum",
+        "primary": "empty-throne",
+        "secondaries": [
+          "darkness"
+        ],
+        "motion": "fade",
+        "label": "ゼウス以前の王座",
+        "originalActionId": "cosmogony-00-fade"
+      },
+      {
+        "environment": "hesiod-tablet",
+        "primary": "hesiod",
+        "secondaries": [
+          "scroll"
+        ],
+        "motion": "write",
+        "label": "神統記を記す詩人",
+        "originalActionId": "cosmogony-01-write"
+      },
+      {
+        "environment": "primordial-void",
+        "primary": "chaos",
+        "secondaries": [
+          "stars"
+        ],
+        "motion": "open",
+        "label": "大きな空隙が生まれる",
+        "originalActionId": "cosmogony-02-open"
+      },
+      {
+        "environment": "primordial-creation",
+        "primary": "gaia",
+        "secondaries": [
+          "tartarus",
+          "eros"
+        ],
+        "motion": "emerge",
+        "label": "大地と深淵の誕生",
+        "originalActionId": "cosmogony-03-emerge"
+      },
+      {
+        "environment": "earth-and-sky",
+        "primary": "gaia",
+        "secondaries": [
+          "uranus",
+          "titans"
+        ],
+        "motion": "grow",
+        "label": "天空が大地を覆い神々が生まれる",
+        "originalActionId": "cosmogony-04-grow"
+      },
+      {
+        "environment": "early-gods-hall",
+        "primary": "uranus",
+        "secondaries": [
+          "titans"
+        ],
+        "motion": "shadow",
+        "label": "生まれた世界に権力争い",
+        "originalActionId": "cosmogony-05-shadow"
+      },
+      {
+        "environment": "subterranean-prison",
+        "primary": "uranus",
+        "secondaries": [
+          "gaia",
+          "children"
+        ],
+        "motion": "imprison",
+        "label": "子どもを地下へ閉じ込める",
+        "originalActionId": "cosmogony-06-imprison"
+      },
+      {
+        "environment": "subterranean-prison",
+        "primary": "cronus",
+        "secondaries": [
+          "siblings"
+        ],
+        "motion": "advance",
+        "label": "クロノスが立ち上がる",
+        "originalActionId": "cosmogony-07-advance"
+      },
+      {
+        "environment": "first-succession",
+        "primary": "cronus",
+        "secondaries": [
+          "uranus",
+          "gaia"
+        ],
+        "motion": "replace",
+        "label": "父の王座を奪う",
+        "originalActionId": "cosmogony-08-replace"
+      },
+      {
+        "environment": "cronus-court",
+        "primary": "cronus",
+        "secondaries": [
+          "prophecy"
+        ],
+        "motion": "suspect",
+        "label": "王座を失う恐怖",
+        "originalActionId": "cosmogony-09-suspect"
+      },
+      {
+        "environment": "cronus-court",
+        "primary": "cronus",
+        "secondaries": [
+          "infant"
+        ],
+        "motion": "swallow-symbol",
+        "label": "子の象徴が闇に消える",
+        "originalActionId": "cosmogony-10-swallow-symbol"
+      },
+      {
+        "environment": "rhea-chamber",
+        "primary": "rhea",
+        "secondaries": [
+          "wrapped-stone",
+          "baby"
+        ],
+        "motion": "swap",
+        "label": "赤ん坊の代わりに石を包む",
+        "originalActionId": "cosmogony-11-swap"
+      },
+      {
+        "environment": "crete-cave",
+        "primary": "baby-zeus",
+        "secondaries": [
+          "rhea",
+          "goats"
+        ],
+        "motion": "hide",
+        "label": "洞窟で育つゼウス",
+        "originalActionId": "cosmogony-12-hide"
+      },
+      {
+        "environment": "titan-assembly",
+        "primary": "zeus",
+        "secondaries": [
+          "freed-siblings"
+        ],
+        "motion": "free",
+        "label": "兄弟姉妹を解き放つ",
+        "originalActionId": "cosmogony-13-free"
+      },
+      {
+        "environment": "cyclops-forge",
+        "primary": "cyclops",
+        "secondaries": [
+          "lightning",
+          "zeus"
+        ],
+        "motion": "forge",
+        "label": "雷を打ち鍛える",
+        "originalActionId": "cosmogony-14-forge"
+      },
+      {
+        "environment": "titan-battlefield",
+        "primary": "zeus",
+        "secondaries": [
+          "titans",
+          "lightning"
+        ],
+        "motion": "battle",
+        "label": "神々の大戦",
+        "originalActionId": "cosmogony-15-battle"
+      },
+      {
+        "environment": "titan-battlefield",
+        "primary": "zeus",
+        "secondaries": [
+          "olympus",
+          "siblings"
+        ],
+        "motion": "victory",
+        "label": "協力による勝利",
+        "originalActionId": "cosmogony-16-victory"
+      },
+      {
+        "environment": "titan-alliances",
+        "primary": "zeus",
+        "secondaries": [
+          "helpful-titans"
+        ],
+        "motion": "join",
+        "label": "古い神々との同盟",
+        "originalActionId": "cosmogony-17-join"
+      },
+      {
+        "environment": "cosmic-timeline",
+        "primary": "zeus",
+        "secondaries": [
+          "gaia",
+          "uranus"
+        ],
+        "motion": "retrace",
+        "label": "創造主ではないゼウス",
+        "originalActionId": "cosmogony-18-retrace"
+      },
+      {
+        "environment": "cosmic-timeline",
+        "primary": "zeus",
+        "secondaries": [
+          "cronus",
+          "companions"
+        ],
+        "motion": "climb",
+        "label": "権力への長い道",
+        "originalActionId": "cosmogony-19-climb"
+      },
+      {
+        "environment": "lineage-mosaic",
+        "primary": "tree",
+        "secondaries": [
+          "uranus",
+          "cronus",
+          "zeus"
+        ],
+        "motion": "branch",
+        "label": "世代交代の系譜",
+        "originalActionId": "cosmogony-20-branch"
+      }
+    ],
+    "olympians": [
+      {
+        "environment": "olympus-governance",
+        "primary": "zeus",
+        "secondaries": [
+          "gods",
+          "throne"
+        ],
+        "motion": "delegate",
+        "label": "神々が世界を分担",
+        "originalActionId": "olympians-00-delegate"
+      },
+      {
+        "environment": "three-realm-map",
+        "primary": "zeus",
+        "secondaries": [
+          "poseidon",
+          "hades"
+        ],
+        "motion": "partition",
+        "label": "天空と海と冥界",
+        "originalActionId": "olympians-01-partition"
+      },
+      {
+        "environment": "hades-gate",
+        "primary": "hades",
+        "secondaries": [
+          "gate"
+        ],
+        "motion": "open",
+        "label": "冥界の神は悪魔ではない",
+        "originalActionId": "olympians-02-open"
+      },
+      {
+        "environment": "hades-meadow",
+        "primary": "hades",
+        "secondaries": [
+          "shades"
+        ],
+        "motion": "guide",
+        "label": "死者の領域の統治",
+        "originalActionId": "olympians-03-guide"
+      },
+      {
+        "environment": "aegean-birdview",
+        "primary": "map",
+        "secondaries": [
+          "islands",
+          "mountains"
+        ],
+        "motion": "unfold",
+        "label": "地図上に広がる島々",
+        "originalActionId": "olympians-04-unfold"
+      },
+      {
+        "environment": "aegean-trade",
+        "primary": "ship",
+        "secondaries": [
+          "cargo",
+          "merchant"
+        ],
+        "motion": "sail",
+        "label": "商船が島を行き交う",
+        "originalActionId": "olympians-05-sail"
+      },
+      {
+        "environment": "storm-deck",
+        "primary": "ship",
+        "secondaries": [
+          "sailors",
+          "rope"
+        ],
+        "motion": "storm",
+        "label": "強風で帆が裂ける",
+        "originalActionId": "olympians-06-storm"
+      },
+      {
+        "environment": "storm-deck",
+        "primary": "poseidon",
+        "secondaries": [
+          "trident",
+          "waves"
+        ],
+        "motion": "rise",
+        "label": "海神の怒り",
+        "originalActionId": "olympians-07-rise"
+      },
+      {
+        "environment": "granary-garden",
+        "primary": "hera",
+        "secondaries": [
+          "demeter",
+          "grain"
+        ],
+        "motion": "harvest",
+        "label": "婚姻と農耕を司る女神",
+        "originalActionId": "olympians-08-harvest"
+      },
+      {
+        "environment": "persephone-meadow",
+        "primary": "persephone",
+        "secondaries": [
+          "hades",
+          "demeter"
+        ],
+        "motion": "descend",
+        "label": "娘が冥界へ",
+        "originalActionId": "olympians-09-descend"
+      },
+      {
+        "environment": "winter-fields",
+        "primary": "demeter",
+        "secondaries": [
+          "withered-grain",
+          "zeus"
+        ],
+        "motion": "wither",
+        "label": "大地から実りが消える",
+        "originalActionId": "olympians-10-wither"
+      },
+      {
+        "environment": "divine-crafts",
+        "primary": "hephaestus",
+        "secondaries": [
+          "hermes",
+          "apollo",
+          "aphrodite"
+        ],
+        "motion": "assemble",
+        "label": "職能に結びつく神々",
+        "originalActionId": "olympians-11-assemble"
+      },
+      {
+        "environment": "city-mosaic",
+        "primary": "fisher",
+        "secondaries": [
+          "farmer",
+          "artisan"
+        ],
+        "motion": "work",
+        "label": "生活上の願い",
+        "originalActionId": "olympians-12-work"
+      },
+      {
+        "environment": "city-mosaic",
+        "primary": "temple",
+        "secondaries": [
+          "ship",
+          "harvest"
+        ],
+        "motion": "offer",
+        "label": "神々の祭礼",
+        "originalActionId": "olympians-13-offer"
+      },
+      {
+        "environment": "athens-acropolis",
+        "primary": "athena",
+        "secondaries": [
+          "olive",
+          "owl"
+        ],
+        "motion": "appear",
+        "label": "アテナの登場",
+        "originalActionId": "olympians-14-appear"
+      },
+      {
+        "environment": "athens-training",
+        "primary": "athena",
+        "secondaries": [
+          "ares",
+          "strategic-board"
+        ],
+        "motion": "counter",
+        "label": "戦略と暴力の対比",
+        "originalActionId": "olympians-15-counter"
+      },
+      {
+        "environment": "athens-training",
+        "primary": "strategic-board",
+        "secondaries": [
+          "tiles",
+          "athena"
+        ],
+        "motion": "solve",
+        "label": "状況を読む知性",
+        "originalActionId": "olympians-16-solve"
+      },
+      {
+        "environment": "athena-and-hero",
+        "primary": "athena",
+        "secondaries": [
+          "odysseus",
+          "road"
+        ],
+        "motion": "assist",
+        "label": "機転ある英雄への関心",
+        "originalActionId": "olympians-17-assist"
+      }
+    ],
+    "humankind": [
+      {
+        "environment": "night-forge",
+        "primary": "smith",
+        "secondaries": [
+          "anvil",
+          "embers"
+        ],
+        "motion": "hammer",
+        "label": "鍛冶場の槌と火花",
+        "originalActionId": "humankind-00-hammer"
+      },
+      {
+        "environment": "night-forge",
+        "primary": "fire",
+        "secondaries": [
+          "pottery",
+          "metal",
+          "bread"
+        ],
+        "motion": "transform",
+        "label": "火で文明が変わる",
+        "originalActionId": "humankind-01-transform"
+      },
+      {
+        "environment": "prometheus-cliff",
+        "primary": "prometheus",
+        "secondaries": [
+          "torch"
+        ],
+        "motion": "arrive",
+        "label": "火を持つプロメテウス",
+        "originalActionId": "humankind-02-arrive"
+      },
+      {
+        "environment": "prometheus-cliff",
+        "primary": "prometheus",
+        "secondaries": [
+          "future-stars"
+        ],
+        "motion": "foresee",
+        "label": "先を見通す者",
+        "originalActionId": "humankind-03-foresee"
+      },
+      {
+        "environment": "sacrifice-altar",
+        "primary": "prometheus",
+        "secondaries": [
+          "zeus",
+          "fire"
+        ],
+        "motion": "steal",
+        "label": "神々を欺き火を運ぶ",
+        "originalActionId": "humankind-04-steal"
+      },
+      {
+        "environment": "zeus-judgment",
+        "primary": "zeus",
+        "secondaries": [
+          "prometheus",
+          "tablet"
+        ],
+        "motion": "condemn",
+        "label": "神の秩序を破る",
+        "originalActionId": "humankind-05-condemn"
+      },
+      {
+        "environment": "zeus-judgment",
+        "primary": "scale",
+        "secondaries": [
+          "human",
+          "olympus"
+        ],
+        "motion": "tilt",
+        "label": "人間の利益と神の権威",
+        "originalActionId": "humankind-06-tilt"
+      },
+      {
+        "environment": "pandora-atelier",
+        "primary": "hephaestus",
+        "secondaries": [
+          "pandora",
+          "clay"
+        ],
+        "motion": "sculpt",
+        "label": "土からパンドラを作る",
+        "originalActionId": "humankind-07-sculpt"
+      },
+      {
+        "environment": "pandora-atelier",
+        "primary": "pandora",
+        "secondaries": [
+          "gifts",
+          "athena"
+        ],
+        "motion": "bestow",
+        "label": "神々からの贈り物",
+        "originalActionId": "humankind-08-bestow"
+      },
+      {
+        "environment": "brothers-hall",
+        "primary": "epimetheus",
+        "secondaries": [
+          "prometheus",
+          "pandora"
+        ],
+        "motion": "receive",
+        "label": "警告と贈り物",
+        "originalActionId": "humankind-09-receive"
+      },
+      {
+        "environment": "pandora-chamber",
+        "primary": "pandora",
+        "secondaries": [
+          "jar",
+          "spirits"
+        ],
+        "motion": "open-jar",
+        "label": "壺を開き災厄が広がる",
+        "originalActionId": "humankind-10-open-jar"
+      },
+      {
+        "environment": "pandora-chamber",
+        "primary": "jar",
+        "secondaries": [
+          "box"
+        ],
+        "motion": "compare",
+        "label": "壺と箱の違い",
+        "originalActionId": "humankind-11-compare"
+      },
+      {
+        "environment": "pandora-chamber",
+        "primary": "jar",
+        "secondaries": [
+          "elpis",
+          "spirits"
+        ],
+        "motion": "remain",
+        "label": "壺に残ったエルピス",
+        "originalActionId": "humankind-12-remain"
+      },
+      {
+        "environment": "human-village",
+        "primary": "human",
+        "secondaries": [
+          "fire",
+          "storms",
+          "grain"
+        ],
+        "motion": "endure",
+        "label": "文明と災厄の共存",
+        "originalActionId": "humankind-13-endure"
+      },
+      {
+        "environment": "temple-offerings",
+        "primary": "priest",
+        "secondaries": [
+          "altar",
+          "grain"
+        ],
+        "motion": "offer",
+        "label": "供物を捧げる",
+        "originalActionId": "humankind-14-offer"
+      },
+      {
+        "environment": "temple-offerings",
+        "primary": "worshippers",
+        "secondaries": [
+          "libation",
+          "flame"
+        ],
+        "motion": "pour",
+        "label": "祭礼と祈り",
+        "originalActionId": "humankind-15-pour"
+      },
+      {
+        "environment": "limits-mountain",
+        "primary": "human",
+        "secondaries": [
+          "divine-clouds"
+        ],
+        "motion": "measure",
+        "label": "人間の限界を見つめる",
+        "originalActionId": "humankind-16-measure"
+      },
+      {
+        "environment": "limits-mountain",
+        "primary": "proud-human",
+        "secondaries": [
+          "god-stone"
+        ],
+        "motion": "overreach",
+        "label": "思い上がりの瞬間",
+        "originalActionId": "humankind-17-overreach"
+      },
+      {
+        "environment": "limits-mountain",
+        "primary": "boundary",
+        "secondaries": [
+          "human",
+          "clouds"
+        ],
+        "motion": "rebound",
+        "label": "ヒュブリスの境界",
+        "originalActionId": "humankind-18-rebound"
+      },
+      {
+        "environment": "human-scale-cliff",
+        "primary": "human",
+        "secondaries": [
+          "cosmos"
+        ],
+        "motion": "contrast",
+        "label": "人間と宇宙の大きさ",
+        "originalActionId": "humankind-19-contrast"
+      },
+      {
+        "environment": "hero-silhouette",
+        "primary": "hero",
+        "secondaries": [
+          "mountain",
+          "torch"
+        ],
+        "motion": "step",
+        "label": "限界へ挑む英雄",
+        "originalActionId": "humankind-20-step"
+      }
+    ],
+    "heroes": [
+      {
+        "environment": "hero-gallery",
+        "primary": "heroes",
+        "secondaries": [
+          "statues"
+        ],
+        "motion": "reveal",
+        "label": "正義だけではない英雄",
+        "originalActionId": "heroes-00-reveal"
+      },
+      {
+        "environment": "hero-gallery",
+        "primary": "hero",
+        "secondaries": [
+          "glory",
+          "sorrow"
+        ],
+        "motion": "split",
+        "label": "偉業と過ち",
+        "originalActionId": "heroes-01-split"
+      },
+      {
+        "environment": "divine-lineage",
+        "primary": "zeus",
+        "secondaries": [
+          "hera",
+          "heroes"
+        ],
+        "motion": "connect",
+        "label": "神の家系と英雄",
+        "originalActionId": "heroes-02-connect"
+      },
+      {
+        "environment": "heracles-birth",
+        "primary": "heracles",
+        "secondaries": [
+          "alcmena",
+          "zeus"
+        ],
+        "motion": "emerge",
+        "label": "ヘラクレス誕生",
+        "originalActionId": "heroes-03-emerge"
+      },
+      {
+        "environment": "heracles-training",
+        "primary": "heracles",
+        "secondaries": [
+          "stone"
+        ],
+        "motion": "lift",
+        "label": "巨大な石を持ち上げる",
+        "originalActionId": "heroes-04-lift"
+      },
+      {
+        "environment": "hera-chamber",
+        "primary": "hera",
+        "secondaries": [
+          "heracles",
+          "cradle"
+        ],
+        "motion": "watch",
+        "label": "ヘラの敵意",
+        "originalActionId": "heroes-05-watch"
+      },
+      {
+        "environment": "heracles-road",
+        "primary": "heracles",
+        "secondaries": [
+          "sorrow",
+          "road"
+        ],
+        "motion": "walk",
+        "label": "苦難の旅へ",
+        "originalActionId": "heroes-06-walk"
+      },
+      {
+        "environment": "nemean-forest",
+        "primary": "heracles",
+        "secondaries": [
+          "lion",
+          "club"
+        ],
+        "motion": "grapple",
+        "label": "獅子との対峙",
+        "originalActionId": "heroes-07-grapple"
+      },
+      {
+        "environment": "hydra-marsh",
+        "primary": "heracles",
+        "secondaries": [
+          "hydra",
+          "torch"
+        ],
+        "motion": "withdraw",
+        "label": "怪力では足りない",
+        "originalActionId": "heroes-08-withdraw"
+      },
+      {
+        "environment": "heracles-camp",
+        "primary": "heracles",
+        "secondaries": [
+          "fallen-helmet"
+        ],
+        "motion": "kneel",
+        "label": "英雄も苦しむ",
+        "originalActionId": "heroes-09-kneel"
+      },
+      {
+        "environment": "perseus-shore",
+        "primary": "perseus",
+        "secondaries": [
+          "shield",
+          "sword"
+        ],
+        "motion": "prepare",
+        "label": "ペルセウスの装備",
+        "originalActionId": "heroes-10-prepare"
+      },
+      {
+        "environment": "medusa-sanctuary",
+        "primary": "medusa",
+        "secondaries": [
+          "perseus",
+          "columns"
+        ],
+        "motion": "petrify",
+        "label": "視線の危険",
+        "originalActionId": "heroes-11-petrify"
+      },
+      {
+        "environment": "medusa-sanctuary",
+        "primary": "perseus",
+        "secondaries": [
+          "shield",
+          "medusa"
+        ],
+        "motion": "reflect",
+        "label": "盾の反射を使う",
+        "originalActionId": "heroes-12-reflect"
+      },
+      {
+        "environment": "perseus-summit",
+        "primary": "athena",
+        "secondaries": [
+          "hermes",
+          "perseus"
+        ],
+        "motion": "equip",
+        "label": "神々からの助力",
+        "originalActionId": "heroes-13-equip"
+      },
+      {
+        "environment": "crete-harbor",
+        "primary": "theseus",
+        "secondaries": [
+          "ship",
+          "maze"
+        ],
+        "motion": "depart",
+        "label": "クレタ島へ向かう",
+        "originalActionId": "heroes-14-depart"
+      },
+      {
+        "environment": "labyrinth-architect",
+        "primary": "daedalus",
+        "secondaries": [
+          "labyrinth",
+          "compass"
+        ],
+        "motion": "design",
+        "label": "迷宮の設計",
+        "originalActionId": "heroes-15-design"
+      },
+      {
+        "environment": "ariadne-chamber",
+        "primary": "ariadne",
+        "secondaries": [
+          "thread"
+        ],
+        "motion": "step",
+        "label": "アリアドネの登場",
+        "originalActionId": "heroes-16-step"
+      },
+      {
+        "environment": "ariadne-chamber",
+        "primary": "ariadne",
+        "secondaries": [
+          "theseus",
+          "thread"
+        ],
+        "motion": "give",
+        "label": "糸を渡す",
+        "originalActionId": "heroes-17-give"
+      },
+      {
+        "environment": "labyrinth-interior",
+        "primary": "theseus",
+        "secondaries": [
+          "thread",
+          "maze"
+        ],
+        "motion": "trace",
+        "label": "糸をたどり進む",
+        "originalActionId": "heroes-18-trace"
+      },
+      {
+        "environment": "labyrinth-interior",
+        "primary": "theseus",
+        "secondaries": [
+          "ariadne",
+          "exit"
+        ],
+        "motion": "find",
+        "label": "知恵が帰路を作る",
+        "originalActionId": "heroes-19-find"
+      },
+      {
+        "environment": "hero-triptych",
+        "primary": "heracles",
+        "secondaries": [
+          "perseus",
+          "theseus"
+        ],
+        "motion": "compare",
+        "label": "三人の英雄の比較",
+        "originalActionId": "heroes-20-compare"
+      },
+      {
+        "environment": "hero-triptych",
+        "primary": "hero",
+        "secondaries": [
+          "divine-aid",
+          "human-limits"
+        ],
+        "motion": "balance",
+        "label": "力と限界",
+        "originalActionId": "heroes-21-balance"
+      },
+      {
+        "environment": "fate-cliff",
+        "primary": "hero",
+        "secondaries": [
+          "storm",
+          "choices"
+        ],
+        "motion": "choose",
+        "label": "制御できない世界",
+        "originalActionId": "heroes-22-choose"
+      },
+      {
+        "environment": "trojan-plain",
+        "primary": "trojan-walls",
+        "secondaries": [
+          "ships",
+          "heroes"
+        ],
+        "motion": "approach",
+        "label": "トロイア伝説の戦場",
+        "originalActionId": "heroes-23-approach"
+      },
+      {
+        "environment": "trojan-plain",
+        "primary": "achilles",
+        "secondaries": [
+          "odysseus",
+          "gods"
+        ],
+        "motion": "contrast",
+        "label": "力と知恵の英雄",
+        "originalActionId": "heroes-24-contrast"
+      },
+      {
+        "environment": "ithaca-strategy",
+        "primary": "odysseus",
+        "secondaries": [
+          "map",
+          "scroll"
+        ],
+        "motion": "plan",
+        "label": "イタケーの知将",
+        "originalActionId": "heroes-25-plan"
+      },
+      {
+        "environment": "hero-departure",
+        "primary": "ship",
+        "secondaries": [
+          "odysseus",
+          "athena"
+        ],
+        "motion": "depart",
+        "label": "オデュッセイアへ",
+        "originalActionId": "heroes-26-depart"
+      }
+    ],
+    "epilogue": [
+      {
+        "environment": "night-sea",
+        "primary": "ship",
+        "secondaries": [
+          "sailors",
+          "clouds"
+        ],
+        "motion": "sail",
+        "label": "夜の海へ",
+        "originalActionId": "epilogue-00-sail"
+      },
+      {
+        "environment": "night-sea",
+        "primary": "poseidon",
+        "secondaries": [
+          "trident",
+          "waves"
+        ],
+        "motion": "surge",
+        "label": "海神の力",
+        "originalActionId": "epilogue-01-surge"
+      },
+      {
+        "environment": "night-sea",
+        "primary": "athena",
+        "secondaries": [
+          "odysseus",
+          "owl"
+        ],
+        "motion": "guide",
+        "label": "戦略の女神",
+        "originalActionId": "epilogue-02-guide"
+      },
+      {
+        "environment": "metis-table",
+        "primary": "odysseus",
+        "secondaries": [
+          "chess",
+          "scroll"
+        ],
+        "motion": "plan",
+        "label": "機転という知性",
+        "originalActionId": "epilogue-03-plan"
+      },
+      {
+        "environment": "metis-table",
+        "primary": "odysseus",
+        "secondaries": [
+          "disguise",
+          "traveler"
+        ],
+        "motion": "transform",
+        "label": "変装と言葉",
+        "originalActionId": "epilogue-04-transform"
+      },
+      {
+        "environment": "guest-house",
+        "primary": "host",
+        "secondaries": [
+          "guest",
+          "meal"
+        ],
+        "motion": "serve",
+        "label": "クセニアの食卓",
+        "originalActionId": "epilogue-05-serve"
+      },
+      {
+        "environment": "guest-house",
+        "primary": "zeus",
+        "secondaries": [
+          "host",
+          "threshold"
+        ],
+        "motion": "bless",
+        "label": "客人を守る神",
+        "originalActionId": "epilogue-06-bless"
+      },
+      {
+        "environment": "nostos-map",
+        "primary": "ship",
+        "secondaries": [
+          "ithaca",
+          "road"
+        ],
+        "motion": "return",
+        "label": "ノストスという帰郷",
+        "originalActionId": "epilogue-07-return"
+      },
+      {
+        "environment": "nostos-home",
+        "primary": "family",
+        "secondaries": [
+          "odysseus",
+          "house"
+        ],
+        "motion": "reconnect",
+        "label": "変化した故郷",
+        "originalActionId": "epilogue-08-reconnect"
+      },
+      {
+        "environment": "sea-obstacles",
+        "primary": "ship",
+        "secondaries": [
+          "shadows",
+          "stars"
+        ],
+        "motion": "navigate",
+        "label": "帰路の試練",
+        "originalActionId": "epilogue-09-navigate"
+      },
+      {
+        "environment": "olympus-panorama",
+        "primary": "gods",
+        "secondaries": [
+          "human",
+          "sky"
+        ],
+        "motion": "converge",
+        "label": "不完全な神々",
+        "originalActionId": "epilogue-10-converge"
+      },
+      {
+        "environment": "olympus-panorama",
+        "primary": "hero",
+        "secondaries": [
+          "divine-aid",
+          "storm"
+        ],
+        "motion": "persevere",
+        "label": "強大な力の中の人間",
+        "originalActionId": "epilogue-11-persevere"
+      },
+      {
+        "environment": "cinema-threshold",
+        "primary": "cinema",
+        "secondaries": [
+          "screen",
+          "scroll"
+        ],
+        "motion": "reveal",
+        "label": "映画を見るレンズ",
+        "originalActionId": "epilogue-12-reveal"
+      },
+      {
+        "environment": "ithaca-dusk",
+        "primary": "odysseus",
+        "secondaries": [
+          "ship",
+          "home"
+        ],
+        "motion": "arrive",
+        "label": "英雄の帰郷を示唆",
+        "originalActionId": "epilogue-13-arrive"
+      }
+    ]
+  }
+}
