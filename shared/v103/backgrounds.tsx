@@ -24,8 +24,7 @@ const bk:Record<string,string>={
 'museum-gallery':'museum','comparison-gallery':'museum','ancient-theatre':'ancient',
 'pottery-workshop':'pottery','performance-stage':'stage',
 'tudor-fashion-turn':'timeline','fashion-timeline':'timeline','garment-history':'timeline',
-'modern-clothing':'modern','modern-studio':'modern','modern-reflection':'modern',
-'medieval-gateway':'street'};
+'modern-clothing':'modern','modern-studio':'modern','modern-reflection':'modern'};
 const hash=(s:string)=>[...s].reduce((a,c)=>(a*37+c.charCodeAt(0))>>>0,119);
 const polygon=(pts:string,col:string,op=1)=><polygon points={pts} fill={col} opacity={op}/>;
 const arch=(x:number,y:number,w:number,h:number)=> <g><R x={x} y={y+60} w={w} h={h-60} c="#28303b"/><path d={'M'+x+' '+(y+60)+' Q'+(x+w/2)+' '+(y-80)+' '+(x+w)+' '+(y+60)+'Z'} fill="#28303b"/><R x={x+25} y={y+100} w={w-50} h={h-90} c="#8f8981" o={.28}/></g>;
