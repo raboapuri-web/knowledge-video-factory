@@ -1,0 +1,10 @@
+# V103 — Codpiece: honor, masculinity and power
+Narration: 6 full sections in shared/v103/narration; exact full text of the conversation's script adapted only to ordinary paragraph flow. Original designed physical actions: 193 in shared/v103/design. Visual source: custom Tudor props and rig, armor, masonry, Greek art and comparative diagrams in shared/v103.
+
+- One narration sentence maps to one complete, uniquely designated original physical action; no original meaning omitted and no generic visual fallback.
+- 44 contiguous scene environments; same background is frame-independent throughout a contiguous block. Foreground actors, fabric, tools, diagrams and objects enter, leave or transform according to each narration.
+- Across 6 shots at least 5 different visual rhythm families. Historic portrait, medieval cobbled street, doublet and hose construction, 1429 religious critique, tailor shop, court, Tudor armor, Greek museum, ancient theater, red-figure pottery, modern academic study and fashion change must be visualized with separate explicit environments and semantically appropriate choreography.
+- Asset library: 4 approved, SHA-verified user backgrounds: BG_girisya (Greek city for ancient theatre context), BG_honndana (academic study), BG_darkroom (symbolic comparison) and BG_syosai (Goffman's study). All historic-specific backgrounds are new original code artwork. Never insert a mismatched modern office or generic actor.
+- No explicit genital rendering: all actors remain clothed; the codpiece is represented as an external garment and historical armor.
+- 1920x1080 at 30 fps, VOICEVOX Aoyama Ryusei, subtitles, subdued BGM, measured audio timing, segmented rendering and final MP4 on GitHub Release.
+- Automated visual identity tests cannot prove perceptual uniqueness. Review 30 distributed preview stills and 193-shot contact sheet before declaring visual similarity fully cleared.
