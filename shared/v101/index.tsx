@@ -6,7 +6,7 @@ import {SceneVisual} from './scenes';
 
 type Beat={id:string;visual:string;narration:string;phase:string;variant:number;shotKind:string;bgGroup:string;bgSeed:number};
 type SyncBeat={index:number;start:number;end:number};
-const beats=scriptData.beats as Beat[];
+const beats=scriptData.beats as unknown as Beat[];
 const font='Noto Sans JP, sans-serif';
 const clamp=(v:number)=>Math.max(0,Math.min(1,v));
 
