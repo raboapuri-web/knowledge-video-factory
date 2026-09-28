@@ -28,7 +28,7 @@ export const renderRentalOutsider=(v:number,p:number):React.ReactNode=>{
  switch(v){
  case 0:return <g><Realtor p={p}/><Mother x={1310} y={480} s={.71} which="a" pose="read" p={p}/><PriceTag x={790} y={540} price="€ 850" p={p}/><Coin x={1145} y={775} p={p} r={36}/></g>;
  case 1:return <g><R x={0} y={0} w={1920} h={1080} c="#374651"/><R x={240} y={160} w={1450} h={745} rx={23} c="#a4b0ae"/><Person x={490} y={445} s={.82} pose="read" p={p} role="modern"/><Paper x={1060} y={255} w={420} h={450} chart/><R x={1110} y={715} w={330} h={110} c={C.red}/><T x={1275} y={787} size={49}>対象外</T></g>;
- case 2:return <g><Realtor/><Person x={475} y={490} s={.79} pose="reach" p={p} role="modern"/><PriceTag x={1300} y={415} price="€ 980" p={p}/><Ring x={1330} y={480} p={p} r={240} c={C.red}/></g>;
+ case 2:return <g><Realtor/><Person x={475} y={490} s={.79} pose="point" p={p} role="modern"/><PriceTag x={1300} y={415} price="€ 980" p={p}/><Ring x={1330} y={480} p={p} r={240} c={C.red}/></g>;
  case 3:return <g><RentalStreet p={p}/><Person x={420} y={470} s={.69} pose="walk" p={p} role="modern"/><Vehicle x={1510} y={850} p={p} kind="bus"/><L x={490} y={780} X={1490} Y={780} c={C.gold} sw={11} p={p} dash="40 15"/></g>;
  case 4:return <g><SymbolicBoundary p={p}/><R x={210} y={185} w={670} h={110} c={C.teal}/><T x={545} y={258} size={46}>補助を利用</T><R x={1060} y={185} w={670} h={110} c={C.red}/><T x={1395} y={258} size={46}>補助を利用できない</T><Ring x={960} y={570} p={p} r={310}/></g>;
  default:throw new Error('rental_outsider variant '+v);
