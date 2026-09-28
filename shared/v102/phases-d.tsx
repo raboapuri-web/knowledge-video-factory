@@ -4,7 +4,7 @@ import {T,Mother,Child,FlatA,FlatB,ApartmentExterior,Nursery,OldCottage,Workhous
 
 export const renderMedicaidProcedural=(v:number,p:number):React.ReactNode=>{
  switch(v){
- case 0:return <g><Office p={p}/><Mother x={490} y={510} s={.7} which="b" pose="call" p={p}/><Phone x={1300} y={425} p={p} calling/><Ring x={1280} y={415} p={p} r={215} c={C.red}/></g>;
+ case 0:return <g><R x={0} y={0} w={1920} h={1080} c="#243c46"/><R x={130} y={130} w={1650} h={705} rx={26} c="#5e7880"/>{Array.from({length:5},(_,i)=><g key={i}><R x={250+i*306} y={215} w={240} h={355} c="#98aaac"/><Person x={370+i*306} y={438} s={.46} role="clerk" pose="sit" p={q(p-i*.04)}/><L x={370+i*306} y={575} X={370+i*306} Y={690} c={C.gold} sw={8} p={q(p-i*.08)}/></g>)}<Ring x={960} y={490} p={p} r={330} c={C.red}/><T x={960} y={910} size={47}>窓口への問い合わせが集中する</T></g>;
  case 1:return <g><Deadline p={p}/><Paper x={260} y={600} w={290} h={250}/><T x={960} y={120} size={56}>提出期限が近づく</T></g>;
  case 2:return <g><R x={0} y={0} w={1920} h={1080} c="#172a34"/><R x={165} y={135} w={1590} h={830} rx={32} c="#304855"/><T x={960} y={230} size={52}>2024年９月公表の集計</T><T x={580} y={535} size={129} c={C.paper}>2,500万＋</T><T x={1450} y={535} size={129} c={C.gold}>69%</T><T x={585} y={670} size={47}>登録終了した人数</T><T x={1450} y={670} size={47}>手続き上の理由</T><L x={1050} y={350} X={1050} Y={770} c={C.red} sw={11} p={p}/></g>;
  case 3:return <g><MedicaidDesk p={p}/><R x={900} y={340} w={320} h={310} c="#8f9b99"/><Paper x={930} y={365} w={260} h={245}/><L x={900} y={700} X={1240} Y={700} c={C.red} sw={15} p={p}/><Person x={470} y={480} s={.65} pose="point" p={p} role="clerk"/></g>;
