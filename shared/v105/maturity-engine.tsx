@@ -6,8 +6,8 @@ export type MatureBeat={id:string;phase:string;variant:number;actionId:string;ac
 const data=beats as MatureBeat[];
 const groups={
  movement:new Set('drop return deliver receive escort walk rise lower setdown carry advance help revisit'.split(' ')),
- decision:new Set('point reach pause sort notice choose catch listen offer write wash open schedule stamp fill pack'.split(' ')),
- complex:new Set('stack distribute unfold collate accumulate arrange coordinate organize sequence hoard reassign build'.split(' ')),
+ decision:new Set('point reach pause sort notice choose catch listen offer write wash open schedule stamp fill pack hold'.split(' ')),
+ complex:new Set('stack distribute unfold collate accumulate arrange coordinate organize sequence hoard reassign build assemble'.split(' ')),
  compare:new Set('separate divide contrast compare mirror qualify diverge redistribute share stabilize weigh tilt subtract cross'.split(' ')),
  abstract:new Set('lag grow notify hover call connect converge release stir transform reveal crack fragment cover hide merge consume'.split(' '))
 };
@@ -45,7 +45,7 @@ const Accent=({b,p}:{b:MatureBeat;p:number})=>{
 const Detail=({b,p}:{b:MatureBeat;p:number})=>{
  const e=easing(p),a=b.action;
  switch(a){
- case'child-drops-pencil-case':return <g><R x={220} y={780} w={1400} h={42} c="#705948"/>{[0,1,2].map(i=><R key={i} x={380+i*112} y={lerp(255,720-i*25,e)} w={25} h={140} c={[K.gold,K.red,K.teal][i]} transform={'rotate('+lerp(-50,30+i*22,e)+' '+(380+i*112)+' '+lerp(255,720-i*25,e)+')'}/>)}</g>;
+ case'child-drops-pencil-case':return <g><R x={220} y={780} w={1400} h={42} c="#705948"/>{[0,1,2].map(i=><R key={i} x={380+i*112} y={lerp(255,720-i*25,e)} w={25} h={140} c={[K.gold,K.red,K.teal][i]}/>)}</g>;
  case'teacher-asks-apology':return <g><Person x={510} y={500} role="child" s={.78} p={p} pose="stand"/><Person x={950} y={455} role="teacher" s={.77} p={p} pose="point"/><Ring x={760} y={750} p={e} r={72} c={K.red}/></g>;
  case'adult-excuses-sales-failure':return <g>{[0,1,2].map(i=><g key={i} transform={'translate('+lerp(-160,250+i*145,e)+' '+(535+i*95)+') rotate('+(-12+i*10)+')'}><R x={0} y={0} w={245} h={128} c={K.paper} stroke={K.wood} sw={5}/></g>)}</g>;
  case'arnett-student-survey':return <g><Text x={420} y={380} t="1994年" s={75} c={K.gold}/><Text x={420} y={475} t="大学生 346人" s={48}/><R x={200} y={545} w={440*e} h={13} c={K.teal}/></g>;
