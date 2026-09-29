@@ -1,4 +1,4 @@
-日曜日の朝。少年は床でゲームを続け、母親は朝食を作りながら、宿題と翌日の持ち物を確認している。父親はキッチンの隣で仕事のメールを読んでいた。|||home|||weekend-family-morning|||02-01-weekend-family-morning|||family|||arrange
+日曜日の朝。少年は床でゲームを続け、母親は朝食を作りながら、宿題と翌日の持ち物を確認している。父親はキッチンの隣で仕事のメールを読んでいた。|||kitchen|||weekend-family-morning|||02-01-weekend-family-morning|||family|||arrange
 忘れていた宿題を母親が思い出させ、雨が降りそうだと傘を手渡す。少年は困ることなく学校へ出かけるが、準備の順序を決めたのは自分ではない。|||objects|||mother-sets-schoolbag-umbrella|||02-02-mother-sets-schoolbag-umbrella|||schoolbag|||pack
 学校で友人とけんかをすれば、大人が相手の家庭に連絡し、解決の手順を整えてくれる。少年にとって、問題はいつの間にか消えていくものになる。|||phone|||parent-solves-friend-conflict|||02-03-parent-solves-friend-conflict|||phone|||call
 もちろん、子供には保護が必要である。問題は、成長して自分で扱えるようになった仕事まで、大人が引き受け続けるときに生まれる。|||scale|||compare-help-and-takeover|||02-04-compare-help-and-takeover|||balance|||tilt
