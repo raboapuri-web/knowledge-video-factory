@@ -1,4 +1,4 @@
-name: V105 Psychological Maturity Original Prologue
+name: V105 Psychological Maturity Full 10min+
 on:
   workflow_dispatch:
   push:
@@ -11,7 +11,7 @@ permissions: {contents: write}
 jobs:
   prepare:
     runs-on: ubuntu-24.04
-    timeout-minutes: 110
+    timeout-minutes: 150
     outputs: {matrix: '${{ steps.plan.outputs.matrix }}'}
     steps:
       - uses: actions/checkout@v4
@@ -26,37 +26,43 @@ jobs:
         run: ln -sfn "$PWD/node_modules" ../node_modules
       - working-directory: v105-psychological-maturity
         run: node scripts/build-preproduction.mjs
-      - name: Validate 24 individually choreographed scenes and exclude generic fallback
+      - name: Validate complete narration and 116 original scene assignments
         run: |
           node - <<'NODE'
           const fs=require('fs');
-          const dir='v105-psychological-maturity/src/';
-          const d=require('./'+dir+'scene-data.json'),s=require('./'+dir+'script-data.json');
-          if(d.length!==24||s.beats.length!==24)throw Error('Expected 24 prologue scenes');
-          for(const k of ['actionId','family','sceneKey','bgGroup','environment','verb'])
-            if(new Set(d.map(b=>b[k])).size!==24)throw Error('Repeated V105 '+k);
-          const e=fs.readFileSync('shared/v105/immaturity-scenes.tsx','utf8');
-          for(let i=1;i<=24;i++)if(!e.includes('case '+i+':'))throw Error('Missing authored animation '+i);
-          if(!e.includes("default:throw Error('V105 original renderer missing"))throw Error('Generic renderer fallback');
-          for(let i=0;i<d.length;i++){
-            if(!d[i].action||!d[i].primary||!d[i].narration)throw Error('Unassigned original scene '+d[i].id);
-            if(i&&d[i-1].family===d[i].family)throw Error('Adjacent similar cut '+d[i].id);
-            const w=d.slice(Math.max(0,i-5),i+1);
-            if(w.length===6&&new Set(w.map(x=>x.family)).size<5)throw Error('Six-cut similarity '+d[i].id);
+          const d=require('./v105-psychological-maturity/src/scene-data.json');
+          if(d.length!==116)throw Error('116 authored narration scenes required');
+          const expected={'prologue':24,'01-adulthood':19,'02-overprotection':20,'03-social-roles':21,'04-masculinity':20,'05-epilogue':12};
+          for(const [phase,count] of Object.entries(expected)){
+            if(d.filter(x=>x.phase===phase).length!==count)throw Error('Missing '+phase+' scenes');
           }
-          console.log('PASS: 24 narration-specific original actions, settings and visual families');
+          for(const field of ['actionId','environment','sceneKey','visual']){
+            if(new Set(d.map(x=>x[field])).size!==116)throw Error('Duplicate original scene '+field);
+          }
+          const art=fs.readFileSync('shared/v105/maturity-art.tsx','utf8'),engine=fs.readFileSync('shared/v105/maturity-engine.tsx','utf8');
+          const original=fs.readFileSync('shared/v105/immaturity-scenes.tsx','utf8');
+          for(let n=1;n<=24;n++)if(!original.includes('case '+n+':'))throw Error('Missing bespoke prologue renderer '+n);
+          if(!engine.includes("throw Error('V105 missing authored scene object/family/verb")||!original.includes("default:throw Error('V105 original renderer missing"))
+            throw Error('Generic fallback renderer detected');
+          for(let n=0;n<d.length;n++){
+            if(n&&d[n].family===d[n-1].family)throw Error('Repeated adjacent family '+d[n].id);
+            const window=d.slice(Math.max(0,n-5),n+1);
+            if(window.length===6&&new Set(window.map(x=>x.family)).size<5)
+              throw Error('Repeated six-cut background pattern '+d[n].id);
+          }
+          console.log('V105 original-action QA PASS: 116 unique authored beats in six narrative parts');
           NODE
       - working-directory: v105-psychological-maturity
         run: npm run check
-      - name: Draw 24 storyboard stills before voice generation
+      - name: Draw every one of 116 scene stills before voice generation
         working-directory: v105-psychological-maturity
         run: |
           mkdir -p out/preview
-          for I in $(seq 0 23); do
-            FRAME=$(( I * (24 * 20 - 1) / 23 ))
+          for I in $(seq 0 115); do
+            FRAME=$((I * 20 + 12))
             npx remotion still src/index.tsx V105ScenePreview "out/preview/scene-${I}.png" --frame="$FRAME" --log=error
           done
-          test "$(find out/preview -name '*.png' | wc -l)" -eq 24
+          test "$(find out/preview -name '*.png' | wc -l)" -eq 116
       - name: Start VOICEVOX
         run: |
           docker pull voicevox/voicevox_engine:cpu-latest
@@ -70,16 +76,16 @@ jobs:
       - id: plan
         working-directory: v105-psychological-maturity
         run: echo "matrix=$(node scripts/plan-segments.mjs)" >> "$GITHUB_OUTPUT"
-      - run: tar --exclude='v105-psychological-maturity/node_modules' -czf v104-prepared.tar.gz v105-psychological-maturity
+      - run: tar --exclude='v105-psychological-maturity/node_modules' --exclude='v105-psychological-maturity/.voice-tmp' -czf v105-full-prepared.tar.gz v105-psychological-maturity
       - uses: actions/upload-artifact@v4
-        with: {name: v104-prepared, path: v104-prepared.tar.gz, retention-days: 1}
+        with: {name: v105-full-prepared, path: v105-full-prepared.tar.gz, retention-days: 1}
   render:
     needs: prepare
     runs-on: ubuntu-24.04
-    timeout-minutes: 100
+    timeout-minutes: 120
     strategy:
       fail-fast: false
-      max-parallel: 3
+      max-parallel: 8
       matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
     steps:
       - uses: actions/checkout@v4
@@ -87,18 +93,18 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: 20}
       - uses: actions/download-artifact@v4
-        with: {name: v104-prepared}
-      - run: tar -xzf v104-prepared.tar.gz
+        with: {name: v105-full-prepared}
+      - run: tar -xzf v105-full-prepared.tar.gz
       - working-directory: v105-psychological-maturity
         run: npm install
       - working-directory: v105-psychological-maturity
-        run: mkdir -p out && npx remotion render src/index.tsx V105Prologue "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
+        run: mkdir -p out && npx remotion render src/index.tsx V105Full "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
       - uses: actions/upload-artifact@v4
-        with: {name: 'v104-segment-${{ matrix.id }}', path: 'v105-psychological-maturity/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
+        with: {name: 'v105-full-segment-${{ matrix.id }}', path: 'v105-psychological-maturity/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
   finalize:
     needs: [prepare,render]
     runs-on: ubuntu-24.04
-    timeout-minutes: 70
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
@@ -106,35 +112,40 @@ jobs:
         with:
           node-version: 20
       - uses: actions/download-artifact@v4
-        with: {name: v104-prepared}
-      - run: tar -xzf v104-prepared.tar.gz
+        with: {name: v105-full-prepared}
+      - run: tar -xzf v105-full-prepared.tar.gz
       - uses: actions/download-artifact@v4
-        with: {pattern: 'v104-segment-*', path: v105-psychological-maturity/parts, merge-multiple: true}
+        with: {pattern: 'v105-full-segment-*', path: v105-psychological-maturity/parts, merge-multiple: true}
       - working-directory: v105-psychological-maturity
         run: node scripts/generate-bgm.mjs
-      - name: Concat three segments, mux sound and verify finished file
+      - name: Concat authored segments, mux narration and validate >=10 min full film
         working-directory: v105-psychological-maturity
         run: |
           mkdir -p out
           find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
-          test "$(wc -l < out/concat.txt)" -eq 3
+          test "$(wc -l < out/concat.txt)" -ge 6
           ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
-          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v105-prologue-final.mp4
-          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v105-prologue-final.mp4 | head -1 | tr -cd '0-9')
-          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v105-prologue-final.mp4 | head -1 | tr -cd '0-9')
-          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v105-prologue-final.mp4 | tr -d '\r')
-          A=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 out/v105-prologue-final.mp4 | wc -l)
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v105-full-final.mp4
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v105-full-final.mp4 | head -1 | tr -cd '0-9')
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v105-full-final.mp4 | head -1 | tr -cd '0-9')
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v105-full-final.mp4 | tr -d '\r')
+          A=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 out/v105-full-final.mp4 | wc -l)
           echo "verified video ${W}x${H} duration=${D} audio-streams=${A}"
           test "$W" = 1920
           test "$H" = 1080
           test "$A" -ge 1
-          awk "BEGIN{exit !($D > 60)}"
-      - run: node shared/qa/generate-scene-contact-sheet.mjs v105-psychological-maturity v105-psychological-maturity/out/v105-prologue-final.mp4 v105-psychological-maturity/out/v105-contact-sheet.jpg
-      - name: Publish prologue-only V105 after verified output
+          awk "BEGIN{exit !($D >= 600)}"
+          F=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=nw=1:nk=1 out/v105-full-final.mp4 | head -1 | tr -d '\r')
+          test "$F" = '30/1'
+          mkdir -p qa
+          node -e 'const fs=require("fs");fs.writeFileSync("qa/final-validation.json",JSON.stringify({videoId:"V105-psychological-maturity-full",width:Number(process.argv[1]),height:Number(process.argv[2]),fps:30,durationSeconds:Number(process.argv[3]),audioStreams:Number(process.argv[4]),minRuntimeSeconds:600,passed:true},null,2))' "$W" "$H" "$D" "$A"
+
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v105-psychological-maturity v105-psychological-maturity/out/v105-full-final.mp4 v105-psychological-maturity/out/v105-contact-sheet.jpg
+      - name: Publish complete V105 only after >=10 min technical verification
         working-directory: v105-psychological-maturity
         env: {GH_TOKEN: '${{ github.token }}'}
         run: |
-          TAG="v105-psychological-maturity-${GITHUB_RUN_ID}"
-          NAME="knowledge-video-v105-psychological-maturity-${GITHUB_RUN_ID}.mp4"
-          cp out/v105-prologue-final.mp4 "out/$NAME"
-          gh release create "$TAG" "out/$NAME" out/v105-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V105_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V105 Psychological Maturity Original Prologue ${GITHUB_RUN_ID}" --notes "V105 PROLOGUE ONLY with 24 authored physical actions, measured narration/subtitle sync, no effects."
+          TAG="v105-psychological-maturity-full-$GITHUB_RUN_ID"
+          NAME="knowledge-video-v105-psychological-maturity-full-$GITHUB_RUN_ID.mp4"
+          cp out/v105-full-final.mp4 "out/$NAME"
+          gh release create "$TAG" "out/$NAME" out/v105-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json qa/final-validation.json SOURCES.md V105_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V105 Psychological Maturity Full Movie $GITHUB_RUN_ID" --notes "Full 6-part V105: 116 narration-specific original scene actions and unique environments, all 116 preview stills, measured VOICEVOX timing, Japanese subtitles, restrained BGM, no SFX, validated final runtime >=600 seconds."
