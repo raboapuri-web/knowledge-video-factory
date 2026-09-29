@@ -40,7 +40,7 @@
 どこまでの行動を中立と認めるかによって、国家が取ることのできる選択は変わってくるのである。|||public-debate-hall|||comparison|||異なる中立の定義から政策の枝が分かれる|||policy-branches|||branch|||replace
 この問題は、スイス国内でも議論になった。|||referendum-2026-station|||human|||スイスの投票所へ人々が入る|||voters|||enter|||replace
 2026年9月27日、スイスでは、中立のあり方をめぐる国民投票が行われた。|||referendum-2026-station|||document|||2026年9月27日の投票用紙が手渡される|||ballot-2026|||receive|||append
-提案されたのは、永世中立と武装中立を憲法へより明確に書き込み、軍事同盟との協力や対交戦国制裁を制限しようとするものだった。|||referendum-proposal|||document|||提案内容を条項別に分割した文書が開く|||initiative-document|||unfold|||replace
+提案されたのは、永世中立と武装中立を憲法に明記し、軍事同盟との協力や国連決定以外の対交戦国制裁を制限しようとするものだった。|||referendum-proposal|||document|||提案内容を条項別に分割した文書が開く|||initiative-document|||unfold|||replace
 提案を支持する側は、中立の原則をより厳格に定めることで、国外の対立へ巻き込まれることを防ごうとしていた。|||referendum-proposal|||debate|||支持側が示した制約と安全保障の論点を事実表示する|||support-argument|||present|||replace
 一方、政府などは、国際情勢に応じて外交や安全保障上の判断を行う余地が狭まることを懸念していた。|||referendum-proposal|||debate|||政府側の懸念をもう一枚の資料に表示する|||government-concern|||present|||replace
 投票の結果、提案は反対70.15パーセントで否決された。|||referendum-results|||data|||公式暫定最終結果の賛否割合を中立的な棒グラフへ表示する|||vote-chart|||reveal|||replace
