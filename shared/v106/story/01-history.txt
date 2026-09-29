@@ -24,7 +24,7 @@
 戦争が終わった1648年には、スイスの独立した地位が国際的に確認されていく。|||westphalia-archive|||document|||1648年の外交文書を机に広げ封印する|||westphalia-scroll|||seal|||replace
 外の争いに深く加わらず、自分たちの領域を守るという考え方は、次第にスイスの外交を特徴づけるようになった。|||westphalia-archive|||symbolic|||領域を守る国境線と外交の巻物が重なる|||neutrality-seal|||overlay|||append
 しかし、どれほど戦争を避けようとしても、相手が同じように考えてくれるとは限らない。|||french-revolution-atlas|||question|||フランスとスイスの国境へ侵攻の危険を示す矢印が近づく|||threat-arrow|||approach|||replace
-1798年、フランス革命後の軍隊がスイスへ侵攻した。|||french-revolution-atlas|||historical|||1798年の日付の下にフランス軍の実際の侵攻経路を図解する|||invasion-1798|||advance|||replace
+1798年、フランス革命後の軍隊がスイスへ侵攻した。|||french-revolution-atlas|||historical|||1798年の日付とフランス軍によるスイス侵攻を概念図で示す|||invasion-1798|||advance|||replace
 従来の政治体制は崩され、フランスの強い影響を受けるヘルヴェティア共和国が成立する。|||helvetic-administration|||historical|||旧制度の文書が外され共和国の公印が置かれる|||republic-decree|||replace|||replace
 スイスが国外の戦争から距離を置きたいと望んでも、大国の側がその領土を必要と考えれば、その願いだけでは侵攻を防げなかったのである。|||helvetic-administration|||comparison|||中立宣言が軍の経路を阻止できなかったことを対比する|||treaty-border|||contrast|||replace
 では、スイスはどうすれば、自国の中立を周辺の大国に認めさせることができるのだろうか。|||vienna-transition|||question|||壊れた外交文書が新しい交渉会議へ移る|||question|||transform|||replace
