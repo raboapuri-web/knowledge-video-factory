@@ -38,5 +38,5 @@ const Production=()=>{
  return <AbsoluteFill style={{background:'#090e15'}}><SceneVisual n={active.index+1} progress={active.progress}/><Subtitle beat={beat} progress={active.progress}/></AbsoluteFill>;
 };
 const Preview=()=>{const f=useCurrentFrame();return <AbsoluteFill style={{background:'#090e15'}}><SceneVisual n={Math.min(beats.length,Math.floor(f/20)+1)} progress={(f%20)/20}/></AbsoluteFill>;};
-const Root=()=> <><Composition id="V105Prologue" component={Production} fps={30} width={1920} height={1080} durationInFrames={Math.max(30,Math.ceil(Number(sync.durationSeconds||250)*30))}/><Composition id="V105ScenePreview" component={Preview} fps={30} width={1920} height={1080} durationInFrames={beats.length*20}/></>;
+const Root=()=> <><Composition id="V105Full" component={Production} fps={30} width={1920} height={1080} durationInFrames={Math.max(30,Math.ceil(Number(sync.durationSeconds||1080)*30))}/><Composition id="V105ScenePreview" component={Preview} fps={30} width={1920} height={1080} durationInFrames={beats.length*20}/></>;
 registerRoot(Root);
