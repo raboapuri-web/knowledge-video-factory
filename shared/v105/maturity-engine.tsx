@@ -35,7 +35,7 @@ const familyTitle=(phase:string)=>phase==='01-adulthood'?'第1章　人はいつ
 const Accent=({b,p}:{b:MatureBeat;p:number})=>{
  const e=easing(p),v=b.verb,a=b.action;
  const panel=(x:number,y:number,i:number,w=210,h=112)=><g key={i} opacity={q((e-i*.14)*3)} transform={'translate('+lerp(x-140,x,e)+' '+lerp(y+35,y,e)+')'}><R x={0} y={0} w={w} h={h} rx={13} c={i%2?K.gold:K.teal}/><R x={28} y={27} w={w-56} h={13} rx={7} c={K.ink} o={.57}/><R x={28} y={58} w={w-80} h={10} rx={5} c={K.paper} o={.55}/></g>;
- if(groups.movement.has(v))return <g>{[0,1,2].map(i=><circle key={i} cx={lerp(370+i*85,670+i*85,e)} cy={770-70*Math.sin(e*Math.PI)} r={14-i*3} fill={i%2?K.gold:K.teal} opacity={.7})}<Arrow x={485} y={785} X={930} Y={785} p={e}/></g>;
+ if(groups.movement.has(v))return <g>{[0,1,2].map(i=><circle key={i} cx={lerp(370+i*85,670+i*85,e)} cy={770-70*Math.sin(e*Math.PI)} r={14-i*3} fill={i%2?K.gold:K.teal} opacity={.7}/>)}<Arrow x={485} y={785} X={930} Y={785} p={e}/></g>;
  if(groups.decision.has(v))return <g><Ring x={760} y={390} p={e} r={152} c={K.gold}/>{[0,1].map(i=>panel(220+i*295,585+i*53,i,245,114))}<L x={660} y={430} X={840} Y={285} c={K.red} sw={9} p={e}/></g>;
  if(groups.complex.has(v))return <g>{[0,1,2,3].map(i=>panel(190+(i%2)*270,315+Math.floor(i/2)*215,i,224,150))}<Arrow x={700} y={520} X={925} Y={520} p={e}/></g>;
  if(groups.compare.has(v))return <g><R x={140} y={270} w={310} h={420} rx={18} c="#5e7884" o={.7}/><R x={490} y={270} w={310} h={420} rx={18} c="#8b7069" o={.7}/><L x={470} y={250} X={470} Y={790} c={K.gold} sw={8}/><Arrow x={360} y={835} X={680} Y={835} p={e}/></g>;
