@@ -9,7 +9,7 @@ const verbFamilies:Record<string,string>={
   kinetic:'advance approach enter march travel walk relocate retreat reverse queue unload divert join transfer relay receive exchange meet gather',
   constructive:'assemble form prepare insert stack accumulate collect populate distribute mark place stamp seal record redraw label sort arrange collate block',
   document:'open unfold unfurl unroll unpack unveil reveal appear highlight focus illuminate examine review present trace overlay',
-  relational:'compare contrast separate partition divide isolate reconcile bridge branch connect converge weigh balance evaluate qualify disagree sever',
+  relational:'compare contrast split separate partition divide isolate reconcile bridge branch connect converge weigh balance evaluate qualify disagree sever',
   dramatic:'simulate spread extend transform rise expand fade shade intrude halt pause constrain delay obscure clarify replace',
   observational:'look notice question hold operate point allocate sequence rewind',
 };
@@ -30,7 +30,7 @@ const MoveSubject=({b,p}:{b:Beat;p:number})=>{
  if(family==='relational'){dx=lerp(-25,0,e);scale=lerp(.92,1,e);}
  if(family==='dramatic'){scale=b.verb==='fade'?lerp(1,.78,e):b.verb==='expand'?lerp(.65,1.06,e):lerp(.84,1,e);opacity=b.verb==='fade'?lerp(1,.22,e):1;rotation=b.verb==='reverse'?lerp(-12,9,e):0;}
  if(family==='observational'){scale=b.verb==='notice'?lerp(.87,1.08,e):1;}
- const visualSize=(kind==='maps'||kind==='simulations')?.97:kind==='people'?.85:kind==='documents'?.89:kind==='landscapes'?.99:kind==='diagrams'?.92:.91;
+ const visualSize=(kind==='maps'||kind==='simulations')?0.97:kind==='people'?0.85:kind==='documents'?0.89:kind==='landscapes'?0.99:kind==='diagrams'?0.92:0.91;
  return <g transform={'translate('+(x0+dx)+' '+(y0+dy)+') rotate('+rotation+') scale('+(visualSize*scale)+')'} opacity={opacity} data-original-object={b.primary}><SwissSubject kind={b.primary} p={p} verb={b.verb}/></g>;
 };
 const Persistent=({items}:{items:Beat[]})=><g>{items.map((p,i)=><g key={p.id} opacity={.6-i*.13} transform={'translate('+(360+i*245)+' '+(540+i*28)+') scale('+(categoryFor(p.primary)==='maps'?.32:.45)+')'}><SwissSubject kind={p.primary} p={1} verb={p.verb}/></g>)}</g>;
