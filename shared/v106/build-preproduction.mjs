@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+const beats=JSON.parse(fs.readFileSync('src/scene-data.json','utf8'));
+if(beats.length!==263)throw Error('Narration lines and original-scene count changed');
+const environments=[...new Set(beats.map(b=>b.environment))],families={};
+for(const b of beats)families[b.family]=(families[b.family]||0)+1;
+if(environments.length!==103||new Set(beats.map(b=>b.action)).size!==263)throw Error('Insufficient physical scene uniqueness');
+fs.mkdirSync('qa',{recursive:true});
+fs.writeFileSync('preproduction-plan.json',JSON.stringify({videoId:'V106-swiss-neutrality-original-scenes',scenes:beats,backgrounds:environments,libraryAssets:JSON.parse(fs.readFileSync('src/library-assets.json','utf8'))},null,2));
+fs.writeFileSync('qa/preproduction-summary.json',JSON.stringify({sceneCount:beats.length,backgrounds:environments.length,uniqueActions:new Set(beats.map(b=>b.actionId)).size,phaseCounts:beats.reduce((a,b)=>(a[b.phase]=(a[b.phase]||0)+1,a),{}),visualFamilies:families,templates:4,manualVisualReviewRequired:true},null,2));
+console.log('V106: 263 authored actions / '+environments.length+' independent background settings / '+Object.keys(families).length+' picture families');
