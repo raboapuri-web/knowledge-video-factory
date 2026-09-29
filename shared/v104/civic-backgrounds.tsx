@@ -11,7 +11,7 @@ export const Backdrop=({environment,p=0}:{environment:string;p?:number})=>{
  const modern=/school|poll|election|worker|grocery|senior|family|modern|university|hospital|office|business|shareholder|station|labor|research|commuter|knowledge|stock|company|time-budget|contribution|care|career|tax|electoral/.test(s);
  const meiji=/meiji|1890|rickshaw/.test(s),victorian=/victorian|britain|mill|1830/.test(s),oldJapan=/taisho|1928|1946|historic|reform/.test(s);
  const historical=meiji||victorian||oldJapan||/french|1791|1948|virginia|1960|supreme|mill-study|manuscript/.test(s);
- const canvas=/diagram|symbolic|abstract|thesis|question|impact|compared|axes|flow|feedback|scales|criterion|criteria|scenario|simulation|transition|mapping|equal|ability|volatility|boundary|overlap|tax-vote|vote-weight|citizen|definition|franchise-venn/.test(s);
+ const canvas=/diagram|symbolic|abstract|thesis|question|impact|compared|axes|flow|feedback|scales|criterion|criteria|scenario|simulation|transition|mapping|equal|ability|volatility|boundary|overlap|tax-vote|vote-weight|citizen|definition|franchise-venn|philosophy|comparison|corridor|two-eras|education-versus|montage|branches|calendar|wheel|independent|panels|valuation|district-map|history-bridge|state-corporation|budget-election|ballot-ending|split/.test(s);
  if(canvas)return <g data-environment={environment}>
    <R x={0} y={0} w={1920} h={1080} c={variant%2?'#172735':'#223746'}/>
    <R x={80+shift} y={65} w={1760-shift*1.5} h={930} rx={32} c={variant%2?'#263c46':'#2d414c'} o={.78}/>
@@ -26,7 +26,7 @@ export const Backdrop=({environment,p=0}:{environment:string;p?:number})=>{
   {oldJapan&&<g><Person x={330} y={540} s={.48} p={p} pose="walk" role="worker"/><Person x={1490} y={545} s={.44} p={p} pose="walk" role="teacher"/></g>}
   {modern&&<Vehicle x={650} y={905} p={p} kind="car"/>}
  </g>;
- if(/mill|factory|working-class/.test(s))return <g data-environment={environment}>
+ if(/cotton|factory|working-class|britain-mill/.test(s))return <g data-environment={environment}>
   <R x={0} y={0} w={1920} h={1080} c="#96a3a0"/><R x={0} y={805} w={1920} h={275} c="#665e57"/>
   <Building x={120} y={240} w={700} h={570} colour="#80695d" era="old" windows={6}/>
   <Building x={1070} y={170} w={680} h={640} colour="#716763" era="old" windows={6}/>
@@ -57,7 +57,7 @@ export const Backdrop=({environment,p=0}:{environment:string;p?:number})=>{
   <R x={220} y={560} w={490} h={180} c="#b4a18a"/><R x={1340} y={560} w={220} h={180} c="#6a6e6c"/>
   {variant%2===0&&<g><R x={800} y={420} w={240} h={300} c="#66594b"/><P d="M750 420 L920 275 L1090 420Z" c="#5a4d43"/></g>}
  </g>;
- if(/school-poll|poll-hall|poll-booths|poll-reception|poll-counting|poll-counter|accessible-poll|polling|election-office|election-school|1928-poll|1946-election/.test(s))return <g data-environment={environment}>
+ if(/school-poll|poll-hall|poll-booths|poll-reception|poll-counting|poll-counter|accessible-poll|polling|election-office|election-school|1928-poll|1946-election|virginia-poll|ballot-counting/.test(s))return <g data-environment={environment}>
   <R x={0} y={0} w={1920} h={1080} c={historical?'#aca696':'#b6c5c5'}/><R x={0} y={755} w={1920} h={325} c={historical?'#977f68':'#a68b6f'}/>
   <R x={160} y={135} w={1600} h={510} c={historical?'#8b7c6a':'#d1d9d6'}/>
   {Array.from({length:5},(_,i)=><R key={i} x={238+i*302} y={190} w={210} h={230} c={historical?'#746c66':'#a8c5cc'} stroke={historical?'#b6a183':'#e6e4d6'} sw={13}/>)}
@@ -77,7 +77,7 @@ export const Backdrop=({environment,p=0}:{environment:string;p?:number})=>{
   {Array.from({length:3},(_,i)=><g key={i}><R x={890+i*305} y={450} w={245} h={230} c="#d4dfdb"/><R x={920+i*305} y={540} w={185} h={65} c="#8aafaa"/></g>)}
   <Hospital x={1430} y={145} s={.54}/><R x={185} y={650} w={555} h={45} c="#718889"/>
  </g>;
- if(/family|care|senior|kitchen|two-households|worker-home|working-class-kitchen|living-room/.test(s))return <g data-environment={environment}>
+ if(/family|care|senior|kitchen|two-households|worker-home|working-class-kitchen|living-room|households/.test(s))return <g data-environment={environment}>
   <R x={0} y={0} w={1920} h={1080} c={/night|evening/.test(s)?'#68777a':'#bbb9a7'}/><R x={0} y={760} w={1920} h={320} c="#948474"/>
   <R x={120+shift} y={130} w={680} h={440} c={/night|evening/.test(s)?'#314653':'#99b8bd'} stroke="#eee5d2" sw={24}/>
   <R x={960} y={650} w={710} h={90} rx={9} c="#816d5c"/><R x={1040} y={725} w={27} h={280} c="#675847"/><R x={1560} y={725} w={27} h={280} c="#675847"/>
@@ -95,15 +95,10 @@ export const Backdrop=({environment,p=0}:{environment:string;p?:number})=>{
   <R x={110} y={670} w={1710} h={28} c="#c3aa74"/><L x={110} y={825} X={1810} Y={825} c="#393c40" sw={18}/>
   <Vehicle x={1150} y={738} p={p} kind="bus"/><R x={390} y={600} w={350} h={65} c="#5c6b6d"/>
  </g>;
- if(/archive|desk|manuscript|legal|legislation|statute|register|historic|reform|constitution|tax-definition|electoral-code|history-election|research/.test(s))return <g data-environment={environment}>
+ if(/archive|desk|manuscript|legal|legislation|statute|register|historic|reform|constitution|tax-definition|electoral-code|history-election|research|political-club|knowledge-test-board|mill-study|big-ledger/.test(s))return <g data-environment={environment}>
   <R x={0} y={0} w={1920} h={1080} c={historical?'#615348':'#465a62'}/><R x={0} y={790} w={1920} h={290} c={historical?'#705b49':'#6b6b64'}/>
   {Array.from({length:4},(_,i)=><g key={i}><R x={95+i*440} y={105} w={370} h={510} c={historical?'#78634c':'#6e7a79'}/>{Array.from({length:6},(_,j)=><R key={j} x={132+i*440} y={165+j*76} w={275} h={45} c={j%2?'#bfad8d':'#9f8f74'}/>)}</g>)}
   <Desk x={220} y={615} w={1500} c={historical?'#6c4e3d':'#70665a'}/><R x={825} y={500} w={300} h={110} c="#b9af9d"/>
  </g>;
- return <g data-environment={environment}>
-  <R x={0} y={0} w={1920} h={1080} c={historical?'#8b8071':'#6f8390'}/>
-  <R x={0} y={760} w={1920} h={320} c={floor}/>
-  {Array.from({length:5},(_,i)=><Building key={i} x={-110+i*430+(variant%2)*80} y={195+(i%2)*65} w={350} h={580} colour={historical?brick:['#718894','#869a9f','#748b83'][i%3]} era={historical?'old':'modern'} windows={6}/>)}
-  <Desk x={430} y={650} w={1100} c="#7e7160"/>
- </g>;
+ throw Error('V104 has no bespoke backdrop: '+environment);
 };
