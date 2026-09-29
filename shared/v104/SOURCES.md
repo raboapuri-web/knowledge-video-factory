@@ -1,0 +1,11 @@
+# V104 research / neutrality grounding
+
+- Japan's first House of Representatives election: 1 July 1890, men aged 25+ who paid direct national tax ≥15 yen; voters ≈1.1% of population. National Diet Library: https://www.ndl.go.jp/portrait/pickup/024
+- Japan's constitutional franchise: Articles 15 and 44; Article 44 bars discriminating on property and income. Official House of Representatives translation: https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm
+- 1925 male suffrage amendment, 1928 first election under expanded male suffrage, 1945 women's enfranchisement and 1946 election: verify with the National Diet Library's modern Japanese history sources and House of Representatives materials when narrating chronology.
+- Britain: 1832 Reform Act and property-linked franchise; historical university constituency and 1948 abolition of plural/university voting. Hansard 17 Feb 1948: https://api.parliament.uk/historic-hansard/commons/1948/feb/17/presentation-of-the-people-bill
+- John Stuart Mill, Considerations on Representative Government (1861), ch. VIII: plural voting by educational attainment. Note Mill did not propose simply making everyone's vote proportional to taxes. https://ditext.com/mill/rg/chapter8.html
+- US Twenty-Fourth Amendment: no poll tax as a condition for voting in federal elections. Harper v Virginia State Board of Elections, 383 U.S. 663, 24 March 1966, ruled poll-tax condition for Virginia state elections unconstitutional on equal-protection grounds: https://www.govinfo.gov/app/details/USREPORTS-383/USREPORTS-383-663/context
+- Japan's consumption tax: business remits it, consumers bear passed-on tax in prices; do not equate zero income tax with zero total tax. National Tax Agency: https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6101.htm
+
+Historical shots of Japan, Britain, France and Virginia are stylized teaching illustrations and should not be falsely presented as archival film or exact historical portraits. Maintain factual/evaluative separation. Avoid ranking any current election rule, political actors or voters, and do not advocate a vote-weight policy. Distinguish equal ballots, equal constituency voting weight and equal real-world political influence.
