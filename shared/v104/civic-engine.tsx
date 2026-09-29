@@ -51,7 +51,7 @@ const Motion=({b,p,x=960,y=510}:{b:V104Beat;p:number;x?:number;y?:number})=>{
 const FrameText=({b,small=false}:{b:V104Beat;small?:boolean})=><g opacity={small?.52:.7}><R x={70} y={62} w={20} h={62} c={accent(b.phase)}/><TXT x={108} y={106} t={periodLabel(b.phase)} size={30} c={C.cream} anchor="start"/></g>;
 const stage=(b:V104Beat,p:number,mode:'wide'|'detail'|'human'|'gather'='wide')=>{
  const who=actorFor(b),v=b.verb,e=ease(p),isHuman=primaryIsHuman(b.primary),x=mode==='detail'?940:mode==='human'?1115:1160,y=mode==='detail'?495:mode==='human'?470:505;
- const mainScale=mode==='detail'?1.19:mode==='human'?1.0:isHuman?.83:1;
+ const mainScale=mode==='detail'?1.19:mode==='human'?1.0:isHuman ? .83 : 1;
  return <g><Backdrop environment={b.environment} p={p}/>
   {mode!=='detail'&&<g transform={'translate('+(mode==='gather'?260:300+(b.variant%3)*75)+' '+(mode==='human'?490:535)+') scale('+(mode==='gather'?.59:.66)+')'}><CivicPerson kind={who} pose={staticPose(v)} p={p}/></g>}
   {mode==='gather'&&[0,1,2].map(i=><g key={i} transform={'translate('+(520+i*300)+' '+(540+(i%2)*70)+') scale(.38)'}><CivicPerson kind={i===1?'worker':i===2?'senior':'executive'} pose={staticPose(v)} p={q(p-i*.06)}/></g>)}
