@@ -16,7 +16,7 @@ const originalCode=fs.readFileSync(path.join(sources,'immaturity-scenes.tsx'),'u
 const art=fs.readFileSync(path.join(sources,'maturity-art.tsx'),'utf8');
 const engine=fs.readFileSync(path.join(sources,'maturity-engine.tsx'),'utf8');
 const getSet=(source,key)=>{
- const pattern=key+"=new Set\\('([^']+)'\\.split\\(' '\\)\\)";
+ const pattern=key+"\\s*=?\\s*new Set\\('([^']+)'\\.split\\(' '\\)\\)";
  const match=source.match(new RegExp(pattern));
  if(!match)throw Error('V105 renderer inventory missing '+key);
  return match[1].split(' ');
