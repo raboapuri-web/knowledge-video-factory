@@ -1,0 +1,14 @@
+夕方になると最初の小学校では投票が終わり、係員たちは長机を移動させ、投票箱の封印を確認してから、普段は子どもたちが使う体育館を少しずつ元の姿へ戻していく。|||cinematic|||poll-workers-seal-and-remove-ballot-box|||school-poll-evening|||pollbox|||seal
+朝に投票した経営者は翌日の会議へ向けて会社の財務資料を確認し、スーパーで働く女性は子どもを寝かしつけたあと、翌週の勤務表と家計簿を食卓へ広げている。|||split|||executive-ledger-and-worker-family-evening|||two-households-epilogue|||ledger|||compare
+杖を持って投票所へ来た高齢女性は、自宅でお茶を飲みながら選挙のニュースを見ており、三人の暮らしと国家へ負担する金額は、それぞれ大きく異なっている。|||human|||senior-watches-election-news-after-tea|||senior-living-room-night|||senior|||watch
+それでも選挙の開票所では、朝に三人が投じた用紙が同じ手順で数えられ、納税額の違いを示す数字が、票の重みとして加算されることはない。|||interaction|||three-ballots-counted-side-by-side|||ballot-counting-night|||ballot|||count
+明治時代の日本では一定額以上の直接国税を納めた男性だけが衆議院議員選挙へ参加でき、英国でも財産資格や大学選挙区などの制度が政治参加の範囲や投票機会を分けていた。|||history|||three-historic-election-documents-arrange|||history-election-exhibit|||oldballot|||arrange
+そこから選挙権の範囲が広がり、納税や財産による条件が整理されていった歴史には、誰を国家の意思決定へ参加する人間として認めるかという問いが重なっている。|||timeline|||historic-reforms-build-modern-ballot|||franchise-history-bridge|||calendar|||advance
+もし国家が利益を得るためだけに出資する会社であれば、出資額に応じて議決権を配る制度も考えられるが、国家は法律や公権力を通じて、人々の生活そのものを左右する。|||comparison|||stock-certificate-and-constitution-open|||state-corporation-final|||sharecert|||separate
+高額納税者の税負担をどう評価し、税制や財政の負担をどう配分するかは重要な議論として残るとしても、その負担の差を投票数へ変換するかどうかは別の制度上の問題である。|||debate|||fiscal-budget-and-franchise-two-desks|||budget-election-separate|||taxcoin|||separate
+納税額を票数へ直接結びつければ、税の種類や計算期間によって票数が変わり、税制を決める政治家が次の選挙の重みへも影響を及ぼし得るという問題が生まれる。|||diagram|||feedback-arrows-end-at-single-vote-rule|||final-feedback-diagram|||cycle|||stop
+一方で、所得税を納めていない高齢者でも国家の決定から影響を受け、育児や介護を担う人間の活動も、納税額だけでは十分に測れない場合がある。|||montage|||senior-caregiver-and-worker-continue-day|||citizen-lives-montage|||caregiver|||continue
+現在の日本の選挙制度は、そのような所得や生活の違いを投票数へ換算するのではなく、法定の資格を満たす有権者へ同じ一票を与える方式を採用している。|||document|||modern-election-law-one-ballot-per-voter|||electoral-code-final|||constitution|||affirm
+この仕組みによって経済格差や政治参加の差がすべて消えるわけではないが、少なくとも納税額が大きいという理由だけで、その人間へ追加の投票用紙が配られることはない。|||symbolic|||large-tax-ledger-keeps-one-ballot|||one-paper-on-big-ledger|||ballot|||hold
+税金は国家の活動を支えるための負担である一方、選挙権は政治共同体が国家の権力を形成するための参加権として位置づけられ、両者は関係していても同じものではない。|||philosophy|||tax-obligation-and-vote-right-converge-without-merging|||rights-and-duties-abstract|||scales|||balance
+投票用紙とは国家へいくら出資したかを証明する書類ではなく、法定の資格を持つ有権者が、同じ政治共同体の意思決定へ参加するために使う一枚の紙なのである。|||macro|||one-ballot-closeup-over-hands|||single-ballot-ending|||ballot|||reveal
