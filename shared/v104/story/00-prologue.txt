@@ -1,0 +1,16 @@
+日曜日の朝、東京近郊の住宅街にある小学校では、普段なら子どもたちが駆け回る体育館へ長机と記載台が運び込まれ、選挙管理の係員たちが投票箱の封印を確認している。|||election|||poll-staff-unfold-tables|||school-poll-hall|||pollbox|||unfold
+校門へ黒い車が近づき、複数の会社を経営する男性が降りると、会社から持ち帰った資料を鞄へしまい、案内板を確かめて体育館へ向かって歩き始める。|||cinematic|||executive-parks-and-enters|||school-gate-morning|||executive|||walk
+会社の事業を通じて大きな収入を得ている男性は、個人として多額の税金を納めているが、係員は彼の納税証明書を確認するのではなく、選挙資格を確認して一枚の投票用紙を渡す。|||interaction|||clerk-hands-one-ballot-to-executive|||poll-reception|||ballot|||hand
+男性が記載台の前で候補者名を書き、用紙を投票箱へ入れた数分後、同じ住宅街のスーパーで働く女性が、勤務の前に急いで投票所へ入ってくる。|||tracking|||ballot-drops-then-worker-arrives|||poll-booths|||ballot|||drop
+女性は子どもを育てながら家計を支えており、給与から引かれる税金は経営者より少ないが、彼女が受け取った投票用紙は、先ほどの男性に渡されたものとまったく同じ形をしている。|||split|||compare-executive-worker-ballots|||two-poll-desks|||worker|||compare
+さらに杖を持った高齢女性が係員に案内されて投票箱へ近づき、現在は働いておらず所得税を納めていなくても、法律上の選挙資格を満たしているため、ほかの二人と同じ一票を投じる。|||human|||senior-walks-to-ballot-box|||accessible-poll-aisle|||senior|||walk
+三人の納税額を透明な家計台帳に並べると、経営者とほかの二人との間には非常に大きな数字の差が現れるのに、開票担当者が数える投票用紙は、どれも同じ一枚として扱われる。|||data|||tax-ledger-diff-vote-identical|||poll-counting-table|||ledger|||compare
+高額納税者の票が十票として数えられることはなく、所得税を納めていない人間の票が半分になることもないという制度は、我々にとってあまりにも日常的で、その理由を問う機会は少ない。|||symbolic|||ten-versus-one-balancing-stops|||dark-ballot-comparison|||ballot|||balance
+現代日本の国政選挙では、選挙資格を満たす有権者の票は納税額と関係なく同じ一票として扱われ、憲法も選挙人の資格について財産や収入による差別を禁じている。|||document|||constitution-article44-highlights|||constitution-closeup|||constitution|||highlight
+ところが高層ビルの株主総会では、一般に議決権を持つ株式を多く保有している株主が、その持分に応じた議決権を持ち、会社の重要な決定へ参加する。|||corporate|||shareholder-proxy-votes-stack|||shareholder-assembly|||sharecert|||stack
+ここで国家を税金によって運営される巨大な組織として考えるなら、より多くの資金を負担している人間が、予算や税制について大きな発言権を持つという発想も、一見すると成立しそうに思える。|||diagram|||tax-money-and-voting-lines-connect|||nation-company-compare|||taxcoin|||connect
+年間一千万円を納める人間と年間十万円を納める人間が同じ一票しか持たないことには、納税と政治参加を切り離すための、いったいどのような制度上の理由が存在するのだろうか。|||question|||tax-totals-turn-into-one-ballot|||black-tax-question|||taxcoin|||transform
+実際に十九世紀の選挙制度へ目を向けると、日本を含む多くの国では、財産や納税額が選挙に参加するための条件と結びつき、政治に加わることができる人間は限られていた。|||history|||modern-school-rewinds-to-meiji|||historical-transition|||oldballot|||rewind
+日本最初の衆議院議員総選挙で投票を認められたのは一定額以上の直接国税を納めた男性だけであり、現在の平等な投票資格は、最初から当然のものとして存在していたわけではない。|||historical|||tax-certificate-opens-old-poll-gate|||meiji-poll-gate|||taxcert|||open
+そもそも納税額は、その人間の社会への貢献を測る十分な物差しなのか、それとも選挙とは、国家へ貢献した人間に与えられる報酬とは異なる権利なのか。|||debate|||two-theories-on-opposite-tables|||civic-philosophy-room|||scales|||weigh
+この問いを理解するため、我々は投票箱がすべての人に開かれていなかった時代から、国民の政治参加を広げる長い歴史をたどり、最後に、国家と株式会社の決定的な違いへ戻ることにしよう。|||transition|||historic-map-turns-into-election-history|||time-corridor|||map|||unroll
