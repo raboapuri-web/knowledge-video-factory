@@ -5,7 +5,7 @@
 特に家族の介護が突然なくなったとすれば、ほかの家族が仕事を減らしたり外部のサービスを利用したりする必要が生じる可能性があり、その活動の重要性が初めて見えやすくなる。|||simulation|||remove-caregiver-and-reveal-service-gap|||care-work-counterfactual|||caregiver|||vanish
 ここで社会への貢献を納税額によって測ろうとすると、労働市場で報酬が付く活動と、家庭の内部で行われる活動との間に、数字へ表れやすさの違いがあることに気づく。|||diagram|||paid-and-unpaid-work-appear-on-ledger|||paid-unpaid-valuation|||ledger|||reveal
 さらに、その年に所得税を納めていない人間であっても、買い物をするときには商品の価格に含まれる消費税を負担している場合があり、所得税だけで税負担の全体を測ることはできない。|||cinematic|||senior-pays-at-supermarket|||supermarket-register|||receipt|||pay
-日本の消費税では法律上の納税義務者は事業者である一方、商品などの価格に上乗せされた税額は、制度上、最終的に消費者が負担する仕組みとして説明されている。|||diagram|||sales-tax-flows-consumer-to-business-to-state|||consumption-tax-flow|||receipt|||flow
+日本の消費税では法律上の納税義務者は事業者である一方、商品などの価格に上乗せされた税額は、制度上、最終的に消費者が負担する仕組みとして説明されている。|||tax-flow|||sales-tax-flows-consumer-to-business-to-state|||consumption-tax-flow|||receipt|||flow
 スーパーで会計を終えた高齢女性が袋へ商品を詰め、レシートを財布へしまう場面には、所得税の納付記録には現れない税負担の一部が存在している。|||macro|||receipt-details-tax-and-groceries|||grocery-receipt-closeup|||receipt|||fold
 納税額へ投票数を結びつける場合、所得税だけを見るのか、消費税や住民税も含めるのか、間接税の負担を誰へ帰属させるのかによって、同じ人間が持つ票数も変わり得る。|||document|||different-tax-ledgers-produce-different-votes|||tax-definition-worktable|||ledger|||compare
 また多額の所得税を納めていた経営者でも、事業不振によって翌年の所得が大きく減れば納税額は下がり、景気や家族の事情によって個人の税負担は毎年同じとは限らない。|||cinematic|||business-owner-reads-declining-yearly-accounts|||business-downturn-office|||paystub|||decline
