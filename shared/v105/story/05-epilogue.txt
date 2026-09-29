@@ -1,0 +1,12 @@
+再び深夜のマンションに戻ろう。ソファの男性はゲームを終え、静まり返った部屋を見渡した。テーブルには弁当箱と飲みかけの缶が残されている。|||nightroom|||epilogue-man-sets-down-controller|||05-01-epilogue-man-sets-down-controller|||gamepad|||setdown
+キッチンのシンクには洗い物が積まれ、棚には開封していない公共料金の請求書が置かれていた。今夜は、そのどちらも自分の生活を支える仕事として見えた。|||detail|||epilogue-notice-dishes-and-bill|||05-02-epilogue-notice-dishes-and-bill|||bill|||notice
+彼は食器を片づけ、請求書を開いて、支払日をカレンダーに書き込む。誰かから命令される前に、自分から一つの仕事を引き受けたのである。|||action|||epilogue-wash-and-schedule|||05-03-epilogue-wash-and-schedule|||dishes|||wash
+もちろん、皿を洗っただけで、これまでの問題が解決するわけではない。明日になれば彼は再び、面倒な話し合いから逃げたくなるかもしれない。|||clock|||epilogue-next-day-resistance|||05-04-epilogue-next-day-resistance|||clock|||advance
+それでも、以前とは違う選択ができる。自分の行動が相手にどんな負担を与えたのかを聞き、どこから変えられるかを、二人で考えることができる。|||dialogue|||epilogue-listen-without-interrupting|||05-05-epilogue-listen-without-interrupting|||couple|||listen
+少年から大人への変化は、劇的な事件によって起きるとは限らない。言い訳する前に立ち止まり、自分の間違いを認めるという、小さな選択から始まる。|||gesture|||epilogue-hand-stops-before-excuse|||05-06-epilogue-hand-stops-before-excuse|||hands|||pause
+親の家で暮らしていても、ゲームが好きでも、結婚していなくても、それだけで心理的に未熟だということにはならない。人生の形は、一つではないのである。|||mosaic|||epilogue-varied-adult-lives|||05-07-epilogue-varied-adult-lives|||people|||diverge
+本当に問われるのは、自分の選択による結果と、他人の自由に、どのように向き合っているかということだ。独立の形よりも、その関係の中身が重要なのである。|||balance|||epilogue-balance-freedom-and-responsibility|||05-08-epilogue-balance-freedom-and-responsibility|||balance|||stabilize
+我々は自由を得るほど、それまで誰かが引き受けていた判断を、自分でしなければならなくなる。自由とは、責任が消えることではなく、選べる責任が増えることでもある。|||doors|||epilogue-open-choice-doors|||05-09-epilogue-open-choice-doors|||doors|||open
+成熟した人間も、逃げたくなり、弱音を吐き、時には誰かに甘えたくなる。それでも必要なときには、助けを求めながら、自分の足で立ち直ろうとする。|||stairs|||epilogue-ask-help-and-rise|||05-10-epilogue-ask-help-and-rise|||person|||rise
+肉体は時間が経てば成長する。しかし心は、失敗し、考え、選び直す経験の中で、少しずつ変わっていく。誰もが、内側に残る少年と向き合い続けるのである。|||timeline|||epilogue-child-shadow-integrates|||05-11-epilogue-child-shadow-integrates|||shadow|||merge
+大人になったかどうかを決めるのは、これまで何回の誕生日を迎えたかではない。その人生で、何を選び、何を引き受けてきたのかということなのである。|||finale|||epilogue-man-walks-into-morning|||05-12-epilogue-man-walks-into-morning|||sunrise|||walk
