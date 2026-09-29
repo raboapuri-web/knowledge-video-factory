@@ -1,5 +1,5 @@
-一八六一年の英国で、哲学者ジョン・スチュアート・ミルは書斎の机に向かい、代表制による統治のあり方を論じる原稿へ、選挙権をどのように配分するべきかという考察を書き込んでいた。|||historical|||mill-writes-representative-government|||mill-study|||scholar|||write
-ミルは市民が選挙へ参加することには教育的な働きがあると考えた一方で、政治的判断のための知識や教育を持つ人間へ、複数の投票権を認めるという構想も提示していた。|||document|||mill-plural-voting-pages-turn|||mill-manuscript-closeup|||lawbook|||turn
+一八六一年の英国で、哲学者ジョン・スチュアート・ミルは書斎の机に向かい、代表制による統治のあり方を論じる原稿へ、選挙権をどのように配分するべきかという考察を書き込んでいた。|||scholar|||mill-writes-representative-government|||mill-study|||scholar|||write
+ミルは市民が選挙へ参加することには教育的な働きがあると考えた一方で、政治的判断のための知識や教育を持つ人間へ、複数の投票権を認めるという構想も提示していた。|||manuscript|||mill-plural-voting-pages-turn|||mill-manuscript-closeup|||lawbook|||turn
 その議論は、単に裕福な人間へ多くの票を与えようという案ではなく、大学の卒業や教育上の達成などを、政治判断に必要な能力の目安として扱おうとするものだった。|||comparison|||money-and-education-criteria-separate|||education-versus-wealth|||diploma|||separate
 ただし財産と教育が無関係だったわけではなく、当時の社会では学校へ通う機会も家庭の経済状態によって異なり、何を能力の証明とみなすかという判断自体が新たな問題を含んでいた。|||human|||two-students-different-learning-opportunities|||victorian-two-classrooms|||diploma|||compare
 ミルは、誰もが同じ価値を持つという理念と、複雑な政治問題について異なる知識や経験を持つことを、どのように選挙制度へ反映させるのかと問いかけたのである。|||symbolic|||equal-people-and-unequal-knowledge-scales|||mill-philosophy-diagram|||scales|||weigh
@@ -18,5 +18,5 @@
 それでも税金を支払ったかどうかを投票資格の条件にする制度は、近代の長い歴史を通じて残り続け、二十世紀のアメリカでも大きな争点になっていた。|||transition|||university-gate-dissolves-to-virginia-poll|||atlantic-election-transition|||polltax|||transform
 一九六〇年代のバージニア州では、選挙へ参加するために人頭税を支払う必要があり、投票所へ向かう住民の中には、投票の資格と税の支払いを同時に確認される者がいた。|||historical|||virginia-resident-faces-poll-tax-window|||virginia-poll-1960|||polltax|||pay
 連邦選挙では一九六四年の憲法修正第二十四条によって人頭税が投票条件として禁じられ、一九六六年の連邦最高裁判決では州選挙の人頭税も平等保護に反すると判断された。|||courtroom|||1964-amendment-and-1966-judgment|||us-supreme-court|||gavel|||stamp
-この人頭税は納税額に比例して票数を増やす制度ではないが、税を払うという経済的な条件によって政治参加を制限する点では、財産資格を伴う選挙制度と共通する問題を持っていた。|||document|||poll-tax-receipt-and-ballot-pulled-apart|||poll-tax-receipt-table|||polltax|||separate
-こうして納税と投票を結びつける制度の歴史をたどると、誰が選挙へ参加できるかという問題だけでなく、国家へ多くのお金を払う人間へ、より多くの票を与えるべきかという問いが残る。|||transition|||poll-tax-receipt-becomes-vote-weight-question|||money-voting-transition|||taxcoin|||transform
+この人頭税は納税額に比例して票数を増やす制度ではないが、税を払うという経済的な条件によって政治参加を制限する点では、財産資格を伴う選挙制度と共通する問題を持っていた。|||receipt-macro|||poll-tax-receipt-and-ballot-pulled-apart|||poll-tax-receipt-table|||polltax|||separate
+こうして納税と投票を結びつける制度の歴史をたどると、誰が選挙へ参加できるかという問題だけでなく、国家へ多くのお金を払う人間へ、より多くの票を与えるべきかという問いが残る。|||question|||poll-tax-receipt-becomes-vote-weight-question|||money-voting-transition|||taxcoin|||transform
