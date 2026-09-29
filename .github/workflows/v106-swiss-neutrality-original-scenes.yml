@@ -1,0 +1,130 @@
+name: V106 Swiss Neutrality Original Scenes
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/v106-swiss-neutrality-original-scenes.yml','shared/bootstrap/v106-swiss-neutrality-original-scenes.mjs','shared/v106/**']
+permissions: {contents: write}
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 175
+    outputs: {matrix: '${{ steps.plan.outputs.matrix }}'}
+    steps:
+      - uses: actions/checkout@v4
+      - run: node shared/bootstrap/v106-swiss-neutrality-original-scenes.mjs
+      - name: Confirm four independently verified user library plates
+        run: |
+          node - <<'NODE'
+          const a=require('./v106-swiss-neutrality-original-scenes/src/library-assets.json');
+          if(a.length!==4||a.some(x=>x.license!=='cleared-commercial'||!x.sha256))throw Error('Unverified Swiss episode asset');
+          console.log('4 context-approved background plates are staged');
+          NODE
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - working-directory: v106-swiss-neutrality-original-scenes
+        run: npm install
+      - working-directory: v106-swiss-neutrality-original-scenes
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - working-directory: v106-swiss-neutrality-original-scenes
+        run: node scripts/build-preproduction.mjs
+      - name: Verify 263 documented narration-specific physical cuts
+        run: |
+          node - <<'NODE'
+          const d=require('./v106-swiss-neutrality-original-scenes/src/scene-data.json');
+          const expected={prologue:27,history:50,reduit:55,economy:48,modern:54,epilogue:29};
+          if(d.length!==263||new Set(d.map(x=>x.environment)).size!==103)throw Error('Full V106 original scene inventory missing');
+          if(new Set(d.map(x=>x.action)).size!==263||new Set(d.map(x=>x.actionId)).size!==263)throw Error('Each narration requires its own original action');
+          for(const [phase,count] of Object.entries(expected))if(d.filter(x=>x.phase===phase).length!==count)throw Error('Incomplete original chapter '+phase);
+          const seen=new Set();
+          for(let i=0;i<d.length;i++){const b=d[i],prior=d[i-1];
+            if(seen.has(b.environment)&&prior?.environment!==b.environment)throw Error('Noncontiguous background reuse '+b.id);
+            seen.add(b.environment);
+            if(b.mode==='append'&&prior?.environment!==b.environment)throw Error('Foreground continuity lost '+b.id);
+            if(prior?.environment===b.environment&&prior.primary===b.primary&&prior.verb===b.verb)throw Error('Adjacent duplicate action '+b.id);
+            if(!b.narration||!b.action||!b.primary||!b.verb)throw Error('Generic unsupported scene '+b.id);
+          }
+          console.log('V106 QA PASS: 263 unique sentence actions / 103 fixed backgrounds / 6 complete chapters');
+          NODE
+      - working-directory: v106-swiss-neutrality-original-scenes
+        run: npm run check
+      - name: Draw all 263 original scene previews and reject exact duplicates
+        working-directory: v106-swiss-neutrality-original-scenes
+        run: |
+          mkdir -p out/preview
+          seq 0 262 | xargs -P 3 -I @ bash -c 'I=@; FRAME=$((I*20+12)); npx remotion still src/index.tsx V106ScenePreview "out/preview/scene-$(printf %03d "$I").png" --frame="$FRAME" --log=error'
+          test "$(find out/preview -name '*.png' | wc -l)" -eq 263
+          DUPES=$(find out/preview -name '*.png' -print0 | xargs -0 sha256sum | cut -d' ' -f1 | sort | uniq -d)
+          test -z "$DUPES" || (echo "Exact duplicated original previews" && exit 1)
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; exit 1
+      - working-directory: v106-swiss-neutrality-original-scenes
+        run: node scripts/generate-voicevox.mjs
+      - name: Enforce one-sentence original-scene timing
+        working-directory: v106-swiss-neutrality-original-scenes
+        run: node scripts/check-original-scenes.mjs
+      - id: plan
+        working-directory: v106-swiss-neutrality-original-scenes
+        run: echo "matrix=$(node scripts/plan-segments.mjs)" >> "$GITHUB_OUTPUT"
+      - run: tar --exclude='v106-swiss-neutrality-original-scenes/node_modules' --exclude='v106-swiss-neutrality-original-scenes/.voice-tmp' --exclude='v106-swiss-neutrality-original-scenes/out/preview' -czf v106-prepared.tar.gz v106-swiss-neutrality-original-scenes
+      - uses: actions/upload-artifact@v4
+        with: {name: v106-prepared, path: v106-prepared.tar.gz, retention-days: 1}
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 130
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v106-prepared}
+      - run: tar -xzf v106-prepared.tar.gz
+      - working-directory: v106-swiss-neutrality-original-scenes
+        run: npm install
+      - working-directory: v106-swiss-neutrality-original-scenes
+        run: mkdir -p out && npx remotion render src/index.tsx V106SwissNeutralityOriginalScenes "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with: {name: 'v106-segment-${{ matrix.id }}', path: 'v106-swiss-neutrality-original-scenes/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
+  finalize:
+    needs: [prepare,render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v106-prepared}
+      - run: tar -xzf v106-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'v106-segment-*', path: v106-swiss-neutrality-original-scenes/parts, merge-multiple: true}
+      - working-directory: v106-swiss-neutrality-original-scenes
+        run: node scripts/generate-bgm.mjs
+      - working-directory: v106-swiss-neutrality-original-scenes
+        run: |
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v106-final.mp4
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v106-final.mp4 | head -1 | tr -cd '0-9')" = '1920'
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v106-final.mp4 | head -1 | tr -cd '0-9')" = '1080'
+          test "$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v106-final.mp4 | cut -d. -f1)" -gt 1050
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v106-swiss-neutrality-original-scenes v106-swiss-neutrality-original-scenes/out/v106-final.mp4 v106-swiss-neutrality-original-scenes/out/v106-contact-sheet.jpg
+      - working-directory: v106-swiss-neutrality-original-scenes
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG="v106-swiss-neutrality-original-scenes-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v106-swiss-neutrality-original-scenes-${GITHUB_RUN_ID}.mp4"
+          cp out/v106-final.mp4 "out/$NAME"
+          gh release create "$TAG" "out/$NAME" out/v106-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V106_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V106 Swiss Neutrality Original Scenes ${GITHUB_RUN_ID}" --notes "V106: Swiss neutrality full original film; 263 narration-linked physical cuts, 103 non-repeating fixed scene groups with add/replace foreground continuity, 4 verified template backgrounds, clearly marked hypothetical military simulations, official 2026 referendum chart, synced VOICEVOX/subtitles/BGM, all-shot preview QA and contact sheet for visual review."
