@@ -6,11 +6,11 @@ const list=(s:string)=>new Set(s.trim().split(/\s+/));
 export const objectGroups:Record<string,Set<string>>={
  people:list('officers general pikemen pike-formation mercenaries swiss-soldiers refugees family households scholar neutral-diplomat diplomats delegates multilingual-people voters debate-delegates generic-strategist border-officer'),
  landscapes:list('lake mountain village ravine town-mountain mountain-cross-section swiss-aerial fortress un-building swiss-flag peace-symbol'),
- maps:list('occupied-map neighbor-map encircled-map western-front-map swiss-border-map cantons-map buffer-map postwar-map relief-map cold-war-map alliance-map europe-treaty-map invasion-1798 trade-1940-map trade-routes trade-moral-crossroads france-hypothesis austria-hypothesis war-damage-map war-hypothesis'),
- documents:list('archive-scroll neutrality-treaty westphalia-scroll republic-decree treaty-border history-book strategy-board reduit-plan unexecuted-plan trade-ledger gold-ledger gold-provenance audit-document archive-files admission-ledger refusal-document mercenary-contract diplomatic-letter diplomatic-letters diplomatic-seals hague-convention policy-folder initiative-document sanctions-document government-concern support-argument trust-concern strategic-ledger cost-ledger diplomatic-letters year-1515 year-1618 year-1815 year-1907 year-1942 year-1996 year-2022 year-1942 neutral-diplomacy-diagram citizen-application'),
- diagrams:list('neutrality-scales cost-scales border-paths border-arrow border-arrows army-markers troop-markers fortress-markers city-markers defense-positions troop-chokepoint causal-branches supply-lines diplomacy-routes embassy-link neutrality-band neutral-buffer trade-routes treaty-fortress deterrence-symbol division-line bloc-arrows three-pillars four-pillars pike-flag flag-shield policy-options policy-branches sanctions-versus-arms territory-rules alliance-partnership switzerland-map country-cards two-rulebooks two-churches neutrality-seal threat-arrow diplomatic-seals referendum-chart un-timeline war-timeline history-ribbon timeline-1515 year-1515 year-1618 year-1815 year-1907 year-1942 year-1996 year-2022 question'),
- artifacts:list('swiss-soldiers pike-formation battle-formations swiss-aerial village fortress gold-vault gold-ingot factory-bank factory-train trade-crates supply-items cargo-train mountain-train supply-train army-markers troop-markers country-cards open-gate closed-gate ballot-2026 vote-chart initiative-document'),
- simulations:list('hypothetical-arrow hypothetical-occupation hypothetical-siege france-hypothesis austria-hypothesis invasion-1798 battle-formations war-hypothesis'),
+ maps:list('occupied-map neighbor-map encircled-map western-front-map swiss-border-map cantons-map buffer-map postwar-map relief-map cold-war-map alliance-map europe-treaty-map invasion-1798 trade-1940-map trade-routes pass-route trade-moral-crossroads france-hypothesis austria-hypothesis war-damage-map war-hypothesis'),
+ documents:list('archive-scroll neutrality-treaty westphalia-scroll republic-decree treaty-border history-book strategy-board reduit-plan unexecuted-plan trade-ledger gold-ledger gold-provenance audit-document archive-files admission-ledger refusal-document mercenary-contract diplomatic-letter diplomatic-letters diplomatic-seals hague-convention policy-folder initiative-document sanctions-document government-concern support-argument trust-concern strategic-ledger cost-ledger diplomatic-letters year-1515 year-1618 year-1815 year-1907 year-1942 year-1996 year-2022 year-1942 citizen-application'),
+ diagrams:list('neutrality-scales cost-scales border-paths border-arrow border-arrows army-markers troop-markers fortress-markers city-markers defense-positions troop-chokepoint causal-branches supply-lines diplomacy-routes embassy-link neutrality-band neutral-buffer trade-routes treaty-fortress deterrence-symbol division-line bloc-arrows three-pillars four-pillars pike-flag flag-shield policy-options policy-branches sanctions-versus-arms territory-rules alliance-partnership switzerland-map country-cards neutral-diplomacy-diagram two-rulebooks two-churches neutrality-seal threat-arrow diplomatic-seals referendum-chart un-timeline war-timeline history-ribbon timeline-1515 year-1515 year-1618 year-1815 year-1907 year-1942 year-1996 year-2022 question'),
+ artifacts:list('swiss-soldiers pike-formation battle-formations swiss-aerial village fortress gold-vault gold-ingot border-post factory-bank factory-train trade-crates supply-items cargo-train mountain-train supply-train army-markers troop-markers country-cards open-gate closed-gate ballot-2026 vote-chart initiative-document'),
+ simulations:list('hypothetical-arrow hypothetical-occupation hypothetical-siege france-hypothesis austria-hypothesis invasion-1798 war-hypothesis'),
 };
 const memberships=Object.fromEntries(Object.entries(objectGroups).flatMap(([g,s])=>[...s].map(k=>[k,g])));
 export const categoryFor=(kind:string)=>{
@@ -19,22 +19,20 @@ export const categoryFor=(kind:string)=>{
  return g;
 };
 const title:Record<string,string>={
-'neutrality-treaty':'永世中立の承認　1815','westphalia-scroll':'ヴェストファーレン条約　1648',
-'archive-scroll':'歴史資料','republic-decree':'ヘルヴェティア共和国　1798','unexecuted-plan':'スイス侵攻計画案　実施されず',
-'initiative-document':'中立イニシアチブ','hague-convention':'ハーグ条約　1907',
-'government-concern':'政府側の主張','support-argument':'提案側の主張','sanctions-document':'経済制裁',
-'refusal-document':'入国を拒否する決定','admission-ledger':'入国・受入れ記録','gold-ledger':'金の取引',
-'gold-provenance':'金の由来を調査','strategic-ledger':'戦略上の負担','cost-ledger':'利益と費用',
-'neutral-diplomacy-diagram':'仲介・利益代表','history-book':'スイス中立の歴史',
-'mercenary-contract':'傭兵の契約','audit-document':'歴史資料の調査','policy-folder':'中立政策',
-'citizen-application':'自国民の保護','diplomatic-letter':'外交文書','diplomatic-letters':'外交連絡',
-'diplomatic-seals':'外交上の承認','year-1515':'1515','year-1618':'1618','year-1815':'1815','year-1907':'1907',
-'year-1942':'1942','year-1996':'1996','year-2022':'2022','timeline-1515':'1515年以降','reduit-plan':'国家堡塁',
-'trade-ledger':'通商記録','republic-decree':'1798年　新体制','refusal-document':'入国を拒否する記録',
-'neutrality-seal':'中立','year-1996':'1996年','country-cards':'ヨーロッパの国々',
-'neutrality-scales':'中立の法と実際','cost-scales':'侵攻の利益と負担',
-'strategic-ledger':'戦略上の負担','treaty-border':'承認と国境','question':'？',
-'neutrality-treaty':'1815年　永世中立','hague-convention':'1907年　ハーグ条約'
+ 'neutrality-treaty':'1815年　永世中立','westphalia-scroll':'ヴェストファーレン条約　1648',
+ 'archive-scroll':'歴史資料','republic-decree':'1798年　新体制','unexecuted-plan':'スイス侵攻計画案　実施されず',
+ 'initiative-document':'中立イニシアチブ','hague-convention':'1907年　ハーグ条約',
+ 'government-concern':'政府側の主張','support-argument':'提案側の主張','sanctions-document':'経済制裁',
+ 'refusal-document':'入国を拒否する記録','admission-ledger':'入国・受入れ記録','gold-ledger':'金の取引',
+ 'gold-provenance':'金の由来を調査','strategic-ledger':'戦略上の負担','cost-ledger':'利益と費用',
+ 'neutral-diplomacy-diagram':'仲介・利益代表','history-book':'スイス中立の歴史',
+ 'mercenary-contract':'傭兵の契約','audit-document':'歴史資料の調査','policy-folder':'中立政策',
+ 'citizen-application':'自国民の保護','diplomatic-letter':'外交文書','diplomatic-letters':'外交連絡',
+ 'diplomatic-seals':'外交上の承認','year-1515':'1515','year-1618':'1618','year-1815':'1815',
+ 'year-1907':'1907','year-1942':'1942','year-1996':'1996年','year-2022':'2022',
+ 'timeline-1515':'1515年以降','reduit-plan':'国家堡塁','trade-ledger':'通商記録',
+ 'neutrality-seal':'中立','country-cards':'ヨーロッパの国々','neutrality-scales':'中立の法と実際',
+ 'cost-scales':'侵攻の利益と負担','treaty-border':'承認と国境','question':'？',
 };
 const badge=(s:string,y=295)=><g><R x={-245} y={y} w={490} h={58} rx={8} c="#172630" o={.92}/><text x={0} y={y+38} textAnchor="middle" fontSize={32} fontWeight={740} fill={W} fontFamily="Noto Sans JP,sans-serif">{s}</text></g>;
 const SwissCross=({x=0,y=0,s=1}:{x?:number;y?:number;s?:number})=><g transform={'translate('+x+' '+y+') scale('+s+')'}><R x={-35} y={-103} w={70} h={206} c={W}/><R x={-103} y={-35} w={206} h={70} c={W}/></g>;
