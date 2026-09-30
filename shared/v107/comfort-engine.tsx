@@ -1,5 +1,5 @@
 import React from 'react';
-import {R,L,P,Ring,Person,q,lerp} from './primitives';
+import {R,L,P,Ring,Person,House,q,lerp} from './primitives';
 import {Backdrop} from './backgrounds';
 import {ComfortSubject,categoryFor,K,TXT,ease} from './comfort-art';
 
