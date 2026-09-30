@@ -5,9 +5,9 @@ import {ComfortSubject,categoryFor,K,TXT,ease} from './comfort-art';
 
 export type Beat={id:string;phase:string;variant:number;narration:string;environment:string;family:string;action:string;primary:string;verb:string;mode:string;actionId:string;sceneKey:string;bgGroup:string;visual:string;shotKind:string};
 export const verbGroups:Record<string,string>={
- kinetic:'approach carry rise route advance climb walk slow step detour raise push switch chase continue',
+ kinetic:'approach carry rise route advance climb walk slow step detour raise push switch chase continue recline',
  temporal:'delay postpone loop pulse fade remain pause replay sequence accumulate',
- transform:'cool discard invert transform compress remove ignite unfold unpack complete shrink relieve reinforce grow increase lower refresh darken adapt shift center ground satisfy open close undo preserve',
+ transform:'cool discard invert transform compress remove ignite unfold unroll unpack complete shrink relieve reinforce grow increase lower refresh darken adapt shift center ground satisfy open close undo preserve reveal',
  relational:'surround compare contrast converge connect separate sever align balance weigh stabilize collaborate speak commit protect choose qualify clarify transfer bypass',
  cognitive:'swipe scroll observe persist highlight draw illuminate expand inflate rehearse work cook stand',
  structural:'stack build route flow rotate increase complete advance',
