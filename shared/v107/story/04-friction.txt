@@ -1,11 +1,11 @@
-ここまで聞くと、エレベーターを使わず暖房も捨て、毎日苦しいことをすれば強くなれるという極端な結論を出したくなるかもしれない。|||extreme-ascetic-cartoon|||comparison|||comfort-tools-thrown-away-too-far|||comfortgrid|||discard|||replace
+ここまで聞くと、エレベーターを使わず暖房も捨て、毎日苦しいことをすれば強くなれるという極端な結論を出したくなるかもしれない。|||extreme-ascetic-cartoon|||cinematic|||comfort-tools-thrown-away-too-far|||comfortgrid|||discard|||replace
 しかし医療が病気の苦痛を減らすことも、機械が危険な重労働を減らすことも、人類が獲得してきた重要な進歩である。|||hospital-machine-progress|||montage|||medicine-and-machines-remove-harm|||hospital|||protect|||replace
 苦痛そのものに価値があるのではなく、価値が生まれうるのは、自分の能力を少しだけ要求してくる抵抗である。|||meaningful-friction-stage|||symbolic|||small-resistance-block-lights-up|||friction|||highlight|||replace
 ジムへ通う男性の前にバーベルが置かれ、現在四十キロを持ち上げられる身体へ、百五十キロを載せれば怪我につながる。|||gym-heavy-barbell|||exercise|||excess-weight-bends-warning-meter|||barbell|||overload|||replace
 反対に何の負荷もかからなければ強くなりにくいため、二十キロから三十キロ、四十キロへと適応できる範囲で増やしていく。|||gym-progress-bars|||timeline|||barbell-load-increases-in-safe-steps|||barbell|||increase|||replace
 この、簡単すぎず難しすぎないという考え方は、身体だけでなく、現代人が便利な道具を使う場面にも応用できる。|||challenge-window-diagram|||diagram|||challenge-window-centers-between-easy-hard|||window|||center|||replace
 文章を書くとき、最初から最後までAIに任せれば短時間で完成品は得られるが、自分で構成を考える機会は消えていく。|||desk-ai-writing|||work|||blank-outline-bypassed-by-ai-output|||laptop|||bypass|||replace
-そこで完成品を拒否するのではなく、最初の構成や問いだけは自分で作り、その後の道具としてAIを使うという選択もできる。|||desk-ai-collaboration|||work|||human-outline-connects-to-ai-assist|||laptop|||collaborate|||replace
+そこで完成品を拒否するのではなく、最初の構成や問いだけは自分で作り、その後の道具としてAIを使うという選択もできる。|||desk-ai-collaboration|||cinematic|||human-outline-connects-to-ai-assist|||laptop|||collaborate|||replace
 旅行でも最短ルートだけを追う代わりに、目的地の周囲を少し歩けば、予定表にはなかった街の景色が視界へ入ってくる。|||travel-side-street|||tracking|||traveler-leaves-fast-route-for-side-road|||map|||detour|||replace
 人間関係で気まずいことが起きたとき、すぐ連絡を絶つ前に、自分の考えを相手を責めない形で一度言葉にしてみる。|||cafe-repair-conversation|||human|||awkward-pause-turns-into-speech|||couple|||speak|||replace
 難しい本を読んで意味が分からなくなったとき、すぐ解説動画へ移る前に、もう数ページだけ読み進めるという抵抗を残してみる。|||study-difficult-book|||study|||finger-stays-on-book-before-phone|||book|||persist|||replace
@@ -16,9 +16,9 @@
 そして一つを乗り越えるたびに、「思っていたより自分は何とかできる」という感覚が、経験として少しずつ積み上がっていく。|||competence-bricks|||symbolic|||completed-challenges-stack-into-confidence|||blocks|||stack|||replace
 自分で棚を組み立てた男に残るのは家具だけではなく、説明書を読み、失敗し、やり直して完成させたという記憶である。|||ikea-memory-return|||domestic|||shelf-project-replays-as-memory-trail|||shelf|||replay|||replace
 そこには、分からなくても少しずつ進めれば何とかなるという、次の未知の課題へ持ち運べる感覚が残っている。|||transfer-confidence-stage|||symbolic|||shelf-confidence-transfers-to-new-task|||marker|||transfer|||replace
-現代人に必要なのは、世界が自分を快適にしてくれる感覚だけでなく、多少不快でも自分なら対処できるという感覚である。|||comfort-capability-balance|||comparison|||comfort-hand-and-capability-hand-balance|||hands|||balance|||replace
-前者だけなら環境が悪化するたび幸福は崩れやすいが、後者があれば条件が変わっても自分から動ける余地が残る。|||weather-change-resilience|||cinematic|||weather-shifts-while-person-keeps-moving|||man|||adapt|||replace
-強い人間とは苦痛を感じない人ではなく、必要な不快が目の前に現れたとき、すぐ逃げなくてもよい人間だと考えられる。|||strength-definition-stage|||symbolic|||person-stands-before-small-obstacle|||man|||stand|||replace
+現代人に必要なのは、世界が自分を快適にしてくれる感覚だけでなく、多少不快でも自分なら対処できるという感覚である。|||comfort-capability-balance|||cinematic|||comfort-hand-and-capability-hand-balance|||hands|||balance|||replace
+前者だけなら環境が悪化するたび幸福は崩れやすいが、後者があれば条件が変わっても自分から動ける余地が残る。|||weather-change-resilience|||observational|||weather-shifts-while-person-keeps-moving|||man|||adapt|||replace
+強い人間とは苦痛を感じない人ではなく、必要な不快が目の前に現れたとき、すぐ逃げなくてもよい人間だと考えられる。|||strength-definition-stage|||macro|||person-stands-before-small-obstacle|||man|||stand|||replace
 その能力は巨大な苦難に突然遭遇した瞬間に生まれるのではなく、日常にある小さな摩擦の中で少しずつ形成される。|||daily-friction-timeline|||timeline|||small-daily-frictions-accumulate-over-time|||markers|||accumulate|||replace
 今日はエレベーターではなく階段を上るという小さな選択でも、自分から負荷を選ぶ経験を一つ増やすことができる。|||office-stairs-choice|||tracking|||man-turns-from-elevator-to-stairs|||stairs|||choose|||replace
 少し難しい文章を最後まで読み、何もせず数分待ち、検索する前に自分で考えることも、同じ方向の小さな練習になる。|||three-practices-room|||montage|||read-wait-think-actions-play-in-three-panels|||skills|||sequence|||replace
