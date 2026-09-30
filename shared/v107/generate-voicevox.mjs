@@ -1,1 +1,6 @@
-import path from 'node:path';import {fileURLToPath} from 'node:url';import {generateVoicevox} from '../voice/generate-voicevox.mjs';const h=path.dirname(fileURLToPath(import.meta.url));await generateVoicevox(path.resolve(h,'..','..','v107-comfort-friction-original-scenes'),{speaker:'青山龍星',style:'ノーマル',speed:1.15,pitchScale:-0.026,intonationScale:0.86,padDuration:0.18});
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {generateVoicevox} from '../../shared/voice/generate-voicevox.mjs';
+const home=path.dirname(fileURLToPath(import.meta.url));
+const root=path.resolve(home,'..');
+await generateVoicevox(root,{speaker:'青山龍星',style:'ノーマル',speed:1.15,pitchScale:-0.026,intonationScale:0.86,padDuration:0.18});
