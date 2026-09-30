@@ -7,10 +7,10 @@ export const TXT=({x,y,t,s=38,c=K.paper,anchor='middle',o=1}:{x:number;y:number;
 const list=(s:string)=>s.split(/\s+/);
 export const objectGroups:Record<string,string[]>={
  human:list('man people couple farmer seneca epicurus philosophers hand hands'),
- home:list('aircon alarm elevator escalator fireplace firewood bucket pan takeout snack water door stairs villa hotel hospital mall'),
+ home:list('aircon alarm clock elevator escalator fireplace firewood bucket pan takeout snack bread water door stairs villa hotel hospital mall'),
  device:list('phone inbox laptop ui presentation button'),
  document:list('book paper scroll taskcard roadmap timeline labels'),
- structure:list('housepair transport utilities furniture screw shelf bedpair bridge mountain obstacles friction window paths podium treadmill'),
+ structure:list('housepair transport utilities furniture screw shelf bedpair bridge mountain obstacles friction window paths podium treadmill shield map'),
  data:list('balance scale bargraph baseline curve meter nodes cycle distance markers marker paradox question loop fear shadow flame skills blocks comfortgrid'),
  exercise:list('barbell'),
  logistics:list('deliverybag')
@@ -52,6 +52,7 @@ const Home=({kind,p}:{kind:string;p:number})=>{
  if(kind==='bucket')return <g><P d="M-180 -120 L180 -120 L130 240 L-130 240Z" c="#70848a" stroke={K.ink} sw={7}/><path d="M-150 -120 Q0 -330 150 -120" fill="none" stroke={K.wood} strokeWidth={15}/></g>;
  if(kind==='pan')return <g><ellipse rx={230} ry={105} fill="#41494e" stroke={K.paper} strokeWidth={7}/><L x={210} y={0} X={430} Y={-100} c={K.wood} sw={25}/>{[-80,20,90].map((x,i)=><circle key={i} cx={x+25*Math.sin(e*6+i)} cy={-5-30*Math.cos(e*5+i)} r={45-i*7} fill={i%2?K.gold:K.teal}/>)}</g>;
  if(kind==='takeout')return <g><R x={-260} y={-160} w={520} h={330} rx={30} c="#d8caa9" stroke={K.wood} sw={7}/><R x={-210} y={-105} w={420} h={50} c={K.red} o={.7}/></g>;
+ if(kind==='bread')return <g><ellipse rx={235} ry={135} fill="#c69a62" stroke={K.wood} strokeWidth={8}/>{[-95,0,95].map((x,i)=><path key={i} d={'M'+(x-35)+' -45 Q'+x+' -95 '+(x+35)+' -45'} fill="none" stroke="#e0bd82" strokeWidth="14"/>)}</g>;
  if(kind==='snack')return <g><P d="M-160 -260 L190 -235 L150 250 L-180 230Z" c="#b88a68"/>{[0,1,2].map(i=><circle key={i} cx={-70+i*75} cy={-20+i%2*65} r={40} fill={i%2?K.gold:K.red} opacity={1-.2*e}/>)}</g>;
  if(kind==='water')return <g><P d="M-170 -260 H170 L120 250 H-120Z" c="#a8c9cf" o={.72}/><P d={'M-120 '+(100-260*e)+' H120 L100 220 H-100Z'} c={K.blue} o={.75}/></g>;
  if(kind==='door')return <g><R x={-210} y={-320} w={420} h={650} c="#8b7766" stroke={K.paper} sw={10}/><P d={'M-170 -270 L'+lerp(160,40,e)+' -220 L'+lerp(160,40,e)+' 270 L-170 280Z'} c="#405865"/><circle cx={lerp(105,15,e)} cy={40} r={14} fill={K.gold}/></g>;
@@ -82,6 +83,8 @@ const Arrowish=({x1,y1,x2,y2,c}:{x1:number;y1:number;x2:number;y2:number;c:strin
 const Structure=({kind,p}:{kind:string;p:number})=>{
  const e=ease(p);
  if(kind==='barbell')return <g><L x={-350} y={0} X={350} Y={0} c={K.paper} sw={24}/>{[-260,-220,220,260].map((x,i)=><R key={i} x={x-25} y={-125} w={50} h={250} c={i%2?K.red:K.gold}/>)}</g>;
+ if(kind==='map')return <g><P d="M-330 -230 L-90 -300 L70 -215 L290 -250 L350 20 L240 250 L-40 300 L-275 205Z" c="#9dae9f"/>{[0,1,2].map(i=><circle key={i} cx={-140+i*145} cy={-60+i%2*115} r={18} fill={i%2?K.gold:K.red}/>)}</g>;
+ if(kind==='shield')return <g><P d="M0 -300 L270 -190 L225 105 Q170 245 0 335 Q-170 245 -225 105 L-270 -190Z" c="#607a88" stroke={K.gold} sw={15}/></g>;
  if(kind==='mountain')return <g><P d="M-390 250 L-110 -270 L30 -80 L160 -340 L420 250Z" c="#66777c"/><P d="M-110 -270 L-35 -135 L-180 -115Z" c={K.paper}/><P d="M160 -340 L235 -190 L95 -195Z" c={K.paper}/></g>;
  if(kind==='bridge')return <g><P d="M-360 160 Q0 -260 360 160" c="none" stroke={K.wood} sw={28}/><L x={-330} y={160} X={330} Y={160} c={K.paper} sw={18}/>{[-240,-120,0,120,240].map(x=><L key={x} x={x} y={160} X={x} Y={-140+Math.abs(x)*.45} c={K.wood} sw={7}/>)}</g>;
  if(kind==='transport')return <Vehicle x={0} y={80} p={p} kind={p<.33?'wagon':p<.66?'bus':'car'}/>;
