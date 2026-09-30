@@ -1,5 +1,5 @@
 時代を二千年ほど遡ると、古代ローマの広い邸宅では、食卓にワインと料理が並び、召使いたちが静かに室内を行き来している。|||rome-villa-evening|||historical|||roman-villa-luxury-establishes|||villa|||reveal|||replace
-その屋敷の主人セネカは、政治家であり哲学者でありながら、当時としてはかなり裕福な生活を送っていた。|||seneca-study|||historical|||seneca-sits-amid-wealth|||seneca|||observe|||replace
+その屋敷の主人セネカは、政治家であり哲学者でありながら、当時としてはかなり裕福な生活を送っていた。|||seneca-study|||observational|||seneca-sits-amid-wealth|||seneca|||observe|||replace
 だからこそ彼が友人ルキリウスへの手紙で、ときどき粗末な衣服と質素な食事で数日過ごすことを勧めた点は興味深い。|||seneca-letter-desk|||document|||seneca-letter-unrolls-poverty-practice|||scroll|||unroll|||replace
 その目的は貧困を美化することではなく、財産を失うことへの恐怖を、小さな実体験によって具体的な大きさへ戻すことだった。|||rome-simple-room|||comparison|||luxury-room-and-simple-pallet-align|||bedpair|||compare|||replace
 硬いパンと粗末な寝床で数日過ごせば、頭の中で巨大だった「これに耐えられるのか」という恐怖に、輪郭が与えられる。|||seneca-bread-pallet|||macro|||bread-and-pallet-replace-imagined-catastrophe|||bread|||ground|||replace
@@ -7,7 +7,7 @@
 セネカの実践は自分を苦しめる儀式というより、快適さを失うことへの恐怖を、壊れない範囲で予行演習する試みと見ることができる。|||roman-training-yard|||philosophy|||comfort-loss-rehearsed-like-drill|||shield|||rehearse|||replace
 さらに興味深いのは、一般に快楽主義者として知られるエピクロスが、すべての快楽を無条件に選ぶべきだとは考えていなかったことである。|||epicurus-garden|||historical|||epicurus-walks-through-simple-garden|||epicurus|||walk|||replace
 目の前の快楽が後で大きな苦痛を生むなら避け、一時的な苦痛が後の大きな満足へつながるなら、その苦痛を選ぶこともあると論じた。|||epicurus-choice-table|||philosophy|||pleasure-and-pain-consequences-swap|||balance|||weigh|||replace
-簡素な食事にも満足できるなら、豪華な食事が手に入らないことを過度に恐れずに済み、運命の変化に対する依存も小さくなる。|||epicurus-simple-meal|||historical|||simple-bread-satisfies-before-feast|||bread|||satisfy|||replace
+簡素な食事にも満足できるなら、豪華な食事が手に入らないことを過度に恐れずに済み、運命の変化に対する依存も小さくなる。|||epicurus-simple-meal|||cinematic|||simple-bread-satisfies-before-feast|||bread|||satisfy|||replace
 二千年以上前の哲学者たちは快楽適応という用語を知らなかったが、欲しいものを得る能力と満足する能力が別物だと観察していた。|||ancient-modern-concept-bridge|||comparison|||ancient-scroll-connects-to-modern-brain-chart|||bridge|||connect|||replace
 この問題を見るため古代ローマから現代のショッピングモールへ戻ると、かつて特別だった甘い物や娯楽が二十四時間並んでいる。|||mall-abundance|||tracking|||ancient-table-dissolves-into-mall|||mall|||transform|||replace
 世界中の音楽や映画や商品へほぼ即座にアクセスできるようになり、過去の王侯より多くの選択肢が一般家庭の画面へ流れ込む。|||digital-abundance-wall|||montage|||music-film-goods-flood-one-screen|||comfortgrid|||flow|||replace
