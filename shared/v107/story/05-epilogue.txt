@@ -10,9 +10,9 @@
 快適さそのものが変わったのではなく、快適さへたどり着くまでに、自分で進んだ小さな距離が生まれただけである。|||final-distance-line|||symbolic|||effort-distance-appears-before-comfort|||distance|||draw|||replace
 人類は長い時間をかけて世界から苦痛を取り除き、それによって寿命や安全や自由な時間を大きく増やしてきた。|||human-progress-timeline|||timeline|||centuries-of-harm-removal-advance|||timeline|||advance|||replace
 しかし人間は、ただ快適であるだけでは必ずしも満たされず、自分の力を使い何かを越えたあとに休むことで満足を感じることもある。|||effort-rest-cycle|||diagram|||effort-and-rest-form-repeating-cycle|||cycle|||rotate|||replace
-難しかったことが昨日より少しでき、怖かったことが思ったより大丈夫だったと分かる経験は、快適さとは違う種類の報酬を残す。|||progress-memory-wall|||symbolic|||yesterday-and-today-capability-markers-separate|||markers|||compare|||replace
+難しかったことが昨日より少しでき、怖かったことが思ったより大丈夫だったと分かる経験は、快適さとは違う種類の報酬を残す。|||progress-memory-wall|||cinematic|||yesterday-and-today-capability-markers-separate|||markers|||compare|||replace
 だから必要なのは苦しみを探し回ることではなく、便利になった世界の中に、自分が成長できる小さな摩擦を少しだけ残すことである。|||final-friction-garden|||symbolic|||small-friction-stones-left-on-smooth-path|||friction|||preserve|||replace
 考えるための面倒、工夫するための不便、自分にもできると知るための負荷は、便利さが増えるほど意識しなければ消えていく。|||final-three-frictions|||montage|||thinking-making-capability-three-symbols-glow|||skills|||illuminate|||replace
 本当に恐ろしいのは不快そのものではなく、不快を一切避けることに慣れた結果、わずかな面倒にまで行動を支配されることである。|||final-warning-stage|||symbolic|||tiny-obstacle-casts-giant-control-shadow|||shadow|||expand|||replace
-快適な世界を拒絶する必要はなく、その恩恵を受けながら、必要なときだけ自分の意思で快適さの外へ一歩出ればよい。|||final-doorway-dawn|||cinematic|||man-steps-from-comfort-into-dawn|||man|||step|||replace
+快適な世界を拒絶する必要はなく、その恩恵を受けながら、必要なときだけ自分の意思で快適さの外へ一歩出ればよい。|||final-doorway-dawn|||observational|||man-steps-from-comfort-into-dawn|||man|||step|||replace
 現代人に必要なのは苦痛の最大化ではなく、快適さの奴隷にならないために、自分で選べる程度の不便を残すことなのである。|||final-title-night|||chapter|||final-book-closes-on-meaningful-friction|||book|||close|||replace
