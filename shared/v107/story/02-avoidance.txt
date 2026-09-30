@@ -20,5 +20,5 @@
 非常に多い逆境では状態が悪い傾向がある一方、ある程度の逆境を経験した人が、逆境のない人より良好な指標を示す場合があった。|||adversity-u-curve|||data|||moderate-adversity-point-highlights|||curve|||highlight|||replace
 これは苦しみを増やせば健康になるという証明ではなく、強すぎる負荷は人を壊し、負荷ゼロも必ずしも最適ではないという示唆である。|||load-window-stage|||comparison|||safe-window-appears-between-zero-and-overload|||window|||qualify|||replace
 心理的な強さに必要なのは巨大な悲劇ではなく、少し怖いことに挑み、少し面倒なことを最後まで終えるような処理可能な困難である。|||manageable-challenge-path|||symbolic|||small-obstacles-form-climbable-path|||obstacles|||climb|||replace
-そして「思っていたより自分は大丈夫だった」と確認できたとき、不快は敵ではなく、自分の能力を測る経験へ変わっていく。|||self-efficacy-stage|||symbolic|||fear-cloud-turns-into-measured-marker|||marker|||transform|||replace
+そして「思っていたより自分は大丈夫だった」と確認できたとき、不快は敵ではなく、自分の能力を測る経験へ変わっていく。|||self-efficacy-stage|||cinematic|||fear-cloud-turns-into-measured-marker|||marker|||transform|||replace
 我々が求めるべきなのは苦痛の最大化ではなく、回復できる困難を自分の力で越えることだという点を、ここで区別しておかなければならない。|||chapter3-bridge|||transition|||pain-maximization-crossed-out-next-to-growth-path|||bridge|||clarify|||replace
