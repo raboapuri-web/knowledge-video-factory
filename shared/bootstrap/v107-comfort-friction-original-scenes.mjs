@@ -62,7 +62,7 @@ fs.copyFileSync(path.join(root,'shared/v100/primitives.tsx'),path.join(src,'prim
 for(const file of ['generate-voicevox.mjs','check-original-scenes.mjs'])fs.copyFileSync(path.join(source,file),path.join(scripts,file));
 fs.copyFileSync(path.join(root,'shared/v53/generate-bgm.mjs'),path.join(scripts,'generate-bgm.mjs'));
 fs.copyFileSync(path.join(root,'v44-interaction-attraction/scripts/plan-segments.mjs'),path.join(scripts,'plan-segments.mjs'));
-fs.copyFileSync(path.join(source,'build-preproduction.mjs'),path.join(root,'shared','v107','build-preproduction.mjs'));
+fs.copyFileSync(path.join(source,'build-preproduction.mjs'),path.join(scripts,'build-preproduction.mjs'));
 for(const file of ['SOURCES.md','V107_PRODUCTION_SPEC.md'])fs.copyFileSync(path.join(source,file),path.join(target,file));
 fs.writeFileSync(path.join(target,'production-manifest.json'),JSON.stringify({videoId:'V107-comfort-friction-original-scenes',sceneCount:134,narrationCharacters:chars,environmentCount:134,uniqueActions:134,phases:phaseCounts,method:'V106-style one narration = unique physical action with nonreused scene environment',measuredVoice:true,subtitles:true,sfx:false,bgm:true,minimumFinalSeconds:600,output:{width:1920,height:1080,fps:30}},null,2));
 console.log('V107 preflight PASS: '+beats.length+' authored scenes / '+chars+' narration chars / '+objectSet.size+' objects / '+verbSet.size+' verbs / '+familySet.size+' families');
