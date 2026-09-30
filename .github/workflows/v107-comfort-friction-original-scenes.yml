@@ -1,0 +1,131 @@
+name: V107 Comfort Friction Original Scenes
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/v107-comfort-friction-original-scenes.yml','shared/bootstrap/v107-comfort-friction-original-scenes.mjs','shared/v107/**']
+permissions: {contents: write}
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    outputs: {matrix: '${{ steps.plan.outputs.matrix }}'}
+    steps:
+      - uses: actions/checkout@v4
+      - run: node shared/bootstrap/v107-comfort-friction-original-scenes.mjs
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - working-directory: v107-comfort-friction-original-scenes
+        run: npm install
+      - working-directory: v107-comfort-friction-original-scenes
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - working-directory: v107-comfort-friction-original-scenes
+        run: node scripts/build-preproduction.mjs
+      - name: Verify 134 narration-specific actions and similarity guards
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const d=require('./v107-comfort-friction-original-scenes/src/scene-data.json');
+          const expected={prologue:20,civilization:22,avoidance:24,philosophy:24,friction:26,epilogue:18};
+          if(d.length!==134||new Set(d.map(x=>x.environment)).size!==134)throw Error('Full V107 original scene inventory missing');
+          for(const k of ['action','actionId','environment','sceneKey','visual'])if(new Set(d.map(x=>x[k])).size!==134)throw Error('Reused V107 '+k);
+          for(const [phase,count] of Object.entries(expected))if(d.filter(x=>x.phase===phase).length!==count)throw Error('Incomplete original chapter '+phase);
+          for(let i=0;i<d.length;i++){const b=d[i],prior=d[i-1];
+            if(!b.narration||!b.action||!b.primary||!b.verb)throw Error('Generic unsupported scene '+b.id);
+            if(prior&&prior.family===b.family)throw Error('Adjacent similar visual family '+b.id);
+            const w=d.slice(Math.max(0,i-5),i+1);if(w.length===6&&new Set(w.map(x=>x.family)).size<5)throw Error('Six-cut visual family repetition '+b.id);
+            if(prior&&prior.environment===b.environment&&prior.primary===b.primary&&prior.verb===b.verb)throw Error('Adjacent duplicate action '+b.id);
+          }
+          const engine=fs.readFileSync('shared/v107/comfort-engine.tsx','utf8'),art=fs.readFileSync('shared/v107/comfort-art.tsx','utf8'),bg=fs.readFileSync('shared/v107/backgrounds.tsx','utf8');
+          if(!engine.includes("throw Error('V107 unsupported physical verb")||!art.includes("throw Error('V107 unsupported object")||!bg.includes("throw Error('V107 unsupported background family"))throw Error('Generic fallback renderer detected');
+          console.log('V107 QA PASS: 134 unique narration actions / 134 unique environments / 6 complete chapters');
+          NODE
+      - working-directory: v107-comfort-friction-original-scenes
+        run: npm run check
+      - name: Draw all 134 original scene previews and reject exact duplicates
+        working-directory: v107-comfort-friction-original-scenes
+        run: |
+          mkdir -p out/preview
+          seq 0 133 | xargs -P 3 -I @ bash -c 'I=@; FRAME=$((I*20+12)); npx remotion still src/index.tsx V107ScenePreview "out/preview/scene-$(printf %03d "$I").png" --frame="$FRAME" --log=error'
+          test "$(find out/preview -name '*.png' | wc -l)" -eq 134
+          DUPES=$(find out/preview -name '*.png' -print0 | xargs -0 sha256sum | cut -d' ' -f1 | sort | uniq -d)
+          test -z "$DUPES" || (echo "Exact duplicated original previews" && exit 1)
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; exit 1
+      - working-directory: v107-comfort-friction-original-scenes
+        run: node scripts/generate-voicevox.mjs
+      - name: Enforce measured narration timing and >=10 minute guard
+        working-directory: v107-comfort-friction-original-scenes
+        run: node scripts/check-original-scenes.mjs
+      - id: plan
+        working-directory: v107-comfort-friction-original-scenes
+        run: echo "matrix=$(node scripts/plan-segments.mjs)" >> "$GITHUB_OUTPUT"
+      - run: tar --exclude='v107-comfort-friction-original-scenes/node_modules' --exclude='v107-comfort-friction-original-scenes/.voice-tmp' --exclude='v107-comfort-friction-original-scenes/out/preview' -czf v107-prepared.tar.gz v107-comfort-friction-original-scenes
+      - uses: actions/upload-artifact@v4
+        with: {name: v107-prepared, path: v107-prepared.tar.gz, retention-days: 1}
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v107-prepared}
+      - run: tar -xzf v107-prepared.tar.gz
+      - working-directory: v107-comfort-friction-original-scenes
+        run: npm install
+      - working-directory: v107-comfort-friction-original-scenes
+        run: mkdir -p out && npx remotion render src/index.tsx V107ComfortFrictionOriginalScenes "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with: {name: 'v107-segment-${{ matrix.id }}', path: 'v107-comfort-friction-original-scenes/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
+  finalize:
+    needs: [prepare,render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v107-prepared}
+      - run: tar -xzf v107-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'v107-segment-*', path: v107-comfort-friction-original-scenes/parts, merge-multiple: true}
+      - working-directory: v107-comfort-friction-original-scenes
+        run: node scripts/generate-bgm.mjs
+      - working-directory: v107-comfort-friction-original-scenes
+        run: |
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v107-final.mp4
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v107-final.mp4 | head -1 | tr -cd '0-9')" = '1920'
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v107-final.mp4 | head -1 | tr -cd '0-9')" = '1080'
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v107-final.mp4 | tr -d '\r')
+          A=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 out/v107-final.mp4 | wc -l)
+          F=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=nw=1:nk=1 out/v107-final.mp4 | head -1 | tr -d '\r')
+          test "$F" = '30/1'
+          test "$A" -ge 1
+          awk "BEGIN{exit !($D >= 600)}"
+          mkdir -p qa
+          node -e 'const fs=require("fs");fs.writeFileSync("qa/final-validation.json",JSON.stringify({videoId:"V107-comfort-friction-original-scenes",durationSeconds:Number(process.argv[1]),fps:30,audioStreams:Number(process.argv[2]),minimumSeconds:600,passed:true},null,2))' "$D" "$A"
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v107-comfort-friction-original-scenes v107-comfort-friction-original-scenes/out/v107-final.mp4 v107-comfort-friction-original-scenes/out/v107-contact-sheet.jpg
+      - working-directory: v107-comfort-friction-original-scenes
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG="v107-comfort-friction-original-scenes-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v107-comfort-friction-original-scenes-${GITHUB_RUN_ID}.mp4"
+          cp out/v107-final.mp4 "out/$NAME"
+          gh release create "$TAG" "out/$NAME" out/v107-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json qa/final-validation.json SOURCES.md V107_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V107 Comfort Friction Original Scenes ${GITHUB_RUN_ID}" --notes "V107: full original film about comfort, effort and meaningful friction; 134 narration-linked physical cuts, 134 unique environments, rolling six-cut diversity guard, all-scene preview duplicate check, measured VOICEVOX/subtitles/BGM, no SFX, and final runtime validated at >=600 seconds."
