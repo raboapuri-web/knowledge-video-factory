@@ -1,0 +1,1 @@
+import path from 'node:path';import {fileURLToPath} from 'node:url';import {generateVoicevox} from '../../shared/voice/generate-voicevox.mjs';const home=path.dirname(fileURLToPath(import.meta.url));const root=path.resolve(home,'..');await generateVoicevox(root,{speaker:'青山龍星',style:'ノーマル',speed:1.15,pitchScale:-0.026,intonationScale:0.86,padDuration:0.18});
