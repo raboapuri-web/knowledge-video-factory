@@ -6,12 +6,12 @@ export const TXT=({x,y,t,s=36,c=K.paper,a='middle',o=1}:{x:number;y:number;t:str
 export const ease=(p:number)=>{const x=q(p);return x*x*(3-2*x)};
 
 const groups:Record<string,string[]>={
- people:'confident-worker quiet-worker manager colleague researcher expert novice team',
- docs:'project-board report old-data contract proposal memo checklist',
- charts:'quartile-chart percentile-gap regression-chart confidence-gauge confidence-accuracy status-ladder forecast-tree contribution-wheel feedback-loop evaluation-dashboard score-axis',
- concepts:'metacognition-loop double-burden invisible-error ability-mask spotlight mirror-question competence-vs-confidence uncertainty branches status-signal fire-crisis prevented-failure',
- devices:'phone laptop server-log monitor',
- events:'delivery sales-conversation client-call correction handoff promotion'
+ people:'confident-worker quiet-worker manager colleague researcher expert novice team'.split(/\\s+/),
+ docs:'project-board report old-data contract proposal memo checklist'.split(/\\s+/),
+ charts:'quartile-chart percentile-gap regression-chart confidence-gauge confidence-accuracy status-ladder forecast-tree contribution-wheel feedback-loop evaluation-dashboard score-axis'.split(/\\s+/),
+ concepts:'metacognition-loop double-burden invisible-error ability-mask spotlight mirror-question competence-vs-confidence uncertainty branches status-signal fire-crisis prevented-failure'.split(/\\s+/),
+ devices:'phone laptop server-log monitor'.split(/\\s+/),
+ events:'delivery sales-conversation client-call correction handoff promotion'.split(/\\s+/)
 };
 const membership=new Map(Object.entries(groups).flatMap(([g,a])=>a.map(k=>[k,g])));
 export const categoryFor=(k:string)=>{const g=membership.get(k);if(!g)throw Error('V109 unsupported object '+k);return g};
@@ -46,7 +46,7 @@ const Concept=({kind,p}:{kind:string;p:number})=>{
  if(kind==='status-signal')return <g><circle r={130} fill={K.gold}/>{[0,1,2,3].map(i=><Ring key={i} x={0} y={0} p={q((ease(p)-i*.12)*1.4)} r={170+i*70} c={i%2?K.red:K.gold}/>)}</g>;
  if(kind==='competence-vs-confidence')return <g><R x={-360} y={-190} w={300} h={380} rx={20} c="#526a72"/><R x={60} y={-190} w={300} h={380} rx={20} c="#7e625d"/><TXT x={-210} y={-20} t="能力" s={54}/><TXT x={210} y={-20} t="自信" s={54}/><TXT x={0} y={20} t="≠" s={88} c={K.gold}/></g>;
  if(kind==='mirror-question')return <g><ellipse cx={0} cy={0} rx={240} ry={310} fill="#263942" stroke={K.gold} strokeWidth={12}/><TXT x={0} y={55} t="？" s={220}/></g>;
- if(kind==='prevented-failure')return <g><R x={-300} y={-210} w={600} h={420} rx={20} c="#34464c"/><Ring x={0} y={0} p={p} r={150} c={K.teal}/><P d="M-100 15 L-25 95 125 -95" fill="none" stroke={K.gold} strokeWidth="30"/></g>;
+ if(kind==='prevented-failure')return <g><R x={-300} y={-210} w={600} h={420} rx={20} c="#34464c"/><Ring x={0} y={0} p={p} r={150} c={K.teal}/><P d="M-100 15 L-25 95 125 -95" c="none" stroke={K.gold} sw={30}/></g>;
  return <g><Ring x={0} y={0} p={p} r={240} c={K.gold}/><TXT x={0} y={20} t={kind.replaceAll('-','・')} s={28}/></g>;
 };
 
