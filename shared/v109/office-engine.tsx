@@ -39,7 +39,7 @@ const CharacterLayer=({beat,p}:{beat:Beat;p:number})=>{
 
 const SemanticLayer=({beat,p}:{beat:Beat;p:number})=>{
  const g=categoryFor(beat.primary),e=ease(p),group=vf(beat.verb),seed=hash(beat.action);
- let x=beat.shotKind==='detail'?620:beat.shotKind==='split'?960:530+(seed%180),y=480+(seed%90)-45,sc=g==='charts'?1.05:g==='docs'?.82:.9;
+ let x=beat.shotKind==='detail'?620:beat.shotKind==='split'?960:530+(seed%180),y=480+(seed%90)-45,sc=g==='charts'?1.05:(g==='docs'?0.82:0.9);
  if(group==='diagram')x=960;
  if(group==='work'&&/report|proposal|contract|old-data|checklist/.test(beat.primary))x=570;
  return <svg width="1920" height="1080" viewBox="0 0 1920 1080" style={{position:'absolute',inset:0,pointerEvents:'none'}}>
