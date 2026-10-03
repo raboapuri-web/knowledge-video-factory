@@ -12,8 +12,7 @@ jobs:
   prepare:
     runs-on: ubuntu-24.04
     timeout-minutes: 180
-    outputs:
-      matrix: ${{ steps.plan.outputs.matrix }}
+    outputs: {matrix: '${{ steps.plan.outputs.matrix }}'}
     steps:
       - uses: actions/checkout@v4
       - run: node shared/bootstrap/v109-overconfidence-work-original-scenes.mjs
@@ -83,7 +82,7 @@ jobs:
     strategy:
       fail-fast: false
       max-parallel: 8
-      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+      matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
@@ -98,8 +97,8 @@ jobs:
         run: mkdir -p out && npx remotion render src/index.tsx V109OverconfidenceWorkOriginalScenes "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
       - uses: actions/upload-artifact@v4
         with:
-          name: v109-segment-${{ matrix.id }}
-          path: v109-overconfidence-work-original-scenes/out/segment-${{ matrix.id }}.mp4
+          name: 'v109-segment-${{ matrix.id }}'
+          path: 'v109-overconfidence-work-original-scenes/out/segment-${{ matrix.id }}.mp4'
           retention-days: 1
 
   finalize:
@@ -138,7 +137,7 @@ jobs:
           node -e 'const fs=require("fs");fs.writeFileSync("qa/final-validation.json",JSON.stringify({videoId:"V109-overconfidence-work-original-scenes",durationSeconds:Number(process.argv[1]),fps:30,audioStreams:Number(process.argv[2]),minimumSeconds:1050,passed:true},null,2))' "$D" "$A"
       - run: node shared/qa/generate-scene-contact-sheet.mjs v109-overconfidence-work-original-scenes v109-overconfidence-work-original-scenes/out/v109-final.mp4 v109-overconfidence-work-original-scenes/out/v109-contact-sheet.jpg
       - working-directory: v109-overconfidence-work-original-scenes
-        env: {GH_TOKEN: ${{ github.token }}}
+        env: {GH_TOKEN: '${{ github.token }}'}
         run: |
           TAG="v109-overconfidence-work-original-scenes-${GITHUB_RUN_ID}"
           NAME="knowledge-video-v109-overconfidence-work-original-scenes-${GITHUB_RUN_ID}.mp4"
