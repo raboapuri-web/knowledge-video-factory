@@ -1,0 +1,1 @@
+{"compilerOptions":{"target":"ES2022","module":"ESNext","moduleResolution":"Bundler","jsx":"react-jsx","resolveJsonModule":true,"allowSyntheticDefaultImports":true,"esModuleInterop":true,"strict":false,"skipLibCheck":true,"noEmit":true},"include":["src/**/*.tsx","../shared/asset-library/人物テンプレート/office-worker-rig.tsx"]}
