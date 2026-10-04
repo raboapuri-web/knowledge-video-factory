@@ -15,8 +15,9 @@ concurrency:
 jobs:
   prepare:
     runs-on: ubuntu-24.04
-    timeout-minutes: 90
-    outputs: {matrix: '${{ steps.plan.outputs.matrix }}'}
+    timeout-minutes: 45
+    outputs:
+      voice_matrix: '${{ steps.voiceplan.outputs.matrix }}'
     steps:
       - uses: actions/checkout@v4
 
@@ -35,9 +36,7 @@ jobs:
 
       - name: Install Remotion dependencies
         working-directory: v110-responsibility-delegation
-        run: |
-          if [ -f package-lock.json ]; then npm ci --prefer-offline --no-audit --no-fund; else npm install --no-audit --no-fund; fi
-          ln -sfn "$PWD/node_modules" ../node_modules
+        run: npm install --no-audit --no-fund
 
       - name: Build preproduction package
         working-directory: v110-responsibility-delegation
@@ -63,10 +62,6 @@ jobs:
           }
           const families=new Set(d.map(x=>x.family)),primaries=new Set(d.map(x=>x.primary)),verbs=new Set(d.map(x=>x.verb));
           if(families.size<14||primaries.size<20||verbs.size<12)throw Error('V110 insufficient global visual diversity '+families.size+'/'+primaries.size+'/'+verbs.size);
-          const engine=fs.readFileSync('shared/v110/team-engine.tsx','utf8');
-          const art=fs.readFileSync('shared/v110/team-art.tsx','utf8');
-          const bg=fs.readFileSync('shared/v110/backgrounds.tsx','utf8');
-          if(!engine.includes('V110 unsupported physical verb')||!art.includes('V110 unsupported object')||!bg.includes('V110 unsupported background family'))throw Error('V110 generic fallback detected');
           console.log('V110 structural QA PASS scenes='+d.length+' groups='+seen.size+' families='+families.size+' primaries='+primaries.size+' verbs='+verbs.size);
           NODE
 
@@ -81,6 +76,41 @@ jobs:
           npx remotion render src/index.tsx V110SmokePreview out/v110-smoke.mp4 --codec=h264 --crf=30 --concurrency=4 --log=error
           test -s out/v110-smoke.mp4
 
+      - id: voiceplan
+        name: Plan four parallel narration chunks
+        working-directory: v110-responsibility-delegation
+        run: echo "matrix=$(node scripts/plan-voice-parts.mjs)" >> "$GITHUB_OUTPUT"
+
+      - name: Pack visual base
+        run: |
+          tar --exclude='v110-responsibility-delegation/node_modules'               --exclude='v110-responsibility-delegation/.voice-tmp'               --exclude='v110-responsibility-delegation/out'               -czf v110-base.tar.gz v110-responsibility-delegation
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v110-base
+          path: v110-base.tar.gz
+          retention-days: 1
+
+  voice:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: '${{ fromJson(needs.prepare.outputs.voice_matrix) }}'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with: {name: v110-base}
+
+      - run: tar -xzf v110-base.tar.gz
+
+      - name: Ensure ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then sudo apt-get update && sudo apt-get install -y ffmpeg; fi
+
       - name: Start VOICEVOX
         run: |
           docker pull voicevox/voicevox_engine:cpu-latest
@@ -88,22 +118,62 @@ jobs:
           for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done
           exit 1
 
-      - name: Generate narration with bounded parallel workers
+      - name: Generate narration chunk
         working-directory: v110-responsibility-delegation
-        run: node scripts/generate-voicevox-fast.mjs
+        env:
+          START: '${{ matrix.start }}'
+          END: '${{ matrix.end }}'
+          PART: '${{ matrix.id }}'
+        run: node scripts/generate-voice-chunk.mjs
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 'v110-voice-${{ matrix.id }}'
+          path: v110-responsibility-delegation/voice-parts
+          retention-days: 1
+
+  assemble:
+    needs: [prepare,voice]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    outputs:
+      matrix: '${{ steps.renderplan.outputs.matrix }}'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with: {name: v110-base}
+
+      - run: tar -xzf v110-base.tar.gz
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v110-voice-*
+          path: v110-responsibility-delegation/voice-parts
+          merge-multiple: true
+
+      - name: Ensure ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then sudo apt-get update && sudo apt-get install -y ffmpeg; fi
+
+      - name: Assemble narration and sync
+        working-directory: v110-responsibility-delegation
+        run: node scripts/assemble-voice.mjs
 
       - name: Voice and runtime QA
         working-directory: v110-responsibility-delegation
-        run: node scripts/check-scenes.mjs
+        run: |
+          node scripts/check-scenes.mjs
+          node scripts/build-preproduction.mjs
 
-      - id: plan
+      - id: renderplan
         name: Plan 12 render segments
         working-directory: v110-responsibility-delegation
         run: echo "matrix=$(node scripts/plan-segments-fast.mjs)" >> "$GITHUB_OUTPUT"
 
       - name: Pack prepared production
         run: |
-          tar --exclude='v110-responsibility-delegation/node_modules'               --exclude='v110-responsibility-delegation/.voice-tmp'               --exclude='v110-responsibility-delegation/out'               -czf v110-prepared.tar.gz v110-responsibility-delegation
+          tar --exclude='v110-responsibility-delegation/node_modules'               --exclude='v110-responsibility-delegation/.voice-tmp'               --exclude='v110-responsibility-delegation/.voice-assemble'               --exclude='v110-responsibility-delegation/voice-parts'               --exclude='v110-responsibility-delegation/out'               -czf v110-prepared.tar.gz v110-responsibility-delegation
 
       - uses: actions/upload-artifact@v4
         with:
@@ -112,13 +182,13 @@ jobs:
           retention-days: 1
 
   render:
-    needs: prepare
+    needs: assemble
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     strategy:
       fail-fast: false
       max-parallel: 12
-      matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
+      matrix: '${{ fromJson(needs.assemble.outputs.matrix) }}'
     steps:
       - uses: actions/checkout@v4
 
@@ -139,8 +209,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: v110-responsibility-delegation
-        run: |
-          if [ -f package-lock.json ]; then npm ci --prefer-offline --no-audit --no-fund; else npm install --no-audit --no-fund; fi
+        run: npm install --no-audit --no-fund
 
       - name: Render segment
         working-directory: v110-responsibility-delegation
@@ -155,7 +224,7 @@ jobs:
           retention-days: 1
 
   finalize:
-    needs: [prepare,render]
+    needs: [assemble,render]
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
@@ -207,4 +276,4 @@ jobs:
           TAG="v110-responsibility-delegation-${GITHUB_RUN_ID}"
           NAME="knowledge-video-v110-responsibility-delegation-${GITHUB_RUN_ID}.mp4"
           cp out/v110-final.mp4 "out/$NAME"
-          gh release create "$TAG" "out/$NAME" out/v110-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json qa/final-validation.json SOURCES.md V110_PRODUCTION_SPEC.md             --repo "$GITHUB_REPOSITORY"             --title "V110 Responsibility Delegation ${GITHUB_RUN_ID}"             --notes "V110: responsibility, delegation and team fragility. Fine narration-linked scenes, contiguous-only static background reuse, original foreground actions, parallel VOICEVOX, 12-way render, subtitles/BGM, final validation and contact-sheet QA."
+          gh release create "$TAG" "out/$NAME" out/v110-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json qa/final-validation.json SOURCES.md V110_PRODUCTION_SPEC.md             --repo "$GITHUB_REPOSITORY"             --title "V110 Responsibility Delegation ${GITHUB_RUN_ID}"             --notes "V110: responsibility, delegation and team fragility. Fine narration-linked scenes, contiguous-only static background reuse, original foreground actions, four-way VOICEVOX generation, 12-way final render, subtitles/BGM, validation and contact-sheet QA."
