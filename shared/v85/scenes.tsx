@@ -71,7 +71,7 @@ const Foreground=({b,p}:{b:Beat;p:number})=>{
 };
 export const SceneVisual=({beat,progress}:{beat:Beat;progress:number})=>{
  const p=clamp(progress),seed=beat.bgSeed,v=beat.variant;
- const zoom=1.015+(v%5)*.012+Math.sin(p*Math.PI)*.025,dx=Math.sin(p*2.4+seed)*34+((v%7)-3)*14,dy=Math.cos(p*2+seed)*18;
+ const cameras=[{z:1.02,x:0,y:0},{z:1.17,x:-165,y:38},{z:1.24,x:175,y:-42},{z:1.11,x:-235,y:-72},{z:1.30,x:225,y:62},{z:1.06,x:125,y:-96},{z:1.21,x:-90,y:92},{z:1.13,x:18,y:-55}];const cm=cameras[v%8];const zoom=cm.z+Math.sin(p*Math.PI)*.028,dx=cm.x+Math.sin(p*2.4+seed)*42,dy=cm.y+Math.cos(p*2+seed)*24;
  return <AbsoluteFill style={{overflow:'hidden',background:C.ink}}>
   <div style={{position:'absolute',inset:0,transform:`translate(${dx}px,${dy}px) scale(${zoom})`,transformOrigin:'50% 50%'}}>{phaseBg(beat,p)}</div>
   <Foreground b={beat} p={p}/>
