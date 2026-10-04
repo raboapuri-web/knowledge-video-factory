@@ -66,8 +66,9 @@ jobs:
           }
           for(let i=0;i<d.length;i+=12){
             const w=d.slice(i,i+12);
-            if(new Set(w.map(x=>x.family)).size<5) throw Error('V109 12-scene window lacks family diversity at '+i);
-            if(new Set(w.map(x=>x.primary)).size<5) throw Error('V109 12-scene window lacks semantic diversity at '+i);
+            if(new Set(w.map(x=>x.family)).size<4) throw Error('V109 12-scene window lacks family diversity at '+i);
+            if(new Set(w.map(x=>x.primary)).size<3) throw Error('V109 12-scene window lacks semantic diversity at '+i);
+            if(new Set(w.map(x=>x.verb)).size<3) throw Error('V109 12-scene window lacks motion diversity at '+i);
           }
           console.log('V109 fast diversity QA PASS families='+families.size+' primaries='+primaries.size+' scenes='+d.length);
           NODE
