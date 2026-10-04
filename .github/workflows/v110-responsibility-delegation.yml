@@ -31,10 +31,7 @@ jobs:
           fi
 
       - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-          cache-dependency-path: v110-responsibility-delegation/package-lock.json
+        with: {node-version: 20}
 
       - name: Install Remotion dependencies
         working-directory: v110-responsibility-delegation
@@ -138,10 +135,7 @@ jobs:
           fi
 
       - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-          cache-dependency-path: v110-responsibility-delegation/package-lock.json
+        with: {node-version: 20}
 
       - name: Install dependencies
         working-directory: v110-responsibility-delegation
