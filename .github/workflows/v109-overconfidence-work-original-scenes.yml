@@ -8,6 +8,9 @@ on:
       - 'shared/bootstrap/v109-overconfidence-work-original-scenes.mjs'
       - 'shared/v109/**'
 permissions: {contents: write}
+concurrency:
+  group: v109-production
+  cancel-in-progress: true
 jobs:
   prepare:
     runs-on: ubuntu-24.04
@@ -48,16 +51,32 @@ jobs:
           NODE
       - working-directory: v109-overconfidence-work-original-scenes
         run: npm run check
-      - name: Draw all scene previews and reject exact duplicates
+      - name: Fast structural visual-diversity QA
         working-directory: v109-overconfidence-work-original-scenes
         run: |
-          mkdir -p out/preview
-          COUNT=$(node -e "console.log(require('./src/scene-data.json').length)")
-          LAST=$((COUNT-1))
-          seq 0 "$LAST" | xargs -P 3 -I @ bash -c 'I=@; FRAME=$((I*20+12)); npx remotion still src/index.tsx V109ScenePreview "out/preview/scene-$(printf %03d "$I").png" --frame="$FRAME" --log=error'
-          test "$(find out/preview -name '*.png' | wc -l)" -eq "$COUNT"
-          DUPES=$(find out/preview -name '*.png' -print0 | xargs -0 sha256sum | cut -d' ' -f1 | sort | uniq -d)
-          test -z "$DUPES" || (echo "V109 exact duplicated previews" && exit 1)
+          node - <<'NODE'
+          const d=require('./src/scene-data.json');
+          const families=new Set(d.map(x=>x.family));
+          const primaries=new Set(d.map(x=>x.primary));
+          const signatures=d.map(x=>[x.family,x.primary,x.verb,x.shotKind].join('|'));
+          if(families.size < 16) throw Error('V109 visual family diversity too low: '+families.size);
+          if(primaries.size < 20) throw Error('V109 semantic subject diversity too low: '+primaries.size);
+          for(let i=1;i<d.length;i++){
+            if(signatures[i]===signatures[i-1]) throw Error('V109 adjacent visual signature duplicate '+d[i].id);
+          }
+          for(let i=0;i<d.length;i+=12){
+            const w=d.slice(i,i+12);
+            if(new Set(w.map(x=>x.family)).size<5) throw Error('V109 12-scene window lacks family diversity at '+i);
+            if(new Set(w.map(x=>x.primary)).size<5) throw Error('V109 12-scene window lacks semantic diversity at '+i);
+          }
+          console.log('V109 fast diversity QA PASS families='+families.size+' primaries='+primaries.size+' scenes='+d.length);
+          NODE
+      - name: One-pass semantic smoke render
+        working-directory: v109-overconfidence-work-original-scenes
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V109SmokePreview out/v109-smoke.mp4 --codec=h264 --crf=30 --concurrency=4 --log=error
+          test -s out/v109-smoke.mp4
       - name: Start VOICEVOX
         run: |
           docker pull voicevox/voicevox_engine:cpu-latest
@@ -94,7 +113,7 @@ jobs:
       - working-directory: v109-overconfidence-work-original-scenes
         run: npm install
       - working-directory: v109-overconfidence-work-original-scenes
-        run: mkdir -p out && npx remotion render src/index.tsx V109OverconfidenceWorkOriginalScenes "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
+        run: mkdir -p out && npx remotion render src/index.tsx V109OverconfidenceWorkOriginalScenes "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=4 --log=warn
       - uses: actions/upload-artifact@v4
         with:
           name: 'v109-segment-${{ matrix.id }}'
