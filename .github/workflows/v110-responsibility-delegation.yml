@@ -1,0 +1,216 @@
+name: V110 Responsibility Delegation Fast
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v110-responsibility-delegation.yml'
+      - 'shared/bootstrap/v110-responsibility-delegation.mjs'
+      - 'shared/v110/**'
+permissions: {contents: write}
+concurrency:
+  group: v110-production
+  cancel-in-progress: true
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    outputs: {matrix: '${{ steps.plan.outputs.matrix }}'}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bootstrap V110
+        run: node shared/bootstrap/v110-responsibility-delegation.mjs
+
+      - name: Ensure media and Japanese fonts
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1 || ! fc-match "Noto Sans CJK JP" | grep -qi "Noto"; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: v110-responsibility-delegation/package-lock.json
+
+      - name: Install Remotion dependencies
+        working-directory: v110-responsibility-delegation
+        run: |
+          if [ -f package-lock.json ]; then npm ci --prefer-offline --no-audit --no-fund; else npm install --no-audit --no-fund; fi
+          ln -sfn "$PWD/node_modules" ../node_modules
+
+      - name: Build preproduction package
+        working-directory: v110-responsibility-delegation
+        run: node scripts/build-preproduction.mjs
+
+      - name: Structural scene QA
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const d=require('./v110-responsibility-delegation/src/scene-data.json');
+          if(d.length<180)throw Error('V110 needs fine scene segmentation, got '+d.length);
+          for(const k of ['action','actionId','sceneKey','visual']){
+            if(new Set(d.map(x=>x[k])).size!==d.length)throw Error('V110 reused '+k);
+          }
+          const seen=new Set();
+          for(let i=0;i<d.length;i++){
+            const b=d[i],p=d[i-1];
+            if(!b.narration||!b.primary||!b.verb||!b.environment||!b.family||!b.shotKind)throw Error('V110 incomplete beat '+b.id);
+            if(seen.has(b.environment)&&(!p||p.environment!==b.environment))throw Error('V110 noncontiguous background reuse '+b.environment);
+            if(p&&p.environment===b.environment&&p.primary===b.primary&&p.verb===b.verb)throw Error('V110 static background with unchanged foreground '+b.id);
+            if(p&&[b.family,b.primary,b.verb,b.shotKind].join('|')===[p.family,p.primary,p.verb,p.shotKind].join('|'))throw Error('V110 adjacent visual signature duplicate '+b.id);
+            seen.add(b.environment);
+          }
+          const families=new Set(d.map(x=>x.family)),primaries=new Set(d.map(x=>x.primary)),verbs=new Set(d.map(x=>x.verb));
+          if(families.size<14||primaries.size<20||verbs.size<12)throw Error('V110 insufficient global visual diversity '+families.size+'/'+primaries.size+'/'+verbs.size);
+          const engine=fs.readFileSync('shared/v110/team-engine.tsx','utf8');
+          const art=fs.readFileSync('shared/v110/team-art.tsx','utf8');
+          const bg=fs.readFileSync('shared/v110/backgrounds.tsx','utf8');
+          if(!engine.includes('V110 unsupported physical verb')||!art.includes('V110 unsupported object')||!bg.includes('V110 unsupported background family'))throw Error('V110 generic fallback detected');
+          console.log('V110 structural QA PASS scenes='+d.length+' groups='+seen.size+' families='+families.size+' primaries='+primaries.size+' verbs='+verbs.size);
+          NODE
+
+      - name: TypeScript check
+        working-directory: v110-responsibility-delegation
+        run: npm run check
+
+      - name: One-pass semantic smoke render
+        working-directory: v110-responsibility-delegation
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V110SmokePreview out/v110-smoke.mp4 --codec=h264 --crf=30 --concurrency=4 --log=error
+          test -s out/v110-smoke.mp4
+
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done
+          exit 1
+
+      - name: Generate narration with bounded parallel workers
+        working-directory: v110-responsibility-delegation
+        run: node scripts/generate-voicevox-fast.mjs
+
+      - name: Voice and runtime QA
+        working-directory: v110-responsibility-delegation
+        run: node scripts/check-scenes.mjs
+
+      - id: plan
+        name: Plan 12 render segments
+        working-directory: v110-responsibility-delegation
+        run: echo "matrix=$(node scripts/plan-segments-fast.mjs)" >> "$GITHUB_OUTPUT"
+
+      - name: Pack prepared production
+        run: |
+          tar --exclude='v110-responsibility-delegation/node_modules'               --exclude='v110-responsibility-delegation/.voice-tmp'               --exclude='v110-responsibility-delegation/out'               -czf v110-prepared.tar.gz v110-responsibility-delegation
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v110-prepared
+          path: v110-prepared.tar.gz
+          retention-days: 1
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with: {name: v110-prepared}
+
+      - run: tar -xzf v110-prepared.tar.gz
+
+      - name: Ensure Japanese fonts
+        run: |
+          if ! fc-match "Noto Sans CJK JP" | grep -qi "Noto"; then
+            sudo apt-get update
+            sudo apt-get install -y fonts-noto-cjk
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: v110-responsibility-delegation/package-lock.json
+
+      - name: Install dependencies
+        working-directory: v110-responsibility-delegation
+        run: |
+          if [ -f package-lock.json ]; then npm ci --prefer-offline --no-audit --no-fund; else npm install --no-audit --no-fund; fi
+
+      - name: Render segment
+        working-directory: v110-responsibility-delegation
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V110ResponsibilityDelegation "out/segment-${{ matrix.id }}.mp4"             --frames=${{ matrix.start }}-${{ matrix.end }}             --codec=h264 --crf=18 --concurrency=4 --log=warn
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 'v110-segment-${{ matrix.id }}'
+          path: 'v110-responsibility-delegation/out/segment-${{ matrix.id }}.mp4'
+          retention-days: 1
+
+  finalize:
+    needs: [prepare,render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ensure ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then sudo apt-get update && sudo apt-get install -y ffmpeg; fi
+
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+
+      - uses: actions/download-artifact@v4
+        with: {name: v110-prepared}
+
+      - run: tar -xzf v110-prepared.tar.gz
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v110-segment-*
+          path: v110-responsibility-delegation/parts
+          merge-multiple: true
+
+      - name: Generate BGM and finalize film
+        working-directory: v110-responsibility-delegation
+        run: |
+          node scripts/generate-bgm.mjs
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error             -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a             -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]"             -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v110-final.mp4
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v110-final.mp4 | head -1 | tr -cd '0-9')
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v110-final.mp4 | head -1 | tr -cd '0-9')
+          F=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=nw=1:nk=1 out/v110-final.mp4 | head -1 | tr -d '\r')
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v110-final.mp4 | tr -d '\r')
+          A=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 out/v110-final.mp4 | wc -l)
+          test "$W" = '1920' && test "$H" = '1080' && test "$F" = '30/1' && test "$A" -ge 1
+          awk "BEGIN{exit !($D >= 1050)}"
+          mkdir -p qa
+          node -e 'const fs=require("fs");fs.writeFileSync("qa/final-validation.json",JSON.stringify({videoId:"V110-responsibility-delegation",durationSeconds:Number(process.argv[1]),fps:30,audioStreams:Number(process.argv[2]),minimumSeconds:1050,passed:true},null,2))' "$D" "$A"
+
+      - name: Generate contact sheet
+        run: node shared/qa/generate-scene-contact-sheet.mjs v110-responsibility-delegation v110-responsibility-delegation/out/v110-final.mp4 v110-responsibility-delegation/out/v110-contact-sheet.jpg
+
+      - name: Publish release
+        working-directory: v110-responsibility-delegation
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG="v110-responsibility-delegation-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v110-responsibility-delegation-${GITHUB_RUN_ID}.mp4"
+          cp out/v110-final.mp4 "out/$NAME"
+          gh release create "$TAG" "out/$NAME" out/v110-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json qa/final-validation.json SOURCES.md V110_PRODUCTION_SPEC.md             --repo "$GITHUB_REPOSITORY"             --title "V110 Responsibility Delegation ${GITHUB_RUN_ID}"             --notes "V110: responsibility, delegation and team fragility. Fine narration-linked scenes, contiguous-only static background reuse, original foreground actions, parallel VOICEVOX, 12-way render, subtitles/BGM, final validation and contact-sheet QA."
