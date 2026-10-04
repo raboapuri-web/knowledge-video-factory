@@ -173,7 +173,7 @@ fs.writeFileSync(path.join(src,'sync-timing.json'),JSON.stringify({durationSecon
 for(const f of ['index.tsx','scenes.tsx','team-engine.tsx','team-art.tsx','backgrounds.tsx'])fs.copyFileSync(path.join(source,f),path.join(src,f));
 for(const f of ['office-worker-rig.tsx','office-woman-rig.tsx'])fs.copyFileSync(path.join(root,'shared/asset-library/人物テンプレート',f),path.join(src,f));
 fs.copyFileSync(path.join(root,'shared/v100/primitives.tsx'),path.join(src,'primitives.tsx'));
-for(const f of ['generate-voicevox-fast.mjs','check-scenes.mjs','build-preproduction.mjs','plan-segments-fast.mjs'])fs.copyFileSync(path.join(source,f),path.join(scripts,f));
+for(const f of ['generate-voicevox-fast.mjs','generate-voice-chunk.mjs','assemble-voice.mjs','plan-voice-parts.mjs','check-scenes.mjs','build-preproduction.mjs','plan-segments-fast.mjs'])fs.copyFileSync(path.join(source,f),path.join(scripts,f));
 fs.copyFileSync(path.join(root,'shared/v53/generate-bgm.mjs'),path.join(scripts,'generate-bgm.mjs'));
 for(const f of ['SOURCES.md','V110_PRODUCTION_SPEC.md'])fs.copyFileSync(path.join(source,f),path.join(target,f));
 
