@@ -1,0 +1,161 @@
+name: V85 Pursue Pain Production
+on:
+  workflow_dispatch:
+  push:
+    branches: [v85-pursue-pain-production]
+    paths: ['.github/workflows/v85-pursue-pain-production.yml', 'shared/v85/**', 'shared/bootstrap/v85-pursue-pain.mjs', 'shared/asset-library/**']
+permissions: {contents: write}
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    outputs: {matrix: '${{ steps.plan.outputs.matrix }}'}
+    steps:
+      - uses: actions/checkout@v4
+      - run: node shared/bootstrap/v85-pursue-pain.mjs
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk python3-pil python3-numpy
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - working-directory: v85-pursue-pain
+        run: npm install
+      - working-directory: v85-pursue-pain
+        run: ln -sfn "$PWD/node_modules" ../node_modules
+      - working-directory: v85-pursue-pain
+        run: node scripts/build-preproduction.mjs
+      - name: Unique scene/action/camera guard
+        run: |
+          node - <<'NODE'
+          const s=require('./v85-pursue-pain/src/script-data.json'),d=require('./v85-pursue-pain/src/scene-data.json');
+          const n=s.beats.length;if(n<240||n>340)throw Error('scene count '+n);if(d.length!==n)throw Error('scene mismatch');
+          const phases=new Set(d.map(x=>x.phase));if(phases.size!==30)throw Error('expected 30 phases, got '+phases.size);
+          for(const k of ['visual','bgGroup','actionKey','cameraSeed']){const a=d.map(x=>String(x[k]));if(new Set(a).size!==a.length)throw Error('duplicate '+k);}
+          const src=require('fs').readFileSync('./shared/v85/scenes.tsx','utf8');
+          if(!src.includes('export const SceneVisual')||!src.includes('phaseBg'))throw Error('missing V85 renderer');
+          for(const ph of phases)if(!src.includes("case '"+ph+"'"))throw Error('missing illustrated world '+ph);
+          console.log(n+' unique scenes / '+phases.size+' worlds / unique action and camera fingerprints');
+          NODE
+      - working-directory: v85-pursue-pain
+        run: npm run check
+      - name: Preview all 30 worlds
+        working-directory: v85-pursue-pain
+        run: |
+          mkdir -p out/preview
+          node - <<'NODE'
+          const fs=require('fs'),{execFileSync}=require('child_process'),s=require('./src/script-data.json').beats,m=new Map();
+          for(const [i,b] of s.entries())if(!m.has(b.phase))m.set(b.phase,i);
+          if(m.size!==30)throw Error('preview phase coverage incomplete');
+          for(const [phase,i] of m)execFileSync('npx',['remotion','still','src/index.tsx','V85ScenePreview','out/preview/'+phase+'.png','--frame='+(i*24+12),'--log=error'],{stdio:'inherit'});
+          NODE
+          test "$(find out/preview -name '*.png' | wc -l)" -eq 30
+      - name: Render all-beat low-res QA reel
+        working-directory: v85-pursue-pain
+        run: npx remotion render src/index.tsx V85ScenePreview out/qa-reel.mp4 --codec=h264 --crf=30 --scale=0.25 --concurrency=2 --log=warn
+      - name: Reject adjacent near-duplicate shots
+        working-directory: v85-pursue-pain
+        run: |
+          mkdir -p out/qa-frames
+          ffmpeg -hide_banner -loglevel error -i out/qa-reel.mp4 -vf "select='eq(mod(n,24),12)'" -vsync 0 out/qa-frames/f-%04d.png
+          python3 - <<'PY'
+          from PIL import Image
+          import glob, numpy as np
+          files=sorted(glob.glob('out/qa-frames/*.png'))
+          if len(files)<240: raise SystemExit('too few QA frames '+str(len(files)))
+          prev=None; worst=[]
+          for i,f in enumerate(files):
+              im=np.asarray(Image.open(f).convert('L').resize((64,36)),dtype=np.float32)
+              if prev is not None:
+                  diff=float(np.abs(im-prev).mean());worst.append((diff,i))
+                  if diff<3.2: raise SystemExit(f'adjacent shots too visually similar around scene {i+1}: {diff:.2f}')
+              prev=im
+          print('closest adjacent visual diffs',sorted(worst)[:10])
+          PY
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; exit 1
+      - working-directory: v85-pursue-pain
+        run: node scripts/generate-voicevox.mjs
+      - name: Check measured voice timing and narration coverage
+        working-directory: v85-pursue-pain
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'),s=require('./src/script-data.json').beats,t=require('./src/sync-timing.json');
+          if(t.beats.length!==s.length)throw Error('voice-timing beat coverage mismatch');
+          if(!Number.isFinite(t.durationSeconds)||t.durationSeconds<700)throw Error('narration unreasonably short or missing');
+          for(const [i,b] of t.beats.entries())if(!(b.end>b.start)||b.index!==i)throw Error('invalid beat timing '+i);
+          console.log('Validated '+s.length+' measured voice beats, duration '+t.durationSeconds.toFixed(2)+' seconds');
+          NODE
+      - id: plan
+        working-directory: v85-pursue-pain
+        run: echo "matrix=$(node scripts/plan-segments.mjs)" >> "$GITHUB_OUTPUT"
+      - run: tar --exclude='v85-pursue-pain/node_modules' -czf v85-prepared.tar.gz v85-pursue-pain
+      - uses: actions/upload-artifact@v4
+        with: {name: v85-prepared, path: v85-prepared.tar.gz, retention-days: 1}
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: '${{ fromJson(needs.prepare.outputs.matrix) }}'
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v85-prepared}
+      - run: tar -xzf v85-prepared.tar.gz
+      - working-directory: v85-pursue-pain
+        run: npm install
+      - working-directory: v85-pursue-pain
+        run: mkdir -p out && npx remotion render src/index.tsx V85PursuePain "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=18 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with: {name: 'v85-segment-${{ matrix.id }}', path: 'v85-pursue-pain/out/segment-${{ matrix.id }}.mp4', retention-days: 1}
+  finalize:
+    needs: [prepare,render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/download-artifact@v4
+        with: {name: v85-prepared}
+      - run: tar -xzf v85-prepared.tar.gz
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'v85-segment-*', path: v85-pursue-pain/parts, merge-multiple: true}
+      - working-directory: v85-pursue-pain
+        run: node scripts/generate-bgm.mjs
+      - working-directory: v85-pursue-pain
+        run: |
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v85-final.mp4
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v85-final.mp4 | head -1)" = '1920'
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v85-final.mp4 | head -1)" = '1080'
+          test "$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v85-final.mp4 | cut -d. -f1)" -gt 700
+      - name: Check complete audio/video streams and alignment
+        working-directory: v85-pursue-pain
+        run: |
+          node - <<'NODE'
+          const {execFileSync}=require('child_process'),fs=require('fs');
+          const file='out/v85-final.mp4',t=require('./src/sync-timing.json');
+          const d=Number(execFileSync('ffprobe',['-v','error','-show_entries','format=duration','-of','default=nw=1:nk=1',file],{encoding:'utf8'}).trim());
+          const meta=JSON.parse(execFileSync('ffprobe',['-v','error','-show_entries','stream=codec_type,width,height','-of','json',file],{encoding:'utf8'}));
+          if(Math.abs(d-t.durationSeconds)>2.5)throw Error('MP4 and voice differ in duration '+d+' '+t.durationSeconds);
+          if(!meta.streams.some(x=>x.codec_type==='video'&&x.width===1920&&x.height===1080)||!meta.streams.some(x=>x.codec_type==='audio'))throw Error('missing video or audio stream');
+          if(fs.statSync(file).size<5000000)throw Error('abnormally small render');
+          NODE
+      - run: node shared/qa/generate-scene-contact-sheet.mjs v85-pursue-pain v85-pursue-pain/out/v85-final.mp4 v85-pursue-pain/out/v85-contact-sheet.jpg
+      - working-directory: v85-pursue-pain
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG="v85-pursue-pain-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v85-pursue-pain-${GITHUB_RUN_ID}.mp4"
+          cp out/v85-final.mp4 "out/$NAME"
+          gh release create "$TAG" "out/$NAME" out/v85-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V85_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V85 Pursue Pain Production ${GITHUB_RUN_ID}" --notes "Original philosophy, neuroscience and voluntary-discomfort documentary: 30 worlds, 256 narration-aligned cuts, unique action/camera fingerprints, adjacent-shot visual similarity QA, synchronized Japanese narration, subtitles and BGM."
