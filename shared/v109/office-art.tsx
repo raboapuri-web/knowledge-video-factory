@@ -6,12 +6,12 @@ export const TXT=({x,y,t,s=36,c=K.paper,a='middle',o=1}:{x:number;y:number;t:str
 export const ease=(p:number)=>{const x=q(p);return x*x*(3-2*x)};
 
 const groups:Record<string,string[]>={
- people:'confident-worker quiet-worker manager colleague researcher expert novice team'.split(/\\s+/),
- docs:'project-board report old-data contract proposal memo checklist'.split(/\\s+/),
- charts:'quartile-chart percentile-gap regression-chart confidence-gauge confidence-accuracy status-ladder forecast-tree contribution-wheel feedback-loop evaluation-dashboard score-axis'.split(/\\s+/),
- concepts:'metacognition-loop double-burden invisible-error ability-mask spotlight mirror-question competence-vs-confidence uncertainty branches status-signal fire-crisis prevented-failure'.split(/\\s+/),
- devices:'phone laptop server-log monitor'.split(/\\s+/),
- events:'delivery sales-conversation client-call correction handoff promotion'.split(/\\s+/)
+ people:'confident-worker quiet-worker manager colleague researcher expert novice team'.split(/\s+/),
+ docs:'project-board report old-data contract proposal memo checklist'.split(/\s+/),
+ charts:'quartile-chart percentile-gap regression-chart confidence-gauge confidence-accuracy status-ladder forecast-tree contribution-wheel feedback-loop evaluation-dashboard score-axis'.split(/\s+/),
+ concepts:'metacognition-loop double-burden invisible-error ability-mask spotlight mirror-question competence-vs-confidence uncertainty branches status-signal fire-crisis prevented-failure'.split(/\s+/),
+ devices:'phone laptop server-log monitor'.split(/\s+/),
+ events:'delivery sales-conversation client-call correction handoff promotion'.split(/\s+/)
 };
 const membership=new Map(Object.entries(groups).flatMap(([g,a])=>a.map(k=>[k,g])));
 export const categoryFor=(k:string)=>{const g=membership.get(k);if(!g)throw Error('V109 unsupported object '+k);return g};
