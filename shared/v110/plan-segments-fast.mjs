@@ -1,0 +1,1 @@
+import fs from 'node:fs';const s=JSON.parse(fs.readFileSync('./src/sync-timing.json','utf8')),total=Math.ceil(Number(s.durationSeconds||1200)*30),parts=12,size=Math.ceil(total/parts);console.log(JSON.stringify({include:Array.from({length:parts},(_,i)=>({id:String(i).padStart(2,'0'),start:i*size,end:Math.min(total-1,(i+1)*size-1)})).filter(x=>x.start<total)}));
