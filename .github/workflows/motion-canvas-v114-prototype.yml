@@ -1,0 +1,107 @@
+name: Motion Canvas V114 Prototype
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/motion-canvas-v114-prototype/**'
+      - '.github/workflows/motion-canvas-v114-prototype.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: motion-canvas-v114-prototype
+  cancel-in-progress: true
+
+jobs:
+  prototype:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: experiments/motion-canvas-v114-prototype
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Motion Canvas dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox-motion-canvas -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
+
+      - name: Generate prototype narration
+        run: |
+          START=$(date +%s)
+          node scripts/generate-voice.mjs
+          END=$(date +%s)
+          echo "$((END-START))" > voice-seconds.txt
+
+      - name: Typecheck and build
+        run: npm run build
+
+      - name: Render Motion Canvas prototype headlessly
+        run: |
+          START=$(date +%s)
+          npm run render
+          END=$(date +%s)
+          echo "$((END-START))" > render-wall-seconds.txt
+
+      - name: Validate prototype output
+        run: |
+          test -s output/v114-motion-canvas-prototype.mp4
+          node - <<'NODE'
+          const fs=require('fs');
+          const voice=JSON.parse(fs.readFileSync('voice-report.json','utf8'));
+          const render=JSON.parse(fs.readFileSync('render-report.json','utf8'));
+          const wall=Number(fs.readFileSync('render-wall-seconds.txt','utf8').trim());
+          const voiceWall=Number(fs.readFileSync('voice-seconds.txt','utf8').trim());
+          const report={
+            engine:'Motion Canvas 3.17.2',
+            prototype:'V114 prologue workload trap',
+            resolution:'1920x1080',
+            fps:30,
+            narrationSeconds:voice.totalSeconds,
+            voiceGenerationWallSeconds:voiceWall,
+            rendererMeasuredSeconds:render.renderSeconds,
+            renderWallSeconds:wall,
+            outputMegabytes:render.megabytes,
+            beatCount:voice.beatCount,
+            sceneModel:'1 continuous scene / 9 semantic beats'
+          };
+          fs.writeFileSync('prototype-metrics.json',JSON.stringify(report,null,2));
+          console.log(report);
+          NODE
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: motion-canvas-v114-prototype
+          path: |
+            experiments/motion-canvas-v114-prototype/output/v114-motion-canvas-prototype.mp4
+            experiments/motion-canvas-v114-prototype/prototype-metrics.json
+            experiments/motion-canvas-v114-prototype/voice-report.json
+            experiments/motion-canvas-v114-prototype/render-report.json
+            experiments/motion-canvas-v114-prototype/README.md
+          retention-days: 7
+
+      - name: Publish prototype release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="motion-canvas-v114-prototype-${GITHUB_RUN_ID}"
+          gh release create "$TAG"             output/v114-motion-canvas-prototype.mp4             prototype-metrics.json             voice-report.json             render-report.json             README.md             --repo "$GITHUB_REPOSITORY"             --title "Motion Canvas V114 Prototype ${GITHUB_RUN_ID}"             --notes "Motion Canvas comparison prototype for V114. One continuous office scene with nine narration-linked semantic beats, VOICEVOX narration and fully headless automated rendering."
