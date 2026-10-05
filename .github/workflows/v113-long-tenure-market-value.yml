@@ -1,0 +1,17 @@
+name: V113 Long Tenure Market Value
+on:
+  workflow_dispatch:
+  push:
+    branches: [v113-long-tenure-market-value-production]
+    paths:
+      - '.github/workflows/v113-long-tenure-market-value.yml'
+      - 'shared/bootstrap/v113-long-tenure-market-value.mjs'
+      - 'shared/v113/**'
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: node shared/bootstrap/v113-long-tenure-market-value.mjs
