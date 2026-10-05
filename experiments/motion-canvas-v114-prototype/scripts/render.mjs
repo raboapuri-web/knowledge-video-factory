@@ -22,7 +22,7 @@ async function main() {
 
   const address = server.httpServer?.address();
   if (!address || typeof address === 'string') throw new Error('Vite server missing TCP address');
-  const origin = 'http://127.0.0.1:' + address.port;
+  const origin = 'http://localhost:' + address.port;
 
   const browser = await puppeteer.launch({
     headless: true,
