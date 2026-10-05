@@ -181,7 +181,7 @@ fs.copyFileSync(path.join(root,'shared/asset-library/人物テンプレート/of
 fs.copyFileSync(path.join(root,'shared/v100/primitives.tsx'),path.join(src,'primitives.tsx'));
 
 for(const f of ['generate-voice-chunk.mjs','assemble-voice.mjs','plan-voice-parts.mjs','check-scenes.mjs','build-preproduction.mjs','plan-segments-fast.mjs']){
- let c=fs.readFileSync(path.join(root,'shared/v111',f),'utf8').replaceAll('V111','V112').replaceAll('v111-welfare-floor','v112-market-value-40s').replaceAll('V111-responsibility-delegation','V112-market-value-40s');
+ let c=fs.readFileSync(path.join(root,'shared/v111',f),'utf8').replaceAll('V111-responsibility-delegation','V112-market-value-40s').replaceAll('V111-welfare-floor','V112-market-value-40s').replaceAll('v111-welfare-floor','v112-market-value-40s').replaceAll('V111','V112');
  if(f==='plan-voice-parts.mjs')c=c.replace('parts=4','parts=6');
  if(f==='plan-segments-fast.mjs')c=c.replace('parts=12','parts=16');
  fs.writeFileSync(path.join(scripts,f),c);
