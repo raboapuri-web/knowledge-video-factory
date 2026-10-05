@@ -1,0 +1,5 @@
+import fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';
+const root=process.cwd(),episode=path.resolve(process.argv[2]||'v85-pain-not-pleasure'),lib=path.join(root,'shared/asset-library');
+const catalog=JSON.parse(fs.readFileSync(path.join(lib,'catalog.json'),'utf8'));const selected=['BG_town.png','BG_syosai.png'];const sha=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');const staged=[];
+for(const name of selected){const rec=catalog.assets.find(a=>a.category==='背景'&&a.file==='背景/'+name);if(!rec)throw Error('missing '+name);if(!['original-project','cleared-commercial'].includes(rec.license))throw Error('rights '+name);const src=path.join(lib,'背景',name),dest=path.join(episode,'public/assets/library/背景',name);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(src,dest);staged.push({name,sha256:sha(src),license:rec.license});}
+fs.mkdirSync(path.join(episode,'qa'),{recursive:true});fs.writeFileSync(path.join(episode,'qa/v85-template-assets.json'),JSON.stringify({staged},null,2));
