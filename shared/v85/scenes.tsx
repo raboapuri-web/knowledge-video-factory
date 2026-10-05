@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
-type Beat={id:string;phase:string;variant:number;narration:string;visual:string;bgGroup:string;bgSeed:number;foreground:string;shotKind:string;actionKey:string;actionSeed:number};
+type Beat={id:string;phase:string;variant:number;narration:string;visual:string;bgGroup:string;bgSeed:number;foreground:string;shotKind:string;actionKey:string;actionSeed:number;cameraSeed:number};
 const C={ink:'#10151a',charcoal:'#263038',slate:'#3c4b54',fog:'#9ea9aa',paper:'#efe8da',gold:'#d3aa63',rust:'#b46f5f',teal:'#6e9d94',blue:'#4c7084',green:'#738b6b',skin:'#d0a786',white:'#faf7ef',sand:'#b99b6d',wood:'#806b58',snow:'#dbe5e7'};
 const clamp=(v:number)=>Math.max(0,Math.min(1,v)),lerp=(a:number,b:number,t:number)=>a+(b-a)*clamp(t);
 const R=({x,y,w,h,c=C.paper,o=1,rx=0}:{x:number;y:number;w:number;h:number;c?:string;o?:number;rx?:number})=><rect x={x} y={y} width={w} height={h} rx={rx} fill={c} opacity={o}/>;
@@ -66,15 +66,33 @@ const Foreground=({b,p}:{b:Beat;p:number})=>{
   {strain&&<g><R x={1110} y={660} w={330} h={24} c={C.ink}/><circle cx={1130} cy={672} r={50} fill={C.slate}/><circle cx={1420} cy={672} r={50} fill={C.slate}/></g>}
   {b.foreground==='adaptation'&&<g>{Array.from({length:6},(_,i)=><Dot key={i} x={1020+i*110} y={330+Math.sin(p*5+i)*55} r={12+i*3} c={i%2?C.teal:C.gold} o={.7}/>)}</g>}
   {b.foreground==='choice'&&<g><L x={960} y={540} X={760+Math.sin(p*3)*60} Y={350} c={C.teal} s={10}/><L x={960} y={540} X={1210-Math.sin(p*3)*60} Y={350} c={C.rust} s={10}/><Dot x={960} y={540} r={32} c={C.gold}/></g>}
-  <g opacity=".35"><text x={80} y={92} fill={C.paper} fontSize="26">{b.actionKey}</text></g>
  </Svg>;
 };
+const DedicatedAction=({b,p}:{b:Beat;p:number})=>{
+ const n=b.narration,s=b.actionSeed,cs=b.cameraSeed,phase=(s%360)*Math.PI/180,amp=34+(s%83),dir=s%2?1:-1;
+ const x0=250+(s*17)%1180,y0=190+(s*29)%520,t=clamp((p-.04*(s%5))*1.16);
+ const cue=/雨/.test(n)?'rain':/温度|暑|寒|冷房|暖房|エアコン/.test(n)?'temp':/スマートフォン|動画|通知|画面/.test(n)?'phone':/食事|料理|菓子|空腹|美味|食べ/.test(n)?'food':/歩|走|登|移動|階段|電車|エレベーター/.test(n)?'move':/本|文章|読む|読書|学習/.test(n)?'read':/会話|話|人前|相手/.test(n)?'talk':/運動|筋肉|負荷|疲労|心拍|ホルミシス/.test(n)?'strain':/ディオゲネス|アテネ|砂|雪|像/.test(n)?'ancient':/選択|自由|我慢|拘束|誘惑|柱|縄/.test(n)?'choice':/幸福|快楽|苦痛|満足|適応|恒常性|神経/.test(n)?'balance':'context';
+ if(cue==='rain')return <Svg>{Array.from({length:12},(_,i)=><L key={i} x={140+i*145+(s%37)} y={(p*900+i*97+s)%720} X={110+i*145+(s%37)} Y={(p*900+i*97+s)%720+75+(s%45)} c={C.blue} s={3+i%3} o={.22+.04*(i%4)}/>)}</Svg>;
+ if(cue==='temp')return <Svg><R x={1540} y={220} w={52} h={390} c={C.paper} o={.72} rx={26}/><R x={1550} y={240+220*(1-t)} w={32} h={350*t} c={dir>0?C.rust:C.blue} rx={16}/><circle cx={1566} cy={630} r={62} fill={dir>0?C.rust:C.blue} opacity=".8"/><Pulse x={1566} y={630} p={(p+(s%7)*.07)%1} r={120+amp} c={dir>0?C.rust:C.blue}/></Svg>;
+ if(cue==='phone')return <Svg>{Array.from({length:4},(_,i)=>{const xx=1180+((i%2)*250)+Math.sin(phase+i)*20,yy=210+i*135+Math.sin(p*5+i+phase)*18;return <g key={i} transform={`translate(${lerp(xx+dir*220,xx,t)} ${yy})`}><R x={0} y={0} w={210+(s+i*11)%70} h={74} c={i%2?C.teal:C.gold} o={.7} rx={14}/><R x={18} y={22} w={120+(s%45)} h={9} c={C.white} o={.7} rx={4}/></g>})}<L x={1510} y={270} X={1510} Y={280+430*t} c={C.white} s={8} o={.45}/></Svg>;
+ if(cue==='food')return <Svg><O x={1320} y={670} rx={190} ry={62} c={C.paper}/><O x={1320} y={657} rx={120} ry={36} c={C.gold}/><g transform={`rotate(${dir*(18-36*t)} 1135 620)`}><L x={1135} y={535} X={1135} Y={720} c={C.steel} s={10}/>{[0,1,2].map(i=><L key={i} x={1120+i*15} y={530} X={1120+i*15} Y={495} c={C.steel} s={5}/>)}</g>{Array.from({length:5},(_,i)=><Dot key={i} x={1250+i*36+Math.sin(p*4+i+phase)*amp*.25} y={640+Math.cos(p*3+i)*12} r={5+i%2*3} c={C.rust} o={.55}/>)}</Svg>;
+ if(cue==='move')return <Svg><path d={`M220 ${760-(s%90)} C520 ${640+dir*amp}, 810 ${820-dir*amp}, 1110 ${570+dir*amp} S1490 ${360-dir*amp}, 1710 ${280+(s%120)}`} fill="none" stroke={C.gold} strokeWidth="7" opacity=".42"/>{Array.from({length:7},(_,i)=>{const u=clamp(t*1.25-i*.12),x=lerp(260,1660,u),y=730-(u*420)+Math.sin(u*8+phase)*amp;return <O key={i} x={x} y={y} rx={12} ry={25} c={i%2?C.teal:C.rust} o={.25+.6*u}/>})}</Svg>;
+ if(cue==='read')return <Svg><g transform={`translate(${1080+(s%150)} ${330+(s%80)})`}><R x={0} y={0} w={460} h={320} c={C.paper} rx={10}/><L x={230} y={18} X={230} Y={302} c={C.slate} s={4}/>{Array.from({length:7},(_,i)=><R key={i} x={30+(i%2)*235} y={45+Math.floor(i/2)*55} w={155+(s+i*7)%55} h={8} c={C.slate} o={.62}/>) }<path d={`M230 20 Q${lerp(250,430,t)} 130 230 300`} fill={C.white} opacity=".45"/></g></Svg>;
+ if(cue==='talk')return <Svg>{[0,1,2].map(i=>{const left=i%2===0,x=left?530:1160,y=255+i*130;return <g key={i} transform={`translate(${x+Math.sin(p*4+i+phase)*amp*.2} ${y}) scale(${.85+.15*Math.sin((p+i*.17)*Math.PI)})`}><R x={0} y={0} w={230+(s+i*13)%95} h={78} c={left?C.teal:C.rust} o={.66} rx={22}/><path d={left?'M30 75 L10 110 L75 77':'M210 75 L240 110 L165 77'} fill={left?C.teal:C.rust} opacity=".66"/></g>})}</Svg>;
+ if(cue==='strain')return <Svg><path d={`M260 600 L420 600 L480 ${600-80*Math.sin(t*Math.PI*2)} L560 600 L650 600 L720 ${600-120*Math.sin(t*Math.PI*2+phase)} L800 600 L920 600 L990 ${600-90*Math.sin(t*Math.PI*2+.9)} L1100 600 L1180 600`} stroke={C.rust} strokeWidth={11} fill="none" opacity=".72"/>{Array.from({length:4},(_,i)=><Pulse key={i} x={1320+i*95} y={510} p={(p+i*.15)%1} r={70+(s%55)} c={i%2?C.gold:C.teal}/>)}</Svg>;
+ if(cue==='ancient')return <Svg>{Array.from({length:9},(_,i)=>{const sun=(s+i)%2===0;return sun?<circle key={i} cx={220+i*185} cy={175+Math.sin(i+phase)*40} r={18+(i%3)*8} fill={C.gold} opacity={.12+.16*Math.sin(p*5+i)**2}/>:<circle key={i} cx={220+i*185} cy={120+((p*520+i*91+s)%660)} r={6+i%3*3} fill={C.snow} opacity=".5"/>})}</Svg>;
+ if(cue==='choice')return <Svg><Dot x={960} y={610} r={35} c={C.gold}/><path d={`M960 610 Q${760-dir*amp} 470 ${560-(s%120)} 260`} stroke={C.teal} strokeWidth={10} fill="none" opacity=".7"/><path d={`M960 610 Q${1160+dir*amp} 470 ${1360+(s%120)} 260`} stroke={C.rust} strokeWidth={10} fill="none" opacity=".7"/><Dot x={lerp(960,dir>0?1360+(s%120):560-(s%120),t)} y={lerp(610,260,t)} r={18} c={C.white}/></Svg>;
+ if(cue==='balance')return <Svg><L x={960} y={360} X={960} Y={720} c={C.paper} s={10} o={.5}/><L x={650} y={520+dir*amp*.2*Math.sin(p*4)} X={1270} Y={520-dir*amp*.2*Math.sin(p*4)} c={C.paper} s={12} o={.7}/><O x={720} y={570+dir*amp*.2*Math.sin(p*4)} rx={125} ry={38} c={C.teal} o={.65}/><O x={1200} y={570-dir*amp*.2*Math.sin(p*4)} rx={125} ry={38} c={C.rust} o={.65}/><Pulse x={960} y={520} p={(p+(cs%11)*.03)%1} r={150+amp} c={C.gold}/></Svg>;
+ return <Svg><path d={`M${x0} ${y0} C${x0+amp*3} ${y0-100-dir*amp}, ${x0+amp*5} ${y0+140+dir*amp}, ${x0+amp*8} ${y0+40}`} stroke={s%2?C.teal:C.gold} strokeWidth={7+(s%5)} fill="none" opacity=".38"/><Dot x={lerp(x0,x0+amp*8,t)} y={y0+Math.sin(t*Math.PI*2+phase)*amp} r={10+(s%12)} c={s%3?C.gold:C.rust}/></Svg>;
+};
+
 export const SceneVisual=({beat,progress}:{beat:Beat;progress:number})=>{
- const p=clamp(progress),seed=beat.bgSeed,v=beat.variant;
- const cameras=[{z:1.02,x:0,y:0},{z:1.17,x:-165,y:38},{z:1.24,x:175,y:-42},{z:1.11,x:-235,y:-72},{z:1.30,x:225,y:62},{z:1.06,x:125,y:-96},{z:1.21,x:-90,y:92},{z:1.13,x:18,y:-55}];const cm=cameras[v%8];const zoom=cm.z+Math.sin(p*Math.PI)*.028,dx=cm.x+Math.sin(p*2.4+seed)*42,dy=cm.y+Math.cos(p*2+seed)*24;
+ const p=clamp(progress),seed=beat.cameraSeed??beat.bgSeed,v=beat.variant;
+ const cameras=[{z:1.02,x:0,y:0},{z:1.17,x:-165,y:38},{z:1.24,x:175,y:-42},{z:1.11,x:-235,y:-72},{z:1.30,x:225,y:62},{z:1.06,x:125,y:-96},{z:1.21,x:-90,y:92},{z:1.13,x:18,y:-55}];const cm=cameras[(v+beat.cameraSeed)%8];const zoom=cm.z+Math.sin(p*Math.PI)*.028,dx=cm.x+Math.sin(p*2.4+seed)*42,dy=cm.y+Math.cos(p*2+seed)*24;
  return <AbsoluteFill style={{overflow:'hidden',background:C.ink}}>
   <div style={{position:'absolute',inset:0,transform:`translate(${dx}px,${dy}px) scale(${zoom})`,transformOrigin:'50% 50%'}}>{phaseBg(beat,p)}</div>
   <Foreground b={beat} p={p}/>
+  <DedicatedAction b={beat} p={p}/>
   <Svg><R x={0} y={0} w={1920} h={1080} c={C.ink} o={.045}/>{Array.from({length:3},(_,i)=><R key={i} x={0} y={i*360+(p*60)%40} w={1920} h={2} c={C.white} o={.025}/>)}</Svg>
  </AbsoluteFill>;
 };
