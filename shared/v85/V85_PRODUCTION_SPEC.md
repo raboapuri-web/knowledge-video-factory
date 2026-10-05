@@ -1,0 +1,3 @@
+# V85 Production Spec
+17 distinct worlds / 135 narration scenes. No repeated generic fallback. Every narration beat must change at least camera, prop, character action, or data/foreground state. Similar consecutive cuts are rejected by unique visual IDs and unique background groups. Template backgrounds are used only for modern town/study scenes; ancient Greece, factory, mountain, river, gym, ship, apartment and diagrams are bespoke vector animation.
+VOICEVOX 青山龍星 normal speed 1.13. Measured timing drives subtitles and render length. Preflight -> TS check -> all-world preview -> background motion hash check -> voice generation -> 8 segment render -> final mux/BGM -> ffprobe alignment -> contact sheet -> release.
