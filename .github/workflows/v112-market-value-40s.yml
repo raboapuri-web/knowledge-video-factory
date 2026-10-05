@@ -36,14 +36,11 @@ jobs:
           fi
 
       - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-          cache-dependency-path: v112-market-value-40s/package-lock.json
+        with: {node-version: 20}
 
-      - name: Install Remotion dependencies once for preflight
+      - name: Install Remotion dependencies once
         working-directory: v112-market-value-40s
-        run: npm ci --no-audit --no-fund --prefer-offline
+        run: npm install --no-audit --no-fund
 
       - name: Build preproduction package
         working-directory: v112-market-value-40s
@@ -80,14 +77,24 @@ jobs:
         working-directory: v112-market-value-40s
         run: echo "matrix=$(node scripts/plan-voice-parts.mjs)" >> "$GITHUB_OUTPUT"
 
-      - name: Pack visual base
+      - name: Pack lean voice base
         run: |
-          tar --exclude='v112-market-value-40s/node_modules'               --exclude='v112-market-value-40s/.voice-tmp'               --exclude='v112-market-value-40s/out'               -czf v112-base.tar.gz v112-market-value-40s
+          tar --exclude='v112-market-value-40s/node_modules'               --exclude='v112-market-value-40s/.voice-tmp'               --exclude='v112-market-value-40s/out'               -czf v112-voice-base.tar.gz v112-market-value-40s
+
+      - name: Pack preinstalled Remotion base
+        run: |
+          tar --exclude='v112-market-value-40s/.voice-tmp'               --exclude='v112-market-value-40s/out'               -czf v112-remotion-base.tar.gz v112-market-value-40s
 
       - uses: actions/upload-artifact@v4
         with:
-          name: v112-base
-          path: v112-base.tar.gz
+          name: v112-voice-base
+          path: v112-voice-base.tar.gz
+          retention-days: 1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v112-remotion-base
+          path: v112-remotion-base.tar.gz
           retention-days: 1
 
   voice:
@@ -101,8 +108,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
-        with: {name: v112-base}
-      - run: tar -xzf v112-base.tar.gz
+        with: {name: v112-voice-base}
+      - run: tar -xzf v112-voice-base.tar.gz
 
       - name: Ensure ffmpeg
         run: |
@@ -132,25 +139,19 @@ jobs:
   smoke:
     needs: prepare
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
-        with: {name: v112-base}
-      - run: tar -xzf v112-base.tar.gz
+        with: {name: v112-remotion-base}
+      - run: tar -xzf v112-remotion-base.tar.gz
       - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-          cache-dependency-path: v112-market-value-40s/package-lock.json
-      - name: Install cached dependencies
-        working-directory: v112-market-value-40s
-        run: npm ci --no-audit --no-fund --prefer-offline
+        with: {node-version: 20}
       - name: Semantic smoke render in parallel with narration
         working-directory: v112-market-value-40s
         run: |
           mkdir -p out
-          npx remotion render src/index.tsx V112SmokePreview out/v112-smoke.mp4 --codec=h264 --crf=30 --concurrency=4 --log=error
+          npx --no-install remotion render src/index.tsx V112SmokePreview out/v112-smoke.mp4 --codec=h264 --crf=30 --concurrency=4 --log=error
           test -s out/v112-smoke.mp4
 
   assemble:
@@ -162,8 +163,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
-        with: {name: v112-base}
-      - run: tar -xzf v112-base.tar.gz
+        with: {name: v112-remotion-base}
+      - run: tar -xzf v112-remotion-base.tar.gz
       - uses: actions/download-artifact@v4
         with:
           pattern: v112-voice-*
@@ -189,9 +190,9 @@ jobs:
         working-directory: v112-market-value-40s
         run: echo "matrix=$(node scripts/plan-segments-fast.mjs)" >> "$GITHUB_OUTPUT"
 
-      - name: Pack prepared production
+      - name: Pack prepared production with preinstalled dependencies
         run: |
-          tar --exclude='v112-market-value-40s/node_modules'               --exclude='v112-market-value-40s/.voice-tmp'               --exclude='v112-market-value-40s/.voice-assemble'               --exclude='v112-market-value-40s/voice-parts'               --exclude='v112-market-value-40s/out'               -czf v112-prepared.tar.gz v112-market-value-40s
+          tar --exclude='v112-market-value-40s/.voice-tmp'               --exclude='v112-market-value-40s/.voice-assemble'               --exclude='v112-market-value-40s/voice-parts'               --exclude='v112-market-value-40s/out'               -czf v112-prepared.tar.gz v112-market-value-40s
 
       - uses: actions/upload-artifact@v4
         with:
@@ -202,7 +203,7 @@ jobs:
   render:
     needs: assemble
     runs-on: ubuntu-24.04
-    timeout-minutes: 75
+    timeout-minutes: 65
     strategy:
       fail-fast: false
       max-parallel: 16
@@ -212,6 +213,8 @@ jobs:
       - uses: actions/download-artifact@v4
         with: {name: v112-prepared}
       - run: tar -xzf v112-prepared.tar.gz
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
 
       - name: Ensure Japanese fonts
         run: |
@@ -220,21 +223,11 @@ jobs:
             sudo apt-get install -y fonts-noto-cjk
           fi
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-          cache-dependency-path: v112-market-value-40s/package-lock.json
-
-      - name: Restore cached dependencies
-        working-directory: v112-market-value-40s
-        run: npm ci --no-audit --no-fund --prefer-offline
-
-      - name: Render segment
+      - name: Render segment without reinstalling dependencies
         working-directory: v112-market-value-40s
         run: |
           mkdir -p out
-          npx remotion render src/index.tsx V112MarketValue "out/segment-${{ matrix.id }}.mp4"             --frames=${{ matrix.start }}-${{ matrix.end }}             --codec=h264 --crf=18 --concurrency=4 --log=error
+          npx --no-install remotion render src/index.tsx V112MarketValue "out/segment-${{ matrix.id }}.mp4"             --frames=${{ matrix.start }}-${{ matrix.end }}             --codec=h264 --crf=18 --concurrency=4 --log=error
 
       - uses: actions/upload-artifact@v4
         with:
@@ -248,18 +241,14 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-
       - name: Ensure ffmpeg
         run: |
           if ! command -v ffmpeg >/dev/null 2>&1; then sudo apt-get update && sudo apt-get install -y ffmpeg; fi
-
       - uses: actions/setup-node@v4
         with: {node-version: 20}
-
       - uses: actions/download-artifact@v4
         with: {name: v112-prepared}
       - run: tar -xzf v112-prepared.tar.gz
-
       - uses: actions/download-artifact@v4
         with:
           pattern: v112-segment-*
@@ -294,4 +283,4 @@ jobs:
           TAG="v112-market-value-40s-${GITHUB_RUN_ID}"
           NAME="knowledge-video-v112-market-value-40s-${GITHUB_RUN_ID}.mp4"
           cp out/v112-final.mp4 "out/$NAME"
-          gh release create "$TAG" "out/$NAME" out/v112-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json qa/final-validation.json SOURCES.md V112_PRODUCTION_SPEC.md             --repo "$GITHUB_REPOSITORY"             --title "V112 Market Value 40s ${GITHUB_RUN_ID}"             --notes "V112: human capital, seniority wages, external labor-market pricing and reproducibility in the AI era. Fine narration-linked scenes, static contiguous micro-backgrounds, unique semantic actions, smoke render parallelized with six-way VOICEVOX, sixteen-way final render, cached npm dependencies, subtitles/BGM, validation and contact-sheet QA."
+          gh release create "$TAG" "out/$NAME" out/v112-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json qa/final-validation.json SOURCES.md V112_PRODUCTION_SPEC.md             --repo "$GITHUB_REPOSITORY"             --title "V112 Market Value 40s ${GITHUB_RUN_ID}"             --notes "V112: human capital, seniority wages, external labor-market pricing and reproducibility in the AI era. Fine narration-linked scenes, static contiguous micro-backgrounds, unique semantic actions, smoke render parallelized with six-way VOICEVOX, sixteen-way final render, preinstalled Remotion dependencies, subtitles/BGM, validation and contact-sheet QA."
