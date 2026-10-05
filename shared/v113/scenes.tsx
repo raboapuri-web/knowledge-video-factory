@@ -1,1 +1,0 @@
-import React from 'react';import data from './scene-data.json';import {SceneVisual as AuthoredScene,type Beat} from './work-engine';const beats=data as Beat[];export const SceneVisual=({n,progress}:{n:number;progress:number})=>{const beat=beats[n-1];if(!beat)throw Error('V113 missing scene '+n);return <AuthoredScene beat={beat} progress={progress}/>;};
