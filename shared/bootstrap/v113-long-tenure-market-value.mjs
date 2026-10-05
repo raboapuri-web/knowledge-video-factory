@@ -140,7 +140,7 @@ for(const [file,phase] of sections){
  const text=fs.readFileSync(path.join(source,'story',file+'.txt'),'utf8').trim(),units=sentences(text);phaseCounts[phase]=units.length;scriptParts.push(units.join('\n'));
  for(let i=0;i<units.length;i++){
   const narration=units[i],pool=phasePools[phase];let family=preferredFamily(narration,phase)||pool[i%pool.length];
-  if(family===prevFamily)family=pool[(pool.indexOf(family)+1+i)%pool.length];prevFamily=family;
+  if(family===prevFamily)family=pool.find(x=>x!==prevFamily)??family;prevFamily=family;
   const primary=primaryFor(narration,phase,i),verb=verbFor(narration,phase,i);
   if(!objects.has(primary)||!verbs.has(verb)||!families.has(family))throw Error('V113 unsupported scene '+phase+'/'+i+' '+primary+'/'+verb+'/'+family);
   const n=beats.length+1,no=String(n).padStart(3,'0'),shot=['establish','detail','medium','overhead','low-angle','split','tracking','profile','reverse','macro'][i%10];
