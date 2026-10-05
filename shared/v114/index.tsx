@@ -1,3 +1,5 @@
+import '@fontsource/noto-sans-jp/400.css';
+import '@fontsource/noto-sans-jp/700.css';
 import React from 'react';
 import {AbsoluteFill,Composition,interpolate,registerRoot,useCurrentFrame,useVideoConfig} from 'remotion';import scriptData from './script-data.json';import sync from './sync-timing.json';import {SceneVisual} from './scenes';
 type Beat={id:string;narration:string;primary:string;verb:string};type Timed={index:number;start:number;end:number};const beats=scriptData.beats as Beat[];
