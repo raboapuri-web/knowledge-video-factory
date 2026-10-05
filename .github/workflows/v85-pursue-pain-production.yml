@@ -186,4 +186,4 @@ jobs:
           TAG="v85-pursue-pain-${GITHUB_RUN_ID}"
           NAME="knowledge-video-v85-pursue-pain-${GITHUB_RUN_ID}.mp4"
           cp out/v85-final.mp4 "out/$NAME"
-          gh release create "$TAG" "out/$NAME" out/v85-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V85_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V85 Pursue Pain Production ${GITHUB_RUN_ID}" --notes "Original philosophy, neuroscience and voluntary-discomfort documentary: 30 worlds, 256 narration-aligned cuts, unique action/camera fingerprints, adjacent-shot visual similarity QA, synchronized Japanese narration, subtitles and BGM."
+          gh release create "$TAG" "out/$NAME" out/v85-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json SOURCES.md V85_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V85 Pursue Pain Production ${GITHUB_RUN_ID}" --notes "Original philosophy, neuroscience and voluntary-discomfort documentary: 30 worlds, narration-aligned unique cuts, unique action/camera fingerprints, adjacent-shot visual similarity QA, synchronized Japanese narration, subtitles and BGM."
