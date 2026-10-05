@@ -178,6 +178,8 @@ for(const f of ['generate-voice-chunk.mjs','assemble-voice.mjs','plan-voice-part
 let check=fs.readFileSync(path.join(root,'shared/v111/check-scenes.mjs'),'utf8').replaceAll('V111','V113');
 check=check.replace('b.length<180','b.length<120').replace('s.durationSeconds<900','s.durationSeconds<840');
 fs.writeFileSync(path.join(scripts,'check-scenes.mjs'),check);
+fs.copyFileSync(path.join(root,'shared/v53/plan-segments.mjs'),path.join(scripts,'plan-segments.mjs'));
+fs.writeFileSync(path.join(scripts,'generate-voicevox.mjs'),"import path from 'node:path';import {fileURLToPath} from 'node:url';import {generateVoicevox} from '../../shared/voice/generate-voicevox.mjs';const here=path.dirname(fileURLToPath(import.meta.url));await generateVoicevox(path.resolve(here,'..'),{speaker:'青山龍星',style:'ノーマル',speed:1.13,pitchScale:-0.026,intonationScale:0.86});");
 fs.copyFileSync(path.join(root,'shared/v53/generate-bgm.mjs'),path.join(scripts,'generate-bgm.mjs'));
 for(const f of ['SOURCES.md','V113_PRODUCTION_SPEC.md'])fs.copyFileSync(path.join(source,f),path.join(target,f));
 fs.writeFileSync(path.join(src,'library-assets.json'),'[]\n');
