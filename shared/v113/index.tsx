@@ -3,8 +3,9 @@ import {AbsoluteFill,Composition,interpolate,registerRoot,useCurrentFrame,useVid
 import scriptData from './script-data.json';
 import sync from './sync-timing.json';
 import {SceneVisual} from './scenes';
+import {Backdrop} from './backgrounds';
 
-type Beat={id:string;narration:string;primary:string;verb:string};
+type Beat={id:string;narration:string;primary:string;verb:string;family:string;environment:string};
 type Timed={index:number;start:number;end:number};
 const beats=scriptData.beats as Beat[];
 const clamp=(v:number)=>Math.max(0,Math.min(1,v));
@@ -30,7 +31,8 @@ const Subtitle=({beat,progress}:{beat:Beat;progress:number})=>{
 };
 const Full=()=>{const f=useCurrentFrame(),{fps}=useVideoConfig(),a=activeAt(f/fps),beat=beats[a.index]??beats[0];return <AbsoluteFill style={{background:'#09131b'}}><SceneVisual n={a.index+1} progress={a.progress}/><Subtitle beat={beat} progress={a.progress}/></AbsoluteFill>};
 const Preview=()=>{const f=useCurrentFrame();return <AbsoluteFill style={{background:'#09131b'}}><SceneVisual n={Math.min(beats.length,Math.floor(f/18)+1)} progress={(f%18)/18}/></AbsoluteFill>};
+const BackgroundPreview=()=>{const f=useCurrentFrame(),i=Math.min(beats.length-1,Math.floor(f/18)),b=beats[i];return <AbsoluteFill style={{background:'#09131b'}}><Backdrop family={b.family} environment={b.environment} p={(f%18)/18}/></AbsoluteFill>};
 const smokeIndices=[...new Map(beats.map((b,i)=>[b.primary+'|'+b.verb,i])).values()] as number[];
 const Smoke=()=>{const f=useCurrentFrame(),idx=smokeIndices[Math.min(smokeIndices.length-1,f)]??0;return <AbsoluteFill style={{background:'#09131b',overflow:'hidden'}}><div style={{width:1920,height:1080,transform:'scale(0.5)',transformOrigin:'0 0'}}><SceneVisual n={idx+1} progress={0.64}/></div></AbsoluteFill>};
-const Root=()=> <><Composition id="V113LongTenureMarketValue" component={Full} fps={30} width={1920} height={1080} durationInFrames={Math.max(30,Math.ceil(Number(sync.durationSeconds||1100)*30))}/><Composition id="V113ScenePreview" component={Preview} fps={30} width={1920} height={1080} durationInFrames={beats.length*18}/><Composition id="V113SmokePreview" component={Smoke} fps={30} width={960} height={540} durationInFrames={Math.max(1,smokeIndices.length)}/></>;
+const Root=()=> <><Composition id="V113LongTenureMarketValue" component={Full} fps={30} width={1920} height={1080} durationInFrames={Math.max(30,Math.ceil(Number(sync.durationSeconds||1100)*30))}/><Composition id="V113ScenePreview" component={Preview} fps={30} width={1920} height={1080} durationInFrames={beats.length*18}/><Composition id="V113BackgroundPreview" component={BackgroundPreview} fps={30} width={1920} height={1080} durationInFrames={beats.length*18}/><Composition id="V113SmokePreview" component={Smoke} fps={30} width={960} height={540} durationInFrames={Math.max(1,smokeIndices.length)}/></>;
 registerRoot(Root);
