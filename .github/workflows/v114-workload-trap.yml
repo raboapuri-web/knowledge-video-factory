@@ -13,7 +13,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: v114-workload-trap-production
+  group: v114-workload-trap-fast2
   cancel-in-progress: true
 
 jobs:
