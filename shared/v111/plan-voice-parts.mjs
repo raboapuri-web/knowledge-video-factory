@@ -1,0 +1,1 @@
+import fs from 'node:fs';const d=JSON.parse(fs.readFileSync('./src/script-data.json','utf8')),n=d.beats.length,parts=4,size=Math.ceil(n/parts);console.log(JSON.stringify({include:Array.from({length:parts},(_,i)=>({id:String(i).padStart(2,'0'),start:i*size,end:Math.min(n-1,(i+1)*size-1)})).filter(x=>x.start<n)}));
