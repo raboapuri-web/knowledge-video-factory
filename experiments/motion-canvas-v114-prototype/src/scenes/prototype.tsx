@@ -88,7 +88,7 @@ export default makeScene2D(function* (view) {
       {/* windows / office depth */}
       {[-650, -390, -130, 130, 390, 650].map((x, i) => (
         <Rect
-          key={x}
+          key={String(x)}
           x={x}
           y={-115}
           width={190}
@@ -110,7 +110,7 @@ export default makeScene2D(function* (view) {
 
       {/* desks */}
       {[-600, -180, 260, 630].map(x => (
-        <Node key={x} x={x} y={285}>
+        <Node key={String(x)} x={x} y={285}>
           <Rect width={330} height={28} radius={8} fill={'#765f50'} />
           <Rect x={-125} y={90} width={24} height={180} fill={'#4d4037'} />
           <Rect x={125} y={90} width={24} height={180} fill={'#4d4037'} />
@@ -175,7 +175,7 @@ export default makeScene2D(function* (view) {
 
       {taskCards.map((ref, i) => (
         <Rect
-          key={i}
+          key={String(i)}
           ref={ref}
           x={390 + (i % 3) * 32}
           y={250 - i * 28}
