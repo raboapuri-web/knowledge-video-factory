@@ -68,6 +68,18 @@ const Foreground=({b,p}:{b:Beat;p:number})=>{
   {b.foreground==='choice'&&<g><L x={960} y={540} X={760+Math.sin(p*3)*60} Y={350} c={C.teal} s={10}/><L x={960} y={540} X={1210-Math.sin(p*3)*60} Y={350} c={C.rust} s={10}/><Dot x={960} y={540} r={32} c={C.gold}/></g>}
  </Svg>;
 };
+const BackgroundVariant=({b,p}:{b:Beat;p:number})=>{
+ const s=b.bgSeed,m=s%5,shift=Math.sin(p*2.2+s)*28,drift=(p*(24+s%37))%110;
+ return <Svg>
+  {m===0&&<>{Array.from({length:5},(_,i)=><g key={i}><R x={70+i*410+(s%53)} y={100+(i%2)*70} w={75+(s+i*9)%95} h={480-(i%3)*80} c={i%2?C.blue:C.slate} o={.07+.02*(i%3)}/><R x={92+i*410+(s%53)+shift*.2} y={165+(i%2)*70} w={25} h={25} c={C.gold} o={.11+.08*Math.sin(p*5+i)**2}/></g>)}</>}
+  {m===1&&<>{Array.from({length:7},(_,i)=><path key={i} d={`M${-80+i*330+shift} 980 L${180+i*330+shift} ${580-(i%3)*95} L${430+i*330+shift} 980Z`} fill={i%2?C.ink:C.charcoal} opacity=".075"/>)}</>}
+  {m===2&&<>{Array.from({length:9},(_,i)=><circle key={i} cx={120+i*220+(s%61)} cy={140+((i*97+drift*6)%590)} r={10+(i+s)%19} fill={i%3===0?C.gold:C.teal} opacity=".08"/>)}</>}
+  {m===3&&<><R x={90+(s%210)} y={110} w={420+(s%260)} h={24} c={C.paper} o={.08}/><R x={1180-(s%170)} y={690} w={520} h={30} c={C.gold} o={.07}/>{Array.from({length:5},(_,i)=><L key={i} x={240+i*330} y={130} X={160+i*350+shift*.25} Y={930} c={C.white} s={2+i%2} o={.04}/>)}</>}
+  {m===4&&<>{Array.from({length:6},(_,i)=><g key={i} transform={`translate(${180+i*290} ${760-(i%2)*80+Math.sin(p*3+i+s)*14})`}><R x={0} y={0} w={110+(s+i*13)%80} h={45+(i%3)*18} c={i%2?C.wood:C.slate} o={.11} rx={7}/><Dot x={25+(i*17)%90} y={-16} r={7+i%4} c={C.gold} o={.13}/></g>)}</>}
+  <path d={`M0 ${120+(s%160)} Q960 ${80+(s%230)+shift} 1920 ${150+(s%120)}`} stroke={s%2?C.teal:C.gold} strokeWidth="3" fill="none" opacity=".045"/>
+ </Svg>;
+};
+
 const DedicatedAction=({b,p}:{b:Beat;p:number})=>{
  const n=b.narration,s=b.actionSeed,cs=b.cameraSeed,phase=(s%360)*Math.PI/180,amp=34+(s%83),dir=s%2?1:-1;
  const x0=250+(s*17)%1180,y0=190+(s*29)%520,t=clamp((p-.04*(s%5))*1.16);
@@ -86,13 +98,12 @@ const DedicatedAction=({b,p}:{b:Beat;p:number})=>{
  return <Svg><path d={`M${x0} ${y0} C${x0+amp*3} ${y0-100-dir*amp}, ${x0+amp*5} ${y0+140+dir*amp}, ${x0+amp*8} ${y0+40}`} stroke={s%2?C.teal:C.gold} strokeWidth={7+(s%5)} fill="none" opacity=".38"/><Dot x={lerp(x0,x0+amp*8,t)} y={y0+Math.sin(t*Math.PI*2+phase)*amp} r={10+(s%12)} c={s%3?C.gold:C.rust}/></Svg>;
 };
 
-export const SceneVisual=({beat,progress}:{beat:Beat;progress:number})=>{
+export const SceneVisual=({beat,progress,backgroundOnly=false}:{beat:Beat;progress:number;backgroundOnly?:boolean})=>{
  const p=clamp(progress),seed=beat.cameraSeed??beat.bgSeed,v=beat.variant;
  const cameras=[{z:1.02,x:0,y:0},{z:1.17,x:-165,y:38},{z:1.24,x:175,y:-42},{z:1.11,x:-235,y:-72},{z:1.30,x:225,y:62},{z:1.06,x:125,y:-96},{z:1.21,x:-90,y:92},{z:1.13,x:18,y:-55}];const cm=cameras[(v+beat.cameraSeed)%8];const zoom=cm.z+Math.sin(p*Math.PI)*.028,dx=cm.x+Math.sin(p*2.4+seed)*42,dy=cm.y+Math.cos(p*2+seed)*24;
  return <AbsoluteFill style={{overflow:'hidden',background:C.ink}}>
-  <div style={{position:'absolute',inset:0,transform:`translate(${dx}px,${dy}px) scale(${zoom})`,transformOrigin:'50% 50%'}}>{phaseBg(beat,p)}</div>
-  <Foreground b={beat} p={p}/>
-  <DedicatedAction b={beat} p={p}/>
+  <div style={{position:'absolute',inset:0,transform:`translate(${dx}px,${dy}px) scale(${zoom})`,transformOrigin:'50% 50%'}}>{phaseBg(beat,p)}<BackgroundVariant b={beat} p={p}/></div>
+  {!backgroundOnly&&<><Foreground b={beat} p={p}/><DedicatedAction b={beat} p={p}/></>}
   <Svg><R x={0} y={0} w={1920} h={1080} c={C.ink} o={.045}/>{Array.from({length:3},(_,i)=><R key={i} x={0} y={i*360+(p*60)%40} w={1920} h={2} c={C.white} o={.025}/>)}</Svg>
  </AbsoluteFill>;
 };
