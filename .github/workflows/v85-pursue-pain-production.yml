@@ -28,7 +28,7 @@ jobs:
           const s=require('./v85-pursue-pain/src/script-data.json'),d=require('./v85-pursue-pain/src/scene-data.json');
           const n=s.beats.length;if(n<240||n>340)throw Error('scene count '+n);if(d.length!==n)throw Error('scene mismatch');
           const phases=new Set(d.map(x=>x.phase));if(phases.size!==30)throw Error('expected 30 phases, got '+phases.size);
-          for(const k of ['visual','bgGroup','actionKey','cameraSeed']){const a=d.map(x=>String(x[k]));if(new Set(a).size!==a.length)throw Error('duplicate '+k);}
+          for(const k of ['visual','bgGroup','actionKey','cameraSeed','motionFingerprint']){const a=d.map(x=>String(x[k]));if(new Set(a).size!==a.length)throw Error('duplicate '+k);}
           const src=require('fs').readFileSync('./shared/v85/scenes.tsx','utf8');
           if(!src.includes('export const SceneVisual')||!src.includes('phaseBg'))throw Error('missing V85 renderer');
           for(const ph of phases)if(!src.includes("case '"+ph+"'"))throw Error('missing illustrated world '+ph);
@@ -47,6 +47,22 @@ jobs:
           for(const [phase,i] of m)execFileSync('npx',['remotion','still','src/index.tsx','V85ScenePreview','out/preview/'+phase+'.png','--frame='+(i*24+12),'--log=error'],{stdio:'inherit'});
           NODE
           test "$(find out/preview -name '*.png' | wc -l)" -eq 30
+      - name: Verify moving backgrounds in every world
+        working-directory: v85-pursue-pain
+        run: |
+          mkdir -p out/bg-motion
+          node - <<'NODE'
+          const fs=require('fs'),{execFileSync}=require('child_process'),crypto=require('crypto'),s=require('./src/script-data.json').beats,m=new Map();
+          for(const [i,b] of s.entries())if(!m.has(b.phase))m.set(b.phase,i);
+          for(const [phase,i] of m){
+            const a='out/bg-motion/'+phase+'-a.png',z='out/bg-motion/'+phase+'-b.png';
+            execFileSync('npx',['remotion','still','src/index.tsx','V85BackgroundPreview',a,'--frame='+(i*24+2),'--log=error'],{stdio:'inherit'});
+            execFileSync('npx',['remotion','still','src/index.tsx','V85BackgroundPreview',z,'--frame='+(i*24+20),'--log=error'],{stdio:'inherit'});
+            const h=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+            if(h(a)===h(z))throw Error('static background world '+phase);
+          }
+          console.log('validated moving background for '+m.size+' worlds');
+          NODE
       - name: Render all-beat low-res QA reel
         working-directory: v85-pursue-pain
         run: npx remotion render src/index.tsx V85ScenePreview out/qa-reel.mp4 --codec=h264 --crf=30 --scale=0.25 --concurrency=2 --log=warn
@@ -60,14 +76,26 @@ jobs:
           import glob, numpy as np
           files=sorted(glob.glob('out/qa-frames/*.png'))
           if len(files)<240: raise SystemExit('too few QA frames '+str(len(files)))
-          prev=None; worst=[]
+          prev=None; worst=[]; seen={}; imgs=[]
           for i,f in enumerate(files):
               im=np.asarray(Image.open(f).convert('L').resize((64,36)),dtype=np.float32)
+              q=(im//8).astype(np.uint8).tobytes()
+              import hashlib
+              h=hashlib.sha1(q).hexdigest()
+              if h in seen: raise SystemExit(f'non-adjacent duplicate-looking shot scenes {seen[h]+1} and {i+1}')
+              seen[h]=i; imgs.append(im)
               if prev is not None:
                   diff=float(np.abs(im-prev).mean());worst.append((diff,i))
                   if diff<3.2: raise SystemExit(f'adjacent shots too visually similar around scene {i+1}: {diff:.2f}')
               prev=im
-          print('closest adjacent visual diffs',sorted(worst)[:10])
+          global_close=[]
+          for i in range(len(imgs)):
+              for j in range(i):
+                  if i-j<=1: continue
+                  d=float(np.abs(imgs[i]-imgs[j]).mean())
+                  if d<1.15: raise SystemExit(f'non-adjacent shots too visually similar scenes {j+1} and {i+1}: {d:.2f}')
+                  if d<2.2: global_close.append((d,j+1,i+1))
+          print('closest adjacent visual diffs',sorted(worst)[:10]);print('closest non-adjacent visual diffs',sorted(global_close)[:10])
           PY
       - name: Start VOICEVOX
         run: |
