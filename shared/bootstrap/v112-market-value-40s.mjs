@@ -177,6 +177,7 @@ fs.writeFileSync(path.join(src,'scene-data.json'),JSON.stringify(beats,null,2));
 fs.writeFileSync(path.join(src,'sync-timing.json'),JSON.stringify({durationSeconds:1200,beats:[]},null,2));
 for(const f of ['index.tsx','scenes.tsx','market-engine.tsx','market-art.tsx','backgrounds.tsx'])fs.copyFileSync(path.join(source,f),path.join(src,f));
 fs.copyFileSync(path.join(root,'shared/asset-library/人物テンプレート/V46_ADULT_MAN_RIG.tsx'),path.join(src,'adult-man-rig.tsx'));
+fs.copyFileSync(path.join(root,'shared/asset-library/人物テンプレート/office-worker-rig.tsx'),path.join(src,'office-worker-rig.tsx'));
 fs.copyFileSync(path.join(root,'shared/asset-library/人物テンプレート/office-woman-rig.tsx'),path.join(src,'office-woman-rig.tsx'));
 fs.copyFileSync(path.join(root,'shared/v100/primitives.tsx'),path.join(src,'primitives.tsx'));
 
