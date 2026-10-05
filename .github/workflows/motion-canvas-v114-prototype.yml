@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: motion-canvas-v114-prototype
+  group: motion-canvas-v114-prototype-final
   cancel-in-progress: true
 
 jobs:
