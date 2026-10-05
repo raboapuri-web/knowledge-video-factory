@@ -7,13 +7,13 @@ on:
     paths:
       - '.github/workflows/v113-workload-trap.yml'
       - 'shared/bootstrap/v113-workload-trap.mjs'
-      - 'shared/v112/**'
+      - 'shared/v113/**'
 
 permissions:
   contents: write
 
 concurrency:
-  group: v112-market-value-production
+  group: v113-workload-trap-production
   cancel-in-progress: true
 
 jobs:
@@ -50,7 +50,7 @@ jobs:
         run: |
           node - <<'NODE'
           const d=require('./v113-workload-trap/src/scene-data.json');
-          if(d.length<185)throw Error('V113 needs fine scene segmentation, got '+d.length);
+          if(d.length<230)throw Error('V113 needs fine scene segmentation, got '+d.length);
           for(const k of ['action','actionId','sceneKey','visual']){
             if(new Set(d.map(x=>x[k])).size!==d.length)throw Error('V113 reused '+k);
           }
