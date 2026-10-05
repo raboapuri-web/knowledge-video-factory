@@ -34,14 +34,28 @@ async function main() {
   page.on('requestfailed', request => console.error('[request]', request.url(), request.failure()?.errorText || ''));
 
   const started = Date.now();
-  try {
+  const attempt = async () => {
     await page.goto(origin + '/headless.html', {waitUntil: 'networkidle0'});
     await page.waitForFunction(() => typeof window.renderProject === 'function');
-    const result = await page.evaluate(
+    return page.evaluate(
       (projectUrl, audio) => window.renderProject(projectUrl, audio),
       '/' + PROJECT + '?project',
       includeAudio,
     );
+  };
+
+  try {
+    let result;
+    try {
+      result = await attempt();
+    } catch (error) {
+      const destroyed =
+        error instanceof Error &&
+        error.message.includes('Execution context was destroyed');
+      if (!destroyed) throw error;
+      console.error('[render] Vite reloaded during first project import; retrying once');
+      result = await attempt();
+    }
     if (result !== 'Success') throw new Error('Motion Canvas render failed: ' + result);
   } finally {
     await page.close();
