@@ -3,7 +3,7 @@ import {AbsoluteFill,Composition,interpolate,registerRoot,useCurrentFrame,useVid
 import story from './script-data.json';
 import timing from './sync-timing.json';
 import {SceneVisual} from './scenes';
-type Beat={id:string;phase:string;visual:string;narration:string;bgGroup:string;bgSeed:number;foreground:string;variant:number;shotKind:string;actionKey:string;actionSeed:number};
+type Beat={id:string;phase:string;visual:string;narration:string;bgGroup:string;bgSeed:number;foreground:string;variant:number;shotKind:string;actionKey:string;actionSeed:number;cameraSeed:number;motionFingerprint?:string};
 type Sync={id:string;index:number;start:number;end:number};
 const beats=story.beats as Beat[]; const sync=(timing.beats??[]) as Sync[];
 const clamp=(v:number)=>Math.min(1,Math.max(0,v));
