@@ -43,10 +43,11 @@ const beats=units.map((u,i)=>{
   foreground:foreground(u.narration),
   actionKey:'A'+String(i+1).padStart(3,'0'),
   actionSeed:(i+1)*37%997,
-  cameraSeed:(i+1)*53%991
+  cameraSeed:(i+1)*53%991,
+  motionFingerprint:[u.phase,foreground(u.narration),(i+1)*37%997,(i+1)*53%991,variant%8].join(':')
  };
 });
-for(const k of ['visual','bgGroup','actionKey','cameraSeed']){
+for(const k of ['visual','bgGroup','actionKey','cameraSeed','motionFingerprint']){
  const vals=beats.map(b=>String(b[k]));
  if(new Set(vals).size!==vals.length)throw Error('duplicate '+k);
 }
@@ -57,7 +58,7 @@ fs.writeFileSync(path.join(target,'src/sync-timing.json'),JSON.stringify({durati
 for(const n of ['index.tsx','scenes.tsx'])fs.copyFileSync(path.join(root,'shared/v85',n),path.join(target,'src',n));
 for(const n of ['generate-bgm.mjs','plan-segments.mjs'])fs.copyFileSync(path.join(root,'shared/v53',n),path.join(target,'scripts',n));
 fs.writeFileSync(path.join(target,'scripts/generate-voicevox.mjs'),"import path from 'node:path';import {fileURLToPath} from 'node:url';import {generateVoicevox} from '../../shared/voice/generate-voicevox.mjs';const here=path.dirname(fileURLToPath(import.meta.url));await generateVoicevox(path.resolve(here,'..'),{speaker:'青山龍星',style:'ノーマル',speed:1.13,pitchScale:-0.026,intonationScale:0.86});");
-fs.writeFileSync(path.join(target,'scripts/build-preproduction.mjs'),"import fs from 'node:fs';import path from 'node:path';const root=path.resolve(import.meta.dirname,'..');const d=JSON.parse(fs.readFileSync(path.join(root,'src/script-data.json'),'utf8'));fs.mkdirSync(path.join(root,'qa'),{recursive:true});const scenes=d.beats.map(b=>({video_id:d.videoId,scene_id:b.id,phase:b.phase,narration:b.narration,scene_type:b.shotKind,visual_intent:b.visual,background_group:b.bgGroup,background_key:b.bgSeed,foreground:b.foreground,action_key:b.actionKey,action_seed:b.actionSeed,camera_seed:b.cameraSeed,human_review:'pending'}));fs.writeFileSync(path.join(root,'preproduction-plan.json'),JSON.stringify({videoId:d.videoId,scenes},null,2));fs.writeFileSync(path.join(root,'qa/preproduction-summary.json'),JSON.stringify({videoId:d.videoId,sceneCount:scenes.length,phaseCount:new Set(scenes.map(x=>x.phase)).size,uniqueActions:new Set(scenes.map(x=>x.action_key)).size,uniqueVisuals:new Set(scenes.map(x=>x.visual_intent)).size},null,2));");
+fs.writeFileSync(path.join(target,'scripts/build-preproduction.mjs'),"import fs from 'node:fs';import path from 'node:path';const root=path.resolve(import.meta.dirname,'..');const d=JSON.parse(fs.readFileSync(path.join(root,'src/script-data.json'),'utf8'));fs.mkdirSync(path.join(root,'qa'),{recursive:true});const scenes=d.beats.map(b=>({video_id:d.videoId,scene_id:b.id,phase:b.phase,narration:b.narration,scene_type:b.shotKind,visual_intent:b.visual,background_group:b.bgGroup,background_key:b.bgSeed,foreground:b.foreground,action_key:b.actionKey,action_seed:b.actionSeed,camera_seed:b.cameraSeed,motion_fingerprint:b.motionFingerprint,human_review:'pending'}));fs.writeFileSync(path.join(root,'preproduction-plan.json'),JSON.stringify({videoId:d.videoId,scenes},null,2));fs.writeFileSync(path.join(root,'qa/preproduction-summary.json'),JSON.stringify({videoId:d.videoId,sceneCount:scenes.length,phaseCount:new Set(scenes.map(x=>x.phase)).size,uniqueActions:new Set(scenes.map(x=>x.action_key)).size,uniqueVisuals:new Set(scenes.map(x=>x.visual_intent)).size,uniqueMotionFingerprints:new Set(scenes.map(x=>x.motion_fingerprint)).size},null,2));");
 fs.copyFileSync(path.join(root,'shared/v85/SOURCES.md'),path.join(target,'SOURCES.md'));
 fs.copyFileSync(path.join(root,'shared/v85/V85_PRODUCTION_SPEC.md'),path.join(target,'V85_PRODUCTION_SPEC.md'));
 fs.writeFileSync(path.join(target,'production-manifest.json'),JSON.stringify({productionSystemVersion:5,videoId:'V85-pursue-pain',sceneMode:'microsemantic',policy:{noGenericFallback:true,noAdjacentSimilarShots:true,uniqueActionPerNarration:true,uniqueCameraFingerprint:true,measuredVoiceTiming:true,contactSheetRequired:true,minScenes:240,minPhases:30}},null,2));
