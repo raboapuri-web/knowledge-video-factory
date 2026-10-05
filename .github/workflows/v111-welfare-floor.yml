@@ -1,0 +1,279 @@
+name: V111 Welfare Floor Fast
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v111-welfare-floor.yml'
+      - 'shared/bootstrap/v111-welfare-floor.mjs'
+      - 'shared/v110/**'
+permissions: {contents: write}
+concurrency:
+  group: v110-production
+  cancel-in-progress: true
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    outputs:
+      voice_matrix: '${{ steps.voiceplan.outputs.matrix }}'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bootstrap V111
+        run: node shared/bootstrap/v111-welfare-floor.mjs
+
+      - name: Ensure media and Japanese fonts
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1 || ! fc-match "Noto Sans CJK JP" | grep -qi "Noto"; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fi
+
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+
+      - name: Install Remotion dependencies
+        working-directory: v111-welfare-floor
+        run: npm install --no-audit --no-fund
+
+      - name: Build preproduction package
+        working-directory: v111-welfare-floor
+        run: node scripts/build-preproduction.mjs
+
+      - name: Structural scene QA
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const d=require('./v111-welfare-floor/src/scene-data.json');
+          if(d.length<180)throw Error('V111 needs fine scene segmentation, got '+d.length);
+          for(const k of ['action','actionId','sceneKey','visual']){
+            if(new Set(d.map(x=>x[k])).size!==d.length)throw Error('V111 reused '+k);
+          }
+          const seen=new Set();
+          for(let i=0;i<d.length;i++){
+            const b=d[i],p=d[i-1];
+            if(!b.narration||!b.primary||!b.verb||!b.environment||!b.family||!b.shotKind)throw Error('V111 incomplete beat '+b.id);
+            if(seen.has(b.environment)&&(!p||p.environment!==b.environment))throw Error('V111 noncontiguous background reuse '+b.environment);
+            if(p&&p.environment===b.environment&&p.primary===b.primary&&p.verb===b.verb)throw Error('V111 static background with unchanged foreground '+b.id);
+            if(p&&[b.family,b.primary,b.verb,b.shotKind].join('|')===[p.family,p.primary,p.verb,p.shotKind].join('|'))throw Error('V111 adjacent visual signature duplicate '+b.id);
+            seen.add(b.environment);
+          }
+          const families=new Set(d.map(x=>x.family)),primaries=new Set(d.map(x=>x.primary)),verbs=new Set(d.map(x=>x.verb));
+          if(families.size<14||primaries.size<20||verbs.size<12)throw Error('V111 insufficient global visual diversity '+families.size+'/'+primaries.size+'/'+verbs.size);
+          console.log('V111 structural QA PASS scenes='+d.length+' groups='+seen.size+' families='+families.size+' primaries='+primaries.size+' verbs='+verbs.size);
+          NODE
+
+      - name: TypeScript check
+        working-directory: v111-welfare-floor
+        run: npm run check
+
+      - name: One-pass semantic smoke render
+        working-directory: v111-welfare-floor
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V111SmokePreview out/v110-smoke.mp4 --codec=h264 --crf=30 --concurrency=4 --log=error
+          test -s out/v110-smoke.mp4
+
+      - id: voiceplan
+        name: Plan four parallel narration chunks
+        working-directory: v111-welfare-floor
+        run: echo "matrix=$(node scripts/plan-voice-parts.mjs)" >> "$GITHUB_OUTPUT"
+
+      - name: Pack visual base
+        run: |
+          tar --exclude='v111-welfare-floor/node_modules'               --exclude='v111-welfare-floor/.voice-tmp'               --exclude='v111-welfare-floor/out'               -czf v111-base.tar.gz v111-welfare-floor
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v111-base
+          path: v111-base.tar.gz
+          retention-days: 1
+
+  voice:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: '${{ fromJson(needs.prepare.outputs.voice_matrix) }}'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with: {name: v111-base}
+
+      - run: tar -xzf v111-base.tar.gz
+
+      - name: Ensure ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then sudo apt-get update && sudo apt-get install -y ffmpeg; fi
+
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done
+          exit 1
+
+      - name: Generate narration chunk
+        working-directory: v111-welfare-floor
+        env:
+          START: '${{ matrix.start }}'
+          END: '${{ matrix.end }}'
+          PART: '${{ matrix.id }}'
+        run: node scripts/generate-voice-chunk.mjs
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 'v111-voice-${{ matrix.id }}'
+          path: v111-welfare-floor/voice-parts
+          retention-days: 1
+
+  assemble:
+    needs: [prepare,voice]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    outputs:
+      matrix: '${{ steps.renderplan.outputs.matrix }}'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with: {name: v111-base}
+
+      - run: tar -xzf v111-base.tar.gz
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v111-voice-*
+          path: v111-welfare-floor/voice-parts
+          merge-multiple: true
+
+      - name: Ensure ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then sudo apt-get update && sudo apt-get install -y ffmpeg; fi
+
+      - name: Assemble narration and sync
+        working-directory: v111-welfare-floor
+        run: node scripts/assemble-voice.mjs
+
+      - name: Voice and runtime QA
+        working-directory: v111-welfare-floor
+        run: |
+          node scripts/check-scenes.mjs
+          node scripts/build-preproduction.mjs
+
+      - id: renderplan
+        name: Plan 12 render segments
+        working-directory: v111-welfare-floor
+        run: echo "matrix=$(node scripts/plan-segments-fast.mjs)" >> "$GITHUB_OUTPUT"
+
+      - name: Pack prepared production
+        run: |
+          tar --exclude='v111-welfare-floor/node_modules'               --exclude='v111-welfare-floor/.voice-tmp'               --exclude='v111-welfare-floor/.voice-assemble'               --exclude='v111-welfare-floor/voice-parts'               --exclude='v111-welfare-floor/out'               -czf v111-prepared.tar.gz v111-welfare-floor
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v111-prepared
+          path: v111-prepared.tar.gz
+          retention-days: 1
+
+  render:
+    needs: assemble
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix: '${{ fromJson(needs.assemble.outputs.matrix) }}'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with: {name: v111-prepared}
+
+      - run: tar -xzf v111-prepared.tar.gz
+
+      - name: Ensure Japanese fonts
+        run: |
+          if ! fc-match "Noto Sans CJK JP" | grep -qi "Noto"; then
+            sudo apt-get update
+            sudo apt-get install -y fonts-noto-cjk
+          fi
+
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+
+      - name: Install dependencies
+        working-directory: v111-welfare-floor
+        run: npm install --no-audit --no-fund
+
+      - name: Render segment
+        working-directory: v111-welfare-floor
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx V111WelfareFloor "out/segment-${{ matrix.id }}.mp4"             --frames=${{ matrix.start }}-${{ matrix.end }}             --codec=h264 --crf=18 --concurrency=4 --log=warn
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 'v111-segment-${{ matrix.id }}'
+          path: 'v111-welfare-floor/out/segment-${{ matrix.id }}.mp4'
+          retention-days: 1
+
+  finalize:
+    needs: [assemble,render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ensure ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then sudo apt-get update && sudo apt-get install -y ffmpeg; fi
+
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+
+      - uses: actions/download-artifact@v4
+        with: {name: v111-prepared}
+
+      - run: tar -xzf v111-prepared.tar.gz
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v111-segment-*
+          path: v111-welfare-floor/parts
+          merge-multiple: true
+
+      - name: Generate BGM and finalize film
+        working-directory: v111-welfare-floor
+        run: |
+          node scripts/generate-bgm.mjs
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error             -i out/video-only.mp4 -i public/audio/narration.m4a -i public/audio/bgm.m4a             -filter_complex "[1:a]volume=1[vo];[2:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=longest[a]"             -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest out/v110-final.mp4
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/v110-final.mp4 | head -1 | tr -cd '0-9')
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/v110-final.mp4 | head -1 | tr -cd '0-9')
+          F=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=nw=1:nk=1 out/v110-final.mp4 | head -1 | tr -d '\r')
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/v110-final.mp4 | tr -d '\r')
+          A=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 out/v110-final.mp4 | wc -l)
+          test "$W" = '1920' && test "$H" = '1080' && test "$F" = '30/1' && test "$A" -ge 1
+          awk "BEGIN{exit !($D >= 900)}"
+          mkdir -p qa
+          node -e 'const fs=require("fs");fs.writeFileSync("qa/final-validation.json",JSON.stringify({videoId:"V111-responsibility-delegation",durationSeconds:Number(process.argv[1]),fps:30,audioStreams:Number(process.argv[2]),minimumSeconds:900,passed:true},null,2))' "$D" "$A"
+
+      - name: Generate contact sheet
+        run: node shared/qa/generate-scene-contact-sheet.mjs v111-welfare-floor v111-welfare-floor/out/v110-final.mp4 v111-welfare-floor/out/v110-contact-sheet.jpg
+
+      - name: Publish release
+        working-directory: v111-welfare-floor
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG="v111-welfare-floor-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v111-welfare-floor-${GITHUB_RUN_ID}.mp4"
+          cp out/v110-final.mp4 "out/$NAME"
+          gh release create "$TAG" "out/$NAME" out/v110-contact-sheet.jpg preproduction-plan.json qa/preproduction-summary.json qa/final-validation.json SOURCES.md V111_PRODUCTION_SPEC.md             --repo "$GITHUB_REPOSITORY"             --title "V111 Welfare Floor ${GITHUB_RUN_ID}"             --notes "V111: welfare floor, poverty externalities and social stability. Fine narration-linked scenes, contiguous-only static background reuse, original foreground actions, four-way VOICEVOX generation, 12-way final render, subtitles/BGM, validation and contact-sheet QA."
