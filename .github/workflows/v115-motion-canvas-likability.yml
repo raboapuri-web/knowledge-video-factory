@@ -1,0 +1,267 @@
+name: V115 Motion Canvas Performance vs Likability
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v115-motion-canvas-likability.yml'
+      - 'shared/v115/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v115-motion-canvas-likability
+  cancel-in-progress: true
+
+env:
+  PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v115/.puppeteer
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Structural semantic QA
+        run: node shared/v115/scripts/check-plan.mjs
+
+      - name: Install Motion Canvas once
+        working-directory: shared/v115
+        run: npm install --no-audit --no-fund
+
+      - name: Pack preinstalled Motion Canvas and Chromium
+        run: |
+          tar --exclude='shared/v115/media'               --exclude='shared/v115/output'               --exclude='shared/v115/qa'               -czf v115-motion-base.tar.gz shared/v115
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v115-motion-base
+          path: v115-motion-base.tar.gz
+          retention-days: 1
+          compression-level: 0
+
+  voice:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        slug:
+          - 00-prologue
+          - 01-evaluation
+          - 02-likability
+          - 03-politics
+          - 04-feedback
+          - 05-epilogue
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name "voicevox-${{ strategy.job-index }}"             -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          exit 1
+
+      - name: Generate chapter narration from semantic beats
+        run: node shared/v115/scripts/generate-chapter-voice.mjs "${{ matrix.slug }}"
+
+      - name: Pack voice and exact timing data
+        run: |
+          tar -czf "v115-voice-${{ matrix.slug }}.tar.gz"             "shared/v115/media/${{ matrix.slug }}"             "shared/v115/src/generated/${{ matrix.slug }}.ts"             "shared/v115/voice-report-${{ matrix.slug }}.json"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v115-voice-${{ matrix.slug }}
+          path: v115-voice-${{ matrix.slug }}.tar.gz
+          retention-days: 1
+          compression-level: 0
+
+  render:
+    needs: [prepare, voice]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        slug:
+          - 00-prologue
+          - 01-evaluation
+          - 02-likability
+          - 03-politics
+          - 04-feedback
+          - 05-epilogue
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: v115-motion-base
+
+      - name: Restore preinstalled Motion Canvas
+        run: tar -xzf v115-motion-base.tar.gz
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: v115-voice-${{ matrix.slug }}
+
+      - name: Restore exact narration timing
+        run: tar -xzf "v115-voice-${{ matrix.slug }}.tar.gz"
+
+      - name: Typecheck and build all chapter projects
+        working-directory: shared/v115
+        run: npm run build
+
+      - name: Five-second semantic smoke render
+        working-directory: shared/v115
+        run: |
+          node scripts/render.mjs "${{ matrix.slug }}" --smoke
+          test -s "output/v115-${{ matrix.slug }}-smoke.mp4"
+          rm -f "output/v115-${{ matrix.slug }}-smoke.mp4"
+
+      - name: Render full Motion Canvas chapter
+        working-directory: shared/v115
+        run: |
+          node scripts/render.mjs "${{ matrix.slug }}"
+          test -s "output/v115-${{ matrix.slug }}.mp4"
+
+      - name: Pack rendered chapter
+        run: |
+          tar -czf "v115-render-${{ matrix.slug }}.tar.gz"             "shared/v115/output/v115-${{ matrix.slug }}.mp4"             "shared/v115/render-report-${{ matrix.slug }}.json"             "shared/v115/voice-report-${{ matrix.slug }}.json"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v115-render-${{ matrix.slug }}
+          path: v115-render-${{ matrix.slug }}.tar.gz
+          retention-days: 1
+          compression-level: 0
+
+  finalize:
+    needs: render
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Structural semantic QA
+        run: node shared/v115/scripts/check-plan.mjs
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v115-render-*
+          path: renders
+          merge-multiple: true
+
+      - name: Restore all rendered chapters
+        run: |
+          for f in renders/v115-render-*.tar.gz; do tar -xzf "$f"; done
+          ls -lh shared/v115/output/v115-*.mp4
+
+      - name: Ensure ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+
+      - name: Stream-copy chapter concat
+        working-directory: shared/v115
+        run: |
+          mkdir -p output
+          for f in             output/v115-00-prologue.mp4             output/v115-01-evaluation.mp4             output/v115-02-likability.mp4             output/v115-03-politics.mp4             output/v115-04-feedback.mp4             output/v115-05-epilogue.mp4
+          do
+            printf "file '%s'\n" "$(realpath "$f")"
+          done > output/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt             -c copy output/v115-voice-master.mp4
+
+      - name: Generate subtle deterministic ambient BGM
+        working-directory: shared/v115
+        run: |
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v115-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+
+      - name: Mix BGM and create final master
+        working-directory: shared/v115
+        run: |
+          ffmpeg -y -loglevel error             -i output/v115-voice-master.mp4 -i output/bgm.m4a             -filter_complex "[0:a]volume=1[vo];[1:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=first[a]"             -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest             output/v115-final.mp4
+
+      - name: Final technical QA and metrics
+        working-directory: shared/v115
+        run: |
+          mkdir -p qa
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 output/v115-final.mp4 | head -1)
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 output/v115-final.mp4 | head -1)
+          F=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=nw=1:nk=1 output/v115-final.mp4 | head -1)
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v115-final.mp4)
+          A=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 output/v115-final.mp4 | wc -l)
+          test "$W" = "1920"
+          test "$H" = "1080"
+          test "$F" = "30/1"
+          test "$A" -ge 1
+          awk "BEGIN{exit !($D >= 900)}"
+          node - "$D" "$A" <<'NODE'
+          const fs=require('fs');
+          const duration=Number(process.argv[2]);
+          const audioStreams=Number(process.argv[3]);
+          const plan=JSON.parse(fs.readFileSync('production-plan.json','utf8'));
+          const voiceReports=fs.readdirSync('.').filter(x=>x.startsWith('voice-report-')&&x.endsWith('.json')).map(x=>JSON.parse(fs.readFileSync(x,'utf8')));
+          const renderReports=fs.readdirSync('.').filter(x=>x.startsWith('render-report-')&&x.endsWith('.json')).map(x=>JSON.parse(fs.readFileSync(x,'utf8')));
+          const out={
+            videoId:'V115',
+            durationSeconds:duration,
+            durationMinutes:Number((duration/60).toFixed(2)),
+            resolution:'1920x1080',
+            fps:30,
+            audioStreams,
+            semanticBeats:plan.chapters.flatMap(c=>c.beats).length,
+            narrationSeconds:Number(voiceReports.reduce((s,x)=>s+x.totalSeconds,0).toFixed(3)),
+            chapterRenderSeconds:Number(renderReports.reduce((s,x)=>s+x.renderSeconds,0).toFixed(2)),
+            passed:true
+          };
+          fs.writeFileSync('qa/final-validation.json',JSON.stringify(out,null,2));
+          console.log(out);
+          NODE
+
+      - name: Freeze/black heuristic report
+        working-directory: shared/v115
+        run: |
+          set +e
+          ffmpeg -hide_banner -i output/v115-final.mp4             -vf "blackdetect=d=2:pix_th=0.02,freezedetect=n=-55dB:d=6"             -an -f null - 2> qa/visual-anomaly-scan.txt
+          set -e
+
+      - name: Generate 25-frame contact sheet
+        working-directory: shared/v115
+        run: |
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v115-final.mp4)
+          INTERVAL=$(awk "BEGIN{print $D/25}")
+          ffmpeg -y -loglevel error -i output/v115-final.mp4             -vf "fps=1/$INTERVAL,scale=384:-1,tile=5x5:padding=6:margin=8"             -frames:v 1 output/v115-contact-sheet.jpg
+
+      - name: Publish V115 release
+        working-directory: shared/v115
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="v115-performance-likability-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v115-performance-likability-${GITHUB_RUN_ID}.mp4"
+          cp output/v115-final.mp4 "output/$NAME"
+          gh release create "$TAG"             "output/$NAME"             output/v115-contact-sheet.jpg             production-plan.json             qa/preproduction-summary.json             qa/final-validation.json             qa/visual-anomaly-scan.txt             SOURCES.md             V115_PRODUCTION_SPEC.md             --repo "$GITHUB_REPOSITORY"             --title "V115 Performance vs Likability ${GITHUB_RUN_ID}"             --notes "V115 full Motion Canvas production. Six independently renderable chapters, 42 semantic beats, VOICEVOX narration, in-canvas subtitles, state-transition-driven vector animation, six-way narration/render parallelization, smoke renders, deterministic BGM, final technical QA and contact-sheet review."
