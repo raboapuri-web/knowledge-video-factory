@@ -135,10 +135,13 @@ jobs:
           test -s "output/v115-${{ matrix.slug }}-smoke.mp4"
           rm -f "output/v115-${{ matrix.slug }}-smoke.mp4"
 
-      - name: Render full Motion Canvas chapter
+      - name: Render full Motion Canvas chapter with bounded retry
         working-directory: shared/v115
         run: |
-          node scripts/render.mjs "${{ matrix.slug }}"
+          rm -f "output/v115-${{ matrix.slug }}.mp4"
+          chmod +x ../motion-canvas-standard/render-with-retry.sh
+          MAX_ATTEMPTS=2 ../motion-canvas-standard/render-with-retry.sh 10m \
+            node scripts/render.mjs "${{ matrix.slug }}"
           test -s "output/v115-${{ matrix.slug }}.mp4"
 
       - name: Pack rendered chapter
