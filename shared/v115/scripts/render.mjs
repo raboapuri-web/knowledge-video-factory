@@ -28,6 +28,7 @@ async function main(){
   const origin='http://localhost:'+address.port;
 
   const browser=await puppeteer.launch({
+    protocolTimeout: 900_000,
     headless:true,
     args:['--no-sandbox','--use-gl=swiftshader','--enable-unsafe-swiftshader'],
   });
