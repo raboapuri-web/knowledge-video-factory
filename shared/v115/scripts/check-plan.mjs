@@ -17,6 +17,21 @@ for(const b of beats){
 }
 const kinds=new Set(beats.map(b=>b.kind));
 if(kinds.size<18) throw new Error('Insufficient visual diversity: '+kinds.size);
+
+const productionScene=fs.readFileSync(new URL('../src/production-scene.tsx',import.meta.url),'utf8');
+for(const token of [
+  'const contentLayer = createRef<Node>();',
+  'const subtitleLayer = createRef<Node>();',
+  'contentLayer().add(<Node ref={group}',
+  "fill={'rgba(0,0,0,0.90)'}",
+]){
+  if(!productionScene.includes(token)) throw new Error('Subtitle overlay regression: missing '+token);
+}
+const contentIndex=productionScene.indexOf('<Node ref={contentLayer} />');
+const subtitleIndex=productionScene.indexOf('<Node ref={subtitleLayer}>');
+if(contentIndex<0||subtitleIndex<0||subtitleIndex<=contentIndex){
+  throw new Error('Subtitle overlay regression: subtitle layer must render after content layer');
+}
 const summary={
   videoId:plan.videoId,
   chapters:plan.chapters.length,

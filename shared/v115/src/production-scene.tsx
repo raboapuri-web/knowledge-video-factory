@@ -560,6 +560,8 @@ export function makeProductionScene(chapter: Chapter, timings: readonly number[]
   return makeScene2D(function* (view) {
     view.fill(C.bg);
 
+    const contentLayer = createRef<Node>();
+    const subtitleLayer = createRef<Node>();
     const chapterTitle = createRef<Txt>();
     const subtitle = createRef<Txt>();
     const progress = createRef<Rect>();
@@ -567,6 +569,11 @@ export function makeProductionScene(chapter: Chapter, timings: readonly number[]
     view.add(
       <>
         <Rect width={1810} height={930} radius={40} fill={C.surface} />
+
+        {/* All semantic visuals live here. Nothing in this layer may render above subtitles. */}
+        <Node ref={contentLayer} />
+
+        {/* Persistent UI is drawn after content. */}
         <Txt
           ref={chapterTitle}
           x={-760}
@@ -582,20 +589,30 @@ export function makeProductionScene(chapter: Chapter, timings: readonly number[]
         <Rect x={0} y={503} width={1810} height={16} fill={'#0a1b23'} radius={8}>
           <Rect ref={progress} x={-905} width={1} height={16} fill={C.red} radius={8} offsetX={-1}/>
         </Rect>
-        <Rect y={430} width={1740} height={118} radius={22} fill={'rgba(0,0,0,0.76)'}>
-          <Txt
-            ref={subtitle}
-            width={1580}
-            text={''}
-            textAlign={'center'}
-            textWrap
-            fontFamily={FONT}
-            fontWeight={700}
-            fontSize={38}
-            lineHeight={54}
-            fill={C.paper}
-          />
-        </Rect>
+
+        {/* Subtitle UI is ALWAYS the final/topmost layer. */}
+        <Node ref={subtitleLayer}>
+          <Rect
+            y={425}
+            width={1740}
+            height={132}
+            radius={22}
+            fill={'rgba(0,0,0,0.90)'}
+          >
+            <Txt
+              ref={subtitle}
+              width={1580}
+              text={''}
+              textAlign={'center'}
+              textWrap
+              fontFamily={FONT}
+              fontWeight={700}
+              fontSize={38}
+              lineHeight={54}
+              fill={C.paper}
+            />
+          </Rect>
+        </Node>
       </>,
     );
 
@@ -605,7 +622,7 @@ export function makeProductionScene(chapter: Chapter, timings: readonly number[]
       const duration = Math.max(1.2, Number(timings[i] ?? 6));
       const group = createRef<Node>();
 
-      view.add(<Node ref={group} opacity={0} scale={0.985} y={-20}/>);
+      contentLayer().add(<Node ref={group} opacity={0} scale={0.985} y={-20}/>);
       const refs = addGenericVisual(group(), beat);
 
       yield* all(
