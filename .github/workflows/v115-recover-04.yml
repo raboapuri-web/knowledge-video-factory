@@ -54,6 +54,20 @@ jobs:
           test -s output/v115-04-feedback-smoke.mp4
           rm -f output/v115-04-feedback-smoke.mp4
 
+      - name: Raise Puppeteer protocol timeout for long chapter
+        working-directory: shared/v115
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/render.mjs')
+          s = p.read_text()
+          old = "const browser=await puppeteer.launch({\n    headless:true,"
+          new = "const browser=await puppeteer.launch({\n    protocolTimeout: 900_000,\n    headless:true,"
+          if old not in s:
+              raise SystemExit('Puppeteer launch block not found')
+          p.write_text(s.replace(old, new))
+          PY
+
       - name: Recover 04-feedback with bounded retry
         working-directory: shared/v115
         run: |
