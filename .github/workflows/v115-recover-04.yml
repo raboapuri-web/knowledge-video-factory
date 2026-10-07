@@ -1,0 +1,184 @@
+name: V115 Recover 04 Feedback
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v115-recover-04.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v115-recovery-04
+  cancel-in-progress: true
+
+jobs:
+  recover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Motion Canvas dependencies
+        working-directory: shared/v115
+        run: npm install --no-audit --no-fund
+
+      - name: Download exact 04-feedback narration/timing from stuck run
+        uses: actions/download-artifact@v4
+        with:
+          name: v115-voice-04-feedback
+          path: recovery-voice
+          github-token: ${{ github.token }}
+          run-id: 37639708514
+
+      - name: Restore 04-feedback narration/timing
+        run: |
+          tar -xzf recovery-voice/v115-voice-04-feedback.tar.gz
+          test -s shared/v115/media/04-feedback/narration.wav
+          test -s shared/v115/src/generated/04-feedback.ts
+
+      - name: Structural QA
+        run: node shared/v115/scripts/check-plan.mjs
+
+      - name: Smoke render 04-feedback
+        working-directory: shared/v115
+        run: |
+          node scripts/render.mjs 04-feedback --smoke
+          test -s output/v115-04-feedback-smoke.mp4
+          rm -f output/v115-04-feedback-smoke.mp4
+
+      - name: Recover 04-feedback with bounded retry
+        working-directory: shared/v115
+        run: |
+          rm -f output/v115-04-feedback.mp4
+          chmod +x ../motion-canvas-standard/render-with-retry.sh
+          MAX_ATTEMPTS=2 ../motion-canvas-standard/render-with-retry.sh 10m             node scripts/render.mjs 04-feedback
+          test -s output/v115-04-feedback.mp4
+
+      - name: Download successful chapter renders from stuck run
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v115-render-*
+          path: prior-renders
+          merge-multiple: true
+          github-token: ${{ github.token }}
+          run-id: 37639708514
+
+      - name: Restore successful chapter renders
+        run: |
+          for f in prior-renders/v115-render-*.tar.gz; do
+            [ -e "$f" ] || continue
+            tar -xzf "$f"
+          done
+          test -s shared/v115/output/v115-00-prologue.mp4
+          test -s shared/v115/output/v115-01-evaluation.mp4
+          test -s shared/v115/output/v115-02-likability.mp4
+          test -s shared/v115/output/v115-03-politics.mp4
+          test -s shared/v115/output/v115-04-feedback.mp4
+          test -s shared/v115/output/v115-05-epilogue.mp4
+          ls -lh shared/v115/output/v115-*.mp4
+
+      - name: Ensure ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+
+      - name: Stream-copy six chapters
+        working-directory: shared/v115
+        run: |
+          for f in             output/v115-00-prologue.mp4             output/v115-01-evaluation.mp4             output/v115-02-likability.mp4             output/v115-03-politics.mp4             output/v115-04-feedback.mp4             output/v115-05-epilogue.mp4
+          do
+            printf "file '%s'\n" "$(realpath "$f")"
+          done > output/concat-recovery.txt
+
+          ffmpeg -y -loglevel error -f concat -safe 0             -i output/concat-recovery.txt -c copy             output/v115-voice-master-subtitle-fixed.mp4
+
+      - name: Generate subtle BGM
+        working-directory: shared/v115
+        run: |
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v115-voice-master-subtitle-fixed.mp4)
+          node scripts/generate-bgm.mjs "$D"
+
+      - name: Mix final master
+        working-directory: shared/v115
+        run: |
+          ffmpeg -y -loglevel error             -i output/v115-voice-master-subtitle-fixed.mp4             -i output/bgm.m4a             -filter_complex "[0:a]volume=1[vo];[1:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=first[a]"             -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest             output/v115-final-subtitle-fixed.mp4
+
+      - name: Final technical QA
+        working-directory: shared/v115
+        run: |
+          mkdir -p qa
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 output/v115-final-subtitle-fixed.mp4 | head -1)
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 output/v115-final-subtitle-fixed.mp4 | head -1)
+          F=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=nw=1:nk=1 output/v115-final-subtitle-fixed.mp4 | head -1)
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v115-final-subtitle-fixed.mp4)
+          A=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 output/v115-final-subtitle-fixed.mp4 | wc -l)
+
+          test "$W" = "1920"
+          test "$H" = "1080"
+          test "$F" = "30/1"
+          test "$A" -ge 1
+          awk "BEGIN{exit !($D >= 900)}"
+
+          node - "$D" "$A" <<'NODE'
+          const fs=require('fs');
+          const duration=Number(process.argv[2]);
+          const audioStreams=Number(process.argv[3]);
+          const out={
+            videoId:'V115',
+            recovery:'04-feedback bounded retry',
+            subtitleLayer:'persistent topmost UI overlay',
+            sourceRun:37639708514,
+            durationSeconds:duration,
+            durationMinutes:Number((duration/60).toFixed(2)),
+            resolution:'1920x1080',
+            fps:30,
+            audioStreams,
+            passed:true,
+          };
+          fs.writeFileSync('qa/recovery-validation.json',JSON.stringify(out,null,2));
+          console.log(out);
+          NODE
+
+      - name: Visual anomaly scan
+        working-directory: shared/v115
+        run: |
+          set +e
+          ffmpeg -hide_banner -i output/v115-final-subtitle-fixed.mp4             -vf "blackdetect=d=2:pix_th=0.02,freezedetect=n=-55dB:d=6"             -an -f null - 2> qa/recovery-anomaly-scan.txt
+          set -e
+
+      - name: Generate contact sheet
+        working-directory: shared/v115
+        run: |
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v115-final-subtitle-fixed.mp4)
+          INTERVAL=$(awk "BEGIN{print $D/25}")
+          ffmpeg -y -loglevel error -i output/v115-final-subtitle-fixed.mp4             -vf "fps=1/$INTERVAL,scale=384:-1,tile=5x5:padding=6:margin=8"             -frames:v 1 output/v115-contact-sheet-subtitle-fixed.jpg
+
+      - name: Publish subtitle-fixed V115 release
+        working-directory: shared/v115
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="v115-performance-likability-subtitle-fixed-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v115-performance-likability-subtitle-fixed-${GITHUB_RUN_ID}.mp4"
+          cp output/v115-final-subtitle-fixed.mp4 "output/$NAME"
+          gh release create "$TAG"             "output/$NAME"             output/v115-contact-sheet-subtitle-fixed.jpg             qa/recovery-validation.json             qa/recovery-anomaly-scan.txt             SOURCES.md             V115_PRODUCTION_SPEC.md             --repo "$GITHUB_REPOSITORY"             --title "V115 Subtitle Fixed ${GITHUB_RUN_ID}"             --notes "V115 recovery release. Reuses the five successful subtitle-fixed chapter renders from run 37639708514, rerenders only 04-feedback with a 10-minute timeout and one automatic retry, then rebuilds the final master. Subtitle UI is structurally isolated above all semantic content."
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v115-subtitle-fixed-recovery
+          path: |
+            shared/v115/output/v115-final-subtitle-fixed.mp4
+            shared/v115/output/v115-contact-sheet-subtitle-fixed.jpg
+            shared/v115/qa/recovery-validation.json
+            shared/v115/qa/recovery-anomaly-scan.txt
+          retention-days: 7
