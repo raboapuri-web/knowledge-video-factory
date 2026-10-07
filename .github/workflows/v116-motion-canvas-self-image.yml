@@ -1,0 +1,278 @@
+name: V116 Motion Canvas Self Image
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v116-motion-canvas-self-image.yml'
+      - 'shared/v116/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v116-motion-canvas-self-image
+  cancel-in-progress: true
+
+env:
+  PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v116/.puppeteer
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Structural semantic QA
+        run: node shared/v116/scripts/check-plan.mjs
+      - name: Install Motion Canvas once
+        working-directory: shared/v116
+        run: npm install --no-audit --no-fund
+      - name: Pack preinstalled Motion Canvas and Chromium
+        run: |
+          tar --exclude='shared/v116/media' --exclude='shared/v116/output' --exclude='shared/v116/qa' \
+            -czf v116-motion-base.tar.gz shared/v116
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v116-motion-base
+          path: v116-motion-base.tar.gz
+          retention-days: 1
+          compression-level: 0
+
+  voice:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        slug:
+          - 00-prologue
+          - 01-story
+          - 02-discovered
+          - 03-success
+          - 04-compatibility
+          - 05-doublebind
+          - 06-realself
+          - 07-update
+          - 08-epilogue
+    steps:
+      - uses: actions/checkout@v4
+      - name: Start VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name "voicevox-${{ strategy.job-index }}" \
+            -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          exit 1
+      - name: Generate chapter narration from semantic scenes
+        run: node shared/v116/scripts/generate-chapter-voice.mjs "${{ matrix.slug }}"
+      - name: Pack voice and exact timing data
+        run: |
+          tar -czf "v116-voice-${{ matrix.slug }}.tar.gz" \
+            "shared/v116/media/${{ matrix.slug }}" \
+            "shared/v116/src/generated/${{ matrix.slug }}.ts" \
+            "shared/v116/voice-report-${{ matrix.slug }}.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v116-voice-${{ matrix.slug }}
+          path: v116-voice-${{ matrix.slug }}.tar.gz
+          retention-days: 1
+          compression-level: 0
+
+  render:
+    needs: [prepare, voice]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        slug:
+          - 00-prologue
+          - 01-story
+          - 02-discovered
+          - 03-success
+          - 04-compatibility
+          - 05-doublebind
+          - 06-realself
+          - 07-update
+          - 08-epilogue
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v4
+        with:
+          name: v116-motion-base
+      - name: Restore preinstalled Motion Canvas
+        run: tar -xzf v116-motion-base.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          name: v116-voice-${{ matrix.slug }}
+      - name: Restore exact narration timing
+        run: tar -xzf "v116-voice-${{ matrix.slug }}.tar.gz"
+      - name: Typecheck and build all chapter projects
+        working-directory: shared/v116
+        run: npm run build
+      - name: Seven-second semantic smoke render
+        working-directory: shared/v116
+        run: |
+          node scripts/render.mjs "${{ matrix.slug }}" --smoke
+          test -s "output/v116-${{ matrix.slug }}-smoke.mp4"
+          rm -f "output/v116-${{ matrix.slug }}-smoke.mp4"
+      - name: Render full chapter with bounded retry
+        working-directory: shared/v116
+        run: |
+          rm -f "output/v116-${{ matrix.slug }}.mp4"
+          chmod +x ../motion-canvas-standard/render-with-retry.sh
+          MAX_ATTEMPTS=2 ../motion-canvas-standard/render-with-retry.sh 10m \
+            node scripts/render.mjs "${{ matrix.slug }}"
+          test -s "output/v116-${{ matrix.slug }}.mp4"
+      - name: Pack rendered chapter
+        run: |
+          tar -czf "v116-render-${{ matrix.slug }}.tar.gz" \
+            "shared/v116/output/v116-${{ matrix.slug }}.mp4" \
+            "shared/v116/render-report-${{ matrix.slug }}.json" \
+            "shared/v116/voice-report-${{ matrix.slug }}.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v116-render-${{ matrix.slug }}
+          path: v116-render-${{ matrix.slug }}.tar.gz
+          retention-days: 1
+          compression-level: 0
+
+  finalize:
+    needs: render
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Structural semantic QA
+        run: node shared/v116/scripts/check-plan.mjs
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v116-render-*
+          path: renders
+          merge-multiple: true
+      - name: Restore all rendered chapters
+        run: |
+          for f in renders/v116-render-*.tar.gz; do tar -xzf "$f"; done
+          ls -lh shared/v116/output/v116-*.mp4
+      - name: Ensure ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+      - name: Stream-copy chapter concat
+        working-directory: shared/v116
+        run: |
+          mkdir -p output
+          for f in \
+            output/v116-00-prologue.mp4 \
+            output/v116-01-story.mp4 \
+            output/v116-02-discovered.mp4 \
+            output/v116-03-success.mp4 \
+            output/v116-04-compatibility.mp4 \
+            output/v116-05-doublebind.mp4 \
+            output/v116-06-realself.mp4 \
+            output/v116-07-update.mp4 \
+            output/v116-08-epilogue.mp4
+          do
+            printf "file '%s'\n" "$(realpath "$f")"
+          done > output/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy output/v116-voice-master.mp4
+      - name: Generate subtle ambient BGM
+        working-directory: shared/v116
+        run: |
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v116-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+      - name: Mix BGM and create final master
+        working-directory: shared/v116
+        run: |
+          ffmpeg -y -loglevel error \
+            -i output/v116-voice-master.mp4 -i output/bgm.m4a \
+            -filter_complex "[0:a]volume=1[vo];[1:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=first[a]" \
+            -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest output/v116-final.mp4
+      - name: Final technical QA and metrics
+        working-directory: shared/v116
+        run: |
+          mkdir -p qa
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 output/v116-final.mp4 | head -1)
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 output/v116-final.mp4 | head -1)
+          F=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=nw=1:nk=1 output/v116-final.mp4 | head -1)
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v116-final.mp4)
+          A=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 output/v116-final.mp4 | wc -l)
+          test "$W" = "1920"
+          test "$H" = "1080"
+          test "$F" = "30/1"
+          test "$A" -ge 1
+          awk "BEGIN{exit !($D >= 480)}"
+          node - "$D" "$A" <<'NODE'
+          const fs=require('fs');
+          const duration=Number(process.argv[2]);
+          const audioStreams=Number(process.argv[3]);
+          const manifest=JSON.parse(fs.readFileSync('manifest.json','utf8'));
+          const reports=fs.readdirSync('.').filter(x=>x.startsWith('voice-report-')&&x.endsWith('.json')).map(x=>JSON.parse(fs.readFileSync(x,'utf8')));
+          const renderReports=fs.readdirSync('.').filter(x=>x.startsWith('render-report-')&&x.endsWith('.json')).map(x=>JSON.parse(fs.readFileSync(x,'utf8')));
+          const semanticScenes=manifest.chapters.reduce((sum,[slug])=>sum+JSON.parse(fs.readFileSync('chapters/'+slug+'.json','utf8')).beats.length,0);
+          const out={
+            videoId:'V116',
+            durationSeconds:duration,
+            durationMinutes:Number((duration/60).toFixed(2)),
+            resolution:'1920x1080',fps:30,audioStreams,semanticScenes,
+            narrationSeconds:Number(reports.reduce((s,x)=>s+x.totalSeconds,0).toFixed(3)),
+            chapterRenderSeconds:Number(renderReports.reduce((s,x)=>s+x.renderSeconds,0).toFixed(2)),
+            subtitleLayer:'persistent topmost UI overlay',
+            passed:true
+          };
+          fs.writeFileSync('qa/final-validation.json',JSON.stringify(out,null,2));
+          console.log(out);
+          NODE
+      - name: Freeze and black-frame heuristic report
+        working-directory: shared/v116
+        run: |
+          set +e
+          ffmpeg -hide_banner -i output/v116-final.mp4 \
+            -vf "blackdetect=d=2:pix_th=0.02,freezedetect=n=-55dB:d=6" \
+            -an -f null - 2> qa/visual-anomaly-scan.txt
+          set -e
+      - name: Generate 25-frame contact sheet
+        working-directory: shared/v116
+        run: |
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v116-final.mp4)
+          INTERVAL=$(awk "BEGIN{print $D/25}")
+          ffmpeg -y -loglevel error -i output/v116-final.mp4 \
+            -vf "fps=1/$INTERVAL,scale=384:-1,tile=5x5:padding=6:margin=8" \
+            -frames:v 1 output/v116-contact-sheet.jpg
+      - name: Publish V116 release
+        working-directory: shared/v116
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="v116-self-image-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v116-self-image-${GITHUB_RUN_ID}.mp4"
+          cp output/v116-final.mp4 "output/$NAME"
+          gh release create "$TAG" \
+            "output/$NAME" \
+            output/v116-contact-sheet.jpg \
+            qa/preproduction-summary.json \
+            qa/final-validation.json \
+            qa/visual-anomaly-scan.txt \
+            SOURCES.md \
+            V116_PRODUCTION_SPEC.md \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V116 Self Image ${GITHUB_RUN_ID}" \
+            --notes "V116 full Motion Canvas production. 48 semantic scenes across 9 independently renderable chapters. Persistent topmost subtitle overlay, VOICEVOX timing, backward-compatibility visual metaphor, bounded render retries, final technical QA and contact-sheet review."
