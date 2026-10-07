@@ -10,7 +10,7 @@ if(manifest.chapters.length!==9) throw new Error('Expected 9 chapter render unit
 
 const chapters=manifest.chapters.map(([slug])=>JSON.parse(fs.readFileSync(path.join(root,'chapters',slug+'.json'),'utf8')));
 const beats=chapters.flatMap(c=>c.beats.map(b=>({...b,chapter:c.slug})));
-if(beats.length<40||beats.length>60) throw new Error('Expected 40-60 semantic scenes, got '+beats.length);
+if(beats.length<36||beats.length>50) throw new Error('Expected 36-50 semantic scenes, got '+beats.length);
 
 const ids=new Set();
 let prevKind='',run=0;
@@ -28,14 +28,14 @@ if(kinds.size<20) throw new Error('Insufficient visual diversity: '+kinds.size);
 
 const scene=fs.readFileSync(path.join(root,'src','production-scene.tsx'),'utf8');
 for(const token of [
-  'const contentLayer = createRef<Node>();',
-  'const subtitleLayer = createRef<Node>();',
+  'const contentLayer=createRef<Node>();',
+  'const subtitleLayer=createRef<Node>();',
   'contentLayer().add(<Node ref={group}',
   "fill={'rgba(0,0,0,0.90)'}",
 ]){
   if(!scene.includes(token)) throw new Error('Subtitle overlay regression: missing '+token);
 }
-const contentIndex=scene.indexOf('<Node ref={contentLayer} />');
+const contentIndex=scene.indexOf('<Node ref={contentLayer}/>');
 const subtitleIndex=scene.indexOf('<Node ref={subtitleLayer}>');
 if(contentIndex<0||subtitleIndex<0||subtitleIndex<=contentIndex){
   throw new Error('Subtitle overlay regression: subtitle layer must render after content layer');

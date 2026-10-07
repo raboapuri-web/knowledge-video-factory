@@ -275,4 +275,4 @@ jobs:
             V116_PRODUCTION_SPEC.md \
             --repo "$GITHUB_REPOSITORY" \
             --title "V116 Self Image ${GITHUB_RUN_ID}" \
-            --notes "V116 full Motion Canvas production. 48 semantic scenes across 9 independently renderable chapters. Persistent topmost subtitle overlay, VOICEVOX timing, backward-compatibility visual metaphor, bounded render retries, final technical QA and contact-sheet review."
+            --notes "V116 full Motion Canvas production. 40 meaning-driven scenes across 9 independently renderable chapters. Persistent topmost subtitle overlay, VOICEVOX timing, backward-compatibility visual metaphor, bounded render retries, final technical QA and contact-sheet review."

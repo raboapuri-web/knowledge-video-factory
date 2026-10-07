@@ -8,7 +8,7 @@
 - Output: 1920x1080 / 30fps / H.264 / AAC
 - Voice: VOICEVOX 青山龍星 ノーマル / speedScale 1.15
 - Render units: 9 independent chapters
-- Semantic Motion Canvas scenes: 48
+- Semantic Motion Canvas scenes: 40
 - Subtitle UI: permanent topmost overlay, separate from content
 - Subtitle safe zone: bottom ~160px
 - Full chapter render: 10 minute timeout + one automatic retry
