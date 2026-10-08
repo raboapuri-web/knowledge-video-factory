@@ -68,7 +68,9 @@ function build(group:Node,beat:Beat){
         <Line points={[[ -65,30],[58,30]]} stroke={'#9b978f'} lineWidth={4}/>
       </Rect>
       <Txt x={530} y={-120} text={'1970 / LOUISVILLE'} fontFamily={FONT} fontWeight={700} fontSize={42} fill={C.gold}/>
-      <Txt x={530} y={-25} text={'観客の歓声\\n酒の匂い\\n競馬場の熱気'} fontFamily={FONT} fontSize={30} lineHeight={48} fill={C.paper} textAlign={'center'}/>
+      <Txt x={530} y={-70} text={'観客の歓声'} fontFamily={FONT} fontSize={30} fill={C.paper} textAlign={'center'}/>
+      <Txt x={530} y={-20} text={'酒の匂い'} fontFamily={FONT} fontSize={30} fill={C.paper} textAlign={'center'}/>
+      <Txt x={530} y={30} text={'競馬場の熱気'} fontFamily={FONT} fontSize={30} fill={C.paper} textAlign={'center'}/>
     </Node>);
   } else if(k==='v2_gonzo_page'){
     r.page=createRef<Rect>(); r.person=createRef<Node>(); r.scribbles=[0,1,2,3].map(()=>createRef<Line>());
@@ -87,12 +89,13 @@ function build(group:Node,beat:Beat){
   } else if(k==='v2_persona_billboard'){
     r.person=createRef<Node>(); r.bill=createRef<Rect>(); r.flash=[0,1,2,3].map(()=>createRef<Circle>());
     group.add(<Node y={55}>
-      <Rect ref={r.bill} y={-10} width={1050} height={470} radius={30} fill={'#18262d'} stroke={C.red} lineWidth={7} scale={0.45} opacity={0.35}>
-        <Txt y={-115} text={'PUBLIC PERSONA'} fontFamily={FONT} fontWeight={700} fontSize={42} fill={C.red}/>
-        <Txt y={10} text={'サングラス　帽子　酒　反抗'} fontFamily={FONT} fontWeight={700} fontSize={38} fill={C.paper}/>
-        <Txt y={115} text={'「もっと本人らしく」'} fontFamily={FONT} fontWeight={700} fontSize={36} fill={C.gold}/>
+      <Rect ref={r.bill} y={-10} width={1320} height={500} radius={30} fill={'#18262d'} stroke={C.red} lineWidth={7} scale={0.45} opacity={0.35}>
+        {/* Text lane: left side. Illustration lane: right side. Never overlap. */}
+        <Txt x={-300} y={-150} width={620} textAlign={'center'} text={'PUBLIC PERSONA'} fontFamily={FONT} fontWeight={700} fontSize={42} fill={C.red}/>
+        <Txt x={-300} y={-35} width={620} textAlign={'center'} text={'サングラス　帽子　酒　反抗'} fontFamily={FONT} fontWeight={700} fontSize={34} fill={C.paper}/>
+        <Txt x={-300} y={105} width={620} textAlign={'center'} text={'「もっと本人らしく」'} fontFamily={FONT} fontWeight={700} fontSize={34} fill={C.gold}/>
       </Rect>
-      <Node ref={r.person}>{Person({x:0,y:90,shirt:C.teal,scale:0.82,label:'本人'})}</Node>
+      <Node ref={r.person}>{Person({x:410,y:95,shirt:C.teal,scale:0.82,label:'本人'})}</Node>
       {[[-590,-140],[600,-110],[-540,200],[560,190]].map((p,i)=><Circle key={String(i)} ref={r.flash[i]} x={p[0]} y={p[1]} width={80} height={80} fill={C.paper} opacity={0}/>)}
     </Node>);
   } else if(k==='v2_identity_mirror'||k==='v2_self_mirror_story'){
@@ -469,7 +472,8 @@ function build(group:Node,beat:Beat){
       <Node ref={r.person}>{Person({x:-300,y:70,shirt:C.blue,scale:0.75,label:'20年勤めた会社員'})}</Node>
       <Rect ref={r.paper} x={180} y={80} width={460} height={300} radius={18} fill={'#eee9df'} rotation={-3}>
         <Txt y={-90} text={'求人票'} fontFamily={FONT} fontWeight={700} fontSize={36} fill={C.ink}/>
-        <Txt y={30} text={'今とは違う仕事\\n年収は少し下がる'} fontFamily={FONT} fontSize={27} lineHeight={45} fill={C.ink} textAlign={'center'}/>
+        <Txt y={5} text={'今とは違う仕事'} fontFamily={FONT} fontSize={27} fill={C.ink} textAlign={'center'}/>
+        <Txt y={55} text={'年収は少し下がる'} fontFamily={FONT} fontSize={27} fill={C.ink} textAlign={'center'}/>
       </Rect>
       <Circle ref={r.clock} x={-600} y={-145} width={150} height={150} fill={C.surface2} stroke={C.line} lineWidth={5}>
         <Txt text={'23:40'} fontFamily={FONT} fontWeight={700} fontSize={28} fill={C.paper}/>
