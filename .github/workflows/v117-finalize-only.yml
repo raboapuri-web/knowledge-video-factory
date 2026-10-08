@@ -11,6 +11,10 @@ permissions:
   actions: read
   contents: write
 
+concurrency:
+  group: v117-finalize-existing-renders
+  cancel-in-progress: true
+
 jobs:
   finalize:
     runs-on: ubuntu-24.04
@@ -37,6 +41,10 @@ jobs:
         run: |
           for f in renders/v117-render-*.tar.gz; do tar -xzf "$f"; done
           ls -lh shared/v117/output/v117-*.mp4
+
+      - name: Rebuild structural QA summary
+        working-directory: shared/v117
+        run: node scripts/check-plan.mjs
 
       - name: Concat, mix BGM, validate, and make contact sheet
         working-directory: shared/v117
