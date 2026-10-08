@@ -77,6 +77,12 @@ jobs:
       - uses: actions/download-artifact@v4
         with: {pattern: v117-render-*, path: renders, merge-multiple: true}
       - run: for f in renders/v117-render-*.tar.gz; do tar -xzf "$f"; done
+      - name: Ensure ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
       - working-directory: shared/v117
         run: |
           mkdir -p output
@@ -97,4 +103,4 @@ jobs:
         env: {GH_TOKEN: "${{ github.token }}"}
         run: |
           TAG="v117-faith-fandom-${GITHUB_RUN_ID}"; NAME="knowledge-video-v117-faith-fandom-${GITHUB_RUN_ID}.mp4"; cp output/v117-final.mp4 "output/$NAME"
-          gh release create "$TAG" "output/$NAME" output/v117-contact-sheet.jpg qa/preproduction-summary.json qa/final-validation.json qa/visual-anomaly-scan.txt SOURCES.md V117_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V117 Faith and Fandom ${GITHUB_RUN_ID}" --notes "V117 full Motion Canvas production for 文化的暴飲暴食. 37 semantic scenes / 8 chapter renders / VOICEVOX / topmost subtitles / QA contact sheet."
+          gh release create "$TAG" "output/$NAME" output/v117-contact-sheet.jpg qa/preproduction-summary.json qa/final-validation.json qa/visual-anomaly-scan.txt SOURCES.md V117_PRODUCTION_SPEC.md --repo "$GITHUB_REPOSITORY" --title "V117 Faith and Fandom ${GITHUB_RUN_ID}" --notes "V117 full Motion Canvas production for 文化的暴飲暴食. 35 semantic scenes / 8 chapter renders / VOICEVOX / topmost subtitles / QA contact sheet."
