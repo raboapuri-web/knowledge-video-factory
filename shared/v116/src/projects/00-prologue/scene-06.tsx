@@ -1,10 +1,3 @@
-import chapter from '../../../chapters/00-prologue.json';
-import timings from '../../generated/00-prologue';
-import {makeProductionScene, type Chapter} from '../../production-scene';
-
-const typed=chapter as Chapter;
-const beat=typed.beats[6];
-export default makeProductionScene(
-  {slug:typed.slug,title:typed.title,beats:[beat]},
-  [timings[6]],
-);
+// Legacy scene file retained only to keep TypeScript glob compilation harmless.
+// It is not imported by the V116 v2 project.
+export {};
