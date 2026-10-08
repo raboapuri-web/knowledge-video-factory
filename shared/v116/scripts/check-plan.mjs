@@ -35,6 +35,7 @@ for(const token of [
 ]){
   if(!scene.includes(token)) throw new Error('Subtitle overlay regression: missing '+token);
 }
+if(scene.includes('\\\\n')) throw new Error('Literal display newline escape \\n is forbidden; split display text into separate Txt nodes instead');
 const contentIndex=scene.indexOf('<Node ref={contentLayer}/>');
 const subtitleIndex=scene.indexOf('<Node ref={subtitleLayer}>');
 if(contentIndex<0||subtitleIndex<0||subtitleIndex<=contentIndex){
