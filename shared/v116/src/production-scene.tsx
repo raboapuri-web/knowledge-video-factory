@@ -68,9 +68,7 @@ function build(group:Node,beat:Beat){
         <Line points={[[ -65,30],[58,30]]} stroke={'#9b978f'} lineWidth={4}/>
       </Rect>
       <Txt x={530} y={-120} text={'1970 / LOUISVILLE'} fontFamily={FONT} fontWeight={700} fontSize={42} fill={C.gold}/>
-      <Txt x={530} y={-25} text={'観客の歓声
-酒の匂い
-競馬場の熱気'} fontFamily={FONT} fontSize={30} lineHeight={48} fill={C.paper} textAlign={'center'}/>
+      <Txt x={530} y={-25} text={'観客の歓声\\n酒の匂い\\n競馬場の熱気'} fontFamily={FONT} fontSize={30} lineHeight={48} fill={C.paper} textAlign={'center'}/>
     </Node>);
   } else if(k==='v2_gonzo_page'){
     r.page=createRef<Rect>(); r.person=createRef<Node>(); r.scribbles=[0,1,2,3].map(()=>createRef<Line>());
@@ -471,8 +469,7 @@ function build(group:Node,beat:Beat){
       <Node ref={r.person}>{Person({x:-300,y:70,shirt:C.blue,scale:0.75,label:'20年勤めた会社員'})}</Node>
       <Rect ref={r.paper} x={180} y={80} width={460} height={300} radius={18} fill={'#eee9df'} rotation={-3}>
         <Txt y={-90} text={'求人票'} fontFamily={FONT} fontWeight={700} fontSize={36} fill={C.ink}/>
-        <Txt y={30} text={'今とは違う仕事
-年収は少し下がる'} fontFamily={FONT} fontSize={27} lineHeight={45} fill={C.ink} textAlign={'center'}/>
+        <Txt y={30} text={'今とは違う仕事\\n年収は少し下がる'} fontFamily={FONT} fontSize={27} lineHeight={45} fill={C.ink} textAlign={'center'}/>
       </Rect>
       <Circle ref={r.clock} x={-600} y={-145} width={150} height={150} fill={C.surface2} stroke={C.line} lineWidth={5}>
         <Txt text={'23:40'} fontFamily={FONT} fontWeight={700} fontSize={28} fill={C.paper}/>
