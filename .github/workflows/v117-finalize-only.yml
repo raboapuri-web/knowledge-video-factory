@@ -103,3 +103,5 @@ jobs:
           NAME="knowledge-video-v117-faith-fandom-${GITHUB_RUN_ID}.mp4"
           cp output/v117-final.mp4 "output/$NAME"
           gh release create "$TAG"             "output/$NAME"             output/v117-contact-sheet.jpg             qa/preproduction-summary.json             qa/final-validation.json             qa/visual-anomaly-scan.txt             SOURCES.md             V117_PRODUCTION_SPEC.md             --repo "$GITHUB_REPOSITORY"             --title "V117 Faith and Fandom Final ${GITHUB_RUN_ID}"             --notes "Finalized from the eight successfully rendered V117 chapter artifacts from source run 37798669024. Motion Canvas / VOICEVOX / persistent subtitle overlay / final technical QA / contact sheet."
+
+# trigger finalize-only after workflow registration
