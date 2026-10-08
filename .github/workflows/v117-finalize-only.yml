@@ -1,0 +1,105 @@
+name: V117 Finalize Existing Renders
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v117-finalize-only.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Download successful V117 chapter renders from source run
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v117-render-*
+          path: renders
+          merge-multiple: true
+          repository: raboapuri-web/knowledge-video-factory
+          run-id: 37798669024
+          github-token: ${{ github.token }}
+
+      - name: Restore chapter renders
+        run: |
+          for f in renders/v117-render-*.tar.gz; do tar -xzf "$f"; done
+          ls -lh shared/v117/output/v117-*.mp4
+
+      - name: Concat, mix BGM, validate, and make contact sheet
+        working-directory: shared/v117
+        run: |
+          mkdir -p output qa
+          for f in             output/v117-00-prologue.mp4             output/v117-01-sacred.mp4             output/v117-02-belief.mp4             output/v117-03-collective.mp4             output/v117-04-narrative.mp4             output/v117-05-reinvent.mp4             output/v117-06-shadow.mp4             output/v117-07-epilogue.mp4
+          do
+            printf "file '%s'\n" "$(realpath "$f")"
+          done > output/concat.txt
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy output/v117-voice-master.mp4
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v117-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+          ffmpeg -y -loglevel error             -i output/v117-voice-master.mp4 -i output/bgm.m4a             -filter_complex "[0:a]volume=1[vo];[1:a]volume=.035[bg];[vo][bg]amix=inputs=2:duration=first[a]"             -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest output/v117-final.mp4
+
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 output/v117-final.mp4 | head -1)
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 output/v117-final.mp4 | head -1)
+          F=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=nw=1:nk=1 output/v117-final.mp4 | head -1)
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v117-final.mp4)
+          A=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 output/v117-final.mp4 | wc -l)
+          test "$W" = "1920"
+          test "$H" = "1080"
+          test "$F" = "30/1"
+          test "$A" -ge 1
+          awk "BEGIN{exit !($D >= 480)}"
+
+          node - "$D" "$A" <<'NODE'
+          const fs=require('fs');
+          const duration=Number(process.argv[2]);
+          const audioStreams=Number(process.argv[3]);
+          const m=JSON.parse(fs.readFileSync('manifest.json','utf8'));
+          const vr=fs.readdirSync('.').filter(x=>x.startsWith('voice-report-')).map(x=>JSON.parse(fs.readFileSync(x)));
+          const rr=fs.readdirSync('.').filter(x=>x.startsWith('render-report-')).map(x=>JSON.parse(fs.readFileSync(x)));
+          const semanticScenes=m.chapters.reduce((s,[slug])=>s+JSON.parse(fs.readFileSync('chapters/'+slug+'.json')).beats.length,0);
+          const out={
+            videoId:'V117',
+            durationSeconds:duration,
+            durationMinutes:Number((duration/60).toFixed(2)),
+            resolution:'1920x1080',
+            fps:30,
+            audioStreams,
+            semanticScenes,
+            narrationSeconds:Number(vr.reduce((s,x)=>s+x.totalSeconds,0).toFixed(3)),
+            chapterRenderSeconds:Number(rr.reduce((s,x)=>s+x.renderSeconds,0).toFixed(2)),
+            subtitleLayer:'persistent topmost UI overlay',
+            passed:true
+          };
+          fs.writeFileSync('qa/final-validation.json',JSON.stringify(out,null,2));
+          console.log(out);
+          NODE
+
+          set +e
+          ffmpeg -hide_banner -i output/v117-final.mp4             -vf "blackdetect=d=2:pix_th=0.02,freezedetect=n=-55dB:d=6"             -an -f null - 2> qa/visual-anomaly-scan.txt
+          set -e
+
+          INTERVAL=$(awk "BEGIN{print $D/25}")
+          ffmpeg -y -loglevel error -i output/v117-final.mp4             -vf "fps=1/$INTERVAL,scale=384:-1,tile=5x5:padding=6:margin=8"             -frames:v 1 output/v117-contact-sheet.jpg
+
+      - name: Publish final V117 release
+        working-directory: shared/v117
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="v117-faith-fandom-final-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v117-faith-fandom-${GITHUB_RUN_ID}.mp4"
+          cp output/v117-final.mp4 "output/$NAME"
+          gh release create "$TAG"             "output/$NAME"             output/v117-contact-sheet.jpg             qa/preproduction-summary.json             qa/final-validation.json             qa/visual-anomaly-scan.txt             SOURCES.md             V117_PRODUCTION_SPEC.md             --repo "$GITHUB_REPOSITORY"             --title "V117 Faith and Fandom Final ${GITHUB_RUN_ID}"             --notes "Finalized from the eight successfully rendered V117 chapter artifacts from source run 37798669024. Motion Canvas / VOICEVOX / persistent subtitle overlay / final technical QA / contact sheet."
