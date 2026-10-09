@@ -111,7 +111,7 @@ jobs:
         if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
         working-directory: shared/v118
         run: |
-          tar -xzf "../../v118-voice-${{ matrix.slug }}.tar.gz"
+          tar -xzf "../../v118-voice-${{ matrix.slug }}.tar.gz" -C ../..
           python3 scripts/merge_timing.py "${{ matrix.slug }}"
           python3 scripts/qa.py
           npm run build
