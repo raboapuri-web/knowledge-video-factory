@@ -1,0 +1,26 @@
+name: V119 Typecheck Preflight
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v119-typecheck.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - name: Generate all V119 source and subtitles
+        working-directory: shared/v119
+        run: |
+          python3 scripts/build_data.py
+          python3 scripts/qa.py
+      - name: Typecheck Motion Canvas and bundle every chapter
+        working-directory: shared/v119
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
