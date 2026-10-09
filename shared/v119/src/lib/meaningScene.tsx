@@ -298,7 +298,7 @@ export function* playMeaningScene(view:View2D,scene:MeaningScene):ThreadGenerato
  const headingLayer=new Node({});
  const subtitleBacking=new Node({});
  const subtitleTextLayer=new Node({});
- // Explicit immutable painter order; view.add() is never used again.
+ // Explicit immutable painter order; no later root insertions are allowed.
  view.add(contentLayer);
  view.add(headingLayer);
  view.add(subtitleBacking);
