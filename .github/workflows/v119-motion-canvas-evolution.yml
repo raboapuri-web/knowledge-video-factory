@@ -121,6 +121,7 @@ jobs:
         run: |
           node scripts/render.mjs "${{ matrix.slug }}" --smoke
           test -s "output/v119-${{ matrix.slug }}-smoke.mp4"
+          python3 scripts/check_smoke.py "output/v119-${{ matrix.slug }}-smoke.mp4"
           rm -f "output/v119-${{ matrix.slug }}-smoke.mp4"
       - name: Render full chapter with measured VOICEVOX
         if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
