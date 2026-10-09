@@ -1,0 +1,42 @@
+name: V118 Render Output Diagnose
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/v118-render-diagnose.yml']
+permissions: {contents: read, actions: read}
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v118/.puppeteer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/download-artifact@v4
+        with:
+          name: v118-motion-base
+          run-id: 37870979716
+          github-token: ${{ github.token }}
+      - name: Unpack prepared code
+        run: tar -xzf v118-motion-base.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          name: v118-voice-chapter1
+          run-id: 37870979716
+          github-token: ${{ github.token }}
+      - name: Unpack measured voice and debug render
+        run: |
+          tar -xzf v118-voice-chapter1.tar.gz
+          cd shared/v118
+          python3 scripts/merge_timing.py chapter1
+          npm run build >/dev/null
+          node scripts/render.mjs chapter1 --smoke || true
+          echo '=== All output video files ==='
+          find . -maxdepth 6 -type f \( -iname '*.mp4' -o -iname '*.mov' -o -iname '*.webm' \) -printf '%p %s bytes\n'
+          echo '=== output tree ==='
+          find output -maxdepth 6 -printf '%y %p\n' | head -180
+          echo '=== ffmpeg output resources ==='
+          find . -maxdepth 6 -name '*ffmpeg*' -printf '%p\n' | head -60
