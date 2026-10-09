@@ -105,7 +105,8 @@ jobs:
         run: tar -xzf v118-motion-base.tar.gz
       - uses: actions/download-artifact@v4
         if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
-        with: {name: v118-voice-${{ matrix.slug }}}
+        with:
+          name: 'v118-voice-${{ matrix.slug }}'
       - name: Merge measured subtitles
         if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
         working-directory: shared/v118
