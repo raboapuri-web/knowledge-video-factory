@@ -1,1 +1,9 @@
-{"compilerOptions":{"target":"ES2022","lib":["ES2022","DOM","DOM.Iterable"],"module":"ESNext","moduleResolution":"Bundler","jsx":"react-jsx","jsxImportSource":"@motion-canvas/2d/lib","strict":true,"skipLibCheck":true,"resolveJsonModule":true,"noEmit":true,"allowSyntheticDefaultImports":true,"types":["vite/client"]},"include":["src/**/*","vite.config.ts"]}
+{
+  "extends": "@motion-canvas/2d/tsconfig.project.json",
+  "compilerOptions": {
+    "types": ["node", "vite/client"],
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src", "vite.config.ts"]
+}

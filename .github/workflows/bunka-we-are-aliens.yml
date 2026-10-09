@@ -10,7 +10,7 @@ permissions:
   contents: read
 concurrency:
   group: bunka-aliens-video
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   prepare:
     runs-on: ubuntu-24.04
@@ -24,9 +24,10 @@ jobs:
           node-version: 22
       - name: Install npm packages once and prepare browser runtime
         run: |
+          export PUPPETEER_CACHE_DIR="$PWD/.cache/puppeteer"
           npm install --no-audit --no-fund
           npm run prepare
-          tar -cf node_modules.tar node_modules
+          tar -cf node_modules.tar node_modules .cache
       - uses: actions/upload-artifact@v4
         with:
           name: motioncanvas-dependencies
@@ -65,6 +66,8 @@ jobs:
     needs: [prepare,voice]
     runs-on: ubuntu-24.04
     timeout-minutes: 120
+    env:
+      PUPPETEER_CACHE_DIR: ${{ github.workspace }}/episodes/bunka-we-are-aliens/.cache/puppeteer
     strategy:
       fail-fast: false
       max-parallel: 3
@@ -121,7 +124,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           pattern: chapter-*
-          path: episodes/bunka-we-are-aliens/output
+          path: episodes/bunka-we-are-aliens
           merge-multiple: true
       - run: node scripts/package.mjs
       - run: node scripts/music.mjs
