@@ -55,6 +55,16 @@ for chapter in ['prologue']+[f'chapter{i}' for i in range(1,7)]+['epilogue']:
     (ROOT/'src/projects'/f'{chapter}.ts').write_text(
         "import {makeProject} from '@motion-canvas/core';\n"+imports+'\n'+
         "export default makeProject({name:'v118-"+chapter+"', scenes: ["+', '.join(f's{i}' for i in range(len(chapterScenes)))+"], audio:'/media/"+chapter+"/narration.wav'});\n")
+# Motion Canvas FFmpeg exporter metadata, generated for each independent chapter project.
+# Without these project.meta files the renderer can report Success without producing MP4.
+MC_META = {
+    "version":1,
+    "shared":{"background":"rgb(10,18,32)","range":[0,None],"size":{"x":1920,"y":1080},"audioOffset":0},
+    "preview":{"fps":30,"resolutionScale":0.5},
+    "rendering":{"fps":30,"resolutionScale":1,"colorSpace":"srgb","exporter":{"name":"@motion-canvas/ffmpeg","options":{"fastStart":True,"includeAudio":True}},"fileType":"image/png","quality":1}
+}
+for ch in ['prologue']+[f'chapter{i}' for i in range(1,7)]+['epilogue']:
+    (ROOT/'src/projects'/f'{ch}.meta').write_text(json.dumps(MC_META,ensure_ascii=False,separators=(',',':'))+'\\n')
 from collections import defaultdict
 chapters=defaultdict(float)
 for r in rows: chapters[r['chapter']]+=r['duration']
