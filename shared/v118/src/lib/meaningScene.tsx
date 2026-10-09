@@ -253,10 +253,10 @@ function* visualFlow(layers:Node[],duration:number,motif:string):ThreadGenerator
 }
 export function* playMeaningScene(view:View2D,scene:MeaningScene):ThreadGenerator{
  view.fill(P.bg);
- const contentLayer=new Node();
- const headingLayer=new Node();
- const subtitleBacking=new Node();
- const subtitleTextLayer=new Node();
+ const contentLayer=new Node({});
+ const headingLayer=new Node({});
+ const subtitleBacking=new Node({});
+ const subtitleTextLayer=new Node({});
  // Root add once. All later content is attached ONLY to contentLayer.
  // Known painter's order. Adding all roots together prevents unexpected overlap.
  view.add(contentLayer);view.add(headingLayer);view.add(subtitleBacking);view.add(subtitleTextLayer);
