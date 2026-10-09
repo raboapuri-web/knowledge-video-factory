@@ -1,4 +1,4 @@
-import {access,mkdir,stat,writeFile} from 'node:fs/promises';
+import {access,mkdir,stat,writeFile,copyFile} from 'node:fs/promises';
 import {join,resolve} from 'node:path';import puppeteer from 'puppeteer';import {createServer} from 'vite';
 const root=resolve(import.meta.dirname,'..');const out=join(root,'output');await mkdir(out,{recursive:true});
 const ids=process.env.CHAPTERS?process.env.CHAPTERS.split(',').map(Number):[0,1,2,3,4,5,6];
@@ -7,6 +7,14 @@ for(const id of ids){
  process.env.VITE_CHAPTER=String(id);
  const narration=join(root,'public/media',`chapter-${id}.wav`);
  await access(narration); // no silent fallback to fake a completed narration
+ // Vite serves /media from public/media, but Motion Canvas's FFmpeg exporter
+ // resolves the same URL as media/chapter-N.wav relative to the project cwd.
+ // Materialize both paths before launching Chromium; do not alter narration.
+ const ffmpegAudio=join(root,'media',`chapter-${id}.wav`);
+ await mkdir(join(root,'media'),{recursive:true});
+ await copyFile(narration,ffmpegAudio);
+ await access(ffmpegAudio);
+ console.log(`[render] verified FFmpeg narration path: ${ffmpegAudio}`);
  const server=await createServer({root,configFile:join(root,'vite.config.ts'),server:{port:0},logLevel:'warn'});
  await server.listen();const address=server.httpServer?.address();if(!address||typeof address==='string')throw Error('Vite server failed');
  const origin='http://localhost:'+address.port;
