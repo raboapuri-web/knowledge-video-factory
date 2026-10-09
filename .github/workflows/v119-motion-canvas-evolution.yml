@@ -115,6 +115,14 @@ jobs:
           python3 scripts/merge_timing.py "${{ matrix.slug }}"
           python3 scripts/qa.py
           npm run build
+      - name: Ensure FFmpeg for pixel-level subtitle smoke QA
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg
+          fi
+          ffmpeg -version | head -1
       - name: Headless smoke render before full chapter
         if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
         working-directory: shared/v119
