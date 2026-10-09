@@ -3,253 +3,294 @@ import '@fontsource/noto-sans-jp/700.css';
 import {Circle, Line, Node, Rect, Txt, type View2D} from '@motion-canvas/2d';
 import {all, waitFor, type ThreadGenerator} from '@motion-canvas/core';
 
-// Layer contract, from back to front:
-// backplate -> contentLayer -> headingLayer -> subtitleBacking -> subtitleText
-// No visual objects are ever inserted into the root view after subtitle creation.
+/* V119: every meaning scene is one continuous space with seven causal states.
+   Never insert children directly into view after subtitle layers exist. */
 interface Cue {text:string;display:string;start:number;end:number}
-interface MeaningScene {id:string; chapter:string; motif:string; title:string; cues:Cue[];duration:number}
-const P={bg:'#0A1220',bg2:'#111F30',paper:'#EAE8DF',muted:'#8297A9',red:'#D9494C',gold:'#BE9D68',cyan:'#7FAAB9',line:'#35465A',shadow:'#162436'};
-const font='Noto Sans JP, Noto Sans CJK JP, sans-serif';
-const t=(s:string,x:number,y:number,size=38,fill=P.paper,weight=600)=>new Txt({text:s,x,y,fontFamily:font,fontSize:size,fontWeight:weight,fill});
-const panel=(x:number,y:number,w:number,h:number,fill=P.shadow)=>new Rect({x,y,width:w,height:h,fill,radius:12,stroke:P.line,lineWidth:2});
-const rule=(x1:number,y1:number,x2:number,y2:number,color=P.line,width=3)=>new Line({points:[[x1,y1],[x2,y2]],stroke:color,lineWidth:width});
-const dot=(x:number,y:number,r:number,color=P.paper)=>new Circle({x,y,width:2*r,height:2*r,fill:color});
-function addPerson(parent:Node,x:number,y:number,scale=1,color=P.paper){
- const p=new Node({x,y,scale});
- p.add(dot(0,-37,22,color));
- p.add(new Rect({x:0,y:26,width:39,height:78,fill:color,radius:13}));
- p.add(rule(-12,64,-23,114,color,12));p.add(rule(12,64,23,114,color,12));
- parent.add(p);return p;
+interface MeaningScene {id:string;chapter:string;motif:string;title:string;cues:Cue[];duration:number}
+const P={bg:'#09121D',forest:'#112C2A',sea:'#0B2938',deep:'#050D22',leaf:'#29483E',
+  paper:'#E9ECE5',muted:'#8EA9B0',red:'#E65A58',gold:'#D7B178',cyan:'#71C3C3',
+  blue:'#64A1D9',line:'#31545B',shadow:'#17313C',green:'#88B797'};
+const FONT='Noto Sans JP, Noto Sans CJK JP, sans-serif';
+const txt=(s:string,x:number,y:number,sz=33,col=P.paper,weight=600)=>
+ new Txt({text:s,x,y,fontFamily:FONT,fontSize:sz,fill:col,fontWeight:weight});
+const c=(p:Node,x:number,y:number,r:number,fill=P.paper,stroke?:string)=>
+ p.add(new Circle({x,y,width:r*2,height:r*2,fill,stroke:stroke??fill,lineWidth:stroke?3:0}));
+const r=(p:Node,x:number,y:number,w:number,h:number,fill=P.shadow,rad=8)=>
+ p.add(new Rect({x,y,width:w,height:h,fill,radius:rad}));
+const l=(p:Node,pts:number[][],col=P.line,w=4)=>
+ p.add(new Line({points:pts,stroke:col,lineWidth:w,lineCap:'round',lineJoin:'round'}));
+const label=(p:Node,s:string,x:number,y:number,col=P.gold,sz=32)=>
+ p.add(txt(s,x,y,sz,col,700));
+function tree(p:Node,x:number,y:number,scale=1){
+ const g=new Node({x,y,scale});r(g,0,155,25,280,'#6C6453');
+ for(const [dx,dy,z] of [[-65,-65,72],[0,-155,95],[80,-66,70],[-110,20,48],[117,5,53]] as const)
+  c(g,dx,dy,z,P.leaf);
+ p.add(g);
 }
-function microPeople(parent:Node,n:number,x:number,y:number,columns:number,spacing=48,color=P.paper){
- for(let i=0;i<n;i++){
-  const cx=x+(i%columns)*spacing,cy=y+Math.floor(i/columns)*spacing;
-  parent.add(dot(cx,cy-12,9,color));parent.add(new Rect({x:cx,y:cy+8,width:17,height:26,fill:color,radius:4}));
+function stick(p:Node,x:number,y:number,s=1,col=P.gold){
+ const g=new Node({x,y,scale:s});
+ l(g,[[0,-88],[3,-30],[-5,85]],col,15);
+ c(g,0,-99,12,col);l(g,[[-8,-100],[-37,-130]],col,3);l(g,[[8,-100],[36,-128]],col,3);
+ for(const [yy,spread] of [[-44,82],[10,96],[65,85]] as const){
+  l(g,[[0,yy],[-spread/2,yy-19],[-spread,yy+15]],col,5);
+  l(g,[[0,yy],[spread/2,yy-19],[spread,yy+15]],col,5);
  }
+ p.add(g);
 }
-function building(parent:Node,x:number,y:number,w:number,h:number,color=P.shadow){
- parent.add(new Rect({x,y,width:w,height:h,fill:color,stroke:P.line,lineWidth:2}));
- parent.add(rule(x-w*.57,y-h*.5,x+w*.57,y-h*.5,P.gold,8));
- for(let col=-2;col<=2;col++) for(let row=-1;row<=1;row++){
-  parent.add(new Rect({x:x+col*w*.16,y:y+row*h*.23,width:Math.min(26,w*.105),height:Math.min(40,h*.15),fill:'#34475B'}));
+function bird(p:Node,x:number,y:number,s=1,col=P.paper){
+ const g=new Node({x,y,scale:s});
+ c(g,0,0,49,col);c(g,38,-25,26,col);
+ l(g,[[-36,5],[-118,-42],[-73,42]],col,21);
+ l(g,[[0,-10],[-65,-79],[-97,-82]],P.muted,12);
+ l(g,[[59,-20],[91,-10],[60,0]],P.gold,7);
+ c(g,47,-32,4,P.bg);p.add(g);
+}
+function egg(p:Node,x:number,y:number,s=1,fill=P.paper){
+ const g=new Node({x,y,scale:s});g.add(new Circle({width:23,height:33,fill,stroke:P.gold,lineWidth:2}));p.add(g);
+}
+function spider(p:Node,x:number,y:number,s=1,fill=P.paper){
+ const g=new Node({x,y,scale:s});c(g,-30,-4,40,fill);c(g,34,0,23,fill);
+ for(let i=0;i<4;i++)for(const side of [-1,1]){
+  const yy=-37+i*25;l(g,[[side*12,yy],[side*80,yy-34],[side*124,yy+20]],P.muted,5);
  }
+ c(g,40,-9,5,P.bg);p.add(g);
 }
-function document(parent:Node,x:number,y:number,w:number,h:number,title:string,mark=false){
- parent.add(new Rect({x,y,width:w,height:h,fill:'#DCDDD6',radius:7,stroke:'#87909A',lineWidth:2}));
- parent.add(t(title,x,y-h*.31,Math.max(18,Math.min(28,w/7)),P.bg,700));
- for(let j=0;j<4;j++)parent.add(rule(x-w*.35,y-h*.12+j*22,x+w*(j===3?.12:.34),y-h*.12+j*22,'#8C97A4',4));
- if(mark)parent.add(new Circle({x:x+w*.23,y:y+h*.26,size:58,stroke:P.red,lineWidth:8}));
-}
-function pill(parent:Node,s:string,x:number,y:number,w=230,color=P.cyan){
- parent.add(panel(x,y,w,63,P.bg2));parent.add(t(s,x,y,28,color,700));
-}
-function arrow(parent:Node,x1:number,y1:number,x2:number,y2:number,color=P.red){
- parent.add(new Line({points:[[x1,y1],[x2,y2]],stroke:color,lineWidth:5,endArrow:true,arrowSize:14}));
-}
-function generateVisuals(root:Node,motif:string,scene:MeaningScene):Node[]{
- // Each child layer depicts a causal step, not a punctuation-based cut.
- const l=Array.from({length:4},(_,i)=>new Node({opacity:0,x:i%2?-45:45,y:0}));
- l.forEach(a=>root.add(a));
- const [a,b,c,d]=l;
- const base=scene.title;
- switch(motif){
-  case 'palace':
-   building(a,0,40,560,530);
-   a.add(rule(-380,315,380,315,P.gold,7));
-   addPerson(b,-540,90,1.2,P.paper);addPerson(b,520,90,1.2,P.paper);
-   document(c,-420,-100,240,300,'軍の報告');document(c,420,-100,240,300,'国会決議');
-   d.add(t('元帥の肖像',0,-155,42,P.gold));d.add(new Rect({x:0,y:5,width:160,height:230,stroke:P.gold,lineWidth:5}));addPerson(d,0,35,1.1,P.gold);break;
-  case 'command':
-   building(a,-480,45,260,370);building(a,480,45,260,370);
-   a.add(t('中央宮殿',0,-220,38,P.gold));
-   for(let i=0;i<6;i++)addPerson(b,-320+i*125,220,.45,i%2?P.paper:P.cyan);
-   c.add(rule(-370,-120,370,-120,P.red,7));c.add(t('全会一致',0,-176,49,P.paper));
-   document(d,0,60,360,260,'命令書',true);break;
-  case 'choices':
-   ['戦争','経済危機','反乱'].forEach((q,i)=>pill(a,q,-440+i*440,-180,260,i===2?P.red:P.paper));
-   b.add(t('退陣後',-430,75,56,P.gold));arrow(b,-250,75,15,75);
-   document(c,230,10,290,310,'退陣届');
-   d.add(t('翌朝の運命は？',0,266,49,P.red));break;
-  case 'fates':
-   ['1989 ルーマニア','2006 イラク','2011 リビア'].forEach((q,i)=>{
-     const x=-490+i*490;a.add(panel(x,0,355,370));a.add(t(q,x,-133,30,P.gold));addPerson(a,x,40,.78,P.paper);
-   });
-   b.add(t('処刑',-485,195,34,P.red));c.add(t('裁判後の処刑',0,195,34,P.red));
-   d.add(t('拘束時の殺害',486,195,34,P.red));break;
-  case 'stat':
-   a.add(t(scene.id==='P04'?'1946—2004':'非暴力抵抗運動',0,-205,44,P.gold));
-   a.add(panel(0,55,1260,220));
-   if(scene.id==='P04'){
-    b.add(new Rect({x:-331,y:40,width:592,height:135,fill:P.red,radius:8}));b.add(t('47%',-325,36,76,P.paper,800));
-    c.add(new Rect({x:332,y:40,width:650,height:135,fill:'#3D566B',radius:8}));c.add(t('53%',334,37,68,P.paper));
-    d.add(t('投獄・殺害・亡命の合計',0,245,35,P.paper));
-   } else {
-    b.add(new Rect({x:-470,y:42,width:88,height:165,fill:P.red}));b.add(t('3.5%',-468,-65,62,P.red,800));
-    c.add(new Rect({x:110,y:42,width:1050,height:165,fill:'#2F4052'}));
-    d.add(t('必ず成功する閾値ではない',0,242,36,P.paper));
-   }break;
-  case 'square':
-   a.add(new Rect({x:0,y:60,width:1180,height:490,fill:'#17273A'}));
-   microPeople(a,15,-395,-75,5,58,P.paper);
-   microPeople(b,32,15,-135,8,54,P.red);
-   c.add(t('抗議の拡大',0,-268,51,P.gold));
-   d.add(new Rect({x:0,y:275,width:1000,height:8,fill:P.red}));break;
-  case 'network':
-   ['鉄道','港','銀行','官庁','軍隊'].forEach((q,i)=>{const x=-560+i*280;a.add(dot(x,-88,52,P.cyan));a.add(t(q,x,20,33,P.paper));});
-   for(let i=0;i<4;i++)b.add(rule(-560+i*280,-88,-280+i*280,-88,P.gold,5));
-   c.add(dot(0,205,65,P.red));c.add(t('元帥',0,207,31,P.paper));
-   d.add(t('命令だけでは動かない',0,-253,45,P.red));break;
-  case 'heli':
-   a.add(panel(0,240,1340,76,'#2E3B46'));microPeople(a,30,-475,140,15,68,P.paper);
-   b.add(new Rect({x:-230,y:-140,width:440,height:74,fill:'#8295A4',radius:28}));
-   b.add(dot(-430,-150,25,'#AFC1CA'));b.add(rule(-560,-202,72,-202,'#C3CBCB',15));
-   c.add(new Rect({x:-200,y:-50,width:230,height:70,fill:P.red,radius:7}));c.add(t('攻撃せず着陸',120,-42,47,P.paper));
-   d.add(t('軍の離反',0,-288,55,P.gold));break;
-  case 'crowd':
-   microPeople(a,44,-540,-130,11,98,P.paper);
-   b.add(rule(-640,260,640,260,P.gold,7));
-   microPeople(c,20,-455,-25,10,95,P.red);
-   d.add(t('服従か、離反か',0,-296,50,P.gold));break;
-  case 'council':
-   a.add(panel(0,212,1370,95,'#29394D'));
-   for(let i=0;i<3;i++){addPerson(b,-440+i*440,-20,1.24,i===1?P.cyan:P.paper);}
-   ['陸軍司令官','情報長官','与党幹事長'].forEach((s,i)=>c.add(t(s,-440+i*440,206,31,P.gold)));
-   d.add(t('誰が裏切るのか',0,-265,58,P.red));break;
-  case 'hierarchy':
-   addPerson(a,0,-196,1.2,P.gold);
-   ['軍','情報','党'].forEach((q,i)=>{const x=-490+i*490;b.add(dot(x,60,60,P.cyan));b.add(t(q,x,155,46,P.paper));});
-   [-490,0,490].forEach(x=>arrow(c,0,-90,x,10,P.red));
-   d.add(t('統治能力と政権リスク',0,277,37,P.gold));break;
-  case 'general':
-   addPerson(a,-440,10,1.65,P.cyan);
-   microPeople(b,24,-110,-50,8,80,P.paper);
-   c.add(t('支持と信頼が増える',350,-178,44,P.gold));
-   arrow(d,270,35,-185,35,P.red);d.add(t('潜在的な競争相手',300,132,39,P.red));break;
-  case 'timeline':
-   a.add(rule(-650,60,650,60,P.gold,8));
-   const years=scene.id==='C23'?['1980','2017','2019']:['1988','1990','1998'];
-   years.forEach((v,i)=>{const x=-500+i*500;b.add(dot(x,60,20,i===1?P.red:P.paper));b.add(t(v,x,-12,52,i===1?P.red:P.paper));});
-   c.add(t(scene.id==='C23'?'副大統領解任 → 軍が介入':'国民投票 → 退陣 → 司法問題',0,205,37,P.paper));
-   d.add(t(scene.id==='C23'?'与党内部の離反':'退陣後の責任追及',0,-234,46,P.gold));break;
-  case 'shadows':
-   microPeople(a,30,-520,-120,10,109,P.paper);
-   b.add(new Rect({x:0,y:-16,width:1300,height:480,fill:'#0D1726',opacity:.65}));
-   microPeople(c,8,-435,40,8,121,P.red);
-   d.add(t('沈黙 ≠ 支持',0,-245,59,P.red));break;
-  case 'cells':
-   a.add(panel(-480,0,350,395));a.add(panel(0,0,350,395));a.add(panel(480,0,350,395));
-   addPerson(b,-480,45,1.1);addPerson(b,0,45,1.1);addPerson(b,480,45,1.1);
-   ['職場','会議室','広場'].forEach((q,i)=>c.add(t(q,-480+i*480,-165,39,P.gold)));
-   d.add(t('表面上の静けさ',0,262,46,P.red));break;
-  case 'documents':
-   document(a,-450,0,350,375,'農業省');document(a,0,0,350,375,'経済省');document(a,450,0,350,375,'情報機関');
-   b.add(t('豊作',-450,115,37,P.cyan));b.add(t('成長',0,115,37,P.cyan));b.add(t('支持',450,115,37,P.cyan));
-   c.add(new Rect({x:0,y:255,width:1300,height:6,fill:P.red}));
-   d.add(t('現実と報告は同じか？',0,-278,44,P.red));break;
-  case 'pipeline':
-   ['現場','役所','省庁','宮殿'].forEach((q,i)=>{const x=-570+i*380;a.add(dot(x,-80,46,i===3?P.red:P.cyan));a.add(t(q,x,13,31,P.paper));});
-   for(let i=0;i<3;i++)arrow(b,-505+i*380,-80,-255+i*380,-80,P.gold);
-   c.add(t('数字が整えられてゆく',0,190,46,P.red));
-   d.add(t('現実 → 報告',0,-260,46,P.paper));break;
-  case 'balances':
-   a.add(rule(0,-160,0,210,P.gold,15));a.add(rule(-470,-130,470,-130,P.gold,12));
-   b.add(new Rect({x:-380,y:20,width:280,height:80,fill:P.cyan,radius:10}));
-   c.add(new Rect({x:380,y:-13,width:280,height:80,fill:P.red,radius:10}));
-   d.add(t('利益と代償',0,255,46,P.paper));break;
-  case 'night':
-   building(a,0,0,640,420,'#0E1A2B');a.add(dot(480,-320,67,'#CEC6B0'));
-   b.add(panel(0,263,800,90,'#272E35'));addPerson(b,0,104,1.1,P.paper);
-   c.add(t('深夜の執務室',0,-285,49,P.gold));
-   d.add(t('出口はどこにある？',0,275,37,P.red));break;
-  case 'border':
-   a.add(new Rect({x:0,y:10,width:1280,height:480,fill:'#182C3D'}));
-   a.add(rule(0,-228,0,250,P.red,8));
-   b.add(t('国内',-350,-105,56,P.paper));b.add(t('国外',350,-105,56,P.paper));
-   c.add(panel(350,100,420,155));c.add(t('外国メディア',350,99,37,P.gold));
-   d.add(t('命令の届かない世界',0,-293,45,P.red));break;
-  case 'diplomacy':
-   a.add(dot(-480,0,102,P.cyan));a.add(t('国家の利益',-480,157,42,P.paper));
-   b.add(dot(480,0,102,P.red));b.add(t('元帥の利益',480,157,42,P.paper));
-   arrow(c,-330,0,310,0,P.gold);
-   d.add(t('一致するとは限らない',0,-254,47,P.red));break;
-  case 'clock':
-   a.add(new Circle({x:-430,y:-12,width:315,height:315,stroke:P.gold,lineWidth:14}));
-   a.add(rule(-430,-12,-430,-108,P.paper,11));a.add(rule(-430,-12,-346,48,P.paper,8));
-   addPerson(b,310,80,1.7,P.paper);
-   c.add(t('時間だけは止められない',0,-261,43,P.gold));
-   d.add(t('後継者',315,250,40,P.red));break;
-  case 'resignation':
-   document(a,-415,-40,510,435,'辞任文書');
-   addPerson(b,460,70,1.65,P.paper);
-   c.add(t('安全の保証',360,-221,44,P.gold));
-   d.add(t('誰が約束を守らせる？',0,280,43,P.red));break;
-  case 'promise':
-   addPerson(a,-450,60,1.35);addPerson(a,450,60,1.35,P.cyan);
-   b.add(panel(0,-40,320,145));b.add(t('約束',0,-42,46,P.paper));
-   c.add(rule(-215,-35,225,-35,P.gold,7));
-   d.add(t('権力移行で力関係が変わる',0,248,41,P.red));break;
-  case 'benin':
-   a.add(rule(-650,100,650,100,P.gold,8));
-   ['1972','1990','1991'].forEach((q,i)=>{const x=-520+i*520;b.add(dot(x,100,25,i===2?P.cyan:P.paper));b.add(t(q,x,-3,50,P.paper));});
-   c.add(t('軍事政権 → 国民会議 → 選挙',0,220,45,P.gold));
-   d.add(t('民主化の受け入れ',0,-258,49,P.red));break;
-  case 'ballot':
-   a.add(panel(-400,30,460,430));a.add(t('選挙',-400,-133,51,P.gold));
-   b.add(new Rect({x:-400,y:22,width:245,height:16,fill:P.paper}));
-   c.add(panel(425,30,510,430));c.add(t('1996',425,-125,66,P.gold));
-   d.add(t('平和的退陣、そして復帰',0,276,41,P.paper));break;
-  case 'chair':
-   a.add(new Rect({x:0,y:68,width:330,height:235,fill:'#5B4A39',radius:35,stroke:P.gold,lineWidth:8}));
-   a.add(new Rect({x:0,y:250,width:420,height:43,fill:'#6F523C',radius:9}));
-   b.add(rule(-120,267,-135,336,P.gold,15));b.add(rule(120,267,135,336,P.gold,15));
-   c.add(t('権力の椅子',0,-260,49,P.gold));
-   d.add(t('そこから立ち上がれるか',0,10,42,P.red));break;
-  case 'exit':
-   a.add(new Rect({x:-180,y:0,width:540,height:590,stroke:P.gold,lineWidth:9}));
-   b.add(new Rect({x:-180,y:0,width:515,height:575,fill:'#1A3040',rotation:-14,opacity:.9}));
-   c.add(rule(-180,300,430,300,P.gold,6));
-   d.add(t('独裁を終わらせる制度',330,-105,48,P.paper));break;
-  default:
-   a.add(panel(0,0,1160,520));b.add(t(base,0,-180,47,P.paper));
-   c.add(rule(-560,210,560,210,P.gold,6));d.add(t('原因 → 変化 → 結果',0,250,42,P.red));
+function web(p:Node,x:number,y:number,s=1){
+ const g=new Node({x,y,scale:s});
+ for(let i=0;i<10;i++){
+  const a=2*Math.PI*i/10;
+  l(g,[[0,0],[Math.cos(a)*268,Math.sin(a)*260]],'#52747A',2);
  }
- return l;
+ for(const radius of [65,122,181,241]){
+  const pts=[] as number[][];
+  for(let i=0;i<=20;i++){const a=i*Math.PI/10;pts.push([Math.cos(a)*radius,Math.sin(a)*radius*.95]);}
+  l(g,pts,'#52747A',2);
+ }
+ p.add(g);
 }
-function* subtitleFlow(cues:Cue[],label:Txt,duration:number):ThreadGenerator{
- let cursor=0;
+function termite(p:Node,x:number,y:number,s=1,blue=false){
+ const g=new Node({x,y,scale:s});
+ c(g,-39,0,32,'#D1B99C');c(g,20,0,41,'#C7A67D');c(g,70,0,19,'#D9C3A3');
+ for(const side of [-1,1])for(const q of [-30,5,45])
+  l(g,[[q,side*12],[q+15,side*62],[q+35,side*90]],'#C7A67D',5);
+ if(blue){c(g,14,-45,23,'#6BB1E7');c(g,-27,-48,15,'#4D97CE');}
+ p.add(g);
+}
+function caterpillar(p:Node,x:number,y:number,s=1,col=P.green){
+ const g=new Node({x,y,scale:s});
+ for(let i=0;i<8;i++){c(g,i*39-137,Math.sin(i*.5)*8,32,col);l(g,[[i*39-137,21],[i*39-144,48]],'#718F71',5);}
+ c(g,151,-24,5,P.bg);g.add(new Circle({x:163,y:-24,width:8,height:8,fill:P.bg}));p.add(g);
+}
+function wasp(p:Node,x:number,y:number,s=1){
+ const g=new Node({x,y,scale:s});
+ c(g,-43,0,21,P.gold);c(g,2,0,28,'#2E353B');c(g,46,-2,19,P.gold);
+ l(g,[[-65,-1],[-130,-1]],P.gold,8);
+ g.add(new Circle({x:-4,y:-40,width:87,height:35,fill:P.paper,opacity:.65,rotation:-25}));
+ g.add(new Circle({x:4,y:35,width:87,height:35,fill:P.paper,opacity:.65,rotation:25}));
+ for(let i=-1;i<=1;i++)l(g,[[i*30,15],[i*36,62]],P.gold,4);
+ p.add(g);
+}
+function cocoon(p:Node,x:number,y:number,s=1){
+ const g=new Node({x,y,scale:s});
+ r(g,0,0,31,74,P.paper,15);
+ l(g,[[-17,-12],[16,5]],'#C6B8A2',2);l(g,[[-15,18],[14,27]],'#C6B8A2',2);p.add(g);
+}
+function slug(p:Node,x:number,y:number,s=1,headOnly=false){
+ const g=new Node({x,y,scale:s});
+ if(!headOnly){
+  g.add(new Circle({x:-56,y:28,width:240,height:100,fill:P.green,stroke:'#5FAD82',lineWidth:4}));
+  for(let i=0;i<6;i++)c(g,-143+i*31,25+(i%2)*12,10,'#C3CE8E');
+ }
+ c(g,82,-16,43,'#8BC99D');c(g,91,-23,5,P.bg);
+ l(g,[[75,-38],[65,-90]],'#B3D4A7',5);l(g,[[101,-38],[121,-83]],'#B3D4A7',5);
+ p.add(g);
+}
+function angler(p:Node,x:number,y:number,s=1,male=false){
+ const g=new Node({x,y,scale:s});
+ const body=male?42:187;g.add(new Circle({width:body*2,height:body*1.6,fill:'#425C79',stroke:'#83A4B2',lineWidth:3}));
+ l(g,[[body*.65,0],[body*1.6,-body*.4],[body*1.3,body*.5]],'#425C79',male?10:35);
+ c(g,-body*.44,-body*.15,Math.max(5,body*.10),P.paper);c(g,-body*.49,-body*.16,Math.max(2,body*.045),P.bg);
+ if(!male){l(g,[[-body*.25,-body*.6],[-body*.35,-body*1.23],[body*.2,-body*1.45]],P.blue,7);c(g,body*.24,-body*1.45,23,P.gold);}
+ p.add(g);
+}
+function human(p:Node,x:number,y:number,s=1,col=P.paper){
+ const g=new Node({x,y,scale:s});c(g,0,-64,30,col);r(g,0,47,63,142,col,24);
+ l(g,[[-19,98],[-27,195]],col,17);l(g,[[19,98],[27,195]],col,17);
+ l(g,[[-29,6],[-78,77]],col,14);l(g,[[29,6],[78,77]],col,14);p.add(g);
+}
+function setting(parent:Node,chapter:string){
+ const water=['chapter4','chapter5'].includes(chapter);
+ const bg=chapter==='chapter5'?P.deep:water?P.sea:chapter==='prologue'||chapter==='epilogue'?P.forest:P.bg;
+ r(parent,0,0,1920,1080,bg,0);
+ if(chapter==='prologue'||chapter==='epilogue'||chapter==='chapter2'||chapter==='chapter3'){
+  for(let i=0;i<6;i++)tree(parent,-870+i*340,130+(i%2)*45,.34+(i%3)*.09);
+ }else if(water){
+  for(let i=0;i<24;i++)c(parent,-920+(i*277)%1830,-310+(i*143)%560,1+(i%3),P.cyan);
+  for(let i=0;i<6;i++)l(parent,[[-920+i*360,330],[-875+i*360,200+(i%3)*25]],'#255765',9);
+ }else{
+  for(let i=0;i<8;i++){l(parent,[[-900+i*240,310],[-830+i*240,-280]],'#243C42',2);}
+ }
+ // Persistent rules remain above the reserved bottom subtitle zone.
+ r(parent,0,354,1920,2,'#35545D',0);
+}
+function stageLabel(p:Node,word:string,x=500,y=258,color=P.gold){
+ if(!word)return;
+ r(p,x,y,395,73,'#10222B',10);label(p,word,x,y,color,28);
+}
+function generateVisuals(root:Node,scene:MeaningScene):Node[]{
+ const steps=Array.from({length:7},(_,i)=>new Node({opacity:0,x:i%2===0?36:-36,y:i%3===0?18:-16}));
+ steps.forEach(p=>root.add(p));
+ const [a,b,d,e,f,g,h]=steps;
+ const motif=scene.motif;
+ // The scene retains one world-space. Each of its seven layers encodes a causal state.
+ if(['worldmap','islands'].includes(motif)){
+  for(const [x,y,w,q] of [[-600,30,350,240],[0,-70,420,300],[580,70,310,220]] as const){r(a,x,y,w,q,'#294849',55);}
+  for(let i=0;i<8;i++)c(a,-800+i*220,240+(i%2)*22,8,P.gold);
+  label(b,'大陸',-615,-207);label(b,'海',350,-140,P.cyan);
+  r(d,-215,40,195,125,'#102A37',40);label(d,'隔たり',-215,40,P.red);
+  bird(e,-350,-190,.65);bird(f,320,-110,.75);
+  stick(g,590,60,.65);label(h,motif==='islands'?'飛べない昆虫の分布':'移動が分布を変える',0,289,P.gold,42);
+ }else if(['stick','returnforest'].includes(motif)){
+  tree(a,-480,0,1.35);tree(a,505,-35,1);
+  stick(b,-500,25,1.08);
+  l(d,[[-510,100],[-545,-200]],'#7A664E',13);
+  label(e,'枝への擬態',150,-190);
+  bird(f,550,-120,.85);
+  egg(g,140,90,2.3);egg(g,220,140,2.3);
+  label(h,motif==='returnforest'?'生き物は未来を知らない':'翅を持たない',210,254,P.red,36);
+ }else if(motif==='bird'||motif==='eggs'){
+  tree(a,-590,60,1.18);stick(b,-525,0,.85);
+  bird(d,60,-120,1.4);c(e,230,-65,140,'#1B3C47');
+  for(let i=0;i<6;i++)egg(e,180+(i%3)*41,-100+Math.floor(i/3)*61,1.15);
+  l(f,[[370,-90],[455,-20],[560,50]],P.gold,7);
+  for(let i=0;i<5;i++)egg(g,415+i*60,180+i%2*24,1.2);
+  stick(h,660,156,.48,P.cyan);label(h,'次の世代へ',430,300);
+ }else if(['overview','gallery'].includes(motif)){
+  const xs=[-730,-445,-160,125,405,685];
+  stick(a,xs[0],-5,.7);
+  spider(b,xs[1],0,.60);
+  termite(d,xs[2],10,.7,true);
+  wasp(e,xs[3],0,.67);
+  slug(f,xs[4],5,.65);
+  angler(g,xs[5],30,.40);
+  label(h,scene.id==='P05'?'生存本能とは何か':'同じ進化、異なる戦略',0,285,P.gold,39);
+ }else if(['spider','feeding','energy','tradeoff'].includes(motif)){
+  web(a,-420,-15,.73);spider(b,-445,-8,.95,P.gold);
+  for(let i=0;i<5;i++)spider(d,-120+i*81,200-(i%2)*26,.24,P.paper);
+  if(motif==='feeding'){c(e,-410,-12,45,'#CE8D7D');label(e,'栄養を与える',105,-140);}
+  else if(motif==='energy'){r(e,300,-110,520,135,'#1E4145');label(e,'95% の資源',300,-110,P.gold,60);}
+  else if(motif==='tradeoff'){label(e,'今の子育て',200,-105);label(e,'将来の繁殖',560,-105,P.cyan);}
+  else label(e,'母親の巣',235,-180);
+  l(f,[[-170,46],[90,46],[305,80]],P.gold,8);
+  for(let i=0;i<5;i++)spider(g,-120+i*90,170,.32,P.green);
+  label(h,motif==='tradeoff'?'限られた資源をどう配分するか':'身体は次世代の資源となる',270,298,P.red,33);
+ }else if(['colony','termite','aging','kin'].includes(motif)){
+  r(a,-480,100,560,420,'#4B4036',170);
+  for(let i=0;i<7;i++)termite(b,-640+i*90,170-(i%2)*60,.37,i>=4);
+  termite(d,185,40,1.38,motif!=='colony');
+  if(motif==='aging'){termite(e,560,50,1.15,true);label(e,'老いた働き個体',350,-180);}
+  else if(motif==='kin'){for(let i=0;i<5;i++)c(e,400+(i%2)*86,-150+Math.floor(i/2)*86,29,P.cyan);label(e,'血縁集団',530,-240);}
+  else {c(e,200,-30,37,P.blue);label(e,'青い結晶',480,-200);}
+  for(let i=0;i<8;i++)c(f,75+(i*46)%330,-34+(i*59)%160,9,P.gold);
+  r(g,260,194,460,94,'#9B463F',26);label(g,'危険な防衛',260,194,P.paper);
+  label(h,motif==='kin'?'r × B > C':'個体の死と集団の生存',170,302,P.gold,motif==='kin'?59:34);
+ }else if(['conflict','compare'].includes(motif)){
+  r(a,-410,-55,510,480,'#173B3B',29);r(a,410,-55,510,480,'#3B272E',29);
+  label(b,'利益を得る側',-415,-214,P.cyan,40);
+  label(d,'損失を負う側',415,-214,P.red,40);
+  wasp(e,-410,0,1.1);caterpillar(f,407,10,.95);
+  l(g,[[-150,30],[145,30]],P.gold,9);
+  label(h,'誰の適応度なのか',0,290,P.gold,43);
+ }else if(['caterpillar','emerge','guard'].includes(motif)){
+  l(a,[[-850,130],[780,140]],'#44795A',24);r(a,-430,240,1130,80,'#244E3B',50);
+  caterpillar(b,-410,35,1.1);
+  wasp(d,85,-130,.9);
+  for(let i=0;i<6;i++)cocoon(e,100+i*65,128,.85);
+  if(motif==='guard'){wasp(f,695,40,.57);label(f,'天敵の接近',550,-145,P.red);}
+  else label(f,motif==='emerge'?'幼虫は外へ出る':'寄生バチの幼虫',400,-145);
+  caterpillar(g,-320,37,1.15,P.gold);
+  label(h,'宿主は繭を守る',270,290,P.gold,40);
+ }else if(['ocean','detach','regrow','chloroplast'].includes(motif)){
+  for(let i=0;i<8;i++)l(a,[[-835+i*230,260],[-806+i*230,78],[-748+i*230,22]],'#478A6D',8);
+  slug(b,-390,0,1.12);
+  if(motif==='detach'){slug(d,130,-104,1.2,true);slug(e,410,98,.95);label(f,'頭部だけが生存',370,-208);}
+  else if(motif==='regrow'){slug(d,30,-60,1.12,true);slug(e,320,-60,1.22);label(f,'新しい身体',470,-210);}
+  else if(motif==='chloroplast'){
+   for(let i=0;i<12;i++)c(d,45+(i%4)*70,-170+Math.floor(i/4)*74,20,P.green);
+   slug(e,410,100,.85);label(f,'盗葉緑体',368,-205);
+  }else{slug(d,235,0,1.17);label(e,'心臓も再生する',330,-210);}
+  l(g,[[-40,60],[190,60]],P.cyan,8);
+  label(h,motif==='detach'?'身体を失っても生きる':'身体の完全性 ≠ 生存',180,288,P.gold,39);
+ }else if(['deepsea','angler','fusion','immunity'].includes(motif)){
+  angler(a,-320,85,.92);
+  angler(b,510,-80,.18,true);
+  if(motif!=='deepsea'){
+   angler(d,-70,100,.2,true);
+   l(e,[[-125,105],[-185,105]],P.red,12);
+  }else label(d,'出会いの希少性',320,-175);
+  if(motif==='immunity'){
+   for(let i=0;i<9;i++)c(f,165+(i%3)*95,-205+Math.floor(i/3)*84,14,i%3?P.cyan:P.red);
+   label(g,'免疫遺伝子の変化',380,140,P.gold,35);
+  }else if(motif==='fusion')label(f,'血液循環の共有',355,-215);
+  else label(f,'一度出会った相手を確保',400,-205);
+  label(h,motif==='immunity'?'重要な機能すら変化する':'独立した個体の境界',260,293,P.gold,40);
+ }else if(motif==='adaptation'||motif==='fitness'){
+  for(let i=0;i<7;i++)c(a,-700+i*225,110,36,i%2?P.green:P.cyan);
+  l(b,[[-790,60],[-660,-30],[-560,-10],[-450,-120]],P.gold,5);
+  l(d,[[-450,-120],[-200,-70],[45,-165],[300,-140],[610,-245]],P.red,9);
+  for(let i=0;i<6;i++)c(e,-650+i*230,-20-(i%3)*75,9,P.paper);
+  label(f,'変異',-450,200);label(f,'遺伝',0,200);label(f,'自然選択',455,200);
+  label(g,'長寿を採点する機構ではない',0,-295,P.gold,42);
+  label(h,'繁殖成功の違いが残る',0,290,P.red,42);
+ }else if(['age','timeline'].includes(motif)){
+  l(a,[[-770,212],[760,212]],P.gold,7);
+  for(let i=0;i<7;i++){c(b,-680+i*212,212,17,i<4?P.cyan:P.red);label(d,String(i*10)+'歳',-680+i*212,270,P.muted,23);}
+  l(e,[[-750,-180],[-530,-210],[-280,-35],[0,70],[250,145],[600,195]],P.cyan,7);
+  l(f,[[-750,160],[-560,80],[-310,-20],[-80,-95],[310,-142],[640,-192]],P.red,7);
+  label(g,'若い時期の利益',-420,-264,P.cyan,37);
+  label(h,'晩年のコスト',445,-264,P.red,37);
+ }else if(['feelings','agency','absence','closing'].includes(motif)){
+  human(a,-445,20,1.45);
+  c(b,250,-130,73,motif==='feelings'?P.red:P.cyan);
+  label(d,motif==='feelings'?'空腹・恐怖':motif==='absence'?'進化には意志がない':'何を大切に生きるか',280,-122,P.paper,37);
+  l(e,[[-170,30],[80,30]],P.gold,7);
+  r(f,325,140,590,102,'#174046',20);label(f,motif==='feelings'?'行動を促す信号':'生きる目的は別の問い',325,139,P.gold,35);
+  label(g,'進化の説明 ≠ 人生の規範',0,300,P.gold,42);
+  human(h,605,-70,.72,P.gold);
+ }else{
+  tree(a,-575,95,1.15);stick(b,-530,0,.85);
+  bird(d,40,-170,1.2);spider(e,300,50,.8);
+  slug(f,455,70,.7);angler(g,640,120,.32);
+  label(h,'何を生き残りと呼ぶのか',30,295,P.gold,36);
+ }
+ return steps;
+}
+function* subtitles(cues:Cue[],labelNode:Txt,duration:number):ThreadGenerator{
+ let now=0;
  for(const cue of cues){
-  const wait=Math.max(0,cue.start-cursor);
-  if(wait>0) yield* waitFor(wait);
-  label.text(cue.display);
-  cursor=cue.start;
+  if(cue.start>now)yield* waitFor(cue.start-now);
+  labelNode.text(cue.display);now=cue.start;
  }
- if(duration>cursor)yield* waitFor(duration-cursor);
- label.text('');
+ if(duration>now)yield* waitFor(duration-now);
+ labelNode.text('');
 }
-function* visualFlow(layers:Node[],duration:number,motif:string):ThreadGenerator{
- const starts=[0.03,0.20,0.38,0.60]; // causal stages; no background cut
+function* showSteps(stages:Node[],duration:number):ThreadGenerator{
+ // Seven causal reveals, with a meaningful continuous-world change at every beat.
+ const at=[.025,.155,.285,.415,.545,.675,.815];
  let cursor=0;
- for(let i=0;i<layers.length;i++){
-  const at=duration*starts[i];
-  yield* waitFor(Math.max(0,at-cursor)); cursor=at;
-  const landing=(motif==='heli' && i===1);
-  const councilEntrance=(motif==='council' && i===1);
-  const documentSlide=(['documents','resignation','pipeline'].includes(motif) && i===0);
-  if(landing){layers[i].x(-340);layers[i].y(-210);}
-  if(councilEntrance)layers[i].x(-170);
-  if(documentSlide)layers[i].y(-75);
-  const anim=landing?Math.min(2.2,duration*.13):councilEntrance?1.3:.72;
-  yield* all(layers[i].opacity(1,anim),layers[i].x(0,anim),layers[i].y(0,anim));cursor+=anim;
-  if(i===2 && layers[0])layers[0].opacity(.79);
+ for(let i=0;i<stages.length;i++){
+  const start=duration*at[i];
+  if(start>cursor)yield* waitFor(start-cursor);
+  cursor=start;
+  const anim=Math.min(1.2,Math.max(.32,duration*.032));
+  yield* all(stages[i].opacity(1,anim),stages[i].x(0,anim),stages[i].y(0,anim));
+  cursor+=anim;
  }
- // After consequence appears, re-balance the staged information without an empty pan.
- const emphasisAt=duration*.80;
- if(emphasisAt>cursor){yield* waitFor(emphasisAt-cursor);cursor=emphasisAt;}
- yield* all(layers[0].opacity(.62,.45),layers[3].scale(1.045,.45));cursor+=.45;
- const endAt=duration*.91;
- if(endAt>cursor){yield* waitFor(endAt-cursor);cursor=endAt;}
- yield* all(layers[1].opacity(.75,.45),layers[2].opacity(.9,.45));cursor+=.45;
- yield* waitFor(Math.max(0,duration-cursor));
+ if(duration*.92>cursor){yield* waitFor(duration*.92-cursor);cursor=duration*.92;}
+ // Focus on the consequence; never pan the whole screen meaninglessly.
+ yield* all(stages[6].scale(1.045,.55),stages[2].opacity(.75,.55));
+ cursor+=.55;
+ if(duration>cursor)yield* waitFor(duration-cursor);
 }
 export function* playMeaningScene(view:View2D,scene:MeaningScene):ThreadGenerator{
  view.fill(P.bg);
@@ -257,18 +298,21 @@ export function* playMeaningScene(view:View2D,scene:MeaningScene):ThreadGenerato
  const headingLayer=new Node({});
  const subtitleBacking=new Node({});
  const subtitleTextLayer=new Node({});
- // Root add once. All later content is attached ONLY to contentLayer.
- // Known painter's order. Adding all roots together prevents unexpected overlap.
- view.add(contentLayer);view.add(headingLayer);view.add(subtitleBacking);view.add(subtitleTextLayer);
- contentLayer.add(new Rect({width:1920,height:1080,fill:P.bg}));
- contentLayer.add(new Rect({x:0,y:-380,width:1810,height:2,fill:P.line}));
- const visuals=generateVisuals(contentLayer,scene.motif,scene);
- headingLayer.add(t(scene.title,-18,-446,54,P.paper,700));
- headingLayer.add(t(scene.chapter==='prologue'?'PROLOGUE':scene.chapter==='epilogue'?'EPILOGUE':scene.chapter.toUpperCase(),-802,-509,25,P.gold,700));
- headingLayer.add(t(scene.id,818,-508,21,P.muted));
- const subtitleBg=new Rect({x:0,y:460,width:1920,height:160,fill:'#02060C',opacity:.90});
- const subtitleTxt=t('',0,458,42,P.paper,650);
- subtitleTxt.lineHeight(60);
- subtitleBacking.add(subtitleBg);subtitleTextLayer.add(subtitleTxt);
- yield* all(visualFlow(visuals,scene.duration,scene.motif),subtitleFlow(scene.cues,subtitleTxt,scene.duration));
+ // Explicit immutable painter order; view.add() is never used again.
+ view.add(contentLayer);
+ view.add(headingLayer);
+ view.add(subtitleBacking);
+ view.add(subtitleTextLayer);
+ setting(contentLayer,scene.chapter);
+ const stages=generateVisuals(contentLayer,scene);
+ r(headingLayer,0,-471,1920,136,'#07111A',0);
+ headingLayer.add(txt(scene.title,0,-451,Math.min(49,scene.title.length>22?36:45),P.paper,700));
+ headingLayer.add(txt(scene.chapter==='prologue'?'PROLOGUE':scene.chapter==='epilogue'?'EPILOGUE':scene.chapter.toUpperCase(),-794,-506,22,P.gold,700));
+ headingLayer.add(txt(scene.id,828,-506,22,P.muted));
+ // All subtitle roots are created last. Bottom 170px are permanently reserved.
+ r(subtitleBacking,0,460,1920,170,'#02070D',0);
+ const caption=txt('',0,458,42,P.paper,650);
+ caption.lineHeight(59);
+ subtitleTextLayer.add(caption);
+ yield* all(showSteps(stages,scene.duration),subtitles(scene.cues,caption,scene.duration));
 }
