@@ -17,7 +17,7 @@ const c=(p:Node,x:number,y:number,r:number,fill=P.paper,stroke?:string)=>
  p.add(new Circle({x,y,width:r*2,height:r*2,fill,stroke:stroke??fill,lineWidth:stroke?3:0}));
 const r=(p:Node,x:number,y:number,w:number,h:number,fill=P.shadow,rad=8)=>
  p.add(new Rect({x,y,width:w,height:h,fill,radius:rad}));
-const l=(p:Node,pts:number[][],col=P.line,w=4)=>
+const l=(p:Node,pts:[number,number][],col=P.line,w=4)=>
  p.add(new Line({points:pts,stroke:col,lineWidth:w,lineCap:'round',lineJoin:'round'}));
 const label=(p:Node,s:string,x:number,y:number,col=P.gold,sz=32)=>
  p.add(txt(s,x,y,sz,col,700));
@@ -62,7 +62,7 @@ function web(p:Node,x:number,y:number,s=1){
   l(g,[[0,0],[Math.cos(a)*268,Math.sin(a)*260]],'#52747A',2);
  }
  for(const radius of [65,122,181,241]){
-  const pts=[] as number[][];
+  const pts=[] as [number,number][];
   for(let i=0;i<=20;i++){const a=i*Math.PI/10;pts.push([Math.cos(a)*radius,Math.sin(a)*radius*.95]);}
   l(g,pts,'#52747A',2);
  }

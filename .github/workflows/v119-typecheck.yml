@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/v119-typecheck.yml'
+      - 'shared/v119/src/**'
+      - 'shared/v119/content/**'
 permissions:
   contents: read
 jobs:
