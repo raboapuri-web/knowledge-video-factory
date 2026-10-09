@@ -64,7 +64,7 @@ MC_META = {
     "rendering":{"fps":30,"resolutionScale":1,"colorSpace":"srgb","exporter":{"name":"@motion-canvas/ffmpeg","options":{"fastStart":True,"includeAudio":True}},"fileType":"image/png","quality":1}
 }
 for ch in ['prologue']+[f'chapter{i}' for i in range(1,7)]+['epilogue']:
-    (ROOT/'src/projects'/f'{ch}.meta').write_text(json.dumps(MC_META,ensure_ascii=False,separators=(',',':'))+'\\n')
+    (ROOT/'src/projects'/f'{ch}.meta').write_text(json.dumps(MC_META,ensure_ascii=False,separators=(',',':')))
 from collections import defaultdict
 chapters=defaultdict(float)
 for r in rows: chapters[r['chapter']]+=r['duration']
