@@ -1,0 +1,138 @@
+name: Bunka Bouinboushoku - We Are Aliens production
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/bunka-we-are-aliens]
+    paths:
+      - 'episodes/bunka-we-are-aliens/**'
+      - '.github/workflows/bunka-we-are-aliens.yml'
+permissions:
+  contents: read
+concurrency:
+  group: bunka-aliens-video
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: episodes/bunka-we-are-aliens
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install npm packages once and prepare browser runtime
+        run: |
+          npm install --no-audit --no-fund
+          npm run prepare
+          tar -cf node_modules.tar node_modules
+      - uses: actions/upload-artifact@v4
+        with:
+          name: motioncanvas-dependencies
+          path: episodes/bunka-we-are-aliens/node_modules.tar
+          retention-days: 1
+  voice:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: episodes/bunka-we-are-aliens
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/prepare.mjs
+      - name: Launch VOICEVOX CPU
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox-alien -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do curl -fsS http://127.0.0.1:50021/version >/dev/null && exit 0; sleep 2; done
+          exit 1
+      - name: Synthesize and measure whole narration
+        run: VOICE_WORKERS=3 node scripts/voicevox.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: voice-and-timelines
+          path: |
+            episodes/bunka-we-are-aliens/public/media/*.wav
+            episodes/bunka-we-are-aliens/src/generated/chapter-*.json
+            episodes/bunka-we-are-aliens/media/srt/*.srt
+            episodes/bunka-we-are-aliens/qa/voice-report.json
+          retention-days: 7
+  render:
+    needs: [prepare,voice]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        chapter: [0,1,2,3,4,5,6]
+    defaults:
+      run:
+        working-directory: episodes/bunka-we-are-aliens
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v4
+        with:
+          name: motioncanvas-dependencies
+          path: episodes/bunka-we-are-aliens
+      - run: tar -xf node_modules.tar
+      - run: node scripts/prepare.mjs
+      - uses: actions/download-artifact@v4
+        with:
+          name: voice-and-timelines
+          path: episodes/bunka-we-are-aliens
+      - name: Typecheck and build
+        run: npm run build
+      - name: Smoke render must pass before production
+        run: CHAPTERS=${{ matrix.chapter }} node scripts/smoke.mjs
+      - name: Render Motion Canvas chapter
+        run: CHAPTERS=${{ matrix.chapter }} node scripts/render.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chapter-${{ matrix.chapter }}
+          path: |
+            episodes/bunka-we-are-aliens/output/aliens-chapter-${{ matrix.chapter }}.mp4
+            episodes/bunka-we-are-aliens/qa/smoke-report.json
+          retention-days: 7
+  delivery:
+    needs: render
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: episodes/bunka-we-are-aliens
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/prepare.mjs
+      - uses: actions/download-artifact@v4
+        with:
+          name: voice-and-timelines
+          path: episodes/bunka-we-are-aliens
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: chapter-*
+          path: episodes/bunka-we-are-aliens/output
+          merge-multiple: true
+      - run: node scripts/package.mjs
+      - run: node scripts/music.mjs
+      - run: node scripts/qa.mjs
+      - run: python -m pip install --quiet pillow && python scripts/contact_sheet.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bunka-we-are-aliens-final
+          path: |
+            episodes/bunka-we-are-aliens/output/we-are-aliens-final.mp4
+            episodes/bunka-we-are-aliens/qa/final-qa.json
+            episodes/bunka-we-are-aliens/qa/contact-sheet.jpg
+            episodes/bunka-we-are-aliens/qa/voice-report.json
+          retention-days: 7

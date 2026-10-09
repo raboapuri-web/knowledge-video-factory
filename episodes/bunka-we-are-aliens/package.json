@@ -1,0 +1,28 @@
+{
+  "name":"bunka-bouinboushoku-we-are-aliens",
+  "version":"1.0.0",
+  "private":true,
+  "type":"module",
+  "scripts":{
+    "prepare":"node scripts/prepare.mjs",
+    "voice":"node scripts/voicevox.mjs",
+    "build":"tsc --noEmit && vite build",
+    "render":"node scripts/render.mjs",
+    "qa":"node scripts/qa.mjs",
+    "package":"node scripts/package.mjs"
+  },
+  "dependencies":{
+    "@fontsource/noto-sans-jp":"^5.2.6",
+    "@motion-canvas/2d":"3.17.2",
+    "@motion-canvas/core":"3.17.2"
+  },
+  "devDependencies":{
+    "@motion-canvas/ffmpeg":"3.17.2",
+    "@motion-canvas/ui":"3.17.2",
+    "@motion-canvas/vite-plugin":"3.17.2",
+    "@types/node":"^22.10.0",
+    "puppeteer":"^25.4.0",
+    "typescript":"^5.7.2",
+    "vite":"^5.4.21"
+  }
+}
