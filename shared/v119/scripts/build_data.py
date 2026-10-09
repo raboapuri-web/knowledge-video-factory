@@ -54,7 +54,7 @@ for chapter in ['prologue']+[f'chapter{i}' for i in range(1,7)]+['epilogue']:
     imports='\n'.join(f"import s{i} from '../scenes/{n}?scene';" for i,n in enumerate(chapterScenes))
     (ROOT/'src/projects'/f'{chapter}.ts').write_text(
         "import {makeProject} from '@motion-canvas/core';\n"+imports+'\n'+
-        "export default makeProject({name:'v118-"+chapter+"', scenes: ["+', '.join(f's{i}' for i in range(len(chapterScenes)))+"], audio:'/media/"+chapter+"/narration.wav'});\n")
+        "export default makeProject({name:'v119-"+chapter+"', scenes: ["+', '.join(f's{i}' for i in range(len(chapterScenes)))+"], audio:'/media/"+chapter+"/narration.wav'});\n")
 # Motion Canvas FFmpeg exporter metadata, generated for each independent chapter project.
 # Without these project.meta files the renderer can report Success without producing MP4.
 MC_META = {

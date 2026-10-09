@@ -3,7 +3,7 @@ import {dirname,join,resolve} from 'node:path';import {fileURLToPath} from 'node
 import puppeteer from 'puppeteer';import {createServer} from 'vite';
 const ROOT=resolve(dirname(fileURLToPath(import.meta.url)),'..'),slug=process.argv[2],smoke=process.argv.includes('--smoke');
 if(!slug)throw new Error('missing chapter slug');
-const name=smoke?'v118-'+slug+'-smoke':'v118-'+slug,pf='src/projects/'+slug+'.ts',wav=join(ROOT,'media',slug,'narration.wav');
+const name=smoke?'v119-'+slug+'-smoke':'v119-'+slug,pf='src/projects/'+slug+'.ts',wav=join(ROOT,'media',slug,'narration.wav');
 const audio=!smoke&&await access(wav).then(()=>true,()=>false);
 if(!smoke&&!audio)throw new Error('VOICEVOX WAV missing: '+wav);
 async function main(){

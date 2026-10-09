@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build measured VOICEVOX audio/timings for one V118 chapter. Strictly no fake timings."""
+"""Build measured VOICEVOX audio/timings for one V119 chapter. Strictly no fake timings."""
 from pathlib import Path
 import concurrent.futures,io,json,os,sys,urllib.parse,urllib.request,wave
 R=Path(__file__).resolve().parents[1]; chapter=sys.argv[1] if len(sys.argv)>1 else None

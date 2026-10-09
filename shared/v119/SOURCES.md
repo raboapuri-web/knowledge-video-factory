@@ -1,17 +1,14 @@
-# V118 research and historical-source notes
+# V119 references / factual integrity
 
-This is documentary explanatory content, not a guide for implementing repression. Historical specifics should not be embellished as factual eyewitness footage. The marshal/council/nation dramatizations are fictional.
+- Stick insects: Suetsugu et al. (2018) *Ecology* (experimental eggs fed to birds, some survived and hatched); Suetsugu et al. (2023) *Proceedings of the Royal Society B*, "Phylogeographical evidence for historical long-distance dispersal in the flightless stick insect Ramulus mikado", PMID 37817589. The two studies used different evidentiary methods; NO claim of intentional predation by adults.
+- Stegodyphus lineatus: Salomon, Schneider & Lubin (2005), "Maternal investment in a spider with suicidal maternal care", *Oikos* 109:614–622, DOI 10.1111/j.0030-1299.2005.13004.x. Up to 95% of maternal body mass transferred via regurgitation + matriphagy; not all via matriphagy.
+- Neocapritermes taracua: Šobotník et al. (2012) *Science*, "Explosive backpacks in old termite workers"; subsequent enzymatic mechanism research. Workers' suicidal defense must not be interpreted as ethical prescription for human aging.
+- Glyptapanteles: Grosman et al. (2008), "Parasitoid Increases Survival of Its Pupae by Inducing Hosts to Fight Predators", *PLOS ONE* 3(6):e2276, DOI 10.1371/journal.pone.0002276. Field experiment: two-fold reduction of parasitoid-pupa mortality with bodyguard caterpillars.
+- Elysia sea slugs: Mitoh & Yusa (2021), "Extreme autotomy and whole-body regeneration in photosynthetic sea slugs", *Current Biology*. Regeneration confirmed; evolved reason (parasite removal) is an interpretation not established fact.
+- Deep-sea anglerfish: Swann et al. (2020), "The immunogenetics of sexual parasitism", *Science*. Some species permanently fuse and show extensive changes/loss of conventional adaptive immune genes; avoid claiming total loss of immune defense.
+- Evolutionary senescence: Williams (1957) on antagonistic pleiotropy, Hamilton (1966) on forces of natural selection and age, Medawar (1952) on late-acting mutation accumulation.
 
-- Abel Escribà-Folch (2013), *Accountable for What? Regime Types, Performance, and the Fate of Outgoing Dictators, 1946–2004*. 47% includes prison, killing and exile collectively, not execution alone.
-- Erica Chenoweth (2020), *Questions, Answers, and Some Cautionary Updates Regarding the 3.5% Rule*, Harvard Kennedy School. No deterministic threshold; Bahrain is a counterexample.
-  https://www.hks.harvard.edu/centers/carr/publications/questions-answers-and-some-cautionary-updates-regarding-35-rule
-- Philippines, People Power Revolution (February 1986): citizen mobilization and military defections, including helicopters refusing to attack the rebel-held base. Dramatized schematic silhouettes, not archival footage.
-- Milan W. Svolik (2012), *The Politics of Authoritarian Rule*, Cambridge University Press. Mass control and power-sharing among authoritarian elites are separate problems.
-- Robert Mugabe, Zimbabwe, November 2017: military / ruling-party rupture following dismissal of Emmerson Mnangagwa; resignation on November 21; died in 2019, not executed.
-- Ronald Wintrobe (1998), *The Political Economy of Dictatorship*, Cambridge University Press. Dictator's dilemma.
-- Scott Gehlbach and coauthors, *Is There Really a Dictator's Dilemma?*, on information and repression; do not state repression must fail.
-- Mathieu Kérékou, Benin: 1990 National Conference, lost 1991 multiparty election, returned via election in 1996. Democratization happened under substantial societal pressure, not unilateral gift.
-- Augusto Pinochet, Chile: 1988 plebiscite; civilian government in 1990; London arrest in 1998.
-- Michael Albertus & Victor Menaldo (2014), *Dealing with Dictators: Negotiated Democratization and the Fate of Outgoing Autocrats*, 1875–2004.
+## Source quality guardrails
 
-The V118 38-scene narration is an abridged adaptation of the revised user script, not a verbatim reading. Voice reading must not fabricate research or treat the 3.5% heuristic as a law.
+Do not narrate the edited draft's intentional-predation sentence literally. Use: "鳥に食べられた場合、一部の卵が生き残って遠くへ運ばれる可能性がある" (demonstrated mechanism + careful interpretation).
+Keep scientific description separate from human moral norms and from the philosophical discussion of well-being.
