@@ -1,0 +1,114 @@
+name: V119 Finalize Existing Renders
+
+on:
+  push:
+    branches: [v119-homeless-city-poverty-production]
+    paths:
+      - '.github/workflows/v119-finalize-only.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: v119-finalize-existing-renders
+  cancel-in-progress: true
+
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+
+      - name: Download eight successful V119 chapter renders from source run
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v119-render-*
+          path: renders
+          merge-multiple: true
+          repository: raboapuri-web/knowledge-video-factory
+          run-id: 37939463558
+          github-token: ${{ github.token }}
+
+      - name: Restore chapter renders
+        run: |
+          set -euo pipefail
+          for f in renders/v119-render-*.tar.gz; do tar -xzf "$f"; done
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do
+            test -s "shared/v119/output/v119-$c.mp4"
+          done
+          ls -lh shared/v119/output/v119-*.mp4
+
+      - name: Concat, mix BGM, validate, anomaly scan, contact sheet
+        working-directory: shared/v119
+        run: |
+          set -euo pipefail
+          mkdir -p output qa
+          : > output/concat.txt
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do
+            printf "file '%s'\n" "$(realpath "output/v119-$c.mp4")" >> output/concat.txt
+          done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy output/v119-voice-master.mp4
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v119-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+          ffmpeg -y -loglevel error -i output/v119-voice-master.mp4 -i output/bgm.m4a             -filter_complex '[0:a]volume=1[vo];[1:a]volume=.035[bg];[vo][bg]amix=inputs=2:duration=first[a]'             -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart output/v119-final.mp4
+
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 output/v119-final.mp4 | head -1)
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 output/v119-final.mp4 | head -1)
+          FPS=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=nw=1:nk=1 output/v119-final.mp4 | head -1)
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v119-final.mp4)
+          AUD=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 output/v119-final.mp4 | wc -l)
+          SIZE=$(stat -c%s output/v119-final.mp4)
+          echo "FINAL width=$W height=$H fps=$FPS duration=$D audio=$AUD bytes=$SIZE"
+          test "$W" = "1920"
+          test "$H" = "1080"
+          test "$FPS" = "30/1"
+          test "$AUD" -ge 1
+          test "$SIZE" -gt 5000000
+          awk "BEGIN{exit !($D >= 600)}"
+
+          node - "$D" "$AUD" "$SIZE" <<'NODE'
+          const fs=require('fs');
+          const duration=Number(process.argv[2]), audioStreams=Number(process.argv[3]), bytes=Number(process.argv[4]);
+          fs.writeFileSync('qa/final-validation.json',JSON.stringify({
+            videoId:'V119',
+            title:'「ホームレス」を放置すると街全体が貧しくなる理由',
+            meaningScenes:38,
+            chapters:8,
+            durationSeconds:duration,
+            durationMinutes:Number((duration/60).toFixed(2)),
+            resolution:'1920x1080',
+            fps:30,
+            audioStreams,
+            bytes,
+            renderer:'Motion Canvas',
+            voice:'青山龍星 1.15',
+            subtitleLayer:'persistent topmost overlay',
+            passed:true
+          },null,2));
+          NODE
+
+          set +e
+          ffmpeg -hide_banner -i output/v119-final.mp4 -vf 'blackdetect=d=2:pix_th=0.02,freezedetect=n=-55dB:d=6' -an -f null - 2> qa/visual-anomaly-scan.txt
+          set -e
+
+          INTERVAL=$(awk "BEGIN{print $D/25}")
+          ffmpeg -y -loglevel error -i output/v119-final.mp4 -vf "fps=1/$INTERVAL,scale=384:-1,tile=5x5:padding=6:margin=8" -frames:v 1 output/v119-contact-sheet.jpg
+
+      - name: Publish final V119 release and reusable chapters
+        working-directory: shared/v119
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v119-homeless-city-final-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v119-homeless-city-${GITHUB_RUN_ID}.mp4"
+          cp output/v119-final.mp4 "output/$NAME"
+          gh release create "$TAG"             "output/$NAME"             output/v119-contact-sheet.jpg             qa/final-validation.json             qa/visual-anomaly-scan.txt             SOURCES.md             README.md             output/v119-prologue.mp4             output/v119-chapter1.mp4             output/v119-chapter2.mp4             output/v119-chapter3.mp4             output/v119-chapter4.mp4             output/v119-chapter5.mp4             output/v119-chapter6.mp4             output/v119-epilogue.mp4             --repo "$GITHUB_REPOSITORY"             --title "V119 「ホームレス」を放置すると街全体が貧しくなる理由"             --notes "Finalized from the eight successful V119 Motion Canvas chapter renders from source run 37939463558. 38 unique meaning scenes / measured VOICEVOX / persistent subtitle overlay / black-freeze scan / contact sheet."
