@@ -17,10 +17,10 @@ function landscape(p:SimpleSignal<number>,variant:number){
   return <Node>
     <Rect width={1920} height={920} y={-96} fill={variant%2===0?'#263F51':'#314654'}/>
     <Circle x={640} y={()=>-270+p()*6} width={260} height={260} fill={'#E4B170'} opacity={0.86}/>
-    {Array.from({length:8},(_,i)=><Rect key={i} x={-840+i*250} y={-110+(i%3)*20} width={210} height={230+i%3*42} fill={i%2===0?'#253341':'#384650'} opacity={0.8}><Rect x={-40} y={-5} width={34} height={54} fill={'#C6AD7E'} opacity={0.23}/><Rect x={30} y={-10} width={34} height={54} fill={'#C6AD7E'} opacity={()=>0.16+fade(p(),i,12)*0.25}/></Rect>)}
+    {Array.from({length:8},(_,i)=><Rect key={String(i)} x={-840+i*250} y={-110+(i%3)*20} width={210} height={230+i%3*42} fill={i%2===0?'#253341':'#384650'} opacity={0.8}><Rect x={-40} y={-5} width={34} height={54} fill={'#C6AD7E'} opacity={0.23}/><Rect x={30} y={-10} width={34} height={54} fill={'#C6AD7E'} opacity={()=>0.16+fade(p(),i,12)*0.25}/></Rect>)}
     <Rect y={282} width={1920} height={320} fill={'#202A32'}/>
     <Line points={[[-850,280],[850,280]]} stroke={'#6D6D65'} lineWidth={5}/>
-    {[-560,-200,200,580].map((x,i)=><Rect key={i} x={x} y={318} width={140} height={9} radius={2} fill={'#D3C9B4'} opacity={0.22}/>) }
+    {[-560,-200,200,580].map((x,i)=><Rect key={String(i)} x={x} y={318} width={140} height={9} radius={2} fill={'#D3C9B4'} opacity={0.22}/>) }
     <Line points={[[ -650,-430],[-650,260]]} stroke={'#142530'} lineWidth={10}/>
     <Line points={[[ -650,-350],[560,-320]]} stroke={'#152631'} lineWidth={3}/>
     <Node x={()=>-340+Math.min(1,p()/12)*390} y={150}>{person(0,0,'#B58D6F',0.75)}</Node>
@@ -31,13 +31,13 @@ function landscape(p:SimpleSignal<number>,variant:number){
 function classroom(p:SimpleSignal<number>,variant:number){
   return <Node>
     <Rect width={1920} height={900} y={-98} fill={'#253640'}/>
-    {[-640,-260,120,500].map((x,i)=><Rect key={i} x={x} y={-210} width={285} height={320} fill={'#8BA4AA'} stroke={'#61737A'} lineWidth={16}>
+    {[-640,-260,120,500].map((x,i)=><Rect key={String(i)} x={x} y={-210} width={285} height={320} fill={'#8BA4AA'} stroke={'#61737A'} lineWidth={16}>
       <Rect width={12} height={300} fill={'#3A4D56'}/>
       <Rect width={260} height={9} fill={'#3A4D56'}/>
     </Rect>)}
     <Rect width={1920} height={280} y={296} fill={'#6E6558'}/>
     <Rect x={-620} y={-265} width={450} height={208} fill={'#233B38'} stroke={'#957F65'} lineWidth={12}/>
-    {Array.from({length:5},(_,i)=><Node key={i} x={-520+i*270} y={90+((i%2)*135)}>
+    {Array.from({length:5},(_,i)=><Node key={String(i)} x={-520+i*270} y={90+((i%2)*135)}>
       <Rect width={195} height={22} radius={3} fill={'#B6956B'}/>
       <Rect y={80} width={14} height={156} x={-80} fill={'#5E524A'}/><Rect y={80} width={14} height={156} x={80} fill={'#5E524A'}/>
       <Node opacity={()=>variant===3 && i>1?1-gentle(p()/9):1}>{person(0,-38,i===2?'#A77D64':'#6D8390',0.52)}</Node>
@@ -51,7 +51,7 @@ function paperMemory(p:SimpleSignal<number>,variant:number){
    <Rect width={1920} height={900} y={-100} fill={'#262C34'}/>
    <Rect width={1640} height={680} y={-64} fill={'#CABAA0'} rotation={-2}/>
    <Rect width={1605} height={670} x={18} y={-80} fill={'#D7C9AD'} rotation={1}/>
-   {items.map((label,i)=><Node key={i} x={-610+(i%3)*610} y={-242+Math.floor(i/3)*360} opacity={()=>0.15+0.85*fade(p(),i,5)} rotation={(i%2?1:-1)*3}>
+   {items.map((label,i)=><Node key={String(i)} x={-610+(i%3)*610} y={-242+Math.floor(i/3)*360} opacity={()=>0.15+0.85*fade(p(),i,5)} rotation={(i%2?1:-1)*3}>
       <Rect width={445} height={265} fill={i%2?'#52636C':'#7B6E63'} stroke={'#E8E1D2'} lineWidth={13}/>
       <Circle y={-30} width={92} height={92} fill={'#D2BE97'} opacity={0.65}/>
       <Line points={[[-100,32],[95,32]]} stroke={C.paper} lineWidth={6}/>
@@ -88,7 +88,7 @@ function body(p:SimpleSignal<number>,variant:number){
 function office(p:SimpleSignal<number>){
  return <Node>
   <Rect width={1920} height={900} y={-94} fill={'#1C2C36'}/>
-  {[-710,-350,10,370,730].map((x,i)=><Rect key={i} x={x} y={-270} width={270} height={290} radius={8} fill={'#344D5B'} stroke={'#687880'} lineWidth={8}/>)}
+  {[-710,-350,10,370,730].map((x,i)=><Rect key={String(i)} x={x} y={-270} width={270} height={290} radius={8} fill={'#344D5B'} stroke={'#687880'} lineWidth={8}/>)}
   <Rect y={245} width={1500} height={20} fill={'#816F5C'}/>
   <Node x={-440} y={124}>{person(0,0,'#AD8A77',1)}</Node>
   <Node x={415} y={124}>{person(0,0,'#6A8292',1)}</Node>
@@ -104,7 +104,7 @@ function absent(p:SimpleSignal<number>,variant:number){
   <Rect x={-450} y={150} width={1160} height={26} fill={'#AC8C6A'}/>
   <Rect x={-450} y={240} width={55} height={190} fill={'#605248'}/>
   <Rect x={-80} y={240} width={55} height={190} fill={'#605248'}/>
-  {[-710,-370].map((x,i)=><Node key={i} x={x} y={0} opacity={()=>i===0?1:1-gentle((p()-2)/6)}><Circle y={80} width={95} height={24} fill={'#D2C8B6'}/><Rect y={105} width={85} height={62} fill={'#DDD5C4'}/></Node>)}
+  {[-710,-370].map((x,i)=><Node key={String(i)} x={x} y={0} opacity={()=>i===0?1:1-gentle((p()-2)/6)}><Circle y={80} width={95} height={24} fill={'#D2C8B6'}/><Rect y={105} width={85} height={62} fill={'#DDD5C4'}/></Node>)}
   <Rect x={390} y={0} width={500} height={545} fill={'#32424B'} radius={16}/>
   <Rect x={390} y={0} width={390} height={430} fill={'#65808A'} opacity={0.5}/>
   <Txt x={390} y={285} text={'そこにいない誰か'} fontFamily={F} fontSize={46} fill={C.paper}/>
@@ -116,7 +116,7 @@ function solstice(p:SimpleSignal<number>,variant:number){
   <Rect width={1920} height={920} y={-90} fill={'#16283B'}/>
   <Circle x={()=>-710+Math.min(1,p()/12)*1420} y={()=>-280-120*Math.sin(Math.min(1,p()/12)*Math.PI)} width={172} height={172} fill={C.warm}/>
   <Line points={[[-790,170],[790,170]]} stroke={'#E0C8A1'} lineWidth={6}/>
-  {Array.from({length:13},(_,i)=><Rect key={i} x={-715+i*120} y={198} width={7} height={42} fill={'#9DA4A3'}/>) }
+  {Array.from({length:13},(_,i)=><Rect key={String(i)} x={-715+i*120} y={198} width={7} height={42} fill={'#9DA4A3'}/>) }
   <Txt x={-650} y={275} text={'夏至'} fontFamily={F} fontSize={74} fill={C.paper} fontWeight={700}/>
   <Txt x={650} y={275} text={'冬至'} fontFamily={F} fontSize={74} fill={C.paper} fontWeight={700}/>
   <Txt x={0} y={-388} text={variant===4?'もう一度、日は長くなる':'人生の光が最も長い日'} fontFamily={F} fontSize={48} fill={C.paper}/>
@@ -131,7 +131,7 @@ function lifeNetwork(p:SimpleSignal<number>,variant:number){
   <Txt text={'少年時代'} fontFamily={F} fontSize={43} fontWeight={700} fill={C.paper}/>
   {['仕事','家族','新しい友人','未来','記憶','選択'].map((s,i)=>{
     const t=i*Math.PI/3; const x=Math.cos(t)*630,y=Math.sin(t)*280;
-    return <Node key={i} x={x} y={y} opacity={()=>fade(p(),i,7)}>
+    return <Node key={String(i)} x={x} y={y} opacity={()=>fade(p(),i,7)}>
       <Line points={[[0,0],[-x*0.42,-y*0.4]]} stroke={'#7C918E'} lineWidth={4}/>
       <Circle width={130} height={130} fill={i%2?C.slate:C.moss}/>
       <Txt text={s} fontFamily={F} fontWeight={700} fontSize={27} fill={C.paper}/>
