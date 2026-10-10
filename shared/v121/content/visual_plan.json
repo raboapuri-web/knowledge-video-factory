@@ -1,0 +1,562 @@
+{
+  "same_nine_pm": {
+    "kind": "dual_home",
+    "motion": "parallel_clock",
+    "labels": [
+      "21:00",
+      "自室",
+      "参考書",
+      "居間",
+      "弟",
+      "テレビ",
+      "同じ1時間",
+      "中身は違う"
+    ]
+  },
+  "interrupted_study": {
+    "kind": "dual_home",
+    "motion": "interrupt",
+    "labels": [
+      "問題で停止",
+      "解説を見る",
+      "学習継続",
+      "飲み物をこぼす",
+      "ノートを閉じる",
+      "雑巾",
+      "中断",
+      "努力の連続性"
+    ]
+  },
+  "same_test": {
+    "kind": "classroom",
+    "motion": "erase_context",
+    "labels": [
+      "翌朝",
+      "同じ教室",
+      "同じテスト",
+      "88点",
+      "62点",
+      "努力しよう",
+      "環境が消える",
+      "結果だけ残る"
+    ]
+  },
+  "effort_conversion": {
+    "kind": "gear_lab",
+    "motion": "efficiency",
+    "labels": [
+      "同じ努力",
+      "静かな場所",
+      "時間",
+      "学習資源",
+      "情報",
+      "余白",
+      "変換効率",
+      "成果差"
+    ]
+  },
+  "thesis_merit": {
+    "kind": "concept_stage",
+    "motion": "split_axes",
+    "labels": [
+      "努力は重要",
+      "環境も重要",
+      "能力",
+      "選抜",
+      "結果",
+      "本人責任",
+      "条件の不可視化",
+      "問い"
+    ]
+  },
+  "estate_society": {
+    "kind": "historical_estate",
+    "motion": "fixed_status",
+    "labels": [
+      "18世紀",
+      "貴族の子",
+      "家庭教師",
+      "農民の子",
+      "荷車",
+      "出生",
+      "固定身分",
+      "不公平"
+    ]
+  },
+  "merit_stairs": {
+    "kind": "stairs",
+    "motion": "open_stairs",
+    "labels": [
+      "身分制崩壊",
+      "試験",
+      "大学",
+      "企業",
+      "能力",
+      "業績",
+      "階段",
+      "上昇可能性"
+    ]
+  },
+  "unequal_start": {
+    "kind": "stairs",
+    "motion": "reveal_distance",
+    "labels": [
+      "同じ入口",
+      "近い子",
+      "遠い子",
+      "坂道",
+      "資源",
+      "準備",
+      "形式平等",
+      "到達条件"
+    ]
+  },
+  "young_meritocracy": {
+    "kind": "book_future",
+    "motion": "satire_future",
+    "labels": [
+      "1958",
+      "Michael Young",
+      "知能",
+      "努力",
+      "序列",
+      "成功者",
+      "失敗者",
+      "警告"
+    ]
+  },
+  "effort_blame": {
+    "kind": "blame_board",
+    "motion": "swap_labels",
+    "labels": [
+      "身分社会",
+      "出生",
+      "近代社会",
+      "試験失敗",
+      "勉強不足",
+      "資格不足",
+      "自己責任",
+      "格差の正当化"
+    ]
+  },
+  "cultural_currency": {
+    "kind": "museum_class",
+    "motion": "memory_overlay",
+    "labels": [
+      "美術館課題",
+      "経験あり",
+      "家の本",
+      "ニュース会話",
+      "経験なし",
+      "同じ課題",
+      "語彙差",
+      "文化の通貨"
+    ]
+  },
+  "bourdieu_capital": {
+    "kind": "capital_cards",
+    "motion": "three_forms",
+    "labels": [
+      "話し方",
+      "知識",
+      "趣味",
+      "本",
+      "学歴",
+      "資格",
+      "家庭で蓄積",
+      "文化資本"
+    ]
+  },
+  "classroom_code": {
+    "kind": "classroom",
+    "motion": "hand_raise",
+    "labels": [
+      "意見ある人",
+      "すぐ挙手",
+      "説明",
+      "ためらう",
+      "答えはある",
+      "教師評価",
+      "積極性",
+      "学校コード"
+    ]
+  },
+  "family_guidance": {
+    "kind": "dinner_guidance",
+    "motion": "info_flow",
+    "labels": [
+      "夕食",
+      "学部の違い",
+      "推薦",
+      "奨学金",
+      "オープンキャンパス",
+      "進路希望票",
+      "一人で調べる",
+      "情報格差"
+    ]
+  },
+  "school_misrecognition": {
+    "kind": "evaluation_lab",
+    "motion": "convert_to_merit",
+    "labels": [
+      "言葉遣い",
+      "文章",
+      "距離感",
+      "家庭文化",
+      "学校評価",
+      "頭がいい",
+      "自主性",
+      "才能に見える"
+    ]
+  },
+  "after_school_paths": {
+    "kind": "timeline_day",
+    "motion": "diverge_paths",
+    "labels": [
+      "16:00",
+      "軽食",
+      "塾",
+      "スーパー",
+      "妹迎え",
+      "帰宅",
+      "自由時間",
+      "別の放課後"
+    ]
+  },
+  "effort_price": {
+    "kind": "schedule_grid",
+    "motion": "fill_slots",
+    "labels": [
+      "19-21時",
+      "勉強2時間",
+      "家事",
+      "兄弟世話",
+      "家族用事",
+      "アルバイト",
+      "細切れ",
+      "努力の値段"
+    ]
+  },
+  "pisa_gap": {
+    "kind": "data_chart",
+    "motion": "bars_81",
+    "labels": [
+      "PISA 2022",
+      "上位25%",
+      "下位25%",
+      "数学",
+      "81点差",
+      "12%説明",
+      "関連あり",
+      "全てではない"
+    ]
+  },
+  "resilience": {
+    "kind": "data_chart",
+    "motion": "resilient_dot",
+    "labels": [
+      "不利な生徒",
+      "12%",
+      "国内上位25%",
+      "レジリエンス",
+      "例外あり",
+      "運命ではない",
+      "条件差",
+      "両立"
+    ]
+  },
+  "many_channels": {
+    "kind": "network",
+    "motion": "fan_in",
+    "labels": [
+      "家庭背景",
+      "本",
+      "睡眠",
+      "食事",
+      "学習場所",
+      "塾・情報",
+      "健康・地域",
+      "学習成果"
+    ]
+  },
+  "small_gap_compounds": {
+    "kind": "growth_timeline",
+    "motion": "widen_gap",
+    "labels": [
+      "小学1年",
+      "小さな差",
+      "読書",
+      "語彙",
+      "小学3年",
+      "小学6年",
+      "中学3年",
+      "累積"
+    ]
+  },
+  "skill_begets_skill": {
+    "kind": "gear_chain",
+    "motion": "self_productivity",
+    "labels": [
+      "Cunha",
+      "Heckman",
+      "早期技能",
+      "自己生産性",
+      "教育投資",
+      "動学補完性",
+      "skill begets skill",
+      "次の学習"
+    ]
+  },
+  "reading_snowball": {
+    "kind": "snowball",
+    "motion": "positive_roll",
+    "labels": [
+      "読書得意",
+      "本を読む",
+      "語彙増",
+      "理科社会",
+      "理解速度",
+      "問題数",
+      "得意感",
+      "さらに学ぶ"
+    ]
+  },
+  "negative_snowball": {
+    "kind": "snowball",
+    "motion": "negative_roll",
+    "labels": [
+      "読むのに時間",
+      "理解困難",
+      "宿題が長い",
+      "努力",
+      "終わらない",
+      "点が上がらない",
+      "苦手感",
+      "距離を置く"
+    ]
+  },
+  "conversion_efficiency": {
+    "kind": "gear_lab",
+    "motion": "same_energy",
+    "labels": [
+      "努力10",
+      "基礎技能",
+      "滑らかな歯車",
+      "成果15",
+      "理解遅れ",
+      "中断",
+      "成果6",
+      "変換効率"
+    ]
+  },
+  "cheap_explanation": {
+    "kind": "policy_invoice",
+    "motion": "cost_compare",
+    "labels": [
+      "62点",
+      "家賃",
+      "親の労働時間",
+      "静かな部屋",
+      "制度変更",
+      "高コスト",
+      "努力しよう",
+      "費用ゼロ"
+    ]
+  },
+  "not_anti_effort": {
+    "kind": "balance",
+    "motion": "both_sides",
+    "labels": [
+      "本人行動",
+      "家庭環境",
+      "期待を下げない",
+      "努力を求める",
+      "環境負担",
+      "努力だけ",
+      "構造",
+      "両方"
+    ]
+  },
+  "loaded_bicycle": {
+    "kind": "bicycle_hill",
+    "motion": "unload",
+    "labels": [
+      "坂道",
+      "自転車A",
+      "自転車B",
+      "重い荷物",
+      "もっとこげ",
+      "荷物を降ろす",
+      "整備",
+      "ここから自分で"
+    ]
+  },
+  "support_plus_expectation": {
+    "kind": "support_bridge",
+    "motion": "add_supports",
+    "labels": [
+      "学習場所",
+      "進路説明",
+      "無料支援",
+      "食事",
+      "健康",
+      "本人が学ぶ",
+      "高い期待",
+      "条件整備"
+    ]
+  },
+  "effort_environment": {
+    "kind": "venn_machine",
+    "motion": "interlock",
+    "labels": [
+      "努力",
+      "環境",
+      "継続性",
+      "変換効率",
+      "主体性",
+      "構造",
+      "相互作用",
+      "二択ではない"
+    ]
+  },
+  "invisible_scaffold": {
+    "kind": "interview_scaffold",
+    "motion": "reveal_scaffold",
+    "labels": [
+      "就活面接",
+      "難関大学",
+      "頑張った",
+      "本棚",
+      "塾",
+      "親の送迎",
+      "静かな部屋",
+      "透明な足場"
+    ]
+  },
+  "success_story": {
+    "kind": "scaffold_steps",
+    "motion": "trace_back",
+    "labels": [
+      "合格",
+      "努力",
+      "習慣",
+      "受験制度",
+      "再挑戦余裕",
+      "環境",
+      "完全な嘘ではない",
+      "説明の続き"
+    ]
+  },
+  "fair_race": {
+    "kind": "race_track",
+    "motion": "reveal_obstacles",
+    "labels": [
+      "同じ線",
+      "泥道",
+      "ハードル",
+      "平坦路",
+      "同じ試験",
+      "同じ採点",
+      "競争前条件",
+      "公平とは"
+    ]
+  },
+  "policy_role": {
+    "kind": "policy_room",
+    "motion": "toolbox",
+    "labels": [
+      "静かな場所",
+      "進路情報",
+      "無料学習",
+      "食事",
+      "健康",
+      "奨学金",
+      "本人が努力",
+      "変換条件"
+    ]
+  },
+  "merit_with_context": {
+    "kind": "score_machine",
+    "motion": "decompose_score",
+    "labels": [
+      "点数82",
+      "本人努力",
+      "過去学習",
+      "家庭",
+      "学校",
+      "健康",
+      "情報・時間",
+      "形成過程"
+    ]
+  },
+  "return_nine_pm": {
+    "kind": "dual_home",
+    "motion": "changed_support",
+    "labels": [
+      "再び21時",
+      "集合住宅",
+      "学校自習室",
+      "付箋",
+      "教師へ質問",
+      "家庭は同じ",
+      "条件が変わる",
+      "1時間の意味"
+    ]
+  },
+  "invisible_on_exam": {
+    "kind": "exam_sheet",
+    "motion": "ghost_layers",
+    "labels": [
+      "答案",
+      "点数",
+      "静かな部屋",
+      "本棚",
+      "親学歴",
+      "塾・睡眠",
+      "兄弟世話",
+      "見えない条件"
+    ]
+  },
+  "merit_paradox": {
+    "kind": "double_edge",
+    "motion": "two_faces",
+    "labels": [
+      "身分制を壊す",
+      "上昇機会",
+      "努力で選抜",
+      "成功の説明",
+      "失敗の説明",
+      "格差縮小",
+      "格差正当化",
+      "二面性"
+    ]
+  },
+  "dont_abandon_effort": {
+    "kind": "hope_stage",
+    "motion": "conditions_check",
+    "labels": [
+      "努力で変えられる",
+      "希望",
+      "時間はある？",
+      "場所はある？",
+      "再挑戦できる？",
+      "成果へ変わる？",
+      "社会の責任",
+      "努力を神話にしない"
+    ]
+  },
+  "same_weight": {
+    "kind": "backpack_scale",
+    "motion": "weigh_effort",
+    "labels": [
+      "同じ1時間",
+      "同じ努力？",
+      "荷物",
+      "家事",
+      "情報不足",
+      "経済的不安",
+      "重さを測る",
+      "努力の背後を見る"
+    ]
+  }
+}
