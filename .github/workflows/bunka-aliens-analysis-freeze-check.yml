@@ -1,0 +1,53 @@
+name: Bunka Aliens - diagnose stalled animation
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/bunka-aliens-spoiler-analysis]
+    paths:
+      - '.github/workflows/bunka-aliens-analysis-freeze-check.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  freeze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: episodes/bunka-we-are-aliens
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install FFmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: analysis-chapter-*
+          run-id: 38028027002
+          github-token: ${{ github.token }}
+          path: episodes/bunka-we-are-aliens
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: analysis-voice-and-cues
+          run-id: 38028027002
+          github-token: ${{ github.token }}
+          path: episodes/bunka-we-are-aliens
+      - name: Locate all intervals of stalled frames and their semantic scene names
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          for ch in range(7):
+            d=json.load(open(f'src/generated/chapter-{ch}.json'))
+            t=2.5 if ch else 0.
+            print(f'\nCHAPTER {ch} ({d["title"]})',flush=True)
+            for g in range(6):
+              sec=sum(c['duration'] for c in d['cues'] if c['group']==g)
+              print(f'  {t:8.2f} - {t+sec:8.2f} sec | scene {g}: {d["sceneTitles"][g]}',flush=True)
+              t+=sec
+          PY
+          for n in 4 5 6; do
+            echo "======= CHAPTER ${n} FREEZE DETAILS ======="
+            ffprobe -v error -show_entries format=duration -of csv=p=0 "output/aliens-chapter-${n}.mp4"
+            ffmpeg -nostats -hide_banner -loglevel info -i "output/aliens-chapter-${n}.mp4" -vf "freezedetect=n=-45dB:d=6" -an -f null - 2>&1 | grep -E "freeze_(start|end|duration)|time=|Error" || true
+          done
