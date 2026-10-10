@@ -1,0 +1,216 @@
+name: V120 Motion Canvas Bottom Job Economics
+on:
+  workflow_dispatch:
+    inputs:
+      only_chapter:
+        description: 'all or one chapter (reuse other chapter MP4s from latest V120 Release)'
+        required: true
+        default: all
+        type: choice
+        options: [all, prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, epilogue]
+  push:
+    branches: [v120-bottom-job-economics-production]
+    paths:
+      - '.github/workflows/v120-motion-canvas-evolution.yml'
+      - 'shared/v120/**'
+permissions:
+  contents: write
+concurrency:
+  group: v120-bottom-job-economics
+  cancel-in-progress: true
+env:
+  PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v120/.puppeteer
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - name: Compile meaning beats and subtitle safe areas
+        working-directory: shared/v120
+        run: |
+          python3 scripts/build_data.py
+          python3 scripts/qa.py
+      - name: Install Motion Canvas and headless browser once
+        working-directory: shared/v120
+        run: npm install --no-audit --no-fund
+      - name: Package once for all chapter renderers
+        run: tar --exclude='shared/v120/media' --exclude='shared/v120/output' --exclude='shared/v120/render' --exclude='shared/v120/qa' -czf v120-motion-base.tar.gz shared/v120
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v120-motion-base
+          path: v120-motion-base.tar.gz
+          retention-days: 3
+          compression-level: 0
+  voice:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        slug: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, epilogue]
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+      - name: Start VOICEVOX
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..100}; do if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi; sleep 2; done
+          exit 1
+      - name: Generate measured VOICEVOX cues
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v120
+        env:
+          VOICEVOX_SPEAKER_ID: '13'
+          VOICEVOX_SPEED: '1.15'
+          VOICEVOX_PARALLEL: '4'
+        run: |
+          python3 scripts/build_data.py
+          python3 scripts/synth_chapter.py "${{ matrix.slug }}"
+      - name: Package voice and measured timing
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: tar -czf "v120-voice-${{ matrix.slug }}.tar.gz" "shared/v120/media/${{ matrix.slug }}" "shared/v120/content/measured-${{ matrix.slug }}.json" "shared/v120/voice-report-${{ matrix.slug }}.json"
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        with:
+          name: v120-voice-${{ matrix.slug }}
+          path: v120-voice-${{ matrix.slug }}.tar.gz
+          retention-days: 3
+          compression-level: 0
+  render:
+    needs: [prepare, voice]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 80
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        slug: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, epilogue]
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+      - uses: actions/setup-node@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        with: {node-version: 22}
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        with: {name: v120-motion-base}
+      - name: Unpack prepared Motion Canvas dependencies
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: tar -xzf v120-motion-base.tar.gz
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        with:
+          name: 'v120-voice-${{ matrix.slug }}'
+      - name: Merge measured subtitles
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v120
+        run: |
+          tar -xzf "../../v120-voice-${{ matrix.slug }}.tar.gz" -C ../..
+          python3 scripts/merge_timing.py "${{ matrix.slug }}"
+          python3 scripts/qa.py
+          npm run build
+      - name: Ensure FFmpeg for pixel-level subtitle smoke QA
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg
+          fi
+          ffmpeg -version | head -1
+      - name: Headless smoke render before full chapter
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v120
+        run: |
+          node scripts/render.mjs "${{ matrix.slug }}" --smoke
+          test -s "output/v120-${{ matrix.slug }}-smoke.mp4"
+          python3 scripts/check_smoke.py "output/v120-${{ matrix.slug }}-smoke.mp4"
+          rm -f "output/v120-${{ matrix.slug }}-smoke.mp4"
+      - name: Render full chapter with measured VOICEVOX
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v120
+        run: |
+          chmod +x ../motion-canvas-standard/render-with-retry.sh
+          MAX_ATTEMPTS=2 ../motion-canvas-standard/render-with-retry.sh 35m node scripts/render.mjs "${{ matrix.slug }}"
+      - name: Package finished chapter
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: tar -czf "v120-render-${{ matrix.slug }}.tar.gz" "shared/v120/output/v120-${{ matrix.slug }}.mp4" "shared/v120/render-report-${{ matrix.slug }}.json" "shared/v120/voice-report-${{ matrix.slug }}.json"
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        with:
+          name: v120-render-${{ matrix.slug }}
+          path: v120-render-${{ matrix.slug }}.tar.gz
+          retention-days: 3
+          compression-level: 0
+  finalize:
+    needs: render
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v120-render-*
+          path: renders
+          merge-multiple: true
+      - name: Restore newly rendered chapters
+        run: |
+          shopt -s nullglob
+          files=(renders/v120-render-*.tar.gz)
+          test ${#files[@]} -gt 0
+          for f in "${files[@]}"; do tar -xzf "$f"; done
+      - name: Reuse unchanged chapters from previous V120 Release
+        if: ${{ inputs.only_chapter != '' && inputs.only_chapter != 'all' }}
+        working-directory: shared/v120
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 80 --json tagName,publishedAt --jq '[.[] | select(.tagName|startswith("v120-bottom-job-"))] | sort_by(.publishedAt) | last | .tagName')
+          test -n "$TAG"
+          mkdir -p output
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do
+            if [ ! -s "output/v120-$c.mp4" ]; then gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "v120-$c.mp4" --dir output; fi
+          done
+      - name: Ensure FFmpeg and FFprobe installed
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          fi
+          ffmpeg -version | head -1
+          ffprobe -version | head -1
+      - name: Stream-copy chapter concatenation, mix BGM, final QA
+        working-directory: shared/v120
+        run: |
+          set -euo pipefail
+          mkdir -p output qa
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do test -s "output/v120-$c.mp4"; done
+          : > output/concat.txt
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do printf "file '%s'\n" "$(realpath "output/v120-$c.mp4")" >> output/concat.txt; done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy output/v120-voice-master.mp4
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v120-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+          ffmpeg -y -loglevel error -i output/v120-voice-master.mp4 -i output/bgm.m4a -filter_complex '[0:a]volume=1[vo];[1:a]volume=.035[bg];[vo][bg]amix=inputs=2:duration=first[a]' -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart output/v120-final.mp4
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 output/v120-final.mp4 | head -1)
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 output/v120-final.mp4 | head -1)
+          FPS=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=nw=1:nk=1 output/v120-final.mp4 | head -1)
+          AUD=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 output/v120-final.mp4 | wc -l)
+          test "$W" = 1920 && test "$H" = 1080 && test "$FPS" = '30/1' && test "$AUD" -ge 1
+          awk "BEGIN {exit !($D>=600)}"
+          printf '{"videoId":"V120","scenes":40,"resolution":"1920x1080","fps":30,"durationSeconds":%s,"audioTracks":%s,"passed":true}\n' "$D" "$AUD" > qa/final-validation.json
+          set +e
+          ffmpeg -hide_banner -i output/v120-final.mp4 -vf 'blackdetect=d=2:pix_th=0.02,freezedetect=n=-55dB:d=6' -an -f null - 2> qa/visual-anomaly-scan.txt
+          set -e
+          INTERVAL=$(awk "BEGIN{print $D/25}")
+          ffmpeg -y -loglevel error -i output/v120-final.mp4 -vf "fps=1/$INTERVAL,scale=384:-1,tile=5x5:padding=6:margin=8" -frames:v 1 output/v120-contact-sheet.jpg
+      - name: Publish finished V120 and reusable chapters
+        working-directory: shared/v120
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -euo pipefail
+          TAG="v120-bottom-job-${GITHUB_RUN_ID}"
+          cp output/v120-final.mp4 "output/knowledge-video-v120-bottom-job-${GITHUB_RUN_ID}.mp4"
+          gh release create "$TAG" "output/knowledge-video-v120-bottom-job-${GITHUB_RUN_ID}.mp4" output/v120-contact-sheet.jpg qa/final-validation.json qa/visual-anomaly-scan.txt output/v120-prologue.mp4 output/v120-chapter1.mp4 output/v120-chapter2.mp4 output/v120-chapter3.mp4 output/v120-chapter4.mp4 output/v120-chapter5.mp4 output/v120-chapter6.mp4 output/v120-epilogue.mp4 --repo "$GITHUB_REPOSITORY" --title "V120 「底辺職」という言葉は経済学的におかしいのか？" --notes '考える夜 / 分業×賃金決定×社会的価値 / 40 meaning scenes / 8-state visual choreography / 8 chapter builds / Motion Canvas / 青山龍星 1.15 / subtitle overlay / smoke QA / ffmpeg final QA'
