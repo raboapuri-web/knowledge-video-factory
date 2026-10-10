@@ -3,6 +3,9 @@ on:
   push:
     paths:
       - '.github/workflows/motion-canvas-masculinity-smoke.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/motion-canvas-masculinity-smoke.yml'
   workflow_dispatch:
 permissions:
   contents: read
