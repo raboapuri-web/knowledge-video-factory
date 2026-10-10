@@ -1,0 +1,168 @@
+name: Bunka Aliens - spoiler analysis Motion Canvas production
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/bunka-aliens-spoiler-analysis]
+    paths:
+      - 'episodes/bunka-we-are-aliens/**'
+      - '.github/workflows/bunka-aliens-analysis-production.yml'
+permissions:
+  contents: read
+concurrency:
+  group: bunka-aliens-spoiler-analysis
+  cancel-in-progress: true
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: episodes/bunka-we-are-aliens
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Motion Canvas once, prepare 42 semantic scenes
+        run: |
+          export PUPPETEER_CACHE_DIR="$PWD/.cache/puppeteer"
+          npm install --no-audit --no-fund
+          npm run prepare
+          npm run build
+          tar -cf node_modules.tar node_modules .cache
+      - uses: actions/upload-artifact@v4
+        with:
+          name: analysis-dependencies
+          path: episodes/bunka-we-are-aliens/node_modules.tar
+          retention-days: 2
+  voice:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    defaults:
+      run:
+        working-directory: episodes/bunka-we-are-aliens
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run prepare
+      - name: Run VOICEVOX Aoyama Ryusei normal CPU
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox-analysis -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..100}; do curl -fsS http://127.0.0.1:50021/version >/dev/null && exit 0; sleep 2; done
+          exit 1
+      - name: Generate accurately timed narration, 2.5sec silence for title slates
+        run: VOICE_WORKERS=3 node scripts/voicevox.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: analysis-voice-and-cues
+          path: |
+            episodes/bunka-we-are-aliens/public/media/chapter-*.wav
+            episodes/bunka-we-are-aliens/src/generated/chapter-*.json
+            episodes/bunka-we-are-aliens/media/srt/chapter-*.srt
+            episodes/bunka-we-are-aliens/qa/voice-report.json
+          retention-days: 7
+  render:
+    needs: [prepare,voice]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        chapter: [0,1,2,3,4,5,6]
+    defaults:
+      run:
+        working-directory: episodes/bunka-we-are-aliens
+    env:
+      PUPPETEER_CACHE_DIR: ${{ github.workspace }}/episodes/bunka-we-are-aliens/.cache/puppeteer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v4
+        with:
+          name: analysis-dependencies
+          path: episodes/bunka-we-are-aliens
+      - run: tar -xf node_modules.tar
+      - run: npm run prepare
+      - uses: actions/download-artifact@v4
+        with:
+          name: analysis-voice-and-cues
+          path: episodes/bunka-we-are-aliens
+      - name: Compile and typecheck before rendering
+        run: npm run build
+      - name: Smoke-check chapter title, actual captions and visual composition
+        run: CHAPTERS=${{ matrix.chapter }} node scripts/smoke.mjs
+      - name: Render one full Motion Canvas chapter
+        run: CHAPTERS=${{ matrix.chapter }} node scripts/render.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: analysis-chapter-${{ matrix.chapter }}
+          path: |
+            episodes/bunka-we-are-aliens/output/aliens-chapter-${{ matrix.chapter }}.mp4
+            episodes/bunka-we-are-aliens/qa/smoke-report.json
+          retention-days: 7
+  final:
+    needs: render
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    defaults:
+      run:
+        working-directory: episodes/bunka-we-are-aliens
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install FFmpeg and FFprobe explicitly
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffprobe -version | head -1
+      - run: npm run prepare
+      - uses: actions/download-artifact@v4
+        with:
+          name: analysis-voice-and-cues
+          path: episodes/bunka-we-are-aliens
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: analysis-chapter-*
+          path: episodes/bunka-we-are-aliens
+          merge-multiple: true
+      - name: Merge seven chapters as H.264 stream copy
+        run: node scripts/package.mjs
+      - name: Mix restrained BGM underneath voiced audio
+        run: node scripts/music.mjs
+      - name: Automated checks: subtitles, resolution, black frames, frozen scenes
+        run: node scripts/qa.mjs
+      - name: 42 real preview frames
+        run: |
+          python -m pip install --quiet pillow
+          python scripts/contact_sheet.py
+      - name: Validate deliverable and semantic storyboard
+        run: |
+          test -s output/we-are-aliens-final.mp4
+          test -s qa/contact-sheet.jpg
+          test -s qa/final-qa.json
+          cp output/we-are-aliens-final.mp4 output/we-are-aliens-spoiler-analysis-final.mp4
+          python - <<'PY'
+          import json
+          a=json.load(open('qa/final-qa.json'))
+          assert a['ok'],a['failures']
+          b=json.load(open('src/generated/manifest.json'))
+          assert len(b)==7 and sum(x['semanticScenes'] for x in b)==42
+          PY
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height,r_frame_rate -of json output/we-are-aliens-spoiler-analysis-final.mp4
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: we-are-aliens-spoiler-analysis-final-and-qa
+          path: |
+            episodes/bunka-we-are-aliens/output/we-are-aliens-spoiler-analysis-final.mp4
+            episodes/bunka-we-are-aliens/qa/final-qa.json
+            episodes/bunka-we-are-aliens/qa/contact-sheet.jpg
+            episodes/bunka-we-are-aliens/qa/voice-report.json
+          retention-days: 7
