@@ -45,7 +45,7 @@ jobs:
       - name: Render prologue and run screenshot smoke QA
         env:
           CHAPTER: prologue
-          SMOKE_SECONDS: "2"
+          SMOKE_SECONDS: "3"
           CHROME_BIN: /usr/bin/google-chrome
         run: |
           node scripts/render.mjs prologue
