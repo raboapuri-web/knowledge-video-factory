@@ -104,6 +104,8 @@ function backdrop(p:Node,scene:MeaningScene,mode:Mode){
  }else if(mode==='metaphor'){
   circle(p,0,0,360,'#122733');
   for(let i=0;i<6;i++)circle(p,-700+i*280,(i%2)*200-150,16,'#345664');
+ }else if(mode==='street'||mode==='home'||mode==='portrait'){
+  holder.add(t(caption,0,106,caption.length>11?18:caption.length>8?21:24,accent,700));
  }else if(mode==='documentary'){
   rect(p,0,-20,1300,625,'#E6DECB',12);
   rect(p,12,-16,1260,590,'#F1ECE1',9);
@@ -192,9 +194,30 @@ function tokenDraw(p:Node,token:Token,accent:string){
  case 'calendar':{rect(p,0,5,145,167,C.paper,8);rect(p,0,-62,145,35,C.red,4);for(let i=0;i<3;i++)for(let j=0;j<3;j++)circle(p,-42+i*42,-15+j*35,8,C.blue);break;}
  }
 }
-const spots:[number,number][]=[[-700,-195],[-425,70],[-125,-135],[195,85],[475,-175],[685,110],[20,240]];
+const variantSpots:Record<Mode,[number,number][]>={
+ street:[[-710,120],[-510,-90],[-275,105],[-25,-120],[245,90],[515,-105],[742,123]],
+ home:[[-730,-90],[-525,130],[-292,-155],[285,-105],[500,135],[728,-155],[0,185]],
+ split:[[-710,-115],[-430,110],[-160,-125],[170,-110],[430,115],[700,-140],[0,245]],
+ network:[[0,-155],[-550,-155],[-655,125],[-250,120],[280,-130],[610,100],[0,240]],
+ bureau:[[-735,-75],[-505,135],[-270,-110],[-15,125],[270,-110],[505,125],[735,-75]],
+ market:[[-745,95],[-505,-125],[-265,90],[-20,-120],[260,95],[510,-100],[740,105]],
+ metaphor:[[0,-145],[-585,-120],[-615,135],[-300,210],[315,-130],[615,125],[50,210]],
+ portrait:[[-705,85],[-500,-130],[-275,135],[0,-155],[265,125],[510,-130],[725,80]],
+ documentary:[[-650,-135],[-375,100],[-100,-125],[180,85],[445,-135],[680,98],[0,215]]
+};
+function buildConnections(p:Node,mode:Mode,positions:[number,number][]):Node[]{
+ const lines:Node[]=[];
+ for(let i=1;i<positions.length;i++){
+  const group=new Node({opacity:0});p.add(group);
+  const a=positions[i-1],b=positions[i];
+  const stroke=mode==='split'&&i===3?C.red:mode==='home'?C.gold:mode==='network'?C.teal:C.stroke;
+  line(group,[[a[0],a[1]],[b[0],b[1]]],stroke,mode==='network'?5:3);
+  lines.push(group);
+ }
+ return lines;
+}
 function makeBeat(parent:Node,token:Token,caption:string,index:number,mode:Mode,accent:string){
- const spot=spots[index];const startX=spot[0]+(index%2===0?-85:85);
+ const spot=variantSpots[mode][index];const startX=spot[0]+(index%2===0?-85:85);
  const holder=new Node({x:startX,y:spot[1]+22,opacity:0,scale:.76});
  parent.add(holder);
  const tile=new Node({y:-20,scale:.60});
@@ -208,13 +231,14 @@ function makeBeat(parent:Node,token:Token,caption:string,index:number,mode:Mode,
  }
  return {node:holder,targetX:spot[0],targetY:spot[1]};
 }
-function* animateBeats(beats:{node:Node;targetX:number;targetY:number}[],time:number):ThreadGenerator{
+function* animateBeats(beats:{node:Node;targetX:number;targetY:number}[],time:number,links:Node[],mode:Mode):ThreadGenerator{
  const count=beats.length;let elapsed=0;
  for(let i=0;i<count;i++){
   const start=Math.max(0,(time-1.2)*(i/count));
   if(start>elapsed){yield* waitFor(start-elapsed);elapsed=start;}
   const b=beats[i],transition=Math.min(.75,Math.max(.3,time/count*.23));
-  yield* all(b.node.opacity(1,transition),b.node.x(b.targetX,transition),b.node.y(b.targetY,transition),b.node.scale(1,transition));
+  const linkMoves=i===0?[]:[links[i-1].opacity(mode==='split'?.55:.85,transition)];
+  yield* all(b.node.opacity(1,transition),b.node.x(b.targetX,transition),b.node.y(b.targetY,transition),b.node.scale(1,transition),...linkMoves);
   elapsed+=transition;
   if(i>=3 && i%2===0){
    const older=beats[i-3];
@@ -246,6 +270,8 @@ export function* playMeaningScene(view:View2D,scene:MeaningScene):ThreadGenerato
  const plan=plans[scene.id];if(!plan)throw new Error('Missing storyboard '+scene.id);
  backdrop(contentLayer,scene,plan.mode);
  const sceneStage=new Node({});contentLayer.add(sceneStage);
+ const connections=new Node({});sceneStage.add(connections);
+ const links=buildConnections(connections,plan.mode,variantSpots[plan.mode]);
  const beats=plan.objects.map((token,i)=>makeBeat(sceneStage,token,plan.beats[i],i,plan.mode,i===6?C.red:i%3===0?C.gold:C.teal));
  rect(headingLayer,0,-473,1920,138,'#07101A',0);
  const label=scene.chapter==='prologue'?'PROLOGUE':scene.chapter==='epilogue'?'EPILOGUE':scene.chapter.toUpperCase();
@@ -257,5 +283,5 @@ export function* playMeaningScene(view:View2D,scene:MeaningScene):ThreadGenerato
  rect(subtitleBacking,0,459,1920,171,'#020509',0);
  const caption=t('',0,459,42,C.paper,700);caption.lineHeight(59);
  subtitleTextLayer.add(caption);
- yield* all(animateBeats(beats,scene.duration),subtitleTrack(scene.cues,caption,scene.duration));
+ yield* all(animateBeats(beats,scene.duration,links,plan.mode),subtitleTrack(scene.cues,caption,scene.duration));
 }
