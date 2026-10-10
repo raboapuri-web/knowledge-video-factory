@@ -1,0 +1,55 @@
+name: Motion Canvas - Prologue Smoke Retry
+on:
+  push:
+    paths:
+      - '.github/workflows/motion-canvas-masculinity-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  smoke:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 180
+    defaults:
+      run:
+        working-directory: episodes/masculinity-motioncanvas
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract source and restore working Vite plugin configuration
+        run: |
+          base64 --decode source.tar.gz.base64 | tar -xz
+          cp ../../.github/motioncanvas/vite.override.ts vite.config.ts
+          python3 scripts/qa.py
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 38038617930
+          name: chapter-source-and-node-modules
+          github-token: ${{ github.token }}
+          path: episodes/masculinity-motioncanvas
+      - run: |
+          tar -xzf node_modules.tar.gz
+          npm run typecheck
+          test -s src/data/story.json
+      - name: Install OS render dependencies
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-noto-cjk python3-pil
+      - name: Render prologue and run screenshot smoke QA
+        env:
+          CHAPTER: prologue
+          CHROME_BIN: /usr/bin/google-chrome
+        run: |
+          node scripts/render.mjs prologue
+          python3 scripts/smoke_check.py prologue
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: masculinity-prologue-smoke-diagnostics
+          path: episodes/masculinity-motioncanvas/qa/*prologue*
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: masculinity-prologue-smoke-visual
+          path: episodes/masculinity-motioncanvas/output/prologue-visual.mp4
+          retention-days: 7
+          compression-level: 0
