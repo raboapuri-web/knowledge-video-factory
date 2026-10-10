@@ -51,14 +51,26 @@ try{
   page.on('console',msg=>{if(msg.type()==='error'){pageErrors.push('CONSOLE: '+msg.text());console.error(msg.text())}});
   page.on('requestfailed',req=>console.error('REQUEST:',req.url(),req.failure()?.errorText));
   page.on('response',res=>{if(res.status()>=400)console.error('HTTP',res.status(),res.url())});
-  const resp=await page.goto(origin+'/headless.html',{waitUntil:'networkidle0',timeout:120000});
-  if(!resp||resp.status()!==200)throw new Error('Headless entry page returned '+resp?.status());
-  await page.waitForFunction(()=>typeof window.renderProject==='function',{timeout:90000});
   const projectUrl='/src/projects/'+chapter+'.ts?project';
   console.log('Rendering',chapter,projectUrl,'smokeSeconds='+smokeSeconds);
-  const result=await page.evaluate((project,chap,smoke)=>
-    window.renderProject(project,chap,smoke),
-    projectUrl,chapter,smokeSeconds);
+  let result;
+  for(let retry=0;retry<3;retry++){
+    try{
+      const resp=await page.goto(origin+'/headless.html',{waitUntil:'networkidle0',timeout:120000});
+      if(!resp||resp.status()!==200)throw new Error('Headless entry page returned '+resp?.status());
+      await page.waitForFunction(()=>typeof window.renderProject==='function',{timeout:90000});
+      result=await page.evaluate((project,chap,smoke)=>
+        window.renderProject(project,chap,smoke),
+        projectUrl,chapter,smokeSeconds);
+      break;
+    }catch(err){
+      const msg=String(err);
+      const viteReload=/Execution context was destroyed|Cannot find context|Navigating frame was detached|Target closed/.test(msg);
+      if(!viteReload || retry>=2)throw err;
+      console.warn('Vite dependency reload interrupted render, retry '+(retry+1),msg);
+      await new Promise(resolve=>setTimeout(resolve,1200));
+    }
+  }
   console.log('Renderer result:',result);
   if(result!=='Success')throw new Error('Motion Canvas renderer did not succeed: '+result);
   const movies=allFiles(output).filter(f=>f.endsWith('.mp4')&&fs.statSync(f).mtimeMs>(before.get(f)||0));
