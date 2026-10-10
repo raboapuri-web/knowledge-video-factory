@@ -1,0 +1,153 @@
+name: Bunka Aliens - fix frozen scene chapters and finalize
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/bunka-aliens-spoiler-analysis]
+    paths:
+      - '.github/workflows/bunka-aliens-analysis-repair.yml'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: bunka-aliens-spoiler-analysis-repair
+  cancel-in-progress: false
+jobs:
+  repair:
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        chapter: [4,5,6]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    defaults:
+      run:
+        working-directory: episodes/bunka-we-are-aliens
+    env:
+      PUPPETEER_CACHE_DIR: ${{ github.workspace }}/episodes/bunka-we-are-aliens/.cache/puppeteer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Reuse installed Motion Canvas dependencies and browser from first successful build
+        uses: actions/download-artifact@v4
+        with:
+          name: analysis-dependencies
+          run-id: 38028027002
+          github-token: ${{ github.token }}
+          path: episodes/bunka-we-are-aliens
+      - run: tar -xf node_modules.tar
+      - run: node scripts/prepare.mjs
+      - name: Reuse exact VOICEVOX audio and subtitle cue timings
+        uses: actions/download-artifact@v4
+        with:
+          name: analysis-voice-and-cues
+          run-id: 38028027002
+          github-token: ${{ github.token }}
+          path: episodes/bunka-we-are-aliens
+      - name: Validate updated animations compile before rendering
+        run: npm run build
+      - name: Run smoke QA on chapter title and newly animated content
+        run: CHAPTERS=${{ matrix.chapter }} node scripts/smoke.mjs
+      - name: Re-render only previously frozen chapter
+        run: CHAPTERS=${{ matrix.chapter }} node scripts/render.mjs
+      - name: Detect true >12-second freeze in repaired chapter before accepting artifact
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          python - <<'PY'
+          import subprocess,re,os
+          ch=int(os.environ.get('CHAPTERS','${{ matrix.chapter }}'))
+          fn=f'output/aliens-chapter-{ch}.mp4'
+          x=subprocess.run(['ffmpeg','-nostats','-hide_banner','-i',fn,'-vf','freezedetect=n=-45dB:d=12','-an','-f','null','-'],capture_output=True,text=True)
+          starts=re.findall(r'freeze_start: ([0-9.]+)',x.stderr)
+          print(f'chapter {ch}: codec check {x.returncode}, detected >12s freeze starts: {starts}')
+          if x.returncode!=0 or starts:raise SystemExit('Repaired chapter still has >12-second frozen content')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: analysis-fixed-chapter-${{ matrix.chapter }}
+          path: |
+            episodes/bunka-we-are-aliens/output/aliens-chapter-${{ matrix.chapter }}.mp4
+            episodes/bunka-we-are-aliens/qa/smoke-report.json
+          retention-days: 7
+  finalize:
+    needs: repair
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    defaults:
+      run:
+        working-directory: episodes/bunka-we-are-aliens
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install FFmpeg and FFprobe
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffprobe -version | head -1
+      - run: node scripts/prepare.mjs
+      - name: Reuse measured subtitle cue files without re-synthesis
+        uses: actions/download-artifact@v4
+        with:
+          name: analysis-voice-and-cues
+          run-id: 38028027002
+          github-token: ${{ github.token }}
+          path: episodes/bunka-we-are-aliens
+      - name: Reuse all seven original MP4s from completed render jobs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: analysis-chapter-*
+          run-id: 38028027002
+          github-token: ${{ github.token }}
+          path: episodes/bunka-we-are-aliens
+          merge-multiple: true
+      - name: Replace only chapters 4, 5 and 6 with their repaired MP4s
+        uses: actions/download-artifact@v4
+        with:
+          pattern: analysis-fixed-chapter-*
+          path: episodes/bunka-we-are-aliens
+          merge-multiple: true
+      - name: Verify all seven chapter videos
+        run: |
+          for n in 0 1 2 3 4 5 6; do
+            f="output/aliens-chapter-${n}.mp4"
+            test -s "$f"
+            ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate -of compact "$f"
+          done
+      - name: Lossless chapter concatenation and music track
+        run: |
+          node scripts/package.mjs
+          node scripts/music.mjs
+      - name: Enforce final quality check including no 12-second stills
+        run: node scripts/qa.mjs
+      - name: Build 42-frame contact sheet
+        run: |
+          python -m pip install --quiet pillow
+          python scripts/contact_sheet.py
+      - name: Assert final MP4, source chapter count, subtitles, codec, quality report
+        run: |
+          test -s output/we-are-aliens-final.mp4
+          test -s qa/contact-sheet.jpg
+          test -s qa/final-qa.json
+          cp output/we-are-aliens-final.mp4 output/we-are-aliens-spoiler-analysis-final.mp4
+          python - <<'PY'
+          import json
+          a=json.load(open('qa/final-qa.json'))
+          assert a['ok'],a['failures']
+          b=json.load(open('src/generated/manifest.json'))
+          assert len(b)==7 and sum(x['semanticScenes'] for x in b)==42
+          PY
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height,r_frame_rate -of json output/we-are-aliens-spoiler-analysis-final.mp4
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bunka-aliens-spoiler-analysis-repaired-complete
+          path: |
+            episodes/bunka-we-are-aliens/output/we-are-aliens-spoiler-analysis-final.mp4
+            episodes/bunka-we-are-aliens/qa/final-qa.json
+            episodes/bunka-we-are-aliens/qa/contact-sheet.jpg
+            episodes/bunka-we-are-aliens/qa/voice-report.json
+          retention-days: 7
