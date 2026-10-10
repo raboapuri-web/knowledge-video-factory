@@ -4,6 +4,10 @@ on:
     paths:
       - 'episodes/masculinity-motioncanvas/**'
       - '.github/workflows/motion-canvas-masculinity.yml'
+  pull_request:
+    paths:
+      - 'episodes/masculinity-motioncanvas/**'
+      - '.github/workflows/motion-canvas-masculinity.yml'
   workflow_dispatch:
 permissions:
   contents: read
