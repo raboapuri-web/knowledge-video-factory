@@ -1,0 +1,95 @@
+name: Bunka Aliens - finalize existing seven rendered chapters
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/bunka-we-are-aliens]
+    paths:
+      - '.github/workflows/bunka-we-are-aliens-finalize.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: episodes/bunka-we-are-aliens
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install FFmpeg and FFprobe (required for final QA)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -1
+          ffprobe -version | head -1
+      - name: Build chapter manifest without installing or re-rendering Motion Canvas
+        run: node scripts/prepare.mjs
+      - name: Reuse measured VOICEVOX timestamps and narration from previous success
+        uses: actions/download-artifact@v4
+        with:
+          name: voice-and-timelines
+          run-id: 37974651677
+          github-token: ${{ github.token }}
+          path: episodes/bunka-we-are-aliens
+      - name: Reuse six successful chapter videos without re-rendering
+        uses: actions/download-artifact@v4
+        with:
+          pattern: chapter-*
+          run-id: 37974651677
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: episodes/bunka-we-are-aliens
+      - name: Recover chapter four, already rendered in previous recovery run
+        uses: actions/download-artifact@v4
+        with:
+          name: bunka-aliens-recovery-outputs
+          run-id: 38020872778
+          github-token: ${{ github.token }}
+          path: episodes/bunka-we-are-aliens
+      - name: Ensure all 7 videos have H264 1920x1080 video and audio before concatenation
+        run: |
+          set -euo pipefail
+          for n in 0 1 2 3 4 5 6; do
+            video="output/aliens-chapter-${n}.mp4"
+            test -s "$video"
+            echo "chapter ${n} video:"
+            ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate -of compact "$video"
+            ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of csv=p=0 "$video" | grep -Fx h264
+            ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of csv=p=0 "$video" | grep -Ex 'aac|pcm_.*'
+          done
+      - name: Concatenate without video re-encoding
+        run: node scripts/package.mjs
+      - name: Mix BGM over complete movie
+        run: node scripts/music.mjs
+      - name: Run chapter-level subtitle and visual QC
+        run: node scripts/qa.mjs
+      - name: Generate contact sheet using actual rendered chapters
+        run: |
+          python -m pip install --quiet pillow
+          python scripts/contact_sheet.py
+      - name: Check final H264 video and sound
+        run: |
+          test -s output/we-are-aliens-final.mp4
+          test -s qa/contact-sheet.jpg
+          test -s qa/final-qa.json
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height,r_frame_rate -of json output/we-are-aliens-final.mp4
+          python - <<'PY'
+          import json
+          report=json.load(open('qa/final-qa.json'))
+          assert report['ok'], report['failures']
+          PY
+      - name: Upload completed video and actual QA results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bunka-we-are-aliens-final-7-chapters
+          path: |
+            episodes/bunka-we-are-aliens/output/we-are-aliens-final.mp4
+            episodes/bunka-we-are-aliens/qa/final-qa.json
+            episodes/bunka-we-are-aliens/qa/contact-sheet.jpg
+            episodes/bunka-we-are-aliens/qa/voice-report.json
+          retention-days: 7
