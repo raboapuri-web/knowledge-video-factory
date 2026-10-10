@@ -4,7 +4,6 @@ on:
   push:
     branches: [feature/bunka-aliens-spoiler-analysis]
     paths:
-      - 'episodes/bunka-we-are-aliens/**'
       - '.github/workflows/bunka-aliens-analysis-production.yml'
 permissions:
   contents: read
