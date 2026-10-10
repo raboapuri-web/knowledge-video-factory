@@ -23,6 +23,12 @@ jobs:
         run: |
           base64 --decode source.tar.gz.base64 | tar -xz
           cp ../../.github/motioncanvas/vite.override.ts vite.config.ts
+          cp ../../.github/motioncanvas/headless.html headless.html
+          cp ../../.github/motioncanvas/headless.ts src/headless.ts
+          cp ../../.github/motioncanvas/render.headless.mjs scripts/render.mjs
+          for chapter in prologue chapter1 chapter2 chapter3 chapter4 epilogue; do
+            cp ../../.github/motioncanvas/project.render.meta.json "src/projects/${chapter}.meta"
+          done
           python3 scripts/qa.py
       - uses: actions/download-artifact@v4
         with:
@@ -39,6 +45,7 @@ jobs:
       - name: Render prologue and run screenshot smoke QA
         env:
           CHAPTER: prologue
+          SMOKE_SECONDS: "2"
           CHROME_BIN: /usr/bin/google-chrome
         run: |
           node scripts/render.mjs prologue
