@@ -16,12 +16,12 @@ for(const id of ids){
   const data=JSON.parse(readFileSync(join(root,'src/generated',`chapter-${id}.json`)));
   const startFor=g=>data.cues.filter(c=>c.group<g).reduce((sum,c)=>sum+c.duration,0);
   const groupIndex=Math.min(5,id===5?0:3);
-  const clips=[0,startFor(groupIndex)];
+  const clips=[id===0?0:0.05,id===0?3:3.3,data.introSeconds+startFor(groupIndex)];
   const server=await createServer({root,configFile:join(root,'vite.config.ts'),server:{port:0},logLevel:'warn'});
   await server.listen();
   const addr=server.httpServer?.address();
   if(!addr||typeof addr==='string') throw Error('No TCP');
-  const browser=await puppeteer.launch({headless:true,args:['--no-sandbox','--use-gl=swiftshader','--enable-unsafe-swiftshader']});
+  const browser=await puppeteer.launch({headless:true,protocolTimeout:1200000,args:['--no-sandbox','--use-gl=swiftshader','--enable-unsafe-swiftshader']});
   try{
     const page=await browser.newPage();
     page.setDefaultTimeout(60000);
