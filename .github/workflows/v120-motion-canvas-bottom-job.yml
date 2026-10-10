@@ -11,7 +11,7 @@ on:
   push:
     branches: [v120-bottom-job-economics-production]
     paths:
-      - '.github/workflows/v120-motion-canvas-evolution.yml'
+      - '.github/workflows/v120-motion-canvas-bottom-job.yml'
       - 'shared/v120/**'
 permissions:
   contents: write
