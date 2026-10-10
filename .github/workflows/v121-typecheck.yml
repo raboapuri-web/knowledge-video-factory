@@ -1,0 +1,30 @@
+name: V121 Typecheck Preflight
+on:
+  push:
+    branches: [v121-effort-education-gap-production]
+    paths:
+      - '.github/workflows/v121-typecheck.yml'
+      - 'shared/v121/src/**'
+      - 'shared/v121/content/**'
+      - 'shared/v121/scripts/**'
+      - 'shared/v121/package.json'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - name: Generate all V121 source and run structural QA
+        working-directory: shared/v121
+        run: |
+          python3 scripts/build_data.py
+          python3 scripts/qa.py
+      - name: Typecheck and bundle every chapter
+        working-directory: shared/v121
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
