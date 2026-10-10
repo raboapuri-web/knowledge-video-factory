@@ -136,7 +136,7 @@ jobs:
         run: node scripts/package.mjs
       - name: Mix restrained BGM underneath voiced audio
         run: node scripts/music.mjs
-      - name: Automated checks: subtitles, resolution, black frames, frozen scenes
+      - name: 'Automated checks - subtitles, resolution, black frames, frozen scenes'
         run: node scripts/qa.mjs
       - name: 42 real preview frames
         run: |
