@@ -154,8 +154,12 @@ function crossroads(p:S){
  <Line points={[[0,325],[0,90],[500,-235]]} stroke={'#768D96'} lineWidth={170}/>
  <Line points={[[0,325],[0,90],[-500,-235]]} stroke={P.amber} lineWidth={5} lineDash={[15,25]}/>
  <Line points={[[0,325],[0,90],[500,-235]]} stroke={P.amber} lineWidth={5} lineDash={[15,25]}/>
- {human(-85-380*bound(p()),110-160*bound(p()),'#B98D6D',p,0.58)}
- {human(90+380*bound(p()),110-160*bound(p()),'#6E90A5',p,0.58)}
+ <Node x={()=>-85-400*bound(p())} y={()=>110-170*bound(p())} rotation={()=>-8*bound(p())}>
+   {human(0,0,'#B98D6D',p,0.58)}
+ </Node>
+ <Node x={()=>90+400*bound(p())} y={()=>110-170*bound(p())} rotation={()=>8*bound(p())}>
+   {human(0,0,'#6E90A5',p,0.58)}
+ </Node>
  </Node>;
 }
 
@@ -196,7 +200,26 @@ export function analysisVisual(ch:number,g:number,p:S){
  case 24:return <Node>{dino(p)}{paper(545,-130,p,'恐竜の図鑑',1)}{title('少年が知っていた、無数の名前',-351,0,45)}</Node>;
  case 25:return <Node>{dino(p,true)}<Circle x={30} y={-110} width={()=>bound(p())*630} height={()=>bound(p())*630} stroke={P.red} lineWidth={7} opacity={0.17}/></Node>;
  case 26:return <Node>{flipBook(p)}<Rect x={-320} y={200} width={()=>250+bound(p())*1070} height={17} fill={P.amber}/>{title('忘れた場所に、新しい人生が入る',-360,0,45)}</Node>;
- case 27:return <Node>{room(p)}<Node x={-460} y={100}>{human(0,0,'#B7896C',p,1.13)}</Node><Node x={460} y={100}>{human(0,0,'#728D9F',p,1.13)}</Node><Rect x={0} y={20} width={680} height={27} fill={P.amber} opacity={0.55}/><Txt text={'あのとき、救われていた'} y={-337} fontFamily={F} fontSize={54} fill={P.chalk} opacity={()=>reveal(p,5)}/></Node>;
+ case 27:return <Node>{room(p)}
+  <Node x={()=>-740+310*bound(p()/0.46)} y={112} rotation={()=>-8+8*bound(p()/0.45)}>
+   {human(0,0,'#B7896C',p,1.13)}
+  </Node>
+  <Node x={()=>760-325*bound(p()/0.52)} y={112} rotation={()=>7-7*bound(p()/0.52)}>
+   {human(0,0,'#728D9F',p,1.13)}
+  </Node>
+  <Rect x={0} y={163} width={865} height={32} fill={P.amber} opacity={0.84}/>
+  <Node x={()=>430-360*bound((p()-0.32)/0.32)} y={70} opacity={()=>reveal(p,3,9)}>
+   <Rect width={95} height={13} fill={P.chalk}/><Circle y={-20} width={52} height={23} fill={P.pale}/>
+  </Node>
+  <Node x={()=>-430+370*bound((p()-0.46)/0.35)} y={70} opacity={()=>reveal(p,4,9)}>
+   <Rect width={95} height={13} fill={P.chalk}/><Circle y={-20} width={52} height={23} fill={P.pale}/>
+  </Node>
+  <Node x={()=>-210+420*bound((p()-0.57)/0.42)} y={()=>-140-110*bound((p()-0.57)/0.42)} rotation={()=>-14+23*bound((p()-0.57)/0.42)} opacity={()=>reveal(p,5,9)}>
+   <Rect width={340} height={210} radius={11} fill={'#D9C7AC'} stroke={P.chalk} lineWidth={10}/>
+   <Txt text={'あの頃の相棒'} fontSize={31} fontWeight={700} fontFamily={F} fill={'#294255'} y={50}/>
+  </Node>
+  <Txt text={'自分は覚えていない。相手は覚えていた。'} y={-343} fill={P.chalk} fontFamily={F} fontSize={42} opacity={()=>reveal(p,6,9)}/>
+ </Node>;
  case 28:return <Node>{memory(p,true)}<Txt text={'傷つけられた記憶'} x={-440} y={-337} fontFamily={F} fontSize={41} fill={P.amber}/><Txt text={'救われた記憶'} x={465} y={-337} fontFamily={F} fontSize={41} fill={P.red}/></Node>;
  case 29:return <Node>{backdrop('#182935')}{Array.from({length:9},(_,i)=><Node key={String(i)} x={-640+i%3*630} y={-260+Math.floor(i/3)*220} opacity={()=>reveal(p,i,10)}><Rect width={410} height={188} radius={12} fill={i%2?'#465967':'#4A6E70'} stroke={'#879B9E'} lineWidth={5}/><Circle x={-112} width={73} height={73} fill={P.amber} opacity={0.5}/><Line points={[[-35,12],[145,12]]} stroke={P.pale} lineWidth={7}/></Node>)}{title('誰かの記憶に、知らない自分がいる',-361,0,44)}</Node>;
  // CHAPTER 5
@@ -205,14 +228,33 @@ export function analysisVisual(ch:number,g:number,p:S){
  case 32:return <Node>{backdrop('#1A2B3A')}<Node x={-480} y={-40}>{seesaw(p,true)}</Node><Line points={[[-630,-280],[630,155]]} stroke={P.red} lineWidth={10} opacity={()=>reveal(p,3)}/><Line points={[[-610,150],[610,150]]} stroke={P.amber} lineWidth={10} opacity={()=>reveal(p,5)}/>{title('上下から、水平へ',-358,0,62)}</Node>;
  case 33:return <Node>{roadCars(p,true)}{title('対等でも、同じ道を歩くとは限らない',-358,0,44)}</Node>;
  case 34:return <Node>{backdrop('#192632')}{['赦し','和解','信頼'].map((name,i)=><Node key={String(i)} x={-570+i*570} y={-65} opacity={()=>reveal(p,i+1,7)}><Circle width={295} height={295} stroke={[P.red,P.amber,P.cyan][i]} lineWidth={11}/><Txt text={name} fill={P.chalk} fontSize={60} fontWeight={700} fontFamily={F}/></Node>)}<Line points={[[-510,190],[560,190]]} lineWidth={8} stroke={P.pale} opacity={()=>reveal(p,6)}/>{title('三つは、同じではない',-355,0,50)}</Node>;
- case 35:return <Node>{backdrop(P.deep)}{stars(25)}<Circle x={-450} y={-30} width={520} height={520} stroke={P.amber} lineWidth={8}/><Circle x={450} y={-30} width={520} height={520} stroke={P.blue} lineWidth={8}/>{human(-450,80,'#B8876E',p,1.2)}{human(450,80,'#758D9E',p,1.2)}<Line points={[[-185,-16],[185,-16]]} stroke={P.red} lineWidth={9} opacity={()=>reveal(p,5)}/>{title('我々は、互いにとって宇宙人',-366,0,44)}</Node>;
+ case 35:return <Node>{backdrop(P.deep)}{stars(25)}
+  <Circle x={()=>-595+350*bound(p())} y={()=>-95+60*bound(p())} width={()=>440+75*bound(p())} height={()=>440+75*bound(p())} stroke={P.amber} lineWidth={10}/>
+  <Circle x={()=>595-350*bound(p())} y={()=>10-45*bound(p())} width={()=>530-25*bound(p())} height={()=>530-25*bound(p())} stroke={P.blue} lineWidth={10}/>
+  <Node x={()=>-590+350*bound(p())} y={()=>64-30*bound(p())} rotation={()=>8-8*bound(p())}>
+   {human(0,0,'#B8876E',p,1.15)}
+  </Node>
+  <Node x={()=>590-350*bound(p())} y={()=>52+20*bound(p())} rotation={()=>-9+9*bound(p())}>
+   {human(0,0,'#758D9E',p,1.15)}
+  </Node>
+  <Line points={()=>[[-315+170*bound(p()),-35],[315-170*bound(p()),-35]]} stroke={P.red} lineWidth={10} opacity={()=>0.2+reveal(p,3,8)*0.78}/>
+  <Txt text={'あいつは宇宙人'} x={()=>-400+170*bound(p())} y={-339} fontFamily={F} fontSize={48} fill={P.amber} opacity={()=>1-reveal(p,4,9)}/>
+  <Txt text={'我々は宇宙人'} x={()=>310-300*bound(p())} y={-340} fontFamily={F} fontWeight={700} fontSize={59} fill={P.chalk} opacity={()=>reveal(p,4,9)}/>
+  <Rect x={0} y={285} width={()=>20+850*bound(p())} height={9} fill={P.pale} opacity={0.73}/>
+  <Txt text={'理解できないまま、同じ高さに立つ'} y={333} fontFamily={F} fontSize={31} fill={P.chalk} opacity={()=>reveal(p,6,9)}/>
+ </Node>;
  // EPILOGUE
  case 36:return <Node>{seesaw(p)}{title('釣り合っていた時間は、確かにあった',-358,0,46)}</Node>;
  case 37:return <Node>{memory(p,true)}<Rect y={260} width={()=>200+bound(p())*1190} height={12} fill={P.red}/>{title('一人は傷つけ、一人は誰かを救った',-364,0,46)}</Node>;
  case 38:return <Node>{backdrop(P.ink)}{stars(27)}{moon(p,0,-85,200)}<Txt x={-510} y={220} text={'照れている'} fontSize={58} fill={P.amber} fontFamily={F} opacity={()=>reveal(p,2)}/><Txt x={520} y={220} text={'怒っている'} fontSize={58} fill={P.red} fontFamily={F} opacity={()=>reveal(p,5)}/></Node>;
  case 39:return <Node>{curtain(p)}{childPair(p,-340,340,130,0)}{title('完全に理解できなくても',-358,0,53)}</Node>;
  case 40:return <Node>{roadCars(p,true)}{title('同じ高さで、それぞれの人生へ',-355,0,46)}</Node>;
- case 41:return <Node>{crossroads(p)}{title('最後の「じゃあね」',-365,0,80)}<Txt text={'和解か、決別か。'} y={225} fontFamily={F} fontSize={40} fill={P.chalk} opacity={()=>reveal(p,6)}/></Node>;
+ case 41:return <Node>{crossroads(p)}
+  <Circle x={()=>490-220*bound(p())} y={-250} width={()=>125+75*bound(p())} height={()=>125+75*bound(p())} fill={P.red} opacity={()=>0.04+0.13*bound(p())}/>
+  <Txt text={'最後の「じゃあね」'} y={-363} fontFamily={F} fontWeight={700} fontSize={79} fill={P.chalk}/>
+  <Txt text={'和解か、決別か。'} y={225} fontFamily={F} fontSize={40} fill={P.chalk} opacity={()=>reveal(p,4,9)}/>
+  <Line points={()=>[[-680+480*bound(p()),308],[680-480*bound(p()),308]]} stroke={P.amber} lineWidth={7} opacity={()=>0.2+0.65*bound(p())}/>
+ </Node>;
  default:return <Node>{backdrop()} {title('我々は宇宙人')}</Node>;
  }
 }
