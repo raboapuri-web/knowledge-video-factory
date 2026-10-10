@@ -192,59 +192,236 @@ function tokenDraw(p:Node,token:Token,accent:string){
  case 'calendar':{rect(p,0,5,145,167,C.paper,8);rect(p,0,-62,145,35,C.red,4);for(let i=0;i<3;i++)for(let j=0;j<3;j++)circle(p,-42+i*42,-15+j*35,8,C.blue);break;}
  }
 }
-const variantSpots:Record<Mode,[number,number][]>={
- street:[[-710,120],[-510,-90],[-275,105],[-25,-120],[245,90],[515,-105],[742,123]],
- home:[[-730,-90],[-525,130],[-292,-155],[285,-105],[500,135],[728,-155],[0,185]],
- split:[[-710,-115],[-430,110],[-160,-125],[170,-110],[430,115],[700,-140],[0,245]],
- network:[[0,-155],[-550,-155],[-655,125],[-250,120],[280,-130],[610,100],[0,240]],
- bureau:[[-735,-75],[-505,135],[-270,-110],[-15,125],[270,-110],[505,125],[735,-75]],
- market:[[-745,95],[-505,-125],[-265,90],[-20,-120],[260,95],[510,-100],[740,105]],
- metaphor:[[0,-145],[-585,-120],[-615,135],[-300,210],[315,-130],[615,125],[50,210]],
- portrait:[[-705,85],[-500,-130],[-275,135],[0,-155],[265,125],[510,-130],[725,80]],
- documentary:[[-650,-135],[-375,100],[-100,-125],[180,85],[445,-135],[680,98],[0,215]]
+
+/**
+ * V120 / motion revision 2.
+ * Every scene owns a physical environment; no automatic connecting lines,
+ * no numbered icon rails, no repeated seven-card grid. Previous objects are
+ * moved into the world, exchanged, removed or repurposed as the argument evolves.
+ */
+interface Actor {node:Node; x:number; y:number}
+interface PhysicalBeat {node:Node; label:Txt; token:Token; text:string}
+interface Theatre {
+ stage:Node; beats:PhysicalBeat[]; headline:Txt; focus:Node; actor:Actor;
+ other:Actor; secondary:Node[]; desk:Node; door:Node; veil:Rect;
+}
+function figure(p:Node,token:Token,x:number,y:number,size=1):Actor{
+ const node=new Node({x,y,scale:size});p.add(node);
+ tokenDraw(node,token,C.paper);return {node,x,y};
+}
+const heroNames:Record<Mode,Token>={
+ street:'girl',home:'girl',split:'girl',network:'girl',bureau:'girl',
+ market:'girl',metaphor:'girl',portrait:'girl',documentary:'book'
 };
-function buildConnections(p:Node,mode:Mode,positions:[number,number][]):Node[]{
- const lines:Node[]=[];
- for(let i=1;i<positions.length;i++){
-  const group=new Node({opacity:0});p.add(group);
-  const a=positions[i-1],b=positions[i];
-  const stroke=mode==='split'&&i===3?C.red:mode==='home'?C.gold:mode==='network'?C.teal:C.stroke;
-  line(group,[[a[0],a[1]],[b[0],b[1]]],stroke,mode==='network'?5:3);
-  lines.push(group);
+function stageDesign(root:Node,scene:MeaningScene,plan:Plan):Theatre{
+ const mode=plan.mode, stage=new Node({});root.add(stage);
+ const scenery=new Node({});stage.add(scenery);
+ const focus=new Node({});stage.add(focus);
+ const secondary:Node[]=[];
+ // The environment stays in place while its occupants and contents change.
+ if(mode==='street'){
+  rect(scenery,-550,202,450,18,'#536978',4);
+  rect(scenery,-705,260,17,115,'#536978',2);
+  rect(scenery,-400,260,17,115,'#536978',2);
+  for(let i=0;i<7;i++)rect(scenery,-810+i*260,300,170,5,'#314F60',0);
+  const awning=new Node({x:530,y:-240});scenery.add(awning);
+  rect(awning,0,0,380,12,'#7D6070',0);
+ }else if(mode==='home'){
+  rect(scenery,-390,208,490,32,'#4D5761',3);
+  rect(scenery,510,-70,290,160,'#223E4A',4);
+  rect(scenery,510,-70,278,148,'#102A35',2);
+  rect(scenery,-140,249,900,12,'#55676F',2);
+ }else if(mode==='bureau'){
+  rect(scenery,0,210,1280,170,'#243B49',10);
+  rect(scenery,0,147,1290,16,'#A3A69E',2);
+  rect(scenery,540,-180,280,110,'#243948',8);
+  scenery.add(t('相談窓口',540,-184,31,C.paper,700));
+ }else if(mode==='market'){
+  rect(scenery,350,194,630,200,'#233945',8);
+  rect(scenery,420,-165,360,110,'#132A38',13);
+  scenery.add(t('入口 / 条件',425,-165,29,C.muted,600));
+  rect(scenery,-575,240,580,20,'#53646A',2);
+ }else if(mode==='split'){
+  scenery.add(t('支えがある',-470,-315,35,C.teal,700));
+  scenery.add(t('支えがない',475,-315,35,C.red,700));
+ }else if(mode==='network'){
+  for(let i=0;i<6;i++){
+   const angle=-Math.PI+i*Math.PI/5;
+   const satellite=new Node({x:Math.cos(angle)*640,y:Math.sin(angle)*140-5,opacity:1,scale:.65});
+   stage.add(satellite);tokenDraw(satellite,i%2?'friend':'family',C.teal);
+   secondary.push(satellite);
+  }
+ }else if(mode==='documentary'){
+  rect(scenery,0,165,1080,32,'#C7BBA7',4);
+  for(let i=0;i<4;i++)rect(scenery,-350+i*35,-160-i*8,340,240,'#D8D1C5',6);
+ }else if(mode==='metaphor'){
+  rect(scenery,-5,230,1430,18,'#56666F',2);
+  rect(scenery,-5,246,1430,11,'#1E303A',2);
+ }else if(mode==='portrait'){
+  rect(scenery,0,215,1130,16,'#53636A',2);
+  rect(scenery,-565,-30,280,335,'#19313C',6);
  }
- return lines;
+ const actor=figure(stage,heroNames[mode],mode==='documentary'?-545:mode==='network'?0:-570,
+                 mode==='documentary'?20:mode==='network'?-50:20,mode==='documentary'?1.0:1.26);
+ const other=figure(stage,mode==='bureau'?'teacher':'adult',mode==='street'?900:590,-15,1.05);
+ if(mode==='documentary'||mode==='split'||mode==='network')other.node.opacity(0);
+ if(mode==='home')other.node.opacity(.35);
+ if(mode==='bureau'){other.node.x(450);other.node.y(20);}
+ const desk=new Node({x:220,y:182,opacity:0});stage.add(desk);
+ const door=new Node({x:615,y:20,opacity:0});stage.add(door);tokenDraw(door,'lock',C.red);
+ const veil=new Rect({x:0,y:0,width:1920,height:780,fill:'#641F2E',opacity:0});
+ stage.add(veil);
+ const beats:PhysicalBeat[]=plan.objects.map((token,i)=>{
+  const node=new Node({x:850,y:-30,opacity:0,scale:.8});focus.add(node);
+  tokenDraw(node,token,i>4?C.red:C.teal);
+  const label=t(plan.beats[i],0,-276,36,i>=5?C.gold:C.paper,700);
+  label.opacity(0);stage.add(label);
+  return {node,label,token,text:plan.beats[i]};
+ });
+ const headline=t('',0,275,31,C.gold,700);stage.add(headline);
+ return {stage,beats,headline,focus,actor,other,secondary,desk,door,veil};
 }
-function makeBeat(parent:Node,token:Token,caption:string,index:number,mode:Mode,accent:string){
- const spot=variantSpots[mode][index];const startX=spot[0]+(index%2===0?-85:85);
- const holder=new Node({x:startX,y:spot[1]+22,opacity:0,scale:.76});
- parent.add(holder);
- const tile=new Node({y:-20,scale:.60});
- holder.add(tile);tokenDraw(tile,token,accent);
- if(mode==='documentary'){
-  rect(holder,0,98,250,52,'#E5DAC7',5);
-  holder.add(t(caption,0,96,caption.length>11?18:caption.length>8?21:24,C.ink,700));
- }else{
-  rect(holder,0,97,258,54,'#142A37',7);
-  holder.add(t(caption,0,97,caption.length>11?18:caption.length>8?21:24,accent,700));
- }
- return {node:holder,targetX:spot[0],targetY:spot[1]};
+function progressMode(scene:MeaningScene,mode:Mode,i:number):'arrive'|'depart'|'give'|'deny'|'accumulate'|'replace'|'surround'|'isolate'|'split'|'document'|'recover'{
+ const id=scene.id;
+ if(['P02','B02','D00','D01','D06'].includes(id))return i<4?'give':i===4?'accumulate':'deny';
+ if(['A00','E01','E02','C07'].includes(id))return i<4?'arrive':'recover';
+ if(['A01','A03','A04','A05','A07','C05','D03','E03'].includes(id))return i<4?'depart':'isolate';
+ if(['B01','C01','C03'].includes(id))return i<4?'accumulate':'deny';
+ if(['C04','B05','P04'].includes(id))return i<3?'arrive':i<5?'replace':'deny';
+ if(['A02','B03','B06','C06'].includes(id))return 'split';
+ if(mode==='documentary')return 'document';
+ if(mode==='network')return i<3?'surround':'isolate';
+ if(mode==='bureau')return i<4?'accumulate':'replace';
+ if(mode==='metaphor')return 'replace';
+ if(mode==='market')return 'give';
+ if(mode==='portrait')return 'depart';
+ if(mode==='home')return 'arrive';
+ if(mode==='street')return 'arrive';
+ return 'replace';
 }
-function* animateBeats(beats:{node:Node;targetX:number;targetY:number}[],time:number,links:Node[],mode:Mode):ThreadGenerator{
- const count=beats.length;let elapsed=0;
- for(let i=0;i<count;i++){
-  const start=Math.max(0,(time-1.2)*(i/count));
-  if(start>elapsed){yield* waitFor(start-elapsed);elapsed=start;}
-  const b=beats[i],transition=Math.min(.75,Math.max(.3,time/count*.23));
-  const linkMoves=i===0?[]:[links[i-1].opacity(mode==='split'?.55:.85,transition)];
-  yield* all(b.node.opacity(1,transition),b.node.x(b.targetX,transition),b.node.y(b.targetY,transition),b.node.scale(1,transition),...linkMoves);
-  elapsed+=transition;
-  if(i>=3 && i%2===0){
-   const older=beats[i-3];
-   yield* all(older.node.opacity(.62,.21),older.node.scale(.91,.21));
-   elapsed+=.21;
+function newObjectPlacement(mode:Mode,i:number,behavior:string):{from:[number,number];to:[number,number];scale:number}{
+ if(mode==='street')return {from:[920,-80+(i%2)*150],to:[210+(i%2)*100,10+i%3*12],scale:.90};
+ if(mode==='home')return {from:[720,210],to:[180+(i%2)*145,25],scale:.94};
+ if(mode==='bureau')return {from:[690,-80],to:[-45+(i%3)*100,125-(i%3)*17],scale:behavior==='accumulate'?.60:.90};
+ if(mode==='market')return {from:[710,-90],to:[210+(i%2)*85,5],scale:.99};
+ if(mode==='split')return {from:[i%2?-820:820,25],to:[i%2?-450:450,40],scale:1.14};
+ if(mode==='network')return {from:[i%2?-860:860,-120],to:[i%2?-325:300,i%3*46],scale:.92};
+ if(mode==='documentary')return {from:[670,110],to:[190+(i%2)*85,-5+(i%3)*24],scale:.84};
+ if(mode==='metaphor')return {from:[0,320],to:[155,0],scale:1.36};
+ if(mode==='portrait')return {from:[780,-50],to:[90+(i%2)*170,40],scale:.94};
+ return {from:[800,0],to:[230,0],scale:1};
+}
+function* performAction(tw:Theatre,scene:MeaningScene,plan:Plan,idx:number,seconds:number):ThreadGenerator{
+ const mode=plan.mode,beat=tw.beats[idx],prev=idx>0?tw.beats[idx-1]:null;
+ const behavior=progressMode(scene,mode,idx);
+ const placement=newObjectPlacement(mode,idx,behavior);
+ const speed=Math.min(.78,Math.max(.36,seconds*.17));
+ beat.node.x(placement.from[0]);beat.node.y(placement.from[1]);
+ beat.node.scale(behavior==='accumulate'?.35:.65);
+ beat.label.opacity(0);
+ const others:ThreadGenerator[]=[
+  beat.node.opacity(1,speed),beat.node.x(placement.to[0],speed),
+  beat.node.y(placement.to[1],speed),beat.node.scale(placement.scale,speed),
+  beat.label.opacity(1,speed)
+ ];
+ if(prev){
+  others.push(prev.label.opacity(0,speed));
+  // Three moving props at most; earlier content is moved into storage,
+  // not joined by a wire or left in an identical card grid.
+  const old=prev.node;
+  if(behavior==='accumulate'){
+   others.push(old.x(-200+idx*54,speed),old.y(145-idx*11,speed),old.scale(.56,speed),old.opacity(.72,speed));
+  }else if(behavior==='give' && idx<=4){
+   others.push(old.x(-450+idx*18,speed),old.y(108,speed),old.scale(.58,speed),old.opacity(.90,speed));
+  }else if(behavior==='document'){
+   others.push(old.x(-375+idx*25,speed),old.y(170-idx*10,speed),old.scale(.68,speed),old.opacity(.52,speed));
+  }else if(behavior==='split'){
+   others.push(old.opacity(.38,speed),old.y(180,speed),old.scale(.55,speed));
+  }else{
+   others.push(old.opacity(.04,speed),old.scale(.48,speed),old.y(-150,speed));
   }
  }
- if(time>elapsed)yield* waitFor(time-elapsed);
+ if(idx>=2){
+  const retired=tw.beats[idx-2].node;
+  if(behavior!=='give'&&behavior!=='accumulate'){
+   others.push(retired.opacity(0,speed));
+  }else if(idx>=4)others.push(tw.beats[idx-3].node.opacity(0,speed));
+ }
+ if(behavior==='depart'||behavior==='isolate'){
+  if(idx<=5)others.push(tw.other.node.opacity(Math.max(0,.75-idx*.16),speed),
+    tw.other.node.x(670+idx*25,speed));
+  if(mode==='network'&&tw.secondary.length){
+   const satellite=tw.secondary[Math.min(idx,tw.secondary.length-1)];
+   others.push(satellite.opacity(0,speed),satellite.scale(.3,speed),
+    satellite.y(-230,speed));
+  }
+  if(idx>=4)others.push(tw.actor.node.scale(1.04,speed),tw.veil.opacity(.07,speed));
+ }else if(behavior==='recover'){
+  if(idx>=3){
+   others.push(tw.actor.node.x(-460+idx*45,speed),tw.actor.node.scale(1.27,speed));
+   if(mode!=='split')others.push(tw.other.node.opacity(.9,speed),tw.other.node.x(470-idx*39,speed));
+  }
+ }else if(behavior==='give'){
+  if(idx>=2)others.push(tw.actor.node.x(-570+idx*32,speed));
+  if(idx>=4){
+   others.push(tw.door.opacity(.86,speed),tw.veil.opacity(.09,speed));
+  }else if(idx===1&&mode!=='split')others.push(tw.other.node.opacity(.9,speed),tw.other.node.x(530,speed));
+ }else if(behavior==='deny'){
+  others.push(tw.door.opacity(1,speed),tw.door.x(260,speed),tw.veil.opacity(Math.min(.20,idx*.03),speed));
+  if(idx>=5)others.push(tw.actor.node.x(-680,speed));
+ }else if(behavior==='accumulate'){
+  others.push(tw.desk.opacity(1,speed));
+  // Documents accumulate at the applicant's desk, obscuring the route to aid.
+  const sheet=new Node({x:-80+idx*45,y:140-idx*9,opacity:0,scale:.4});
+  tw.desk.add(sheet);tokenDraw(sheet,'paper',C.paper);
+  others.push(sheet.opacity(.88,speed),sheet.scale(.65,speed));
+ }else if(behavior==='split'){
+  if(idx%2===0)others.push(tw.actor.node.opacity(.98,speed),tw.other.node.opacity(.32,speed));
+  else others.push(tw.actor.node.opacity(.32,speed),tw.other.node.opacity(.98,speed));
+  if(idx===4)others.push(tw.veil.opacity(.08,speed));
+ }else if(behavior==='surround'){
+  if(tw.secondary.length)others.push(tw.secondary[Math.min(idx,5)].scale(.95,speed));
+ }else if(behavior==='replace'){
+  if(idx>=4)others.push(tw.actor.node.opacity(.70,speed),tw.door.opacity(.5,speed));
+ }else if(behavior==='document'){
+  if(idx===3)others.push(tw.actor.node.rotation(-7,speed));
+  if(idx===5)others.push(tw.actor.node.rotation(5,speed));
+ }else if(behavior==='arrive'){
+  if(mode==='street'&&idx===2){
+   others.push(tw.other.node.opacity(.92,speed),tw.other.node.x(500,speed));
+  }
+  if(mode==='home'&&idx===4){
+   others.push(tw.other.node.opacity(.9,speed),tw.other.node.x(430,speed));
+  }
+ }
+ yield* all(...others);
+ // A second semantic action inside each narration beat: a prop is taken, a
+ // barrier closes, or a support disappears. Never animate an idle camera.
+ const finish=Math.max(0,seconds-speed);
+ if(finish>1.0){
+  const k=Math.min(.48,finish*.30);
+  if(behavior==='give'&&idx>=2&&idx<=4){
+   yield* all(beat.node.x(-315,k),beat.node.y(80,k),beat.node.scale(.58,k));
+  }else if(behavior==='deny'&&idx>=4){
+   yield* all(tw.door.scale(1.1,k),tw.veil.opacity(.13,k));
+  }else if(behavior==='isolate'&&idx>=3){
+   yield* all(tw.actor.node.x(-570-idx*7,k),tw.actor.node.scale(.95,k));
+  }else if(behavior==='accumulate'){
+   yield* beat.node.y(140+idx*5,k);
+  }else if(behavior==='recover'&&idx>=4){
+   yield* tw.door.opacity(0,k);
+  }else if(mode==='street'&&idx%2===1){
+   yield* tw.other.node.x(tw.other.node.x()+75,k);
+  }else if(behavior==='document'){
+   yield* tw.actor.node.rotation(idx%2?0:3,k);
+  }
+ }
+ const spent=speed+(finish>1?Math.min(.48,finish*.30):0);
+ if(seconds>spent)yield* waitFor(seconds-spent);
+}
+function* animateCausalSpace(tw:Theatre,scene:MeaningScene,plan:Plan):ThreadGenerator{
+ const stepTime=scene.duration/tw.beats.length;
+ for(let i=0;i<tw.beats.length;i++)yield* performAction(tw,scene,plan,i,stepTime);
 }
 function* subtitleTrack(cues:Cue[],element:Txt,duration:number):ThreadGenerator{
  let at=0;
@@ -267,19 +444,16 @@ export function* playMeaningScene(view:View2D,scene:MeaningScene):ThreadGenerato
  view.add(subtitleTextLayer);
  const plan=plans[scene.id];if(!plan)throw new Error('Missing storyboard '+scene.id);
  backdrop(contentLayer,scene,plan.mode);
- const sceneStage=new Node({});contentLayer.add(sceneStage);
- const connections=new Node({});sceneStage.add(connections);
- const links=buildConnections(connections,plan.mode,variantSpots[plan.mode]);
- const beats=plan.objects.map((token,i)=>makeBeat(sceneStage,token,plan.beats[i],i,plan.mode,i===6?C.red:i%3===0?C.gold:C.teal));
+ const theatre=stageDesign(contentLayer,scene,plan);
  rect(headingLayer,0,-473,1920,138,'#07101A',0);
  const label=scene.chapter==='prologue'?'PROLOGUE':scene.chapter==='epilogue'?'EPILOGUE':scene.chapter.toUpperCase();
  headingLayer.add(t(label,-790,-507,22,C.gold,700));
  headingLayer.add(t(scene.id,826,-507,22,C.muted,600));
  const headerSize=scene.title.length>19?35:scene.title.length>15?39:45;
  headingLayer.add(t(scene.title,0,-451,headerSize,C.paper,700));
- // The 170-pixel subtitle band always wins over every existing/future content child.
+ // Reserved 170px bottom zone. Content cannot paint over this UI.
  rect(subtitleBacking,0,459,1920,171,'#020509',0);
  const caption=t('',0,459,42,C.paper,700);caption.lineHeight(59);
  subtitleTextLayer.add(caption);
- yield* all(animateBeats(beats,scene.duration,links,plan.mode),subtitleTrack(scene.cues,caption,scene.duration));
+ yield* all(animateCausalSpace(theatre,scene,plan),subtitleTrack(scene.cues,caption,scene.duration));
 }
