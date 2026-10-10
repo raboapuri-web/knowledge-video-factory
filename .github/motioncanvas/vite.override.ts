@@ -20,6 +20,9 @@ function factory(packageName: string): (...args: any[]) => any {
 const motionCanvas = factory('@motion-canvas/vite-plugin');
 const ffmpeg = factory('@motion-canvas/ffmpeg');
 export default defineConfig({
+  optimizeDeps: {
+    include: ['@motion-canvas/core','@motion-canvas/2d','@lezer/javascript'],
+  },
   plugins: [
     motionCanvas({
       project: [
