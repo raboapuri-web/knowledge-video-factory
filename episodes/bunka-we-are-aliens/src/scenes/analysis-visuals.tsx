@@ -170,7 +170,7 @@ export function analysisVisual(ch:number,g:number,p:S){
  case 2:return <Node>{flipBook(p)}{title('記憶の中に、埋まっている',-357,0,52)}</Node>;
  case 3:return <Node>{backdrop(P.ink)}{stars(35)}{moon(p,25,-70,217)}<Txt text={'照れている？'} x={-445} y={195} fontFamily={F} fontSize={54} fill={P.amber} opacity={()=>reveal(p,3)}/><Txt text={'怒っている？'} x={462} y={195} fontFamily={F} fontSize={54} fill={P.red} opacity={()=>reveal(p,5)}/></Node>;
  case 4:return <Node>{memory(p,true)}{title('同じ時間、異なる記憶',-351,0,52)}</Node>;
- case 5:return <Node>{textPanel('位置関係','記憶と倫理',p)}{Txt text={'5つの解釈から、関係を読み解く'} fontFamily={F} fontSize={41} fill={P.chalk} y={295}/></Node>;
+ case 5:return <Node>{textPanel('位置関係','記憶と倫理',p)}<Txt text={'5つの解釈から、関係を読み解く'} fontFamily={F} fontSize={41} fill={P.chalk} y={295}/></Node>;
  // CHAPTER 1
  case 6:return <Node>{backdrop('#244A56')}<Rect x={-470} y={-190} width={830} height={33} fill={'#9AA59F'}/><Rect x={-470} y={-70} width={33} height={280} fill={'#7E918C'}/><Rect y={260} width={1920} height={205} fill={'#357382'}/>{human(-530,-217,'#BC8B6E',p,.64,130)}{human(400,160,'#628698',p,.60,-90)}<Node x={()=>-250+bound(p())*480} y={()=>-190+bound(p())*345} rotation={()=>bound(p())*180}><Rect width={90} height={12} fill={P.amber}/><Rect width={12} height={91} fill={P.amber}/></Node>{title('捨てた手裏剣を、拾った少年',-355,0,43)}</Node>;
  case 7:return <Node>{seesaw(p)}{title('二人が釣り合っていた',-360,0,50)}<Circle x={0} y={210} width={30} height={30} fill={P.red}/></Node>;
@@ -190,7 +190,7 @@ export function analysisVisual(ch:number,g:number,p:S){
  case 19:return <Node>{school(p)}{human(-560,115,'#B98C6B',p,.76)}{human(525,115,'#7092A0',p,.76)}{paper(0,-95,p,'謝りたい',1)}<Line points={[[-290,-210],[310,-210]]} stroke={P.amber} lineWidth={6} opacity={()=>reveal(p,6)}/>{title('一つの行動、二つの解釈',-359,0,48)}</Node>;
  case 20:return <Node>{textPanel('事実','解釈',p)}<Rect x={-450} y={-195} width={460} height={6} fill={P.amber} opacity={()=>reveal(p,2)}/><Rect x={450} y={205} width={460} height={6} fill={P.red} opacity={()=>reveal(p,6)}/></Node>;
  case 21:return <Node>{flipBook(p)}<Rect x={-450} y={270} width={()=>bound(p())*950} height={15} fill={P.amber}/>{title('思い出すたびに、意味が変わる',-367,0,48)}</Node>;
- case 22:return <Node>{memory(p,true)}{Txt text={'懐かしさ'} x={-460} y={-320} fill={P.amber} fontSize={46} fontFamily={F}/><Txt text={'怒り'} x={450} y={-320} fill={P.red} fontSize={46} fontFamily={F}/></Node>;
+ case 22:return <Node>{memory(p,true)}<Txt text={'懐かしさ'} x={-460} y={-320} fill={P.amber} fontSize={46} fontFamily={F}/><Txt text={'怒り'} x={450} y={-320} fill={P.red} fontSize={46} fontFamily={F}/></Node>;
  case 23:return <Node>{curtain(p)}{title('幸せだったからこそ、傷になった',-349,0,49)}<Circle x={0} y={210} width={94} height={94} stroke={P.amber} lineWidth={8} opacity={()=>reveal(p,6)}/></Node>;
  // CHAPTER 4
  case 24:return <Node>{dino(p)}{paper(545,-130,p,'恐竜の図鑑',1)}{title('少年が知っていた、無数の名前',-351,0,45)}</Node>;
