@@ -1,0 +1,237 @@
+name: V121 Motion Canvas Effort Education Gap
+on:
+  workflow_dispatch:
+    inputs:
+      only_chapter:
+        description: 'all or one chapter'
+        required: true
+        default: all
+        type: choice
+        options: [all, prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, epilogue]
+  push:
+    branches: [v121-effort-education-gap-production]
+    paths:
+      - '.github/workflows/v121-motion-canvas-effort-education-gap.yml'
+      - 'shared/v121/**'
+permissions:
+  contents: write
+concurrency:
+  group: v121-effort-education-gap
+  cancel-in-progress: true
+env:
+  PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v121/.puppeteer
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - name: Restore proven headless renderer and generate source
+        run: |
+          cp shared/v120/scripts/render.mjs shared/v121/scripts/render.mjs
+          sed -i 's/v120/v121/g; s/V120/V121/g' shared/v121/scripts/render.mjs
+          cd shared/v121
+          python3 scripts/build_data.py
+          python3 scripts/qa.py
+      - name: Install once, typecheck and bundle all projects
+        working-directory: shared/v121
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+      - name: Package prepared renderer once
+        run: |
+          tar --exclude='shared/v121/media' --exclude='shared/v121/output' --exclude='shared/v121/render' --exclude='shared/v121/qa' -czf v121-motion-base.tar.gz shared/v121
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v121-motion-base
+          path: v121-motion-base.tar.gz
+          retention-days: 3
+          compression-level: 0
+
+  voice:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        slug: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, epilogue]
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+      - name: Start VOICEVOX
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..100}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          exit 1
+      - name: Generate measured VOICEVOX cues
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v121
+        env:
+          VOICEVOX_SPEAKER_ID: '13'
+          VOICEVOX_SPEED: '1.15'
+          VOICEVOX_PARALLEL: '4'
+        run: |
+          python3 scripts/build_data.py
+          python3 scripts/synth_chapter.py "${{ matrix.slug }}"
+      - name: Package measured narration
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: |
+          tar -czf "v121-voice-${{ matrix.slug }}.tar.gz"             "shared/v121/media/${{ matrix.slug }}"             "shared/v121/content/measured-${{ matrix.slug }}.json"             "shared/v121/voice-report-${{ matrix.slug }}.json"
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        with:
+          name: v121-voice-${{ matrix.slug }}
+          path: v121-voice-${{ matrix.slug }}.tar.gz
+          retention-days: 3
+          compression-level: 0
+
+  render:
+    needs: [prepare, voice]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        slug: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, epilogue]
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+      - uses: actions/setup-node@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        with: {node-version: 22}
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        with: {name: v121-motion-base}
+      - name: Unpack prepared renderer
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: tar -xzf v121-motion-base.tar.gz
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        with:
+          name: v121-voice-${{ matrix.slug }}
+      - name: Merge measured subtitles and rerun QA
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v121
+        run: |
+          tar -xzf "../../v121-voice-${{ matrix.slug }}.tar.gz" -C ../..
+          python3 scripts/merge_timing.py "${{ matrix.slug }}"
+          python3 scripts/qa.py
+          npm run build
+      - name: Ensure FFmpeg
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then sudo apt-get install -y -qq ffmpeg; fi
+          ffmpeg -version | head -1
+      - name: Headless smoke render and raster subtitle QA
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v121
+        run: |
+          node scripts/render.mjs "${{ matrix.slug }}" --smoke
+          test -s "output/v121-${{ matrix.slug }}-smoke.mp4"
+          python3 scripts/check_smoke.py "output/v121-${{ matrix.slug }}-smoke.mp4"
+          mkdir -p "qa/${{ matrix.slug }}"
+          ffmpeg -y -loglevel error -ss 1.6 -i "output/v121-${{ matrix.slug }}-smoke.mp4" -frames:v 1 "qa/${{ matrix.slug }}/smoke-1.jpg"
+          ffmpeg -y -loglevel error -ss 3.4 -i "output/v121-${{ matrix.slug }}-smoke.mp4" -frames:v 1 "qa/${{ matrix.slug }}/smoke-2.jpg"
+          ffmpeg -y -loglevel error -ss 5.8 -i "output/v121-${{ matrix.slug }}-smoke.mp4" -frames:v 1 "qa/${{ matrix.slug }}/smoke-3.jpg"
+          rm -f "output/v121-${{ matrix.slug }}-smoke.mp4"
+      - name: Render full chapter with retry
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v121
+        run: |
+          chmod +x ../motion-canvas-standard/render-with-retry.sh
+          MAX_ATTEMPTS=2 ../motion-canvas-standard/render-with-retry.sh 40m node scripts/render.mjs "${{ matrix.slug }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v121-diagnostics-${{ matrix.slug }}
+          path: shared/v121/qa/${{ matrix.slug }}
+          retention-days: 7
+      - name: Package finished chapter
+        if: success()
+        run: |
+          tar -czf "v121-render-${{ matrix.slug }}.tar.gz"             "shared/v121/output/v121-${{ matrix.slug }}.mp4"             "shared/v121/render-report-${{ matrix.slug }}.json"             "shared/v121/voice-report-${{ matrix.slug }}.json"
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: v121-render-${{ matrix.slug }}
+          path: v121-render-${{ matrix.slug }}.tar.gz
+          retention-days: 3
+          compression-level: 0
+
+  finalize:
+    needs: render
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v121-render-*
+          path: renders
+          merge-multiple: true
+      - name: Restore newly rendered chapters
+        run: |
+          shopt -s nullglob
+          files=(renders/v121-render-*.tar.gz)
+          test ${#files[@]} -gt 0
+          for f in "${files[@]}"; do tar -xzf "$f"; done
+      - name: Reuse unchanged chapters from previous V121 Release
+        if: ${{ inputs.only_chapter != '' && inputs.only_chapter != 'all' }}
+        working-directory: shared/v121
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 80 --json tagName,publishedAt --jq '[.[] | select(.tagName|startswith("v121-effort-education-gap-"))] | sort_by(.publishedAt) | last | .tagName')
+          test -n "$TAG"
+          mkdir -p output
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do
+            if [ ! -s "output/v121-$c.mp4" ]; then gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "v121-$c.mp4" --dir output; fi
+          done
+      - name: Ensure FFmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then sudo apt-get install -y -qq ffmpeg; fi
+          ffmpeg -version | head -1
+      - name: Concat, mix BGM, validate and make contact sheet
+        working-directory: shared/v121
+        run: |
+          set -euo pipefail
+          mkdir -p output qa
+          cp ../v120/scripts/generate-bgm.mjs scripts/generate-bgm.mjs
+          sed -i 's/v120/v121/g; s/V120/V121/g' scripts/generate-bgm.mjs || true
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do test -s "output/v121-$c.mp4"; done
+          : > output/concat.txt
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do printf "file '%s'\n" "$(realpath "output/v121-$c.mp4")" >> output/concat.txt; done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy output/v121-voice-master.mp4
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v121-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+          ffmpeg -y -loglevel error -i output/v121-voice-master.mp4 -i output/bgm.m4a             -filter_complex '[0:a]volume=1[vo];[1:a]volume=.035[bg];[vo][bg]amix=inputs=2:duration=first[a]'             -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart output/v121-final.mp4
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 output/v121-final.mp4 | head -1)
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 output/v121-final.mp4 | head -1)
+          FPS=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=nw=1:nk=1 output/v121-final.mp4 | head -1)
+          AUD=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 output/v121-final.mp4 | wc -l)
+          SIZE=$(stat -c%s output/v121-final.mp4)
+          test "$W" = 1920 && test "$H" = 1080 && test "$FPS" = '30/1' && test "$AUD" -ge 1 && test "$SIZE" -gt 5000000
+          awk "BEGIN {exit !($D>=600)}"
+          printf '{"videoId":"V121","scenes":40,"visualStatesPerScene":8,"approxVisualBeats":320,"resolution":"1920x1080","fps":30,"durationSeconds":%s,"audioTracks":%s,"bytes":%s,"passed":true}\n' "$D" "$AUD" "$SIZE" > qa/final-validation.json
+          set +e
+          ffmpeg -hide_banner -i output/v121-final.mp4 -vf 'blackdetect=d=2:pix_th=0.02,freezedetect=n=-55dB:d=6' -an -f null - 2> qa/visual-anomaly-scan.txt
+          set -e
+          INTERVAL=$(awk "BEGIN{print $D/25}")
+          ffmpeg -y -loglevel error -i output/v121-final.mp4 -vf "fps=1/$INTERVAL,scale=384:-1,tile=5x5:padding=6:margin=8" -frames:v 1 output/v121-contact-sheet.jpg
+      - name: Publish V121 and reusable chapters
+        working-directory: shared/v121
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -euo pipefail
+          TAG="v121-effort-education-gap-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v121-effort-education-gap-${GITHUB_RUN_ID}.mp4"
+          cp output/v121-final.mp4 "output/$NAME"
+          gh release create "$TAG"             "output/$NAME" output/v121-contact-sheet.jpg qa/final-validation.json qa/visual-anomaly-scan.txt             SOURCES.md README.md             output/v121-prologue.mp4 output/v121-chapter1.mp4 output/v121-chapter2.mp4 output/v121-chapter3.mp4             output/v121-chapter4.mp4 output/v121-chapter5.mp4 output/v121-chapter6.mp4 output/v121-epilogue.mp4             --repo "$GITHUB_REPOSITORY"             --title "V121 なぜ貧しい家庭の子どもほど「努力しろ」と言われるのか？"             --notes '考える夜 / 文化資本×教育格差×メリトクラシー / 40 meaning scenes / 8 semantic visual states per scene / measured VOICEVOX / chapter smoke diagnostics / reusable chapter renders / final ffmpeg QA'
