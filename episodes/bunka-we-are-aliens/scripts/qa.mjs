@@ -14,10 +14,13 @@ for(const item of chapters){
   const info=JSON.parse(probe.text);const video=info.streams.find(s=>s.codec_name==='h264');
   if(!video||video.width!==1920||video.height!==1080||video.r_frame_rate!=='30/1')failures.push('format ch'+item.index);
  }
- const black=cmd('ffmpeg',['-hide_banner','-i',v,'-vf','blackdetect=d=0.3:pix_th=0.1','-an','-f','null','-']);
+ const black=cmd('ffmpeg',['-hide_banner',...(item.index?['-ss','2.7']:[]),'-i',v,'-vf','blackdetect=d=0.3:pix_th=0.1','-an','-f','null','-']);
  const count=[...black.text.matchAll(/black_start:/g)].length;
  const freeze=cmd('ffmpeg',['-hide_banner','-i',v,'-vf','freezedetect=n=-45dB:d=12','-an','-f','null','-']);
- visuals.push({chapter:item.index,blackEvents:count,freezeEvents:[...freeze.text.matchAll(/freeze_start:/g)].length});
+ const freezes=[...freeze.text.matchAll(/freeze_start:/g)].length;
+ visuals.push({chapter:item.index,blackEvents:count,freezeEvents:freezes});
+ if(count>0)failures.push('unexpected black frame(s) ch'+item.index);
+ if(freezes>0)failures.push('freeze >12s ch'+item.index);
 }
 const report={ok:failures.length===0,failures:[...new Set(failures)],visuals,generatedAt:new Date().toISOString()};
 fs.writeFileSync(path.join(root,'qa/final-qa.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
