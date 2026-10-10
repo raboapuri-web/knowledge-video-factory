@@ -104,8 +104,6 @@ function backdrop(p:Node,scene:MeaningScene,mode:Mode){
  }else if(mode==='metaphor'){
   circle(p,0,0,360,'#122733');
   for(let i=0;i<6;i++)circle(p,-700+i*280,(i%2)*200-150,16,'#345664');
- }else if(mode==='street'||mode==='home'||mode==='portrait'){
-  holder.add(t(caption,0,106,caption.length>11?18:caption.length>8?21:24,accent,700));
  }else if(mode==='documentary'){
   rect(p,0,-20,1300,625,'#E6DECB',12);
   rect(p,12,-16,1260,590,'#F1ECE1',9);
