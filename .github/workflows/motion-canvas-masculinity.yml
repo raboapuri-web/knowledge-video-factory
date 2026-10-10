@@ -1,0 +1,141 @@
+name: Motion Canvas - Masculinity (42 scenes)
+on:
+  push:
+    paths:
+      - 'episodes/masculinity-motioncanvas/**'
+      - '.github/workflows/motion-canvas-masculinity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: episodes/masculinity-motioncanvas
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract editable source from transport archive
+        run: |
+          base64 --decode source.tar.gz.base64 | tar -xz
+          python3 scripts/qa.py
+      - name: Start VOICEVOX engine
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          docker run -d --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-ubuntu20.04-latest
+          for i in $(seq 1 120); do
+            if curl --fail --silent http://127.0.0.1:50021/version; then break; fi
+            sleep 5
+          done
+          curl --fail http://127.0.0.1:50021/version
+      - name: Generate narration, measured timings and ambient BGM
+        run: |
+          python3 scripts/voicevox.py
+          python3 scripts/bgm.py
+          python3 scripts/qa.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install all dependencies ONCE
+        run: |
+          PUPPETEER_SKIP_DOWNLOAD=1 npm install --no-audit --no-fund
+          npm run typecheck
+          tar -czf node_modules.tar.gz node_modules
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chapter-source-and-node-modules
+          path: |
+            episodes/masculinity-motioncanvas/node_modules.tar.gz
+            episodes/masculinity-motioncanvas/src/data/story.json
+          retention-days: 7
+          compression-level: 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: narration-and-bgm
+          path: episodes/masculinity-motioncanvas/audio/*.wav
+          retention-days: 7
+          compression-level: 0
+  render:
+    needs: prepare
+    runs-on: ubuntu-22.04
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, epilogue]
+    defaults:
+      run:
+        working-directory: episodes/masculinity-motioncanvas
+    steps:
+      - uses: actions/checkout@v4
+      - run: base64 --decode source.tar.gz.base64 | tar -xz
+      - uses: actions/download-artifact@v4
+        with:
+          name: chapter-source-and-node-modules
+          path: episodes/masculinity-motioncanvas
+      - run: tar -xzf node_modules.tar.gz
+      - name: Install video tools and smoke-test dependencies
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-noto-cjk python3-pil
+      - name: Headless chapter export
+        env:
+          CHAPTER: ${{ matrix.chapter }}
+          CHROME_BIN: /usr/bin/google-chrome
+        run: |
+          node scripts/render.mjs "${CHAPTER}"
+          python3 scripts/smoke_check.py "${CHAPTER}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chapter-${{ matrix.chapter }}-diagnostics
+          path: |
+            episodes/masculinity-motioncanvas/qa/*${{ matrix.chapter }}*
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: chapter-${{ matrix.chapter }}
+          path: episodes/masculinity-motioncanvas/output/${{ matrix.chapter }}-visual.mp4
+          retention-days: 7
+          compression-level: 0
+  finalize:
+    needs: render
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: episodes/masculinity-motioncanvas
+    steps:
+      - uses: actions/checkout@v4
+      - run: base64 --decode source.tar.gz.base64 | tar -xz
+      - uses: actions/download-artifact@v4
+        with:
+          name: chapter-source-and-node-modules
+          path: episodes/masculinity-motioncanvas
+      - uses: actions/download-artifact@v4
+        with:
+          name: narration-and-bgm
+          path: episodes/masculinity-motioncanvas/audio
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: chapter-*
+          path: episodes/masculinity-motioncanvas/output
+          merge-multiple: true
+      - name: Final concat, QA and actual-frame contact sheet
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-noto-cjk python3-pil
+          python3 scripts/mux.py
+          python3 scripts/qa.py
+          python3 scripts/post_render_contact.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: masculinity-final-video-and-qa
+          path: |
+            episodes/masculinity-motioncanvas/output/final.mp4
+            episodes/masculinity-motioncanvas/qa/render-contact-sheet.jpg
+            episodes/masculinity-motioncanvas/qa/qa-report.json
+          retention-days: 30
+          compression-level: 0
