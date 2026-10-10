@@ -18,7 +18,7 @@ function wavInfo(b){
  let pos=12,byteRate=0;
  while(pos+8<=b.length){const id=b.toString('ascii',pos,pos+4),size=b.readUInt32LE(pos+4),start=pos+8;
    if(id==='fmt '&&size>=16)byteRate=b.readUInt32LE(start+8);
-   if(id==='data'){if(!byteRate)throw Error('Malformed WAV missing fmt');return {start,size,sizeOffset:pos+4,duration:size/byteRate};}
+   if(id==='data'){if(!byteRate)throw Error('Malformed WAV missing fmt');return {start,size,sizeOffset:pos+4,duration:size/byteRate,byteRate};}
    pos=start+size+size%2;
  }
  throw Error('No WAV data chunk');
@@ -39,18 +39,28 @@ async function worker(){while(true){const task=tasks[at++];if(!task)break;const 
  const info=wavInfo(b); buffers.set(`${task.g.index}-${task.i}`,b);task.cue.duration=Number(info.duration.toFixed(5));done++;if(done%20===0)console.log(`[voice] ${done}/${tasks.length}`);
 }}
 await Promise.all(Array.from({length:workers},()=>worker()));
+function silentWavLike(template,secs){
+ const i=wavInfo(template);
+ const h=Buffer.from(template.subarray(0,i.start));
+ const align=template.readUInt16LE(32);
+ const count=Math.round((secs*i.byteRate)/align)*align;
+ const b=Buffer.concat([h,Buffer.alloc(count)]);
+ b.writeUInt32LE(b.length-8,4);b.writeUInt32LE(count,i.sizeOffset);
+ return b;
+}
 const fmt=t=>{const n=Math.max(0,Math.round(t*1000)),h=Math.floor(n/3600000),m=Math.floor(n%3600000/60000),s=Math.floor(n%60000/1000),ms=n%1000;return [h,m,s].map(x=>String(x).padStart(2,'0')).join(':')+','+String(ms).padStart(3,'0');};
 const report=[];
 for(const g of groups){
  const arr=g.data.cues.map((_,i)=>buffers.get(`${g.index}-${i}`));
- fs.writeFileSync(path.join(publicDir,`chapter-${g.index}.wav`),concatWav(arr));
- let t=0,seq=0;const captions=[];
+ const introSeconds=g.index===0?0:2.5;
+ fs.writeFileSync(path.join(publicDir,`chapter-${g.index}.wav`),concatWav(introSeconds?[silentWavLike(arr[0],introSeconds),...arr]:arr));
+ let t=introSeconds,seq=0;const captions=[];
  for(const cue of g.data.cues){const weights=cue.subs.map(s=>s.replace(/\n/g,'').length);const total=weights.reduce((a,b)=>a+b,0);
   for(let i=0;i<cue.subs.length;i++){const d=cue.duration*weights[i]/total; captions.push(`${++seq}\n${fmt(t)} --> ${fmt(t+d)}\n${cue.subs[i]}\n`);t+=d;}
  }
  fs.writeFileSync(path.join(srtDir,`chapter-${g.index}.srt`),captions.join('\n'));
  fs.writeFileSync(g.file,JSON.stringify(g.data,null,2));
- report.push({chapter:g.index,beats:g.data.cues.length,seconds:Number(t.toFixed(3)),subtitles:seq,speaker:speaker.name,style:style.name});
+ report.push({chapter:g.index,beats:g.data.cues.length,seconds:Number(t.toFixed(3)),introSeconds,subtitles:seq,speaker:speaker.name,style:style.name});
 }
 fs.mkdirSync(path.join(root,'qa'),{recursive:true});fs.writeFileSync(path.join(root,'qa/voice-report.json'),JSON.stringify({measured:true,voiceScale:1.15,chapters:report},null,2));
 console.log(JSON.stringify(report,null,2));
