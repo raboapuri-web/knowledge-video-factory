@@ -94,7 +94,7 @@ function backdrop(p:Node,scene:MeaningScene,mode:Mode){
  }else if(mode==='network'){
   for(const [x,y] of [[-710,-220],[-350,120],[90,-190],[450,155],[690,-140]] as const)
    circle(p,x,y,55,'#143140');
-  for(let i=0;i<5;i++)line(p,[[-780+i*340,-245],[650-i*150,265]],'#294B59',2);
+  // People are represented as islands; relationships vanish through behavior, not links.
  }else if(mode==='bureau'){
   for(let i=0;i<5;i++)rect(p,-720+i*350,-205,285,420,'#132631',13);
   line(p,[[-910,270],[910,270]],'#31515D',5);
@@ -149,7 +149,7 @@ function tokenDraw(p:Node,token:Token,accent:string){
  case 'bag':{rect(p,0,20,132,129,'#866F63',15);line(p,[[-39,-47],[-39,-72],[39,-72],[39,-47]],C.gold,11);rect(p,0,15,45,12,C.gold,3);break;}
  case 'clock':{circle(p,0,0,78,C.paper);circle(p,0,0,69,ink);line(p,[[0,0],[0,-44]],C.paper,9);line(p,[[0,0],[39,19]],accent,8);circle(p,0,0,8,C.paper);break;}
  case 'book':{
-  rect(p,-47,0,95,145,C.paper,5);rect(p,47,0,95,145,'#D9D7CB',5);
+  rect(p,-47,0,95,145,'#AFC5C8',5);rect(p,47,0,95,145,'#D9D7CB',5);
   line(p,[[0,-74],[0,75]],accent,6);for(let i=0;i<4;i++){line(p,[[-80,-43+i*27],[-23,-43+i*27]],'#667A85',3);line(p,[[20,-43+i*27],[82,-43+i*27]],'#667A85',3);}
   break;
  }
@@ -242,8 +242,14 @@ function stageDesign(root:Node,scene:MeaningScene,plan:Plan):Theatre{
   scenery.add(t('入口 / 条件',425,-165,29,C.muted,600));
   rect(scenery,-575,240,580,20,'#53646A',2);
  }else if(mode==='split'){
-  scenery.add(t('支えがある',-470,-315,35,C.teal,700));
-  scenery.add(t('支えがない',475,-315,35,C.red,700));
+  const comparisons:Record<string,[string,string]>={
+   A02:['つながりあり','社会的孤立'],B03:['正規の労働市場','違法な勧誘'],
+   B06:['成人の自己決定','未成年の搾取'],C06:['公的福祉','搾取の目的'],
+   D03:['結果への非難','選択の条件']
+  };
+  const headings=comparisons[scene.id]??['支えがある','支えがない'];
+  scenery.add(t(headings[0],-470,-315,32,C.teal,700));
+  scenery.add(t(headings[1],475,-315,32,C.red,700));
  }else if(mode==='network'){
   for(let i=0;i<6;i++){
    const angle=-Math.PI+i*Math.PI/5;
@@ -261,10 +267,12 @@ function stageDesign(root:Node,scene:MeaningScene,plan:Plan):Theatre{
   rect(scenery,0,215,1130,16,'#53636A',2);
   rect(scenery,-565,-30,280,335,'#19313C',6);
  }
- const actor=figure(stage,heroNames[mode],mode==='documentary'?-545:mode==='network'?0:-570,
+ const mainToken:Token=['A00','A01','A02','C00','C01','C02','E00'].includes(scene.id)?'adult':heroNames[mode];
+ const actor=figure(stage,mainToken,mode==='documentary'?-545:mode==='network'?0:-570,
                  mode==='documentary'?20:mode==='network'?-50:20,mode==='documentary'?1.0:1.26);
- const other=figure(stage,mode==='bureau'?'teacher':'adult',mode==='street'?900:590,-15,1.05);
- if(mode==='documentary'||mode==='split'||mode==='network')other.node.opacity(0);
+ const otherToken:Token=mode==='bureau'?'teacher':mode==='home'?'family':'adult';
+ const other=figure(stage,otherToken,mode==='street'?900:590,-15,1.05);
+ if(mode==='documentary'||mode==='split'||mode==='network'||mode==='street')other.node.opacity(0);
  if(mode==='home')other.node.opacity(.35);
  if(mode==='bureau'){other.node.x(450);other.node.y(20);}
  const desk=new Node({x:220,y:182,opacity:0});stage.add(desk);
@@ -274,7 +282,8 @@ function stageDesign(root:Node,scene:MeaningScene,plan:Plan):Theatre{
  const beats:PhysicalBeat[]=plan.objects.map((token,i)=>{
   const node=new Node({x:850,y:-30,opacity:0,scale:.8});focus.add(node);
   tokenDraw(node,token,i>4?C.red:C.teal);
-  const label=t(plan.beats[i],0,-276,36,i>=5?C.gold:C.paper,700);
+  const labelColor=mode==='documentary'?C.ink:i>=5?C.gold:C.paper;
+  const label=t(plan.beats[i],0,-276,36,labelColor,700);
   label.opacity(0);stage.add(label);
   return {node,label,token,text:plan.beats[i]};
  });
@@ -387,7 +396,7 @@ function* performAction(tw:Theatre,scene:MeaningScene,plan:Plan,idx:number,secon
   if(idx===3)others.push(tw.actor.node.rotation(-7,speed));
   if(idx===5)others.push(tw.actor.node.rotation(5,speed));
  }else if(behavior==='arrive'){
-  if(mode==='street'&&idx===2){
+  if(mode==='street'&&idx===2&&['P02','E04'].includes(scene.id)){
    others.push(tw.other.node.opacity(.92,speed),tw.other.node.x(500,speed));
   }
   if(mode==='home'&&idx===4){
