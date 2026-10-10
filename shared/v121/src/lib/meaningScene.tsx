@@ -9,7 +9,7 @@ import {all, waitFor, type ThreadGenerator} from '@motion-canvas/core';
  */
 type Cue={text:string;display:string;start:number;end:number};
 type Scene={id:string;chapter:string;motif:string;title:string;cues:Cue[];duration:number};
-type World={root:Node;hero:Node;other:Node;objects:Node[];labels:Txt[];shroud:Rect;status:Txt;clock:Txt};
+type World={root:Node;hero:Node;other:Node;objects:Node[];labels:Txt[];shroud:Rect;status:Txt;clock:Txt;caption:Txt};
 const K={bg:'#08111D',night:'#101F2D',wall:'#182D3C',floor:'#314957',
  paper:'#F2F1E9',muted:'#AEC0C8',red:'#D85B57',gold:'#E1B97C',
  cyan:'#69C0B7',blue:'#7297C5',ink:'#18242E',surface:'#233F50'};
@@ -135,8 +135,7 @@ function setup(view:View2D,s:Scene):World{
  // Place all physical props before the first animation. Nothing is appended to view.
  buildProps(s,stage,objects);
  // Store subtitle as a private part of the higher-layer tree, never under contentLayer.
- (stage as unknown as {subtitleText:Txt}).subtitleText=subtitle;
- return {root:stage,hero,other,objects,labels,shroud,status,clock};
+ return {root:stage,hero,other,objects,labels,shroud,status,clock,caption:subtitle};
 }
 const actionCopy:Record<string,string[]>={
  race:['スタート','走り出す','少しずつ差が開く','差はさらに広がる','ゴールへ','同じ努力でも異なる'],
@@ -303,6 +302,5 @@ function* captions(cues:Cue[],element:Txt,duration:number):ThreadGenerator{
 }
 export function* playMeaningScene(view:View2D,scene:Scene):ThreadGenerator{
  const w=setup(view,scene);
- const caption=(w.root as unknown as {subtitleText:Txt}).subtitleText;
- yield* all(visual(w,scene),captions(scene.cues,caption,scene.duration));
+ yield* all(visual(w,scene),captions(scene.cues,w.caption,scene.duration));
 }
