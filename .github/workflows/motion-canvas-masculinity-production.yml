@@ -1,0 +1,123 @@
+name: Motion Canvas - Masculinity Full Production
+on:
+  push:
+    paths: ['.github/workflows/motion-canvas-masculinity-production.yml']
+  pull_request:
+    paths: ['.github/workflows/motion-canvas-masculinity-production.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  render:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, epilogue]
+    defaults:
+      run:
+        working-directory: episodes/masculinity-motioncanvas
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore source and fixed headless renderer
+        run: |
+          base64 --decode source.tar.gz.base64 | tar -xz
+          cp ../../.github/motioncanvas/vite.override.ts vite.config.ts
+          cp ../../.github/motioncanvas/headless.html headless.html
+          cp ../../.github/motioncanvas/headless.ts src/headless.ts
+          cp ../../.github/motioncanvas/render.headless.mjs scripts/render.mjs
+          for chapter in prologue chapter1 chapter2 chapter3 chapter4 epilogue; do
+            cp ../../.github/motioncanvas/project.render.meta.json "src/projects/${chapter}.meta"
+          done
+          python3 scripts/qa.py
+      - name: Download already-generated measured narration data and modules
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 38038617930
+          name: chapter-source-and-node-modules
+          github-token: ${{ github.token }}
+          path: episodes/masculinity-motioncanvas
+      - name: Restore common dependency cache
+        run: |
+          tar -xzf node_modules.tar.gz
+          npm run typecheck
+          test -s src/data/story.json
+      - name: Install render dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk python3-pil
+      - name: Render chapter with measured VOICEVOX timing
+        env:
+          CHAPTER: ${{ matrix.chapter }}
+          CHROME_BIN: /usr/bin/google-chrome
+          SMOKE_SECONDS: '0'
+        run: |
+          node scripts/render.mjs "${CHAPTER}"
+          python3 scripts/smoke_check.py "${CHAPTER}"
+      - name: Save failed-frame diagnostics
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: production-diagnostics-${{ matrix.chapter }}
+          path: episodes/masculinity-motioncanvas/qa/*${{ matrix.chapter }}*
+          retention-days: 7
+      - name: Store chapter video
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: production-chapter-${{ matrix.chapter }}
+          path: episodes/masculinity-motioncanvas/output/${{ matrix.chapter }}-visual.mp4
+          retention-days: 7
+          compression-level: 0
+  finalize:
+    runs-on: ubuntu-22.04
+    needs: render
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: episodes/masculinity-motioncanvas
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore the exact same source
+        run: base64 --decode source.tar.gz.base64 | tar -xz
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 38038617930
+          name: chapter-source-and-node-modules
+          github-token: ${{ github.token }}
+          path: episodes/masculinity-motioncanvas
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 38038617930
+          name: narration-and-bgm
+          github-token: ${{ github.token }}
+          path: episodes/masculinity-motioncanvas/audio
+      - name: Restore six produced chapter videos
+        uses: actions/download-artifact@v4
+        with:
+          pattern: production-chapter-*
+          path: episodes/masculinity-motioncanvas/output
+          merge-multiple: true
+      - name: Mix narration, BGM, concatenate and QA
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk python3-pil
+          python3 scripts/mux.py
+          python3 scripts/qa.py
+          python3 scripts/post_render_contact.py
+          ffprobe -v error -show_entries format=duration -show_entries stream=codec_name,width,height,r_frame_rate -of json output/final.mp4 | tee qa/final-ffprobe.json
+          test -s output/final.mp4
+      - name: Upload completed MP4 and contact sheet
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: masculinity-full-production-output
+          path: |
+            episodes/masculinity-motioncanvas/output/final.mp4
+            episodes/masculinity-motioncanvas/qa/render-contact-sheet.jpg
+            episodes/masculinity-motioncanvas/qa/final-ffprobe.json
+            episodes/masculinity-motioncanvas/qa/qa-report.json
+          retention-days: 30
+          compression-level: 0
