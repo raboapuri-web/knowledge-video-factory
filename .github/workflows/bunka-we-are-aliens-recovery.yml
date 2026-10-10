@@ -1,0 +1,104 @@
+name: Bunka Aliens - recover chapter 4 and deliver final
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/bunka-we-are-aliens]
+    paths:
+      - '.github/workflows/bunka-we-are-aliens-recovery.yml'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: bunka-aliens-recovery
+  cancel-in-progress: false
+jobs:
+  recover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    defaults:
+      run:
+        working-directory: episodes/bunka-we-are-aliens
+    env:
+      PUPPETEER_CACHE_DIR: ${{ github.workspace }}/episodes/bunka-we-are-aliens/.cache/puppeteer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Reuse already installed dependencies from successful prepare
+        uses: actions/download-artifact@v4
+        with:
+          name: motioncanvas-dependencies
+          run-id: 37974651677
+          github-token: ${{ github.token }}
+          path: episodes/bunka-we-are-aliens
+      - run: tar -xf node_modules.tar
+      - name: Prepare seven chapter manifests
+        run: node scripts/prepare.mjs
+      - name: Reuse already synthesized narration and measured cue timings
+        uses: actions/download-artifact@v4
+        with:
+          name: voice-and-timelines
+          run-id: 37974651677
+          github-token: ${{ github.token }}
+          path: episodes/bunka-we-are-aliens
+      - name: Reuse six rendered and smoke-tested chapters from successful jobs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: chapter-*
+          run-id: 37974651677
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: episodes/bunka-we-are-aliens
+      - name: Preflight and typecheck
+        run: |
+          npm run build
+          for n in 0 1 2 3 5 6; do test -s "output/aliens-chapter-${n}.mp4"; done
+          test -s public/media/chapter-4.wav
+      - name: Raise Puppeteer CDP timeout for five-minute chapter
+        run: |
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const f='scripts/render.mjs';
+          const original=fs.readFileSync(f,'utf8');
+          const before="puppeteer.launch({headless:true,args:";
+          if(!original.includes(before))throw Error('Browser launch signature changed; refusing unsafe patch');
+          const patched=original.replace(before,"puppeteer.launch({headless:true,protocolTimeout:1200000,args:");
+          fs.writeFileSync(f,patched);
+          console.log('CDP protocolTimeout set to 20 minutes. Other six chapters are reused unchanged.');
+          NODE
+      - name: Verify chapter 4 smoke before full rendering
+        run: CHAPTERS=4 node scripts/smoke.mjs
+      - name: Render only chapter 4, without regenerating other chapter videos
+        run: CHAPTERS=4 node scripts/render.mjs
+      - name: Check all seven chapters are available
+        run: |
+          for n in 0 1 2 3 4 5 6; do
+            test -s "output/aliens-chapter-${n}.mp4"
+            ffprobe -v error -show_entries stream=codec_name,width,height -of compact "output/aliens-chapter-${n}.mp4"
+          done
+      - name: Stream-copy chapter videos, add quiet BGM and full-video QA
+        run: |
+          node scripts/package.mjs
+          node scripts/music.mjs
+          node scripts/qa.mjs
+      - name: Generate contact sheet from actual rendered frames
+        run: |
+          python -m pip install --quiet pillow
+          python scripts/contact_sheet.py
+      - name: Verify completed video exists
+        run: |
+          test -s output/we-are-aliens-final.mp4
+          test -s qa/contact-sheet.jpg
+          test -s qa/final-qa.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bunka-aliens-recovery-outputs
+          path: |
+            episodes/bunka-we-are-aliens/output/we-are-aliens-final.mp4
+            episodes/bunka-we-are-aliens/output/aliens-chapter-4.mp4
+            episodes/bunka-we-are-aliens/qa/final-qa.json
+            episodes/bunka-we-are-aliens/qa/contact-sheet.jpg
+            episodes/bunka-we-are-aliens/qa/smoke-report.json
+          retention-days: 7
