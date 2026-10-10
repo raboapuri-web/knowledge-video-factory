@@ -18,7 +18,7 @@ for(const id of ids){
  const server=await createServer({root,configFile:join(root,'vite.config.ts'),server:{port:0},logLevel:'warn'});
  await server.listen();const address=server.httpServer?.address();if(!address||typeof address==='string')throw Error('Vite server failed');
  const origin='http://localhost:'+address.port;
- const browser=await puppeteer.launch({headless:true,args:['--no-sandbox','--use-gl=swiftshader','--enable-unsafe-swiftshader']});
+ const browser=await puppeteer.launch({headless:true,protocolTimeout:1200000,args:['--no-sandbox','--use-gl=swiftshader','--enable-unsafe-swiftshader']});
  const page=await browser.newPage();page.on('pageerror',e=>console.error(`[ch${id}]`,e.message));
  const t=Date.now();
  try{
