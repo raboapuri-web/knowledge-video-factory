@@ -87,8 +87,8 @@ def cues_for(paragraph):
   if len(chunk)>36:raise AssertionError('cue length')
   if len(chunk)<=18:display=chunk
   else:
-   opts=[m.end() for m in re.finditer('、|，|,',chunk[:19]) if m.end()>=9]
-   cut=max(opts) if opts else 18
+   opts=[m.end() for m in re.finditer('、|，|,',chunk[:19]) if m.end()>=max(14,len(chunk)-20)]
+   cut=max(opts) if opts else max(18,len(chunk)-20)
    display=chunk[:cut]+'\n'+chunk[cut:]
   assert all(len(l)<=20 for l in display.split('\n'))
   out.append({'text':chunk,'speech':chunk,'display':display,'start':0.,'end':0.})
