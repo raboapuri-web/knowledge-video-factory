@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile verbatim user-edited narration into 66 authored cinematic meaning spaces.
+"""Compile verbatim user-edited narration into 65 authored semantic mixed-media scenes.
 The temporary estimated timing is only for storyboard preview; CI must replace
 it with measured VOICEVOX cue timings before it is permitted to render final.
 """
@@ -44,7 +44,7 @@ for chapter in board['chapters']:
   cues,duration=make_cues(original)
   row={**shot,'chapter':slug,'narration':original,'cues':cues,'duration':duration,'durationSource':'PREVIEW_ONLY'}
   rows.append(row);ids.append(shot['id'])
-  (S/f"{shot['id']}.tsx").write_text("import {makeScene2D} from '@motion-canvas/2d';\nimport {playScene} from '../lib/director';\nimport sceneData from '../../content/scenes.json';\nconst shot=sceneData.find(s=>s.id==='"+shot['id']+"')!;\nexport default makeScene2D(function* (view){yield* playScene(view,shot);});\n")
+  (S/f"{shot['id']}.tsx").write_text("import {makeScene2D} from '@motion-canvas/2d';\nimport {playScene} from '../lib/hybridDirector';\nimport sceneData from '../../content/scenes.json';\nconst shot=sceneData.find(s=>s.id==='"+shot['id']+"')!;\nexport default makeScene2D(function* (view){yield* playScene(view,shot);});\n")
  assert narrated==ps,(slug,len(narrated),len(ps))
  imports='\n'.join(f"import s{i} from '../scenes/{sid}?scene';" for i,sid in enumerate(ids))
  (P/f'{slug}.ts').write_text("import {makeProject} from '@motion-canvas/core';\n"+imports+"\nexport default makeProject({name:'capitalismclassic-"+slug+"',scenes:["+','.join(f's{i}' for i in range(len(ids)))+"],audio:'/media/"+slug+"/narration.wav'});\n")
