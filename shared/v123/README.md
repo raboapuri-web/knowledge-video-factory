@@ -1,30 +1,38 @@
 # V123 — もっと政府に感謝して税金を納めよう
-考える夜 / 『リバタリアンが社会実験してみた町の話』を手掛かりにした実録解説動画
 
-## 制作内容
-- ニューハンプシャー州グラフトンと Free Town Project、税・住民自治・クマ問題。
-- 53 meaning-scene / PROLOGUE + 第1〜4章 + EPILOGUE。尺は目標値で固定せずVOICEVOX実測値で決定。
-- 文章: content/scene_narration.tsv。個別シーンの日本語朗読、夜のラジオを意識した落ち着いた「である調」。
-- 史実: SOURCES.md。社会実験の因果を過度に単純化しない。再構成風イラストは史実映像ではない。
-- 映像: src/lib/meaningScene.tsx。森・家・クマ・ゴミ・議会・予算・公的サービス等のシーン固有動作。
-- 音声: VOICEVOX 青山龍星 13 / speedScale 1.15、パートごとに実測音声を作り字幕と結合。
-- 表示: 1920×1080 / 30fps、字幕は最上位に固定 / 絵・テキストは字幕安全域と分離。
-- GitHub Actions: .github/workflows/v123-motion-canvas-grafton.yml。
-- 全体QA: 起動→全章煙テスト→音声→各章レンダリング→MP4結合→BGM→映像の解像度・秒数・黒画面・フリーズ点検→Release発行。
+2026-10-11 revised manuscript, user-edited WritingBlock 61583. **This revision supersedes the old bear-first script.**
 
-## 重要な制作上の判断
-- 完全無政府の町、全部の予算削減が実現したという断定を禁止。2014年NPRでは30%削減は当時の「構想」。
-- クマの事件を自由至上主義だけが原因と断定しない。州全体の個体数や管理予算、食物の誘引が交絡。
-- 2012年クマ襲撃は確認できるが、自宅・屋内での細部は本編では断定せず描写を抑制。
-- 住民個人の発言の創作、見せかけの統計や数値グラフは使わない。
-- 公共財の定義と外部性は区別し、すべての公的サービスを純粋公共財と呼ばない。
+## Exact production sources
 
-### ローカル検証
+- `content/revised/{prologue,cta,chapter1,chapter2,chapter3,chapter4,chapter5,epilogue}.txt` — complete user-edited Japanese narration, in playback order.
+- `content/storyboard-v2.json` — **86 individually directed meaning scenes**; each has distinct narration range, physical setting, props and dramatic action.
+- `scripts/revised_data.py` — deterministically compiles complete approved text into Motion Canvas projects/scenes and separate subtitle/VOICEVOX speech fields.
+- `scripts/revised_qa.py` — validates original-text coverage, unique scene directions, 2-line/19-character subtitles and audio cue clocks.
+- `src/lib/meaningScene.tsx` — original environmental set dressing, narrative-specific motion, no cascade of arriving cards; persistent objects for each shot.
+- `.github/workflows/v123-motion-canvas-grafton.yml` — production, separate GitHub Actions workflow.
+
+## Story chapters
+
+PROLOGUE (government and tax, NOT bears) → CTA → chapter1 (Grafton 2004 and citizens) → chapter2 (budget/road/fire, bear reveal only at end) → chapter3 (bears and responsibility) → chapter4 (public economics) → chapter5 (government failure, Ostrom) → EPILOGUE (Japan and the paradox).
+
+## Build/production invariants
+
+1. Never summarize or silently rewrite the final revised script; **all source paragraphs must be preserved**. Only voice-specific readings may differ and `subtitle` stays as authored.
+2. VOICEVOX `13`, speed `1.15`, measured chapter WAV timings; no estimated cue timing in production.
+3. Noto Sans JP from `@fontsource` in npm. 1920×1080 / 30fps; subtitle blackplate plus text are the topmost view layers; no visible literal `\\n`.
+4. `prepare` alone calls `npm install`; its tar package distributes `node_modules` and Chromium cache to all chapter renderers.
+5. Eight VOICEVOX synth jobs run in parallel; eight independent Motion Canvas chapter renders run in parallel.
+6. Manual workflow dispatch `only_chapter=chapter3` (or any other single slug) rerenders only that section and downloads other segments from the **latest v2 Release**. A full v2 Release must exist before selective runs.
+7. Combine compatible MP4 segments by FFmpeg `concat -c copy`, then mix BGM with `-c:v copy` to preserve video stream and limit Action time.
+8. Production output and per-chapter MP4s are published to GitHub Release when the workflow has **actually succeeded**.
+
+## QA commands
 ```sh
 cd shared/v123
-python3 scripts/build_data.py
-python3 scripts/qa.py
-npm install
+python3 scripts/revised_data.py
+python3 scripts/revised_qa.py
+npm install --no-audit --no-fund
 npm run build
-# MP4本番生成にはVOICEVOXサーバーとGitHub Actions workflowが必要
 ```
+
+Story art is stylized reconstruction, not claimed documentary footage. The bear attack must not be causally attributed to the budget proposal; proposed 30% spending reductions must not be presented as enacted policy.

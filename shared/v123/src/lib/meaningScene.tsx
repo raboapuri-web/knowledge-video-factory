@@ -8,7 +8,7 @@ import {all, waitFor, type ThreadGenerator} from '@motion-canvas/core';
  * Each meaning scene holds ONE location and transforms its state six times.
  */
 type Cue={text:string;display:string;start:number;end:number};
-type Scene={id:string;chapter:string;motif:string;title:string;cues:Cue[];duration:number};
+type Scene={id:string;chapter:string;motif:string;title:string;direction?:string;cues:Cue[];duration:number};
 type World={root:Node;hero:Node;other:Node;objects:Node[];labels:Txt[];shroud:Rect;status:Txt;clock:Txt;caption:Txt};
 const K={bg:'#08111D',night:'#101F2D',wall:'#182D3C',floor:'#314957',
  paper:'#F2F1E9',muted:'#AEC0C8',red:'#D85B57',gold:'#E1B97C',
@@ -86,12 +86,12 @@ function city(p:Node){
 
 /** V123: Grafton 2004-2017. Diegetic environments; persistent props, never card cascade. */
 const wildlife = new Set(['porch','bear','dispute','forest','garbage','donut','neighbor','wildlife','firecracker','incident','border','funding','nottrial']);
-const civic = new Set(['townhall','meeting','voices','budget','split','scouts','rules','lawsuit','accounting']);
+const civic = new Set(['townhall','meeting','voices','budget','split','scouts','rules','lawsuit','accounting','ledger','counter']);
 const infrastructure = new Set(['road','police','fire','library','publicgood','free','insurance','tokyo','dawn']);
 const campMotifs = new Set(['truck','camp','map']);
 const abstraction = new Set(['portrait','question','philosophy','history','paradox','market','window','hobbes','ostrom','counter','scale','tax','receipt','office','book']);
 const townMotifs = new Set([...wildlife,...civic,...infrastructure,...campMotifs,...abstraction]);
-const showBear=new Set(['porch','bear','dispute','forest','garbage','donut','neighbor','wildlife','firecracker','incident','border']);
+const showBear=new Set(['porch','bear','dispute','garbage','donut','neighbor','wildlife','firecracker','incident','border']);
 function tree(parent:Node,x:number,y:number,z=1){
  const n=new Node({x,y,scale:z});parent.add(n);
  stroke(n,[[0,180],[0,-42]],'#4E4736',18);
@@ -174,7 +174,13 @@ function buildTownProps(s:Scene,props:Node[]){
  const m=s.motif;
  for(let i=0;i<6;i++){
   const q=props[i],mode=i%3;
-  if(showBear.has(m)){
+  if(m==='forest'){
+   if(i===0||i===4)tree(q,0,0,.50+(i===4?.12:0));
+   else if(i===1)houseProp(q);
+   else if(i===2)carProp(q);
+   else if(i===3)lampProp(q);
+   else notebookProp(q);
+  }else if(showBear.has(m)){
    if(i===0)bearProp(q);
    else if(i===1)binProp(q);
    else if(i===2)houseProp(q);
@@ -197,6 +203,59 @@ function buildTownProps(s:Scene,props:Node[]){
   }
  }
 }
+
+/** Six physical beats share a persistent scene. The precise movement route differs
+ * by scene identity AND story direction, rather than a universal six-object reveal.
+ * All actors and equipment are pre-staged and move in the same continuous space.
+ */
+function* directedMotion(w:World,s:Scene,i:number,seconds:number):ThreadGenerator{
+ const P=w.objects,H=w.hero,O=w.other,m=s.motif,d=s.direction??'';
+ const chapter=s.id.charCodeAt(0),index=Number(s.id.slice(1))||0;
+ const seed=chapter*13+index*29,phase=i/5;
+ const t=Math.min(.9,Math.max(.30,seconds*.29));
+ const drift=((seed%7)-3)*19,tilt=((seed%9)-4)*1.5;
+ const ops:ThreadGenerator[]=[];
+ if(showBear.has(m)||m==='forest'||m==='wildlife'){
+  if(showBear.has(m)){
+   const xs=[-710,-545,-360,-75,215,495],ys=[148,153,134,146,152,143];
+   const pace=/追い|逃げ|警戒/.test(d) ? 1.16 : (/餌|ドーナツ/.test(d) ? 0.72 : 1);
+   ops.push(P[0].x(xs[i]*pace+drift,t),P[0].y(ys[i]+Math.sin(i+seed)*9,t),P[0].rotation(tilt+(i%2?3:-2),t));
+   if(/ゴミ|餌|容器|ドーナツ/.test(d))ops.push(P[1].rotation([0,-3,14,-9,3,0][i],t));
+   if(/境界|隣家|危険|襲われ/.test(d))ops.push(H.x(-610+phase*235,t),H.rotation(i>=3?-10:4,t));
+   if(/事故|襲撃/.test(d) && i===4)ops.push(w.shroud.opacity(.12,t));
+  }else{
+   ops.push(H.x(-660+phase*480+drift,t),H.rotation(i%2?4:-4,t));
+   ops.push(P[2].scale(.55+phase*.19,t));
+  }
+ }else if(civic.has(m)||/集会|住民|議会|選挙/.test(d)){
+  const switcher=seed%3;
+  ops.push(H.x(-630+phase*(180+switcher*42),t),O.x(645-phase*(135+switcher*39),t));
+  ops.push(P[0].rotation(tilt+(i%2?8:-5),t));
+  ops.push(P[2].x(-70+phase*(80+drift),t));
+  if(/対立|反対|混乱|抗議/.test(d))ops.push(H.rotation(i%2?-11:6,t),O.rotation(i%2?8:-9,t));
+  if(/予算|帳簿/.test(d))ops.push(P[2].rotation(-6+i*2,t));
+ }else if(infrastructure.has(m)||/道路|消防|橋/.test(d)){
+  const speed= /通勤|通学|走/.test(d)?1.2:.85;
+  ops.push(P[1].x(-710+i*(255*speed)+drift,t),P[1].y(168+Math.sin(i+seed)*6,t));
+  ops.push(H.x(-660+phase*390+drift,t));
+  if(/補修|ひび|穴|修理/.test(d))ops.push(P[3].rotation(tilt+(i>=3?9:-5),t));
+  if(/消防|火災|延焼/.test(d))ops.push(O.x(600-i*47,t),O.rotation(i%2?7:-5,t));
+ }else if(campMotifs.has(m)||/移住|引っ越し/.test(d)){
+  ops.push(P[0].x(-735+i*(245+(seed%4)*8),t),P[0].y(170,t));
+  ops.push(H.x(-740+phase*410,t));
+  ops.push(P[3].rotation(tilt+phase*9,t));
+ }else{
+  const isLedger=/税|予算|明細|寄付|費用|負担/.test(d);
+  ops.push(P[0].rotation(tilt+(i%2?-8:6),t),P[0].x(-380+i*(90+seed%14),t));
+  ops.push(P[1].x(300-i*(65+seed%9),t),P[1].rotation(-tilt+(i%3)*3,t));
+  if(isLedger)ops.push(H.rotation(i%2?-5:5,t));
+  else ops.push(H.x(-600+phase*250+drift,t));
+  if(/問い|どちら|判断|問題/.test(d)&&i>=4)ops.push(w.shroud.opacity(.065,t));
+ }
+ yield* all(...ops);
+ if(seconds>t)yield* waitFor(seconds-t);
+}
+
 function* townMove(w:World,s:Scene,i:number,seconds:number):ThreadGenerator{
  const t=Math.min(.90,Math.max(.40,seconds*.31));
  const P=w.objects,H=w.hero,O=w.other;
@@ -245,6 +304,53 @@ function* townMove(w:World,s:Scene,i:number,seconds:number):ThreadGenerator{
  const rest=seconds-t;if(rest>0)yield* waitFor(rest);
 }
 
+
+/** Every authored shot receives location-specific dressing, lighting and depth.
+ * Its shot direction is read from the director-approved storyboard (86 unique descriptions).
+ * The world exists at frame zero: no repeated icon/card cascade.
+ */
+function decorateUniqueSet(p:Node,s:Scene){
+ const d=s.direction??'', n=Number(s.id.slice(1))||0;
+ const chapterSeed=s.id.charCodeAt(0);
+ const variant=(chapterSeed*17+n*29)%13;
+ const x=-760+variant*107;
+ const color=variant%2?'#29434C':'#354E4F';
+ // Lived-in texture: different light, windows, geography and furniture each shot.
+ if(/書斎|本|研究/.test(d)){
+  box(p,-745,-90,205,550,'#26353D',6);
+  for(let j=0;j<6;j++){box(p,-750,-320+j*88,167,10,'#72817E',3);
+   for(let k=0;k<4;k++)box(p,-815+k*44,-356+j*88,21+((j+k+n)%3)*6,59,['#AB745C','#76958B','#B2A078'][k%3],2);}
+ }
+ if(/橋|道路|舗装|通学|通勤/.test(d)){
+  box(p,-80,250,980,80,'#59646A',0);
+  for(let k=0;k<7;k++)box(p,-470+k*145,251,63,6,'#D1C7A0',0);
+  if(/補修|ひび割れ|老朽|壊れ/.test(d))stroke(p,[[-90,254],[-50,238],[-35,265],[26,250]],'#192630',8);
+ }
+ if(/消防|火災|火|設備/.test(d)){
+  box(p,605,-84,360,340,'#414C4C',5);
+  box(p,605,-70,180,235,'#31444C',3);
+  box(p,605,95,258,32,'#9C7E66',3);
+  if(/延焼|燃え移|火が/.test(d)){disk(p,780,72,48,'#C5744A');disk(p,744,21,28,'#C58B59');}
+ }
+ if(/寄付|予算|帳簿|明細|税金|書類/.test(d)){
+  box(p,-665,-155,330,440,'#D9D3C7',8);
+  for(let j=0;j<7;j++)box(p,-668,-322+j*48,248,4,j%3===0?'#B67566':'#78858A',2);
+ }
+ if(/集会|会議|議会|住民/.test(d)){
+  for(let j=0;j<4;j++)box(p,-600+j*300,145,140,45,'#564E47',5);
+ }
+ if(/漁師|漁場|湖|水路|魚/.test(d)){
+  box(p,0,213,1920,245,'#294E5A',0);
+  for(let j=0;j<10;j++)stroke(p,[[-930+j*190,255],[-875+j*190,255]],'#668E94',3);
+  stroke(p,[[-120,100],[-40,146],[120,146],[240,100]],'#967A59',15);
+ }
+ if(/クマ|ゴミ|餌|ドーナツ|隣家/.test(d) && (s.chapter==='chapter3'||s.chapter==='chapter4'||s.motif==='bear')){
+  box(p,695,198,108,146,'#324954',8);box(p,695,114,124,23,'#566C6E',5);
+ }
+ // Frame identity is spatial, not a new piece of on-screen explanatory text.
+ box(p,x,-395,72+variant*7,7,color,2).opacity(.26);
+}
+
 function setup(view:View2D,s:Scene):World{
  const contentLayer=new Node({});
  const headingLayer=new Node({});
@@ -254,6 +360,7 @@ function setup(view:View2D,s:Scene):World{
  view.fill(K.bg);
  const m=s.motif;
  stageBackground(contentLayer,m);
+ decorateUniqueSet(contentLayer,s);
  const stage=new Node({});contentLayer.add(stage);
  // Titles and subtitles are immutable higher-level siblings.
  box(headingLayer,0,-472,1920,137,'#07101A',0);
@@ -450,7 +557,7 @@ function placePermanentProps(w:World,s:Scene){
  */
 function* changeState(w:World,s:Scene,i:number,seconds:number):ThreadGenerator{
  const m=s.motif;
- if(townMotifs.has(m)){yield* townMove(w,s,i,seconds);return;}
+ if(townMotifs.has(m)){yield* directedMotion(w,s,i,seconds);return;}
  const P=w.objects,H=w.hero,O=w.other;
  const t=Math.min(.85,Math.max(.36,seconds*.26));
  const ops:ThreadGenerator[]=[];
