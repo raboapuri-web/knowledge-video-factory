@@ -11,7 +11,7 @@ on:
   push:
     branches: [production/capitalism-classic-v2-20261012]
     paths:
-      - '.github/workflows/capitalismclassic-motion-canvas-work-purpose.yml'
+      - '.github/workflows/capitalismclassic-production.yml'
       - 'shared/capitalism-classic/**'
 permissions:
   contents: write
