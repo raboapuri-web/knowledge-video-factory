@@ -30,8 +30,10 @@ for chapter in chapters:
    if '\\n' in c['display']:errors.append(s['id']+' literal newline displayed')
   if abs(s['cues'][-1]['end']-s['duration'])>0.03:errors.append(s['id']+' scene/audio drift')
 src=(R/'src/lib/meaningScene.tsx').read_text()
-for token in ['subtitleTextLayer','const contentLayer','decorateUniqueSet','directedMotion']:
- if token not in src:errors.append('missing video feature '+token)
+director=(R/'src/lib/physicalDirector.tsx').read_text()
+if 'yield* playPhysicalScene(view,scene)' not in src:errors.append('not using per-scene physical director')
+for token in ['const caption=label(subtitleLayer','view.add(worldLayer);view.add(titleLayer);view.add(backLayer);view.add(subtitleLayer)','function* physicalPerformance','function backdrop']:
+ if token not in director:errors.append('missing v3 video feature '+token)
 out={'passed':not errors,'production':pro,'chapters':len(chapters),'scenes':len(scenes),'errors':errors}
 (R/'qa').mkdir(exist_ok=True)
 (R/'qa'/'revised_qa.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
