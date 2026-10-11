@@ -1,0 +1,73 @@
+name: Capitalism Animated Slide Pilot
+on:
+  workflow_dispatch:
+  push:
+    branches: [experiment/capitalism-slide-pilot]
+    paths:
+      - 'experiments/capitalism-slide-pilot/**'
+      - '.github/workflows/capitalism-slide-pilot.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: capitalism-slide-pilot
+  cancel-in-progress: false
+
+jobs:
+  pilot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: experiments/capitalism-slide-pilot
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - name: Install Motion Canvas runtime
+        run: npm install --no-audit --no-fund
+      - name: Start VOICEVOX CPU engine
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..100}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          exit 1
+      - name: Synthesize actual narration and measured beat durations
+        run: node scripts/generate-voice.mjs
+      - name: Typecheck and build scene
+        run: npm run build
+      - name: Headless render with topmost subtitle layer
+        run: npm run render
+      - name: QA mp4 and contact sheet
+        run: |
+          set -euo pipefail
+          FILE=output/capitalism-slide-pilot.mp4
+          test -s "$FILE"
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 "$FILE")
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 "$FILE")
+          FPS=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=nw=1:nk=1 "$FILE")
+          AUDIO=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 "$FILE" | wc -l)
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 "$FILE")
+          test "$W" = 1920 && test "$H" = 1080 && test "$FPS" = "30/1" && test "$AUDIO" -ge 1
+          awk "BEGIN {exit !($D>=40 && $D<=240)}"
+          ffmpeg -y -hide_banner -loglevel error -i "$FILE" -vf "fps=1/8,scale=384:-1,tile=4x4:padding=5:margin=5" -frames:v 1 output/contact-sheet.jpg
+          node -e "const fs=require('fs'); const r=JSON.parse(fs.readFileSync('voice-report.json')); fs.writeFileSync('output/pilot-qa.json',JSON.stringify({passed:true,slides:5,beats:r.beatCount,narrationSeconds:r.totalSeconds,resolution:'1920x1080',fps:30,subtitle:'topmost persistent overlay'},null,2));"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: capitalism-slide-pilot
+          path: |
+            experiments/capitalism-slide-pilot/output/capitalism-slide-pilot.mp4
+            experiments/capitalism-slide-pilot/output/contact-sheet.jpg
+            experiments/capitalism-slide-pilot/output/pilot-qa.json
+            experiments/capitalism-slide-pilot/voice-report.json
+          retention-days: 10
+      - name: Publish reviewable prototype
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="capitalism-slide-pilot-$GITHUB_RUN_ID"
+          gh release create "$TAG" output/capitalism-slide-pilot.mp4 output/contact-sheet.jpg output/pilot-qa.json voice-report.json --target "$GITHUB_SHA" --repo "$GITHUB_REPOSITORY" --title "資本主義・スライド式アニメーション検証 $GITHUB_RUN_ID" --notes "15 narration beats / 5 animated semantic slides / VOICEVOX / subtitle always topmost."
