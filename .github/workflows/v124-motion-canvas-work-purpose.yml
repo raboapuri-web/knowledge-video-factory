@@ -1,0 +1,199 @@
+name: V124 Motion Canvas Work Purpose
+on:
+  workflow_dispatch:
+    inputs:
+      only_chapter:
+        description: 'all or rerender one changed chapter (reuses successful V124 Release)'
+        required: true
+        default: all
+        type: choice
+        options: [all, prologue, cta, chapter1, chapter2, chapter3, chapter4, epilogue]
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v124-motion-canvas-work-purpose.yml'
+      - 'shared/v124/**'
+permissions:
+  contents: write
+concurrency:
+  group: v124-work-purpose-${{ github.ref }}
+  cancel-in-progress: false
+env:
+  PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v124/.puppeteer
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - name: Compile exact revised manuscript and run static QA
+        working-directory: shared/v124
+        run: |
+          python3 scripts/storyboard.py
+          python3 scripts/build_data.py
+          python3 scripts/static_qa.py
+      - name: Single dependency and Chromium install
+        working-directory: shared/v124
+        run: npm install --no-audit --no-fund
+      - name: Typecheck and production bundle
+        working-directory: shared/v124
+        run: npm run build
+      - name: Archive prepared render runtime once
+        run: tar --exclude='shared/v124/media' --exclude='shared/v124/output' --exclude='shared/v124/qa' -czf v124-base.tar.gz shared/v124
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v124-base
+          path: v124-base.tar.gz
+          retention-days: 3
+          compression-level: 0
+  voice:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    strategy:
+      fail-fast: false
+      max-parallel: 7
+      matrix:
+        chapter: [prologue, cta, chapter1, chapter2, chapter3, chapter4, epilogue]
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+      - name: Start container VOICEVOX CPU engine
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..120}; do curl -fsS http://127.0.0.1:50021/version >/dev/null && exit 0; sleep 2; done
+          exit 1
+      - name: Generate true measured narration
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        working-directory: shared/v124
+        env:
+          VOICEVOX_SPEAKER_ID: '13'
+          VOICEVOX_SPEED: '1.15'
+          VOICE_PARALLEL: '3'
+        run: |
+          python3 scripts/storyboard.py
+          python3 scripts/build_data.py
+          python3 scripts/synth_chapter.py '${{ matrix.chapter }}'
+      - name: Package measured voice WAV + cues
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        run: tar -czf 'v124-voice-${{ matrix.chapter }}.tar.gz' 'shared/v124/media/${{ matrix.chapter }}' 'shared/v124/content/measured-${{ matrix.chapter }}.json' 'shared/v124/voice-report-${{ matrix.chapter }}.json'
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with:
+          name: v124-voice-${{ matrix.chapter }}
+          path: v124-voice-${{ matrix.chapter }}.tar.gz
+          retention-days: 3
+          compression-level: 0
+  render:
+    needs: [prepare, voice]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 7
+      matrix:
+        chapter: [prologue, cta, chapter1, chapter2, chapter3, chapter4, epilogue]
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+      - uses: actions/setup-node@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with: {node-version: 22}
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with: {name: v124-base}
+      - name: Restore shared dependencies, assets and Chromium cache
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        run: tar -xzf v124-base.tar.gz
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with: {name: 'v124-voice-${{ matrix.chapter }}'}
+      - name: Replace preview timings with measured VOICEVOX cues
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        working-directory: shared/v124
+        run: |
+          tar -xzf '../../v124-voice-${{ matrix.chapter }}.tar.gz' -C ../..
+          python3 scripts/merge_timing.py '${{ matrix.chapter }}'
+          python3 scripts/static_qa.py
+          npm run build
+      - name: Smoke render and mechanical gating
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        working-directory: shared/v124
+        run: |
+          node scripts/render.mjs '${{ matrix.chapter }}' --smoke
+          python3 scripts/smoke_qa.py 'output/v124-${{ matrix.chapter }}-smoke.mp4'
+      - name: Render full measured Motion Canvas chapter
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        working-directory: shared/v124
+        run: |
+          node scripts/render.mjs '${{ matrix.chapter }}'
+          ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 'output/v124-${{ matrix.chapter }}.mp4'
+      - name: Package rendered chapter for reusability
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        run: tar -czf 'v124-render-${{ matrix.chapter }}.tar.gz' 'shared/v124/output/v124-${{ matrix.chapter }}.mp4' 'shared/v124/output/v124-${{ matrix.chapter }}.json' 'shared/v124/voice-report-${{ matrix.chapter }}.json'
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with:
+          name: v124-render-${{ matrix.chapter }}
+          path: v124-render-${{ matrix.chapter }}.tar.gz
+          retention-days: 3
+          compression-level: 0
+  finalize:
+    needs: [render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v124-render-*
+          path: restored
+          merge-multiple: true
+      - name: Unpack new segments
+        run: |
+          shopt -s nullglob
+          files=(restored/v124-render-*.tar.gz)
+          test ${#files[@]} -ge 1
+          for f in "${files[@]}"; do tar -xzf "$f"; done
+      - name: Reuse unchanged chapters from last successful V124 Release
+        if: ${{ inputs.only_chapter != '' && inputs.only_chapter != 'all' }}
+        working-directory: shared/v124
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 100 --json tagName,publishedAt --jq '[.[]|select(.tagName|startswith("v124-work-purpose-"))]|sort_by(.publishedAt)|last|.tagName')
+          test -n "$TAG" || { echo 'No first complete release exists; run all before single-chapter rebuild'; exit 1; }
+          mkdir -p output
+          for c in prologue cta chapter1 chapter2 chapter3 chapter4 epilogue; do
+            if [ ! -s "output/v124-$c.mp4" ]; then gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "v124-$c.mp4" --dir output; fi
+          done
+      - name: Video stream copy, original ambient BGM, final QA and contact sheet
+        working-directory: shared/v124
+        run: |
+          set -euo pipefail
+          mkdir -p output qa
+          : > output/concat.txt
+          for c in prologue cta chapter1 chapter2 chapter3 chapter4 epilogue; do
+            test -s "output/v124-$c.mp4"
+            printf "file '%s'\n" "$(realpath "output/v124-$c.mp4")" >> output/concat.txt
+          done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy output/v124-voice-master.mp4
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v124-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+          ffmpeg -y -loglevel error -i output/v124-voice-master.mp4 -i output/bgm.m4a -filter_complex '[0:a]volume=1[vo];[1:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=first[a]' -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart output/v124-final.mp4
+          python3 scripts/final_qa.py output/v124-final.mp4 qa/final_validation.json
+          INTERVAL=$(awk "BEGIN {print $D/30}")
+          ffmpeg -y -loglevel error -i output/v124-final.mp4 -vf "fps=1/$INTERVAL,scale=384:-1,tile=6x5:padding=4:margin=5" -frames:v 1 output/v124-contact-sheet.jpg
+      - name: Publish validated MP4, segments and review sheet
+        working-directory: shared/v124
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v124-work-purpose-${GITHUB_RUN_ID}"
+          gh release create "$TAG" output/v124-final.mp4 output/v124-contact-sheet.jpg qa/final_validation.json output/v124-prologue.mp4 output/v124-cta.mp4 output/v124-chapter1.mp4 output/v124-chapter2.mp4 output/v124-chapter3.mp4 output/v124-chapter4.mp4 output/v124-epilogue.mp4 --repo "$GITHUB_REPOSITORY" --title 'V124 仕事は幸福の唯一の手段なのか' --notes '48 continuous Motion Canvas meaning-spaces; VOICEVOX measured speech; subtitle topmost; seven reusable chapters; soundness and frame QA.'

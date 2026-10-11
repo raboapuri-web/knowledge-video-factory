@@ -1,0 +1,824 @@
+{
+  "id": "V124",
+  "title": "なぜ私たちは「仕事」を人生の目的だと思い込むのか？",
+  "chapters": [
+    {
+      "slug": "prologue",
+      "shots": [
+        {
+          "id": "P01",
+          "from": 0,
+          "to": 3,
+          "world": "classroom",
+          "lens": "wide",
+          "title": "将来の夢を職業で答える教室",
+          "events": [
+            "teacher_enters",
+            "chalk_jobs",
+            "students_reply",
+            "blackboard_fills"
+          ],
+          "direction": "教師が夢を尋ね職業を黒板に書く。生徒の挙手、教師の板書、視線、黒板の状態を連続させる",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "P02",
+          "from": 4,
+          "to": 6,
+          "world": "classroom_close",
+          "lens": "countershot",
+          "title": "お金持ちになって暮らす夢",
+          "events": [
+            "dream_child_stands",
+            "class_reacts",
+            "teacher_reframes",
+            "dream_chalk_erases"
+          ],
+          "direction": "お金持ちになって暮らす夢",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "P03",
+          "from": 7,
+          "to": 10,
+          "world": "chalkboard",
+          "lens": "overhead",
+          "title": "職業と望む生活は違う",
+          "events": [
+            "separate_jobs_life",
+            "compare_answers",
+            "teacher_looks_back",
+            "question_marks"
+          ],
+          "direction": "職業と望む生活は違う",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "P04",
+          "from": 11,
+          "to": 15,
+          "world": "town_day",
+          "lens": "tracking",
+          "title": "職業以外にもある夢",
+          "events": [
+            "family_stroll",
+            "traveler_passes",
+            "reader_sits",
+            "worker_commutes"
+          ],
+          "direction": "職業以外にもある夢",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "P05",
+          "from": 16,
+          "to": 20,
+          "world": "classroom_empty",
+          "lens": "silhouette",
+          "title": "誰が夢の定義を作ったのか",
+          "events": [
+            "blackboard_clears",
+            "job_labels_fade",
+            "life_wishes_remain",
+            "camera_withdraws"
+          ],
+          "direction": "誰が夢の定義を作ったのか",
+          "layer": "CONTENT_ONLY"
+        }
+      ],
+      "paragraphCount": 21
+    },
+    {
+      "slug": "cta",
+      "shots": [
+        {
+          "id": "T01",
+          "from": 0,
+          "to": 1,
+          "world": "night_study",
+          "lens": "close",
+          "title": "チャンネル案内",
+          "events": [
+            "lamp_lights",
+            "book_opens",
+            "camera_enters"
+          ],
+          "direction": "チャンネル案内",
+          "layer": "CONTENT_ONLY"
+        }
+      ],
+      "paragraphCount": 2
+    },
+    {
+      "slug": "chapter1",
+      "shots": [
+        {
+          "id": "A01",
+          "from": 0,
+          "to": 3,
+          "world": "office_morning",
+          "lens": "tracking",
+          "title": "三十五歳の会社員と出世の目標",
+          "events": [
+            "alarm_off",
+            "train_arrives",
+            "worker_enters",
+            "desk_starts"
+          ],
+          "direction": "三十五歳の会社員と出世の目標",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "A02",
+          "from": 4,
+          "to": 8,
+          "world": "promotion_room",
+          "lens": "wide",
+          "title": "昇進と家族旅行の逆転",
+          "events": [
+            "boss_promotes",
+            "colleagues_applaud",
+            "salary_rises",
+            "phone_rings",
+            "family_trip_crosses"
+          ],
+          "direction": "拍手と給与上昇の後で旅行の予定に仕事の緊急連絡が重なる。旅行が実際に取り消される因果",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "A03",
+          "from": 9,
+          "to": 12,
+          "world": "office_night",
+          "lens": "pan",
+          "title": "幸福の手段が目的に変わる",
+          "events": [
+            "clock_turns_late",
+            "manager_answers",
+            "calendar_fills",
+            "promotion_stairs"
+          ],
+          "direction": "幸福の手段が目的に変わる",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "A04",
+          "from": 13,
+          "to": 16,
+          "world": "apartment_books",
+          "lens": "overhead",
+          "title": "私生活まで最適化される",
+          "events": [
+            "book_replaced",
+            "training_begins",
+            "sleep_tracked",
+            "life_desk_converts"
+          ],
+          "direction": "私生活まで最適化される",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "A05",
+          "from": 17,
+          "to": 23,
+          "world": "research_job",
+          "lens": "split",
+          "title": "三つの仕事観",
+          "events": [
+            "research_cover",
+            "job_worker_receives_pay",
+            "career_climbs",
+            "calling_helps",
+            "same_job_split"
+          ],
+          "direction": "三つの仕事観",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "A06",
+          "from": 24,
+          "to": 29,
+          "world": "zoo_enclosure",
+          "lens": "wide",
+          "title": "使命感と自己犠牲の研究",
+          "events": [
+            "keeper_feeds",
+            "keeper_stays_late",
+            "pay_slips",
+            "family_waits",
+            "zoo_study_page"
+          ],
+          "direction": "飼育員が動物に餌を与える一日の延長が給与明細と家庭での不在を生む。研究は解釈を限定",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "A07",
+          "from": 30,
+          "to": 33,
+          "world": "corridor_rain",
+          "lens": "close",
+          "title": "情熱は誰のために使われるか",
+          "events": [
+            "overworked_keeper",
+            "schedule_shifts",
+            "work_love_reflects",
+            "factory_transition"
+          ],
+          "direction": "情熱は誰のために使われるか",
+          "layer": "CONTENT_ONLY"
+        }
+      ],
+      "paragraphCount": 34
+    },
+    {
+      "slug": "chapter2",
+      "shots": [
+        {
+          "id": "B01",
+          "from": 0,
+          "to": 4,
+          "world": "factory_1911",
+          "lens": "wide",
+          "title": "テイラーと科学的管理法",
+          "events": [
+            "gears_engage",
+            "craftsman_shapes",
+            "stopwatch_starts",
+            "work_standardizes"
+          ],
+          "direction": "テイラーと科学的管理法",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "B02",
+          "from": 5,
+          "to": 8,
+          "world": "factory_floor",
+          "lens": "overhead",
+          "title": "規律と熟練の緊張",
+          "events": [
+            "supervisor_measures",
+            "worker_repeats",
+            "manager_assigns",
+            "craftsman_resists"
+          ],
+          "direction": "規律と熟練の緊張",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "B03",
+          "from": 9,
+          "to": 13,
+          "world": "airplane_cabin",
+          "lens": "aisle",
+          "title": "感情を売るサービス業",
+          "events": [
+            "passenger_calls",
+            "attendant_approaches",
+            "complaint_bursts",
+            "attendant_smiles"
+          ],
+          "direction": "感情を売るサービス業",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "B04",
+          "from": 14,
+          "to": 17,
+          "world": "service_backstage",
+          "lens": "mirror",
+          "title": "ホックシールドの感情労働",
+          "events": [
+            "mirror_reflects",
+            "smile_forced",
+            "emotions_diverge",
+            "research_holds"
+          ],
+          "direction": "ホックシールドの感情労働",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "B05",
+          "from": 18,
+          "to": 23,
+          "world": "meeting_room",
+          "lens": "wide",
+          "title": "経営者意識という要求",
+          "events": [
+            "boss_shows_miss",
+            "worker_listens",
+            "demand_owner",
+            "boss_seats",
+            "slide_changes"
+          ],
+          "direction": "経営者意識の文字だけではなく、上司が自分の椅子を保ちながら社員へ責任を委ねる矛盾",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "B06",
+          "from": 24,
+          "to": 28,
+          "world": "boardroom_split",
+          "lens": "split",
+          "title": "所有権と責任の非対称",
+          "events": [
+            "owner_takes_share",
+            "worker_reaches",
+            "rights_stay",
+            "responsibility_grows"
+          ],
+          "direction": "所有権と責任の非対称",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "B07",
+          "from": 29,
+          "to": 34,
+          "world": "self_management",
+          "lens": "overhead",
+          "title": "外部の監督が自己監督に変わる",
+          "events": [
+            "boss_exits",
+            "worker_sets_target",
+            "worker_checks_clock",
+            "weekend_phone",
+            "self_review"
+          ],
+          "direction": "外部の監督が自己監督に変わる",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "B08",
+          "from": 35,
+          "to": 38,
+          "world": "office_window",
+          "lens": "dolly",
+          "title": "主体性はどこから来たのか",
+          "events": [
+            "worker_stares_city",
+            "city_education",
+            "city_media",
+            "questions_reflect"
+          ],
+          "direction": "主体性はどこから来たのか",
+          "layer": "CONTENT_ONLY"
+        }
+      ],
+      "paragraphCount": 39
+    },
+    {
+      "slug": "chapter3",
+      "shots": [
+        {
+          "id": "C01",
+          "from": 0,
+          "to": 4,
+          "world": "school_schedule",
+          "lens": "wide",
+          "title": "学校と規律",
+          "events": [
+            "bell_rings",
+            "children_open_books",
+            "teacher_grades",
+            "workplace_echo"
+          ],
+          "direction": "学校と規律",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "C02",
+          "from": 5,
+          "to": 9,
+          "world": "study_althusser",
+          "lens": "overhead",
+          "title": "アルチュセールのイデオロギー",
+          "events": [
+            "book_highlights",
+            "institutions_surround",
+            "student_walks",
+            "school_dream_returns"
+          ],
+          "direction": "アルチュセールのイデオロギー",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "C03",
+          "from": 10,
+          "to": 15,
+          "world": "family_school",
+          "lens": "tracking",
+          "title": "善意で受け継がれる価値観",
+          "events": [
+            "parent_encourages",
+            "teacher_writes_job",
+            "child_imagines",
+            "values_inherit"
+          ],
+          "direction": "善意で受け継がれる価値観",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "C04",
+          "from": 16,
+          "to": 20,
+          "world": "hospital_drama",
+          "lens": "wide",
+          "title": "献身する医師の職業ドラマ",
+          "events": [
+            "doctor_runs",
+            "patient_recovers",
+            "staff_rejoices",
+            "hospital_lights_dim"
+          ],
+          "direction": "献身する医師の職業ドラマ",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "C05",
+          "from": 21,
+          "to": 27,
+          "world": "drama_triptych",
+          "lens": "split",
+          "title": "働く英雄を称賛する物語",
+          "events": [
+            "office_team_finishes",
+            "chef_sharpens",
+            "family_dinner_ignored",
+            "viewer_applauds"
+          ],
+          "direction": "医師、社員、料理人の群像劇がスクリーンを形成し、観客は家庭の夕食シーンを見落とす",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "C06",
+          "from": 28,
+          "to": 33,
+          "world": "cinema_audience",
+          "lens": "reverse",
+          "title": "文化的ヘゲモニー",
+          "events": [
+            "viewer_chooses_drama",
+            "screen_expands",
+            "norms_reflect",
+            "gramscian_text"
+          ],
+          "direction": "文化的ヘゲモニー",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "C07",
+          "from": 34,
+          "to": 39,
+          "world": "media_archive",
+          "lens": "overhead",
+          "title": "企業批判の物語にも残る前提",
+          "events": [
+            "criticizes_company",
+            "hero_returns",
+            "work_stage_persists",
+            "culture_repeat"
+          ],
+          "direction": "企業批判の物語にも残る前提",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "C08",
+          "from": 40,
+          "to": 44,
+          "world": "sacred_office",
+          "lens": "symmetry",
+          "title": "ワーキズムと仕事の宗教化",
+          "events": [
+            "office_becomes_chapel",
+            "work_badge_halo",
+            "meaning_work",
+            "thompson_reference"
+          ],
+          "direction": "ワーキズムと仕事の宗教化",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "C09",
+          "from": 45,
+          "to": 49,
+          "world": "namecard_social",
+          "lens": "close",
+          "title": "職業と自己認識の接続",
+          "events": [
+            "strangers_meet",
+            "cards_exchange",
+            "roles_rank",
+            "identity_breaks"
+          ],
+          "direction": "職業と自己認識の接続",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "C10",
+          "from": 50,
+          "to": 54,
+          "world": "church_work",
+          "lens": "wide",
+          "title": "仕事を失うと自分を失う",
+          "events": [
+            "chapel_dissolves",
+            "office_remains",
+            "workers_gather",
+            "role_vanishes"
+          ],
+          "direction": "仕事を失うと自分を失う",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "C11",
+          "from": 55,
+          "to": 59,
+          "world": "everyday_orbits",
+          "lens": "overhead",
+          "title": "あらゆる幸福が仕事を周回する",
+          "events": [
+            "family_orbit",
+            "friends_orbit",
+            "art_orbit",
+            "work_gravity",
+            "education_enters"
+          ],
+          "direction": "あらゆる幸福が仕事を周回する",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "C12",
+          "from": 60,
+          "to": 64,
+          "world": "society_city",
+          "lens": "aerial",
+          "title": "社会が望ましい働き手を再生産する",
+          "events": [
+            "school_lights",
+            "offices_glow",
+            "screen_drama",
+            "citizens_walk",
+            "man_dreams"
+          ],
+          "direction": "社会が望ましい働き手を再生産する",
+          "layer": "CONTENT_ONLY"
+        }
+      ],
+      "paragraphCount": 65
+    },
+    {
+      "slug": "chapter4",
+      "shots": [
+        {
+          "id": "D01",
+          "from": 0,
+          "to": 4,
+          "world": "industrial_timeline",
+          "lens": "wide",
+          "title": "機械化からAIまで",
+          "events": [
+            "worker_lifts",
+            "robot_grabs",
+            "warehouse_movers",
+            "computer_types"
+          ],
+          "direction": "機械化からAIまで",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "D02",
+          "from": 5,
+          "to": 9,
+          "world": "ai_lab",
+          "lens": "overhead",
+          "title": "AIは仕事内容を変える",
+          "events": [
+            "ai_writes",
+            "ai_codes",
+            "human_reviews",
+            "ilo_page"
+          ],
+          "direction": "AIは仕事内容を変える",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "D03",
+          "from": 10,
+          "to": 15,
+          "world": "office_ai_report",
+          "lens": "close",
+          "title": "効率化しても増える仕事",
+          "events": [
+            "report_piles",
+            "ai_finishes",
+            "clock_noon",
+            "boss_adds_tasks",
+            "desk_overflows"
+          ],
+          "direction": "効率化しても増える仕事",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "D04",
+          "from": 16,
+          "to": 20,
+          "world": "future_boardroom",
+          "lens": "split",
+          "title": "AI時代の主体性と二つの未来",
+          "events": [
+            "human_sets_purpose",
+            "ai_executes",
+            "more_goals",
+            "alternative_rest"
+          ],
+          "direction": "AI時代の主体性と二つの未来",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "D05",
+          "from": 21,
+          "to": 26,
+          "world": "afternoon_exit",
+          "lens": "tracking",
+          "title": "午後三時に退社する自由",
+          "events": [
+            "clock_three",
+            "worker_stands",
+            "station_sunlight",
+            "children_play",
+            "cafe_reader"
+          ],
+          "direction": "時計が15時になると退社、昼の商店街の風景を歩き抜け喫茶店の読者を見つめる",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "D06",
+          "from": 27,
+          "to": 31,
+          "world": "living_room_day",
+          "lens": "wide",
+          "title": "自由時間も生産性で測る",
+          "events": [
+            "movie_remote",
+            "business_book_replaced",
+            "walker_headphones",
+            "unease_grows"
+          ],
+          "direction": "自由時間も生産性で測る",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "D07",
+          "from": 32,
+          "to": 36,
+          "world": "keynes_study",
+          "lens": "overhead",
+          "title": "ケインズが見た余暇の問題",
+          "events": [
+            "keynes_paper",
+            "workweek_contracts",
+            "leisure_unfolds",
+            "mental_void"
+          ],
+          "direction": "ケインズが見た余暇の問題",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "D08",
+          "from": 37,
+          "to": 41,
+          "world": "free_time_void",
+          "lens": "silhouette",
+          "title": "自由な時間が恐ろしい",
+          "events": [
+            "work_bench_vanishes",
+            "person_searches",
+            "freedom_opens",
+            "identity_shrinks"
+          ],
+          "direction": "自由な時間が恐ろしい",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "D09",
+          "from": 42,
+          "to": 45,
+          "world": "factory_to_park",
+          "lens": "split",
+          "title": "労働からの解放は何を意味するか",
+          "events": [
+            "machines_work",
+            "human_waits",
+            "park_opens",
+            "human_chooses"
+          ],
+          "direction": "労働からの解放は何を意味するか",
+          "layer": "CONTENT_ONLY"
+        }
+      ],
+      "paragraphCount": 46
+    },
+    {
+      "slug": "epilogue",
+      "shots": [
+        {
+          "id": "E01",
+          "from": 0,
+          "to": 5,
+          "world": "personal_study",
+          "lens": "close",
+          "title": "私も仕事で幸福を得る",
+          "events": [
+            "creator_writes",
+            "work_finished",
+            "pleasure_grows",
+            "outside_world"
+          ],
+          "direction": "私も仕事で幸福を得る",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "E02",
+          "from": 6,
+          "to": 11,
+          "world": "four_lives",
+          "lens": "split",
+          "title": "幸福の形に優劣はない",
+          "events": [
+            "doctor_helps",
+            "family_meals",
+            "gardener_plants",
+            "reader_reclines"
+          ],
+          "direction": "幸福の形に優劣はない",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "E03",
+          "from": 12,
+          "to": 17,
+          "world": "city_life_choices",
+          "lens": "wide",
+          "title": "社会の影響と本人の選択",
+          "events": [
+            "capitalist_city_glows",
+            "school_fades",
+            "stories_fade",
+            "choice_remains"
+          ],
+          "direction": "社会の影響と本人の選択",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "E04",
+          "from": 18,
+          "to": 23,
+          "world": "choice_bridge",
+          "lens": "overhead",
+          "title": "働く幸福と働かない幸福",
+          "events": [
+            "work_path",
+            "nonwork_path",
+            "paths_equal",
+            "person_free"
+          ],
+          "direction": "働く幸福と働かない幸福",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "E05",
+          "from": 24,
+          "to": 29,
+          "world": "classroom_return",
+          "lens": "wide",
+          "title": "再び教室へ",
+          "events": [
+            "teacher_erases_job",
+            "new_questions",
+            "children_reconsider",
+            "chalkboard_hopes"
+          ],
+          "direction": "プロローグの教室と同じ美術を使い、教師が質問を変えた瞬間だけ黒板の意味が変わる",
+          "layer": "CONTENT_ONLY"
+        },
+        {
+          "id": "E06",
+          "from": 30,
+          "to": 34,
+          "world": "quiet_street",
+          "lens": "silhouette",
+          "title": "仕事を取り除いた人生",
+          "events": [
+            "worker_exits",
+            "family_walks",
+            "book_opens",
+            "sunset_freezes"
+          ],
+          "direction": "仕事を取り除いた人生",
+          "layer": "CONTENT_ONLY"
+        }
+      ],
+      "paragraphCount": 35
+    }
+  ]
+}
