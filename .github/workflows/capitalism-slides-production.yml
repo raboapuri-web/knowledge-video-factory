@@ -1,0 +1,209 @@
+name: Capitalism Motion Canvas Full Slides
+on:
+  workflow_dispatch:
+    inputs:
+      only_chapter:
+        description: 'all or rerender one changed chapter (reuses successful 資本主義 完全版 Release)'
+        required: true
+        default: all
+        type: choice
+        options: [all, prologue, chapter1, chapter2, chapter3, chapter4, chapter5, epilogue]
+  push:
+    branches: [production/capitalism-slides-20261012]
+    paths:
+      - '.github/workflows/capitalism-slides-production.yml'
+      - 'shared/capitalism-slides/**'
+permissions:
+  contents: write
+concurrency:
+  group: capitalism-full-slides-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/capitalism-slides/.puppeteer
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - name: Compile exact revised manuscript and run static QA
+        working-directory: shared/capitalism-slides
+        run: |
+                    python3 scripts/build_data.py
+          python3 scripts/static_qa.py
+      - name: Single dependency and Chromium install
+        working-directory: shared/capitalism-slides
+        run: npm install --no-audit --no-fund
+      - name: Typecheck and production bundle
+        working-directory: shared/capitalism-slides
+        run: npm run build
+      - name: Archive prepared render runtime once
+        run: tar --exclude='shared/capitalism-slides/media' --exclude='shared/capitalism-slides/output' --exclude='shared/capitalism-slides/qa' -czf capitalism-base.tar.gz shared/capitalism-slides
+      - uses: actions/upload-artifact@v4
+        with:
+          name: capitalism-base
+          path: capitalism-base.tar.gz
+          retention-days: 3
+          compression-level: 0
+  voice:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    strategy:
+      fail-fast: false
+      max-parallel: 7
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, epilogue]
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+      - name: Start container VOICEVOX CPU engine
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..120}; do curl -fsS http://127.0.0.1:50021/version >/dev/null && exit 0; sleep 2; done
+          exit 1
+      - name: Generate true measured narration
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        working-directory: shared/capitalism-slides
+        env:
+          VOICEVOX_SPEAKER_ID: '13'
+          VOICEVOX_SPEED: '1.15'
+          VOICE_PARALLEL: '4'
+        run: |
+                    python3 scripts/build_data.py
+          python3 scripts/synth_chapter.py '${{ matrix.chapter }}'
+      - name: Package measured voice WAV + cues
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        run: tar -czf 'capitalism-voice-${{ matrix.chapter }}.tar.gz' 'shared/capitalism-slides/media/${{ matrix.chapter }}' 'shared/capitalism-slides/content/measured-${{ matrix.chapter }}.json' 'shared/capitalism-slides/voice-report-${{ matrix.chapter }}.json'
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with:
+          name: capitalism-voice-${{ matrix.chapter }}
+          path: capitalism-voice-${{ matrix.chapter }}.tar.gz
+          retention-days: 3
+          compression-level: 0
+  render:
+    needs: [prepare, voice]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 7
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, epilogue]
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+      - uses: actions/setup-node@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with: {node-version: 22}
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with: {name: capitalism-base}
+      - name: Restore shared dependencies, assets and Chromium cache
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        run: tar -xzf capitalism-base.tar.gz
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with: {name: 'capitalism-voice-${{ matrix.chapter }}'}
+      - name: Replace preview timings with measured VOICEVOX cues
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        working-directory: shared/capitalism-slides
+        run: |
+          tar -xzf '../../capitalism-voice-${{ matrix.chapter }}.tar.gz' -C ../..
+          python3 scripts/merge_timing.py '${{ matrix.chapter }}'
+          python3 scripts/static_qa.py
+          npm run build
+      - name: Ensure FFmpeg and FFprobe for QA
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg
+          fi
+      - name: Smoke render and mechanical gating
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        working-directory: shared/capitalism-slides
+        run: |
+          node scripts/render.mjs '${{ matrix.chapter }}' --smoke
+          python3 scripts/smoke_qa.py 'output/capitalism-${{ matrix.chapter }}-smoke.mp4'
+      - name: Render full measured Motion Canvas chapter
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        working-directory: shared/capitalism-slides
+        run: |
+          node scripts/render.mjs '${{ matrix.chapter }}'
+          ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 'output/capitalism-${{ matrix.chapter }}.mp4'
+      - name: Package rendered chapter for reusability
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        run: tar -czf 'capitalism-render-${{ matrix.chapter }}.tar.gz' 'shared/capitalism-slides/output/capitalism-${{ matrix.chapter }}.mp4' 'shared/capitalism-slides/output/capitalism-${{ matrix.chapter }}.json' 'shared/capitalism-slides/voice-report-${{ matrix.chapter }}.json'
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with:
+          name: capitalism-render-${{ matrix.chapter }}
+          path: capitalism-render-${{ matrix.chapter }}.tar.gz
+          retention-days: 3
+          compression-level: 0
+  finalize:
+    needs: [render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: capitalism-render-*
+          path: restored
+          merge-multiple: true
+      - name: Unpack new segments
+        run: |
+          shopt -s nullglob
+          files=(restored/capitalism-render-*.tar.gz)
+          test ${#files[@]} -ge 1
+          for f in "${files[@]}"; do tar -xzf "$f"; done
+      - name: Reuse unchanged chapters from last successful 資本主義 完全版 Release
+        if: ${{ inputs.only_chapter != '' && inputs.only_chapter != 'all' }}
+        working-directory: shared/capitalism-slides
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 100 --json tagName,publishedAt --jq '[.[]|select(.tagName|startswith("capitalism-work-purpose-"))]|sort_by(.publishedAt)|last|.tagName')
+          test -n "$TAG" || { echo 'No first complete release exists; run all before single-chapter rebuild'; exit 1; }
+          mkdir -p output
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 epilogue; do
+            if [ ! -s "output/capitalism-$c.mp4" ]; then gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "capitalism-$c.mp4" --dir output; fi
+          done
+      - name: Ensure FFmpeg before final assembly
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          fi
+      - name: Video stream copy, original ambient BGM, final QA and contact sheet
+        working-directory: shared/capitalism-slides
+        run: |
+          set -euo pipefail
+          mkdir -p output qa
+          : > output/concat.txt
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 epilogue; do
+            test -s "output/capitalism-$c.mp4"
+            printf "file '%s'\n" "$(realpath "output/capitalism-$c.mp4")" >> output/concat.txt
+          done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy output/capitalism-voice-master.mp4
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/capitalism-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+          ffmpeg -y -loglevel error -i output/capitalism-voice-master.mp4 -i output/bgm.m4a -filter_complex '[0:a]volume=1[vo];[1:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=first[a]' -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart output/capitalism-final.mp4
+          python3 scripts/final_qa.py output/capitalism-final.mp4 qa/final_validation.json
+          INTERVAL=$(awk "BEGIN {print $D/30}")
+          ffmpeg -y -loglevel error -i output/capitalism-final.mp4 -vf "fps=1/$INTERVAL,scale=384:-1,tile=6x5:padding=4:margin=5" -frames:v 1 output/capitalism-contact-sheet.jpg
+      - name: Publish validated MP4, segments and review sheet
+        working-directory: shared/capitalism-slides
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="capitalism-work-purpose-${GITHUB_RUN_ID}"
+          gh release create "$TAG" output/capitalism-final.mp4 output/capitalism-contact-sheet.jpg qa/final_validation.json output/capitalism-prologue.mp4 output/capitalism-cta.mp4 output/capitalism-chapter1.mp4 output/capitalism-chapter2.mp4 output/capitalism-chapter3.mp4 output/capitalism-chapter4.mp4 output/capitalism-epilogue.mp4 --repo "$GITHUB_REPOSITORY" --title '資本主義 完全版 仕事は幸福の唯一の手段なのか' --notes '48 continuous Motion Canvas meaning-spaces; VOICEVOX measured speech; subtitle topmost; seven reusable chapters; soundness and frame QA.'
