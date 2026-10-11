@@ -199,7 +199,7 @@ export function* playScene(view:View2D,s:Shot):ThreadGenerator{
    yield* waitFor(Math.max(.01,d-t));
   }else{
    const t=Math.min(.28,d*.15);
-   yield* continuity(w,i,s.cues.length,t);
+   yield* continuity(w,i,s.cues.length,d);
    yield* waitFor(Math.max(.01,d-t));
   }
  }
