@@ -1,0 +1,43 @@
+name: Hybrid Chapter4 Isolated Debug
+on:
+  workflow_dispatch:
+  push:
+    branches: [production/capitalism-hybrid-v3-20261012]
+    paths:
+      - .github/workflows/capitalism-hybrid-chapter4-debug.yml
+permissions:
+  contents: read
+  actions: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - name: Restore actual chapter4 VOICEVOX from completed narration job
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p downloaded
+          gh run download 38162170331 --repo "$GITHUB_REPOSITORY" --name capitalismclassic-voice-chapter4 --dir downloaded
+          tar -xzf downloaded/capitalismclassic-voice-chapter4.tar.gz -C .
+          test -s shared/capitalism-classic/media/chapter4/narration.wav
+      - name: Install and compile chapter4
+        working-directory: shared/capitalism-classic
+        run: |
+          python3 scripts/storyboard.py
+          python3 scripts/build_data.py
+          python3 scripts/merge_timing.py chapter4
+          npm install --no-audit --no-fund
+          npm run build
+      - name: Render first 8 seconds and expose full Motion Canvas error details
+        working-directory: shared/capitalism-classic
+        run: node scripts/render.mjs chapter4 --smoke
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hybrid-chapter4-debug-output
+          path: shared/capitalism-classic/output
+          retention-days: 2
