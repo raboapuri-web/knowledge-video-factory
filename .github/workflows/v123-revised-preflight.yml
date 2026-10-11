@@ -1,0 +1,38 @@
+name: V123 Revised Script Preflight
+on:
+  push:
+    branches: [v123-revised-script-20261011]
+    paths:
+      - 'shared/v123/**'
+      - '.github/workflows/v123-revised-preflight.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+concurrency:
+  group: v123-revised-preflight
+  cancel-in-progress: true
+jobs:
+  compile-and-typecheck:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Validate all revised narration and 86 meanings
+        working-directory: shared/v123
+        run: |
+          python3 scripts/revised_data.py
+          python3 scripts/revised_qa.py
+          python3 -m py_compile scripts/revised_data.py scripts/revised_qa.py scripts/synth_chapter.py scripts/merge_timing.py
+      - name: Install dependencies exactly once
+        working-directory: shared/v123
+        run: npm install --no-audit --no-fund
+      - name: TypeScript and Motion Canvas bundle check
+        working-directory: shared/v123
+        run: npm run build
+      - name: Save director QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v123-revised-preflight
+          path: shared/v123/qa/revised_qa.json
