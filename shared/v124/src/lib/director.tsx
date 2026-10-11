@@ -32,7 +32,136 @@ function cinema(p:Node){box(p,0,0,1920,1080,'#171D2A',0);box(p,0,-177,1360,560,'
 function religious(p:Node){box(p,0,0,1920,1080,'#263640',0);for(let i=0;i<5;i++){box(p,-740+i*370,-170,130,690,'#57616C',7);disc(p,-740+i*370,-480,65,'#667986');}box(p,0,218,840,180,'#595765',8);}
 function garden(p:Node){exterior(p,true);for(let i=0;i<5;i++)tree(p,-750+i*365,95,.7);box(p,0,285,1920,140,'#3D6A54',0);}
 function research(p:Node){box(p,0,0,1920,1080,'#1B2E38',0);for(let row=0;row<4;row++){box(p,-600,-340+row*190,420,18,C.wood,2);for(let i=0;i<10;i++)box(p,-770+i*39,-395+row*190,24,82,i%3===0?'#A87765':'#58777C',2);}desk(p,400,177,600);}
+/** Specific diegetic settings, each with an authored narrative structure.
+ * Locations are chosen before actors enter; no generic scene reset or slide template.
+ */
+function specializedSet(p:Node,w:string):boolean{
+ if(w==='promotion_room'){
+  office(p);box(p,-360,-300,385,95,'#557366',9);label(p,'昇進おめでとう',-360,-302,34,C.paper);
+  for(let j=0;j<5;j++)human(p,-785+j*210,115,.52,j%2?C.blue:C.paper);
+  box(p,660,-164,360,270,'#E6DECD',8);label(p,'家族旅行',660,-235,35,C.ink);
+  line(p,[[520,-80],[800,0]],C.red,19);line(p,[[800,-80],[520,0]],C.red,19);return true;
+ }
+ if(w==='office_night'){
+  office(p);box(p,-620,-170,333,333,'#0A1B29',4);
+  for(let j=0;j<12;j++)box(p,-760+j%4*92,-265+Math.floor(j/4)*87,32,25,j%3?'#D8B879':'#334E5D',2);
+  disc(p,705,-325,69,C.paper);disc(p,705,-325,58,'#23394B');line(p,[[705,-325],[735,-295]],C.red,8);return true;
+ }
+ if(w==='apartment_books'||w==='living_room_day'){
+  house(p);box(p,-585,-235,290,90,'#4D645C',7);label(p,'BOOKS',-585,-238,32,C.paper);
+  book(p,-360,86,.47);box(p,500,258,345,43,'#B6AB8B',12);
+  disc(p,500,-64,78,'#CBAF8D');return true;
+ }
+ if(w==='zoo_enclosure'){
+  garden(p);for(let i=0;i<15;i++)line(p,[[-900+i*130,-170],[-900+i*130,288]],'#A3A797',8);
+  box(p,115,204,380,110,'#A8B8A2',12);disc(p,455,58,106,'#777064');disc(p,365,25,66,'#777064');
+  disc(p,355,-39,22,C.gold);human(p,-490,68,.84,C.green);return true;
+ }
+ if(w==='corridor_rain'){
+  box(p,0,0,1920,1080,'#263744',0);box(p,0,-120,1500,650,'#3C6070',5);
+  for(let j=0;j<17;j++)line(p,[[-715+j*90,-400],[-760+j*90,250]],'#6CA3B1',3);
+  box(p,0,303,1920,210,'#4A5658',0);human(p,-470,60,1.15,C.paper);return true;
+ }
+ if(w==='service_backstage'){
+  box(p,0,0,1920,1080,'#38414C',0);box(p,-540,-95,605,665,'#987F6C',14);box(p,-540,-95,555,614,'#223E4C',9);
+  for(let k=0;k<5;k++){disc(p,-845+k*150,-409,19,C.gold);disc(p,-845+k*150,222,19,C.gold);}
+  human(p,-540,33,1.3,C.paper);box(p,390,105,470,365,'#4D616A',10);label(p,'笑顔を作る',390,-39,34,C.paper);return true;
+ }
+ if(w==='meeting_room'||w==='boardroom_split'){
+  box(p,0,0,1920,1080,'#182C39',0);box(p,0,-242,1000,310,'#345867',10);
+  label(p,w==='meeting_room'?'目標未達':'責任と権限',0,-342,45,C.paper);
+  desk(p,0,192,1340);for(let j=0;j<5;j++)human(p,-710+j*345,100,.64,j%2?C.blue:C.paper);
+  if(w==='boardroom_split'){line(p,[[0,-387],[0,319]],C.gold,9);label(p,'所有する人',-580,-183,37,C.gold);label(p,'働く人',550,-183,37,C.paper);}
+  return true;
+ }
+ if(w==='self_management'){
+  office(p);box(p,-650,-260,350,130,'#4A6167',12);label(p,'自分の目標',-650,-279,31,C.paper);
+  box(p,-665,-90,320,104,'#B6B5A7',8);label(p,'SELF REVIEW',-665,-91,30,C.ink);
+  disc(p,730,-280,63,C.gold);return true;
+ }
+ if(w==='school_schedule'){
+  classroom(p);box(p,685,-165,340,422,'#E4D9C3',9);label(p,'時間割',685,-310,42,C.ink);
+  for(let j=0;j<6;j++)line(p,[[545,-230+j*60],[825,-230+j*60]],'#728B91',4);return true;
+ }
+ if(w==='family_school'){
+  house(p);human(p,-605,22,.78,C.blue);human(p,250,42,.64,C.gold);
+  box(p,660,-218,330,185,'#DACAB1',8);label(p,'将来の夢',660,-256,34,C.ink);return true;
+ }
+ if(w==='hospital_drama'){
+  box(p,0,0,1920,1080,'#CED9D8',0);box(p,-650,-115,345,520,'#6691A1',12);box(p,-650,-115,288,465,'#284553',5);
+  box(p,310,162,920,90,'#ECE8D9',28);human(p,-310,-8,.91,'#DEE4E3');
+  for(let i=0;i<6;i++)disc(p,-300+i*210,-377,27,'#F5EFD7');label(p,'救命医療',600,-301,49,C.ink);return true;
+ }
+ if(w==='drama_triptych'){
+  box(p,0,0,1920,1080,'#182836',0);
+  const xs=[-650,0,650],colors=['#3C5867','#5A4E4B','#425B53'];
+  for(let i=0;i<3;i++){box(p,xs[i],-30,595,745,colors[i],16);box(p,xs[i],-280,465,165,'#263A48',7);human(p,xs[i]-95,45,.66,i===0?C.paper:i===1?C.gold:C.blue);}
+  label(p,'医師',-650,-343,37,C.paper);label(p,'料理人',0,-343,37,C.paper);label(p,'会社員',650,-343,37,C.paper);
+  return true;
+ }
+ if(w==='media_archive'){
+  box(p,0,0,1920,1080,'#1F2A35',0);
+  for(let i=0;i<9;i++){const x=-635+(i%3)*635,y=-205+Math.floor(i/3)*215;
+   box(p,x,y,470,170,i%2?'#527080':'#374F63',9);human(p,x-136,y+17,.28,C.paper);}
+  label(p,'物語は繰り返される',0,-443,49,C.paper);return true;
+ }
+ if(w==='namecard_social'){
+  box(p,0,0,1920,1080,'#233B44',0);for(let i=0;i<5;i++){disc(p,-760+i*370,-333,65,'#D2B485');line(p,[[-760+i*370,-267],[-760+i*370,-203]],C.paper,7);}
+  human(p,-400,30,1.1,C.teal);human(p,400,30,1.1,C.paper);
+  box(p,0,-53,300,184,'#E4DDCB',12);label(p,'名刺交換',0,-54,37,C.ink);return true;
+ }
+ if(w==='everyday_orbits'){
+  box(p,0,0,1920,1080,'#0F1B2A',0);disc(p,0,-72,180,'#94724C');disc(p,0,-72,149,'#DAB87A');
+  for(let i=0;i<4;i++){const r=270+i*65;const points:Array<[number,number]>=[];for(let j=0;j<=90;j++){const a=j*Math.PI*2/90;points.push([r*Math.cos(a),-72+r*.72*Math.sin(a)]);}line(p,points,'#667884',3);}
+  label(p,'仕事',0,-79,44,C.ink);label(p,'家族',-585,110,36,C.paper);label(p,'芸術',560,-100,36,C.paper);label(p,'友人',245,225,36,C.paper);return true;
+ }
+ if(w==='industrial_timeline'){
+  box(p,0,0,1920,1080,'#182934',0);const xs=[-735,-230,275,780];
+  for(let i=0;i<4;i++)box(p,xs[i],25,428,660,['#58636B','#476778','#315667','#21394F'][i],15);
+  human(p,xs[0],42,.77,C.paper);for(let i=0;i<4;i++)disc(p,xs[1]+(i%2)*90-60,-60+Math.floor(i/2)*115,47,C.paper);
+  monitor(p,xs[2],-70);label(p,'AI',xs[3],-125,100,C.teal);
+  label(p,'工場',xs[0],259,35,C.paper);label(p,'機械',xs[1],259,35,C.paper);label(p,'PC',xs[2],259,35,C.paper);label(p,'人工知能',xs[3],259,35,C.paper);return true;
+ }
+ if(w==='ai_lab'){
+  box(p,0,0,1920,1080,'#122736',0);for(let i=0;i<5;i++){box(p,-790+i*395,-78,315,620,'#365B70',19);for(let k=0;k<6;k++)box(p,-790+i*395,-305+k*90,245,24,k%2?'#65A99E':'#20394A',6);}
+  label(p,'AIが生成 / 人間が判断',0,-454,43,C.paper);return true;
+ }
+ if(w==='future_boardroom'){
+  box(p,0,0,1920,1080,'#142533',0);box(p,-480,0,960,900,'#395160',0);box(p,480,0,960,900,'#3D5E50',0);
+  label(p,'さらに成果を求める',-480,-384,42,C.paper);label(p,'自由な時間を増やす',480,-384,42,C.paper);
+  monitor(p,-450,20);tree(p,440,20,.86);human(p,-675,122,.65,C.gold);human(p,635,122,.65,C.gold);return true;
+ }
+ if(w==='afternoon_exit'){
+  exterior(p,true);box(p,-600,19,395,710,'#425F6B',13);box(p,-600,19,336,641,'#1F3949',7);
+  disc(p,705,-315,109,'#F0CE8C');human(p,-360,58,1.1,C.paper);tree(p,430,110,.64);return true;
+ }
+ if(w==='keynes_study'){
+  box(p,0,0,1920,1080,'#3C3A37',0);for(let i=0;i<6;i++)box(p,-800+i*315,-183,185,468,'#6C5C4A',6);
+  desk(p,0,204,1100);book(p,-285,-80,.88);label(p,'1930',490,-315,61,C.gold);human(p,520,20,.83,'#7B8785');return true;
+ }
+ if(w==='free_time_void'){
+  box(p,0,0,1920,1080,'#101F2C',0);for(let i=0;i<13;i++){const r=110+i*48;disc(p,0,-63,r,i%2?'#142736':'#1B3242');}
+  human(p,0,40,1.48,C.paper);label(p,'仕事がなくても、私は私か？',0,-406,43,C.paper);return true;
+ }
+ if(w==='choice_bridge'){
+  box(p,0,0,1920,1080,'#182D3B',0);line(p,[[-920,309],[-320,-130],[-60,-390]],C.teal,34);
+  line(p,[[920,309],[320,-130],[60,-390]],C.gold,34);
+  human(p,0,66,1.18,C.paper);label(p,'働く幸福',-580,-170,40,C.teal);label(p,'働かない幸福',580,-170,40,C.gold);return true;
+ }
+ if(w==='four_lives'){
+  box(p,0,0,1920,1080,'#263946',0);
+  for(let i=0;i<4;i++){const x=-710+i*474;box(p,x,-60,435,785,['#425E6B','#50675C','#6D634D','#3B4E5A'][i],16);human(p,x,62,.65,i%2?C.gold:C.paper);}
+  label(p,'医師',-710,-319,36,C.paper);label(p,'家族',-236,-319,36,C.paper);label(p,'園芸',238,-319,36,C.paper);label(p,'読書',712,-319,36,C.paper);return true;
+ }
+ if(w==='quiet_street'){
+  exterior(p,false);disc(p,730,-310,118,'#E1AC79');tree(p,-665,90,.67);tree(p,575,115,.54);
+  human(p,-215,83,.85,C.paper);human(p,95,83,.85,C.teal);return true;
+ }
+ return false;
+}
+
 function createSet(p:Node,w:string){
+ if(specializedSet(p,w))return;
  if(/classroom|school|family_school/.test(w))classroom(p);
  else if(/factory|industrial/.test(w))factory(p);
  else if(/airplane|service_backstage/.test(w))cabin(p);

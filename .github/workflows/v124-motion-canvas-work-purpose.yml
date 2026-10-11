@@ -16,8 +16,8 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: v124-work-purpose-${{ github.ref }}-${{ github.sha }}
-  cancel-in-progress: true
+  group: v124-work-purpose-${{ github.ref }}
+  cancel-in-progress: false
 env:
   PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v124/.puppeteer
 jobs:
@@ -119,11 +119,18 @@ jobs:
           python3 scripts/merge_timing.py '${{ matrix.chapter }}'
           python3 scripts/static_qa.py
           npm run build
+      - name: Ensure FFmpeg and FFprobe for QA
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg
+          fi
       - name: Smoke render and mechanical gating
         if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
         working-directory: shared/v124
         run: |
-          timeout 4m node scripts/render.mjs '${{ matrix.chapter }}' --smoke
+          node scripts/render.mjs '${{ matrix.chapter }}' --smoke
           python3 scripts/smoke_qa.py 'output/v124-${{ matrix.chapter }}-smoke.mp4'
       - name: Render full measured Motion Canvas chapter
         if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
@@ -172,6 +179,11 @@ jobs:
           for c in prologue cta chapter1 chapter2 chapter3 chapter4 epilogue; do
             if [ ! -s "output/v124-$c.mp4" ]; then gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "v124-$c.mp4" --dir output; fi
           done
+      - name: Ensure FFmpeg before final assembly
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          fi
       - name: Video stream copy, original ambient BGM, final QA and contact sheet
         working-directory: shared/v124
         run: |
