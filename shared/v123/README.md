@@ -1,5 +1,20 @@
 # V123 — もっと政府に感謝して税金を納めよう
 
+## 2026-10-11 V3 — 物理シーンへの全面置換
+
+視聴レビューで指摘された「同じ動きの繰り返し」は旧 `meaningScene.tsx` の共通6フェーズ演出が原因だったため、**旧描画エンジンを削除**し、全86シーンを `physicalDirector.tsx` へ移行しました。
+
+- 86シーンで重複しない **物理的アクションの組み合わせ**
+- 26種類の背景環境、69種類の小道具・人物・乗り物などの演技対象
+- 場所に合わせたカメラ構図（クローズアップ、俯瞰、見上げ、追走、二人ショットなど）
+- 各シーンは固有の `set / actors / events / lens` を `content/physical-performances-v3.json` で指定
+- 背景の中で道具を持つ・橋を修理する・車が移動する・住民が交渉するなどの **動作の因果** を優先
+- 字幕は動く背景・役者の上にある最前面レイヤー
+- `scripts/physical_qa.py` は全86件の配置とアクション組合せの重複を検査
+- 本番ワークフローでは変更のない音声データを前回の `38137823912` の成果物から再利用（成果物失効時はVOICEVOX再生成）
+- Releaseタグは以前の `v2` と分離して `v123-grafton-v3-...` とし、以前の完成MP4は上書きしない
+
+
 2026-10-11 revised manuscript, user-edited WritingBlock 61583. **This revision supersedes the old bear-first script.**
 
 ## Exact production sources

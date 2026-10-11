@@ -33,6 +33,7 @@ jobs:
         run: |
           python3 scripts/revised_data.py
           python3 scripts/revised_qa.py
+          python3 scripts/physical_qa.py
       - name: Install Motion Canvas and headless browser once
         working-directory: shared/v123
         run: npm install --no-audit --no-fund
@@ -55,15 +56,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
-      - name: Start VOICEVOX
+      - name: Reuse unchanged final voice and measured cue timings
         if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p .previous-voice
+          if gh run download 38137823912 --repo "$GITHUB_REPOSITORY" --name "v123-voice-${{ matrix.slug }}" --dir .previous-voice && test -s ".previous-voice/v123-voice-${{ matrix.slug }}.tar.gz"; then
+            tar -xzf ".previous-voice/v123-voice-${{ matrix.slug }}.tar.gz"
+            test -s "shared/v123/media/${{ matrix.slug }}/narration.wav"
+            test -s "shared/v123/content/measured-${{ matrix.slug }}.json"
+            echo "REUSED_AUDIO=true" >> "$GITHUB_ENV"
+            echo "VOICE REUSE: ${{ matrix.slug }} — original approved script unchanged"
+          else
+            echo "REUSED_AUDIO=false" >> "$GITHUB_ENV"
+            echo "VOICE REGENERATE fallback: ${{ matrix.slug }}"
+          fi
+      - name: Start VOICEVOX
+        if: ${{ (inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug) && env.REUSED_AUDIO != 'true' }}
         run: |
           docker pull voicevox/voicevox_engine:cpu-latest
           docker run -d --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
           for i in {1..100}; do if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi; sleep 2; done
           exit 1
       - name: Generate measured VOICEVOX cues
-        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        if: ${{ (inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug) && env.REUSED_AUDIO != 'true' }}
         working-directory: shared/v123
         env:
           VOICEVOX_SPEAKER_ID: '13'
@@ -169,7 +186,7 @@ jobs:
         working-directory: shared/v123
         env: {GH_TOKEN: '${{ github.token }}'}
         run: |
-          TAG=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 80 --json tagName,publishedAt --jq '[.[] | select(.tagName|startswith("v123-grafton-v2-"))] | sort_by(.publishedAt) | last | .tagName')
+          TAG=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 80 --json tagName,publishedAt --jq '[.[] | select(.tagName|startswith("v123-grafton-v3-"))] | sort_by(.publishedAt) | last | .tagName')
           test -n "$TAG"
           mkdir -p output
           for c in prologue cta chapter1 chapter2 chapter3 chapter4 chapter5 epilogue; do
@@ -211,6 +228,6 @@ jobs:
         env: {GH_TOKEN: '${{ github.token }}'}
         run: |
           set -euo pipefail
-          TAG="v123-grafton-v2-${GITHUB_RUN_ID}"
+          TAG="v123-grafton-v3-${GITHUB_RUN_ID}"
           cp output/v123-final.mp4 "output/knowledge-video-v123-grafton-${GITHUB_RUN_ID}.mp4"
-          gh release create "$TAG" "output/knowledge-video-v123-grafton-${GITHUB_RUN_ID}.mp4" output/v123-contact-sheet.jpg qa/final-validation.json qa/visual-anomaly-scan.txt output/v123-prologue.mp4 output/v123-cta.mp4 output/v123-chapter1.mp4 output/v123-chapter2.mp4 output/v123-chapter3.mp4 output/v123-chapter4.mp4 output/v123-chapter5.mp4 output/v123-epilogue.mp4 --repo "$GITHUB_REPOSITORY" --title "V123 もっと政府に感謝して税金を納めよう" --notes '考える夜 / 86 directed meaning scenes / 8 parallel chapter builds / Motion Canvas / 青山龍星 1.15 / subtitle overlay / ffmpeg final QA'
+          gh release create "$TAG" "output/knowledge-video-v123-grafton-${GITHUB_RUN_ID}.mp4" output/v123-contact-sheet.jpg qa/final-validation.json qa/visual-anomaly-scan.txt output/v123-prologue.mp4 output/v123-cta.mp4 output/v123-chapter1.mp4 output/v123-chapter2.mp4 output/v123-chapter3.mp4 output/v123-chapter4.mp4 output/v123-chapter5.mp4 output/v123-epilogue.mp4 --repo "$GITHUB_REPOSITORY" --title "V123 第3版：重複動作を排した情景再設計" --notes '考える夜 / 86 physical performances / 26 environments / 69 actor props / 8 parallel chapter builds / Motion Canvas / 青山龍星 1.15 / subtitle overlay / ffmpeg final QA'
