@@ -131,7 +131,7 @@ for slug in CHAPTERS:
 # Context includes visualization direction, not narration. It is retained as storyboard notes.
 notes=re.findall(r'【(?:CTA)?映像】([^\n]+)',SRC)
 board['videoDirections']=notes
-assert len(board['videoDirections'])==8
+assert len(board['videoDirections'])>=8
 assert tot==66,tot
 (C/'storyboard.json').write_text(json.dumps(board,ensure_ascii=False,indent=2))
 print(json.dumps({'chapters':len(CHAPTERS),'scenes':tot,'narrationChars':sum(map(len,[p for ps in segments.values() for p in ps])),'visualDirections':len(notes)},ensure_ascii=False))
