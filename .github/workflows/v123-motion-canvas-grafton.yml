@@ -211,6 +211,6 @@ jobs:
         env: {GH_TOKEN: '${{ github.token }}'}
         run: |
           set -euo pipefail
-          TAG="v123-poverty-brain-${GITHUB_RUN_ID}"
-          cp output/v123-final.mp4 "output/knowledge-video-v123-poverty-brain-brain-${GITHUB_RUN_ID}.mp4"
-          gh release create "$TAG" "output/knowledge-video-v123-poverty-brain-brain-${GITHUB_RUN_ID}.mp4" output/v123-contact-sheet.jpg qa/final-validation.json qa/visual-anomaly-scan.txt output/v123-prologue.mp4 output/v123-chapter1.mp4 output/v123-chapter2.mp4 output/v123-chapter3.mp4 output/v123-chapter4.mp4 output/v123-epilogue.mp4 --repo "$GITHUB_REPOSITORY" --title "V123 もっと政府に感謝して税金を納めよう" --notes '考える夜 / 53 original scenes / 6 chapter builds / Motion Canvas / 青山龍星 1.15 / subtitle overlay / ffmpeg final QA'
+          TAG="v123-grafton-${GITHUB_RUN_ID}"
+          cp output/v123-final.mp4 "output/knowledge-video-v123-grafton-${GITHUB_RUN_ID}.mp4"
+          gh release create "$TAG" "output/knowledge-video-v123-grafton-${GITHUB_RUN_ID}.mp4" output/v123-contact-sheet.jpg qa/final-validation.json qa/visual-anomaly-scan.txt output/v123-prologue.mp4 output/v123-chapter1.mp4 output/v123-chapter2.mp4 output/v123-chapter3.mp4 output/v123-chapter4.mp4 output/v123-epilogue.mp4 --repo "$GITHUB_REPOSITORY" --title "V123 もっと政府に感謝して税金を納めよう" --notes '考える夜 / 53 original scenes / 6 chapter builds / Motion Canvas / 青山龍星 1.15 / subtitle overlay / ffmpeg final QA'
