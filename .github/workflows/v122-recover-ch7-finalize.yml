@@ -1,5 +1,9 @@
 name: V122 Recover Chapter7 and Finalize
 on:
+  push:
+    branches: [v122-hibernation-life-production]
+    paths:
+      - '.github/workflows/v122-recover-ch7-finalize.yml'
   workflow_dispatch:
 permissions:
   actions: read
@@ -23,7 +27,7 @@ jobs:
         with:
           name: v122-motion-base
           repository: raboapuri-web/knowledge-video-factory
-          run-id: 38117399605
+          run-id: 38119382246
           github-token: ${{ github.token }}
       - name: Unpack prepared renderer
         run: tar -xzf v122-motion-base.tar.gz
@@ -32,7 +36,7 @@ jobs:
         with:
           name: v122-voice-chapter7
           repository: raboapuri-web/knowledge-video-factory
-          run-id: 38117399605
+          run-id: 38119382246
           github-token: ${{ github.token }}
       - name: Merge chapter7 timing and verify build
         working-directory: shared/v122
@@ -65,7 +69,7 @@ jobs:
           path: renders
           merge-multiple: true
           repository: raboapuri-web/knowledge-video-factory
-          run-id: 38117399605
+          run-id: 38119382246
           github-token: ${{ github.token }}
       - name: Restore eight completed chapters
         run: |
@@ -104,4 +108,4 @@ jobs:
           TAG="v122-hibernation-life-recovered-${GITHUB_RUN_ID}"
           NAME="knowledge-video-v122-hibernation-life-${GITHUB_RUN_ID}.mp4"
           cp output/v122-final.mp4 "output/$NAME"
-          gh release create "$TAG"             "output/$NAME" output/v122-contact-sheet.jpg qa/final-validation.json qa/visual-anomaly-scan.txt SOURCES.md README.md             output/v122-prologue.mp4 output/v122-chapter1.mp4 output/v122-chapter2.mp4 output/v122-chapter3.mp4             output/v122-chapter4.mp4 output/v122-chapter5.mp4 output/v122-chapter6.mp4 output/v122-chapter7.mp4 output/v122-epilogue.mp4             --repo "$GITHUB_REPOSITORY"             --title "V122 なぜ「何もしない時期」が人生には必要なのか？"             --notes 'Recovered chapter7 on a fresh runner; reused eight successful source-run chapter renders. 45 dedicated meaning scenes / approx 720 micro visual beats / measured VOICEVOX / smoke subtitle QA / final ffmpeg QA.'
+          gh release create "$TAG"             "output/$NAME" output/v122-contact-sheet.jpg qa/final-validation.json qa/visual-anomaly-scan.txt SOURCES.md README.md             output/v122-prologue.mp4 output/v122-chapter1.mp4 output/v122-chapter2.mp4 output/v122-chapter3.mp4             output/v122-chapter4.mp4 output/v122-chapter5.mp4 output/v122-chapter6.mp4 output/v122-chapter7.mp4 output/v122-epilogue.mp4             --repo "$GITHUB_REPOSITORY"             --title "V122 なぜ「何もしない時期」が人生には必要なのか？"             --notes 'V122 redesign recovery: fresh chapter7 runner plus eight completed redesigned chapter renders. 45 dedicated meaning scenes / approx 720 micro visual beats / measured VOICEVOX / smoke subtitle QA / final ffmpeg QA.'
