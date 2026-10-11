@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create individually directed natural-scene animations, with zero narration omissions."""
+"""Map the actual user manuscript to intentional narrative-specific hybrid representations."""
 import json,re
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];C=ROOT/'content'
@@ -109,21 +109,28 @@ def parse_content(c):
  return ps
 segments={}
 left,right=raw[0].split('【CTA映像】')
+# The CTA camera instruction is NOT narration: discard only its first visual-directive line.
+right=right.split('\n',1)[1]
 segments['prologue']=parse_content(left)
 segments['cta']=parse_content(right)
 for slug,body in zip(CHAPTERS[2:],raw[1:]):segments[slug]=parse_content(body)
-board={'version':2,'style':'original-diegetic-animation','chapters':[]}
+plan={r['id']:r for r in json.loads((C/'hybrid-plan.json').read_text())}
+board={'version':3,'style':'semantic-hybrid-animation','chapters':[]}
 tot=0
 for slug in CHAPTERS:
  ps=segments[slug]
- assert len(ps)==len(WORLD[slug])==len(ACTIONS[slug]),(slug,len(ps),len(WORLD[slug]),len(ACTIONS[slug]))
+ worlds=WORLD[slug][1:] if slug=='cta' else WORLD[slug]
+ actions=ACTIONS[slug][1:] if slug=='cta' else ACTIONS[slug]
+ assert len(ps)==len(worlds)==len(actions),(slug,len(ps),len(worlds),len(actions))
  (C/'revised').mkdir(parents=True,exist_ok=True)
  (C/'revised'/f'{slug}.txt').write_text('\n\n'.join(ps))
  shots=[]
- for i,(p,world,events) in enumerate(zip(ps,WORLD[slug],ACTIONS[slug])):
+ for i,(p,world,events) in enumerate(zip(ps,worlds,actions)):
   ev=events.split(',')
   assert len(set(ev))==len(ev) and len(ev)>=3
-  shots.append({'id':f'cap-{slug}-{i:02d}','world':world,'events':ev,
+  shot_id=f'cap-{slug}-{i:02d}'
+  semantic=plan[shot_id]
+  shots.append({'id':shot_id,'world':world,'events':ev,**{k:v for k,v in semantic.items() if k!='id'},
                 'title':TITLES[slug], 'from':i,'to':i,
                 'label':p[:22].strip('。！？')})
  board['chapters'].append({'slug':slug,'title':TITLES[slug],'shots':shots})
@@ -132,6 +139,6 @@ for slug in CHAPTERS:
 notes=re.findall(r'【(?:CTA)?映像】([^\n]+)',SRC)
 board['videoDirections']=notes
 assert len(board['videoDirections'])>=8
-assert tot==66,tot
+assert tot==65==len(plan),tot
 (C/'storyboard.json').write_text(json.dumps(board,ensure_ascii=False,indent=2))
 print(json.dumps({'chapters':len(CHAPTERS),'scenes':tot,'narrationChars':sum(map(len,[p for ps in segments.values() for p in ps])),'visualDirections':len(notes)},ensure_ascii=False))
