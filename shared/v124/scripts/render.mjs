@@ -14,9 +14,20 @@ async function main(){
  const page=await browser.newPage();page.on('pageerror',err=>console.error('PAGE_ERROR',err.message));
  const start=Date.now();try{
   const url='http://localhost:'+addr.port;
-  await page.goto(url+'/headless.html',{waitUntil:'networkidle0'});
-  await page.waitForFunction(()=>typeof window.renderProject==='function');
-  const res=await page.evaluate((pr,a,n,end,scale)=>window.renderProject(pr,a,n,end,scale),'/src/projects/'+slug+'.ts?project',!smoke,label,smoke?8:null,smoke?.5:1);
+  const run=async()=>{
+    await page.goto(url+'/headless.html',{waitUntil:'networkidle0'});
+    await page.waitForFunction(()=>typeof window.renderProject==='function',{timeout:60000});
+    return page.evaluate((pr,a,n,end,scale)=>window.renderProject(pr,a,n,end,scale),'/src/projects/'+slug+'.ts?project',!smoke,label,smoke?8:null,smoke?.5:1);
+  };
+  let res;
+  for(let attempt=1;attempt<=3;attempt++){
+    try{res=await run();break;}
+    catch(err){
+      if(!String(err).includes('Execution context was destroyed')||attempt===3)throw err;
+      console.warn('Vite changed the page execution context; reloading and retrying once settled',attempt);
+      await new Promise(ok=>setTimeout(ok,1200*attempt));
+    }
+  }
   if(res!=='Success')throw new Error('RendererResult '+res);
  }finally{await page.close();await browser.close();await server.close();}
  const f=join(ROOT,'output',label+'.mp4'),st=await stat(f);
