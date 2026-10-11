@@ -255,7 +255,7 @@ function actorLayout(p:Perf,i:number){
 function* act(w:Puppet,verb:string,d:number,index:number):ThreadGenerator{
  const n=w.root,a=w.accent;const x=n.x(),y=n.y(),r=n.rotation();
  const shift=index===0?1:index===1?-1:1;
- const move=(dx:number,dy:number)=>[n.x(x+dx,d),n.y(y+dy,d)] as ThreadGenerator[];
+ const move=(dx:number,dy:number):ThreadGenerator[]=>[n.x(x+dx,d),n.y(y+dy,d)];
  let ops:ThreadGenerator[]=[];
  switch(verb){
   case 'flow':case 'rain':case 'fill':ops=[a.opacity(1,d),a.scale(1.36,d)];break;
@@ -293,7 +293,7 @@ function* act(w:Puppet,verb:string,d:number,index:number):ThreadGenerator{
 /** Narrative-specific event tempo, instead of a universal recurring six-beat animation. */
 function* physicalPerformance(stage:Node,scene:NarrativeScene,perf:Perf,actors:Puppet[]):ThreadGenerator{
  const n=perf.events.length;
- const weights=perf.events.map((e,i)=>1+(e.includes('drive')||e.includes('cross')?.3:0)+(i===2?.15:0));
+ const weights=perf.events.map((e,i)=>1+((e.includes('drive')||e.includes('cross'))?0.3:0)+(i===2?0.15:0));
  const norm=weights.reduce((a,b)=>a+b,0);
  for(let i=0;i<n;i++){
   const [idxS,verb]=perf.events[i].split('.');
