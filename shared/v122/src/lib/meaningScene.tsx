@@ -82,7 +82,7 @@ function springWorld(root:Node){
  forest(root,hash('spring'),false);box(root,0,330,1920,110,'#594A3A',0);for(let i=0;i<7;i++){line(root,[[-700+i*230,280],[-700+i*230,210]],K.green,8);disk(root,-700+i*230,195,14,K.cyan)}
 }
 function seasonWheel(root:Node){
- box(root,0,0,1920,930,'#10242D',0);const cols=[K.cyan,K.gold,K.red,K.ice];for(let i=0;i<4;i++){const a=-Math.PI/2+i*Math.PI/2,x=Math.cos(a)*420,y=Math.sin(a)*220;disk(root,x,y,90,cols[i]);line(root,[[0,0],[x,y]],K.line,6)}
+ box(root,0,0,1920,930,'#10242D',0);const cols=[K.cyan,K.gold,K.red,K.ice];for(let i=0;i<4;i++){const a=-Math.PI/2+i*Math.PI/2,x=Math.cos(a)*420,y=Math.sin(a)*220;disk(root,x,y,90,cols[i]);line(root,[[0,0],[x,y]],K.muted,6)}
  disk(root,0,0,105,K.deep);
 }
 function setupWorld(root:Node,scene:Scene,plan:Plan){
