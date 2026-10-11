@@ -11,7 +11,7 @@ async function main(){
  const server=await createServer({root:ROOT,configFile:join(ROOT,'vite.config.ts'),server:{port:0},logLevel:'warn'});
  await server.listen();const addr=server.httpServer?.address();if(!addr||typeof addr==='string')throw new Error('Bad Vite address');
  const browser=await puppeteer.launch({headless:true,protocolTimeout:900000,args:['--no-sandbox','--disable-dev-shm-usage','--use-gl=swiftshader','--enable-unsafe-swiftshader']});
- const page=await browser.newPage();page.on('pageerror',err=>console.error('PAGE_ERROR',err.message));
+ const page=await browser.newPage();page.on('pageerror',err=>console.error('PAGE_ERROR',err.message));page.on('console',msg=>{if(msg.type()==='error'||msg.type()==='warning')console.warn('BROWSER_'+msg.type(),msg.text());});
  const start=Date.now();try{
   const url='http://localhost:'+addr.port;
   const run=async()=>{
