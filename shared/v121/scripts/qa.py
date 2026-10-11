@@ -21,6 +21,15 @@ source=(R/'src/lib/meaningScene.tsx').read_text()
 if 'const contentLayer' not in source or 'const subtitleTextLayer' not in source:errors.append('missing subtitle separation')
 if source.find('contentLayer')>source.find('subtitleTextLayer'):errors.append('unexpected z order declarations')
 if len(re.findall(r'view\.add\(',source))!=4:errors.append('unexpected root view.add usage')
+# Director's anti-repetition gate: stage the world up front and transform it;
+# do not reintroduce serialized icon/card reveals every narration beat.
+if 'placePermanentProps(w,s)' not in source:errors.append('missing persistent-world choreography')
+if 'const activeCount:' not in source:errors.append('missing pre-staged physical composition')
+if 'now.opacity(1' in source or 'now.x(i%2?950:-950' in source:
+ errors.append('regression: sequential flying/revealing object animation')
+for physical in ('race','office','calendar','farm','shopping','school','brain','tunnel','debt','bureau','forms','support'):
+ if f"m==='{physical}'" not in source:errors.append('missing physical location choreography: '+physical)
+
 report={'status':'BLOCKED' if errors or warn else 'READY_FOR_SMOKE_QA','scene_count':len(ss),'chapter_count':len(chapters),'subtitle_cues':sum(len(s['cues']) for s in ss),'estimated_seconds':round(sum(s['duration'] for s in ss),2),'errors':errors,'blockers':warn[:5]+(['...plus '+str(len(warn)-5)] if len(warn)>5 else [])}
 (R/'qa').mkdir(parents=True,exist_ok=True)
 (R/'qa/static_qa.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
