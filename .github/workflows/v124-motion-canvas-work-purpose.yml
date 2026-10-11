@@ -16,7 +16,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: v124-work-purpose-${{ github.ref }}
+  group: v124-work-purpose-${{ github.ref }}-${{ github.sha }}
   cancel-in-progress: true
 env:
   PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v124/.puppeteer
