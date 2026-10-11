@@ -209,7 +209,7 @@ export default makeScene2D(function* (view) {
       used += 0.72;
     }
     if (i === 5) {
-      yield* povertyTrack().width(1220, 0.85, easeInOutCubic);
+      yield* all(povertyTrack().width(1220, 0.85, easeInOutCubic), povertyTrack().x(0, 0.85, easeInOutCubic));
       used += 0.85;
     }
     if (i === 7) {
