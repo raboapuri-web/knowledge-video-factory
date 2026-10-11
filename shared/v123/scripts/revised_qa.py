@@ -4,7 +4,7 @@ from pathlib import Path
 import json,re,sys
 R=Path(__file__).resolve().parents[1];C=R/'content'
 plan=json.loads((C/'storyboard-v2.json').read_text());scenes=json.loads((C/'scenes.json').read_text())
-pro='--production' in sys.argv;errors=[];chapters=[c['slug'] for c in plan['chapters']]
+pro='--production' in sys.argv;target=sys.argv[sys.argv.index('--chapter')+1] if '--chapter' in sys.argv else None;errors=[];chapters=[c['slug'] for c in plan['chapters']]
 if chapters!=['prologue','cta','chapter1','chapter2','chapter3','chapter4','chapter5','epilogue']:errors.append('eight chapter order wrong')
 if len(scenes)!=86:errors.append('expected 86 meaning scenes')
 if len(set(s['id'] for s in scenes))!=len(scenes):errors.append('duplicate IDs')
@@ -21,7 +21,7 @@ for chapter in chapters:
   if ''.join(c['text'] for c in s['cues'])!=s['narration'].replace(' ',''): # Spaces around punctuation ignored in cues
    norm=lambda t:re.sub(r'\s+','',t)
    if norm(''.join(c['text'] for c in s['cues']))!=norm(s['narration']):errors.append(s['id']+' omitted original characters')
-  if pro and s['durationSource']!='VOICEVOX_MEASURED':errors.append(s['id']+' not voiced')
+  if pro and (target is None or s['chapter']==target) and s['durationSource']!='VOICEVOX_MEASURED':errors.append(s['id']+' not voiced')
   if not (R/'src/scenes'/f"{s['id']}.tsx").exists():errors.append(s['id']+' missing scene file')
   for c in s['cues']:
    ls=c['display'].split('\n')
