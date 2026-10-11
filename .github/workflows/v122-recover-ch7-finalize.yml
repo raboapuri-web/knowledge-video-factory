@@ -1,9 +1,5 @@
 name: V122 Recover Chapter7 and Finalize
 on:
-  push:
-    branches: [v122-hibernation-life-production]
-    paths:
-      - '.github/workflows/v122-recover-ch7-finalize.yml'
   workflow_dispatch:
 permissions:
   actions: read
