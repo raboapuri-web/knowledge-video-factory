@@ -95,7 +95,7 @@ jobs:
           SIZE=$(stat -c%s output/v122-final.mp4)
           test "$W" = 1920 && test "$H" = 1080 && test "$FPS" = '30/1' && test "$AUD" -ge 1 && test "$SIZE" -gt 5000000
           awk "BEGIN {exit !($D>=600)}"
-          printf '{"videoId":"V122","scenes":45,"visualStatesPerScene":8,"approxVisualBeats":360,"renderUnits":9,"resolution":"1920x1080","fps":30,"durationSeconds":%s,"audioTracks":%s,"bytes":%s,"passed":true,"recovery":"chapter7-runner"}\n' "$D" "$AUD" "$SIZE" > qa/final-validation.json
+          printf '{"videoId":"V122","scenes":45,"visualStatesPerScene":8,"microBeatsPerScene":16,"approxVisualBeats":720,"renderUnits":9,"resolution":"1920x1080","fps":30,"durationSeconds":%s,"audioTracks":%s,"bytes":%s,"passed":true,"recovery":"chapter7-runner"}\n' "$D" "$AUD" "$SIZE" > qa/final-validation.json
           set +e
           ffmpeg -hide_banner -i output/v122-final.mp4 -vf 'blackdetect=d=2:pix_th=0.02,freezedetect=n=-55dB:d=6' -an -f null - 2> qa/visual-anomaly-scan.txt
           set -e
@@ -108,4 +108,4 @@ jobs:
           TAG="v122-hibernation-life-recovered-${GITHUB_RUN_ID}"
           NAME="knowledge-video-v122-hibernation-life-${GITHUB_RUN_ID}.mp4"
           cp output/v122-final.mp4 "output/$NAME"
-          gh release create "$TAG"             "output/$NAME" output/v122-contact-sheet.jpg qa/final-validation.json qa/visual-anomaly-scan.txt SOURCES.md README.md             output/v122-prologue.mp4 output/v122-chapter1.mp4 output/v122-chapter2.mp4 output/v122-chapter3.mp4             output/v122-chapter4.mp4 output/v122-chapter5.mp4 output/v122-chapter6.mp4 output/v122-chapter7.mp4 output/v122-epilogue.mp4             --repo "$GITHUB_REPOSITORY"             --title "V122 なぜ「何もしない時期」が人生には必要なのか？"             --notes 'Recovered chapter7 on a fresh runner; reused eight successful source-run chapter renders. 45 meaning scenes / 360 semantic visual states / measured VOICEVOX / smoke subtitle QA / final ffmpeg QA.'
+          gh release create "$TAG"             "output/$NAME" output/v122-contact-sheet.jpg qa/final-validation.json qa/visual-anomaly-scan.txt SOURCES.md README.md             output/v122-prologue.mp4 output/v122-chapter1.mp4 output/v122-chapter2.mp4 output/v122-chapter3.mp4             output/v122-chapter4.mp4 output/v122-chapter5.mp4 output/v122-chapter6.mp4 output/v122-chapter7.mp4 output/v122-epilogue.mp4             --repo "$GITHUB_REPOSITORY"             --title "V122 なぜ「何もしない時期」が人生には必要なのか？"             --notes 'Recovered chapter7 on a fresh runner; reused eight successful source-run chapter renders. 45 dedicated meaning scenes / approx 720 micro visual beats / measured VOICEVOX / smoke subtitle QA / final ffmpeg QA.'

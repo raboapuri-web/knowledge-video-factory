@@ -34,10 +34,10 @@ source=(R/'src/lib/meaningScene.tsx').read_text()
 if 'const contentLayer' not in source or 'const subtitleTextLayer' not in source:errors.append('missing subtitle separation')
 if source.find('contentLayer')>source.find('subtitleTextLayer'):errors.append('unexpected z-order declarations')
 if len(re.findall(r'view\.add\(',source))!=4:errors.append('unexpected root view.add usage')
-if 'for(let i=0;i<8;i++)' not in source:errors.append('V122 requires 8 visual states per meaning scene')
+if 'MICRO_BEATS_PER_SCENE=16' not in source:errors.append('V122 requires 16 micro beats per meaning scene')\nif len(re.findall(r\"case'[^']+':\",source))!=45:errors.append('V122 requires 45 dedicated motif scene layouts')\nif 'microStageFlow' not in source or 'cameraFlow' not in source:errors.append('V122 requires micro choreography and continuous camera flow')
 if "hash(scene.motif" not in source:errors.append('V122 requires motif-seeded variation')
 report={'status':'BLOCKED' if errors else ('MEASURED_PENDING' if warn else 'READY_FOR_SMOKE_QA'),
- 'scene_count':len(ss),'chapter_count':len(chapters),'visual_beats':len(ss)*8,
+ 'scene_count':len(ss),'chapter_count':len(chapters),'visual_beats':len(ss)*16,'micro_beats_per_scene':16,
  'subtitle_cues':sum(len(s['cues']) for s in ss),'seconds':round(sum(s['duration'] for s in ss),2),
  'errors':errors,'timing_blockers':warn[:5]+(['...'] if len(warn)>5 else [])}
 (R/'qa').mkdir(parents=True,exist_ok=True)
