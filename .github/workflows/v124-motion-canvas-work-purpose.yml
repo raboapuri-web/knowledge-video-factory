@@ -17,7 +17,7 @@ permissions:
   contents: write
 concurrency:
   group: v124-work-purpose-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 env:
   PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v124/.puppeteer
 jobs:
@@ -123,7 +123,7 @@ jobs:
         if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
         working-directory: shared/v124
         run: |
-          node scripts/render.mjs '${{ matrix.chapter }}' --smoke
+          timeout 4m node scripts/render.mjs '${{ matrix.chapter }}' --smoke
           python3 scripts/smoke_qa.py 'output/v124-${{ matrix.chapter }}-smoke.mp4'
       - name: Render full measured Motion Canvas chapter
         if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
