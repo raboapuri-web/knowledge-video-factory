@@ -1,0 +1,1554 @@
+{
+  "version": 3,
+  "approach": "Physical actions, no generic six-phase path; unique per-shot prop/action pairing.",
+  "shots": [
+    {
+      "id": "P00",
+      "chapter": "prologue",
+      "set": "urban",
+      "actors": [
+        "tap",
+        "truck",
+        "traffic"
+      ],
+      "events": [
+        "0.flow",
+        "2.cycle",
+        "1.drive",
+        "2.flash"
+      ],
+      "lens": "tracking",
+      "direction": "蛇口から水が流れ、舗装道路を清掃車が走る朝の街"
+    },
+    {
+      "id": "P01",
+      "chapter": "prologue",
+      "set": "desk",
+      "actors": [
+        "receipt",
+        "pen",
+        "folder"
+      ],
+      "events": [
+        "0.unfold",
+        "1.circle",
+        "2.close",
+        "0.fold"
+      ],
+      "lens": "close",
+      "direction": "給与明細を開いた会社員の手元、控除欄を赤ペンで囲み、紙を机へ伏せる"
+    },
+    {
+      "id": "P02",
+      "chapter": "prologue",
+      "set": "lakeside",
+      "actors": [
+        "sign",
+        "tree",
+        "boat"
+      ],
+      "events": [
+        "1.sway",
+        "2.drift",
+        "0.turn",
+        "1.sway"
+      ],
+      "lens": "pan",
+      "direction": "ニューイングランドの深い森と湖、州標語が刻まれた標識を横から撮る"
+    },
+    {
+      "id": "P03",
+      "chapter": "prologue",
+      "set": "counter",
+      "actors": [
+        "citizen",
+        "clerk",
+        "key"
+      ],
+      "events": [
+        "0.queue",
+        "1.stamp",
+        "2.pass",
+        "0.exit"
+      ],
+      "lens": "split",
+      "direction": "役所窓口に並ぶ人と、自宅の鍵を握る移住希望者を対置"
+    },
+    {
+      "id": "P04",
+      "chapter": "prologue",
+      "set": "tavern",
+      "actors": [
+        "glass",
+        "receipt",
+        "clock"
+      ],
+      "events": [
+        "0.raise",
+        "1.fold",
+        "2.spin",
+        "0.lower"
+      ],
+      "lens": "montage",
+      "direction": "居酒屋のテーブルにグラスと請求書、翌朝通勤の電車へ場面転換"
+    },
+    {
+      "id": "P05",
+      "chapter": "prologue",
+      "set": "roadside",
+      "actors": [
+        "truck",
+        "crate",
+        "citizen"
+      ],
+      "events": [
+        "1.load",
+        "0.drive",
+        "2.walk",
+        "1.unload"
+      ],
+      "lens": "tracking",
+      "direction": "段ボールをトラックへ積み込み、グラフトンの森林道路へ曲がる"
+    },
+    {
+      "id": "P06",
+      "chapter": "prologue",
+      "set": "maproom",
+      "actors": [
+        "map",
+        "house",
+        "ballot"
+      ],
+      "events": [
+        "0.unfold",
+        "1.gather",
+        "2.drop",
+        "0.zoom"
+      ],
+      "lens": "overhead",
+      "direction": "州の地形をなぞり町へ寄る、住居に住人たちが移り住む"
+    },
+    {
+      "id": "P07",
+      "chapter": "prologue",
+      "set": "bureau",
+      "actors": [
+        "ledger",
+        "worker",
+        "firetruck"
+      ],
+      "events": [
+        "0.open",
+        "1.repair",
+        "2.ready",
+        "0.close"
+      ],
+      "lens": "cutaway",
+      "direction": "役場の帳簿をめくると、道路作業員・消防隊員・警官の営みが見えてくる"
+    },
+    {
+      "id": "P08",
+      "chapter": "prologue",
+      "set": "nighttown",
+      "actors": [
+        "house",
+        "lamp",
+        "tree"
+      ],
+      "events": [
+        "1.light",
+        "2.sway",
+        "0.dim",
+        "1.hold"
+      ],
+      "lens": "wide",
+      "direction": "町の夜景にタイトル。森の暗がりは見せるが動物を映さない"
+    },
+    {
+      "id": "T00",
+      "chapter": "cta",
+      "set": "library",
+      "actors": [
+        "book",
+        "pen",
+        "lamp"
+      ],
+      "events": [
+        "0.open",
+        "1.write",
+        "2.light",
+        "0.close"
+      ],
+      "lens": "close",
+      "direction": "机の開いた本、メモをめくる落ち着いた書斎"
+    },
+    {
+      "id": "T01",
+      "chapter": "cta",
+      "set": "desk",
+      "actors": [
+        "finger",
+        "button",
+        "book"
+      ],
+      "events": [
+        "0.hover",
+        "1.press",
+        "0.withdraw",
+        "2.turn"
+      ],
+      "lens": "overhead",
+      "direction": "登録ボタンの意匠を押さずに通り過ぎる視聴者の手"
+    },
+    {
+      "id": "A00",
+      "chapter": "chapter1",
+      "set": "homestead",
+      "actors": [
+        "bucket",
+        "house",
+        "citizen"
+      ],
+      "events": [
+        "0.pour",
+        "2.carry",
+        "1.shelter",
+        "0.lower"
+      ],
+      "lens": "wide",
+      "direction": "丸太小屋で雨水を集め、井戸から水を汲む家族"
+    },
+    {
+      "id": "A01",
+      "chapter": "chapter1",
+      "set": "roadside",
+      "actors": [
+        "truck",
+        "crate",
+        "map"
+      ],
+      "events": [
+        "0.drive",
+        "1.unload",
+        "2.open",
+        "0.park"
+      ],
+      "lens": "tracking",
+      "direction": "州をまたぐ引っ越しトラックを追い、荷物を降ろす"
+    },
+    {
+      "id": "A02",
+      "chapter": "chapter1",
+      "set": "maproom",
+      "actors": [
+        "map",
+        "house",
+        "ballot"
+      ],
+      "events": [
+        "0.trace",
+        "1.gather",
+        "2.drop",
+        "0.fold"
+      ],
+      "lens": "overhead",
+      "direction": "1200人の町に移住者が増える地図、投票所へ向かう"
+    },
+    {
+      "id": "A03",
+      "chapter": "chapter1",
+      "set": "living",
+      "actors": [
+        "citizen",
+        "window",
+        "truck"
+      ],
+      "events": [
+        "1.open",
+        "2.drive",
+        "0.turn",
+        "1.close"
+      ],
+      "lens": "interior",
+      "direction": "長年暮らす住民が自宅の窓から移住トラックを見る"
+    },
+    {
+      "id": "A04",
+      "chapter": "chapter1",
+      "set": "hall",
+      "actors": [
+        "crowd",
+        "coffin",
+        "door"
+      ],
+      "events": [
+        "2.open",
+        "0.gather",
+        "1.drive",
+        "0.protest"
+      ],
+      "lens": "wide",
+      "direction": "消防署の会場へ群衆が入り、霊柩車が建物前に停まる"
+    },
+    {
+      "id": "A05",
+      "chapter": "chapter1",
+      "set": "council",
+      "actors": [
+        "citizen",
+        "citizen",
+        "table"
+      ],
+      "events": [
+        "0.point",
+        "1.disagree",
+        "2.weigh",
+        "0.sit"
+      ],
+      "lens": "two-shot",
+      "direction": "旧住民と移住者が同じ机を挟んで互いの立場を主張"
+    },
+    {
+      "id": "B00",
+      "chapter": "chapter2",
+      "set": "bureau",
+      "actors": [
+        "ledger",
+        "pen",
+        "folder"
+      ],
+      "events": [
+        "0.open",
+        "1.mark",
+        "2.submit",
+        "0.close"
+      ],
+      "lens": "overhead",
+      "direction": "役場の手元で予算書をめくり削減案を確認"
+    },
+    {
+      "id": "B01",
+      "chapter": "chapter2",
+      "set": "ledger",
+      "actors": [
+        "ledger",
+        "coin",
+        "stamp"
+      ],
+      "events": [
+        "0.unfold",
+        "1.count",
+        "2.stamp",
+        "0.turn"
+      ],
+      "lens": "close",
+      "direction": "収支の数字と付箋を交互に差し替える、30%は提案と明記"
+    },
+    {
+      "id": "B02",
+      "chapter": "chapter2",
+      "set": "bureau",
+      "actors": [
+        "ledger",
+        "worker",
+        "firetruck"
+      ],
+      "events": [
+        "0.shave",
+        "1.repair",
+        "2.ready",
+        "0.weigh"
+      ],
+      "lens": "cutaway",
+      "direction": "削減された予算欄の裏に消えない現場の作業を示す"
+    },
+    {
+      "id": "B03",
+      "chapter": "chapter2",
+      "set": "roadside",
+      "actors": [
+        "road",
+        "cloud",
+        "truck"
+      ],
+      "events": [
+        "1.rain",
+        "0.crack",
+        "2.brake",
+        "0.repair"
+      ],
+      "lens": "low",
+      "direction": "四季で変わる同じ道路、ひび割れと水たまりが広がる"
+    },
+    {
+      "id": "B04",
+      "chapter": "chapter2",
+      "set": "asphalt",
+      "actors": [
+        "worker",
+        "shovel",
+        "truck"
+      ],
+      "events": [
+        "2.park",
+        "1.dig",
+        "0.repair",
+        "2.drive"
+      ],
+      "lens": "ground",
+      "direction": "作業員が舗装材を積み下ろし、補修工具を運ぶ"
+    },
+    {
+      "id": "B05",
+      "chapter": "chapter2",
+      "set": "station",
+      "actors": [
+        "firetruck",
+        "firefighter",
+        "garage"
+      ],
+      "events": [
+        "2.open",
+        "1.inspect",
+        "0.ready",
+        "2.close"
+      ],
+      "lens": "interior",
+      "direction": "待機する消防車の点検、訓練に出る隊員"
+    },
+    {
+      "id": "B06",
+      "chapter": "chapter2",
+      "set": "firemap",
+      "actors": [
+        "house",
+        "house",
+        "flame"
+      ],
+      "events": [
+        "2.ignite",
+        "0.heat",
+        "1.evade",
+        "2.diminish"
+      ],
+      "lens": "overhead",
+      "direction": "二軒の住宅間で延焼をシミュレーションする俯瞰"
+    },
+    {
+      "id": "B07",
+      "chapter": "chapter2",
+      "set": "desk",
+      "actors": [
+        "envelope",
+        "citizen",
+        "clock"
+      ],
+      "events": [
+        "0.place",
+        "1.ignore",
+        "2.spin",
+        "0.fold"
+      ],
+      "lens": "close",
+      "direction": "住民が消防寄付の封筒を机へ残して外へ出る"
+    },
+    {
+      "id": "B08",
+      "chapter": "chapter2",
+      "set": "fence",
+      "actors": [
+        "fence",
+        "flame",
+        "house"
+      ],
+      "events": [
+        "1.ignite",
+        "0.cross",
+        "2.heat",
+        "1.diminish"
+      ],
+      "lens": "side",
+      "direction": "境界フェンスを越えて枝へ火が広がる比喩アニメ"
+    },
+    {
+      "id": "B09",
+      "chapter": "chapter2",
+      "set": "station",
+      "actors": [
+        "firefighter",
+        "helmet",
+        "firetruck"
+      ],
+      "events": [
+        "1.lift",
+        "0.wear",
+        "2.inspect",
+        "0.salute"
+      ],
+      "lens": "close",
+      "direction": "ジョン・バビアーズを模した特定肖像ではなく消防ボランティアが装備点検"
+    },
+    {
+      "id": "B10",
+      "chapter": "chapter2",
+      "set": "bridge",
+      "actors": [
+        "citizen",
+        "citizen",
+        "coin"
+      ],
+      "events": [
+        "0.cross",
+        "2.drop",
+        "1.cross",
+        "0.return"
+      ],
+      "lens": "tracking",
+      "direction": "補修道路を通る人々、寄付した人と寄付しない人が同じ橋を渡る"
+    },
+    {
+      "id": "B11",
+      "chapter": "chapter2",
+      "set": "hall",
+      "actors": [
+        "lectern",
+        "crowd",
+        "police"
+      ],
+      "events": [
+        "1.gather",
+        "0.pound",
+        "2.approach",
+        "1.disperse"
+      ],
+      "lens": "wide",
+      "direction": "議長席、話す住民、警察官の退去案内を会場全景で描く"
+    },
+    {
+      "id": "B12",
+      "chapter": "chapter2",
+      "set": "living",
+      "actors": [
+        "window",
+        "citizen",
+        "citizen"
+      ],
+      "events": [
+        "0.split",
+        "1.withdraw",
+        "2.turn",
+        "0.close"
+      ],
+      "lens": "two-shot",
+      "direction": "既存住民と移住者の二陣営の生活が異なる窓に映る"
+    },
+    {
+      "id": "B13",
+      "chapter": "chapter2",
+      "set": "woods",
+      "actors": [
+        "tree",
+        "leaf",
+        "bear"
+      ],
+      "events": [
+        "1.sway",
+        "0.shake",
+        "2.approach",
+        "2.look"
+      ],
+      "lens": "silhouette",
+      "direction": "森の外縁、足音と揺れる葉。最後の台詞で黒いクマのシルエット"
+    },
+    {
+      "id": "C00",
+      "chapter": "chapter3",
+      "set": "woods",
+      "actors": [
+        "bear",
+        "tree",
+        "leaf"
+      ],
+      "events": [
+        "1.sway",
+        "0.sniff",
+        "2.drop",
+        "0.pace"
+      ],
+      "lens": "tracking",
+      "direction": "木々を抜けて食べ物を嗅ぎ分けるクマの足取り"
+    },
+    {
+      "id": "C01",
+      "chapter": "chapter3",
+      "set": "garden",
+      "actors": [
+        "bin",
+        "bear",
+        "moon"
+      ],
+      "events": [
+        "1.approach",
+        "0.tip",
+        "1.feed",
+        "1.return"
+      ],
+      "lens": "night",
+      "direction": "夜のゴミ容器を倒したクマが翌日また戻る"
+    },
+    {
+      "id": "C02",
+      "chapter": "chapter3",
+      "set": "porch",
+      "actors": [
+        "citizen",
+        "coop",
+        "bear"
+      ],
+      "events": [
+        "0.inspect",
+        "1.lock",
+        "2.peek",
+        "0.withdraw"
+      ],
+      "lens": "close",
+      "direction": "荒れた庭と不安な住民、家禽を屋内に戻す"
+    },
+    {
+      "id": "C03",
+      "chapter": "chapter3",
+      "set": "kitchen",
+      "actors": [
+        "donut",
+        "citizen",
+        "window"
+      ],
+      "events": [
+        "0.lift",
+        "1.place",
+        "2.open",
+        "0.pass"
+      ],
+      "lens": "interior",
+      "direction": "台所から餌を運ぶ住民と、遠目に見て戸惑う隣家"
+    },
+    {
+      "id": "C04",
+      "chapter": "chapter3",
+      "set": "porch",
+      "actors": [
+        "citizen",
+        "donut",
+        "door"
+      ],
+      "events": [
+        "2.open",
+        "0.place",
+        "1.drop",
+        "2.close"
+      ],
+      "lens": "side",
+      "direction": "木造デッキに座る人、庭へ餌を置き窓を閉める"
+    },
+    {
+      "id": "C05",
+      "chapter": "chapter3",
+      "set": "fence",
+      "actors": [
+        "bear",
+        "fence",
+        "house"
+      ],
+      "events": [
+        "0.approach",
+        "1.cross",
+        "0.pace",
+        "2.dim"
+      ],
+      "lens": "overhead",
+      "direction": "垣根と境界線をまたいでクマが移動する俯瞰"
+    },
+    {
+      "id": "C06",
+      "chapter": "chapter3",
+      "set": "maproom",
+      "actors": [
+        "map",
+        "ruler",
+        "bear"
+      ],
+      "events": [
+        "1.trace",
+        "0.mark",
+        "2.cross",
+        "1.stop"
+      ],
+      "lens": "overhead",
+      "direction": "地図に定規で線を引く手と、線を越える動物の動線"
+    },
+    {
+      "id": "C07",
+      "chapter": "chapter3",
+      "set": "porch",
+      "actors": [
+        "citizen",
+        "bear",
+        "cub"
+      ],
+      "events": [
+        "0.open",
+        "2.peek",
+        "1.turn",
+        "0.retreat"
+      ],
+      "lens": "dramatic",
+      "direction": "女性がデッキへ出て子グマと母グマに気づく。直接暴力表現を避ける"
+    },
+    {
+      "id": "C08",
+      "chapter": "chapter3",
+      "set": "woods",
+      "actors": [
+        "tree",
+        "leash",
+        "folder"
+      ],
+      "events": [
+        "0.sway",
+        "1.pull",
+        "2.compare",
+        "0.still"
+      ],
+      "lens": "split",
+      "direction": "森林、犬、子グマ、管理当局を別々の要因として静かに比較"
+    },
+    {
+      "id": "C09",
+      "chapter": "chapter3",
+      "set": "bureau",
+      "actors": [
+        "notice",
+        "bin",
+        "citizen"
+      ],
+      "events": [
+        "0.post",
+        "2.read",
+        "1.ignore",
+        "0.fold"
+      ],
+      "lens": "close",
+      "direction": "行政の告知を読む住民と、屋外に放置された生ゴミ"
+    },
+    {
+      "id": "C10",
+      "chapter": "chapter3",
+      "set": "fence",
+      "actors": [
+        "citizen",
+        "citizen",
+        "gate"
+      ],
+      "events": [
+        "0.point",
+        "1.disagree",
+        "2.close",
+        "0.withdraw"
+      ],
+      "lens": "two-shot",
+      "direction": "住民同士が門扉の前で話し合い、ルール案を検討"
+    },
+    {
+      "id": "C11",
+      "chapter": "chapter3",
+      "set": "hall",
+      "actors": [
+        "ledger",
+        "pen",
+        "crowd"
+      ],
+      "events": [
+        "1.write",
+        "2.vote",
+        "0.pass",
+        "2.settle"
+      ],
+      "lens": "wide",
+      "direction": "住民が集会所で条例・監視・違反対応を紙に記入"
+    },
+    {
+      "id": "C12",
+      "chapter": "chapter3",
+      "set": "council",
+      "actors": [
+        "table",
+        "crowd",
+        "pen"
+      ],
+      "events": [
+        "1.gather",
+        "2.write",
+        "0.weigh",
+        "1.settle"
+      ],
+      "lens": "overhead",
+      "direction": "半円形のテーブルに近隣住民が座り合意を重ねる"
+    },
+    {
+      "id": "C13",
+      "chapter": "chapter3",
+      "set": "bureau",
+      "actors": [
+        "folder",
+        "ledger",
+        "clerk"
+      ],
+      "events": [
+        "2.inspect",
+        "1.count",
+        "0.reject",
+        "2.wait"
+      ],
+      "lens": "interior",
+      "direction": "野生動物管理事務所の限られた予算・対応の難しさ"
+    },
+    {
+      "id": "C14",
+      "chapter": "chapter3",
+      "set": "living",
+      "actors": [
+        "window",
+        "citizen",
+        "tree"
+      ],
+      "events": [
+        "2.sway",
+        "0.open",
+        "1.look",
+        "0.close"
+      ],
+      "lens": "still",
+      "direction": "庭を眺める住民、夕暮れの窓越しに問いが残る"
+    },
+    {
+      "id": "D00",
+      "chapter": "chapter4",
+      "set": "library",
+      "actors": [
+        "book",
+        "pen",
+        "lamp"
+      ],
+      "events": [
+        "0.open",
+        "1.note",
+        "2.light",
+        "0.turn"
+      ],
+      "lens": "close",
+      "direction": "老紳士の書斎で本を開き、理論を実験台へ移す"
+    },
+    {
+      "id": "D01",
+      "chapter": "chapter4",
+      "set": "bridge",
+      "actors": [
+        "citizen",
+        "bridgeplank",
+        "train"
+      ],
+      "events": [
+        "2.drive",
+        "0.cross",
+        "1.crack",
+        "0.stop"
+      ],
+      "lens": "low",
+      "direction": "橋を渡る通勤・通学の人と下部の老朽化"
+    },
+    {
+      "id": "D02",
+      "chapter": "chapter4",
+      "set": "hall",
+      "actors": [
+        "donation",
+        "crowd",
+        "bridgeplank"
+      ],
+      "events": [
+        "1.gather",
+        "0.wait",
+        "2.crack",
+        "1.disperse"
+      ],
+      "lens": "overhead",
+      "direction": "机の寄付箱、手を挙げる住民と進まない工事"
+    },
+    {
+      "id": "D03",
+      "chapter": "chapter4",
+      "set": "desk",
+      "actors": [
+        "wallet",
+        "coin",
+        "donation"
+      ],
+      "events": [
+        "0.open",
+        "1.lift",
+        "2.wait",
+        "1.return"
+      ],
+      "lens": "close",
+      "direction": "住民の財布から出る金と、寄付箱へ入らない硬貨"
+    },
+    {
+      "id": "D04",
+      "chapter": "chapter4",
+      "set": "bridge",
+      "actors": [
+        "barrier",
+        "citizen",
+        "bridgeplank"
+      ],
+      "events": [
+        "2.break",
+        "0.block",
+        "1.detour",
+        "0.still"
+      ],
+      "lens": "tracking",
+      "direction": "錆びた橋、通行止め、遠回りする通勤者"
+    },
+    {
+      "id": "D05",
+      "chapter": "chapter4",
+      "set": "bridge",
+      "actors": [
+        "coin",
+        "bridgeplank",
+        "citizen"
+      ],
+      "events": [
+        "0.drop",
+        "1.repair",
+        "2.cross",
+        "0.rest"
+      ],
+      "lens": "overhead",
+      "direction": "橋の費用と利益を左右に置き人が通る連続図"
+    },
+    {
+      "id": "D06",
+      "chapter": "chapter4",
+      "set": "kitchen",
+      "actors": [
+        "citizen",
+        "window",
+        "bridgeplank"
+      ],
+      "events": [
+        "0.sit",
+        "1.open",
+        "2.break",
+        "0.look"
+      ],
+      "lens": "split",
+      "direction": "寄付しない住民の台所と閉鎖された橋の全景"
+    },
+    {
+      "id": "D07",
+      "chapter": "chapter4",
+      "set": "station",
+      "actors": [
+        "coin",
+        "donation",
+        "firetruck"
+      ],
+      "events": [
+        "0.count",
+        "1.fill",
+        "2.ready",
+        "0.return"
+      ],
+      "lens": "wide",
+      "direction": "一人ずつの負担が防災倉庫の修理費に集まる"
+    },
+    {
+      "id": "D08",
+      "chapter": "chapter4",
+      "set": "station",
+      "actors": [
+        "firefighter",
+        "helmet",
+        "firetruck"
+      ],
+      "events": [
+        "1.lift",
+        "0.inspect",
+        "2.ready",
+        "1.lower"
+      ],
+      "lens": "close",
+      "direction": "火災がない日も車両と装備の整備が続く"
+    },
+    {
+      "id": "D09",
+      "chapter": "chapter4",
+      "set": "garden",
+      "actors": [
+        "donut",
+        "bear",
+        "citizen"
+      ],
+      "events": [
+        "0.place",
+        "1.sniff",
+        "2.watch",
+        "1.feed"
+      ],
+      "lens": "wide",
+      "direction": "庭でクマを眺める住民、食べ物を置く"
+    },
+    {
+      "id": "D10",
+      "chapter": "chapter4",
+      "set": "fence",
+      "actors": [
+        "citizen",
+        "bin",
+        "fence"
+      ],
+      "events": [
+        "0.inspect",
+        "1.lock",
+        "2.raise",
+        "0.pay"
+      ],
+      "lens": "ground",
+      "direction": "餌付け場の隣家が柵・容器を購入し請求書を見る"
+    },
+    {
+      "id": "D11",
+      "chapter": "chapter4",
+      "set": "urban",
+      "actors": [
+        "window",
+        "smoke",
+        "house"
+      ],
+      "events": [
+        "0.open",
+        "1.rise",
+        "2.dim",
+        "0.close"
+      ],
+      "lens": "side",
+      "direction": "隣家の窓と音、工場排気と周辺住宅を対比"
+    },
+    {
+      "id": "D12",
+      "chapter": "chapter4",
+      "set": "living",
+      "actors": [
+        "citizen",
+        "citizen",
+        "ledger"
+      ],
+      "events": [
+        "0.point",
+        "1.negotiate",
+        "2.sign",
+        "0.handshake"
+      ],
+      "lens": "two-shot",
+      "direction": "二人の住民が防音対策と費用を協議する"
+    },
+    {
+      "id": "D13",
+      "chapter": "chapter4",
+      "set": "hall",
+      "actors": [
+        "crowd",
+        "clock",
+        "lectern"
+      ],
+      "events": [
+        "0.gather",
+        "1.spin",
+        "2.pound",
+        "0.scatter"
+      ],
+      "lens": "wide",
+      "direction": "住民集会が巨大になり意見集約に時間がかかる"
+    },
+    {
+      "id": "D14",
+      "chapter": "chapter4",
+      "set": "bureau",
+      "actors": [
+        "ledger",
+        "scale",
+        "stamp"
+      ],
+      "events": [
+        "0.open",
+        "1.weigh",
+        "2.stamp",
+        "0.close"
+      ],
+      "lens": "overhead",
+      "direction": "行政窓口に戻る書類と少し傾く天秤"
+    },
+    {
+      "id": "F00",
+      "chapter": "chapter5",
+      "set": "council",
+      "actors": [
+        "lectern",
+        "clerk",
+        "crowd"
+      ],
+      "events": [
+        "0.pound",
+        "1.write",
+        "2.vote",
+        "0.sit"
+      ],
+      "lens": "wide",
+      "direction": "行政オフィスと議会で意思決定に参加する人々"
+    },
+    {
+      "id": "F01",
+      "chapter": "chapter5",
+      "set": "counter",
+      "actors": [
+        "folder",
+        "ledger",
+        "clerk"
+      ],
+      "events": [
+        "0.submit",
+        "2.reject",
+        "1.tangle",
+        "0.withdraw"
+      ],
+      "lens": "split",
+      "direction": "役人の書類と民間の契約が同時に行き詰まる"
+    },
+    {
+      "id": "F02",
+      "chapter": "chapter5",
+      "set": "library",
+      "actors": [
+        "book",
+        "photo",
+        "pen"
+      ],
+      "events": [
+        "0.open",
+        "1.unfold",
+        "2.note",
+        "0.turn"
+      ],
+      "lens": "overhead",
+      "direction": "研究者が水路・森・漁場の現地写真を整理"
+    },
+    {
+      "id": "F03",
+      "chapter": "chapter5",
+      "set": "lakeside",
+      "actors": [
+        "boat",
+        "fish",
+        "tree"
+      ],
+      "events": [
+        "0.drift",
+        "1.catch",
+        "2.sway",
+        "0.return"
+      ],
+      "lens": "wide",
+      "direction": "小舟で魚を捕る漁師が、次の日の漁場を見渡す"
+    },
+    {
+      "id": "F04",
+      "chapter": "chapter5",
+      "set": "fishing",
+      "actors": [
+        "boat",
+        "ledger",
+        "fish"
+      ],
+      "events": [
+        "0.park",
+        "1.write",
+        "2.release",
+        "1.stamp"
+      ],
+      "lens": "overhead",
+      "direction": "漁師が漁獲ルールを話し合い、記録係が帳簿をつける"
+    },
+    {
+      "id": "F05",
+      "chapter": "chapter5",
+      "set": "hall",
+      "actors": [
+        "crowd",
+        "ledger",
+        "pen"
+      ],
+      "events": [
+        "0.gather",
+        "2.write",
+        "1.pass",
+        "0.vote"
+      ],
+      "lens": "wide",
+      "direction": "地域の集会所で共同資源管理の案をまとめる"
+    },
+    {
+      "id": "F06",
+      "chapter": "chapter5",
+      "set": "roadside",
+      "actors": [
+        "worker",
+        "shovel",
+        "firetruck"
+      ],
+      "events": [
+        "0.dig",
+        "1.repair",
+        "2.ready",
+        "0.rest"
+      ],
+      "lens": "ground",
+      "direction": "住民の道路補修と消防活動への参加"
+    },
+    {
+      "id": "F07",
+      "chapter": "chapter5",
+      "set": "homestead",
+      "actors": [
+        "citizen",
+        "citizen",
+        "toolbox"
+      ],
+      "events": [
+        "2.lift",
+        "0.carry",
+        "1.help",
+        "2.settle"
+      ],
+      "lens": "two-shot",
+      "direction": "移住者が隣人と共同で道具を運ぶ"
+    },
+    {
+      "id": "F08",
+      "chapter": "chapter5",
+      "set": "desk",
+      "actors": [
+        "scale",
+        "clock",
+        "coin"
+      ],
+      "events": [
+        "0.weigh",
+        "1.spin",
+        "2.count",
+        "0.balance"
+      ],
+      "lens": "close",
+      "direction": "作業・時間・費用の負担を天秤に載せる"
+    },
+    {
+      "id": "F09",
+      "chapter": "chapter5",
+      "set": "library",
+      "actors": [
+        "book",
+        "pen",
+        "scale"
+      ],
+      "events": [
+        "0.open",
+        "1.crossout",
+        "2.balance",
+        "0.close"
+      ],
+      "lens": "still",
+      "direction": "公共と民間の二者択一を見直す手元のスケッチ"
+    },
+    {
+      "id": "E00",
+      "chapter": "epilogue",
+      "set": "urban",
+      "actors": [
+        "tap",
+        "signal",
+        "trashtruck"
+      ],
+      "events": [
+        "0.flow",
+        "1.cycle",
+        "2.drive",
+        "0.stop"
+      ],
+      "lens": "montage",
+      "direction": "蛇口・信号・収集車・登校する子どもの連続する生活"
+    },
+    {
+      "id": "E01",
+      "chapter": "epilogue",
+      "set": "roadside",
+      "actors": [
+        "citizen",
+        "road",
+        "lamp"
+      ],
+      "events": [
+        "0.walk",
+        "1.hold",
+        "2.light",
+        "0.exit"
+      ],
+      "lens": "tracking",
+      "direction": "何事もなく続く通勤路を長い横移動で描く"
+    },
+    {
+      "id": "E02",
+      "chapter": "epilogue",
+      "set": "asphalt",
+      "actors": [
+        "road",
+        "worker",
+        "shovel"
+      ],
+      "events": [
+        "0.crack",
+        "1.inspect",
+        "2.repair",
+        "0.restore"
+      ],
+      "lens": "ground",
+      "direction": "壊れた道路から修復済みの道路へ切り替わる"
+    },
+    {
+      "id": "E03",
+      "chapter": "epilogue",
+      "set": "desk",
+      "actors": [
+        "receipt",
+        "shadow",
+        "pen"
+      ],
+      "events": [
+        "0.unfold",
+        "1.expand",
+        "2.mark",
+        "0.fold"
+      ],
+      "lens": "close",
+      "direction": "控除額だけが印刷された明細に映らない事故の影"
+    },
+    {
+      "id": "E04",
+      "chapter": "epilogue",
+      "set": "firemap",
+      "actors": [
+        "house",
+        "flame",
+        "firetruck"
+      ],
+      "events": [
+        "1.ignite",
+        "2.approach",
+        "1.diminish",
+        "0.shelter"
+      ],
+      "lens": "overhead",
+      "direction": "焼けなかった家、起きなかった事故、静かな夜"
+    },
+    {
+      "id": "E05",
+      "chapter": "epilogue",
+      "set": "nightstreet",
+      "actors": [
+        "citizen",
+        "lamp",
+        "clock"
+      ],
+      "events": [
+        "0.walk",
+        "1.light",
+        "2.spin",
+        "0.exit"
+      ],
+      "lens": "night",
+      "direction": "仕事を終えた人々の姿が無人の道路へ溶ける"
+    },
+    {
+      "id": "E06",
+      "chapter": "epilogue",
+      "set": "bureau",
+      "actors": [
+        "ledger",
+        "computer",
+        "pen"
+      ],
+      "events": [
+        "1.open",
+        "0.unfold",
+        "2.compare",
+        "1.scroll"
+      ],
+      "lens": "interior",
+      "direction": "自治体の公開予算を調べる市民"
+    },
+    {
+      "id": "E07",
+      "chapter": "epilogue",
+      "set": "maproom",
+      "actors": [
+        "map",
+        "crowd",
+        "tree"
+      ],
+      "events": [
+        "0.unfold",
+        "1.gather",
+        "2.sway",
+        "0.zoom"
+      ],
+      "lens": "overhead",
+      "direction": "町の地図と住民集会、森の境界を静かに回想"
+    },
+    {
+      "id": "E08",
+      "chapter": "epilogue",
+      "set": "fence",
+      "actors": [
+        "citizen",
+        "citizen",
+        "gate"
+      ],
+      "events": [
+        "0.point",
+        "1.turn",
+        "2.close",
+        "0.negotiate"
+      ],
+      "lens": "two-shot",
+      "direction": "敷地境界で向き合う二人の住民"
+    },
+    {
+      "id": "E09",
+      "chapter": "epilogue",
+      "set": "desk",
+      "actors": [
+        "scale",
+        "key",
+        "ledger"
+      ],
+      "events": [
+        "0.weigh",
+        "1.lift",
+        "2.compare",
+        "0.balance"
+      ],
+      "lens": "close",
+      "direction": "制度と自由を同じ秤に載せず、別々に考える"
+    },
+    {
+      "id": "E10",
+      "chapter": "epilogue",
+      "set": "desk",
+      "actors": [
+        "receipt",
+        "finger",
+        "clock"
+      ],
+      "events": [
+        "0.open",
+        "1.trace",
+        "2.spin",
+        "0.close"
+      ],
+      "lens": "overhead",
+      "direction": "再び明細を開く視聴者の手元、思案する影"
+    },
+    {
+      "id": "E11",
+      "chapter": "epilogue",
+      "set": "roadside",
+      "actors": [
+        "worker",
+        "shovel",
+        "crowd"
+      ],
+      "events": [
+        "0.dig",
+        "1.repair",
+        "2.help",
+        "0.rest"
+      ],
+      "lens": "ground",
+      "direction": "住民が道路を直し、設備の費用を話し合う"
+    },
+    {
+      "id": "E12",
+      "chapter": "epilogue",
+      "set": "woods",
+      "actors": [
+        "tree",
+        "bear",
+        "window"
+      ],
+      "events": [
+        "0.sway",
+        "1.cross",
+        "2.close",
+        "1.exit"
+      ],
+      "lens": "silhouette",
+      "direction": "庭の向こうにクマの影が一瞬横切る"
+    },
+    {
+      "id": "E13",
+      "chapter": "epilogue",
+      "set": "bureau",
+      "actors": [
+        "citizen",
+        "ledger",
+        "computer"
+      ],
+      "events": [
+        "0.submit",
+        "1.open",
+        "2.compare",
+        "0.question"
+      ],
+      "lens": "interior",
+      "direction": "納税の窓口から公開予算の閲覧画面へ"
+    },
+    {
+      "id": "E14",
+      "chapter": "epilogue",
+      "set": "nighttown",
+      "actors": [
+        "lamp",
+        "book",
+        "house"
+      ],
+      "events": [
+        "0.dim",
+        "1.close",
+        "2.light",
+        "0.fade"
+      ],
+      "lens": "wide",
+      "direction": "明かりの残る街を遠ざかり、暗い書斎の本が閉じる"
+    }
+  ]
+}
