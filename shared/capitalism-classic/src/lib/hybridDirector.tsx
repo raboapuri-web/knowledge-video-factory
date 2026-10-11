@@ -249,6 +249,9 @@ export function* playScene(view:View2D,s:Shot):ThreadGenerator {
  }
  if(s.durationSource!=='VOICEVOX_MEASURED')throw new Error('Measured voice timings required '+s.id);
  const {main,subtitle,accent}=init(view,s);
+ // Semantic diagrams use the content field, not a tiny centered presentation slide.
+ // All authored visual bounding boxes remain inside the 1920×1080 subtitle-safe area.
+ main.scale(1.15);
  const pieces=build(s,main,accent);
  if(pieces.length<2)throw new Error('No multi-state visual story for '+s.id);
  let completed=0;
