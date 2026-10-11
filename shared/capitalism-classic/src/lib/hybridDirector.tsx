@@ -89,7 +89,7 @@ function init(view:View2D,s:Shot){
  box(header,0,-496,1920,92,C.bg2,0);
  box(header,-825,-495,7,47,accent,3);
  txt(header,'考える夜',-682,-494,36,C.paper);
- txt(header,s.chapter.toUpperCase()+'  •  '+s.mode.toUpperCase(),632,-494,19,C.muted);
+ txt(header,s.chapter==='cta'?'考える夜 / ご案内':s.chapter==='prologue'?'考える夜 / 序章':s.chapter==='epilogue'?'考える夜 / 結論':('考える夜 / 第'+s.chapter.replace('chapter','')+'章'),632,-494,22,C.muted);
  if(!['quote','claim','manifesto'].includes(s.mode))txt(header,s.headline,0,-353,57,C.paper,1670);
  // Subtitle-safe region begins at y=376; central diagrams remain above y=282.
  box(footer,0,460,1920,163,'#02060c',0);
@@ -209,9 +209,10 @@ function build(s:Shot,parent:Node,accent:string):Piece[]{
    const panel=add(group,new Node({}));
    segment(panel,[[-590,162],[-590,-163]],C.muted2,4);
    segment(panel,[[-590,162],[625,162]],C.muted2,4);
-   segment(panel,[[-542,130],[-400,-18],[-250,-112],[-65,-165],[140,-110],[335,-5],[560,122]],C.teal,13);
+   const curvedPath=add(group,new Node({}));
+   segment(curvedPath,[[-542,130],[-400,-18],[-250,-112],[-65,-165],[140,-110],[335,-5],[560,122]],C.teal,13);
    txt(panel,'革新',-650,-147,28,C.muted);txt(panel,'競争の強さ',480,219,29,C.muted);
-   show(panel);
+   show(panel);show(curvedPath);
   }else{
    show(chip(group,0,-55,'所得と幸福は単純な比例関係ではない',accent,1330,165));
    const n=L.length;
@@ -243,6 +244,28 @@ function build(s:Shot,parent:Node,accent:string):Piece[]{
  }
  return P;
 }
+/** Mode-specific transitions: not the same pop-in for every element. */
+function* enterPiece(s:Shot,p:Piece,d:number,index:number):ThreadGenerator{
+ const n=p.node,mode=s.mode;
+ if(['process','mechanism','horizon','market'].includes(mode)){
+   const x=n.x();n.x(x+(index%2===0?-52:52));
+   yield* all(n.x(x,d,easeOutCubic),n.opacity(1,d),n.scale(1,d,easeOutCubic));
+ }else if(['quote','claim','manifesto','recap','book'].includes(mode)){
+   const y=n.y();n.y(y+36);
+   yield* all(n.y(y,d,easeOutCubic),n.opacity(1,d),n.scale(1,d,easeOutCubic));
+ }else if(['network','circulation','research','ecosystem','rules'].includes(mode)){
+   const angle=n.rotation();n.rotation(angle+(index%2===0?9:-9));
+   yield* all(n.rotation(angle,d,easeInOutCubic),n.opacity(1,d),n.scale(1,d,easeOutCubic));
+ }else if(['trend','barpairs','bread','metric'].includes(mode)){
+   const y=n.y();n.y(y+24);
+   yield* all(n.opacity(1,d),n.y(y,d,easeOutCubic),n.scale(1,d,easeInOutCubic));
+ }else if(['choices','contrast','question','dilemma','analogy'].includes(mode)){
+   const x=n.x();n.x(x+(index%2===0?-35:35));
+   yield* all(n.x(x,d,easeInOutCubic),n.opacity(1,d),n.scale(1,d,easeOutCubic));
+ }else{
+   yield* all(n.opacity(1,d,easeOutCubic),n.scale(1,d,easeInOutCubic));
+ }
+}
 export function* playScene(view:View2D,s:Shot):ThreadGenerator {
  if(s.mode==='scene'){
   yield* playDiegetic(view,s as any);return;
@@ -265,7 +288,7 @@ export function* playScene(view:View2D,s:Shot):ThreadGenerator {
   let used=0;
   if(entering.length){
    used=Math.min(.48,d*.30);
-   yield* all(...entering.map(p=>all(p.node.opacity(1,used,easeOutCubic),p.node.scale(1,used,easeInOutCubic))));
+   yield* all(...entering.map((p,k)=>enterPiece(s,p,used,completed+k)));
    completed=upto;
   }
   yield* waitFor(Math.max(.01,d-used));
