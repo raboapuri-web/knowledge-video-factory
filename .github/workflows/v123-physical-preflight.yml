@@ -1,0 +1,39 @@
+name: V123 Physical Motion Preflight
+on:
+  push:
+    branches: [v123-physical-scene-redesign-20261011]
+    paths:
+      - 'shared/v123/**'
+      - '.github/workflows/v123-physical-preflight.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+concurrency:
+  group: v123-physical-preflight
+  cancel-in-progress: true
+jobs:
+  quality:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - name: Compile approved full script
+        working-directory: shared/v123
+        run: |
+          python3 scripts/revised_data.py
+          python3 scripts/revised_qa.py
+          python3 scripts/physical_qa.py
+      - name: npm install only once
+        working-directory: shared/v123
+        run: npm install --no-audit --no-fund
+      - name: Motion Canvas typecheck and Vite bundle
+        working-directory: shared/v123
+        run: npm run build
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v123-physical-director-qa
+          path: |
+            shared/v123/qa/physical_qa.json
+            shared/v123/qa/revised_qa.json
