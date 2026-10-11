@@ -31,7 +31,7 @@ jobs:
       - name: Compile exact revised manuscript and run static QA
         working-directory: shared/capitalism-slides
         run: |
-                    python3 scripts/build_data.py
+          python3 scripts/build_data.py
           python3 scripts/static_qa.py
       - name: Single dependency and Chromium install
         working-directory: shared/capitalism-slides
@@ -73,7 +73,7 @@ jobs:
           VOICEVOX_SPEED: '1.15'
           VOICE_PARALLEL: '4'
         run: |
-                    python3 scripts/build_data.py
+          python3 scripts/build_data.py
           python3 scripts/synth_chapter.py '${{ matrix.chapter }}'
       - name: Package measured voice WAV + cues
         if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
