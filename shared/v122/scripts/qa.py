@@ -35,7 +35,7 @@ if 'const contentLayer' not in source or 'const subtitleTextLayer' not in source
 if source.find('contentLayer')>source.find('subtitleTextLayer'):errors.append('unexpected z-order declarations')
 if len(re.findall(r'view\.add\(',source))!=4:errors.append('unexpected root view.add usage')
 if 'MICRO_BEATS_PER_SCENE=16' not in source:errors.append('V122 requires 16 micro beats per meaning scene')
-if len(re.findall(r\"case'[^']+':\",source))!=45:errors.append('V122 requires 45 dedicated motif scene layouts')
+if len(re.findall(r"case'[^']+':",source))!=45:errors.append('V122 requires 45 dedicated motif scene layouts')
 if 'microStageFlow' not in source or 'cameraFlow' not in source:errors.append('V122 requires micro choreography and continuous camera flow')
 if "hash(scene.motif" not in source:errors.append('V122 requires motif-seeded variation')
 report={'status':'BLOCKED' if errors else ('MEASURED_PENDING' if warn else 'READY_FOR_SMOKE_QA'),
