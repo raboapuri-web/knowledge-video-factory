@@ -1,0 +1,632 @@
+{
+  "idle_room": {
+    "kind": "apartment-afternoon",
+    "motion": "still-to-aware",
+    "labels": [
+      "14:00",
+      "閉じたPC",
+      "冷めたコーヒー",
+      "ソファ",
+      "成果ゼロ？",
+      "空白",
+      "不安",
+      "停止を見る"
+    ]
+  },
+  "social_feed": {
+    "kind": "phone-feed",
+    "motion": "scroll-pressure",
+    "labels": [
+      "転職報告",
+      "海外出張",
+      "最高売上",
+      "自分の部屋",
+      "空白期間",
+      "比較",
+      "活動だけ可視化",
+      "停止が異常化"
+    ]
+  },
+  "hibernator_den": {
+    "kind": "winter-den",
+    "motion": "descent-metabolism",
+    "labels": [
+      "雪の森",
+      "地中へ",
+      "冬眠個体",
+      "心拍低下",
+      "体温低下",
+      "酸素消費低下",
+      "低出力",
+      "未来へ保存"
+    ]
+  },
+  "human_adds_tasks": {
+    "kind": "task-stack",
+    "motion": "overload",
+    "labels": [
+      "失業",
+      "資格",
+      "副業",
+      "投資",
+      "語学",
+      "運動",
+      "活動を追加",
+      "出力を下げる選択"
+    ]
+  },
+  "central_question": {
+    "kind": "thesis-stage",
+    "motion": "compare-strategies",
+    "labels": [
+      "人間≠冬眠動物",
+      "比喩",
+      "活動停止",
+      "資源保存",
+      "未来",
+      "空白",
+      "適応？",
+      "中心命題"
+    ]
+  },
+  "autumn_fattening": {
+    "kind": "autumn-forest",
+    "motion": "prepare-den",
+    "labels": [
+      "秋",
+      "木の実",
+      "脂肪蓄積",
+      "日照低下",
+      "巣穴準備",
+      "活動変化",
+      "冬眠前準備",
+      "停止を設計"
+    ]
+  },
+  "torpor_cycle": {
+    "kind": "physiology-lab",
+    "motion": "torpor-arousal",
+    "labels": [
+      "通常状態",
+      "トーパー",
+      "体温低下",
+      "代謝90%超低下例",
+      "短い覚醒",
+      "再びトーパー",
+      "周期",
+      "低電力モード"
+    ]
+  },
+  "energy_budget": {
+    "kind": "energy-ledger",
+    "motion": "income-expense",
+    "labels": [
+      "寒さ",
+      "支出増",
+      "食物減",
+      "収入減",
+      "赤字",
+      "代謝抑制",
+      "支出を下げる",
+      "収支改善"
+    ]
+  },
+  "two_winter_paths": {
+    "kind": "split-winter",
+    "motion": "energy-race",
+    "labels": [
+      "同じ冬",
+      "活動継続",
+      "残量減少",
+      "巣穴へ",
+      "出力低下",
+      "残量維持",
+      "春まで",
+      "二つの戦略"
+    ]
+  },
+  "spring_result": {
+    "kind": "spring-emergence",
+    "motion": "zero-output-to-survival",
+    "labels": [
+      "冬の成果0",
+      "餌集めなし",
+      "繁殖なし",
+      "時間経過",
+      "雪解け",
+      "覚醒",
+      "春に生存",
+      "長期成果"
+    ]
+  },
+  "diapause_insect": {
+    "kind": "insect-season",
+    "motion": "anticipatory-stop",
+    "labels": [
+      "夏の昆虫",
+      "日長短縮",
+      "季節シグナル",
+      "発育停止",
+      "脂質蓄積",
+      "隠れ場所",
+      "冬前に休眠",
+      "予測的適応"
+    ]
+  },
+  "seed_waiting": {
+    "kind": "seed-soil",
+    "motion": "hold-germination",
+    "labels": [
+      "種子落下",
+      "水分",
+      "温度",
+      "光",
+      "条件判定",
+      "発芽保留",
+      "土中維持",
+      "未来へ保存"
+    ]
+  },
+  "desert_bethedge": {
+    "kind": "desert-rain",
+    "motion": "partial-germination",
+    "labels": [
+      "砂漠",
+      "雨",
+      "10個の種",
+      "3個発芽",
+      "干ばつ",
+      "芽が枯れる",
+      "7個残る",
+      "翌年へ"
+    ]
+  },
+  "microbial_seedbank": {
+    "kind": "micro-world",
+    "motion": "dormant-reservoir",
+    "labels": [
+      "微生物群",
+      "環境悪化",
+      "活動群減少",
+      "低代謝群",
+      "seed bank",
+      "環境改善",
+      "再活性化",
+      "集団持続"
+    ]
+  },
+  "dormancy_reframe": {
+    "kind": "biology-gallery",
+    "motion": "four-taxa",
+    "labels": [
+      "哺乳類",
+      "昆虫",
+      "植物",
+      "微生物",
+      "停止",
+      "保存",
+      "再活性化",
+      "休眠の本質"
+    ]
+  },
+  "seasonal_village": {
+    "kind": "preindustrial-village",
+    "motion": "four-season-labor",
+    "labels": [
+      "春の耕作",
+      "夏の管理",
+      "秋の収穫",
+      "冬の修理",
+      "仕事は続く",
+      "強度変化",
+      "季節リズム",
+      "活動の波"
+    ]
+  },
+  "factory_flattening": {
+    "kind": "industrial-factory",
+    "motion": "flatten-season",
+    "labels": [
+      "蒸気機関",
+      "人工照明",
+      "空調",
+      "保存技術",
+      "物流",
+      "一年中稼働",
+      "季節差縮小",
+      "一定出力"
+    ]
+  },
+  "office_four_seasons": {
+    "kind": "office-window",
+    "motion": "season-swap",
+    "labels": [
+      "1月 雪",
+      "4月 桜",
+      "8月 日差し",
+      "11月 落葉",
+      "同じ机",
+      "同じ時刻",
+      "同じ出力",
+      "季節だけ変わる"
+    ]
+  },
+  "growth_dashboard": {
+    "kind": "growth-dashboard",
+    "motion": "up-only",
+    "labels": [
+      "給与",
+      "技能",
+      "人脈",
+      "資産",
+      "前年比",
+      "右肩上がり",
+      "停滞判定",
+      "人生のKPI"
+    ]
+  },
+  "season_logic": {
+    "kind": "season-wheel",
+    "motion": "cycle-vs-line",
+    "labels": [
+      "春 成長",
+      "夏 活動",
+      "秋 蓄積",
+      "冬 低出力",
+      "循環",
+      "直線成長",
+      "生存",
+      "季節に合わせる"
+    ]
+  },
+  "afterwork_body": {
+    "kind": "home-head-office",
+    "motion": "mental-office",
+    "labels": [
+      "23:00帰宅",
+      "ソファ",
+      "通知",
+      "メール",
+      "頭内会議",
+      "身体は家",
+      "心理は職場",
+      "離脱できない"
+    ]
+  },
+  "detachment_evidence": {
+    "kind": "research-board",
+    "motion": "meta-analysis",
+    "labels": [
+      "86論文",
+      "91サンプル",
+      "38,124人",
+      "心理的離脱",
+      "疲労減",
+      "睡眠",
+      "ウェルビーイング",
+      "平均的関連"
+    ]
+  },
+  "vacation_evidence": {
+    "kind": "vacation-research",
+    "motion": "before-during-after",
+    "labels": [
+      "32研究",
+      "休暇前",
+      "休暇中",
+      "well-being上昇",
+      "心理的離脱",
+      "身体活動",
+      "休暇後",
+      "効果は即消失せず"
+    ]
+  },
+  "add_more_when_tired": {
+    "kind": "overload-calendar",
+    "motion": "add-tasks",
+    "labels": [
+      "疲労",
+      "副業",
+      "資格勉強",
+      "早朝運動",
+      "予定が埋まる",
+      "睡眠圧迫",
+      "負荷増",
+      "季節判定が必要"
+    ]
+  },
+  "human_low_power": {
+    "kind": "human-low-power",
+    "motion": "reduce-output",
+    "labels": [
+      "競争から離れる",
+      "通知を切る",
+      "睡眠",
+      "生活リズム",
+      "回復",
+      "最低限維持",
+      "出力低下",
+      "人間版の比喩"
+    ]
+  },
+  "stuck_writer": {
+    "kind": "writer-desk",
+    "motion": "stuck-to-insight",
+    "labels": [
+      "一行書く",
+      "削除",
+      "再入力",
+      "深夜1時",
+      "PCを閉じる",
+      "翌朝",
+      "シャワー",
+      "ひらめき"
+    ]
+  },
+  "incubation_effect": {
+    "kind": "study-meta",
+    "motion": "study-cards",
+    "labels": [
+      "2009",
+      "メタ分析",
+      "問題を脇へ",
+      "インキュベーション",
+      "平均効果",
+      "発散思考",
+      "低負荷活動",
+      "条件依存"
+    ]
+  },
+  "mental_detour": {
+    "kind": "cognitive-road",
+    "motion": "traffic-detour",
+    "labels": [
+      "一本の道",
+      "集中",
+      "渋滞",
+      "問題から離れる",
+      "迂回路",
+      "別の連想",
+      "翌日",
+      "別方向から到達"
+    ]
+  },
+  "creative_fallow": {
+    "kind": "creative-storage",
+    "motion": "materials-accumulate",
+    "labels": [
+      "作品なし",
+      "読書",
+      "映画",
+      "失敗試作",
+      "会話",
+      "思考",
+      "素材蓄積",
+      "次の作品"
+    ]
+  },
+  "career_fallow": {
+    "kind": "empty-resume",
+    "motion": "identity-rebuild",
+    "labels": [
+      "退職",
+      "履歴書空白",
+      "価値観崩壊",
+      "働き方再考",
+      "情報収集",
+      "未決定",
+      "再編成",
+      "次の前提"
+    ]
+  },
+  "foggy_crossroad": {
+    "kind": "fog-crossroad",
+    "motion": "reveal-third-road",
+    "labels": [
+      "転職",
+      "起業",
+      "霧",
+      "二択",
+      "待つ",
+      "霧が晴れる",
+      "第三の道",
+      "情報が増える"
+    ]
+  },
+  "real_option_factory": {
+    "kind": "investment-lab",
+    "motion": "wait-option",
+    "labels": [
+      "現金1億",
+      "工場計画",
+      "不可逆",
+      "利益予想",
+      "半年後情報",
+      "今は待つ",
+      "選択権保持",
+      "オプション価値"
+    ]
+  },
+  "irreversible_choice": {
+    "kind": "life-decisions",
+    "motion": "doors-close",
+    "labels": [
+      "住宅購入",
+      "転職",
+      "起業",
+      "結婚",
+      "選択",
+      "戻るコスト",
+      "保留",
+      "待つ価値"
+    ]
+  },
+  "seed_option": {
+    "kind": "seed-choice",
+    "motion": "germinate-or-wait",
+    "labels": [
+      "種子",
+      "発芽可能",
+      "今発芽",
+      "不可逆",
+      "環境不安定",
+      "休眠維持",
+      "選択肢保存",
+      "構造の類似"
+    ]
+  },
+  "wait_not_quit": {
+    "kind": "waiting-room",
+    "motion": "option-preserve",
+    "labels": [
+      "未決定",
+      "情報待ち",
+      "選択肢A",
+      "選択肢B",
+      "選択肢C",
+      "閉じない",
+      "次に進める状態",
+      "待つ≠放棄"
+    ]
+  },
+  "endless_pause": {
+    "kind": "frozen-room",
+    "motion": "calendar-only",
+    "labels": [
+      "ソファ",
+      "1週間",
+      "1か月",
+      "半年",
+      "1年",
+      "部屋は同じ",
+      "永久停止？",
+      "問題提起"
+    ]
+  },
+  "wake_cues": {
+    "kind": "spring-cues",
+    "motion": "three-awakenings",
+    "labels": [
+      "雪解け",
+      "動物覚醒",
+      "水分",
+      "種子発芽",
+      "光と温度",
+      "昆虫解除",
+      "再活動",
+      "出口条件"
+    ]
+  },
+  "protect_core": {
+    "kind": "core-systems",
+    "motion": "shut-selectively",
+    "labels": [
+      "仕事停止",
+      "睡眠維持",
+      "身体維持",
+      "人間関係",
+      "生活基盤",
+      "好奇心",
+      "世界との接点",
+      "守る核"
+    ]
+  },
+  "restart_reserve": {
+    "kind": "restart-machine",
+    "motion": "reserve-power",
+    "labels": [
+      "出力0ではない",
+      "最低電力",
+      "資源保存",
+      "選択肢保持",
+      "状態確認",
+      "環境変化",
+      "再起動",
+      "活動復帰"
+    ]
+  },
+  "winter_with_exit": {
+    "kind": "winter-path",
+    "motion": "thin-thread",
+    "labels": [
+      "休職",
+      "無職",
+      "創作停滞",
+      "進路未定",
+      "成果から離れる",
+      "細い接点",
+      "春の道",
+      "冬に出口を残す"
+    ]
+  },
+  "return_room": {
+    "kind": "apartment-return",
+    "motion": "gentle-motion",
+    "labels": [
+      "再び14:00",
+      "SNSを閉じる",
+      "窓を開ける",
+      "コーヒー",
+      "数ページ読む",
+      "散歩",
+      "成果は少ない",
+      "状態は保たれる"
+    ]
+  },
+  "invisible_work": {
+    "kind": "underground-cutaway",
+    "motion": "hidden-processes",
+    "labels": [
+      "地上は静止",
+      "土中の種",
+      "巣穴の動物",
+      "微生物",
+      "外から0",
+      "内部で保存",
+      "未来へ到達",
+      "見えない仕事"
+    ]
+  },
+  "old_identity_box": {
+    "kind": "identity-room",
+    "motion": "box-old-goals",
+    "labels": [
+      "社員証",
+      "資格本",
+      "昔の目標",
+      "箱へ",
+      "壁が空く",
+      "新目標なし",
+      "空白を保つ",
+      "古い自分を終える"
+    ]
+  },
+  "four_disciplines": {
+    "kind": "four-fields",
+    "motion": "separate-then-link",
+    "labels": [
+      "冬眠",
+      "心理的離脱",
+      "インキュベーション",
+      "リアルオプション",
+      "別現象",
+      "混同しない",
+      "共通発想",
+      "活動だけが合理的でない"
+    ]
+  },
+  "four_seasons": {
+    "kind": "season-circle",
+    "motion": "complete-cycle",
+    "labels": [
+      "春 成長",
+      "夏 活動",
+      "秋 蓄積",
+      "冬 停止",
+      "赤い×",
+      "×が消える",
+      "四季が円に",
+      "次の季節へ保存"
+    ]
+  }
+}
