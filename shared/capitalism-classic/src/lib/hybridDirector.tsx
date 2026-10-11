@@ -17,7 +17,7 @@ type Mode=
  'research'|'horizon'|'dilemma'|'recap'|'rules';
 interface Cue{text:string;display:string;start:number;end:number}
 interface Shot {
- id:string;chapter:string;world:string;events:string[];mode:Mode;headline:string;
+ id:string;chapter:string;world:string;events:string[];mode:string;headline:string;
  labels:string[];metric?:string;source?:string;
  cues:Cue[];duration:number;durationSource:string;
 }
@@ -79,7 +79,7 @@ function centered(value:string){return value.replace(/\\n/g,'\n');}
 
 function init(view:View2D,s:Shot){
  view.fill(C.bg);
- const under=new Node(),main=new Node(),header=new Node(),footer=new Node(),caption=new Node();
+ const under=new Node({}),main=new Node({}),header=new Node({}),footer=new Node({}),caption=new Node({});
  // The subtitle is deliberately always painted LAST and is never a descendant of main.
  view.add(under);view.add(main);view.add(header);view.add(footer);view.add(caption);
  box(under,0,0,1920,1080,C.bg,0);
