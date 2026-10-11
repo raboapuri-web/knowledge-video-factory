@@ -212,7 +212,7 @@ function* directedMotion(w:World,s:Scene,i:number,seconds:number):ThreadGenerato
  if(showBear.has(m)||m==='forest'||m==='wildlife'){
   if(showBear.has(m)){
    const xs=[-710,-545,-360,-75,215,495],ys=[148,153,134,146,152,143];
-   const pace=/追い|逃げ|警戒/.test(d)?1.16:/餌|ドーナツ/.test(d)?.72:1;
+   const pace=/追い|逃げ|警戒/.test(d) ? 1.16 : (/餌|ドーナツ/.test(d) ? 0.72 : 1);
    ops.push(P[0].x(xs[i]*pace+drift,t),P[0].y(ys[i]+Math.sin(i+seed)*9,t),P[0].rotation(tilt+(i%2?3:-2),t));
    if(/ゴミ|餌|容器|ドーナツ/.test(d))ops.push(P[1].rotation([0,-3,14,-9,3,0][i],t));
    if(/境界|隣家|危険|襲われ/.test(d))ops.push(H.x(-610+phase*235,t),H.rotation(i>=3?-10:4,t));
