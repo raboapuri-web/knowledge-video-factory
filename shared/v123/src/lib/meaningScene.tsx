@@ -86,7 +86,7 @@ function city(p:Node){
 
 /** V123: Grafton 2004-2017. Diegetic environments; persistent props, never card cascade. */
 const wildlife = new Set(['porch','bear','dispute','forest','garbage','donut','neighbor','wildlife','firecracker','incident','border','funding','nottrial']);
-const civic = new Set(['townhall','meeting','voices','budget','split','scouts','rules','lawsuit','accounting']);
+const civic = new Set(['townhall','meeting','voices','budget','split','scouts','rules','lawsuit','accounting','ledger','counter']);
 const infrastructure = new Set(['road','police','fire','library','publicgood','free','insurance','tokyo','dawn']);
 const campMotifs = new Set(['truck','camp','map']);
 const abstraction = new Set(['portrait','question','philosophy','history','paradox','market','window','hobbes','ostrom','counter','scale','tax','receipt','office','book']);
@@ -174,7 +174,13 @@ function buildTownProps(s:Scene,props:Node[]){
  const m=s.motif;
  for(let i=0;i<6;i++){
   const q=props[i],mode=i%3;
-  if(showBear.has(m)){
+  if(m==='forest'){
+   if(i===0||i===4)tree(q,0,0,.50+(i===4?.12:0));
+   else if(i===1)houseProp(q);
+   else if(i===2)carProp(q);
+   else if(i===3)lampProp(q);
+   else notebookProp(q);
+  }else if(showBear.has(m)){
    if(i===0)bearProp(q);
    else if(i===1)binProp(q);
    else if(i===2)houseProp(q);
