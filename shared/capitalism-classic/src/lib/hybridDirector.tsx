@@ -85,19 +85,19 @@ function init(view:View2D,s:Shot){
  box(under,0,0,1920,1080,C.bg,0);
  const accent=s.chapter==='chapter3'?C.teal:s.chapter==='chapter5'?C.blue:s.chapter==='chapter1'?C.gold:C.red;
  box(under,-865,0,25,830,C.bg2,4).opacity(.84);
- box(under,0,328,1750,2,C.rule,0);
+ box(under,0,343,1750,2,C.rule,0);
  box(header,0,-496,1920,92,C.bg2,0);
  box(header,-825,-495,7,47,accent,3);
  txt(header,'考える夜',-682,-494,36,C.paper);
  txt(header,s.chapter.toUpperCase()+'  •  '+s.mode.toUpperCase(),632,-494,19,C.muted);
- txt(header,s.headline,0,-353,57,C.paper,1670);
+ if(!['quote','claim','manifesto'].includes(s.mode))txt(header,s.headline,0,-353,57,C.paper,1670);
  // Subtitle-safe region begins at y=376; central diagrams remain above y=282.
  box(footer,0,460,1920,163,'#02060c',0);
  box(footer,0,377,1920,3,accent,0);
  const subtitle=txt(caption,'',0,461,41,C.paper,1690);
  subtitle.lineHeight(58);
  // Source note is within the diagram region. Never obscure it with subtitles.
- if(s.source)txt(header,centered(s.source),0,323,19,C.muted,1700,400);
+ if(s.source)txt(header,centered(s.source),0,306,19,C.muted,1700,400);
  return {main,subtitle,accent};
 }
 function build(s:Shot,parent:Node,accent:string):Piece[]{
