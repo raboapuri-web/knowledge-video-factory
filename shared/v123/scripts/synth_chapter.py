@@ -3,14 +3,14 @@
 from pathlib import Path
 import concurrent.futures,io,json,os,sys,urllib.parse,urllib.request,wave
 R=Path(__file__).resolve().parents[1]; chapter=sys.argv[1] if len(sys.argv)>1 else None
-if chapter not in ['prologue']+[f'chapter{i}' for i in range(1,5)]+['epilogue']:raise SystemExit('Invalid chapter')
+if chapter not in ['prologue','cta']+[f'chapter{i}' for i in range(1,6)]+['epilogue']:raise SystemExit('Invalid chapter')
 BASE=os.getenv('VOICEVOX_URL','http://127.0.0.1:50021');SP=int(os.getenv('VOICEVOX_SPEAKER_ID','13'));SPEED=float(os.getenv('VOICEVOX_SPEED','1.15'))
 def post(url,payload=b''):
  req=urllib.request.Request(url,data=payload,method='POST',headers={'Content-Type':'application/json'})
  with urllib.request.urlopen(req,timeout=140) as response:return response.read()
 def synth(task):
  scene,ix,cue=task
- q=urllib.parse.urlencode({'speaker':SP,'text':cue['text']})
+ q=urllib.parse.urlencode({'speaker':SP,'text':cue.get('speech',cue['text'])})
  data=json.loads(post(BASE+'/audio_query?'+q))
  data.update(speedScale=SPEED,prePhonemeLength=0.055,postPhonemeLength=0.085)
  raw=post(BASE+'/synthesis?speaker='+str(SP),json.dumps(data,ensure_ascii=False).encode())
