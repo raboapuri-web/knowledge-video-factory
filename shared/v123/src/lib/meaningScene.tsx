@@ -1,3 +1,4 @@
+import {playPhysicalScene} from './physicalDirector';
 import '@fontsource/noto-sans-jp/400.css';
 import '@fontsource/noto-sans-jp/700.css';
 import {Circle, Line, Node, Rect, Txt, type View2D} from '@motion-canvas/2d';
@@ -718,6 +719,6 @@ function* captions(cues:Cue[],element:Txt,duration:number):ThreadGenerator{
  element.text('');
 }
 export function* playMeaningScene(view:View2D,scene:Scene):ThreadGenerator{
- const w=setup(view,scene);
- yield* all(visual(w,scene),captions(scene.cues,w.caption,scene.duration));
+ // V123 revision 3: no legacy generic six-step performance runs.
+ yield* playPhysicalScene(view,scene);
 }
