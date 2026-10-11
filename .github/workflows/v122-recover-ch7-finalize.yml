@@ -45,6 +45,10 @@ jobs:
           python3 scripts/merge_timing.py chapter7
           python3 scripts/qa.py
           npm run build
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            timeout 180s sudo apt-get update -qq
+            timeout 180s sudo apt-get install -y -qq ffmpeg
+          fi
           command -v ffmpeg
           command -v ffprobe
           ffmpeg -version | head -1
