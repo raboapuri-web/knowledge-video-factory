@@ -1,0 +1,759 @@
+[
+  {
+    "id": "cap-prologue-00",
+    "mode": "scene",
+    "headline": "資本主義への怒り",
+    "labels": [
+      "通勤",
+      "SNS",
+      "買い物"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-prologue-01",
+    "mode": "quote",
+    "headline": "え？ あなたも？",
+    "labels": [
+      "その批判、何と比べていますか？"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-prologue-02",
+    "mode": "process",
+    "headline": "そのスマホはどこから来た？",
+    "labels": [
+      "素材",
+      "工場",
+      "輸送",
+      "店頭"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-prologue-03",
+    "mode": "quote",
+    "headline": "実に興味深い光景です",
+    "labels": [
+      "批判する自由",
+      "便利さを使う自由"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-prologue-04",
+    "mode": "contrast",
+    "headline": "利用すること ≠ 賛成すること",
+    "labels": [
+      "利用と批判は両立",
+      "それでも成果は検証できる"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-prologue-05",
+    "mode": "question",
+    "headline": "資本主義以前の暮らし",
+    "labels": [
+      "現実の歴史",
+      "想像上の理想郷"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-prologue-06",
+    "mode": "contrast",
+    "headline": "比較するなら現実同士",
+    "labels": [
+      "歴史上の生活",
+      "頭の中の楽園"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-prologue-07",
+    "mode": "manifesto",
+    "headline": "資本主義を最大限擁護する",
+    "labels": [
+      "貧困",
+      "労働",
+      "技術",
+      "環境"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-prologue-08",
+    "mode": "book",
+    "headline": "資本主義は人類最高の発明か",
+    "labels": [
+      "ヨハン・ノルベリ",
+      "歴史と研究"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-cta-00",
+    "mode": "scene",
+    "headline": "深夜の書斎",
+    "labels": [
+      "本を開く",
+      "考える夜"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-cta-01",
+    "mode": "quote",
+    "headline": "批判する前に調べる",
+    "labels": [
+      "研究",
+      "歴史",
+      "次の議論へ"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter1-00",
+    "mode": "claim",
+    "headline": "資本主義は貧困を生んだ？",
+    "labels": [
+      "主張",
+      "歴史を比較"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter1-01",
+    "mode": "contrast",
+    "headline": "資本主義以前の生活",
+    "labels": [
+      "豊かな理想像",
+      "物質的な現実"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter1-02",
+    "mode": "scene",
+    "headline": "次の収穫まで食べられるか",
+    "labels": [
+      "18世紀の農村",
+      "食料",
+      "感染症"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter1-03",
+    "mode": "contrast",
+    "headline": "ノスタルジーと生活条件",
+    "labels": [
+      "文化と人間関係",
+      "医療・保存・交通"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter1-04",
+    "mode": "bread",
+    "headline": "富の分け方ではなく、増やし方",
+    "labels": [
+      "100個",
+      "300個"
+    ],
+    "metric": "100 → 300",
+    "source": "例示：村のパン屋の仮定"
+  },
+  {
+    "id": "cap-chapter1-05",
+    "mode": "mechanism",
+    "headline": "競争が改良の動機を作る",
+    "labels": [
+      "工夫",
+      "競争",
+      "生産性"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter1-06",
+    "mode": "claim",
+    "headline": "利益がない競争は生まれない？",
+    "labels": [
+      "競争の誘因",
+      "技術革新"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter1-07",
+    "mode": "network",
+    "headline": "富を増やす試行錯誤",
+    "labels": [
+      "企業A",
+      "企業B",
+      "消費者",
+      "新技術"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter1-08",
+    "mode": "process",
+    "headline": "新技術が大衆化する",
+    "labels": [
+      "改良",
+      "量産",
+      "値下がり",
+      "普及"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter1-09",
+    "mode": "metric",
+    "headline": "極度の貧困から脱出",
+    "labels": [
+      "1990年",
+      "2022年"
+    ],
+    "metric": "約15億人",
+    "source": "世界銀行（2025年改定基準）。市場のみの因果効果ではない"
+  },
+  {
+    "id": "cap-chapter1-10",
+    "mode": "ecosystem",
+    "headline": "貧困減少は複合的な成果",
+    "labels": [
+      "市場と投資",
+      "教育・医療",
+      "公衆衛生・政策"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter1-11",
+    "mode": "claim",
+    "headline": "でも格差は広がっている",
+    "labels": [
+      "相対的な差",
+      "絶対的生活水準"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter1-12",
+    "mode": "quote",
+    "headline": "でも、それの何が問題？",
+    "labels": [
+      "人々の暮らしで測る"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter1-13",
+    "mode": "barpairs",
+    "headline": "格差と貧困は同義ではない",
+    "labels": [
+      "A：10万 → 20万円",
+      "B：100万 → 1000万円"
+    ],
+    "metric": "例示",
+    "source": "台本内の仮定。観測データではない"
+  },
+  {
+    "id": "cap-chapter1-14",
+    "mode": "evaluation",
+    "headline": "誰がどれだけ豊かになったか",
+    "labels": [
+      "食事",
+      "住居",
+      "医療"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter2-00",
+    "mode": "contrast",
+    "headline": "欲望は協力を生まない？",
+    "labels": [
+      "自分の利益",
+      "相手への価値"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter2-01",
+    "mode": "process",
+    "headline": "一杯のコーヒーを巡る世界",
+    "labels": [
+      "農園",
+      "貨物船",
+      "焙煎",
+      "店頭"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter2-02",
+    "mode": "mechanism",
+    "headline": "パン屋がパンを焼く理由",
+    "labels": [
+      "顧客の需要",
+      "売上",
+      "品質の改善"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter2-03",
+    "mode": "overload",
+    "headline": "全部を中央で管理する？",
+    "labels": [
+      "収穫量",
+      "燃料価格",
+      "港の混雑",
+      "店舗在庫",
+      "消費者の好み"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter2-04",
+    "mode": "network",
+    "headline": "価格が情報を伝える",
+    "labels": [
+      "農家",
+      "卸売",
+      "店舗",
+      "消費者"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter2-05",
+    "mode": "circulation",
+    "headline": "見知らぬ人の協力が続く",
+    "labels": [
+      "商品",
+      "交換",
+      "生活"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter2-06",
+    "mode": "analogy",
+    "headline": "詐欺があるから取引を廃止？",
+    "labels": [
+      "交通事故 ≠ 道路廃止",
+      "不正取引 ≠ 市場廃止"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter3-00",
+    "mode": "claim",
+    "headline": "安い賃金はすべて搾取？",
+    "labels": [
+      "先進国との比較",
+      "現地の代替雇用"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter3-01",
+    "mode": "choices",
+    "headline": "その仕事がなかったら？",
+    "labels": [
+      "仕事を得た場合",
+      "仕事がなかった場合"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter3-02",
+    "mode": "metric",
+    "headline": "ケニアの若者1115人の研究",
+    "labels": [
+      "研修＋就職紹介",
+      "比較群",
+      "失業率 −10ポイント"
+    ],
+    "metric": "月収 +37%",
+    "source": "J-PAL／Samaとの実験。海外IT企業への委託単独の効果ではない"
+  },
+  {
+    "id": "cap-chapter3-03",
+    "mode": "trend",
+    "headline": "南アフリカのBPO産業",
+    "labels": [
+      "雇用 約6.5万人 → 15万人",
+      "売上 約10.4億 → 29.1億ドル"
+    ],
+    "metric": "2019 → 2024",
+    "source": "BPESA業界データ・2024年は推計。産業売上高はGDPではない"
+  },
+  {
+    "id": "cap-chapter3-04",
+    "mode": "choices",
+    "headline": "現地の若者に勧めるのは？",
+    "labels": [
+      "仕事を受けて収入を得る",
+      "理想の職を待つ"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter3-05",
+    "mode": "matrix",
+    "headline": "雇用が増えても課題は残る",
+    "labels": [
+      "安全・尊厳",
+      "契約終了のリスク",
+      "他の雇用機会"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter3-06",
+    "mode": "market",
+    "headline": "雇う企業が競争すれば",
+    "labels": [
+      "企業A",
+      "働く人",
+      "企業B"
+    ],
+    "metric": "選べる職場",
+    "source": "市場環境により賃金改善は保証されない"
+  },
+  {
+    "id": "cap-chapter3-07",
+    "mode": "scene",
+    "headline": "翌朝の食卓を想像する",
+    "labels": [
+      "家族",
+      "食費",
+      "家賃"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter3-08",
+    "mode": "evaluation",
+    "headline": "測るべきは怒りの大きさか",
+    "labels": [
+      "所得",
+      "選択肢",
+      "労働条件"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter4-00",
+    "mode": "claim",
+    "headline": "金持ちが儲かれば他人が損？",
+    "labels": [
+      "新商品に支払う顧客",
+      "労働者への賃金"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter4-01",
+    "mode": "scene",
+    "headline": "倉庫の小さな起業家",
+    "labels": [
+      "試作",
+      "失敗",
+      "借入",
+      "採用"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter4-02",
+    "mode": "circulation",
+    "headline": "価値は一方的に奪われたか",
+    "labels": [
+      "創業者",
+      "顧客",
+      "従業員"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter4-03",
+    "mode": "contrast",
+    "headline": "富の生まれ方を区別する",
+    "labels": [
+      "革新と競争",
+      "相続と独占"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter4-04",
+    "mode": "research",
+    "headline": "競争と革新は逆U字にもなる",
+    "labels": [
+      "競争が弱い",
+      "中間",
+      "競争が強い"
+    ],
+    "metric": "逆U字",
+    "source": "Aghion et al.（2005）。概念図・数値軸なし"
+  },
+  {
+    "id": "cap-chapter4-05",
+    "mode": "horizon",
+    "headline": "明日の勝者は変わり得る",
+    "labels": [
+      "巨大企業",
+      "新規参入",
+      "消費者の選択"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter5-00",
+    "mode": "claim",
+    "headline": "資本主義は地球を破壊する？",
+    "labels": [
+      "工業生産",
+      "環境負荷"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter5-01",
+    "mode": "dilemma",
+    "headline": "成長か環境かの二者択一？",
+    "labels": [
+      "経済成長",
+      "環境保全"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter5-02",
+    "mode": "trend",
+    "headline": "経済成長と大気汚染の変化",
+    "labels": [
+      "実質GDP +338%",
+      "主要大気汚染物質 −79%"
+    ],
+    "metric": "1970 → 2024",
+    "source": "米国EPA。CO₂や温室効果ガス全体の排出量ではない"
+  },
+  {
+    "id": "cap-chapter5-03",
+    "mode": "process",
+    "headline": "冷蔵庫とオゾン層",
+    "labels": [
+      "旧フロン類",
+      "モントリオール議定書",
+      "代替冷媒",
+      "新しい冷蔵庫"
+    ],
+    "metric": "約99%",
+    "source": "UNEP。規制対象のオゾン層破壊物質の段階的廃止"
+  },
+  {
+    "id": "cap-chapter5-04",
+    "mode": "ecosystem",
+    "headline": "規制と革新は対立しない",
+    "labels": [
+      "国際的な規制",
+      "技術開発",
+      "市場で普及"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter5-05",
+    "mode": "scene",
+    "headline": "技術者は試作品を作り直す",
+    "labels": [
+      "研究費",
+      "設備投資",
+      "実験"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter5-06",
+    "mode": "matrix",
+    "headline": "まだ残る課題にどう向き合う",
+    "labels": [
+      "温室効果ガス",
+      "生態系",
+      "技術革新"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter5-07",
+    "mode": "quote",
+    "headline": "経済成長しても幸福にならない？",
+    "labels": [
+      "幸福を所得だけで測らない"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter5-08",
+    "mode": "contrast",
+    "headline": "お金で消えない悩みはある",
+    "labels": [
+      "収入の増加",
+      "人間関係と疲労"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter5-09",
+    "mode": "research",
+    "headline": "所得と幸福は単純ではない",
+    "labels": [
+      "個人差",
+      "所得との関連",
+      "幸福の指標"
+    ],
+    "metric": "一様ではない",
+    "source": "Killingsworth・Kahneman・Mellers（2023）。人によって関係が異なる"
+  },
+  {
+    "id": "cap-chapter5-10",
+    "mode": "choices",
+    "headline": "豊かさが増やす選択肢",
+    "labels": [
+      "治療を受ける",
+      "学び直す",
+      "仕事を変える"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-chapter5-11",
+    "mode": "manifesto",
+    "headline": "幸福を決めるのはあなた",
+    "labels": [
+      "経済は選択肢を増やせる"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-epilogue-00",
+    "mode": "recap",
+    "headline": "資本主義への5つの批判",
+    "labels": [
+      "貧困",
+      "強欲",
+      "搾取",
+      "環境",
+      "幸福"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-epilogue-01",
+    "mode": "rules",
+    "headline": "市場を機能させる仕組み",
+    "labels": [
+      "公正な競争",
+      "透明なルール",
+      "社会保障"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-epilogue-02",
+    "mode": "question",
+    "headline": "代替制度を具体的に説明できますか",
+    "labels": [
+      "投資は誰が？",
+      "失敗の負担は？",
+      "協力をどう設計？"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-epilogue-03",
+    "mode": "manifesto",
+    "headline": "気分のよい批判より、暮らしの改善",
+    "labels": [
+      "挑戦",
+      "技術",
+      "雇用",
+      "選択"
+    ],
+    "metric": "",
+    "source": ""
+  },
+  {
+    "id": "cap-epilogue-04",
+    "mode": "quote",
+    "headline": "あなたなら、どの制度を選びますか",
+    "labels": [
+      "コメント欄で具体的な仕組みを"
+    ],
+    "metric": "",
+    "source": ""
+  }
+]
