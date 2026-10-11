@@ -2,7 +2,7 @@ import {type Project,Renderer,RendererResult} from '@motion-canvas/core';
 declare global{interface Window{renderProject(url:string,includeAudio:boolean,name:string,rangeEnd?:number|null,resolutionScale?:number|null):Promise<string>;}}
 window.renderProject=async(url,includeAudio,name,rangeEnd=null,resolutionScale=null)=>{
  const module:{default:Project}=await import(/* @vite-ignore */ url);
- const project=module.default;project.logger.onLogged.subscribe(entry=>{if(entry.level==='error'||entry.level==='warn')console.error('MOTION_CANVAS_LOG',JSON.stringify(entry));});const settings=project.meta.getFullRenderingSettings();
+ const project=module.default;project.logger.onLogged.subscribe(entry=>{if(entry.level==='error'||entry.level==='warn')console.error('MOTION_CANVAS_LOG',entry.message,(entry as any).stack??'',JSON.stringify(entry,Object.getOwnPropertyNames(entry)));});const settings=project.meta.getFullRenderingSettings();
  await document.fonts.ready;const renderer=new Renderer(project);
  const finished=new Promise<RendererResult>(resolve=>renderer.onFinished.subscribe(resolve));
  await renderer.render({...settings,name,range:rangeEnd==null?settings.range:[0,rangeEnd],resolutionScale:resolutionScale??settings.resolutionScale,exporter:{...settings.exporter,options:{...(settings.exporter.options as object),includeAudio}}});
