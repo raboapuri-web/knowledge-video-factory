@@ -199,6 +199,7 @@ jobs:
           node scripts/generate-bgm.mjs "$D"
           ffmpeg -y -loglevel error -i output/capitalismclassic-voice-master.mp4 -i output/bgm.m4a -filter_complex '[0:a]volume=1[vo];[1:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=first[a]' -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart output/capitalismclassic-final.mp4
           python3 scripts/final_qa.py output/capitalismclassic-final.mp4 qa/final_validation.json
+          python3 scripts/voice_duration_qa.py output/capitalismclassic-final.mp4
           INTERVAL=$(awk "BEGIN {print $D/30}")
           ffmpeg -y -loglevel error -i output/capitalismclassic-final.mp4 -vf "fps=1/$INTERVAL,scale=384:-1,tile=6x5:padding=4:margin=5" -frames:v 1 output/capitalismclassic-contact-sheet.jpg
       - name: Publish validated MP4, segments and review sheet
@@ -208,4 +209,4 @@ jobs:
         run: |
           set -euo pipefail
           TAG="capitalismclassic-full-${GITHUB_RUN_ID}"
-          gh release create "$TAG" output/capitalismclassic-final.mp4 output/capitalismclassic-contact-sheet.jpg qa/final_validation.json output/capitalismclassic-prologue.mp4 output/capitalismclassic-cta.mp4 output/capitalismclassic-chapter1.mp4 output/capitalismclassic-chapter2.mp4 output/capitalismclassic-chapter3.mp4 output/capitalismclassic-chapter4.mp4 output/capitalismclassic-chapter5.mp4 output/capitalismclassic-epilogue.mp4 --repo "$GITHUB_REPOSITORY" --title '資本主義への批判はすべて嘘！ 考える夜 本番動画' --notes '66 individually authored animated locations; VOICEVOX measured speech; subtitle topmost; eight reusable chapters; soundness and frame QA.'
+          gh release create "$TAG" output/capitalismclassic-final.mp4 output/capitalismclassic-contact-sheet.jpg qa/final_validation.json qa/voice_duration_qa.json output/capitalismclassic-prologue.mp4 output/capitalismclassic-cta.mp4 output/capitalismclassic-chapter1.mp4 output/capitalismclassic-chapter2.mp4 output/capitalismclassic-chapter3.mp4 output/capitalismclassic-chapter4.mp4 output/capitalismclassic-chapter5.mp4 output/capitalismclassic-epilogue.mp4 --repo "$GITHUB_REPOSITORY" --title '資本主義への批判はすべて嘘！ 考える夜 本番動画' --notes '66 individually authored animated locations; VOICEVOX measured speech; subtitle topmost; eight reusable chapters; soundness and frame QA.'
