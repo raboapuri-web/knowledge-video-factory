@@ -223,70 +223,231 @@ function statePosition(m:string,i:number):[number,number]{
  if(m==='support')return [-405+i*165,12];
  return [-360+i*160,-20+(i%2)*80];
 }
-function* changeState(w:World,s:Scene,i:number,seconds:number):ThreadGenerator{
- const m=s.motif,now=w.objects[i],prior=i?w.objects[i-1]:null;
- const [x,y]=statePosition(m,i);
- now.x(i%2?950:-950);now.y(y-80);now.scale(.4);
- const speed=Math.min(.75,Math.max(.24,seconds*.21));
- const actions:ThreadGenerator[]=[
-  now.x(x,speed),now.y(y,speed),now.opacity(1,speed),now.scale(m==='book'?.86:m==='farm'?.94:.8,speed)
- ];
- w.status.text((actionCopy[m]??actionCopy.question)[i]);
- if(prior && !['farm','city','school','forms','office','feedback','debt','bureau','workflow'].includes(m)){
-  actions.push(prior.opacity(m==='race'?.55:.06,speed),prior.scale(.48,speed));
+
+/**
+ * Direction revision #2
+ *
+ * The entire physical composition exists at frame zero. The common animation
+ * never spawns a new page/icon/card on every narration beat.
+ * Instead it changes a pre-existing prop or a person's physical action.
+ * Repeats between scenes are avoided by assigning a different state route to
+ * location + scene ID, not simply substituting a different image.
+ */
+const activeCount:Record<string,number>={
+ race:0,office:4,contrast:2,brain:6,feedback:3,question:1,
+ book:1,calendar:3,workflow:4,portrait:0,farm:6,
+ shopping:4,tunnel:1,debt:3,school:4,study:2,
+ judge:2,merit:2,city:0,bureau:3,forms:4,support:3,
+};
+const namedPhases:Record<string,string[]>={
+ P00:['走者が並ぶ','号砲','最初の加速','先頭との差','最後の直線','ゴール'],
+ P01:['指示を受ける','資料の確認','電話の予定','会議が迫る','仕事が未完了','叱責される'],
+ A02:['出発のつもり','鍵を探す','財布の確認','予定が乱れる','時計が進む','間に合わない'],
+ B00:['収穫前','収入前の暮らし','同一人物の課題','収穫','収入後の暮らし','同じ人物の課題'],
+ B02:['値札の比較','商品を選ぶ','所持金','家賃の請求','転職の準備','気が散る'],
+ B05:['家賃の期限','残高不足','借入の選択','支払い','次月の返済','負担が残る'],
+ D00:['制度を調べる','窓口を探す','受付時間','勤務との衝突','資料を集める','相談まで遠い'],
+ D01:['窓口へ','書類の記入','不足資料','期限の確認','来訪が必要','手続きの負担'],
+ E00:['オフィスに戻る','仕事が進まない','時計を見る','上司が近づく','社員が説明する','行動の条件'],
+};
+function phaseName(s:Scene,i:number){
+ return (namedPhases[s.id]??actionCopy[s.motif]??actionCopy.question)[i];
+}
+function placePermanentProps(w:World,s:Scene){
+ const m=s.motif,count=activeCount[m]??0;
+ for(let i=0;i<w.objects.length;i++){
+  const o=w.objects[i];
+  o.opacity(i<count?1:0);
+  let x=0,y=0,scale=.8;
+  if(m==='office'||m==='workflow'){x=-230+i*160;y=122;scale=.60;}
+  else if(m==='farm'){x=-700+i*260;y=140;scale=1.1;}
+  else if(m==='shopping'){x=-500+i*315;y=-100;scale=.60;}
+  else if(m==='school'){x=i%2?-465:465;y=100+Math.floor(i/2)*60;scale=.63;}
+  else if(m==='calendar'){x=170+i*150;y=110;scale=.78;}
+  else if(m==='bureau'||m==='forms'){x=-140+i*148;y=132;scale=.59;}
+  else if(m==='feedback'||m==='debt'){x=-185+i*175;y=138;scale=.66;}
+  else if(m==='brain'){x=-425+i*170;y=0;scale=.7;}
+  else if(m==='contrast'||m==='merit'||m==='judge'||m==='study'){x=i===0?-410:410;y=10;scale=1.05;}
+  else if(m==='support'){x=-160+i*150;y=115;scale=.66;}
+  else if(m==='book'){x=110;y=0;scale=1.55;}
+  else if(m==='tunnel'){x=150;y=10;scale=1.15;}
+  else if(m==='question'){x=70;y=-15;scale=1.7;}
+  else{x=-200+i*120;y=100;scale=.75;}
+  o.x(x);o.y(y);o.scale(scale);
  }
  if(m==='race'){
-  // Physical rivalry: the two runners do not share a speed.
-  actions.push(w.hero.x(-730+i*240,speed),w.other.x(-730+i*270,speed));
-  w.hero.y(-70);w.other.y(105);
-  if(i===5)actions.push(w.shroud.opacity(.08,speed));
- }else if(m==='office'||m==='workflow'){
-  // The desk fills while the worker remains physically occupied.
-  actions.push(w.hero.x(-590+i*18,speed));
-  if(i===2)actions.push(w.other.opacity(1,speed),w.other.x(410,speed));
-  if(i>=4)actions.push(w.hero.y(90+i*7,speed),w.shroud.opacity(.1,speed));
- }else if(m==='farm'){
-  // Crop growth, harvest and economic condition change without cutting locations.
-  if(i===3)actions.push(w.hero.x(-300,speed),w.other.x(400,speed));
-  if(i>=4)actions.push(w.shroud.opacity(0,speed));
- }else if(m==='calendar'||m==='forms'||m==='bureau'){
-  actions.push(w.hero.x(-620+i*65,speed));
-  if(i>=3)actions.push(w.other.opacity(1,speed),w.other.x(650-i*40,speed));
-  if(i===5)actions.push(w.shroud.opacity(.10,speed));
- }else if(m==='shopping'){
-  actions.push(w.hero.x(-650+i*57,speed));
-  if(i>2)actions.push(w.shroud.opacity(.07,speed));
- }else if(m==='tunnel'){
-  if(i>2)actions.push(w.shroud.opacity(.03*i,speed),w.hero.scale(1-i*.047,speed));
- }else if(m==='debt'||m==='feedback'){
-  actions.push(w.hero.x(-580+i*24,speed),w.shroud.opacity(.022*i,speed));
- }else if(m==='school'){
-  if(i>=3)actions.push(w.shroud.opacity(.05,speed));
-  actions.push(w.hero.x(-460,speed),w.other.x(460,speed));
- }else if(m==='contrast'||m==='merit'||m==='judge'){
-  actions.push(w.hero.opacity(i%2===0?.95:.37,speed),w.other.opacity(i%2===0?.37:.95,speed));
-  w.hero.x(-510);w.other.x(510);
- }else if(m==='support'){
-  actions.push(w.hero.x(-480+i*28,speed));
-  if(i>=2)actions.push(w.other.opacity(.94,speed),w.other.x(350-i*35,speed));
- }else if(m==='portrait'){
-  actions.push(w.hero.x(-510+i*15,speed),w.hero.scale(i>=3?1.03:1.15,speed));
- }else if(m==='city'){
-  actions.push(w.hero.x(-680+i*175,speed));
+  w.hero.x(-800);w.hero.y(-62);w.other.x(-800);w.other.y(95);
+  w.hero.scale(.93);w.other.scale(.93);
  }
- yield* all(...actions);
- const roomTime=Math.max(0,seconds-speed);
- if(roomTime>1){
-  const micro=Math.min(.43,roomTime*.18);
-  if(m==='race')yield* all(w.hero.x(w.hero.x()+32,micro),w.other.x(w.other.x()+38,micro));
-  else if(['office','calendar','workflow','bureau','forms','debt'].includes(m))yield* now.rotation(i%2?3:-3,micro);
-  else if(m==='tunnel')yield* now.scale(.9,micro);
-  else if(m==='book')yield* now.rotation(i%2?-4:4,micro);
-  else yield* now.y(y-14,micro);
-  if(roomTime>micro)yield* waitFor(roomTime-micro);
- }else if(roomTime>0)yield* waitFor(roomTime);
+ if(m==='school'){
+  w.hero.x(-470);w.other.x(460);w.hero.y(-115);w.other.y(-115);
+  w.other.opacity(1);
+ }
+ if(m==='farm'){
+  w.hero.x(-670);w.other.x(620);w.hero.y(80);w.other.y(80);
+  w.other.opacity(.8);
+ }
+ if(['contrast','merit','judge'].includes(m)){
+  w.hero.x(-650);w.other.x(645);w.hero.y(40);w.other.y(40);
+  w.hero.opacity(.92);w.other.opacity(.9);
+ }
+ if(m==='portrait'){
+  w.hero.opacity(1);w.other.opacity(.95);
+ }
+ if(['book','study'].includes(m))w.status.text(s.title);
+ if(['race','office','calendar','farm','bureau','forms','shopping'].includes(m))w.clock.text(' ');
+}
+/** One coherent action per meaning-beat: movement, uptake, friction, time,
+ * evaluation, or a counterfactual. Almost all props stay visible throughout.
+ */
+function* changeState(w:World,s:Scene,i:number,seconds:number):ThreadGenerator{
+ const m=s.motif;
+ const P=w.objects,H=w.hero,O=w.other;
+ const t=Math.min(.85,Math.max(.36,seconds*.26));
+ const ops:ThreadGenerator[]=[];
+ const statusAllowed=['book','study','brain','contrast','merit','judge','question'].includes(m);
+ if(statusAllowed && (i===0||i===3))w.status.text(phaseName(s,i));
+ if(m==='race'){
+  // Only two existing runners: speed is what changes, not the amount of tokens.
+  const xfast=[-790,-520,-185,235,620,790][i];
+  const xslow=[-790,-590,-390,-125,165,440][i];
+  ops.push(H.x(xfast,t),O.x(xslow,t));
+  ops.push(H.rotation(i%2?6:-5,t),O.rotation(i%2?-4:5,t));
+  if(i===5)w.clock.text('同じ距離、異なる到達点');
+ }else if(m==='office'){
+  // Papers are never spawned: physical documents migrate between IN/WORK/OUT.
+  if(s.id==='P01'){
+   const task=[0,1,2][i%3];
+   if(i<=2)ops.push(P[task].x(-180+task*110,t),P[task].y(45,t));
+   if(i===3)w.clock.text('14:00  会議開始');
+   if(i>=4)ops.push(H.rotation(9,t),H.y(93,t));
+   if(i===5)ops.push(O.opacity(1,t),O.x(340,t));
+  }else if(s.id==='E00'){
+   if(i<=2)ops.push(P[i].x(-250+i*100,t),P[i].rotation(8,t));
+   if(i===3)ops.push(O.opacity(.93,t),O.x(220,t));
+   if(i>=4)ops.push(H.rotation(-4,t),H.x(-490,t),O.x(350,t));
+  }else{
+   if(i<3)ops.push(P[i].x(-230+i*120,t),P[i].rotation(-5,t));
+   else ops.push(P[(i-3)%3].x(340,t),P[(i-3)%3].rotation(8,t));
+   if(i>=3)ops.push(H.y(80+i*3,t));
+  }
+ }else if(m==='calendar'){
+  w.clock.text(['14:00','14:04','14:12','14:26','14:51','15:07'][i]);
+  // Same appointment slips away while calendar pages are handled.
+  ops.push(H.x(-570+i*35,t));
+  ops.push(P[i%3].rotation(i%2?10:-9,t),P[i%3].y(100-(i%3)*22,t));
+  if(i>=4)ops.push(H.rotation(11,t));
+ }else if(m==='workflow'){
+  const item=P[i%4];
+  if(i<3)ops.push(item.x(-260+i*140,t),item.rotation(-12,t));
+  else ops.push(item.x(360-(i-3)*82,t),item.y(92,t));
+  ops.push(H.rotation(i%2?5:-5,t));
+  if(i>=4)ops.push(O.x(430-i*17,t),O.opacity(.8,t));
+ }else if(m==='farm'){
+  // A field is planted from the start. Crops grow, harvest is performed.
+  if(i<3){
+   ops.push(P[i].scale(1.12+i*.12,t),P[i].rotation(i%2?5:-5,t));
+   ops.push(H.x(-660+i*95,t));
+  }else{
+   ops.push(P[i-3].scale(.32,t),P[i-3].rotation(70,t));
+   ops.push(H.x(-320+(i-3)*180,t),O.x(450-(i-3)*70,t));
+  }
+  if(i===4)w.clock.text('収穫後');
+  if(i===0)w.clock.text('収穫前');
+ }else if(m==='shopping'){
+  // Buyer physically handles goods already present on a shelf.
+  if(i===0)ops.push(H.x(-700,t),H.rotation(-8,t));
+  if(i===1)ops.push(P[0].x(-350,t),P[0].y(40,t));
+  if(i===2)ops.push(P[1].x(-300,t),P[1].y(80,t),H.x(-420,t));
+  if(i===3)ops.push(H.rotation(12,t),P[0].scale(.53,t));
+  if(i>=4)ops.push(H.x(-410+i*13,t),P[1].y(110,t));
+  w.clock.text(i<3?'食費を計算':i<5?'家賃の支払い':'求人を確認');
+ }else if(m==='school'){
+  // Both desks are occupied from frame 1. Books shift, not pop up.
+  const target=P[i%4];
+  ops.push(target.rotation(i%2?9:-8,t),target.y(100+((i+1)%2)*36,t));
+  ops.push(H.rotation(i%2?3:-4,t),O.rotation(i%2?-4:4,t));
+  if(i===4)ops.push(O.y(-70,t));
+  if(i===5)ops.push(H.y(-70,t));
+ }else if(m==='brain'){
+  // Background processing compresses attention: same six workload circles.
+  const compression=i<3?(1-i*.12):(.58+(i-3)*.11);
+  for(let j=0;j<6;j++){
+   const base=-425+j*170;
+   ops.push(P[j].x(base*compression,t),P[j].scale(.72+(i<3?i*.05:-.05),t));
+  }
+  if(i>=3)ops.push(w.shroud.opacity(.035*i,t));
+ }else if(m==='tunnel'){
+  // The world darkens and a visible decision dominates the one focal region.
+  const widths=[1,1.04,1.13,1.24,1.16,1.06];
+  ops.push(P[0].scale(widths[i],t),H.x(-480+i*30,t));
+  ops.push(w.shroud.opacity(.028+i*.022,t));
+ }else if(m==='debt'){
+  // The same bills slide from current dues to next month's repayment.
+  if(i<3)ops.push(P[i].x(-140+i*105,t),P[i].rotation(-9,t));
+  else ops.push(P[i-3].x(205+(i-3)*95,t),P[i-3].rotation(11,t));
+  if(i>=3)ops.push(w.shroud.opacity((i-2)*.033,t));
+  ops.push(H.rotation(i%2?5:-7,t));
+ }else if(m==='feedback'){
+  // A physical trap: receipts return toward the same person.
+  if(i<3)ops.push(P[i].x(-160+i*130,t));
+  else ops.push(P[i-3].x(-320+(i-3)*94,t),P[i-3].rotation(12,t));
+  ops.push(H.scale(1.13-i*.025,t));
+  if(i>=4)ops.push(w.shroud.opacity(.08,t));
+ }else if(m==='bureau'||m==='forms'){
+  // The counter is one continuous physical barrier; papers do not materialize.
+  const slot=i%(m==='bureau'?3:4);
+  ops.push(P[slot].x(-60+slot*78,t),P[slot].y(132-(i+1)*8,t),P[slot].rotation(i%2?5:-5,t));
+  if(i<4)ops.push(H.x(-555+i*80,t));
+  else ops.push(H.x(-260-(i-3)*58,t));
+  if(i===3)w.clock.text('受付時間');
+  if(i===5)ops.push(w.shroud.opacity(.10,t));
+ }else if(m==='support'){
+  // Intervention removes barriers: applicant and helper reach same counter.
+  if(i<2)ops.push(H.x(-570+i*77,t));
+  if(i>=2)ops.push(O.x(520-(i-2)*92,t),O.opacity(.9,t));
+  if(i>=3)ops.push(P[i-3].x(420,t),P[i-3].scale(.44,t));
+  if(i===5)ops.push(H.x(-145,t));
+ }else if(m==='contrast'||m==='merit'||m==='judge'){
+  // Physical comparison: two stable groups carry differing social judgments.
+  const left=P[0],right=P[1];
+  ops.push(left.scale(1.05+(i%3)*.07,t),right.scale(1.22-(i%3)*.08,t));
+  if(i<3)ops.push(H.rotation(-2-i*2,t),O.rotation(2+i*2,t));
+  else ops.push(H.x(-650+(i-2)*25,t),O.x(645-(i-2)*25,t));
+  if(i===5)ops.push(w.shroud.opacity(.07,t));
+ }else if(m==='study'){
+  // Study records are on the table before narration, compared by moving
+  // the same sheets nearer; no invented data points or fake bar heights.
+  ops.push(P[0].rotation(-5+i*.7,t),P[1].rotation(5-i*.7,t));
+  if(i>2)ops.push(P[0].x(-410+(i-2)*40,t),P[1].x(410-(i-2)*40,t));
+ }else if(m==='book'){
+  // Turn a book rather than adding a new research card each sentence.
+  ops.push(P[0].rotation([-8,-3,5,0,-6,0][i],t));
+  ops.push(P[0].x([115,120,75,60,90,95][i],t));
+  if(i===3)ops.push(w.shroud.opacity(.06,t));
+ }else if(m==='portrait'){
+  ops.push(H.x(-565+i*22,t),H.rotation(i%2?4:-5,t));
+  ops.push(O.x(510-i*18,t),O.rotation(i%2?-4:5,t));
+  if(i>=4)ops.push(w.shroud.opacity(.055,t));
+ }else if(m==='city'){
+  // The citizen physically traverses a district, no tower/icons pop in.
+  ops.push(H.x(-750+i*270,t),H.rotation(i%2?4:-4,t));
+  if(i===3)ops.push(O.opacity(1,t),O.x(380,t));
+  if(i>=4)ops.push(w.shroud.opacity(.06,t));
+ }else if(m==='question'){
+  // A held question slowly turns from accusation into a systemic question.
+  ops.push(P[0].scale(1.65+(i<3?i*.07:(5-i)*.04),t));
+  ops.push(P[0].rotation(-8+i*3,t));
+  if(i>=4)ops.push(w.shroud.opacity(.065,t));
+ }else{
+  ops.push(H.x(H.x()+26,t),H.rotation(i%2?4:-4,t));
+ }
+ yield* all(...ops);
+ const rest=seconds-t;
+ if(rest>0)yield* waitFor(rest);
 }
 function* visual(w:World,s:Scene):ThreadGenerator{
+ placePermanentProps(w,s);
  const step=s.duration/6;
  for(let i=0;i<6;i++)yield* changeState(w,s,i,step);
 }
