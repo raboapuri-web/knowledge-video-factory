@@ -57,7 +57,7 @@ function makeSlide(s:Shot) {
    n.add(text(s.kind==='environment'?'経済成長と環境改善の並行':s.title,29,C.secondary,400,1270));
    graphic.add(n);
    const tags=row(1450,96,18);
-   for(const lab of labels.slice(0,3))addReveal(tags.add(smallTag(lab,420)) as any);
+   for(const lab of labels.slice(0,3)){const item=smallTag(lab,420);addReveal(item);tags.add(item);}
    graphic.add(tags);
  }else if(s.kind==='compare'||s.kind==='contrast'||s.kind==='caveat'){
    const pair=row(1460,340,30);
