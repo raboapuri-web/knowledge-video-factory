@@ -283,7 +283,16 @@ def segmentation(text):
                     pieces.append(rawpart[:cut]);rawpart=rawpart[cut:]
             buf=rawpart
     if buf:pieces.append(buf)
-    return [p.strip() for p in pieces if p.strip()]
+    # Re-chunk any long clause; each subtitle is at most two safe-area lines.
+    safe=[]
+    for p in pieces:
+        p=p.strip()
+        while len(p)>46:
+            cut=p.rfind("、",20,44)+1
+            if cut<20: cut=44
+            safe.append(p[:cut].strip());p=p[cut:].strip()
+        if p:safe.append(p)
+    return safe
 
 DIGITS={
 "1348年":"千三百四十八年","1351年":"千三百五十一年","1349年":"千三百四十九年",
@@ -322,6 +331,7 @@ def srt_time(t):
 
 def srt_lines(s):
     # ASS renderer 2-line subtitles of no more than 23 Japanese chars per line.
+    assert len(s)<=46, f"subtitle too long for safe two-line area: {len(s)}"
     return "\n".join(s[i:i+23] for i in range(0,len(s),23))
 
 def voice():
@@ -387,9 +397,9 @@ def render():
     (OUT/"images.ffconcat").write_text("\n".join(ffconcat)+"\n",encoding="utf-8")
     # True audio clock controls end time. Narration/subtitles and semantics are joined by same beat IDs.
     srt=str(OUT/"subtitles.srt")
-    style=("FontName=Noto Sans CJK JP,FontSize=25,PrimaryColour=&H00F6F4EB,"
+    style=("FontName=Noto Sans CJK JP,FontSize=23,PrimaryColour=&H00F6F4EB,"
            "OutlineColour=&H00151519,BorderStyle=1,Outline=2,Shadow=1,"
-           "MarginV=34,Alignment=2")
+           "MarginV=12,Alignment=2")
     vf=f"fps=24,subtitles='{srt}':force_style='{style}'"
     out=str(OUT/"v125-black-death-economy-final.mp4")
     cmd=["ffmpeg","-hide_banner","-y","-loglevel","warning",
