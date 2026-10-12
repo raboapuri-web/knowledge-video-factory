@@ -26,12 +26,53 @@ const C={bg:'#0b1320',bg2:'#101e30',paper:'#f5f2ec',muted:'#b0bfca',
  muted2:'#8194a2',red:'#ee756b',teal:'#69c8b1',gold:'#e4c07f',
  blue:'#729ec4',panel:'#1a293e',panel2:'#20364a',rule:'#395066'};
 type Piece={node:Node;kind?:'bar'|'normal';target?:number};
-const limited=(value:string,size:number)=>Math.max(21,size-(Math.max(0,value.length-12)*1.25));
+// Explicit pixel line-height is required by Motion Canvas. A unitless 1.3
+// is treated as roughly 1px and causes superimposed lines inside labels.
+const glyphUnits=(value:string)=>[...value].reduce((sum,ch)=>sum+(/[\u0020-\u007e]/.test(ch)?0.57:1),0);
+const normalizeText=(value:string)=>value.replace(/\\n/g,'\n').replace(/\r/g,'');
+/** Deterministic Japanese line-breaking; no implicit textWrap / overflow. */
+function layoutLabel(raw:string,maxSize:number,insideWidth:number,insideHeight:number,maxLines=2){
+ const value=normalizeText(raw);
+ const sourceLines=value.split('\n');
+ for(let size=Math.floor(maxSize);size>=18;size--){
+  const available=Math.max(1,insideWidth/(size*1.06));
+  const lines:string[]=[];
+  for(const source of sourceLines){
+   let text='';let used=0;
+   for(const char of source){
+    const unit=glyphUnits(char);
+    if(text && used+unit>available){lines.push(text);text='';used=0;}
+    text+=char;used+=unit;
+   }
+   lines.push(text);
+  }
+  const lineHeight=Math.ceil(size*1.24);
+  if(lines.length<=maxLines &&
+     lines.length*lineHeight<=insideHeight &&
+     lines.every(x=>glyphUnits(x)*size*1.06<=insideWidth+1)){
+    return {text:lines.join('\n'),fontSize:size,lineHeight,lines};
+  }
+ }
+ throw new Error('Unfittable label within '+insideWidth+'x'+insideHeight+': '+raw);
+}
 const add=(parent:Node,node:Node)=>{parent.add(node);return node;};
 const txt=(parent:Node,content:string,x:number,y:number,size=42,color=C.paper,width=0,weight=700):Txt=>{
- const t=new Txt({text:content,x,y,fontFamily:FONT,fontSize:limited(content,size),fontWeight:weight,fill:color,textAlign:'center',lineHeight:1.3,textWrap:width>0,...(width>0?{width}:{})});
+ const value=normalizeText(content);
+ const fitted=width>0?layoutLabel(value,size,width,Math.ceil(size*1.32),1):{
+  text:value,fontSize:size,lineHeight:Math.ceil(size*1.24),
+ };
+ const t=new Txt({text:fitted.text,x,y,fontFamily:FONT,fontSize:fitted.fontSize,
+  fontWeight:weight,fill:color,textAlign:'center',lineHeight:fitted.lineHeight,
+  textWrap:false,...(width>0?{width}:{})});
  parent.add(t);return t;
 };
+/** For graphic containers, fit up to two lines without clipping/overlap. */
+function fittingText(parent:Node,value:string,x:number,y:number,maxSize:number,color:string,w:number,h:number,maxLines=2){
+ const v=layoutLabel(value,maxSize,w,h,maxLines);
+ return add(parent,new Txt({text:v.text,x,y,fontFamily:FONT,fontSize:v.fontSize,
+  fontWeight:700,fill:color,textAlign:'center',lineHeight:v.lineHeight,
+  textWrap:false,width:w}));
+}
 const box=(parent:Node,x:number,y:number,w:number,h:number,fill=C.panel,r=18):Rect=>{
  const a=new Rect({x,y,width:w,height:h,fill,radius:r});
  parent.add(a);return a;
@@ -45,7 +86,7 @@ function chip(parent:Node,x:number,y:number,label:string,accent=C.teal,width=360
  const g=add(parent,new Node({x,y}));
  const rect=box(g,0,0,width,height,C.panel,18);rect.stroke(C.rule);rect.lineWidth(2);
  box(g,-width*.5+8,0,6,height*.64,accent,4);
- txt(g,label,0,0,label.length>17?27:35,C.paper,width-38);
+ fittingText(g,label,0,0,label.length>17?29:35,C.paper,width-52,height-18);
  return g;
 }
 function arrow(parent:Node,x1:number,y1:number,x2:number,y2:number,color=C.gold):Node{
@@ -97,7 +138,7 @@ function init(view:View2D,s:Shot){
  const subtitle=txt(caption,'',0,461,41,C.paper,1690);
  subtitle.lineHeight(58);
  // Source note is within the diagram region. Never obscure it with subtitles.
- if(s.source)txt(header,centered(s.source),0,306,19,C.muted,1700,400);
+ if(s.source)txt(header,centered(s.source),0,307,18,C.muted,1700,400);
  return {main,subtitle,accent};
 }
 function build(s:Shot,parent:Node,accent:string):Piece[]{
@@ -109,8 +150,10 @@ function build(s:Shot,parent:Node,accent:string):Piece[]{
   const a=add(group,new Node({x:0,y:-45}));
   txt(a,s.headline,0,0,mode==='manifesto'?64:73,mode==='claim'?C.red:accent,1530);
   show(a);
-  const n=L.length,step=Math.min(460,1480/n),total=(n-1)*step;
-  L.forEach((x,i)=>show(chip(group,-total/2+i*step,175,x,i===0?C.red:accent,Math.min(430,1380/n),94)));
+  const n=L.length;
+  const cardWidth=n===1?670:n===2?615:n===3?455:n===4?340:270;
+  const step=cardWidth+22,total=(n-1)*step;
+  L.forEach((x,i)=>show(chip(group,-total/2+i*step,175,x,i===0?C.red:accent,cardWidth,110)));
   if(mode==='claim'){
    const line=add(group,new Node({}));
    segment(line,[[-610,88],[610,88]],C.red,5);
@@ -159,10 +202,10 @@ function build(s:Shot,parent:Node,accent:string):Piece[]{
    const up=(s.id==='cap-chapter5-02'?i===0:true);
    const arrowColor=up?C.teal:C.red;
    arrow(part,0,85,0,up?10:152,arrowColor);
-   txt(part,i===0?'基準との変化':'別の指標',0,163,25,C.muted,610);
+   txt(part,i===0?'基準との変化':'別の指標',0,120,25,C.muted,610);
    show(part);
   });
-  if(mode==='barpairs' && s.metric)show(chip(group,0,250,s.metric,C.gold,700,75));
+  if(mode==='barpairs' && s.metric)show(chip(group,0,217,s.metric,C.gold,650,64));
  }else if(mode==='network'||mode==='circulation'){
   const positions=[[-550,-40],[0,-155],[550,-40],[0,169]];
   const count=Math.min(L.length,4);
@@ -180,8 +223,10 @@ function build(s:Shot,parent:Node,accent:string):Piece[]{
   const n=L.length,positions=n===4?[[-460,-96],[460,-96],[-460,139],[460,139]]:[[-490,10],[0,-80],[490,10]];
   L.forEach((v,i)=>{
    const [x,y]=positions[i%positions.length],node=add(group,new Node({x,y}));
-   dot(node,0,0,n===4?195:220,i===0?C.gold:i===1?accent:C.teal);
-   txt(node,v,0,0,v.length>13?28:37,C.bg,n===4?360:400);
+   const diameter=n===4?230:300;
+   dot(node,0,0,diameter,i===0?C.gold:i===1?accent:C.teal);
+   // The text's ACTUAL fitted bounds must be smaller than the enclosing circle.
+   fittingText(node,v,0,0,n===4?32:37,C.bg,diameter*.77,diameter*.61,2);
    show(node);
   });
   if(mode==='rules')show(chip(group,0,235,'市場を機能させる条件',C.red,740,76));
