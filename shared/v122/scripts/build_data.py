@@ -7,7 +7,9 @@ ROOT=Path(__file__).resolve().parents[1]
 (ROOT/'src/projects').mkdir(parents=True,exist_ok=True)
 rows=[]
 chapter_map={'A':'chapter1','B':'chapter2','C':'chapter3','D':'chapter4','E':'chapter5','F':'chapter6','G':'chapter7'}
-for line in (ROOT/'content/scene_narration.tsv').read_text(encoding='utf-8').strip().splitlines():
+for line in (ROOT/'content/scene_narration.tsv').read_text(encoding='utf-8').splitlines():
+    line=line.strip()
+    if not line: continue
     sid,motif,title,narration=line.split('|',3)
     assert '\\n' not in title+narration
     chapter='prologue' if sid.startswith('P') else 'epilogue' if sid.startswith('Z') else chapter_map[sid[0]]
