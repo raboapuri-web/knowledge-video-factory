@@ -129,7 +129,7 @@ def split_beats(raw,target=185):
         buf+=part
     if buf:beats.append(buf)
     if len(beats)>1 and len(beats[-1])<70:
-        beats[-2]+=beats.pop()
+        beats[-2]+=beats[-1];beats.pop()
     assert "".join(beats)==s
     return beats
 def compile_script():
