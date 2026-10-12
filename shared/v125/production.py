@@ -322,9 +322,7 @@ def srt_time(t):
 
 def srt_lines(s):
     # ASS renderer 2-line subtitles of no more than 23 Japanese chars per line.
-    if len(s)<=23:return s
-    if len(s)<=46:return s[:23]+"\n"+s[23:]
-    return s[:23]+"\n"+s[23:46]  # chunks are targeted to <=42
+    return "\n".join(s[i:i+23] for i in range(0,len(s),23))
 
 def voice():
     OUT.mkdir(exist_ok=True)
@@ -389,9 +387,9 @@ def render():
     (OUT/"images.ffconcat").write_text("\n".join(ffconcat)+"\n",encoding="utf-8")
     # True audio clock controls end time. Narration/subtitles and semantics are joined by same beat IDs.
     srt=str(OUT/"subtitles.srt")
-    style=("FontName=Noto Sans CJK JP,FontSize=49,PrimaryColour=&H00F6F4EB,"
-           "OutlineColour=&H00151519,BorderStyle=1,Outline=3,Shadow=1,"
-           "MarginV=65,Alignment=2")
+    style=("FontName=Noto Sans CJK JP,FontSize=25,PrimaryColour=&H00F6F4EB,"
+           "OutlineColour=&H00151519,BorderStyle=1,Outline=2,Shadow=1,"
+           "MarginV=34,Alignment=2")
     vf=f"fps=24,subtitles='{srt}':force_style='{style}'"
     out=str(OUT/"v125-black-death-economy-final.mp4")
     cmd=["ffmpeg","-hide_banner","-y","-loglevel","warning",
