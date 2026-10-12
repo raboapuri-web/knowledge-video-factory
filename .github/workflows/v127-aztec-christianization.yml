@@ -1,0 +1,112 @@
+name: V127 Aztec Christianity — Sequel Film
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v127-aztec-christianization.yml'
+      - 'shared/v127/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v127-aztec-christianization-main
+  cancel-in-progress: true
+
+jobs:
+  film:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    defaults:
+      run:
+        working-directory: shared/v127
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install rendering tools and Japanese fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk ffmpeg fontconfig
+          python3 -m pip install --break-system-packages pillow==11.3.0
+          python3 -m py_compile production.py ../v125/production.py
+          ffmpeg -filters | grep subtitles
+      - name: Audit complete edited manuscript against voice script
+        run: |
+          python3 production.py compile
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          d=json.loads(Path("content/script.json").read_text(encoding="utf-8"))
+          chapters=["prologue"]+["chapter"+str(i) for i in range(1,7)]+["epilogue"]
+          for ch in chapters:
+              text=re.sub(r"\s+","",Path("content",ch+".txt").read_text()).replace("**","")
+              joined="".join(b["narration"] for b in d["beats"] if b["chapter"]==ch)
+              assert text==joined,(ch,len(text),len(joined))
+          assert 64 <= len(d["beats"]) <= 120, len(d["beats"])
+          print("SCRIPT COMPLETE",len(d["beats"]),"independent meaning scenes")
+          PY
+      - name: Render all history infographics and QA contact sheet
+        run: |
+          python3 production.py prepare
+          test -s output/v127-contact-sheet.jpg
+          test "$(find output -maxdepth 1 -name 'shot-*.png' | wc -l)" -ge 128
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v127-storyboard-contact-sheet
+          path: shared/v127/output/v127-contact-sheet.jpg
+          retention-days: 21
+      - name: Start VOICEVOX narrator
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox-v127 -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..150}; do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null; then
+              echo "VOICEVOX ready"; exit 0
+            fi
+            sleep 2
+          done
+          exit 1
+      - name: Synthesize complete voice track and measured subtitles
+        run: |
+          python3 production.py voice
+          test -s output/narration.wav
+          test -s output/subtitles.srt
+          python3 - <<'PY'
+          import json
+          d=json.load(open("output/timing.json"))
+          assert d["totalSeconds"] > 720
+          assert d["cues"] > 250
+          print("VOICE_READY",d["totalSeconds"],d["cues"])
+          PY
+      - name: Encode and verify broadcast MP4
+        run: |
+          python3 production.py render
+          test -s output/v127-aztec-christianization-final.mp4
+          cat output/v127-final-qa.json
+      - name: Archive mastered film, QA, subtitle cues
+        uses: actions/upload-artifact@v4
+        with:
+          name: v127-aztec-christianization-master
+          path: |
+            shared/v127/output/v127-aztec-christianization-final.mp4
+            shared/v127/output/v127-final-qa.json
+            shared/v127/output/v127-contact-sheet.jpg
+            shared/v127/output/subtitles.srt
+            shared/v127/output/timing.json
+            shared/v127/output/SOURCES.txt
+          retention-days: 21
+          compression-level: 0
+      - name: Publish final film through GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v127-aztec-christianization-${GITHUB_RUN_ID}"
+          gh release create "$TAG" \
+            output/v127-aztec-christianization-final.mp4 \
+            output/v127-final-qa.json \
+            output/v127-contact-sheet.jpg \
+            output/SOURCES.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V127 キリスト教はいかにアステカの神と文化を破壊したのか 後編" \
+            --notes "Edited approved Japanese manuscript (no cuts). VOICEVOX 青山龍星, 1080p H.264/AAC, timed Japanese subtitles. Infographics distinguish 2020 census from 2024 adult survey; all paintings and diagrams are original illustrative reconstructions."
