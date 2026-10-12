@@ -1,0 +1,98 @@
+name: V125 Black Death Economic History Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v125-black-death-economy.yml'
+      - 'shared/v125/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v125-black-death-main
+  cancel-in-progress: false
+
+jobs:
+  production:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: shared/v125
+    steps:
+      - uses: actions/checkout@v4
+      - name: Japanese typography, FFmpeg and Python
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk ffmpeg fontconfig
+          python3 -m pip install --break-system-packages pillow==11.3.0
+          python3 -m py_compile production.py
+          ffmpeg -filters | grep -E '\bsubtitles\b'
+      - name: Prepare 36 independent meaning-based historical visual scenes
+        run: |
+          python3 production.py prepare
+          test -s output/v125-contact-sheet.jpg
+          test "$(find output -maxdepth 1 -name 'shot-*.png' | wc -l)" -ge 72
+      - name: Post preflight visual contact sheet
+        uses: actions/upload-artifact@v4
+        with:
+          name: v125-storyboard-contact-sheet
+          path: shared/v125/output/v125-contact-sheet.jpg
+          retention-days: 14
+      - name: Boot VOICEVOX CPU
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox-v125 -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..150}; do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null; then
+              echo "VOICEVOX ready"; exit 0
+            fi
+            sleep 2
+          done
+          exit 1
+      - name: Generate measured Aoyama Ryusei VOICEVOX and sentence subtitles
+        run: |
+          python3 production.py voice
+          test -s output/narration.wav
+          test -s output/subtitles.srt
+          python3 - <<'PY'
+          import json
+          d=json.load(open('output/timing.json'))
+          print("Measured voice seconds:",d["totalSeconds"])
+          assert d["totalSeconds"]>=600,"Narration duration below ten minutes; do not pad with silent slideshow"
+          assert len(d["beats"])==36
+          PY
+      - name: Render final H264/AAC MP4 with burned-in Japanese subtitles
+        run: |
+          python3 production.py render
+          test -s output/v125-black-death-economy-final.mp4
+          cat output/v125-final-qa.json
+      - name: Archive release-ready master and review evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: v125-final-master
+          path: |
+            shared/v125/output/v125-black-death-economy-final.mp4
+            shared/v125/output/v125-contact-sheet.jpg
+            shared/v125/output/v125-final-qa.json
+            shared/v125/output/SOURCES.txt
+            shared/v125/output/timing.json
+          retention-days: 21
+          compression-level: 0
+      - name: Publish final as GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v125-black-death-${GITHUB_RUN_ID}"
+          gh release create "$TAG" \
+            output/v125-black-death-economy-final.mp4 \
+            output/v125-contact-sheet.jpg \
+            output/v125-final-qa.json \
+            output/SOURCES.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V125 経済から見た黒死病 完成映像" \
+            --notes "VOICEVOX 青山龍星、36 unique semantically linked diagram/chronicle scenes, measured subtitles, 1920x1080 H.264/AAC. Documentary pictograms and illustrative figures are recreations, not medieval primary-source images."
