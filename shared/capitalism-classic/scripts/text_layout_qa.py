@@ -79,7 +79,7 @@ if (217+64/2)*scale>=307-(18*1.24)/2:
 if 307+(18*1.24)/2>=343:errors.append('Source note collides with divider')
 director=(ROOT/'src/lib/hybridDirector.tsx').read_text()
 for must in [
-    "lineHeight:Math.ceil(size*1.24)",
+    "const lineHeight=Math.ceil(size*1.24);",
     "textWrap:false",
     "function fittingText(",
     "fittingText(node,v,0,0,n===4?32:37",
