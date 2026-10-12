@@ -207,15 +207,16 @@ function build(s:Shot,parent:Node,accent:string):Piece[]{
   });
   if(mode==='barpairs' && s.metric)show(chip(group,0,217,s.metric,C.gold,650,64));
  }else if(mode==='network'||mode==='circulation'){
-  const positions=[[-550,-40],[0,-155],[550,-40],[0,169]];
+  const positions=[[-530,-10],[0,-190],[530,-10],[0,178]];
   const count=Math.min(L.length,4);
   const hub=add(group,new Node({x:0,y:4}));
   dot(hub,0,0,150,C.panel2);txt(hub,mode==='network'?'価格':'交換',0,0,43,accent);
   show(hub);
   for(let i=0;i<count;i++){
    const [x,y]=positions[i],part=add(group,new Node({x,y}));
-   dot(part,0,0,102,i%2===0?C.gold:C.teal);
-   txt(part,L[i],0,0,L[i].length>8?29:36,C.bg,320);
+   const nodeDiameter=165;
+   dot(part,0,0,nodeDiameter,i%2===0?C.gold:C.teal);
+   fittingText(part,L[i],0,0,29,C.bg,nodeDiameter*.81,nodeDiameter*.70,2);
    show(part);
    const connector=arrow(group,x*.77,y*.72,x*.18,y*.19,C.muted2);show(connector);
   }
@@ -276,8 +277,9 @@ function build(s:Shot,parent:Node,accent:string):Piece[]{
   const positions=[[-590,-64],[-295,115],[0,-107],[295,115],[590,-64]];
   L.forEach((v,i)=>{
    const [x,y]=positions[i],node=add(group,new Node({x,y}));
-   dot(node,0,0,165,i%2?C.teal:C.gold);
-   txt(node,v,0,0,37,C.bg,200);show(node);
+   const d=185;
+   dot(node,0,0,d,i%2?C.teal:C.gold);
+   fittingText(node,v,0,0,31,C.bg,d*.78,d*.7,2);show(node);
   });
  }else if(mode==='book'){
   const shape=add(group,new Node({x:-315,y:15}));icon(shape,0,0,'book',C.gold);show(shape);
