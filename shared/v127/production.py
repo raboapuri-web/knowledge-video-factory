@@ -198,7 +198,7 @@ def scene(d,mode,stage,idx):
             x=170+j*82; h=45+(j*59)%125
             d.rectangle((x,710-h,x+65,718),fill=(108,97,77),outline=GOLD,width=2)
         temple(d,1060,750,.76)
-        if stage: text(d,"湖上の巨大都市",(255,380),56,GOLD,True,690)
+        if stage: text(d,"湖上の巨大都市",255,380,56,GOLD,True,690)
     elif mode in ("collapse","siege","assault"):
         temple(d,960,760,1)
         if mode!="siege":
@@ -260,8 +260,8 @@ def scene(d,mode,stage,idx):
         if mode=="cross": cross(d,960,560,1.3);sun(d,1370,515,110)
         elif mode=="mission":
             cross(d,580,510,1.0)
-            text(d,"「救済」",(900,440),98,GOLD,True,620)
-            if stage:text(d,"他者の神を否定する大義",(815,590),55,PALE,False,770)
+            text(d,"「救済」",900,440,98,GOLD,True,620)
+            if stage:text(d,"他者の神を否定する大義",815,590,55,PALE,False,770)
         else:
             d.polygon([(390,560),(960,372),(1540,560)],fill=(107,111,115),outline=GOLD)
             d.rectangle((425,555,1500,780),fill=(124,116,101),outline=GOLD,width=5)
@@ -324,7 +324,7 @@ def scene(d,mode,stage,idx):
                 person(d,x,640,.78,TURQ if j%2 else GOLD)
             d.rectangle((250,770,1660,785),fill=GOLD)
             if stage:
-                text(d,"教義・洗礼・読み書き",(500,385),66,PALE,True,1000)
+                text(d,"教義・洗礼・読み書き",500,385,66,PALE,True,1000)
     elif mode in ("year1539","document","trial","sentence","exception","jurisdiction","case"):
         scroll(d)
         if mode=="jurisdiction":
@@ -402,7 +402,7 @@ def scene(d,mode,stage,idx):
                 x=290+j*350
                 center(d,f"{v}%",x,420,320,60,c,True)
                 center(d,l,x,649,320,33,PALE)
-            if stage: text(d,"2024年調査／成人",(675,765),42,GOLD,False,630)
+            if stage: text(d,"2024年調査／成人",675,765,42,GOLD,False,630)
         else:
             vals=[89,11];x=300
             for v,c in zip(vals,[GOLD,SLATE]):
