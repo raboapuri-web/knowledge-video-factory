@@ -17,29 +17,30 @@ for s in ss:
   if '\\n' in c['display']:errors.append('literal escaped newline '+s['id'])
  if s['durationSource']!='VOICEVOX_MEASURED':warn.append(s['id']+' uses estimated durations')
  if not (R/'src/scenes'/f"{s['id']}.tsx").exists():errors.append('missing scene source '+s['id'])
-if len(ss)!=45:errors.append('expected 45 meaning scenes, got '+str(len(ss)))
+if len(ss)!=63:errors.append('expected 63 meaning scenes, got '+str(len(ss)))
 if len(chapters)!=9:errors.append('expected 9 render units, got '+str(len(chapters)))
 expected={'prologue','chapter1','chapter2','chapter3','chapter4','chapter5','chapter6','chapter7','epilogue'}
 if set(chapters)!=expected:errors.append('unexpected chapter set '+str(sorted(chapters)))
-if len(vp)!=45:errors.append('expected 45 visual plans, got '+str(len(vp)))
+if len(vp)!=63:errors.append('expected 63 visual plans, got '+str(len(vp)))
 motifs=[s['motif'] for s in ss]
-if len(set(motifs))!=45:errors.append('motifs must be unique')
+if len(set(motifs))!=63:errors.append('motifs must be unique')
+motions=[]
 for m in motifs:
  p=vp.get(m,{})
  if len(p.get('labels',[]))!=8:errors.append('visual plan must contain 8 semantic states '+m)
  if not p.get('kind') or not p.get('motion'):errors.append('missing kind/motion '+m)
-for a,b in zip(ss,ss[1:]):
- if a['motif']==b['motif']:errors.append('adjacent repeated motif '+b['id'])
+ motions.append(p.get('motion'))
+if len(set(motions))!=63:errors.append('every narration scene requires a unique motion signature')
 source=(R/'src/lib/meaningScene.tsx').read_text()
 if 'const contentLayer' not in source or 'const subtitleTextLayer' not in source:errors.append('missing subtitle separation')
 if source.find('contentLayer')>source.find('subtitleTextLayer'):errors.append('unexpected z-order declarations')
 if len(re.findall(r'view\.add\(',source))!=4:errors.append('unexpected root view.add usage')
-if 'MICRO_BEATS_PER_SCENE=16' not in source:errors.append('V122 requires 16 micro beats per meaning scene')
-if len(re.findall(r"case'[^']+':",source))!=45:errors.append('V122 requires 45 dedicated motif scene layouts')
-if 'microStageFlow' not in source or 'cameraFlow' not in source:errors.append('V122 requires micro choreography and continuous camera flow')
-if "hash(scene.motif" not in source:errors.append('V122 requires motif-seeded variation')
+if 'MICRO_BEATS_PER_SCENE=20' not in source:errors.append('V124 requires 20 micro beats per meaning scene')
+if len(re.findall(r"case'[^']+':",source))!=63:errors.append('V124 requires 63 dedicated motif scene layouts')
+if 'microStageFlow' not in source or 'cameraFlow' not in source:errors.append('V124 requires micro choreography and continuous camera flow')
+if "hash(scene.motif" not in source:errors.append('V124 requires motif-seeded variation')
 report={'status':'BLOCKED' if errors else ('MEASURED_PENDING' if warn else 'READY_FOR_SMOKE_QA'),
- 'scene_count':len(ss),'chapter_count':len(chapters),'visual_beats':len(ss)*16,'micro_beats_per_scene':16,
+ 'video':'V124','scene_count':len(ss),'chapter_count':len(chapters),'visual_beats':len(ss)*20,'micro_beats_per_scene':20,
  'subtitle_cues':sum(len(s['cues']) for s in ss),'seconds':round(sum(s['duration'] for s in ss),2),
  'errors':errors,'timing_blockers':warn[:5]+(['...'] if len(warn)>5 else [])}
 (R/'qa').mkdir(parents=True,exist_ok=True)
