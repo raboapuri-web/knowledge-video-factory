@@ -17,7 +17,7 @@ for line in (ROOT/'content/scene_narration.tsv').read_text(encoding='utf-8').str
         if not sentence: continue
         while len(sentence)>35:
             candidates=[i+1 for i,c in enumerate(sentence[:36]) if c in '、，,。' and i>=12]
-            boundary=max(candidates) if candidates else min([i for i in range(17,min(35,len(sentence))) if sentence[i] in 'はがをにでとへ'] or [33])
+            boundary=max(candidates) if candidates else min([i for i in range(17,min(35,len(sentence))) if sentence[i] in 'はがをにでとへも'] or [33])
             items.append(sentence[:boundary]);sentence=sentence[boundary:]
         if sentence:items.append(sentence)
     cues=[];t=0.0
@@ -37,12 +37,12 @@ for r in rows:
       f"const scene = sceneData.find(s => s.id === '{r['id']}')!;\n"
       "export default makeScene2D(function* (view) {yield* playMeaningScene(view, scene);});\n")
 chapters=['prologue']+[f'chapter{i}' for i in range(1,8)]+['epilogue']
-MC_META={"version":1,"shared":{"background":"rgb(10,18,32)","range":[0,None],"size":{"x":1920,"y":1080},"audioOffset":0},"preview":{"fps":30,"resolutionScale":0.5},"rendering":{"fps":30,"resolutionScale":1,"colorSpace":"srgb","exporter":{"name":"@motion-canvas/ffmpeg","options":{"fastStart":True,"includeAudio":True}},"fileType":"image/png","quality":1}}
+MC_META={"version":1,"shared":{"background":"rgb(7,16,24)","range":[0,None],"size":{"x":1920,"y":1080},"audioOffset":0},"preview":{"fps":30,"resolutionScale":0.5},"rendering":{"fps":30,"resolutionScale":1,"colorSpace":"srgb","exporter":{"name":"@motion-canvas/ffmpeg","options":{"fastStart":True,"includeAudio":True}},"fileType":"image/png","quality":1}}
 for chapter in chapters:
     ids=[r['id'] for r in rows if r['chapter']==chapter]
     imports='\n'.join(f"import s{i} from '../scenes/{sid}?scene';" for i,sid in enumerate(ids))
-    (ROOT/'src/projects'/f'{chapter}.ts').write_text("import {makeProject} from '@motion-canvas/core';\n"+imports+'\n'+f"export default makeProject({{name:'v122-{chapter}',scenes:[{','.join(f's{i}' for i in range(len(ids)))}],audio:'/media/{chapter}/narration.wav'}});\n")
+    (ROOT/'src/projects'/f'{chapter}.ts').write_text("import {makeProject} from '@motion-canvas/core';\n"+imports+'\n'+f"export default makeProject({{name:'v124-{chapter}',scenes:[{','.join(f's{i}' for i in range(len(ids)))}],audio:'/media/{chapter}/narration.wav'}});\n")
     (ROOT/'src/projects'/f'{chapter}.meta').write_text(json.dumps(MC_META,ensure_ascii=False,separators=(',',':')))
 chap=defaultdict(float)
 for r in rows:chap[r['chapter']]+=r['duration']
-print(json.dumps({'scene_count':len(rows),'estimated_duration_sec':round(sum(chap.values()),2),'chapters':chap,'cue_count':sum(len(r['cues']) for r in rows)},ensure_ascii=False))
+print(json.dumps({'video':'V124','scene_count':len(rows),'estimated_duration_sec':round(sum(chap.values()),2),'chapters':chap,'cue_count':sum(len(r['cues']) for r in rows)},ensure_ascii=False))
