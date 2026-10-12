@@ -1,0 +1,111 @@
+name: V126 Aztec Cosmology — Full Production
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v126-aztec-cosmology.yml'
+      - 'shared/v126/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v126-aztec-cosmology-main
+  cancel-in-progress: true
+
+jobs:
+  production:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    defaults:
+      run:
+        working-directory: shared/v126
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install FFmpeg, Japanese fonts, Pillow
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk ffmpeg fontconfig
+          python3 -m pip install --break-system-packages pillow==11.3.0
+          python3 -m py_compile production.py ../v125/production.py
+          ffmpeg -filters | grep -E 'subtitles'
+      - name: Compile source and enforce 100% narration coverage
+        run: |
+          python3 production.py compile
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          d=json.loads(Path("content/script.json").read_text())
+          assert 44 <= len(d["beats"]) <= 76, len(d["beats"])
+          for c in ["prologue","chapter1","chapter2","chapter3","chapter4","epilogue"]:
+              source=re.sub(r"\s+","",Path("content",c+".txt").read_text())
+              actual="".join(b["narration"] for b in d["beats"] if b["chapter"]==c)
+              assert source==actual,(c,len(source),len(actual))
+          print("FULL SCRIPT UNABRIDGED / scenes:",len(d["beats"]))
+          PY
+      - name: Render unique historical scene states and contact sheet
+        run: |
+          python3 production.py prepare
+          test -s output/v126-contact-sheet.jpg
+          test "$(find output -maxdepth 1 -name 'shot-*.png' | wc -l)" -ge 130
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v126-aztec-storyboard-contact-sheet
+          path: shared/v126/output/v126-contact-sheet.jpg
+          retention-days: 21
+      - name: Start VOICEVOX narrator
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox-v126 -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..150}; do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null; then
+              echo "VOICEVOX ready"; exit 0
+            fi
+            sleep 2
+          done
+          exit 1
+      - name: Generate unabridged VOICEVOX narration with measured subtitle cues
+        run: |
+          python3 production.py voice
+          test -s output/narration.wav
+          test -s output/subtitles.srt
+          python3 - <<'PY'
+          import json
+          d=json.load(open("output/timing.json"))
+          print("Narration duration",d["totalSeconds"],"seconds; beats",len(d["beats"]))
+          assert d["totalSeconds"]>600
+          assert len(d["beats"])>=44
+          PY
+      - name: Encode 1920x1080 final MP4 + hard subtitles
+        run: |
+          python3 production.py render
+          test -s output/v126-aztec-cosmology-final.mp4
+          cat output/v126-final-qa.json
+      - name: Archive review evidence and final master
+        uses: actions/upload-artifact@v4
+        with:
+          name: v126-aztec-final-master
+          path: |
+            shared/v126/output/v126-aztec-cosmology-final.mp4
+            shared/v126/output/v126-contact-sheet.jpg
+            shared/v126/output/v126-final-qa.json
+            shared/v126/output/SOURCES.txt
+            shared/v126/output/timing.json
+            shared/v126/output/subtitles.srt
+          retention-days: 21
+          compression-level: 0
+      - name: Publish completed film as GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v126-aztec-cosmology-${GITHUB_RUN_ID}"
+          gh release create "$TAG" \
+            output/v126-aztec-cosmology-final.mp4 \
+            output/v126-contact-sheet.jpg \
+            output/v126-final-qa.json \
+            output/SOURCES.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V126 人類は神に命の借金をしている｜古代アステカ宗教観 前編" \
+            --notes "Unabridged approved narration; 44+ semantic original infographic/manuscript-style scenes with varied visual modes, 3 states each, VOICEVOX 青山龍星, 1920x1080 H.264/AAC, burned Japanese subtitles. Original symbolic illustrations are explanatory recreations and not authenticated historical source illustrations."
