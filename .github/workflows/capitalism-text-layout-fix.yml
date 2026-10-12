@@ -1,0 +1,198 @@
+name: Capitalism Hybrid v4 Typography Repair
+on:
+  workflow_dispatch:
+    inputs:
+      only_chapter:
+        description: 'all or rerender one changed chapter (reuses successful Capitalism Classic Release)'
+        required: true
+        default: all
+        type: choice
+        options: [all, prologue, cta, chapter1, chapter2, chapter3, chapter4, chapter5, epilogue]
+  push:
+    branches: [production/capitalism-text-layout-fix-20261012]
+    paths:
+      - '.github/workflows/capitalism-text-layout-fix.yml'
+      - 'shared/capitalism-classic/**'
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: capitalism-typography-v4-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/capitalism-classic/.puppeteer
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - name: Compile exact revised manuscript and run static QA
+        working-directory: shared/capitalism-classic
+        run: |
+          python3 scripts/storyboard.py
+          python3 scripts/build_data.py
+          python3 scripts/static_qa.py
+          python3 scripts/text_layout_qa.py
+      - name: Single dependency and Chromium install
+        working-directory: shared/capitalism-classic
+        run: npm install --no-audit --no-fund
+      - name: Typecheck and production bundle
+        working-directory: shared/capitalism-classic
+        run: npm run build
+      - name: Archive prepared render runtime once
+        run: tar --exclude='shared/capitalism-classic/media' --exclude='shared/capitalism-classic/output' --exclude='shared/capitalism-classic/qa' -czf capitalismclassic-base.tar.gz shared/capitalism-classic
+      - uses: actions/upload-artifact@v4
+        with:
+          name: capitalismclassic-base
+          path: capitalismclassic-base.tar.gz
+          retention-days: 3
+          compression-level: 0
+  voice:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        chapter: [prologue, cta, chapter1, chapter2, chapter3, chapter4, chapter5, epilogue]
+    steps:
+      - name: Reuse exact previously approved VOICEVOX audio and timings
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p measured-audio
+          gh run download 38162631668 --repo "$GITHUB_REPOSITORY" --name 'capitalismclassic-voice-${{ matrix.chapter }}' --dir measured-audio
+          test -s 'measured-audio/capitalismclassic-voice-${{ matrix.chapter }}.tar.gz'
+          cp 'measured-audio/capitalismclassic-voice-${{ matrix.chapter }}.tar.gz' .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: capitalismclassic-voice-${{ matrix.chapter }}
+          path: capitalismclassic-voice-${{ matrix.chapter }}.tar.gz
+          retention-days: 3
+          compression-level: 0
+  render:
+    needs: [prepare, voice]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        chapter: [prologue, cta, chapter1, chapter2, chapter3, chapter4, chapter5, epilogue]
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+      - uses: actions/setup-node@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with: {node-version: 22}
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with: {name: capitalismclassic-base}
+      - name: Restore shared dependencies, assets and Chromium cache
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        run: tar -xzf capitalismclassic-base.tar.gz
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with: {name: 'capitalismclassic-voice-${{ matrix.chapter }}'}
+      - name: Replace preview timings with measured VOICEVOX cues
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        working-directory: shared/capitalism-classic
+        run: |
+          tar -xzf '../../capitalismclassic-voice-${{ matrix.chapter }}.tar.gz' -C ../..
+          python3 scripts/merge_timing.py '${{ matrix.chapter }}'
+          python3 scripts/static_qa.py
+          npm run build
+      - name: Ensure FFmpeg and FFprobe for QA
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg
+          fi
+      - name: Smoke render and mechanical gating
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        working-directory: shared/capitalism-classic
+        run: |
+          node scripts/render.mjs '${{ matrix.chapter }}' --smoke
+          python3 scripts/smoke_qa.py 'output/capitalismclassic-${{ matrix.chapter }}-smoke.mp4'
+      - name: Render full measured Motion Canvas chapter
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        working-directory: shared/capitalism-classic
+        run: |
+          node scripts/render.mjs '${{ matrix.chapter }}'
+          ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 'output/capitalismclassic-${{ matrix.chapter }}.mp4'
+      - name: Package rendered chapter for reusability
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        run: tar -czf 'capitalismclassic-render-${{ matrix.chapter }}.tar.gz' 'shared/capitalism-classic/output/capitalismclassic-${{ matrix.chapter }}.mp4' 'shared/capitalism-classic/output/capitalismclassic-${{ matrix.chapter }}.json' 'shared/capitalism-classic/voice-report-${{ matrix.chapter }}.json'
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.chapter }}
+        with:
+          name: capitalismclassic-render-${{ matrix.chapter }}
+          path: capitalismclassic-render-${{ matrix.chapter }}.tar.gz
+          retention-days: 3
+          compression-level: 0
+  finalize:
+    needs: [render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: capitalismclassic-render-*
+          path: restored
+          merge-multiple: true
+      - name: Unpack new segments
+        run: |
+          shopt -s nullglob
+          files=(restored/capitalismclassic-render-*.tar.gz)
+          test ${#files[@]} -ge 1
+          for f in "${files[@]}"; do tar -xzf "$f"; done
+      - name: Reuse unchanged chapters from last successful Capitalism Classic Release
+        if: ${{ inputs.only_chapter != '' && inputs.only_chapter != 'all' }}
+        working-directory: shared/capitalism-classic
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 100 --json tagName,publishedAt --jq '[.[]|select(.tagName|startswith("capitalism-textfix-v4-"))]|sort_by(.publishedAt)|last|.tagName')
+          test -n "$TAG" || { echo 'No first complete release exists; run all before single-chapter rebuild'; exit 1; }
+          mkdir -p output
+          for c in prologue cta chapter1 chapter2 chapter3 chapter4 chapter5 epilogue; do
+            if [ ! -s "output/capitalismclassic-$c.mp4" ]; then gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "capitalismclassic-$c.mp4" --dir output; fi
+          done
+      - name: Ensure FFmpeg before final assembly
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          fi
+      - name: Video stream copy, original ambient BGM, final QA and contact sheet
+        working-directory: shared/capitalism-classic
+        run: |
+          set -euo pipefail
+          mkdir -p output qa
+          : > output/concat.txt
+          for c in prologue cta chapter1 chapter2 chapter3 chapter4 chapter5 epilogue; do
+            test -s "output/capitalismclassic-$c.mp4"
+            printf "file '%s'\n" "$(realpath "output/capitalismclassic-$c.mp4")" >> output/concat.txt
+          done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy output/capitalismclassic-voice-master.mp4
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/capitalismclassic-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+          ffmpeg -y -loglevel error -i output/capitalismclassic-voice-master.mp4 -i output/bgm.m4a -filter_complex '[0:a]volume=1[vo];[1:a]volume=.04[bg];[vo][bg]amix=inputs=2:duration=first[a]' -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart output/capitalismclassic-final.mp4
+          python3 scripts/final_qa.py output/capitalismclassic-final.mp4 qa/final_validation.json
+          python3 scripts/voice_duration_qa.py output/capitalismclassic-final.mp4
+          python3 scripts/text_layout_qa.py
+          INTERVAL=$(awk "BEGIN {print $D/30}")
+          ffmpeg -y -loglevel error -i output/capitalismclassic-final.mp4 -vf "fps=1/$INTERVAL,scale=384:-1,tile=6x5:padding=4:margin=5" -frames:v 1 output/capitalismclassic-contact-sheet.jpg
+      - name: Publish validated MP4, segments and review sheet
+        working-directory: shared/capitalism-classic
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="capitalism-textfix-v4-${GITHUB_RUN_ID}"
+          gh release create "$TAG" output/capitalismclassic-final.mp4 output/capitalismclassic-contact-sheet.jpg qa/final_validation.json qa/voice_duration_qa.json qa/text_layout_qa.json output/capitalismclassic-prologue.mp4 output/capitalismclassic-cta.mp4 output/capitalismclassic-chapter1.mp4 output/capitalismclassic-chapter2.mp4 output/capitalismclassic-chapter3.mp4 output/capitalismclassic-chapter4.mp4 output/capitalismclassic-chapter5.mp4 output/capitalismclassic-epilogue.mp4 --repo "$GITHUB_REPOSITORY" --title '資本主義への批判はすべて嘘！ 文字崩れ修正版 v4' --notes 'Layout-safe Japanese labels, corrected typography with actual multiline line heights and content-fit bounds in all 65 semantic scenes; VOICEVOX measured speech; subtitle topmost; eight reusable chapters; soundness and frame QA.'
