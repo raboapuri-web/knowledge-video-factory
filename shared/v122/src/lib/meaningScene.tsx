@@ -7,199 +7,241 @@ import visualPlan from '../../content/visual_plan.json';
 type Cue={text:string;display:string;start:number;end:number};
 type Scene={id:string;chapter:string;motif:string;title:string;narration:string;cues:Cue[];duration:number};
 type Plan={kind:string;motion:string;labels:string[]};
-export const MICRO_BEATS_PER_SCENE=16;
+export const MICRO_BEATS_PER_SCENE=20;
 
-const K={bg:'#08111B',deep:'#10202B',wall:'#18303B',floor:'#324B55',paper:'#F0ECE2',muted:'#9EAFB7',red:'#CF5753',gold:'#D7AE69',cyan:'#6EB5B6',teal:'#6F988A',blue:'#607F9A',green:'#718D72',brown:'#735F4E',sand:'#A8926C',ice:'#9FC0CC',ink:'#17252E',soil:'#4E4035',fog:'#87979B',orange:'#B87850'};
+const K={
+ bg:'#071018',deep:'#0D1B24',navy:'#132A36',slate:'#29434F',paper:'#F1EBDD',muted:'#9CAEB5',
+ red:'#D45752',gold:'#D5AE68',cyan:'#6DB8BD',teal:'#6E9B8D',blue:'#6C88A5',green:'#738D72',
+ brown:'#765F4B',sand:'#A99069',ice:'#A8C7CF',ink:'#17252E',soil:'#4E4036',orange:'#BD7C4D',
+ white:'#F7F4EC',black:'#04090D',sea:'#173C4D',sky:'#496C7A',gray:'#65747A'
+};
 const F='Noto Sans JP, Noto Sans CJK JP, sans-serif';
-const hash=(s:string)=>[...s].reduce((a,c)=>((a*33)^c.charCodeAt(0))>>>0,122);
+const hash=(s:string)=>[...s].reduce((a,c)=>((a*33)^c.charCodeAt(0))>>>0,124);
 const tx=(s:string,x:number,y:number,sz=30,col=K.paper,w=700)=>new Txt({text:s,x,y,fontFamily:F,fontSize:sz,fill:col,fontWeight:w});
 function rr(p:Node,x:number,y:number,w:number,h:number,fill:string,r=10,stroke?:string){const q=new Rect({x,y,width:w,height:h,fill,radius:r,stroke:stroke??fill,lineWidth:stroke?2:0});p.add(q);return q}
 function cc(p:Node,x:number,y:number,r:number,fill:string){const q=new Circle({x,y,width:r*2,height:r*2,fill});p.add(q);return q}
 function ln(p:Node,pts:[number,number][],col=K.muted,w=5){const q=new Line({points:pts,stroke:col,lineWidth:w,lineCap:'round',lineJoin:'round'});p.add(q);return q}
-function label(p:Node,s:string,x:number,y:number,col=K.paper,sz=24,w=700){const q=tx(s,x,y,sz,col,w);p.add(q);return q}
-function card(p:Node,s:string,x:number,y:number,w=250,col=K.cyan){rr(p,x,y,w,68,K.deep,12,col);label(p,s,x,y,col,23)}
-function person(p:Node,x:number,y:number,s=.7,col=K.paper){const g=new Node({x,y,scale:s});p.add(g);cc(g,0,-60,24,col);rr(g,0,24,60,118,col,18);ln(g,[[-20,-5],[-58,55]],col,11);ln(g,[[20,-5],[58,55]],col,11);ln(g,[[-18,78],[-22,150]],col,13);ln(g,[[18,78],[22,150]],col,13);return g}
-function sitting(p:Node,x:number,y:number,s=.7,col=K.paper){const g=new Node({x,y,scale:s});p.add(g);cc(g,0,-58,24,col);rr(g,0,20,60,110,col,18);ln(g,[[-18,70],[-55,108]],col,13);ln(g,[[18,70],[55,108]],col,13);ln(g,[[-55,108],[-10,110]],col,13);ln(g,[[55,108],[12,110]],col,13);return g}
-function laptop(p:Node,x:number,y:number,s=.8,closed=false){const g=new Node({x,y,scale:s});p.add(g);if(closed){rr(g,0,8,190,24,'#32454F',5);ln(g,[[-110,25],[110,25]],K.muted,10)}else{rr(g,0,-20,180,108,'#273A45',7);rr(g,0,-24,154,80,'#0E1921',4);ln(g,[[-112,50],[112,50]],K.muted,11)}return g}
-function phone(p:Node,x:number,y:number,s=.8){const g=new Node({x,y,scale:s});p.add(g);rr(g,0,0,132,224,K.ink,20,K.muted);rr(g,0,-4,104,184,'#244452',12);cc(g,0,92,5,K.muted);return g}
-function book(p:Node,x:number,y:number,s=.7,col=K.cyan){const g=new Node({x,y,scale:s});p.add(g);rr(g,-48,0,88,120,col,8);rr(g,48,0,88,120,col,8);ln(g,[[0,-57],[0,57]],K.paper,3);return g}
-function mug(p:Node,x:number,y:number,s=.7,col=K.paper){const g=new Node({x,y,scale:s});p.add(g);rr(g,0,0,76,68,col,8);cc(g,45,0,23,col);cc(g,45,0,14,K.bg);return g}
-function clock(p:Node,x:number,y:number,labelText='14:00'){cc(p,x,y,58,K.paper);cc(p,x,y,51,K.deep);ln(p,[[x,y],[x+22,y-24]],K.paper,5);ln(p,[[x,y],[x,y-33]],K.paper,5);label(p,labelText,x,y+83,K.gold,22)}
-function tree(p:Node,x:number,y:number,s=1,leaf=K.green,bare=false){ln(p,[[x,y+90*s],[x,y-32*s]],K.brown,16*s);if(!bare){cc(p,x,y-72*s,55*s,leaf);cc(p,x-38*s,y-50*s,39*s,leaf);cc(p,x+40*s,y-48*s,38*s,leaf)}}
-function seed(p:Node,x:number,y:number,s=1,col=K.brown){const g=new Node({x,y,scale:s,rotation:-18});p.add(g);rr(g,0,0,42,66,col,22);return g}
-function sprout(p:Node,x:number,y:number,s=1){ln(p,[[x,y+30*s],[x,y-35*s]],K.green,7*s);cc(p,x-18*s,y-38*s,15*s,K.green);cc(p,x+18*s,y-48*s,15*s,K.teal)}
-function bug(p:Node,x:number,y:number,s=1,col=K.gold){const g=new Node({x,y,scale:s});p.add(g);cc(g,0,0,28,col);cc(g,0,-34,18,col);for(const yy of[-15,10,30]){ln(g,[[-20,yy],[-48,yy-18]],col,5);ln(g,[[20,yy],[48,yy-18]],col,5)}return g}
-function gear(p:Node,x:number,y:number,r=50,col=K.blue){cc(p,x,y,r,col);cc(p,x,y,r*.38,K.bg)}
-function meter(p:Node,x:number,y:number,w:number,v:number,col=K.cyan){rr(p,x,y,w,24,'#243943',7);rr(p,x-w*(1-v)/2,y,w*v,24,col,7)}
-function battery(p:Node,x:number,y:number,w:number,v:number,col=K.cyan){rr(p,x,y,w,72,'#182933',10,K.muted);rr(p,x-w*(1-v)/2,y,w*v-10,54,col,6);rr(p,x+w/2+12,y,18,28,K.muted,3)}
-function windowFrame(p:Node,x:number,y:number,w=340,h=240,sky='#203D4A'){rr(p,x,y,w,h,sky,5,K.paper);ln(p,[[x,y-h/2],[x,y+h/2]],K.paper,4);ln(p,[[x-w/2,y],[x+w/2,y]],K.paper,4)}
-function desk(p:Node,x:number,y:number,w=420){rr(p,x,y,w,30,K.brown,5);ln(p,[[x-w*.38,y+12],[x-w*.38,y+110]],K.paper,7);ln(p,[[x+w*.38,y+12],[x+w*.38,y+110]],K.paper,7)}
-function sofa(p:Node,x:number,y:number,w=470){rr(p,x,y,w,160,'#29404A',30);rr(p,x,y-65,w-40,80,'#314C57',24);rr(p,x-w*.43,y+55,50,95,'#314C57',18);rr(p,x+w*.43,y+55,50,95,'#314C57',18)}
-function paper(p:Node,x:number,y:number,w=300,h=380,title=''){rr(p,x,y,w,h,'#E9E4D9',8,'#7D898C');if(title)label(p,title,x,y-h*.38,K.ink,24);for(let i=0;i<5;i++)ln(p,[[x-w*.34,y-h*.14+i*48],[x+w*(i===4?.12:.34),y-h*.14+i*48]],'#92999A',4)}
-function calendar(p:Node,x:number,y:number,w=330,h=260){rr(p,x,y,w,h,'#E7E1D5',10,K.muted);rr(p,x,y-h*.38,w,48,K.red,8);for(let c=0;c<4;c++)for(let r=0;r<3;r++)cc(p,x-110+c*72,y-35+r*65,8,'#A1AAA8')}
-function house(p:Node,x:number,y:number,w=340,h=240,col='#304047'){rr(p,x,y,w,h,col,8);ln(p,[[x-w*.55,y-h*.5],[x,y-h*.82],[x+w*.55,y-h*.5]],K.brown,10);rr(p,x,y+35,70,110,K.deep,4)}
-function tinyPlant(p:Node,x:number,y:number){rr(p,x,y+28,74,50,K.brown,7);ln(p,[[x,y+5],[x,y-40]],K.green,6);cc(p,x-18,y-35,15,K.green);cc(p,x+18,y-50,16,K.teal)}
-function worldBase(root:Node,scene:Scene){rr(root,0,0,1920,1080,K.bg,0);const h=hash(scene.motif);for(let i=0;i<14;i++){const x=-900+((h>>(i%14))%1800),y=-330+((h>>(i%10+2))%560);cc(root,x,y,1.5+(i%3),i%2?K.gold:K.cyan)}rr(root,0,342,1920,3,'#263E48',0)}
+function label(p:Node,s:string,x:number,y:number,col=K.paper,sz=25,w=700){const q=tx(s,x,y,sz,col,w);p.add(q);return q}
+function card(p:Node,s:string,x:number,y:number,w=260,col=K.cyan){rr(p,x,y,w,68,K.deep,12,col);label(p,s,x,y,col,23)}
+function paper(p:Node,x:number,y:number,w=320,h=410,title=''){rr(p,x,y,w,h,'#EAE4D8',8,'#899497');if(title)label(p,title,x,y-h*.38,K.ink,24);for(let i=0;i<5;i++)ln(p,[[x-w*.34,y-h*.14+i*48],[x+w*(i===4?.12:.34),y-h*.14+i*48]],'#90989A',4)}
+function person(p:Node,x:number,y:number,s=.7,col=K.paper){const g=new Node({x,y,scale:s});p.add(g);cc(g,0,-58,24,col);rr(g,0,24,62,118,col,18);ln(g,[[-20,-4],[-58,56]],col,11);ln(g,[[20,-4],[58,56]],col,11);ln(g,[[-18,78],[-25,150]],col,13);ln(g,[[18,78],[25,150]],col,13);return g}
+function desk(p:Node,x:number,y:number,w=520){rr(p,x,y,w,28,K.brown,4);ln(p,[[x-w*.4,y+12],[x-w*.4,y+110]],K.paper,7);ln(p,[[x+w*.4,y+12],[x+w*.4,y+110]],K.paper,7)}
+function ballot(p:Node,x:number,y:number,labelText='投票箱'){rr(p,x,y,330,260,'#334A54',18,K.paper);rr(p,x,y-78,190,18,K.black,5);label(p,labelText,x,y+35,K.paper,27)}
+function monitor(p:Node,x:number,y:number,w=430,h=240){rr(p,x,y,w,h,'#1B303A',12,K.muted);rr(p,x,y,w-34,h-34,K.black,8);ln(p,[[x,y+h/2],[x,y+h/2+70]],K.muted,9);ln(p,[[x-90,y+h/2+72],[x+90,y+h/2+72]],K.muted,9)}
+function building(p:Node,x:number,y:number,w=360,h=420,title=''){rr(p,x,y,w,h,'#263D47',8,K.muted);for(let r=0;r<4;r++)for(let c=0;c<3;c++)rr(p,x-95+c*95,y-110+r*80,48,46,'#5F7A86',4);if(title)label(p,title,x,y-h*.58,K.paper,25)}
+function crowd(p:Node,x:number,y:number,n=9,col=K.paper){for(let i=0;i<n;i++){const xx=x+(i-(n-1)/2)*82;cc(p,xx,y-35-(i%2)*12,16,col);rr(p,xx,y+8,34,62,col,12)}}
+function bar(p:Node,x:number,y:number,w:number,v:number,col:string,txtLabel?:string){rr(p,x,y,w,32,'#243842',6);rr(p,x-w*(1-v)/2,y,Math.max(8,w*v),32,col,6);if(txtLabel)label(p,txtLabel,x,y-44,col,22)}
+function timeline(p:Node,y:number,items:{x:number;year:string;col:string}[]){ln(p,[[items[0].x,y],[items[items.length-1].x,y]],K.muted,7);for(const it of items){cc(p,it.x,y,15,it.col);label(p,it.year,it.x,y+50,it.col,22)}}
+function islandChain(p:Node,x=0,y=0,s=1){const pts=[[-420,40,74],[-300,-40,48],[-160,10,58],[-20,-30,82],[135,15,68],[285,-35,45],[410,20,38]];for(const [dx,dy,r] of pts)cc(p,x+dx*s,y+dy*s,r*s,K.green)}
+function airstrip(p:Node,x:number,y:number,w=560){rr(p,x,y,w,115,'#3A4850',4,K.paper);for(let i=-2;i<=2;i++)rr(p,x+i*90,y,42,8,K.paper,2)}
+function gavel(p:Node,x:number,y:number,s=.8){rr(p,x,y,150*s,55*s,K.brown,10);rr(p,x+100*s,y+70*s,45*s,190*s,K.brown,10);rr(p,x-20*s,y+120*s,260*s,34*s,K.sand,5)}
+function stamp(p:Node,x:number,y:number,txtLabel='承認',col=K.red){rr(p,x,y,220,95,'#00000000',10,col);label(p,txtLabel,x,y,col,31)}
+function receipt(p:Node,x:number,y:number){paper(p,x,y,270,440,'RECEIPT');['食料','光熱','家賃','合計'].forEach((s,i)=>label(p,s,x-55,y-90+i*70,K.ink,21));['↑','↑','→','↑↑'].forEach((s,i)=>label(p,s,x+75,y-90+i*70,i===3?K.red:K.ink,24))}
+function mapFrame(p:Node,title=''){rr(p,0,0,1500,720,'#102530',14,K.muted);if(title)label(p,title,0,-318,K.paper,29);islandChain(p,0,40,1.25)}
+function axes(p:Node){ln(p,[[-600,260],[-600,-260]],K.paper,5);ln(p,[[-600,260],[650,260]],K.paper,5)}
+function ratioRing(p:Node,x:number,y:number,a:string,b:string){cc(p,x,y,150,K.deep);cc(p,x,y,126,K.cyan);cc(p,x,y,82,K.deep);label(p,a,x,y-12,K.paper,30);label(p,b,x,y+34,K.gold,24)}
+function worldBase(root:Node,scene:Scene){const palettes=['#071018','#0B1721','#101A24','#101E27','#111A20','#08151C'];rr(root,0,0,1920,1080,palettes[hash(scene.motif)%palettes.length],0);const h=hash(scene.motif);for(let i=0;i<13;i++){cc(root,-850+((h>>(i%12))%1700),-350+((h>>(i%9+2))%600),1.5+(i%3),i%2?K.gold:K.cyan)}rr(root,0,344,1920,3,'#233A45',0)}
 function stages8(){return Array.from({length:8},()=>new Node({opacity:0}))}
-function roomShell(p:Node,day=true){rr(p,0,-10,1920,900,day?'#132A35':'#0D1B24',0);rr(p,0,270,1920,270,'#263C43',0);windowFrame(p,560,-130,430,270,day?'#6C8791':'#142A35');sofa(p,-380,160,500);desk(p,320,205,360)}
-function winterForest(p:Node){rr(p,0,0,1920,930,'#172832',0);rr(p,0,245,1920,390,'#D5DFDF',0);for(let i=0;i<8;i++)tree(p,-780+i*220,105+(i%2)*20,.75,'#41565B',true);cc(p,700,-270,63,K.ice);for(let i=0;i<30;i++)cc(p,-860+(i*137)%1720,-320+(i*83)%590,3+(i%2),K.paper)}
-function soilCut(p:Node,desert=false){rr(p,0,-130,1920,610,desert?'#6E5A3E':'#18303A',0);rr(p,0,235,1920,340,desert?'#98784C':K.soil,0)}
-function researchBoard(p:Node){rr(p,0,0,1920,920,'#142630',0);rr(p,0,0,1480,690,'#E8E2D6',12);rr(p,0,305,1510,28,K.brown,3)}
-function factoryShell(p:Node){rr(p,0,0,1920,920,'#14252E',0);for(let i=0;i<5;i++){rr(p,-700+i*350,25,250,470,'#273E48',4);rr(p,-700+i*350,-150,160,130,'#365765',3)}rr(p,0,250,1540,55,'#50626A',4)}
-function officeShell(p:Node){rr(p,0,0,1920,920,'#102631',0);desk(p,0,205,620);laptop(p,0,100,1);for(let i=0;i<4;i++)windowFrame(p,-630+i*420,-160,300,190,'#25414D')}
-function roadShell(p:Node,fog=false){rr(p,0,0,1920,930,fog?'#26343A':'#122834',0);ln(p,[[0,325],[0,-335]],'#536B74',130);ln(p,[[-18,325],[-18,-335]],K.paper,4);if(fog)rr(p,0,-60,1920,680,K.fog,0).opacity(.22)}
 
 function buildScene(root:Node,scene:Scene,plan:Plan):Node[]{
- worldBase(root,scene);const s=stages8();s.forEach(n=>root.add(n));const[a,b,c,d,e,f,g,h]=s;const L=plan.labels;
+ worldBase(root,scene);const s=stages8();s.forEach(n=>root.add(n));const[a,b,c,d,e,f,g,h]=s;
  switch(scene.motif){
-  case'idle_room':
-   roomShell(a,true);clock(b,700,-260,'14:00');laptop(c,330,185,.9,true);mug(c,455,175,.75,K.muted);sitting(d,-380,120,.72,K.paper);phone(e,-555,205,.42);card(f,'成果 0',560,205,220,K.red);label(g,'何もしていない',0,-270,K.paper,38);label(h,'それは異常か？',0,300,K.gold,42);break;
-  case'social_feed':
-   roomShell(a,true);phone(b,0,15,1.65);['転職報告','海外出張','最高売上'].forEach((x,i)=>card(c,x,0,-105+i*120,310,i===2?K.gold:K.cyan));sitting(d,-620,160,.48,K.paper);card(e,'自分の部屋',600,-70,270,K.muted);card(f,'空白期間',600,45,270,K.red);label(g,'活動だけが可視化される',0,-290,K.paper,34);label(h,'停止だけが異常に見える',0,300,K.gold,38);break;
-  case'hibernator_den':
-   winterForest(a);rr(b,0,320,1920,220,K.soil,0);rr(b,0,250,650,250,'#251F1B',120);sitting(c,0,245,.55,K.sand);['心拍','体温','酸素'].forEach((x,i)=>{label(d,x,-520+i*520,-30,K.paper,24);meter(d,-520+i*520,35,300,.82-i*.18,i===0?K.red:K.cyan)});label(e,'出力を落とす',0,-250,K.gold,40);battery(f,0,165,430,.72,K.cyan);label(g,'資源を保存',0,290,K.paper,32);label(h,'未来へ生き延びる',0,-300,K.gold,38);break;
-  case'human_adds_tasks':
-   officeShell(a);person(b,0,80,.72,K.paper);['資格','副業','投資','語学','運動'].forEach((x,i)=>card(c,x,-520+(i%3)*520,-85+Math.floor(i/3)*130,250,i%2?K.red:K.gold));calendar(d,590,165,300,250);label(e,'環境悪化',-520,250,K.red,33);label(f,'→ 活動を追加',0,250,K.paper,36);battery(g,520,250,300,.28,K.red);label(h,'逆方向の戦略',0,-290,K.gold,40);break;
-  case'central_question':
-   winterForest(a);rr(a,0,0,12,700,K.muted,0);sitting(b,-430,150,.55,K.sand);person(c,430,115,.55,K.paper);battery(d,-430,270,300,.7,K.cyan);battery(d,430,270,300,.25,K.red);card(e,'活動停止',-430,-170,260,K.cyan);card(f,'活動追加',430,-170,260,K.red);label(g,'止まることは適応か？',0,-290,K.paper,40);label(h,'次に動くための停止',0,310,K.gold,41);break;
-  case'autumn_fattening':
-   rr(a,0,0,1920,930,'#3A312A',0);rr(a,0,245,1920,390,'#5C4A35',0);for(let i=0;i<8;i++)tree(a,-780+i*220,105,.7,i%2?K.gold:K.orange);sitting(b,-300,120,.48,K.sand);for(let i=0;i<7;i++)cc(c,-520+i*95,190+(i%2)*22,17,K.brown);label(d,'脂肪を蓄える',-330,-210,K.gold,30);rr(e,420,175,520,210,'#2A211C',100);label(e,'巣穴を準備',420,175,K.paper,28);cc(f,650,-250,55,K.gold);label(f,'日照が短くなる',430,-250,K.paper,25);label(g,'停止は事前に設計される',0,292,K.paper,34);label(h,'冬になる前から始まる',0,-300,K.gold,39);break;
-  case'torpor_cycle':
-   researchBoard(a);ln(b,[[-610,100],[-430,100],[-330,-140],[-150,-140],[-40,100],[150,100],[260,-140],[450,-140],[590,100]],K.cyan,10);card(c,'通常',-480,210,210,K.gold);card(c,'トーパー',-110,210,230,K.cyan);card(c,'短い覚醒',290,210,260,K.red);meter(d,-280,-15,390,.22,K.cyan);label(d,'代謝',-560,-15,K.ink,24);meter(e,280,-15,390,.78,K.red);label(e,'覚醒',560,-15,K.ink,24);battery(f,0,-235,380,.24,K.cyan);label(g,'完全OFFではない',0,305,K.ink,31);label(h,'低電力モード',0,-300,K.red,42);break;
-  case'energy_budget':
-   researchBoard(a);card(b,'食物 ↓',-420,-120,300,K.red);card(b,'寒さ ↑',420,-120,300,K.red);label(c,'収入',-420,30,K.ink,30);meter(c,-420,80,360,.28,K.red);label(d,'支出',420,30,K.ink,30);meter(d,420,80,360,.88,K.red);label(e,'赤字',0,185,K.red,54);meter(f,0,260,700,.46,K.cyan);label(f,'代謝を下げて支出を抑える',0,300,K.ink,28);label(g,'活動量を下げる',0,-245,K.ink,31);label(h,'収支を生存側へ戻す',0,-305,K.red,38);break;
-  case'two_winter_paths':
-   winterForest(a);rr(a,0,0,8,680,K.muted,0);person(b,-430,95,.5,K.paper);person(b,430,95,.5,K.cyan);for(let i=0;i<4;i++)cc(c,-620+i*120,190,16,K.gold);rr(d,430,175,470,170,'#251F1B',85);battery(e,-430,280,300,.16,K.red);battery(f,430,280,300,.64,K.cyan);card(g,'動き続ける',-430,-190,280,K.red);card(g,'出力を落とす',430,-190,280,K.cyan);label(h,'春まで残る資源が違う',0,-300,K.gold,38);break;
-  case'spring_result':
-   winterForest(a);label(b,'冬の成果 = 0',-510,-220,K.red,38);card(c,'餌集めなし',-510,-80,270,K.muted);card(c,'繁殖なし',-510,30,270,K.muted);rr(d,0,245,1920,390,'#4A523E',0);for(let i=0;i<8;i++)sprout(d,-760+i*210,210,.8);sitting(e,380,150,.5,K.sand);cc(f,700,-260,66,K.gold);label(g,'雪解け',430,-120,K.paper,30);label(h,'長期成果 = 春に生きている',0,-300,K.gold,39);break;
-  case'diapause_insect':
-   rr(a,0,0,1920,930,'#24372F',0);bug(b,-520,70,1.15,K.gold);cc(c,560,-220,58,K.gold);label(c,'日長 ↓',560,-130,K.paper,26);ln(d,[[-250,220],[-120,140],[30,80],[180,25],[330,-20]],K.cyan,8);bug(d,330,-20,.7,K.cyan);card(e,'発育停止',0,210,300,K.red);card(f,'脂質蓄積',360,210,300,K.gold);rr(g,-360,210,250,120,'#223A32',60);label(g,'隠れ場所',-360,210,K.paper,25);label(h,'悪条件の前に止まる',0,-290,K.gold,40);break;
-  case'seed_waiting':
-   soilCut(a,false);for(let i=0;i<9;i++)seed(b,-700+i*170,230+(i%2)*35,.7,i%3?K.brown:K.sand);['水分','温度','光'].forEach((x,i)=>card(c,x,-350+i*350,-170,250,i===1?K.gold:K.cyan));for(let i=0;i<3;i++)sprout(d,-430+i*220,210,.8);for(let i=0;i<5;i++)seed(e,170+i*130,245,.65,K.brown);label(f,'発芽を保留',430,40,K.gold,32);label(g,'条件が良くても全員は出ない',0,-260,K.paper,32);label(h,'未来へ残る個体を持つ',0,305,K.gold,37);break;
-  case'desert_bethedge':
-   soilCut(a,true);cc(a,690,-260,70,K.gold);for(let i=0;i<10;i++)seed(b,-650+i*145,240,.62,K.brown);for(let i=0;i<3;i++)sprout(c,-520+i*160,205,.9);for(let i=0;i<18;i++)ln(d,[[-700+i*80,-240],[-720+i*80,-175]],K.cyan,4);for(let i=0;i<3;i++)rr(e,-520+i*160,185,10,60,K.muted,3);label(f,'3個は今年へ',-360,40,K.paper,30);label(g,'7個は土中に残る',390,40,K.gold,31);label(h,'全員が同じ雨に賭けない',0,-290,K.paper,38);break;
-  case'microbial_seedbank':
-   researchBoard(a);for(let i=0;i<18;i++)cc(b,-560+(i%6)*210,-120+Math.floor(i/6)*130,22+(i%3)*5,i%2?K.cyan:K.gold);for(let i=0;i<12;i++)cc(c,-480+(i%6)*190,-95+Math.floor(i/6)*170,18,K.muted);card(d,'環境悪化',0,-245,280,K.red);for(let i=0;i<7;i++)cc(e,-420+i*140,150,20,K.teal);card(f,'低代謝で残る',0,270,330,K.teal);card(g,'環境改善',430,-245,280,K.cyan);label(h,'再活性化できる貯蔵庫',0,-300,K.red,38);break;
-  case'dormancy_reframe':
-   researchBoard(a);['哺乳類','昆虫','植物','微生物'].forEach((x,i)=>card(b,x,-510+(i%2)*1020,-120+Math.floor(i/2)*190,320,[K.ice,K.gold,K.green,K.cyan][i]));sitting(c,-510,-120,.28,K.sand);bug(d,510,-120,.55,K.gold);seed(e,-510,70,.7,K.green);for(let i=0;i<4;i++)cc(f,465+i*30,65+(i%2)*25,14,K.cyan);label(g,'停止 → 保存 → 再活性化',0,285,K.ink,34);label(h,'「できない」ではなく戦略',0,-295,K.red,38);break;
-  case'seasonal_village':
-   rr(a,0,0,1920,930,'#23372F',0);for(let i=0;i<4;i++){const x=-660+i*440;house(a,x,80,280,190,i===3?'#3D4142':'#4B4940');label(a,['春','夏','秋','冬'][i],x,-230,[K.green,K.gold,K.orange,K.ice][i],31)}for(let i=0;i<5;i++)sprout(b,-800+i*80,225,.55);cc(c,-220,-160,58,K.gold);for(let i=0;i<6;i++)cc(d,220+i*40,205,14,K.orange);rr(e,650,160,260,120,K.brown,12);label(e,'修理',650,160,K.paper,26);label(f,'仕事は続く',0,-70,K.paper,30);label(g,'ただし強度は変わる',0,290,K.gold,33);label(h,'活動には季節の波があった',0,-300,K.paper,37);break;
-  case'factory_flattening':
-   factoryShell(a);for(let i=0;i<5;i++)gear(b,-620+i*310,155,44,i%2?K.gold:K.blue);['蒸気','照明','空調','保存','物流'].forEach((x,i)=>card(c,x,-600+i*300,-200,220,i%2?K.cyan:K.gold));ln(d,[[-700,245],[700,245]],K.red,9);label(d,'一年中 同じ出力',0,290,K.red,32);for(let i=0;i<4;i++)cc(e,-390+i*260,-70,40,[K.green,K.gold,K.orange,K.ice][i]);label(f,'季節差 ↓',0,-70,K.paper,28);label(g,'稼働率は平らになる',0,-300,K.paper,35);label(h,'工業化が活動の波を削る',0,320,K.gold,37);break;
-  case'office_four_seasons':
-   officeShell(a);['1月','4月','8月','11月'].forEach((x,i)=>{label(b,x,-630+i*420,-280,[K.ice,K.green,K.gold,K.orange][i],25);cc(c,-630+i*420,-160,30,[K.ice,K.green,K.gold,K.orange][i])});clock(d,650,175,'09:00');person(e,0,95,.45,K.paper);label(f,'同じ机',0,265,K.paper,28);label(g,'同じ時刻',350,265,K.paper,28);label(h,'季節だけが変わる',0,-320,K.gold,41);break;
-  case'growth_dashboard':
-   researchBoard(a);ln(b,[[-580,210],[-580,-190]],K.ink,5);ln(b,[[-580,210],[610,210]],K.ink,5);ln(c,[[-520,165],[-260,80],[0,20],[260,-90],[520,-165]],K.cyan,12);['給与','技能','人脈','資産'].forEach((x,i)=>card(d,x,-450+i*300,265,230,i%2?K.gold:K.cyan));label(e,'前年比',430,-245,K.ink,30);card(f,'停滞 = 警告',430,-150,300,K.red);label(g,'人生のKPI',-360,-250,K.red,38);label(h,'右肩上がりだけが正常？',0,320,K.ink,37);break;
-  case'season_logic':
-   researchBoard(a);const cols=[K.green,K.gold,K.orange,K.ice];['春','夏','秋','冬'].forEach((x,i)=>{const ang=-Math.PI/2+i*Math.PI/2,xx=-330+Math.cos(ang)*210,yy=20+Math.sin(ang)*150;cc(b,xx,yy,58,cols[i]);label(b,x,xx,yy,K.bg,24)});ln(c,[[260,210],[390,100],[480,-20],[590,-190]],K.red,10);label(c,'直線成長',470,255,K.red,28);meter(d,-330,265,330,.68,K.cyan);meter(e,-330,300,330,.32,K.ice);label(f,'循環',-330,-230,K.ink,31);label(g,'環境に合わせて出力を変える',220,-245,K.ink,31);label(h,'常時成長は自然の標準ではない',0,320,K.red,36);break;
-  case'afterwork_body':
-   roomShell(a,false);clock(b,680,-250,'23:00');sitting(c,-380,120,.62,K.paper);phone(d,-530,215,.45);['メール','会議','返信','明日'].forEach((x,i)=>card(e,x,250+(i%2)*320,-100+Math.floor(i/2)*130,250,i%2?K.red:K.cyan));rr(f,-380,-40,250,95,'#162832',45,K.red);label(f,'頭内オフィス',-380,-40,K.red,26);label(g,'身体は家',-380,285,K.paper,30);label(h,'心理はまだ会社',350,285,K.gold,34);break;
-  case'detachment_evidence':
-   researchBoard(a);label(b,'86 論文',-430,-190,K.ink,38);label(b,'91 サンプル',0,-190,K.ink,38);label(b,'38,124 人',430,-190,K.red,38);card(c,'心理的離脱',0,-60,330,K.cyan);meter(d,-330,80,360,.7,K.cyan);label(d,'疲労 ↓',-330,125,K.ink,25);meter(e,330,80,360,.76,K.gold);label(e,'睡眠 / WB',330,125,K.ink,25);label(f,'平均的な関連',0,230,K.ink,31);label(g,'離れる力',0,-260,K.red,34);label(h,'回復と結びつく',0,310,K.red,38);break;
-  case'vacation_evidence':
-   researchBoard(a);ln(b,[[-620,190],[-200,80],[120,-120],[430,-60],[620,15]],K.cyan,11);['前','休暇中','直後','数日後'].forEach((x,i)=>label(c,x,-540+i*360,260,K.ink,24));label(d,'32研究',-480,-225,K.red,40);card(e,'well-being ↑',0,-220,330,K.cyan);card(f,'心理的離脱',380,-110,300,K.gold);label(g,'効果は即ゼロではない',0,305,K.ink,31);label(h,'休むこと自体が介入になる',0,-300,K.red,37);break;
-  case'add_more_when_tired':
-   officeShell(a);sitting(b,-420,115,.6,K.muted);battery(c,-420,270,300,.18,K.red);calendar(d,400,25,410,330);['副業','資格','早朝運動'].forEach((x,i)=>card(e,x,400,-80+i*100,280,K.red));rr(f,400,230,310,52,K.deep,8);label(f,'睡眠 6h → 4h',400,230,K.gold,25);label(g,'疲労なのに負荷を足す',-260,-250,K.paper,34);label(h,'季節判定を誤る',0,320,K.gold,39);break;
-  case'human_low_power':
-   researchBoard(a);label(b,'OUTPUT',0,-230,K.ink,30);meter(b,0,-175,700,.38,K.cyan);['競争','通知','残業'].forEach((x,i)=>{card(c,x,-420+i*420,-40,250,K.red);label(c,'OFF',-420+i*420,25,K.red,22)});['睡眠','身体','人間関係'].forEach((x,i)=>{card(d,x,-420+i*420,145,250,K.cyan);label(d,'ON',-420+i*420,210,K.cyan,22)});battery(e,0,285,420,.72,K.teal);label(f,'最低限を維持',0,-105,K.ink,29);label(g,'完全停止ではない',0,325,K.ink,30);label(h,'人間版「低電力」',0,-305,K.red,40);break;
-  case'stuck_writer':
-   rr(a,0,0,1920,930,'#101D27',0);desk(a,-180,190,720);laptop(b,-180,70,1.05);clock(b,650,-250,'01:00');paper(c,330,65,260,300,'原稿');label(c,'書く → 消す',330,95,K.red,25);laptop(d,-180,70,1.05,true);cc(e,650,-250,62,K.gold);label(e,'翌朝',650,-155,K.paper,26);for(let i=0;i<10;i++)ln(f,[[250+i*32,-100],[235+i*32,-40]],K.cyan,4);label(f,'シャワー',390,-125,K.cyan,23);cc(g,-40,-70,36,K.gold);label(g,'!',-40,-70,K.bg,34);label(h,'止まった後に別の形で動く',0,310,K.gold,35);break;
-  case'incubation_effect':
-   researchBoard(a);label(b,'2009',-500,-230,K.red,42);paper(c,-280,30,330,390,'メタ分析');card(d,'問題を脇へ',250,-90,320,K.cyan);card(e,'低負荷活動',250,35,320,K.gold);card(f,'発散思考',250,160,320,K.teal);label(g,'平均効果あり',0,285,K.ink,33);label(h,'ただし条件依存',0,-305,K.red,37);break;
-  case'mental_detour':
-   roadShell(a,false);for(let i=0;i<6;i++)rr(b,-10,210-i*85,80,46,i<4?K.red:K.muted,5);ln(c,[[0,40],[220,-25],[420,-115],[620,-205]],K.gold,12);label(c,'迂回路',420,-50,K.gold,27);card(d,'集中',-370,-100,230,K.red);card(e,'離れる',370,110,230,K.cyan);cc(f,620,-205,35,K.cyan);label(g,'別の連想',560,-250,K.paper,26);label(h,'翌日、別方向から到達',0,310,K.gold,38);break;
-  case'creative_fallow':
-   rr(a,0,0,1920,930,'#14242D',0);rr(a,-520,40,430,560,'#243841',8);rr(a,520,40,430,560,'#243841',8);label(b,'作品',-520,-230,K.paper,30);label(b,'素材',520,-230,K.paper,30);label(c,'空',-520,60,K.muted,58);['読書','映画','会話','失敗試作'].forEach((x,i)=>card(d,x,520,-110+i*100,290,i%2?K.gold:K.cyan));book(e,330,190,.55,K.gold);paper(f,690,175,180,220,'メモ');paper(g,-120,20,280,340,'次の作品');label(h,'出力ゼロでも入力は蓄積する',0,315,K.gold,36);break;
-  case'career_fallow':
-   researchBoard(a);paper(b,-430,40,390,500,'履歴書');rr(c,-430,35,300,130,'#F2EEE5',5,K.red);label(c,'空白',-430,35,K.red,34);['働き方','価値観','生活','関係'].forEach((x,i)=>card(d,x,250+(i%2)*340,-80+Math.floor(i/2)*140,250,i%2?K.cyan:K.gold));label(e,'情報収集',250,230,K.ink,26);label(f,'未決定',590,230,K.red,26);label(g,'前提を組み替える',0,-250,K.ink,35);label(h,'空白 = 再編成期間',0,315,K.red,39);break;
-  case'foggy_crossroad':
-   roadShell(a,true);card(b,'転職',-420,-80,260,K.cyan);card(b,'起業',420,-80,260,K.red);sitting(c,0,170,.45,K.paper);rr(d,0,-40,1500,450,K.fog,0).opacity(.2);ln(e,[[0,80],[0,-30],[300,-180]],K.gold,12);card(f,'第三の道',460,-220,300,K.gold);label(g,'待つ',0,280,K.paper,31);label(h,'情報が増えるまで決めない',0,-300,K.gold,38);break;
-  case'real_option_factory':
-   researchBoard(a);card(b,'現金 1億',-430,-150,320,K.cyan);paper(c,360,-40,420,460,'工場計画');gear(d,360,100,58,K.blue);label(e,'不可逆',360,205,K.red,30);clock(f,-430,60,'6か月');card(g,'選択権を保持',-430,220,340,K.gold);label(h,'「待つ」ことにも価値がある',0,-300,K.red,38);break;
-  case'irreversible_choice':
-   rr(a,0,0,1920,930,'#142630',0);['住宅','転職','起業','結婚'].forEach((x,i)=>{const xx=-570+i*380;rr(b,xx,30,250,430,'#253943',8,K.muted);rr(b,xx,70,130,250,'#12212A',4);label(b,x,xx,-210,[K.cyan,K.gold,K.red,K.teal][i],25)});person(c,-760,170,.4,K.paper);rr(d,-190,70,130,250,'#0A1319',4);label(d,'CLOSE',-190,70,K.red,22);card(e,'戻るコスト',0,285,310,K.red);label(f,'保留',570,215,K.gold,29);label(g,'扉を閉じない',570,275,K.paper,27);label(h,'不可逆ほど待つ価値が増える',0,-305,K.gold,37);break;
-  case'seed_option':
-   soilCut(a,false);seed(b,0,205,1.15,K.brown);sprout(c,-380,170,1.1);rr(c,-380,-10,230,120,'#5B724F',50);seed(d,380,215,.95,K.brown);card(e,'今 発芽',-380,-170,260,K.red);card(f,'休眠維持',380,-170,280,K.cyan);label(g,'環境不安定',0,-260,K.paper,31);label(h,'選択肢を土中に保存する',0,305,K.gold,38);break;
-  case'wait_not_quit':
-   rr(a,0,0,1920,930,'#152932',0);['A','B','C'].forEach((x,i)=>{const xx=-480+i*480;rr(b,xx,-20,280,430,'#263D47',8,K.muted);label(b,'選択肢 '+x,xx,-220,[K.cyan,K.gold,K.teal][i],25)});sitting(c,0,170,.5,K.paper);clock(d,620,-250,'--:--');label(e,'未決定',0,-105,K.red,34);label(f,'情報待ち',0,270,K.paper,28);label(g,'扉は閉じていない',0,-285,K.paper,33);label(h,'待つ ≠ 放棄',0,315,K.gold,43);break;
-  case'endless_pause':
-   roomShell(a,false);sitting(b,-380,120,.62,K.muted);calendar(c,430,25,350,270);['1週間','1か月','半年','1年'].forEach((x,i)=>card(d,x,430,-105+i*95,250,i===3?K.red:K.muted));for(let i=0;i<6;i++)cc(e,-120+i*70,270,4,K.muted);label(f,'部屋は同じ',-380,-210,K.paper,28);label(g,'永久停止？',410,275,K.red,35);label(h,'止まり続ければよいのか',0,-300,K.gold,40);break;
-  case'wake_cues':
-   winterForest(a);rr(a,0,0,8,690,K.muted,0);sitting(b,-520,155,.42,K.sand);sprout(c,0,210,.95);bug(d,520,150,.72,K.gold);cc(e,-520,-185,55,K.gold);for(let i=0;i<12;i++)ln(e,[[-170+i*30,-250],[-180+i*30,-205]],K.cyan,4);card(f,'雪解け',-520,280,230,K.cyan);card(f,'水分・温度',0,280,270,K.green);card(f,'光・温度',520,280,270,K.gold);label(g,'出口条件',0,-260,K.paper,35);label(h,'条件が変われば再び動く',0,-315,K.gold,38);break;
-  case'protect_core':
-   researchBoard(a);card(b,'仕事',-520,-110,250,K.red);label(b,'OFF',-520,-45,K.red,23);['睡眠','身体','生活基盤','人間関係','好奇心'].forEach((x,i)=>card(c,x,-420+(i%3)*420,75+Math.floor(i/3)*120,250,K.cyan));label(d,'ON',0,20,K.cyan,24);battery(e,520,-110,300,.67,K.teal);label(f,'守る核',520,-25,K.paper,25);label(g,'止めるものを選ぶ',0,-250,K.ink,34);label(h,'全部を止めない',0,320,K.red,40);break;
-  case'restart_reserve':
-   researchBoard(a);battery(b,-380,20,420,.54,K.cyan);label(b,'予備電力',-380,95,K.ink,27);gear(c,380,20,78,K.muted);card(d,'資源保存',-380,190,300,K.teal);card(e,'状態確認',380,190,300,K.gold);meter(f,380,-135,360,.72,K.cyan);label(f,'環境改善',380,-85,K.ink,24);gear(g,380,20,78,K.cyan);label(h,'再起動できる停止',0,-295,K.red,42);break;
-  case'winter_with_exit':
-   winterForest(a);ln(b,[[-720,240],[-420,140],[-120,110],[180,20],[520,-120]],K.gold,13);person(c,-680,190,.42,K.paper);['休職','無職','創作停滞','進路未定'].forEach((x,i)=>card(d,x,-520+i*350,285,250,i%2?K.muted:K.cyan));cc(e,650,-250,60,K.gold);sprout(f,520,-120,.75);label(g,'細い接点を残す',0,-250,K.paper,32);label(h,'冬に「出口」を残す',0,-310,K.gold,42);break;
-  case'return_room':
-   roomShell(a,true);clock(b,700,-260,'14:00');phone(c,-535,210,.4);rr(c,-535,210,100,10,K.red,3);windowFrame(d,560,-130,430,270,'#8AA7AF');mug(e,320,185,.75,K.paper);book(e,430,175,.48,K.gold);person(f,-380,120,.55,K.paper);ln(f,[[-380,200],[-650,260]],K.gold,7);tinyPlant(g,-60,210);label(h,'成果は少なくても、状態は保たれる',0,-300,K.gold,35);break;
-  case'invisible_work':
-   rr(a,0,-130,1920,610,'#1C3038',0);rr(a,0,240,1920,350,K.soil,0);label(b,'地上：静か',-590,-210,K.muted,28);for(let i=0;i<4;i++)seed(c,-520+i*150,230,.7,K.brown);rr(d,330,235,420,170,'#251F1B',90);sitting(d,330,220,.35,K.sand);for(let i=0;i<6;i++)cc(e,560+i*35,255+(i%2)*30,14,K.cyan);label(f,'外から見れば 0',0,-110,K.red,31);label(g,'内部では保存が続く',0,95,K.paper,31);label(h,'見えない仕事',0,-300,K.gold,43);break;
-  case'old_identity_box':
-   roomShell(a,true);rr(b,300,180,430,230,K.brown,12);card(c,'社員証',-520,-90,250,K.cyan);book(c,-520,70,.5,K.gold);paper(d,-260,20,230,300,'昔の目標');label(e,'箱へ',300,90,K.paper,30);rr(f,560,-95,350,230,'#1A303B',4,K.muted);label(f,'壁：空白',560,-95,K.muted,29);label(g,'次の目標は貼らない',0,295,K.paper,31);label(h,'古い自分が終わるのを待つ',0,-300,K.gold,37);break;
-  case'four_disciplines':
-   researchBoard(a);['冬眠','心理的離脱','インキュベーション','リアル・オプション'].forEach((x,i)=>card(b,x,-490+(i%2)*980,-120+Math.floor(i/2)*180,380,[K.ice,K.cyan,K.gold,K.red][i]));label(c,'別の研究領域',0,-245,K.ink,31);rr(d,0,210,880,105,'#D9D2C7',18,K.muted);label(d,'活動し続けることだけが合理的ではない',0,210,K.ink,27);label(e,'保存',-300,300,K.cyan,25);label(f,'離脱',-100,300,K.gold,25);label(g,'待機',100,300,K.teal,25);label(g,'選択肢',320,300,K.red,25);label(h,'共通する発想',0,-305,K.red,40);break;
-  case'four_seasons':
-   rr(a,0,0,1920,930,'#10242D',0);const cs=[K.green,K.gold,K.orange,K.ice];['春 成長','夏 活動','秋 蓄積','冬 停止'].forEach((x,i)=>{const ang=-Math.PI/2+i*Math.PI/2,xx=Math.cos(ang)*430,yy=Math.sin(ang)*230;cc(b,xx,yy,92,cs[i]);label(b,x,xx,yy,K.bg,24)});cc(c,0,0,110,K.deep);label(c,'人生',0,0,K.paper,31);label(d,'×',0,230,K.red,95);rr(e,0,230,150,110,K.deep,20);label(f,'停止も季節の一部',0,305,K.paper,30);label(g,'次の季節へ保存する',0,-255,K.gold,34);label(h,'「何もしない時期」は空白ではない',0,-315,K.paper,37);break;
+  case'election_night_2026':
+   rr(a,0,0,1920,920,'#141F28',0);building(a,-560,40,520,510,'那覇・選挙事務所');monitor(b,430,-40,620,330);label(b,'当選確実',430,-60,K.red,48);crowd(c,-520,210,8,K.paper);paper(d,420,205,430,220,'古謝玄太');for(let i=0;i<7;i++)cc(d,270+i*50,235,18,i===6?K.red:K.gold);label(e,'2026.09.13',0,-300,K.gold,32);card(f,'現職を破り初当選',430,250,380,K.cyan);label(g,'県政交代',-400,-230,K.paper,38);label(h,'辺野古容認候補が勝利',0,320,K.red,40);break;
+  case'headline_acceptance':
+   monitor(a,0,0,1180,560);label(b,'沖縄「辺野古容認」へ？',0,-120,K.paper,52);card(c,'12年ぶり県政交代',0,10,430,K.red);rr(d,0,105,1050,6,K.muted,0);label(e,'見出しは分かりやすい',-280,190,K.cyan,28);label(f,'文脈は削られる',300,190,K.gold,28);label(g,'本当に「受け入れた」のか',0,275,K.paper,37);label(h,'？',640,-205,K.red,94);break;
+  case'rewind_2019':
+   rr(a,0,0,1920,920,'#0E2029',0);timeline(b,0,[{x:-620,year:'2026',col:K.red},{x:-200,year:'2023',col:K.gold},{x:220,year:'2019',col:K.cyan},{x:620,year:'1996',col:K.muted}]);label(c,'REWIND',0,-210,K.gold,42);rr(d,220,0,36,36,K.cyan,18);ballot(e,220,110,'県民投票');label(f,'2019.02.24',220,-170,K.paper,31);card(g,'賛成 / 反対 / どちらでもない',-300,240,580,K.cyan);label(h,'一問だけを尋ねた',0,320,K.gold,38);break;
+  case'referendum_numbers':
+   rr(a,0,0,1920,920,'#142630',0);label(b,'県民投票 2019',0,-280,K.paper,36);bar(c,0,-120,1050,.717,K.red,'反対 71.7%');bar(d,0,20,1050,.19,K.cyan,'賛成 19.0%');bar(e,0,160,1050,.087,K.muted,'どちらでもない 8.7%');label(f,'434,273票',420,-120,K.white,27);label(g,'単一争点では反対が多数',0,280,K.gold,34);label(h,'数字は明確だった',0,-340,K.red,38);break;
+  case'contradiction_wall':
+   rr(a,0,0,1920,920,'#1A2228',0);paper(b,-420,0,500,580,'2019');label(b,'反対 71.7%',-420,20,K.red,42);paper(c,420,0,500,580,'2026');label(c,'古謝氏 当選',420,20,K.cyan,40);ln(d,[[-120,0],[120,0]],K.gold,8);label(e,'矛盾？',0,-110,K.gold,42);label(f,'7年で反転？',0,95,K.paper,34);label(g,'同じものを測ったのか',0,260,K.muted,31);label(h,'ここからが本題',0,-310,K.red,39);break;
+  case'thesis_public_opinion':
+   rr(a,0,0,1920,920,'#090F15',0);label(b,'民意',0,-170,K.white,86);['賛否','重要度','選挙','制度'].forEach((x,i)=>card(c,x,-510+i*340,30,260,[K.red,K.gold,K.cyan,K.teal][i]));label(d,'誰の意思？',-300,165,K.paper,32);label(e,'何を測る？',300,165,K.paper,32);label(f,'どの範囲？',-300,260,K.muted,28);label(g,'どの時点？',300,260,K.muted,28);label(h,'民主主義の測定問題',0,-300,K.gold,42);break;
+  case'map_to_question':
+   mapFrame(a,'辺野古から日本全体へ');card(b,'基地',-520,235,230,K.red);card(c,'地方自治',-180,235,260,K.cyan);card(d,'安全保障',180,235,260,K.gold);card(e,'選挙',520,235,230,K.teal);rr(f,0,20,980,260,'#0B1820',130,K.muted);label(f,'同じ地図に重なる',0,20,K.paper,34);label(g,'沖縄だけの問題ではない',0,-245,K.gold,35);label(h,'日本の民主主義を見る',0,310,K.white,41);break;
+
+  case'two_ballot_boxes':
+   rr(a,0,0,1920,920,'#13242D',0);ballot(b,-430,40,'2019 県民投票');ballot(c,430,40,'2026 知事選');label(d,'似た箱',0,-210,K.paper,34);ln(e,[[-130,40],[130,40]],K.gold,7);label(f,'違う問い',0,40,K.gold,39);card(g,'政策への賛否',-430,260,300,K.red);card(h,'誰に県政を任せるか',430,260,360,K.cyan);break;
+  case'single_issue_ballot':
+   ballot(a,0,60,'辺野古埋め立て');card(b,'賛成',-420,-140,260,K.cyan);card(c,'反対',0,-140,260,K.red);card(d,'どちらでもない',420,-140,320,K.muted);['観光','子育て','所得','候補者'].forEach((x,i)=>{card(e,x,-510+i*340,245,230,K.gray)});rr(f,0,245,1450,100,K.black,18);label(g,'他の政策をいったん外す',0,245,K.paper,31);label(h,'単一争点を直接測る',0,-290,K.gold,39);break;
+  case'governor_ballot_bundle':
+   rr(a,0,0,1920,920,'#10242D',0);['基地','物価','賃金','観光','教育','交通','子育て','実績'].forEach((x,i)=>card(b,x,-570+(i%4)*380,-150+Math.floor(i/4)*120,250,[K.red,K.gold,K.cyan,K.teal][i%4]));ln(c,[[-580,100],[0,210],[580,100]],K.muted,8);paper(d,0,210,420,180,'投票用紙');label(e,'候補者名',0,225,K.ink,34);label(f,'8つの判断',-380,300,K.paper,27);label(g,'→ 1つの名前',380,300,K.gold,29);label(h,'政策の詰め合わせ',0,-300,K.red,39);break;
+  case'supermarket_voter':
+   rr(a,0,0,1920,920,'#28343A',0);for(let i=0;i<4;i++){rr(a,-590+i*390,80,290,420,'#394A50',6);for(let j=0;j<4;j++)rr(a,-590+i*390,-40+j*90,210,46,'#6A7778',4)}receipt(b,560,10);person(c,-430,100,.65,K.paper);card(d,'辺野古は反対',-430,-150,330,K.red);card(e,'物価が苦しい',-430,-40,330,K.gold);label(f,'どちらを今回重く見る？',-250,250,K.paper,31);bar(g,360,250,520,.78,K.red,'家計負担');label(h,'賛否だけでは票は読めない',0,-300,K.gold,38);break;
+  case'issue_salience':
+   rr(a,0,0,1920,920,'#12212A',0);ln(b,[[-600,0],[600,0]],K.paper,8);cc(c,-420,0,90,K.red);cc(c,260,0,54,K.cyan);label(c,'基地',-420,0,K.black,25);label(c,'物価',260,0,K.black,22);label(d,'大きさ = 重要度',0,150,K.paper,30);label(e,'同じ「反対」でも',0,-185,K.muted,29);bar(f,-250,245,430,.82,K.red,'重要度 高');bar(g,320,245,430,.34,K.cyan,'重要度 低');label(h,'イシュー・サリエンス',0,-305,K.gold,40);break;
+  case'retrospective_vote':
+   rr(a,0,0,1920,920,'#18252B',0);paper(b,-400,0,480,560,'県政 成績表');['生活','景気','実績','期待'].forEach((x,i)=>{label(b,x,-470,-110+i*90,K.ink,24);label(b,['B','C','B','?'][i],-300,-110+i*90,i===1?K.red:K.ink,27)});building(c,430,20,430,500,'県庁');label(d,'過去を採点',430,-230,K.gold,31);card(e,'回顧投票',430,180,300,K.cyan);card(f,'経済投票',430,270,300,K.red);label(g,'選挙は公約だけではない',0,-300,K.paper,34);label(h,'次の任期を任せるか',0,320,K.gold,38);break;
+  case'first_answer':
+   rr(a,0,0,1920,920,'#101C24',0);card(b,'容認候補が当選',-410,-70,360,K.cyan);label(c,'≠',0,-70,K.red,74);card(d,'県民全体が賛成',410,-70,380,K.red);card(e,'2019反対多数',-410,120,360,K.red);label(f,'≠',0,120,K.gold,74);card(g,'永久に固定',410,120,340,K.muted);label(h,'まず二つを分ける',0,-300,K.paper,40);break;
+
+  case'okinawa_1945':
+   rr(a,0,0,1920,920,'#2A2623',0);islandChain(b,0,10,1.35);label(c,'1945',-650,-260,K.red,52);for(let i=0;i<7;i++)rr(d,-600+i*200,170-(i%2)*60,150,90,'#3D4547',4);card(e,'沖縄戦後',-420,270,280,K.paper);card(f,'米軍統治',0,270,280,K.red);card(g,'基地化',420,270,280,K.gold);label(h,'本土とは異なる戦後',0,-320,K.paper,40);break;
+  case'us_admin_land':
+   rr(a,0,0,1920,920,'#293138',0);for(let i=0;i<5;i++)building(a,-650+i*330,80,230,320);airstrip(b,0,-170,780);card(c,'住宅',-570,270,250,K.paper);card(d,'騒音',-190,270,250,K.red);card(e,'事故不安',190,270,250,K.gold);card(f,'土地',570,270,250,K.cyan);label(g,'生活空間と軍事施設が隣接',0,-290,K.paper,34);label(h,'基地問題が日常へ入る',0,320,K.gold,39);break;
+  case'reversion_1972':
+   rr(a,0,0,1920,920,'#19303A',0);label(b,'1972',-650,-270,K.gold,52);building(c,-420,60,420,470,'復帰式典');airstrip(d,430,70,620);card(e,'行政制度 → 日本へ',-420,280,330,K.cyan);card(f,'基地 → 残る',430,280,300,K.red);ln(g,[[-60,-210],[-60,260]],K.paper,6);label(h,'復帰と負担軽減は同義ではない',0,-315,K.paper,37);break;
+  case'burden_map':
+   mapFrame(a,'基地負担の地理');ratioRing(b,-430,20,'0.6%','国土面積');ratioRing(c,430,20,'約70%','専用施設');ln(d,[[-210,20],[210,20]],K.gold,8);label(e,'沖縄',0,150,K.paper,32);label(f,'全国安全保障',-420,260,K.cyan,27);label(g,'地域負担',420,260,K.red,27);label(h,'利益と負担の場所が違う',0,-300,K.gold,39);break;
+  case'incident_1995':
+   rr(a,0,0,1920,920,'#17191C',0);label(b,'1995',-690,-270,K.red,54);crowd(c,0,70,13,K.paper);for(let i=0;i<9;i++)rr(d,-640+i*160,-100-(i%2)*40,130,58,'#EAE4D8',4);label(d,'抗議',0,-115,K.ink,31);card(e,'基地負担',-350,245,300,K.red);card(f,'怒りが可視化',0,245,320,K.gold);card(g,'整理縮小',350,245,300,K.cyan);label(h,'政治課題が再燃する',0,-310,K.paper,39);break;
+  case'saco_1996':
+   rr(a,0,0,1920,920,'#15242B',0);paper(b,-400,0,520,600,'SACO 1996');airstrip(c,430,-70,590);card(d,'普天間返還',430,85,320,K.cyan);card(e,'代替施設が条件',430,185,350,K.red);label(f,'5〜7年',-400,100,K.gold,37);label(g,'機能を別の場所へ',0,285,K.paper,31);label(h,'返還は「移転」とセット',0,-310,K.gold,39);break;
+  case'henoko_paradox':
+   rr(a,0,0,1920,920,'#112732',0);airstrip(b,-430,20,560);label(b,'普天間',-430,-110,K.paper,31);islandChain(c,430,40,.58);label(c,'辺野古',430,-110,K.paper,31);card(d,'返還',-430,220,280,K.cyan);card(e,'建設',430,220,280,K.red);ln(f,[[-150,20],[150,20]],K.gold,11);label(g,'同じ政策',0,95,K.gold,30);label(h,'立つ場所で意味が反転する',0,-300,K.paper,39);break;
+
+  case'nago_referendum_1997':
+   rr(a,0,0,1920,920,'#14262E',0);ballot(b,-360,40,'名護市民投票');label(c,'1997.12',420,-220,K.gold,40);bar(d,370,-40,620,.55,K.red,'反対側 過半');card(e,'海上ヘリ基地',370,75,320,K.cyan);card(f,'条件付き反対を含む',370,180,380,K.red);label(g,'直接投票',-360,265,K.paper,28);label(h,'2019より前に同じ構図',0,-305,K.gold,39);break;
+  case'mayor_after_referendum':
+   rr(a,0,0,1920,920,'#182831',0);ballot(b,-520,10,'市民投票');building(c,500,30,420,470,'名護市役所');ln(d,[[-230,10],[230,10]],K.gold,8);card(e,'受入表明 → 辞職',0,-90,360,K.red);card(f,'市長選',0,80,280,K.cyan);card(g,'別の結果',0,190,300,K.gold);label(h,'住民投票と代表選挙のねじれ',0,-310,K.paper,37);break;
+  case'relocation_1999':
+   mapFrame(a,'1999 辺野古沿岸へ');cc(b,210,30,48,K.red);card(c,'知事が移設先発表',-420,220,360,K.cyan);card(d,'市長 条件付き受入',0,220,360,K.gold);card(e,'政府 閣議決定',420,220,340,K.red);ln(f,[[-420,130],[0,70],[210,30]],K.cyan,5);ln(g,[[420,130],[210,30]],K.red,5);label(h,'長期対立の中心へ',0,-305,K.paper,39);break;
+  case'nested_publics':
+   rr(a,0,0,1920,920,'#0F2028',0);for(const [r,col] of [[330,K.gray],[270,K.blue],[210,K.cyan],[150,K.gold],[90,K.red]] as [number,string][])cc(b,0,20,r,col);cc(c,0,20,55,K.deep);['日米安保','日本','沖縄県','名護市','辺野古'].forEach((x,i)=>label(d,x,520,-180+i*90,[K.gray,K.blue,K.cyan,K.gold,K.red][i],25));label(e,'どの円を主語にする？',0,-300,K.paper,36);label(f,'多数派',-480,270,K.cyan,30);label(g,'範囲で変わる',0,270,K.gold,30);label(h,'「民意」の主語問題',480,270,K.red,31);break;
+  case'externality_security':
+   rr(a,0,0,1920,920,'#102A35',0);islandChain(b,-340,10,.78);for(let i=0;i<8;i++)cc(c,240+(i%4)*130,-100+Math.floor(i/4)*150,22,K.cyan);card(d,'抑止・防衛',430,-230,320,K.cyan);card(e,'騒音・土地・事故不安',-340,235,400,K.red);ln(f,[[-80,40],[190,-20]],K.gold,8);label(g,'利益は広く',430,230,K.paper,28);label(h,'負担は局地へ集中',0,-300,K.gold,40);break;
+  case'nimby_parallel':
+   rr(a,0,0,1920,920,'#18252C',0);['原発','処分場','ダム','空港','刑務所','基地'].forEach((x,i)=>{const xx=-560+(i%3)*560,yy=-110+Math.floor(i/3)*210;rr(b,xx,yy,350,145,'#293E47',10,[K.gold,K.red,K.cyan,K.blue,K.teal,K.red][i]);label(b,x,xx,yy,K.paper,28)});label(c,'社会全体では必要？',-360,250,K.paper,28);label(d,'自宅の近くでは？',360,250,K.gold,28);label(e,'全国利益',-500,-280,K.cyan,27);label(f,'近隣負担',500,-280,K.red,27);label(g,'配置の政治',0,310,K.paper,32);label(h,'辺野古だけの構造ではない',0,-335,K.gold,38);break;
+  case'two_majorities':
+   rr(a,0,0,1920,920,'#101E27',0);cc(b,-380,20,210,K.cyan);cc(c,380,20,210,K.red);label(b,'全国多数',-380,20,K.black,31);label(c,'地域多数',380,20,K.black,31);ln(d,[[-150,20],[150,20]],K.gold,12);label(e,'安全保障を支持',-380,265,K.paper,25);label(f,'負担には反対',380,265,K.paper,25);label(g,'どちらも多数',0,-225,K.gold,35);label(h,'多数決だけでは範囲を決められない',0,-315,K.paper,36);break;
+
+  case'nakaima_approval_2013':
+   rr(a,0,0,1920,920,'#263038',0);desk(b,0,190,760);paper(c,0,-20,560,480,'埋立承認 2013');stamp(d,0,40,'承認',K.red);building(e,-610,30,330,430,'沖縄県庁');card(f,'行政上の扉',480,160,300,K.cyan);label(g,'一枚の決裁',480,250,K.paper,28);label(h,'翌年、政治が反転する',0,-310,K.gold,39);break;
+  case'onaga_2014':
+   rr(a,0,0,1920,920,'#17252C',0);building(b,0,40,520,520,'沖縄県庁');paper(c,-420,-10,280,360,'旧方針');paper(d,420,-10,280,360,'新方針');stamp(c,-420,45,'承認',K.muted);stamp(d,420,45,'反対',K.red);person(e,0,125,.55,K.paper);label(f,'2014 知事選',0,-245,K.gold,34);ln(g,[[-180,0],[180,0]],K.cyan,8);label(h,'知事交代で県の方向も変わる',0,315,K.paper,37);break;
+  case'cancel_lawsuit':
+   rr(a,0,0,1920,920,'#121B21',0);building(b,-560,20,360,430,'県庁');building(c,0,20,360,430,'霞が関');building(d,560,20,360,430,'裁判所');ln(e,[[-380,20],[-180,20]],K.red,7);ln(e,[[180,20],[380,20]],K.gold,7);gavel(f,560,160,.55);card(g,'取消 / 是正 / 訴訟',0,270,420,K.cyan);label(h,'工事現場が制度闘争へ',0,-310,K.paper,39);break;
+  case'tamaki_2018':
+   rr(a,0,0,1920,920,'#18313A',0);label(b,'2018',-660,-260,K.gold,50);crowd(c,0,100,9,K.paper);paper(d,-360,-20,300,380,'翁長県政');paper(e,360,-20,300,380,'玉城県政');ln(f,[[-140,0],[140,0]],K.cyan,8);card(g,'辺野古反対を継承',0,265,360,K.red);label(h,'争点は県政の中心に残る',0,-310,K.paper,38);break;
+  case'referendum_2019_again':
+   rr(a,0,0,1920,920,'#142630',0);ballot(b,-420,50,'県民投票');bar(c,380,-80,650,.717,K.red,'反対 71.7%');card(d,'単一争点',380,55,300,K.cyan);card(e,'直接請求',380,155,300,K.gold);label(f,'象徴性',-420,255,K.paper,29);label(g,'政策への直接回答',380,265,K.paper,28);label(h,'後の議論で強い基準になる',0,-310,K.gold,38);break;
+  case'soft_seabed_2020':
+   rr(a,0,-150,1920,580,K.sea,0);rr(a,0,225,1920,370,K.soil,0);airstrip(b,-280,-120,720);for(let i=0;i<8;i++)cc(c,-550+i*150,250+(i%2)*30,28,K.sand);ln(d,[[-520,-10],[-420,240]],K.gold,7);ln(d,[[-300,-10],[-240,250]],K.gold,7);card(e,'軟弱地盤',360,130,300,K.red);card(f,'2020 設計変更申請',360,230,360,K.cyan);card(g,'2021 不承認',360,-30,300,K.red);label(h,'技術問題が権限争いへ',0,-300,K.paper,39);break;
+  case'supreme_substitution_2023':
+   rr(a,0,0,1920,920,'#111D25',0);paper(b,-520,0,360,500,'設計変更');stamp(c,-520,40,'不承認',K.red);building(d,0,0,360,430,'裁判所');gavel(e,0,135,.48);paper(f,520,0,360,500,'代執行');stamp(g,520,40,'国が承認',K.gold);ln(g,[[-300,-40],[-160,-40]],K.muted,6);label(h,'知事の代わりに国が承認',0,-310,K.paper,40);break;
+
+  case'campaign_2026':
+   rr(a,0,0,1920,920,'#243039',0);for(let i=0;i<6;i++){paper(a,-680+i*270,-40,210,300,['候補A','候補B','候補C','候補D','候補E','候補F'][i]);}crowd(b,0,235,12,K.paper);['基地','物価','所得','子育て'].forEach((x,i)=>card(c,x,-510+i*340,110,250,[K.red,K.gold,K.cyan,K.teal][i]));label(d,'2026 知事選',0,-300,K.paper,40);label(e,'複数争点',-360,305,K.cyan,28);label(f,'複数候補',0,305,K.gold,28);label(g,'一票',360,305,K.red,28);label(h,'単一争点投票ではない',0,-345,K.gold,37);break;
+  case'economy_front':
+   rr(a,0,0,1920,920,'#2A3337',0);receipt(b,-450,0);building(c,430,20,420,460,'県内企業');bar(d,430,-70,520,.82,K.red,'物価');bar(e,430,45,520,.48,K.cyan,'所得');card(f,'家計',430,170,250,K.gold);card(g,'企業活動',430,265,280,K.teal);label(h,'経済政策が前面へ',0,-310,K.paper,41);break;
+  case'kojar_position':
+   rr(a,0,0,1920,920,'#142631',0);paper(b,-430,10,540,600,'古謝氏');card(c,'辺野古移設 容認',-430,-60,370,K.red);card(d,'返還時期の明確化',-430,60,370,K.gold);['所得','新産業','子育て'].forEach((x,i)=>card(e,x,360,-120+i*120,300,[K.cyan,K.teal,K.gold][i]));label(f,'基地だけではない',360,260,K.paper,28);label(g,'複合的な政策束',0,-270,K.cyan,31);label(h,'一票の理由は一つとは限らない',0,315,K.paper,36);break;
+  case'tamaki_position':
+   rr(a,0,0,1920,920,'#14242E',0);paper(b,-430,10,540,600,'玉城氏');card(c,'辺野古移設 反対',-430,-60,370,K.red);['物価高','社会保障','交通'].forEach((x,i)=>card(d,x,360,-120+i*120,300,[K.gold,K.cyan,K.teal][i]));card(e,'県政実績',-430,85,320,K.cyan);label(f,'生活政策も提示',360,260,K.paper,28);label(g,'二つの県政像',0,-270,K.gold,31);label(h,'基地一問の選挙ではない',0,315,K.paper,37);break;
+  case'exit_priority':
+   rr(a,0,0,1920,920,'#15242B',0);label(b,'期待する政策',0,-270,K.paper,34);bar(c,0,-100,1050,.78,K.gold,'景気・物価高');bar(d,0,45,1050,.39,K.red,'基地問題');bar(e,0,190,1050,.46,K.cyan,'子育て等');label(f,'出口調査',-520,285,K.muted,24);label(g,'優先順位の変化？',300,285,K.paper,30);label(h,'態度消滅とは別問題',0,-325,K.gold,37);break;
+  case'vote_compression':
+   rr(a,0,0,1920,920,'#101B23',0);person(b,-560,80,.62,K.paper);['辺野古反対','経済評価','県政不満','政府協調'].forEach((x,i)=>card(c,x,-170+(i%2)*430,-100+Math.floor(i/2)*130,330,[K.red,K.cyan,K.gold,K.teal][i]));ln(d,[[330,40],[540,40]],K.gold,8);paper(e,650,40,300,330,'投票用紙');label(f,'一人の名前',650,55,K.ink,29);label(g,'複数判断 → 1票',0,285,K.paper,31);label(h,'投票は圧縮装置',0,-310,K.gold,40);break;
+  case'what_changed':
+   rr(a,0,0,1920,920,'#12202A',0);['賛否が反転','重要度が変化','両方'].forEach((x,i)=>{rr(b,-450+i*450,10,360,270,'#263A44',12,[K.red,K.gold,K.cyan][i]);label(b,x,-450+i*450,10,K.paper,27)});label(c,'2026結果',0,-230,K.white,36);ln(d,[[0,-170],[-450,-70]],K.red,5);ln(e,[[0,-170],[0,-70]],K.gold,5);ln(f,[[0,-170],[450,-70]],K.cyan,5);label(g,'選挙結果だけでは識別できない',0,270,K.paper,32);label(h,'確実な事実と推論を分ける',0,-315,K.gold,38);break;
+
+  case'salience_axes':
+   rr(a,0,0,1920,920,'#0F1B23',0);axes(b);label(b,'重要度 ↑',-690,-230,K.paper,24);label(b,'反対',-430,310,K.red,25);label(b,'賛成',430,310,K.cyan,25);cc(c,-320,-120,38,K.red);cc(d,-320,165,38,K.gold);label(e,'同じ反対',40,20,K.paper,31);ln(f,[[-250,-105],[-80,-20]],K.muted,5);ln(g,[[-250,155],[-80,55]],K.muted,5);label(h,'賛否 × 重要度の二軸',0,-310,K.gold,40);break;
+  case'intensity_importance':
+   rr(a,0,0,1920,920,'#111E27',0);paper(b,0,70,430,350,'投票用紙');label(b,'候補者名',0,100,K.ink,33);for(let i=0;i<4;i++)cc(c,-560+i*120,-40,34,[K.red,K.red,K.gold,K.cyan][i]);label(d,'強い反対',-430,-120,K.red,25);for(let i=0;i<4;i++)cc(e,320+i*95,-40,20,[K.red,K.gold,K.cyan,K.teal][i]);label(f,'弱い反対',455,-120,K.gold,25);label(g,'重みは用紙に残らない',0,280,K.paper,31);label(h,'結果だけでは強度が見えない',0,-305,K.gold,38);break;
+  case'issue_voting_limits':
+   rr(a,0,0,1920,920,'#15232B',0);paper(b,-450,0,440,560,'理想的な有権者');['政策理解','候補比較','一致投票'].forEach((x,i)=>card(c,x,-450,-90+i*110,300,K.cyan));paper(d,450,0,440,560,'現実の有権者');['情報不足','複数争点','時間不足'].forEach((x,i)=>card(e,x,450,-90+i*110,300,K.red));label(f,'争点投票研究',0,-285,K.gold,32);label(g,'理想 ≠ 常に現実',0,285,K.paper,31);label(h,'票は完全な政策計算ではない',0,-335,K.paper,37);break;
+  case'retrospective_eval':
+   rr(a,0,0,1920,920,'#19272E',0);paper(b,-420,0,500,590,'現職への成績表');['生活実感','景気','行政','期待'].forEach((x,i)=>{label(b,x,-500,-110+i*90,K.ink,22);label(b,['B','C','B','?'][i],-300,-110+i*90,i===1?K.red:K.ink,25)});person(c,430,80,.62,K.paper);card(d,'満足',430,-90,260,K.cyan);card(e,'不満',430,20,260,K.red);card(f,'回顧投票',430,140,300,K.gold);label(g,'過去の評価が票へ入る',0,285,K.paper,31);label(h,'政策賛否以外の経路',0,-310,K.gold,39);break;
+  case'cohort_change':
+   rr(a,0,0,1920,920,'#102029',0);timeline(b,20,[{x:-620,year:'1996',col:K.gold},{x:0,year:'2011',col:K.muted},{x:620,year:'2026',col:K.cyan}]);person(c,-620,120,.45,K.paper);label(c,'20歳',-620,255,K.paper,25);person(d,620,120,.65,K.paper);label(d,'50歳',620,275,K.paper,25);cc(e,0,-120,28,K.cyan);label(e,'当時未出生',0,-175,K.cyan,24);crowd(f,0,250,7,K.muted);label(g,'有権者集団も入れ替わる',0,-275,K.paper,32);label(h,'30年の問題は同じ人だけではない',0,-330,K.gold,36);break;
+  case'habituation_or_conversion':
+   rr(a,0,0,1920,920,'#111D24',0);person(b,0,220,.48,K.paper);const paths=[['転向',-540,K.red],['慣れ',-180,K.gold],['諦め',180,K.muted],['現実適応',540,K.cyan]] as [string,number,string][];for(const [txtt,x,col] of paths){ln(c,[[0,160],[x,-130]],col,8);card(d,txtt,x,-190,240,col)}label(e,'同じ「一票」へ収束することもある',0,300,K.paper,29);label(f,'反対維持 + 重要度低下',0,40,K.teal,28);label(g,'心理は別物',0,-285,K.paper,31);label(h,'外から区別しにくい',0,-335,K.gold,38);break;
+  case'cannot_infer':
+   rr(a,0,0,1920,920,'#0E1921',0);card(b,'選挙結果',-430,0,320,K.cyan);ln(c,[[-250,0],[-50,0]],K.red,9);label(c,'×',-150,0,K.red,58);card(d,'有権者の内面',430,0,360,K.red);card(e,'2019',-430,190,240,K.red);card(f,'2026',430,190,240,K.cyan);label(g,'慎重な推論が必要',0,-235,K.paper,34);label(h,'選挙結果は読心術ではない',0,-310,K.gold,40);break;
+
+  case'construction_progress':
+   rr(a,0,-120,1920,640,K.sea,0);rr(a,0,250,1920,300,K.soil,0);airstrip(b,0,-80,900);bar(c,0,180,1100,.995,K.red,'辺野古側埋立 約99.5%');label(d,'2026年5月',0,-255,K.paper,32);card(e,'政治対立',-420,285,300,K.cyan);card(f,'物理工事',420,285,300,K.red);ln(g,[[-220,285],[220,285]],K.gold,6);label(h,'二つの時間は同じ速度ではない',0,-315,K.gold,37);break;
+  case'fait_accompli':
+   rr(a,0,0,1920,920,'#101D25',0);bar(b,0,-70,1100,.88,K.red,'工事進行');['造るべきか','止めるか','完成後どうする'].forEach((x,i)=>card(c,x,-450+i*450,90,330,[K.cyan,K.gold,K.red][i]));for(let i=0;i<3;i++)rr(d,-450+i*450,210,250-(i*45),34,[K.cyan,K.gold,K.red][i],5);label(e,'選択肢が狭くなる',0,280,K.paper,31);label(f,'不可逆性',0,-210,K.red,35);label(g,'賛成への転向とは別',0,-270,K.muted,29);label(h,'政策の進行が問いを変える',0,-330,K.gold,38);break;
+  case'security_environment':
+   mapFrame(a,'東アジアの安全保障環境');for(let i=0;i<5;i++)cc(b,300+i*90,-120+i*45,28,K.red);card(c,'南西地域',-360,230,300,K.cyan);card(d,'防衛体制強化',0,230,330,K.red);card(e,'30年間の変化',360,230,330,K.gold);label(f,'1996と2026は同じ条件ではない',0,-250,K.paper,31);label(g,'評価も変わり得る',0,300,K.muted,28);label(h,'安全保障側の時間も進む',0,-315,K.gold,39);break;
+  case'local_autonomy_limits':
+   rr(a,0,0,1920,920,'#121E26',0);building(b,-430,20,430,500,'沖縄県');building(c,430,20,430,500,'国');ln(d,[[-180,20],[180,20]],K.red,12);card(e,'地方自治',-430,275,300,K.cyan);card(f,'法定権限',430,275,300,K.red);label(g,'2023 代執行',0,-230,K.gold,33);label(h,'国策を地方はどこまで止められるか',0,-310,K.paper,36);break;
+  case'legitimacy_layers':
+   rr(a,0,0,1920,920,'#101B23',0);paper(b,-430,0,480,560,'国の正当性');card(c,'国政選挙',-430,-80,300,K.cyan);card(c,'安全保障',-430,40,300,K.gold);paper(d,430,0,480,560,'県の正当性');card(e,'知事選',430,-80,300,K.cyan);card(e,'地域負担',430,40,300,K.red);ln(f,[[-140,0],[140,0]],K.gold,8);label(g,'両方とも選挙由来',0,270,K.paper,29);label(h,'正当性が衝突する',0,-310,K.gold,40);break;
+  case'national_analogy':
+   rr(a,0,0,1920,920,'#26323A',0);for(let i=0;i<5;i++)building(a,-650+i*320,110,230,330);person(b,-550,230,.4,K.paper);['原発','処分場','基地'].forEach((x,i)=>{rr(c,220+i*260,-40,220,180,'#3B4850',8,[K.gold,K.red,K.cyan][i]);label(c,x,220+i*260,-40,K.paper,25)});label(d,'もし自分の町なら',0,-250,K.gold,38);card(e,'全国利益',-350,300,300,K.cyan);card(f,'局地負担',350,300,300,K.red);label(g,'本州にも同じ構造',0,205,K.paper,29);label(h,'距離を縮めて考える',0,-315,K.paper,39);break;
+  case'democratic_design':
+   rr(a,0,0,1920,920,'#14242C',0);label(b,'多数決',0,-250,K.white,42);['補償','対話','権限配分','情報公開','異議申立て'].forEach((x,i)=>{const xx=-520+(i%3)*520,yy=-60+Math.floor(i/3)*150;card(c,x,xx,yy,300,[K.cyan,K.gold,K.red,K.teal,K.blue][i])});ln(d,[[-520,20],[0,170],[520,20]],K.muted,5);label(e,'決定後も仕事は残る',0,270,K.paper,32);label(f,'公平性',-380,320,K.cyan,27);label(g,'正統性',380,320,K.gold,27);label(h,'民主主義は投票で終わらない',0,-320,K.gold,39);break;
+
+  case'return_two_boxes':
+   rr(a,0,0,1920,920,'#10212A',0);ballot(b,-430,40,'2019 県民投票');ballot(c,430,40,'2026 知事選');card(d,'辺野古をどう思う？',-430,260,360,K.red);card(e,'誰に県政を任せる？',430,260,380,K.cyan);label(f,'箱は似ている',0,-210,K.paper,31);label(g,'問いは違う',0,-120,K.gold,36);label(h,'比較の出発点へ戻る',0,-310,K.paper,39);break;
+  case'both_are_public_opinion':
+   rr(a,0,0,1920,920,'#121F27',0);paper(b,-420,0,500,540,'2019');label(b,'反対 71.7%',-420,0,K.red,40);paper(c,420,0,500,540,'2026');label(c,'古謝氏 当選',420,0,K.cyan,38);ln(d,[[-110,0],[110,0]],K.gold,8);label(e,'どちらも制度上の結果',0,150,K.paper,30);label(f,'時点が違う',-270,270,K.muted,26);label(g,'問いが違う',270,270,K.muted,26);label(h,'片方を偽物にしない',0,-310,K.gold,40);break;
+  case'public_opinion_moves':
+   rr(a,0,0,1920,920,'#101D26',0);ln(b,[[-650,150],[-300,50],[0,100],[260,-30],[620,-120]],K.gold,10);['物価','年齢','安全保障','実績'].forEach((x,i)=>cc(c,-480+i*320,-80+(i%2)*120,55,[K.red,K.cyan,K.gold,K.teal][i]));label(c,'物価',-480,-80,K.black,20);label(c,'年齢',-160,40,K.black,20);label(c,'安保',160,-80,K.black,20);label(c,'実績',480,40,K.black,20);cc(d,120,55,30,K.paper);label(e,'社会の重心',120,120,K.paper,27);label(f,'固定されない',0,270,K.muted,29);label(g,'移動し続ける',0,-250,K.gold,32);label(h,'民意は石碑ではなく重心',0,-315,K.paper,39);break;
+  case'majority_not_end':
+   rr(a,0,0,1920,920,'#111D24',0);cc(b,-340,20,230,K.cyan);label(b,'多数',-340,20,K.black,36);cc(c,390,20,90,K.red);label(c,'地域',390,20,K.black,26);ln(d,[[-90,20],[280,20]],K.gold,8);card(e,'選挙勝利',-340,280,300,K.cyan);card(f,'負担継続',390,280,300,K.red);label(g,'決定後にも残る声',0,-230,K.paper,31);label(h,'多数決 = 問題終了ではない',0,-310,K.gold,39);break;
+  case'burden_distribution':
+   mapFrame(a,'最後に残る地理');ratioRing(b,-420,20,'0.6%','国土');ratioRing(c,420,20,'約70%','専用施設');card(d,'安全保障の費用',-420,255,330,K.cyan);card(e,'地域に集中',420,255,300,K.red);label(f,'選挙結果が変わっても',0,-230,K.paper,30);label(g,'地理は残る',0,-165,K.gold,33);label(h,'分配の問題',0,-315,K.red,41);break;
+  case'final_question':
+   rr(a,0,0,1920,920,'#090F15',0);label(b,'賛成？',-360,-50,K.cyan,58);label(c,'反対？',360,-50,K.red,58);label(d,'それだけではない',0,80,K.paper,34);paper(e,0,235,900,150,'');label(e,'選挙で勝った者は個別政策をどこまで代表するのか',0,235,K.ink,28);label(f,'候補者への一票',-420,-230,K.muted,26);label(g,'政策への委任',420,-230,K.muted,26);label(h,'民意の射程',0,-315,K.gold,42);break;
+  case'henoko_as_mirror':
+   rr(a,0,-110,1920,660,K.sea,0);rr(a,0,245,1920,250,K.soil,0);islandChain(b,0,-70,.8);for(let i=0;i<5;i++)ln(c,[[-700+i*350,80],[-620+i*350,130]],K.ice,4);['国家','地方','多数','少数'].forEach((x,i)=>card(d,x,-510+i*340,235,250,[K.cyan,K.gold,K.red,K.teal][i]));label(e,'安全保障 × 自治',0,-235,K.paper,34);label(f,'全国利益 × 地域負担',0,-165,K.gold,31);label(g,'沖縄だけの政治ではない',0,315,K.paper,32);label(h,'辺野古の海は民主主義の鏡',0,-320,K.gold,41);break;
   default:
-   researchBoard(a);card(b,L[0],-420,-80,320,K.cyan);card(c,L[1],420,-80,320,K.gold);card(d,L[3],-420,120,320,K.paper);card(e,L[4],420,120,320,K.red);label(f,L[5],0,-245,K.ink,31);label(g,L[6],0,285,K.ink,31);label(h,L[7],0,-305,K.red,38);
+   rr(a,0,0,1920,920,K.navy,0);card(b,plan.labels[0],-420,-80,320,K.cyan);card(c,plan.labels[1],420,-80,320,K.gold);card(d,plan.labels[3],-420,120,320,K.paper);card(e,plan.labels[4],420,120,320,K.red);label(f,plan.labels[5],0,-245,K.paper,31);label(g,plan.labels[6],0,285,K.paper,31);label(h,plan.labels[7],0,-305,K.red,38);
  }
  return s;
 }
 
 function offsetFor(scene:Scene,i:number):[number,number,number]{
- const p=hash(scene.motif)%8;const mag=34+(i%3)*14;
- switch(p){case 0:return[i%2?mag:-mag,0,.94];case 1:return[0,i%2?mag:-mag,.94];case 2:return[i%2?mag:-mag,i%3?18:-18,.9];case 3:return[0,0,.82];case 4:return[i<4?-mag:mag,i%2?18:-18,.92];case 5:return[i%3===0?mag:0,i%2?mag:-mag,.95];case 6:return[i%2?-mag:mag,i<4?-20:20,.9];default:return[0,i<4?mag:-mag,.88]}
+ const p=hash(scene.motif+scene.id)%10;const mag=28+(i%4)*13;
+ switch(p){
+  case 0:return[i%2?mag:-mag,0,.94];case 1:return[0,i%2?mag:-mag,.94];case 2:return[i%2?mag:-mag,i%3?18:-18,.9];
+  case 3:return[0,0,.82];case 4:return[i<4?-mag:mag,i%2?18:-18,.92];case 5:return[i%3===0?mag:0,i%2?mag:-mag,.95];
+  case 6:return[i%2?-mag:mag,i<4?-20:20,.9];case 7:return[i<4?-mag:mag,0,.88];case 8:return[0,i<4?mag:-mag,.88];
+  default:return[i%2?mag:-mag,i%2?-12:12,.91]
+ }
 }
 function settleTarget(scene:Scene,plan:Plan,i:number):{x:number;y:number;r:number;s:number;opacity:number}{
- let x=0,y=0,r=0,s=1.012,opacity=1;const h=hash(scene.motif+plan.motion+i);
- if(plan.motion.includes('overload')){x=(i-3.5)*5;r=(i%2?1:-1)*(2+i*.45);s=1.018}
- else if(plan.motion.includes('descent')){y=i>=2?8+i*2:0;s=i>4?.99:1.012}
- else if(plan.motion.includes('season')){x=(i%2?1:-1)*((h%8)+3);opacity=i<3?.84:1}
- else if(plan.motion.includes('partial')){opacity=i===4?.55:1;y=i>4?-6:0}
- else if(plan.motion.includes('calendar')){opacity=i<6?.82:1}
- else if(plan.motion.includes('hidden')){y=i>=3?10:0;s=1.018}
- else if(plan.motion.includes('cycle')||plan.motion.includes('complete')){r=(i%2?1:-1)*1.6;s=1.02}
- else if(plan.motion.includes('traffic')||plan.motion.includes('detour')){x=i>2?(i%2?10:-10):0}
- else if(plan.motion.includes('doors')){s=i<4?.985:1.02;opacity=i<2?.8:1}
- else if(plan.motion.includes('wait')||plan.motion.includes('option')){y=i>4?-7:0;s=1.016}
- else{x=((h%11)-5)*1.3;y=(((h>>4)%9)-4)*1.1;r=((h>>7)%5-2)*.35}
+ const h=hash(scene.motif+plan.motion+i);let x=((h%13)-6)*1.5,y=(((h>>4)%11)-5)*1.2,r=((h>>8)%7-3)*.45,s=1.012,opacity=1;
+ if(plan.motion.includes('collapse')){s=i<3?.97:1.025;opacity=i<2?.78:1}
+ if(plan.motion.includes('rewind')){x=i<4?10:-10;r=(i%2?1:-1)*1.2}
+ if(plan.motion.includes('compress')){x=i<6?(6-i)*4:0;s=i>5?1.025:1.006}
+ if(plan.motion.includes('shift')){x=(i-3.5)*3.5;y=i>4?-8:4}
+ if(plan.motion.includes('rise')){y=i>2?-10:6;s=1.02}
+ if(plan.motion.includes('map')){s=1.018;x=(i%2?1:-1)*6}
+ if(plan.motion.includes('court')||plan.motion.includes('authority')){x=i%2?8:-8;r=i%2?.8:-.8}
+ if(plan.motion.includes('bar')){s=i>3?1.025:1.008;y=i>4?-6:0}
+ if(plan.motion.includes('paths')){x=i>3?(i%2?12:-12):0}
+ if(plan.motion.includes('mirror')){y=i>3?-7:4;s=1.02}
  return{x,y,r,s,opacity};
 }
 function* microStageFlow(stages:Node[],scene:Scene,plan:Plan):ThreadGenerator{
- const base=[.015,.12,.225,.33,.435,.54,.645,.75];let cursor=0;
+ const base=[.012,.115,.218,.321,.424,.527,.63,.733];let cursor=0;
  for(let i=0;i<8;i++){
-  const [ox,oy,os]=offsetFor(scene,i);stages[i].x(ox);stages[i].y(oy);stages[i].scale(os);stages[i].rotation(i%2?1.2:-1.2);
+  const [ox,oy,os]=offsetFor(scene,i);stages[i].x(ox);stages[i].y(oy);stages[i].scale(os);stages[i].rotation(i%2?1.1:-1.1);
   const jitter=((hash(scene.motif+i.toString())>>3)&7)*.002;const at=scene.duration*Math.min(.82,base[i]+jitter);
   if(at>cursor)yield* waitFor(at-cursor);cursor=at;
-  const reveal=Math.min(.52,Math.max(.2,scene.duration*.016));
+  const reveal=Math.min(.48,Math.max(.19,scene.duration*.014));
   yield* all(stages[i].opacity(1,reveal),stages[i].x(0,reveal),stages[i].y(0,reveal),stages[i].scale(1,reveal),stages[i].rotation(0,reveal));cursor+=reveal;
-  const target=settleTarget(scene,plan,i);const settle=Math.min(.44,Math.max(.18,scene.duration*.014));
-  yield* all(stages[i].x(target.x,settle),stages[i].y(target.y,settle),stages[i].rotation(target.r,settle),stages[i].scale(target.s,settle),stages[i].opacity(target.opacity,settle));cursor+=settle;
-  if(i>=3){const old=stages[i-3];old.opacity(plan.motion.includes('calendar')?.45:.74)}
+  const t=settleTarget(scene,plan,i);const settle=Math.min(.4,Math.max(.17,scene.duration*.012));
+  yield* all(stages[i].x(t.x,settle),stages[i].y(t.y,settle),stages[i].rotation(t.r,settle),stages[i].scale(t.s,settle),stages[i].opacity(t.opacity,settle));cursor+=settle;
+  if(i>=3)stages[i-3].opacity(.74);
  }
  const end=scene.duration*.9;if(end>cursor){yield* waitFor(end-cursor);cursor=end}
- yield* all(stages[7].scale(1.035,.36),stages[6].opacity(.88,.36));cursor+=.36;
+ yield* all(stages[7].scale(1.035,.34),stages[6].opacity(.86,.34));cursor+=.34;
  if(scene.duration>cursor)yield* waitFor(scene.duration-cursor);
 }
 function* cameraFlow(node:Node,duration:number,motif:string):ThreadGenerator{
- const p=hash(motif)%6;const dx=[14,-16,10,-10,18,-14][p],dy=[-6,8,7,-8,3,-4][p];
- node.scale(1.008);const q=duration/4;
- yield* all(node.x(dx,q),node.y(dy,q),node.scale(1.014,q));
- yield* all(node.x(-dx*.55,q),node.y(-dy*.6,q),node.scale(1.02,q));
- yield* all(node.x(dx*.35,q),node.y(dy*.25,q),node.scale(1.012,q));
+ const p=hash(motif)%8;const dx=[14,-16,11,-10,18,-14,9,-12][p],dy=[-6,8,7,-8,3,-4,9,-7][p];
+ node.scale(1.006);const q=duration/4;
+ yield* all(node.x(dx,q),node.y(dy,q),node.scale(1.013,q));
+ yield* all(node.x(-dx*.55,q),node.y(-dy*.6,q),node.scale(1.021,q));
+ yield* all(node.x(dx*.35,q),node.y(dy*.25,q),node.scale(1.014,q));
  yield* all(node.x(0,Math.max(.01,duration-3*q)),node.y(0,Math.max(.01,duration-3*q)),node.scale(1.008,Math.max(.01,duration-3*q)));
 }
 function* subtitleFlow(cues:Cue[],caption:Txt,duration:number):ThreadGenerator{let t=0;for(const c of cues){if(c.start>t)yield* waitFor(c.start-t);caption.text(c.display);t=c.start}if(duration>t)yield* waitFor(duration-t);caption.text('')}
 
 export function* playMeaningScene(view:View2D,scene:Scene):ThreadGenerator{
- const plan=(visualPlan as Record<string,Plan>)[scene.motif];if(!plan)throw new Error('V122 visual plan missing: '+scene.motif);
+ const plan=(visualPlan as Record<string,Plan>)[scene.motif];if(!plan)throw new Error('V124 visual plan missing: '+scene.motif);
  view.fill(K.bg);const contentLayer=new Node({});const headingLayer=new Node({});const subtitleBacking=new Node({});const subtitleTextLayer=new Node({});
  view.add(contentLayer);view.add(headingLayer);view.add(subtitleBacking);view.add(subtitleTextLayer);
  const stages=buildScene(contentLayer,scene,plan);
- rr(headingLayer,0,-474,1920,132,'#071019',0);const part=scene.chapter==='prologue'?'PROLOGUE':scene.chapter==='epilogue'?'EPILOGUE':scene.chapter.toUpperCase();
- headingLayer.add(tx(part,-800,-508,22,K.gold,700));headingLayer.add(tx(scene.id,830,-508,21,K.muted,600));headingLayer.add(tx(scene.title,0,-452,scene.title.length>35?29:scene.title.length>23?34:43,K.paper,700));
- rr(subtitleBacking,0,460,1920,170,'#02060B',0).opacity(.93);const caption=tx('',0,458,41,K.paper,650);caption.lineHeight(58);subtitleTextLayer.add(caption);
+ rr(headingLayer,0,-474,1920,132,'#061018',0);const part=scene.chapter==='prologue'?'PROLOGUE':scene.chapter==='epilogue'?'EPILOGUE':scene.chapter.toUpperCase();
+ headingLayer.add(tx(part,-800,-508,22,K.gold,700));headingLayer.add(tx(scene.id,830,-508,21,K.muted,600));headingLayer.add(tx(scene.title,0,-452,scene.title.length>33?28:scene.title.length>23?33:42,K.paper,700));
+ rr(subtitleBacking,0,460,1920,170,'#02060B',0).opacity(.94);const caption=tx('',0,458,40,K.paper,650);caption.lineHeight(57);subtitleTextLayer.add(caption);
  yield* all(microStageFlow(stages,scene,plan),cameraFlow(contentLayer,scene.duration,scene.motif),subtitleFlow(scene.cues,caption,scene.duration));
 }
