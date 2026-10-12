@@ -107,7 +107,7 @@ def scene_art(d,mode,stage,idx):
             xx=250+j*110
             line(d,[(xx,688),(xx-8,637)],GOLD,3)
             for dd in [-1,1]:
-                d.ellipse((xx+dd*10,647,xx+dd*14,662),fill=GOLD)
+                d.ellipse((min(xx+dd*10,xx+dd*14),647,max(xx+dd*10,xx+dd*14),662),fill=GOLD)
         if mode=="landlabor":
             box(d,(280,340,810,505),CREAM,INK);box(d,(1120,340,1650,505),CREAM,INK)
             cardtext(d,"土地は残る",(300,350,785,475),70)
