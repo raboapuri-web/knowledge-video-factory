@@ -221,7 +221,7 @@ function build(s:Shot,parent:Node,accent:string):Piece[]{
    const connector=arrow(group,x*.77,y*.72,x*.18,y*.19,C.muted2);show(connector);
   }
  }else if(mode==='ecosystem'||mode==='rules'||mode==='evaluation'||mode==='matrix'){
-  const n=L.length,positions=n===4?[[-460,-96],[460,-96],[-460,139],[460,139]]:[[-490,10],[0,-80],[490,10]];
+  const n=L.length,positions=n===4?[[-460,-96],[460,-96],[-460,132],[460,132]]:[[-490,10],[0,-80],[490,10]];
   L.forEach((v,i)=>{
    const [x,y]=positions[i%positions.length],node=add(group,new Node({x,y}));
    const diameter=n===4?230:300;
