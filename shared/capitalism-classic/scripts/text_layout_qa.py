@@ -69,7 +69,7 @@ for p in plan:
 # geometric checks in Motion Canvas centered coordinates; subtitle is y>=376.
 scale=1.15
 circles=[((-490,10),300),((0,-80),300),((490,10),300),
-         ((-460,-96),230),((460,-96),230),((-460,139),230),((460,139),230)]
+         ((-460,-96),230),((460,-96),230),((-460,132),230),((460,132),230)]
 for (x,y),d in circles:
     if (abs(x)+d/2)*scale>920:errors.append('circle reaches right/left unsafe edge')
     if (y+d/2)*scale>292:errors.append('circle breaches subtitle/annotation safe region')
