@@ -1,632 +1,884 @@
 {
-  "idle_room": {
-    "kind": "apartment-afternoon",
-    "motion": "still-to-aware",
+  "election_night_2026": {
+    "kind": "election-office",
+    "motion": "flower-board-pan",
     "labels": [
-      "14:00",
-      "閉じたPC",
-      "冷めたコーヒー",
-      "ソファ",
-      "成果ゼロ？",
-      "空白",
-      "不安",
-      "停止を見る"
+      "那覇・夜",
+      "当確速報",
+      "花付け",
+      "支持者",
+      "古謝玄太",
+      "42歳",
+      "県政交代",
+      "2026"
     ]
   },
-  "social_feed": {
-    "kind": "phone-feed",
-    "motion": "scroll-pressure",
+  "headline_acceptance": {
+    "kind": "newsroom-headline",
+    "motion": "headline-collapse",
     "labels": [
-      "転職報告",
-      "海外出張",
-      "最高売上",
-      "自分の部屋",
-      "空白期間",
-      "比較",
-      "活動だけ可視化",
-      "停止が異常化"
+      "辺野古容認",
+      "12年ぶり",
+      "見出し",
+      "単純化",
+      "受け入れ？",
+      "ニュース画面",
+      "疑問符",
+      "削られた文脈"
     ]
   },
-  "hibernator_den": {
-    "kind": "winter-den",
-    "motion": "descent-metabolism",
+  "rewind_2019": {
+    "kind": "time-rewind",
+    "motion": "calendar-rewind",
     "labels": [
-      "雪の森",
-      "地中へ",
-      "冬眠個体",
-      "心拍低下",
-      "体温低下",
-      "酸素消費低下",
-      "低出力",
-      "未来へ保存"
+      "2026",
+      "巻き戻す",
+      "2019",
+      "2月24日",
+      "投票所",
+      "三択",
+      "県民投票",
+      "過去へ"
     ]
   },
-  "human_adds_tasks": {
-    "kind": "task-stack",
-    "motion": "overload",
+  "referendum_numbers": {
+    "kind": "referendum-board",
+    "motion": "ballot-count-rise",
     "labels": [
-      "失業",
-      "資格",
-      "副業",
-      "投資",
-      "語学",
-      "運動",
-      "活動を追加",
-      "出力を下げる選択"
+      "605,396投票",
+      "反対434,273",
+      "71.7%",
+      "賛成19.0%",
+      "どちらでもない",
+      "単一争点",
+      "多数",
+      "数字"
     ]
   },
-  "central_question": {
-    "kind": "thesis-stage",
-    "motion": "compare-strategies",
+  "contradiction_wall": {
+    "kind": "archive-wall",
+    "motion": "two-result-pin",
     "labels": [
-      "人間≠冬眠動物",
-      "比喩",
-      "活動停止",
-      "資源保存",
-      "未来",
-      "空白",
-      "適応？",
+      "2019",
+      "反対71.7%",
+      "2026",
+      "容認知事",
+      "二枚の紙",
+      "矛盾？",
+      "変化？",
+      "同じ壁"
+    ]
+  },
+  "thesis_public_opinion": {
+    "kind": "dark-theory-stage",
+    "motion": "word-deconstruct",
+    "labels": [
+      "民意",
+      "賛否",
+      "選挙",
+      "問い",
+      "測定",
+      "誰の意思",
+      "民主主義",
       "中心命題"
     ]
   },
-  "autumn_fattening": {
-    "kind": "autumn-forest",
-    "motion": "prepare-den",
+  "map_to_question": {
+    "kind": "okinawa-zoomout",
+    "motion": "layer-zoomout",
     "labels": [
-      "秋",
-      "木の実",
-      "脂肪蓄積",
-      "日照低下",
-      "巣穴準備",
-      "活動変化",
-      "冬眠前準備",
-      "停止を設計"
+      "辺野古",
+      "沖縄本島",
+      "基地",
+      "地方自治",
+      "安全保障",
+      "選挙",
+      "地域負担",
+      "日本全体"
     ]
   },
-  "torpor_cycle": {
-    "kind": "physiology-lab",
-    "motion": "torpor-arousal",
+  "two_ballot_boxes": {
+    "kind": "dual-ballot-room",
+    "motion": "box-compare",
     "labels": [
-      "通常状態",
-      "トーパー",
-      "体温低下",
-      "代謝90%超低下例",
-      "短い覚醒",
-      "再びトーパー",
-      "周期",
-      "低電力モード"
+      "2019箱",
+      "2026箱",
+      "同じ形",
+      "別の問い",
+      "直接投票",
+      "代表選挙",
+      "比較",
+      "入口"
     ]
   },
-  "energy_budget": {
-    "kind": "energy-ledger",
-    "motion": "income-expense",
+  "single_issue_ballot": {
+    "kind": "single-ballot",
+    "motion": "one-question-focus",
     "labels": [
-      "寒さ",
-      "支出増",
-      "食物減",
-      "収入減",
-      "赤字",
-      "代謝抑制",
-      "支出を下げる",
-      "収支改善"
+      "辺野古",
+      "賛成",
+      "反対",
+      "どちらでもない",
+      "他政策を外す",
+      "一問",
+      "直接判断",
+      "単一争点"
     ]
   },
-  "two_winter_paths": {
-    "kind": "split-winter",
-    "motion": "energy-race",
+  "governor_ballot_bundle": {
+    "kind": "policy-bundle",
+    "motion": "many-to-one-compress",
     "labels": [
-      "同じ冬",
-      "活動継続",
-      "残量減少",
-      "巣穴へ",
-      "出力低下",
-      "残量維持",
-      "春まで",
-      "二つの戦略"
+      "基地",
+      "物価",
+      "賃金",
+      "観光",
+      "教育",
+      "子育て",
+      "実績",
+      "候補者名"
     ]
   },
-  "spring_result": {
-    "kind": "spring-emergence",
-    "motion": "zero-output-to-survival",
+  "supermarket_voter": {
+    "kind": "supermarket-aisle",
+    "motion": "receipt-pressure",
     "labels": [
-      "冬の成果0",
-      "餌集めなし",
-      "繁殖なし",
-      "時間経過",
-      "雪解け",
-      "覚醒",
-      "春に生存",
-      "長期成果"
+      "値札",
+      "食料品",
+      "家計",
+      "辺野古反対",
+      "物価高",
+      "優先順位",
+      "投票日",
+      "一票"
     ]
   },
-  "diapause_insect": {
-    "kind": "insect-season",
-    "motion": "anticipatory-stop",
+  "issue_salience": {
+    "kind": "salience-scale",
+    "motion": "weight-shift",
     "labels": [
-      "夏の昆虫",
-      "日長短縮",
-      "季節シグナル",
-      "発育停止",
-      "脂質蓄積",
-      "隠れ場所",
-      "冬前に休眠",
-      "予測的適応"
+      "争点A",
+      "争点B",
+      "重要度",
+      "注意",
+      "投票判断",
+      "重み",
+      "salience",
+      "順位"
     ]
   },
-  "seed_waiting": {
-    "kind": "seed-soil",
-    "motion": "hold-germination",
+  "retrospective_vote": {
+    "kind": "scorecard-office",
+    "motion": "past-performance-score",
     "labels": [
-      "種子落下",
-      "水分",
-      "温度",
-      "光",
-      "条件判定",
-      "発芽保留",
-      "土中維持",
-      "未来へ保存"
+      "生活",
+      "県政実績",
+      "景気",
+      "期待",
+      "回顧投票",
+      "経済投票",
+      "採点",
+      "次の任期"
     ]
   },
-  "desert_bethedge": {
-    "kind": "desert-rain",
-    "motion": "partial-germination",
+  "first_answer": {
+    "kind": "logic-board",
+    "motion": "implication-separate",
     "labels": [
-      "砂漠",
-      "雨",
-      "10個の種",
-      "3個発芽",
-      "干ばつ",
-      "芽が枯れる",
-      "7個残る",
+      "当選",
+      "政策賛成",
+      "同義でない",
+      "2019",
+      "永久拘束でない",
+      "二つの問い",
+      "区別",
+      "第一回答"
+    ]
+  },
+  "okinawa_1945": {
+    "kind": "war-map-1945",
+    "motion": "map-darken",
+    "labels": [
+      "1945",
+      "沖縄戦後",
+      "米軍統治",
+      "土地",
+      "基地化",
+      "本土と別時間",
+      "島",
+      "戦後"
+    ]
+  },
+  "us_admin_land": {
+    "kind": "postwar-neighborhood",
+    "motion": "land-encroachment",
+    "labels": [
+      "住宅",
+      "軍用地",
+      "騒音",
+      "事故不安",
+      "地域経済",
+      "生活空間",
+      "基地",
+      "蓄積"
+    ]
+  },
+  "reversion_1972": {
+    "kind": "reversion-port",
+    "motion": "flag-and-map",
+    "labels": [
+      "1972",
+      "本土復帰",
+      "日の丸",
+      "行政復帰",
+      "基地残存",
+      "地図",
+      "復帰式典",
+      "残る負担"
+    ]
+  },
+  "burden_map": {
+    "kind": "burden-map",
+    "motion": "area-ratio-transform",
+    "labels": [
+      "国土0.6%",
+      "専用施設約70%",
+      "沖縄",
+      "日本",
+      "集中",
+      "地理",
+      "負担",
+      "安全保障"
+    ]
+  },
+  "incident_1995": {
+    "kind": "protest-1995",
+    "motion": "crowd-wave",
+    "labels": [
+      "1995",
+      "少女暴行事件",
+      "抗議集会",
+      "怒り",
+      "基地負担",
+      "可視化",
+      "整理縮小",
+      "転機"
+    ]
+  },
+  "saco_1996": {
+    "kind": "saco-table",
+    "motion": "document-to-airfield",
+    "labels": [
+      "1996",
+      "SACO",
+      "普天間返還",
+      "代替施設",
+      "条件",
+      "日米合意",
+      "機能移転",
+      "5〜7年"
+    ]
+  },
+  "henoko_paradox": {
+    "kind": "split-coast",
+    "motion": "return-vs-build",
+    "labels": [
+      "普天間",
+      "返還",
+      "辺野古",
+      "建設",
+      "負担軽減",
+      "新たな負担",
+      "同じ政策",
+      "視点"
+    ]
+  },
+  "nago_referendum_1997": {
+    "kind": "nago-ballot",
+    "motion": "local-vote-count",
+    "labels": [
+      "1997",
+      "名護市民投票",
+      "海上ヘリ基地",
+      "反対過半",
+      "条件付き反対",
+      "地域",
+      "直接投票",
+      "前史"
+    ]
+  },
+  "mayor_after_referendum": {
+    "kind": "cityhall-after-vote",
+    "motion": "vote-to-mayor-shift",
+    "labels": [
+      "市民投票",
+      "数日後",
+      "受入表明",
+      "辞職",
+      "市長選",
+      "後継候補",
+      "別の結果",
+      "ねじれ"
+    ]
+  },
+  "relocation_1999": {
+    "kind": "cabinet-map-1999",
+    "motion": "decision-route",
+    "labels": [
+      "1999",
+      "辺野古沿岸",
+      "知事発表",
+      "市長条件付き",
+      "政府方針",
+      "閣議決定",
+      "移設先",
+      "長期対立"
+    ]
+  },
+  "nested_publics": {
+    "kind": "nested-circles",
+    "motion": "circle-expand",
+    "labels": [
+      "辺野古地区",
+      "名護市",
+      "沖縄県",
+      "日本",
+      "日米安保",
+      "主語",
+      "多数派",
+      "範囲"
+    ]
+  },
+  "externality_security": {
+    "kind": "benefit-cost-map",
+    "motion": "benefit-spread-cost-focus",
+    "labels": [
+      "全国利益",
+      "局地負担",
+      "抑止",
+      "騒音",
+      "土地利用",
+      "事故不安",
+      "外部性",
+      "分布"
+    ]
+  },
+  "nimby_parallel": {
+    "kind": "facility-gallery",
+    "motion": "facility-swap",
+    "labels": [
+      "原発",
+      "処分場",
+      "ダム",
+      "空港",
+      "刑務所",
+      "基地",
+      "必要性",
+      "近隣負担"
+    ]
+  },
+  "two_majorities": {
+    "kind": "two-majorities",
+    "motion": "majority-counterrotate",
+    "labels": [
+      "全国多数",
+      "地域多数",
+      "安全保障",
+      "反対",
+      "正当性A",
+      "正当性B",
+      "範囲",
+      "衝突"
+    ]
+  },
+  "nakaima_approval_2013": {
+    "kind": "prefecture-desk-2013",
+    "motion": "stamp-commit",
+    "labels": [
+      "2013",
+      "仲井眞知事",
+      "埋立承認",
+      "決裁文書",
+      "県庁",
+      "工事の扉",
+      "行政",
       "翌年へ"
     ]
   },
-  "microbial_seedbank": {
-    "kind": "micro-world",
-    "motion": "dormant-reservoir",
+  "onaga_2014": {
+    "kind": "campaign-2014",
+    "motion": "portrait-swap",
     "labels": [
-      "微生物群",
-      "環境悪化",
-      "活動群減少",
-      "低代謝群",
-      "seed bank",
-      "環境改善",
-      "再活性化",
-      "集団持続"
+      "2014",
+      "翁長雄志",
+      "知事選",
+      "移設反対",
+      "当選",
+      "県庁",
+      "承認取消",
+      "方向転換"
     ]
   },
-  "dormancy_reframe": {
-    "kind": "biology-gallery",
-    "motion": "four-taxa",
+  "cancel_lawsuit": {
+    "kind": "court-corridor",
+    "motion": "four-node-conflict",
     "labels": [
-      "哺乳類",
-      "昆虫",
-      "植物",
-      "微生物",
-      "停止",
-      "保存",
-      "再活性化",
-      "休眠の本質"
+      "県庁",
+      "霞が関",
+      "裁判所",
+      "辺野古",
+      "取消",
+      "国の対抗",
+      "訴訟",
+      "権限衝突"
     ]
   },
-  "seasonal_village": {
-    "kind": "preindustrial-village",
-    "motion": "four-season-labor",
+  "tamaki_2018": {
+    "kind": "campaign-2018",
+    "motion": "succession-pass",
     "labels": [
-      "春の耕作",
-      "夏の管理",
-      "秋の収穫",
-      "冬の修理",
-      "仕事は続く",
-      "強度変化",
-      "季節リズム",
-      "活動の波"
+      "2018",
+      "翁長死去",
+      "玉城デニー",
+      "知事選",
+      "反対継承",
+      "当選",
+      "重要争点",
+      "県政"
     ]
   },
-  "factory_flattening": {
-    "kind": "industrial-factory",
-    "motion": "flatten-season",
+  "referendum_2019_again": {
+    "kind": "referendum-room-2019",
+    "motion": "numbers-return",
     "labels": [
-      "蒸気機関",
-      "人工照明",
-      "空調",
-      "保存技術",
-      "物流",
-      "一年中稼働",
-      "季節差縮小",
-      "一定出力"
+      "2019",
+      "県民投票",
+      "71.7%",
+      "単一争点",
+      "象徴性",
+      "反対多数",
+      "直接請求",
+      "再確認"
     ]
   },
-  "office_four_seasons": {
-    "kind": "office-window",
-    "motion": "season-swap",
+  "soft_seabed_2020": {
+    "kind": "seabed-crosssection",
+    "motion": "ground-sink-and-plan",
     "labels": [
-      "1月 雪",
-      "4月 桜",
-      "8月 日差し",
-      "11月 落葉",
-      "同じ机",
-      "同じ時刻",
-      "同じ出力",
-      "季節だけ変わる"
+      "大浦湾",
+      "軟弱地盤",
+      "設計変更",
+      "2020申請",
+      "2021不承認",
+      "地盤改良",
+      "技術",
+      "権限争い"
     ]
   },
-  "growth_dashboard": {
-    "kind": "growth-dashboard",
-    "motion": "up-only",
+  "supreme_substitution_2023": {
+    "kind": "substitution-flow",
+    "motion": "authority-handoff",
     "labels": [
-      "給与",
-      "技能",
-      "人脈",
-      "資産",
-      "前年比",
-      "右肩上がり",
-      "停滞判定",
-      "人生のKPI"
+      "司法判断",
+      "是正指示",
+      "県不承認",
+      "代執行訴訟",
+      "2023年12月",
+      "国交相",
+      "知事代行",
+      "承認"
     ]
   },
-  "season_logic": {
-    "kind": "season-wheel",
-    "motion": "cycle-vs-line",
+  "campaign_2026": {
+    "kind": "street-campaign-2026",
+    "motion": "multi-issue-street",
     "labels": [
-      "春 成長",
-      "夏 活動",
-      "秋 蓄積",
-      "冬 低出力",
-      "循環",
-      "直線成長",
-      "生存",
-      "季節に合わせる"
+      "2026",
+      "候補ポスター",
+      "基地",
+      "物価",
+      "所得",
+      "子育て",
+      "交通",
+      "新産業"
     ]
   },
-  "afterwork_body": {
-    "kind": "home-head-office",
-    "motion": "mental-office",
+  "economy_front": {
+    "kind": "household-economy",
+    "motion": "price-and-income",
     "labels": [
-      "23:00帰宅",
-      "ソファ",
-      "通知",
-      "メール",
-      "頭内会議",
-      "身体は家",
-      "心理は職場",
-      "離脱できない"
+      "物価高",
+      "県民所得",
+      "家計",
+      "企業",
+      "経済政策",
+      "重点",
+      "関心",
+      "前面化"
     ]
   },
-  "detachment_evidence": {
-    "kind": "research-board",
-    "motion": "meta-analysis",
+  "kojar_position": {
+    "kind": "candidate-policy-board",
+    "motion": "policy-split-koja",
     "labels": [
-      "86論文",
-      "91サンプル",
-      "38,124人",
-      "心理的離脱",
-      "疲労減",
-      "睡眠",
-      "ウェルビーイング",
-      "平均的関連"
+      "辺野古容認",
+      "普天間返還時期",
+      "政府へ要求",
+      "所得",
+      "新産業",
+      "子育て",
+      "経済",
+      "複合票"
     ]
   },
-  "vacation_evidence": {
-    "kind": "vacation-research",
-    "motion": "before-during-after",
+  "tamaki_position": {
+    "kind": "candidate-policy-board-alt",
+    "motion": "policy-split-tamaki",
     "labels": [
-      "32研究",
-      "休暇前",
-      "休暇中",
-      "well-being上昇",
-      "心理的離脱",
-      "身体活動",
-      "休暇後",
-      "効果は即消失せず"
+      "辺野古反対",
+      "物価高対策",
+      "社会保障",
+      "交通",
+      "生活政策",
+      "県政実績",
+      "複合票",
+      "比較"
     ]
   },
-  "add_more_when_tired": {
-    "kind": "overload-calendar",
-    "motion": "add-tasks",
+  "exit_priority": {
+    "kind": "exit-poll-board",
+    "motion": "bar-priority",
     "labels": [
-      "疲労",
-      "副業",
-      "資格勉強",
-      "早朝運動",
-      "予定が埋まる",
-      "睡眠圧迫",
-      "負荷増",
-      "季節判定が必要"
+      "出口調査",
+      "景気",
+      "物価高",
+      "基地問題",
+      "期待政策",
+      "優先順位",
+      "比較",
+      "変化"
     ]
   },
-  "human_low_power": {
-    "kind": "human-low-power",
-    "motion": "reduce-output",
+  "vote_compression": {
+    "kind": "voter-mind",
+    "motion": "thoughts-to-ballot",
     "labels": [
-      "競争から離れる",
-      "通知を切る",
-      "睡眠",
-      "生活リズム",
-      "回復",
-      "最低限維持",
-      "出力低下",
-      "人間版の比喩"
+      "辺野古反対",
+      "経済評価",
+      "県政不満",
+      "政府協調",
+      "複数判断",
+      "頭の中",
+      "一人の名前",
+      "圧縮"
     ]
   },
-  "stuck_writer": {
-    "kind": "writer-desk",
-    "motion": "stuck-to-insight",
+  "what_changed": {
+    "kind": "diagnostic-board",
+    "motion": "three-hypotheses",
     "labels": [
-      "一行書く",
-      "削除",
-      "再入力",
-      "深夜1時",
-      "PCを閉じる",
-      "翌朝",
-      "シャワー",
-      "ひらめき"
+      "賛否反転",
+      "重要度変化",
+      "両方",
+      "選挙結果",
+      "原因",
+      "判別不能",
+      "確実な事実",
+      "問い"
     ]
   },
-  "incubation_effect": {
-    "kind": "study-meta",
-    "motion": "study-cards",
+  "salience_axes": {
+    "kind": "two-axis-chart",
+    "motion": "point-migrate",
     "labels": [
-      "2009",
-      "メタ分析",
-      "問題を脇へ",
-      "インキュベーション",
-      "平均効果",
-      "発散思考",
-      "低負荷活動",
-      "条件依存"
+      "反対",
+      "賛成",
+      "重要度低",
+      "重要度高",
+      "同じ反対",
+      "投票行動",
+      "二軸",
+      "政治態度"
     ]
   },
-  "mental_detour": {
-    "kind": "cognitive-road",
-    "motion": "traffic-detour",
+  "intensity_importance": {
+    "kind": "ballot-xray",
+    "motion": "hidden-weight-reveal",
     "labels": [
-      "一本の道",
-      "集中",
-      "渋滞",
-      "問題から離れる",
-      "迂回路",
-      "別の連想",
-      "翌日",
-      "別方向から到達"
+      "候補者名",
+      "強い反対",
+      "弱い反対",
+      "優先度",
+      "最終選択",
+      "見えない重み",
+      "投票用紙",
+      "限界"
     ]
   },
-  "creative_fallow": {
-    "kind": "creative-storage",
-    "motion": "materials-accumulate",
+  "issue_voting_limits": {
+    "kind": "voter-lab",
+    "motion": "ideal-vs-reality",
     "labels": [
-      "作品なし",
-      "読書",
-      "映画",
-      "失敗試作",
-      "会話",
-      "思考",
-      "素材蓄積",
-      "次の作品"
+      "政策理解",
+      "候補位置",
+      "一致投票",
+      "情報不足",
+      "複雑性",
+      "争点投票",
+      "理想",
+      "現実"
     ]
   },
-  "career_fallow": {
-    "kind": "empty-resume",
-    "motion": "identity-rebuild",
+  "retrospective_eval": {
+    "kind": "report-card",
+    "motion": "grade-animate",
     "labels": [
-      "退職",
-      "履歴書空白",
-      "価値観崩壊",
-      "働き方再考",
-      "情報収集",
-      "未決定",
-      "再編成",
-      "次の前提"
+      "現職",
+      "生活実感",
+      "景気",
+      "実績",
+      "満足",
+      "不満",
+      "回顧投票",
+      "成績表"
     ]
   },
-  "foggy_crossroad": {
-    "kind": "fog-crossroad",
-    "motion": "reveal-third-road",
+  "cohort_change": {
+    "kind": "generation-timeline",
+    "motion": "people-age-forward",
     "labels": [
-      "転職",
-      "起業",
-      "霧",
-      "二択",
-      "待つ",
-      "霧が晴れる",
-      "第三の道",
-      "情報が増える"
+      "1996",
+      "20歳",
+      "2026",
+      "50歳",
+      "未出生世代",
+      "新有権者",
+      "世代構成",
+      "30年"
     ]
   },
-  "real_option_factory": {
-    "kind": "investment-lab",
-    "motion": "wait-option",
+  "habituation_or_conversion": {
+    "kind": "four-paths",
+    "motion": "paths-diverge",
     "labels": [
-      "現金1億",
-      "工場計画",
-      "不可逆",
-      "利益予想",
-      "半年後情報",
-      "今は待つ",
-      "選択権保持",
-      "オプション価値"
+      "転向",
+      "慣れ",
+      "諦め",
+      "現実適応",
+      "反対維持",
+      "重要度低下",
+      "同じ一票",
+      "別心理"
     ]
   },
-  "irreversible_choice": {
-    "kind": "life-decisions",
-    "motion": "doors-close",
+  "cannot_infer": {
+    "kind": "inference-warning",
+    "motion": "result-to-mind-break",
     "labels": [
-      "住宅購入",
-      "転職",
-      "起業",
-      "結婚",
-      "選択",
-      "戻るコスト",
-      "保留",
-      "待つ価値"
+      "選挙結果",
+      "読心術ではない",
+      "2026",
+      "2019",
+      "断言不可",
+      "現在",
+      "強度",
+      "慎重な推論"
     ]
   },
-  "seed_option": {
-    "kind": "seed-choice",
-    "motion": "germinate-or-wait",
+  "construction_progress": {
+    "kind": "construction-timeline",
+    "motion": "fill-to-995",
     "labels": [
-      "種子",
-      "発芽可能",
-      "今発芽",
-      "不可逆",
-      "環境不安定",
-      "休眠維持",
-      "選択肢保存",
-      "構造の類似"
+      "工事継続",
+      "2026年5月",
+      "辺野古側",
+      "99.5%",
+      "物理進行",
+      "政治対立",
+      "時間差",
+      "現状"
     ]
   },
-  "wait_not_quit": {
-    "kind": "waiting-room",
-    "motion": "option-preserve",
+  "fait_accompli": {
+    "kind": "irreversibility-meter",
+    "motion": "options-narrow",
     "labels": [
-      "未決定",
-      "情報待ち",
-      "選択肢A",
-      "選択肢B",
-      "選択肢C",
-      "閉じない",
-      "次に進める状態",
-      "待つ≠放棄"
+      "造るべきか",
+      "ここまで進んだ",
+      "不可逆性",
+      "選択肢",
+      "既成事実",
+      "賛成とは別",
+      "政策時間",
+      "意味変化"
     ]
   },
-  "endless_pause": {
-    "kind": "frozen-room",
-    "motion": "calendar-only",
+  "security_environment": {
+    "kind": "east-asia-map",
+    "motion": "security-layer-build",
     "labels": [
-      "ソファ",
-      "1週間",
-      "1か月",
-      "半年",
-      "1年",
-      "部屋は同じ",
-      "永久停止？",
-      "問題提起"
+      "東アジア",
+      "南西地域",
+      "防衛強化",
+      "安全保障環境",
+      "30年",
+      "条件変化",
+      "評価",
+      "現在"
     ]
   },
-  "wake_cues": {
-    "kind": "spring-cues",
-    "motion": "three-awakenings",
+  "local_autonomy_limits": {
+    "kind": "autonomy-scale",
+    "motion": "authority-ceiling",
     "labels": [
-      "雪解け",
-      "動物覚醒",
-      "水分",
-      "種子発芽",
-      "光と温度",
-      "昆虫解除",
-      "再活動",
-      "出口条件"
+      "地方自治",
+      "国策",
+      "2023代執行",
+      "法定権限",
+      "県の抵抗",
+      "制度限界",
+      "中央地方",
+      "可視化"
     ]
   },
-  "protect_core": {
-    "kind": "core-systems",
-    "motion": "shut-selectively",
+  "legitimacy_layers": {
+    "kind": "legitimacy-stack",
+    "motion": "two-mandates",
     "labels": [
-      "仕事停止",
-      "睡眠維持",
-      "身体維持",
-      "人間関係",
-      "生活基盤",
-      "好奇心",
-      "世界との接点",
-      "守る核"
+      "国政選挙",
+      "政府",
+      "県知事選",
+      "県",
+      "安全保障",
+      "地域負担",
+      "二つの正当性",
+      "重なり"
     ]
   },
-  "restart_reserve": {
-    "kind": "restart-machine",
-    "motion": "reserve-power",
+  "national_analogy": {
+    "kind": "mainland-neighborhood",
+    "motion": "facility-drop-near-home",
     "labels": [
-      "出力0ではない",
-      "最低電力",
-      "資源保存",
-      "選択肢保持",
-      "状態確認",
-      "環境変化",
-      "再起動",
-      "活動復帰"
+      "本州",
+      "自分の町",
+      "原発",
+      "処分場",
+      "インフラ",
+      "全国利益",
+      "局地負担",
+      "想像"
     ]
   },
-  "winter_with_exit": {
-    "kind": "winter-path",
-    "motion": "thin-thread",
+  "democratic_design": {
+    "kind": "post-majority-workshop",
+    "motion": "制度部品を組む",
     "labels": [
-      "休職",
-      "無職",
-      "創作停滞",
-      "進路未定",
-      "成果から離れる",
-      "細い接点",
-      "春の道",
-      "冬に出口を残す"
+      "多数決",
+      "補償",
+      "対話",
+      "権限配分",
+      "情報公開",
+      "異議申立て",
+      "決定後",
+      "制度設計"
     ]
   },
-  "return_room": {
-    "kind": "apartment-return",
-    "motion": "gentle-motion",
+  "return_two_boxes": {
+    "kind": "dual-ballot-return",
+    "motion": "boxes-reassemble",
     "labels": [
-      "再び14:00",
-      "SNSを閉じる",
-      "窓を開ける",
-      "コーヒー",
-      "数ページ読む",
-      "散歩",
-      "成果は少ない",
-      "状態は保たれる"
+      "2019",
+      "2026",
+      "県民投票",
+      "知事選",
+      "問いA",
+      "問いB",
+      "同じ箱",
+      "違う意味"
     ]
   },
-  "invisible_work": {
-    "kind": "underground-cutaway",
-    "motion": "hidden-processes",
+  "both_are_public_opinion": {
+    "kind": "two-records",
+    "motion": "balance-two-results",
     "labels": [
-      "地上は静止",
-      "土中の種",
-      "巣穴の動物",
-      "微生物",
-      "外から0",
-      "内部で保存",
-      "未来へ到達",
-      "見えない仕事"
+      "71.7%",
+      "古謝当選",
+      "民主的結果",
+      "制度",
+      "時点",
+      "両方",
+      "偽物にしない",
+      "併存"
     ]
   },
-  "old_identity_box": {
-    "kind": "identity-room",
-    "motion": "box-old-goals",
+  "public_opinion_moves": {
+    "kind": "moving-center",
+    "motion": "gravity-shift",
     "labels": [
-      "社員証",
-      "資格本",
-      "昔の目標",
-      "箱へ",
-      "壁が空く",
-      "新目標なし",
-      "空白を保つ",
-      "古い自分を終える"
+      "社会変化",
+      "年齢",
+      "物価",
+      "安全保障",
+      "優先順位",
+      "重心",
+      "移動",
+      "民意"
     ]
   },
-  "four_disciplines": {
-    "kind": "four-fields",
-    "motion": "separate-then-link",
+  "majority_not_end": {
+    "kind": "majority-shadow",
+    "motion": "minority-remains",
     "labels": [
-      "冬眠",
-      "心理的離脱",
-      "インキュベーション",
-      "リアルオプション",
-      "別現象",
-      "混同しない",
-      "共通発想",
-      "活動だけが合理的でない"
+      "選挙勝利",
+      "正当化",
+      "地域負担",
+      "地域多数",
+      "少数",
+      "全国",
+      "残る問題",
+      "継続"
     ]
   },
-  "four_seasons": {
-    "kind": "season-circle",
-    "motion": "complete-cycle",
+  "burden_distribution": {
+    "kind": "ratio-final",
+    "motion": "0.6-to-70-final",
     "labels": [
-      "春 成長",
-      "夏 活動",
-      "秋 蓄積",
-      "冬 停止",
-      "赤い×",
-      "×が消える",
-      "四季が円に",
-      "次の季節へ保存"
+      "0.6%",
+      "約70%",
+      "沖縄",
+      "基地負担",
+      "分配",
+      "安全保障費用",
+      "地理",
+      "残る数字"
+    ]
+  },
+  "final_question": {
+    "kind": "question-stage",
+    "motion": "question-expand",
+    "labels": [
+      "賛成？",
+      "反対？",
+      "それだけではない",
+      "選挙勝者",
+      "民意代表",
+      "個別政策",
+      "どこまで",
+      "最終問い"
+    ]
+  },
+  "henoko_as_mirror": {
+    "kind": "ocean-mirror",
+    "motion": "layers-reflect",
+    "labels": [
+      "辺野古の海",
+      "国家",
+      "地方",
+      "多数",
+      "少数",
+      "安全保障",
+      "自治",
+      "民主主義の鏡"
     ]
   }
 }
