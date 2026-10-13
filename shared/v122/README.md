@@ -1,20 +1,20 @@
-# V124 沖縄は本当に「辺野古を受け入れた」のか？
+# V125 なぜ「問題大臣」をすぐ辞めさせると国民が損をするのか？
 
-考える夜 / 民意×選挙×地方自治×安全保障。
+考える夜 / 簗農水相問題×閣僚交代×政策継続性。
 
-2026年沖縄県知事選で辺野古移設を容認する古謝玄太氏が当選した事実と、2019年県民投票で辺野古埋め立て反対が71.7%だった事実を並べ、「どちらが本当の民意か」ではなく「そもそも選挙と住民投票は何を測っているのか」を歴史・政治学・公共経済学から解く。
+2026年10月の簗和生農林水産大臣をめぐる問題を時事フックにしつつ、動画の主題は特定政治家の擁護・辞任要求ではなく、「問題大臣を残すコスト」と「大臣を交代させるコスト」を歴史・政治学・行政組織論から比較することに置く。
 
 ## 映像設計
-- 63意味シーン / 9独立レンダー単位。
-- 各シーン8 semantic states × reveal/settle 16アクションに、4段階のscene固有カメラ遷移を加え、設計上20 micro beats / scene、約1,260 visual beats。
-- 1945戦後地図、1972復帰、1995抗議、1996 SACO、1997名護市民投票、2013承認、2014県政転換、2019県民投票、2020軟弱地盤、2023代執行、2026知事選まで、時代ごとに背景世界を切り替える。
-- 投票箱、スーパーの家計、政策束の圧縮、nested publics、外部性、県庁・霞が関・裁判所、海底断面、出口調査、salience二軸、世代交代など、情景→史実→図解→情景を交互に使う。
-- 63 motifすべて専用case。motion signatureも63個すべて固有。汎用カードが左右から順番に出るだけの共通演出は禁止。
-- 下170pxは字幕専用。本文オブジェクトは字幕帯に侵入させない。
+- 77意味シーン / prologue + chapter1〜9 + epilogue の11独立レンダー単位。
+- 各シーン8 semantic states × reveal / settle / semantic accent の3段階 = 24 micro beats / scene。設計上約1,848 visual beats。
+- 77 motifすべて専用レイアウト、77 motion signatureすべて固有。
+- 田んぼの水害現場、夜の農水省、霞が関の朝、新任大臣の初日、戦後永田町、吉田・岸期の人事慣行、2007年農水省、比較政治学データ、政策churn、国会時間、信用資本、二本のコスト曲線など、章ごとに背景世界と表現形式を切り替える。
+- 「人物やカードが順番に出るだけ」の共通演出を避け、情景、空間変化、履歴タイムライン、ネットワーク、断面、比喩、曲線図を交互に使う。
+- 台本の文学的な長文を保持し、VOICEVOX用に短文・単語列へ書き換えない。
+- 下170pxは字幕専用。本文オブジェクトと字幕を別レイヤーに固定。
 - 1920×1080 / 30fps / VOICEVOX 青山龍星 speaker 13 / speed 1.15。
-- 長文ナレーションを維持し、短文・単語の連発へ分解しない。
 
-## QA / render
-build_data → structural QA → npm typecheck/build → 9章並列VOICEVOX → measured timing → chapter rebuild → smoke render → pixel subtitle QA → full chapter render with retry → concat/BGM → ffprobe hard gate → black/freezedetect scan → 36-frame contact sheet → GitHub Release。
+## エラー抑制
+build_data → structural QA → TypeScript typecheck + Vite build → 11章並列VOICEVOX実測 → measured timing merge → chapter rebuild → smoke render → pixel subtitle QA → full chapter render with retry → concat/BGM → ffprobe hard gate → anomaly scan → contact sheet → release。
 
-※低リスクでV122の検証済みMotion Canvas基盤を継承するため、この制作ブランチではランタイム基盤ディレクトリ shared/v122 をV124用に上書き利用している。成果物・project名・release名はすべてV124として分離する。
+QAは77シーン・77ユニークmotif・77ユニークmotion・11章・24 micro beats・字幕最大2行・文字数・音声実測同期を検証する。
