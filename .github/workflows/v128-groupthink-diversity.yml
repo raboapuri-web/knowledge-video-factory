@@ -1,0 +1,114 @@
+name: V128 Groupthink Diversity Economic Rationality
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v128-groupthink-diversity.yml'
+      - 'shared/v128/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v128-groupthink-diversity-main
+  cancel-in-progress: true
+
+jobs:
+  documentary:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    defaults:
+      run:
+        working-directory: shared/v128
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Japanese fonts and video codec tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk ffmpeg fontconfig
+          python3 -m pip install --break-system-packages pillow==11.3.0
+          python3 -m py_compile production.py ../v125/production.py
+          ffmpeg -filters | grep subtitles
+      - name: Compile uncut manuscript and create original infographic states
+        run: |
+          set -euo pipefail
+          python3 production.py prepare
+          test -s output/v128-contact-sheet.jpg
+          test -s content/script.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("content/script.json").read_text(encoding="utf-8"))
+          assert sum(r["chars"] for r in d["chapterAudit"].values()) >= 10000
+          assert len(d["beats"]) >= 55
+          assert len({b["id"] for b in d["beats"]})==len(d["beats"])
+          seq=json.loads(Path("output/slides.json").read_text())
+          assert len(seq)>=len(d["beats"])*2
+          assert len({b["visual"] for b in d["beats"]})>=22
+          assert sum(1 for x in Path("output").glob("shot-*.png")) == len(seq)
+          print("PREFLIGHT_OK",len(d["beats"]),"meaning spaces",len(seq),"screen states")
+          PY
+      - name: Attach storyboard preflight contact sheet
+        uses: actions/upload-artifact@v4
+        with:
+          name: v128-visual-preflight
+          path: shared/v128/output/v128-contact-sheet.jpg
+          retention-days: 21
+      - name: Start VOICEVOX narrator
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox-v128 -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..150}; do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null; then
+              echo "VOICEVOX_READY"; exit 0
+            fi
+            sleep 2
+          done
+          exit 1
+      - name: Synthesize narration and measured subtitle cues
+        run: |
+          python3 production.py voice
+          test -s output/narration.wav
+          test -s output/subtitles.srt
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("output/timing.json").read_text())
+          assert d["totalSeconds"] > 600
+          print("VOICE_AND_SUBTITLE_SYNC_OK",d["totalSeconds"],d["cues"])
+          PY
+      - name: Render verified 1920x1080 H264 AAC documentary
+        run: |
+          python3 production.py render
+          test -s output/v128-groupthink-diversity-final.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 output/v128-groupthink-diversity-final.mp4
+          cat output/v128-final-qa.json
+      - name: Archive mastered film, subtitles and QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: v128-groupthink-diversity-master
+          path: |
+            shared/v128/output/v128-groupthink-diversity-final.mp4
+            shared/v128/output/v128-contact-sheet.jpg
+            shared/v128/output/v128-final-qa.json
+            shared/v128/output/subtitles.srt
+            shared/v128/output/timing.json
+            shared/v128/output/SOURCES.txt
+          retention-days: 21
+          compression-level: 0
+      - name: Publish final film through GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v128-groupthink-diversity-$GITHUB_RUN_ID"
+          gh release create "$TAG" \
+            output/v128-groupthink-diversity-final.mp4 \
+            output/v128-contact-sheet.jpg \
+            output/v128-final-qa.json \
+            output/SOURCES.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V128 労働学としての多様性 本番動画" \
+            --notes "Full Japanese narration, original office and research infographics, VOICEVOX 青山龍星, 1080p subtitles, source and QA sheets. Office/business scenes are illustrations."
