@@ -364,7 +364,7 @@ def art(d,b,idx,stage):
           "research2023":("2023","チーム創造性のメタ分析"),
           "research1999":("1999","Edmondson／心理的安全性"),
         }[mode]
-        doc(d,250,352,1430,385,name,[focus,b["headline"]],GOLD)
+        doc(d,250,352,1430,385,name[0],[name[1],focus,b["headline"]],GOLD)
         if mode=="research65":pill(d,"3189グループ",725,652,480,RED)
         if mode=="research135":pill(d,"3人×135組",725,652,480,RED)
         if mode=="report":pill(d,"歴史と組織の検証",725,652,480,RED)
