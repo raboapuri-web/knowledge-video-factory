@@ -7,236 +7,172 @@ import visualPlan from '../../content/visual_plan.json';
 type Cue={text:string;display:string;start:number;end:number};
 type Scene={id:string;chapter:string;motif:string;title:string;narration:string;cues:Cue[];duration:number};
 type Plan={kind:string;motion:string;labels:string[]};
-export const MICRO_BEATS_PER_SCENE=20;
+export const MICRO_BEATS_PER_SCENE=24;
 
-const K={
- bg:'#071018',deep:'#0D1B24',navy:'#132A36',slate:'#29434F',paper:'#F1EBDD',muted:'#9CAEB5',
- red:'#D45752',gold:'#D5AE68',cyan:'#6DB8BD',teal:'#6E9B8D',blue:'#6C88A5',green:'#738D72',
- brown:'#765F4B',sand:'#A99069',ice:'#A8C7CF',ink:'#17252E',soil:'#4E4036',orange:'#BD7C4D',
- white:'#F7F4EC',black:'#04090D',sea:'#173C4D',sky:'#496C7A',gray:'#65747A'
-};
+const K={bg:'#071018',deep:'#0D1B24',navy:'#132A36',slate:'#29434F',paper:'#F1EBDD',muted:'#9CAEB5',red:'#D45752',gold:'#D5AE68',cyan:'#6DB8BD',teal:'#6E9B8D',blue:'#6C88A5',green:'#738D72',brown:'#765F4B',sand:'#A99069',ice:'#A8C7CF',ink:'#17252E',soil:'#4E4036',orange:'#BD7C4D',white:'#F7F4EC',black:'#04090D',sea:'#173C4D',sky:'#496C7A',gray:'#65747A',rice:'#B7A86A'};
 const F='Noto Sans JP, Noto Sans CJK JP, sans-serif';
-const hash=(s:string)=>[...s].reduce((a,c)=>((a*33)^c.charCodeAt(0))>>>0,124);
+const hash=(s:string)=>[...s].reduce((a,c)=>((a*33)^c.charCodeAt(0))>>>0,125);
 const tx=(s:string,x:number,y:number,sz=30,col=K.paper,w=700)=>new Txt({text:s,x,y,fontFamily:F,fontSize:sz,fill:col,fontWeight:w});
 function rr(p:Node,x:number,y:number,w:number,h:number,fill:string,r=10,stroke?:string){const q=new Rect({x,y,width:w,height:h,fill,radius:r,stroke:stroke??fill,lineWidth:stroke?2:0});p.add(q);return q}
 function cc(p:Node,x:number,y:number,r:number,fill:string){const q=new Circle({x,y,width:r*2,height:r*2,fill});p.add(q);return q}
 function ln(p:Node,pts:[number,number][],col=K.muted,w=5){const q=new Line({points:pts,stroke:col,lineWidth:w,lineCap:'round',lineJoin:'round'});p.add(q);return q}
 function label(p:Node,s:string,x:number,y:number,col=K.paper,sz=25,w=700){const q=tx(s,x,y,sz,col,w);p.add(q);return q}
-function card(p:Node,s:string,x:number,y:number,w=260,col=K.cyan){rr(p,x,y,w,68,K.deep,12,col);label(p,s,x,y,col,23)}
-function paper(p:Node,x:number,y:number,w=320,h=410,title=''){rr(p,x,y,w,h,'#EAE4D8',8,'#899497');if(title)label(p,title,x,y-h*.38,K.ink,24);for(let i=0;i<5;i++)ln(p,[[x-w*.34,y-h*.14+i*48],[x+w*(i===4?.12:.34),y-h*.14+i*48]],'#90989A',4)}
+function card(p:Node,s:string,x:number,y:number,w=270,col=K.cyan){rr(p,x,y,w,68,K.deep,12,col);label(p,s,x,y,col,22)}
 function person(p:Node,x:number,y:number,s=.7,col=K.paper){const g=new Node({x,y,scale:s});p.add(g);cc(g,0,-58,24,col);rr(g,0,24,62,118,col,18);ln(g,[[-20,-4],[-58,56]],col,11);ln(g,[[20,-4],[58,56]],col,11);ln(g,[[-18,78],[-25,150]],col,13);ln(g,[[18,78],[25,150]],col,13);return g}
+function sitting(p:Node,x:number,y:number,s=.7,col=K.paper){const g=new Node({x,y,scale:s});p.add(g);cc(g,0,-58,24,col);rr(g,0,20,60,110,col,18);ln(g,[[-18,66],[-60,100]],col,12);ln(g,[[18,66],[60,100]],col,12);ln(g,[[-60,100],[-15,110]],col,12);ln(g,[[60,100],[15,110]],col,12);return g}
 function desk(p:Node,x:number,y:number,w=520){rr(p,x,y,w,28,K.brown,4);ln(p,[[x-w*.4,y+12],[x-w*.4,y+110]],K.paper,7);ln(p,[[x+w*.4,y+12],[x+w*.4,y+110]],K.paper,7)}
-function ballot(p:Node,x:number,y:number,labelText='投票箱'){rr(p,x,y,330,260,'#334A54',18,K.paper);rr(p,x,y-78,190,18,K.black,5);label(p,labelText,x,y+35,K.paper,27)}
+function paper(p:Node,x:number,y:number,w=320,h=410,title=''){rr(p,x,y,w,h,'#EAE4D8',8,'#899497');if(title)label(p,title,x,y-h*.38,K.ink,23);for(let i=0;i<5;i++)ln(p,[[x-w*.34,y-h*.14+i*48],[x+w*(i===4?.12:.34),y-h*.14+i*48]],'#90989A',4)}
 function monitor(p:Node,x:number,y:number,w=430,h=240){rr(p,x,y,w,h,'#1B303A',12,K.muted);rr(p,x,y,w-34,h-34,K.black,8);ln(p,[[x,y+h/2],[x,y+h/2+70]],K.muted,9);ln(p,[[x-90,y+h/2+72],[x+90,y+h/2+72]],K.muted,9)}
-function building(p:Node,x:number,y:number,w=360,h=420,title=''){rr(p,x,y,w,h,'#263D47',8,K.muted);for(let r=0;r<4;r++)for(let c=0;c<3;c++)rr(p,x-95+c*95,y-110+r*80,48,46,'#5F7A86',4);if(title)label(p,title,x,y-h*.58,K.paper,25)}
-function crowd(p:Node,x:number,y:number,n=9,col=K.paper){for(let i=0;i<n;i++){const xx=x+(i-(n-1)/2)*82;cc(p,xx,y-35-(i%2)*12,16,col);rr(p,xx,y+8,34,62,col,12)}}
-function bar(p:Node,x:number,y:number,w:number,v:number,col:string,txtLabel?:string){rr(p,x,y,w,32,'#243842',6);rr(p,x-w*(1-v)/2,y,Math.max(8,w*v),32,col,6);if(txtLabel)label(p,txtLabel,x,y-44,col,22)}
-function timeline(p:Node,y:number,items:{x:number;year:string;col:string}[]){ln(p,[[items[0].x,y],[items[items.length-1].x,y]],K.muted,7);for(const it of items){cc(p,it.x,y,15,it.col);label(p,it.year,it.x,y+50,it.col,22)}}
-function islandChain(p:Node,x=0,y=0,s=1){const pts=[[-420,40,74],[-300,-40,48],[-160,10,58],[-20,-30,82],[135,15,68],[285,-35,45],[410,20,38]];for(const [dx,dy,r] of pts)cc(p,x+dx*s,y+dy*s,r*s,K.green)}
-function airstrip(p:Node,x:number,y:number,w=560){rr(p,x,y,w,115,'#3A4850',4,K.paper);for(let i=-2;i<=2;i++)rr(p,x+i*90,y,42,8,K.paper,2)}
-function gavel(p:Node,x:number,y:number,s=.8){rr(p,x,y,150*s,55*s,K.brown,10);rr(p,x+100*s,y+70*s,45*s,190*s,K.brown,10);rr(p,x-20*s,y+120*s,260*s,34*s,K.sand,5)}
-function stamp(p:Node,x:number,y:number,txtLabel='承認',col=K.red){rr(p,x,y,220,95,'#00000000',10,col);label(p,txtLabel,x,y,col,31)}
-function receipt(p:Node,x:number,y:number){paper(p,x,y,270,440,'RECEIPT');['食料','光熱','家賃','合計'].forEach((s,i)=>label(p,s,x-55,y-90+i*70,K.ink,21));['↑','↑','→','↑↑'].forEach((s,i)=>label(p,s,x+75,y-90+i*70,i===3?K.red:K.ink,24))}
-function mapFrame(p:Node,title=''){rr(p,0,0,1500,720,'#102530',14,K.muted);if(title)label(p,title,0,-318,K.paper,29);islandChain(p,0,40,1.25)}
-function axes(p:Node){ln(p,[[-600,260],[-600,-260]],K.paper,5);ln(p,[[-600,260],[650,260]],K.paper,5)}
-function ratioRing(p:Node,x:number,y:number,a:string,b:string){cc(p,x,y,150,K.deep);cc(p,x,y,126,K.cyan);cc(p,x,y,82,K.deep);label(p,a,x,y-12,K.paper,30);label(p,b,x,y+34,K.gold,24)}
-function worldBase(root:Node,scene:Scene){const palettes=['#071018','#0B1721','#101A24','#101E27','#111A20','#08151C'];rr(root,0,0,1920,1080,palettes[hash(scene.motif)%palettes.length],0);const h=hash(scene.motif);for(let i=0;i<13;i++){cc(root,-850+((h>>(i%12))%1700),-350+((h>>(i%9+2))%600),1.5+(i%3),i%2?K.gold:K.cyan)}rr(root,0,344,1920,3,'#233A45',0)}
+function building(p:Node,x:number,y:number,w=360,h=420,title=''){rr(p,x,y,w,h,'#263D47',8,K.muted);for(let r=0;r<4;r++)for(let c=0;c<3;c++)rr(p,x-95+c*95,y-110+r*80,48,46,'#5F7A86',4);if(title)label(p,title,x,y-h*.58,K.paper,24)}
+function folder(p:Node,x:number,y:number,w=280,h=190,col=K.gold,title=''){rr(p,x,y,w,h,'#2B3E47',10,col);rr(p,x-w*.3,y-h*.55,w*.42,38,col,6);if(title)label(p,title,x,y,K.paper,22)}
+function bar(p:Node,x:number,y:number,w:number,v:number,col:string,txtLabel?:string){rr(p,x,y,w,30,'#243842',6);rr(p,x-w*(1-v)/2,y,Math.max(8,w*v),30,col,6);if(txtLabel)label(p,txtLabel,x,y-42,col,21)}
+function timeline(p:Node,y:number,items:{x:number;year:string;col:string}[]){ln(p,[[items[0].x,y],[items[items.length-1].x,y]],K.muted,7);for(const it of items){cc(p,it.x,y,14,it.col);label(p,it.year,it.x,y+48,it.col,21)}}
+function crowd(p:Node,x:number,y:number,n=9,col=K.paper){for(let i=0;i<n;i++){const xx=x+(i-(n-1)/2)*76;cc(p,xx,y-35-(i%2)*11,15,col);rr(p,xx,y+8,31,58,col,11)}}
+function farmField(p:Node,wet=false){rr(p,0,-120,1920,600,wet?'#4B6570':'#334D39',0);rr(p,0,220,1920,360,wet?'#536D71':'#745D3E',0);for(let i=0;i<19;i++){const x=-850+i*95;ln(p,[[x,280],[x+10,105]],wet?K.rice:K.gold,5);ln(p,[[x+10,160],[x-20,130]],wet?K.rice:K.gold,4)}}
+function ministryShell(p:Node,night=false){rr(p,0,0,1920,920,night?'#0B1720':'#1A3039',0);building(p,0,30,760,590,'農林水産省');for(let i=0;i<6;i++)rr(p,-250+(i%3)*250,-80+Math.floor(i/3)*180,95,90,night?'#D8B86F':'#708A92',4)}
+function parliament(p:Node){rr(p,0,0,1920,920,'#20282D',0);rr(p,0,-40,920,500,'#39464B',8,K.paper);for(let i=0;i<5;i++)rr(p,-320+i*160,110,110,70,'#4C5B60',4);rr(p,0,-250,480,100,'#2E3A3F',5)}
+function chair(p:Node,x:number,y:number,col=K.red){rr(p,x,y,150,180,col,18);rr(p,x,y-105,150,92,col,25);ln(p,[[x-55,y+80],[x-70,y+160]],K.paper,10);ln(p,[[x+55,y+80],[x+70,y+160]],K.paper,10)}
+function scale(p:Node,x:number,y:number){ln(p,[[x,y-180],[x,y+130]],K.paper,9);ln(p,[[x-280,y-80],[x+280,y-80]],K.paper,8);ln(p,[[x-260,y-80],[x-310,y+80]],K.paper,5);ln(p,[[x+260,y-80],[x+310,y+80]],K.paper,5)}
+function tree(p:Node,x:number,y:number,s=1,col=K.green){ln(p,[[x,y+80*s],[x,y-30*s]],K.brown,14*s);cc(p,x,y-70*s,55*s,col);cc(p,x-35*s,y-45*s,35*s,col);cc(p,x+35*s,y-45*s,35*s,col)}
+function ship(p:Node,x:number,y:number,s=1){rr(p,x,y,520*s,150*s,'#405A63',20);ln(p,[[x-220*s,y-75*s],[x+220*s,y-75*s]],K.paper,6);rr(p,x,y-150*s,220*s,120*s,'#243842',6);cc(p,x,y-150*s,38*s,K.gold)}
+function factory(p:Node){rr(p,0,0,1920,920,'#17242B',0);for(let i=0;i<5;i++){rr(p,-680+i*340,70,250,430,'#2A3B42',4);rr(p,-680+i*340,-150,150,110,'#3E555E',3)}}
+function axes(p:Node,x=0,y=0){ln(p,[[x-600,y+240],[x-600,y-250]],K.paper,5);ln(p,[[x-600,y+240],[x+650,y+240]],K.paper,5)}
 function stages8(){return Array.from({length:8},()=>new Node({opacity:0}))}
+function worldBase(root:Node,scene:Scene){const pal=['#071018','#0A1620','#101C25','#101F28','#151D23','#0B171D','#11191F','#0E2027'];rr(root,0,0,1920,1080,pal[hash(scene.motif)%pal.length],0);const h=hash(scene.motif);for(let i=0;i<12;i++)cc(root,-850+((h>>(i%11))%1700),-360+((h>>(i%9+1))%590),1.5+(i%3),i%2?K.gold:K.cyan);rr(root,0,344,1920,3,'#233A45',0)}
 
 function buildScene(root:Node,scene:Scene,plan:Plan):Node[]{
- worldBase(root,scene);const s=stages8();s.forEach(n=>root.add(n));const[a,b,c,d,e,f,g,h]=s;
+ worldBase(root,scene);const s=stages8();s.forEach(n=>root.add(n));const[a,b,c,d,e,f,g,h]=s;const L=plan.labels;
  switch(scene.motif){
-  case'election_night_2026':
-   rr(a,0,0,1920,920,'#141F28',0);building(a,-560,40,520,510,'那覇・選挙事務所');monitor(b,430,-40,620,330);label(b,'当選確実',430,-60,K.red,48);crowd(c,-520,210,8,K.paper);paper(d,420,205,430,220,'古謝玄太');for(let i=0;i<7;i++)cc(d,270+i*50,235,18,i===6?K.red:K.gold);label(e,'2026.09.13',0,-300,K.gold,32);card(f,'現職を破り初当選',430,250,380,K.cyan);label(g,'県政交代',-400,-230,K.paper,38);label(h,'辺野古容認候補が勝利',0,320,K.red,40);break;
-  case'headline_acceptance':
-   monitor(a,0,0,1180,560);label(b,'沖縄「辺野古容認」へ？',0,-120,K.paper,52);card(c,'12年ぶり県政交代',0,10,430,K.red);rr(d,0,105,1050,6,K.muted,0);label(e,'見出しは分かりやすい',-280,190,K.cyan,28);label(f,'文脈は削られる',300,190,K.gold,28);label(g,'本当に「受け入れた」のか',0,275,K.paper,37);label(h,'？',640,-205,K.red,94);break;
-  case'rewind_2019':
-   rr(a,0,0,1920,920,'#0E2029',0);timeline(b,0,[{x:-620,year:'2026',col:K.red},{x:-200,year:'2023',col:K.gold},{x:220,year:'2019',col:K.cyan},{x:620,year:'1996',col:K.muted}]);label(c,'REWIND',0,-210,K.gold,42);rr(d,220,0,36,36,K.cyan,18);ballot(e,220,110,'県民投票');label(f,'2019.02.24',220,-170,K.paper,31);card(g,'賛成 / 反対 / どちらでもない',-300,240,580,K.cyan);label(h,'一問だけを尋ねた',0,320,K.gold,38);break;
-  case'referendum_numbers':
-   rr(a,0,0,1920,920,'#142630',0);label(b,'県民投票 2019',0,-280,K.paper,36);bar(c,0,-120,1050,.717,K.red,'反対 71.7%');bar(d,0,20,1050,.19,K.cyan,'賛成 19.0%');bar(e,0,160,1050,.087,K.muted,'どちらでもない 8.7%');label(f,'434,273票',420,-120,K.white,27);label(g,'単一争点では反対が多数',0,280,K.gold,34);label(h,'数字は明確だった',0,-340,K.red,38);break;
-  case'contradiction_wall':
-   rr(a,0,0,1920,920,'#1A2228',0);paper(b,-420,0,500,580,'2019');label(b,'反対 71.7%',-420,20,K.red,42);paper(c,420,0,500,580,'2026');label(c,'古謝氏 当選',420,20,K.cyan,40);ln(d,[[-120,0],[120,0]],K.gold,8);label(e,'矛盾？',0,-110,K.gold,42);label(f,'7年で反転？',0,95,K.paper,34);label(g,'同じものを測ったのか',0,260,K.muted,31);label(h,'ここからが本題',0,-310,K.red,39);break;
-  case'thesis_public_opinion':
-   rr(a,0,0,1920,920,'#090F15',0);label(b,'民意',0,-170,K.white,86);['賛否','重要度','選挙','制度'].forEach((x,i)=>card(c,x,-510+i*340,30,260,[K.red,K.gold,K.cyan,K.teal][i]));label(d,'誰の意思？',-300,165,K.paper,32);label(e,'何を測る？',300,165,K.paper,32);label(f,'どの範囲？',-300,260,K.muted,28);label(g,'どの時点？',300,260,K.muted,28);label(h,'民主主義の測定問題',0,-300,K.gold,42);break;
-  case'map_to_question':
-   mapFrame(a,'辺野古から日本全体へ');card(b,'基地',-520,235,230,K.red);card(c,'地方自治',-180,235,260,K.cyan);card(d,'安全保障',180,235,260,K.gold);card(e,'選挙',520,235,230,K.teal);rr(f,0,20,980,260,'#0B1820',130,K.muted);label(f,'同じ地図に重なる',0,20,K.paper,34);label(g,'沖縄だけの問題ではない',0,-245,K.gold,35);label(h,'日本の民主主義を見る',0,310,K.white,41);break;
-
-  case'two_ballot_boxes':
-   rr(a,0,0,1920,920,'#13242D',0);ballot(b,-430,40,'2019 県民投票');ballot(c,430,40,'2026 知事選');label(d,'似た箱',0,-210,K.paper,34);ln(e,[[-130,40],[130,40]],K.gold,7);label(f,'違う問い',0,40,K.gold,39);card(g,'政策への賛否',-430,260,300,K.red);card(h,'誰に県政を任せるか',430,260,360,K.cyan);break;
-  case'single_issue_ballot':
-   ballot(a,0,60,'辺野古埋め立て');card(b,'賛成',-420,-140,260,K.cyan);card(c,'反対',0,-140,260,K.red);card(d,'どちらでもない',420,-140,320,K.muted);['観光','子育て','所得','候補者'].forEach((x,i)=>{card(e,x,-510+i*340,245,230,K.gray)});rr(f,0,245,1450,100,K.black,18);label(g,'他の政策をいったん外す',0,245,K.paper,31);label(h,'単一争点を直接測る',0,-290,K.gold,39);break;
-  case'governor_ballot_bundle':
-   rr(a,0,0,1920,920,'#10242D',0);['基地','物価','賃金','観光','教育','交通','子育て','実績'].forEach((x,i)=>card(b,x,-570+(i%4)*380,-150+Math.floor(i/4)*120,250,[K.red,K.gold,K.cyan,K.teal][i%4]));ln(c,[[-580,100],[0,210],[580,100]],K.muted,8);paper(d,0,210,420,180,'投票用紙');label(e,'候補者名',0,225,K.ink,34);label(f,'8つの判断',-380,300,K.paper,27);label(g,'→ 1つの名前',380,300,K.gold,29);label(h,'政策の詰め合わせ',0,-300,K.red,39);break;
-  case'supermarket_voter':
-   rr(a,0,0,1920,920,'#28343A',0);for(let i=0;i<4;i++){rr(a,-590+i*390,80,290,420,'#394A50',6);for(let j=0;j<4;j++)rr(a,-590+i*390,-40+j*90,210,46,'#6A7778',4)}receipt(b,560,10);person(c,-430,100,.65,K.paper);card(d,'辺野古は反対',-430,-150,330,K.red);card(e,'物価が苦しい',-430,-40,330,K.gold);label(f,'どちらを今回重く見る？',-250,250,K.paper,31);bar(g,360,250,520,.78,K.red,'家計負担');label(h,'賛否だけでは票は読めない',0,-300,K.gold,38);break;
-  case'issue_salience':
-   rr(a,0,0,1920,920,'#12212A',0);ln(b,[[-600,0],[600,0]],K.paper,8);cc(c,-420,0,90,K.red);cc(c,260,0,54,K.cyan);label(c,'基地',-420,0,K.black,25);label(c,'物価',260,0,K.black,22);label(d,'大きさ = 重要度',0,150,K.paper,30);label(e,'同じ「反対」でも',0,-185,K.muted,29);bar(f,-250,245,430,.82,K.red,'重要度 高');bar(g,320,245,430,.34,K.cyan,'重要度 低');label(h,'イシュー・サリエンス',0,-305,K.gold,40);break;
-  case'retrospective_vote':
-   rr(a,0,0,1920,920,'#18252B',0);paper(b,-400,0,480,560,'県政 成績表');['生活','景気','実績','期待'].forEach((x,i)=>{label(b,x,-470,-110+i*90,K.ink,24);label(b,['B','C','B','?'][i],-300,-110+i*90,i===1?K.red:K.ink,27)});building(c,430,20,430,500,'県庁');label(d,'過去を採点',430,-230,K.gold,31);card(e,'回顧投票',430,180,300,K.cyan);card(f,'経済投票',430,270,300,K.red);label(g,'選挙は公約だけではない',0,-300,K.paper,34);label(h,'次の任期を任せるか',0,320,K.gold,38);break;
-  case'first_answer':
-   rr(a,0,0,1920,920,'#101C24',0);card(b,'容認候補が当選',-410,-70,360,K.cyan);label(c,'≠',0,-70,K.red,74);card(d,'県民全体が賛成',410,-70,380,K.red);card(e,'2019反対多数',-410,120,360,K.red);label(f,'≠',0,120,K.gold,74);card(g,'永久に固定',410,120,340,K.muted);label(h,'まず二つを分ける',0,-300,K.paper,40);break;
-
-  case'okinawa_1945':
-   rr(a,0,0,1920,920,'#2A2623',0);islandChain(b,0,10,1.35);label(c,'1945',-650,-260,K.red,52);for(let i=0;i<7;i++)rr(d,-600+i*200,170-(i%2)*60,150,90,'#3D4547',4);card(e,'沖縄戦後',-420,270,280,K.paper);card(f,'米軍統治',0,270,280,K.red);card(g,'基地化',420,270,280,K.gold);label(h,'本土とは異なる戦後',0,-320,K.paper,40);break;
-  case'us_admin_land':
-   rr(a,0,0,1920,920,'#293138',0);for(let i=0;i<5;i++)building(a,-650+i*330,80,230,320);airstrip(b,0,-170,780);card(c,'住宅',-570,270,250,K.paper);card(d,'騒音',-190,270,250,K.red);card(e,'事故不安',190,270,250,K.gold);card(f,'土地',570,270,250,K.cyan);label(g,'生活空間と軍事施設が隣接',0,-290,K.paper,34);label(h,'基地問題が日常へ入る',0,320,K.gold,39);break;
-  case'reversion_1972':
-   rr(a,0,0,1920,920,'#19303A',0);label(b,'1972',-650,-270,K.gold,52);building(c,-420,60,420,470,'復帰式典');airstrip(d,430,70,620);card(e,'行政制度 → 日本へ',-420,280,330,K.cyan);card(f,'基地 → 残る',430,280,300,K.red);ln(g,[[-60,-210],[-60,260]],K.paper,6);label(h,'復帰と負担軽減は同義ではない',0,-315,K.paper,37);break;
-  case'burden_map':
-   mapFrame(a,'基地負担の地理');ratioRing(b,-430,20,'0.6%','国土面積');ratioRing(c,430,20,'約70%','専用施設');ln(d,[[-210,20],[210,20]],K.gold,8);label(e,'沖縄',0,150,K.paper,32);label(f,'全国安全保障',-420,260,K.cyan,27);label(g,'地域負担',420,260,K.red,27);label(h,'利益と負担の場所が違う',0,-300,K.gold,39);break;
-  case'incident_1995':
-   rr(a,0,0,1920,920,'#17191C',0);label(b,'1995',-690,-270,K.red,54);crowd(c,0,70,13,K.paper);for(let i=0;i<9;i++)rr(d,-640+i*160,-100-(i%2)*40,130,58,'#EAE4D8',4);label(d,'抗議',0,-115,K.ink,31);card(e,'基地負担',-350,245,300,K.red);card(f,'怒りが可視化',0,245,320,K.gold);card(g,'整理縮小',350,245,300,K.cyan);label(h,'政治課題が再燃する',0,-310,K.paper,39);break;
-  case'saco_1996':
-   rr(a,0,0,1920,920,'#15242B',0);paper(b,-400,0,520,600,'SACO 1996');airstrip(c,430,-70,590);card(d,'普天間返還',430,85,320,K.cyan);card(e,'代替施設が条件',430,185,350,K.red);label(f,'5〜7年',-400,100,K.gold,37);label(g,'機能を別の場所へ',0,285,K.paper,31);label(h,'返還は「移転」とセット',0,-310,K.gold,39);break;
-  case'henoko_paradox':
-   rr(a,0,0,1920,920,'#112732',0);airstrip(b,-430,20,560);label(b,'普天間',-430,-110,K.paper,31);islandChain(c,430,40,.58);label(c,'辺野古',430,-110,K.paper,31);card(d,'返還',-430,220,280,K.cyan);card(e,'建設',430,220,280,K.red);ln(f,[[-150,20],[150,20]],K.gold,11);label(g,'同じ政策',0,95,K.gold,30);label(h,'立つ場所で意味が反転する',0,-300,K.paper,39);break;
-
-  case'nago_referendum_1997':
-   rr(a,0,0,1920,920,'#14262E',0);ballot(b,-360,40,'名護市民投票');label(c,'1997.12',420,-220,K.gold,40);bar(d,370,-40,620,.55,K.red,'反対側 過半');card(e,'海上ヘリ基地',370,75,320,K.cyan);card(f,'条件付き反対を含む',370,180,380,K.red);label(g,'直接投票',-360,265,K.paper,28);label(h,'2019より前に同じ構図',0,-305,K.gold,39);break;
-  case'mayor_after_referendum':
-   rr(a,0,0,1920,920,'#182831',0);ballot(b,-520,10,'市民投票');building(c,500,30,420,470,'名護市役所');ln(d,[[-230,10],[230,10]],K.gold,8);card(e,'受入表明 → 辞職',0,-90,360,K.red);card(f,'市長選',0,80,280,K.cyan);card(g,'別の結果',0,190,300,K.gold);label(h,'住民投票と代表選挙のねじれ',0,-310,K.paper,37);break;
-  case'relocation_1999':
-   mapFrame(a,'1999 辺野古沿岸へ');cc(b,210,30,48,K.red);card(c,'知事が移設先発表',-420,220,360,K.cyan);card(d,'市長 条件付き受入',0,220,360,K.gold);card(e,'政府 閣議決定',420,220,340,K.red);ln(f,[[-420,130],[0,70],[210,30]],K.cyan,5);ln(g,[[420,130],[210,30]],K.red,5);label(h,'長期対立の中心へ',0,-305,K.paper,39);break;
-  case'nested_publics':
-   rr(a,0,0,1920,920,'#0F2028',0);for(const [r,col] of [[330,K.gray],[270,K.blue],[210,K.cyan],[150,K.gold],[90,K.red]] as [number,string][])cc(b,0,20,r,col);cc(c,0,20,55,K.deep);['日米安保','日本','沖縄県','名護市','辺野古'].forEach((x,i)=>label(d,x,520,-180+i*90,[K.gray,K.blue,K.cyan,K.gold,K.red][i],25));label(e,'どの円を主語にする？',0,-300,K.paper,36);label(f,'多数派',-480,270,K.cyan,30);label(g,'範囲で変わる',0,270,K.gold,30);label(h,'「民意」の主語問題',480,270,K.red,31);break;
-  case'externality_security':
-   rr(a,0,0,1920,920,'#102A35',0);islandChain(b,-340,10,.78);for(let i=0;i<8;i++)cc(c,240+(i%4)*130,-100+Math.floor(i/4)*150,22,K.cyan);card(d,'抑止・防衛',430,-230,320,K.cyan);card(e,'騒音・土地・事故不安',-340,235,400,K.red);ln(f,[[-80,40],[190,-20]],K.gold,8);label(g,'利益は広く',430,230,K.paper,28);label(h,'負担は局地へ集中',0,-300,K.gold,40);break;
-  case'nimby_parallel':
-   rr(a,0,0,1920,920,'#18252C',0);['原発','処分場','ダム','空港','刑務所','基地'].forEach((x,i)=>{const xx=-560+(i%3)*560,yy=-110+Math.floor(i/3)*210;rr(b,xx,yy,350,145,'#293E47',10,[K.gold,K.red,K.cyan,K.blue,K.teal,K.red][i]);label(b,x,xx,yy,K.paper,28)});label(c,'社会全体では必要？',-360,250,K.paper,28);label(d,'自宅の近くでは？',360,250,K.gold,28);label(e,'全国利益',-500,-280,K.cyan,27);label(f,'近隣負担',500,-280,K.red,27);label(g,'配置の政治',0,310,K.paper,32);label(h,'辺野古だけの構造ではない',0,-335,K.gold,38);break;
-  case'two_majorities':
-   rr(a,0,0,1920,920,'#101E27',0);cc(b,-380,20,210,K.cyan);cc(c,380,20,210,K.red);label(b,'全国多数',-380,20,K.black,31);label(c,'地域多数',380,20,K.black,31);ln(d,[[-150,20],[150,20]],K.gold,12);label(e,'安全保障を支持',-380,265,K.paper,25);label(f,'負担には反対',380,265,K.paper,25);label(g,'どちらも多数',0,-225,K.gold,35);label(h,'多数決だけでは範囲を決められない',0,-315,K.paper,36);break;
-
-  case'nakaima_approval_2013':
-   rr(a,0,0,1920,920,'#263038',0);desk(b,0,190,760);paper(c,0,-20,560,480,'埋立承認 2013');stamp(d,0,40,'承認',K.red);building(e,-610,30,330,430,'沖縄県庁');card(f,'行政上の扉',480,160,300,K.cyan);label(g,'一枚の決裁',480,250,K.paper,28);label(h,'翌年、政治が反転する',0,-310,K.gold,39);break;
-  case'onaga_2014':
-   rr(a,0,0,1920,920,'#17252C',0);building(b,0,40,520,520,'沖縄県庁');paper(c,-420,-10,280,360,'旧方針');paper(d,420,-10,280,360,'新方針');stamp(c,-420,45,'承認',K.muted);stamp(d,420,45,'反対',K.red);person(e,0,125,.55,K.paper);label(f,'2014 知事選',0,-245,K.gold,34);ln(g,[[-180,0],[180,0]],K.cyan,8);label(h,'知事交代で県の方向も変わる',0,315,K.paper,37);break;
-  case'cancel_lawsuit':
-   rr(a,0,0,1920,920,'#121B21',0);building(b,-560,20,360,430,'県庁');building(c,0,20,360,430,'霞が関');building(d,560,20,360,430,'裁判所');ln(e,[[-380,20],[-180,20]],K.red,7);ln(e,[[180,20],[380,20]],K.gold,7);gavel(f,560,160,.55);card(g,'取消 / 是正 / 訴訟',0,270,420,K.cyan);label(h,'工事現場が制度闘争へ',0,-310,K.paper,39);break;
-  case'tamaki_2018':
-   rr(a,0,0,1920,920,'#18313A',0);label(b,'2018',-660,-260,K.gold,50);crowd(c,0,100,9,K.paper);paper(d,-360,-20,300,380,'翁長県政');paper(e,360,-20,300,380,'玉城県政');ln(f,[[-140,0],[140,0]],K.cyan,8);card(g,'辺野古反対を継承',0,265,360,K.red);label(h,'争点は県政の中心に残る',0,-310,K.paper,38);break;
-  case'referendum_2019_again':
-   rr(a,0,0,1920,920,'#142630',0);ballot(b,-420,50,'県民投票');bar(c,380,-80,650,.717,K.red,'反対 71.7%');card(d,'単一争点',380,55,300,K.cyan);card(e,'直接請求',380,155,300,K.gold);label(f,'象徴性',-420,255,K.paper,29);label(g,'政策への直接回答',380,265,K.paper,28);label(h,'後の議論で強い基準になる',0,-310,K.gold,38);break;
-  case'soft_seabed_2020':
-   rr(a,0,-150,1920,580,K.sea,0);rr(a,0,225,1920,370,K.soil,0);airstrip(b,-280,-120,720);for(let i=0;i<8;i++)cc(c,-550+i*150,250+(i%2)*30,28,K.sand);ln(d,[[-520,-10],[-420,240]],K.gold,7);ln(d,[[-300,-10],[-240,250]],K.gold,7);card(e,'軟弱地盤',360,130,300,K.red);card(f,'2020 設計変更申請',360,230,360,K.cyan);card(g,'2021 不承認',360,-30,300,K.red);label(h,'技術問題が権限争いへ',0,-300,K.paper,39);break;
-  case'supreme_substitution_2023':
-   rr(a,0,0,1920,920,'#111D25',0);paper(b,-520,0,360,500,'設計変更');stamp(c,-520,40,'不承認',K.red);building(d,0,0,360,430,'裁判所');gavel(e,0,135,.48);paper(f,520,0,360,500,'代執行');stamp(g,520,40,'国が承認',K.gold);ln(g,[[-300,-40],[-160,-40]],K.muted,6);label(h,'知事の代わりに国が承認',0,-310,K.paper,40);break;
-
-  case'campaign_2026':
-   rr(a,0,0,1920,920,'#243039',0);for(let i=0;i<6;i++){paper(a,-680+i*270,-40,210,300,['候補A','候補B','候補C','候補D','候補E','候補F'][i]);}crowd(b,0,235,12,K.paper);['基地','物価','所得','子育て'].forEach((x,i)=>card(c,x,-510+i*340,110,250,[K.red,K.gold,K.cyan,K.teal][i]));label(d,'2026 知事選',0,-300,K.paper,40);label(e,'複数争点',-360,305,K.cyan,28);label(f,'複数候補',0,305,K.gold,28);label(g,'一票',360,305,K.red,28);label(h,'単一争点投票ではない',0,-345,K.gold,37);break;
-  case'economy_front':
-   rr(a,0,0,1920,920,'#2A3337',0);receipt(b,-450,0);building(c,430,20,420,460,'県内企業');bar(d,430,-70,520,.82,K.red,'物価');bar(e,430,45,520,.48,K.cyan,'所得');card(f,'家計',430,170,250,K.gold);card(g,'企業活動',430,265,280,K.teal);label(h,'経済政策が前面へ',0,-310,K.paper,41);break;
-  case'kojar_position':
-   rr(a,0,0,1920,920,'#142631',0);paper(b,-430,10,540,600,'古謝氏');card(c,'辺野古移設 容認',-430,-60,370,K.red);card(d,'返還時期の明確化',-430,60,370,K.gold);['所得','新産業','子育て'].forEach((x,i)=>card(e,x,360,-120+i*120,300,[K.cyan,K.teal,K.gold][i]));label(f,'基地だけではない',360,260,K.paper,28);label(g,'複合的な政策束',0,-270,K.cyan,31);label(h,'一票の理由は一つとは限らない',0,315,K.paper,36);break;
-  case'tamaki_position':
-   rr(a,0,0,1920,920,'#14242E',0);paper(b,-430,10,540,600,'玉城氏');card(c,'辺野古移設 反対',-430,-60,370,K.red);['物価高','社会保障','交通'].forEach((x,i)=>card(d,x,360,-120+i*120,300,[K.gold,K.cyan,K.teal][i]));card(e,'県政実績',-430,85,320,K.cyan);label(f,'生活政策も提示',360,260,K.paper,28);label(g,'二つの県政像',0,-270,K.gold,31);label(h,'基地一問の選挙ではない',0,315,K.paper,37);break;
-  case'exit_priority':
-   rr(a,0,0,1920,920,'#15242B',0);label(b,'期待する政策',0,-270,K.paper,34);bar(c,0,-100,1050,.78,K.gold,'景気・物価高');bar(d,0,45,1050,.39,K.red,'基地問題');bar(e,0,190,1050,.46,K.cyan,'子育て等');label(f,'出口調査',-520,285,K.muted,24);label(g,'優先順位の変化？',300,285,K.paper,30);label(h,'態度消滅とは別問題',0,-325,K.gold,37);break;
-  case'vote_compression':
-   rr(a,0,0,1920,920,'#101B23',0);person(b,-560,80,.62,K.paper);['辺野古反対','経済評価','県政不満','政府協調'].forEach((x,i)=>card(c,x,-170+(i%2)*430,-100+Math.floor(i/2)*130,330,[K.red,K.cyan,K.gold,K.teal][i]));ln(d,[[330,40],[540,40]],K.gold,8);paper(e,650,40,300,330,'投票用紙');label(f,'一人の名前',650,55,K.ink,29);label(g,'複数判断 → 1票',0,285,K.paper,31);label(h,'投票は圧縮装置',0,-310,K.gold,40);break;
-  case'what_changed':
-   rr(a,0,0,1920,920,'#12202A',0);['賛否が反転','重要度が変化','両方'].forEach((x,i)=>{rr(b,-450+i*450,10,360,270,'#263A44',12,[K.red,K.gold,K.cyan][i]);label(b,x,-450+i*450,10,K.paper,27)});label(c,'2026結果',0,-230,K.white,36);ln(d,[[0,-170],[-450,-70]],K.red,5);ln(e,[[0,-170],[0,-70]],K.gold,5);ln(f,[[0,-170],[450,-70]],K.cyan,5);label(g,'選挙結果だけでは識別できない',0,270,K.paper,32);label(h,'確実な事実と推論を分ける',0,-315,K.gold,38);break;
-
-  case'salience_axes':
-   rr(a,0,0,1920,920,'#0F1B23',0);axes(b);label(b,'重要度 ↑',-690,-230,K.paper,24);label(b,'反対',-430,310,K.red,25);label(b,'賛成',430,310,K.cyan,25);cc(c,-320,-120,38,K.red);cc(d,-320,165,38,K.gold);label(e,'同じ反対',40,20,K.paper,31);ln(f,[[-250,-105],[-80,-20]],K.muted,5);ln(g,[[-250,155],[-80,55]],K.muted,5);label(h,'賛否 × 重要度の二軸',0,-310,K.gold,40);break;
-  case'intensity_importance':
-   rr(a,0,0,1920,920,'#111E27',0);paper(b,0,70,430,350,'投票用紙');label(b,'候補者名',0,100,K.ink,33);for(let i=0;i<4;i++)cc(c,-560+i*120,-40,34,[K.red,K.red,K.gold,K.cyan][i]);label(d,'強い反対',-430,-120,K.red,25);for(let i=0;i<4;i++)cc(e,320+i*95,-40,20,[K.red,K.gold,K.cyan,K.teal][i]);label(f,'弱い反対',455,-120,K.gold,25);label(g,'重みは用紙に残らない',0,280,K.paper,31);label(h,'結果だけでは強度が見えない',0,-305,K.gold,38);break;
-  case'issue_voting_limits':
-   rr(a,0,0,1920,920,'#15232B',0);paper(b,-450,0,440,560,'理想的な有権者');['政策理解','候補比較','一致投票'].forEach((x,i)=>card(c,x,-450,-90+i*110,300,K.cyan));paper(d,450,0,440,560,'現実の有権者');['情報不足','複数争点','時間不足'].forEach((x,i)=>card(e,x,450,-90+i*110,300,K.red));label(f,'争点投票研究',0,-285,K.gold,32);label(g,'理想 ≠ 常に現実',0,285,K.paper,31);label(h,'票は完全な政策計算ではない',0,-335,K.paper,37);break;
-  case'retrospective_eval':
-   rr(a,0,0,1920,920,'#19272E',0);paper(b,-420,0,500,590,'現職への成績表');['生活実感','景気','行政','期待'].forEach((x,i)=>{label(b,x,-500,-110+i*90,K.ink,22);label(b,['B','C','B','?'][i],-300,-110+i*90,i===1?K.red:K.ink,25)});person(c,430,80,.62,K.paper);card(d,'満足',430,-90,260,K.cyan);card(e,'不満',430,20,260,K.red);card(f,'回顧投票',430,140,300,K.gold);label(g,'過去の評価が票へ入る',0,285,K.paper,31);label(h,'政策賛否以外の経路',0,-310,K.gold,39);break;
-  case'cohort_change':
-   rr(a,0,0,1920,920,'#102029',0);timeline(b,20,[{x:-620,year:'1996',col:K.gold},{x:0,year:'2011',col:K.muted},{x:620,year:'2026',col:K.cyan}]);person(c,-620,120,.45,K.paper);label(c,'20歳',-620,255,K.paper,25);person(d,620,120,.65,K.paper);label(d,'50歳',620,275,K.paper,25);cc(e,0,-120,28,K.cyan);label(e,'当時未出生',0,-175,K.cyan,24);crowd(f,0,250,7,K.muted);label(g,'有権者集団も入れ替わる',0,-275,K.paper,32);label(h,'30年の問題は同じ人だけではない',0,-330,K.gold,36);break;
-  case'habituation_or_conversion':
-   rr(a,0,0,1920,920,'#111D24',0);person(b,0,220,.48,K.paper);const paths=[['転向',-540,K.red],['慣れ',-180,K.gold],['諦め',180,K.muted],['現実適応',540,K.cyan]] as [string,number,string][];for(const [txtt,x,col] of paths){ln(c,[[0,160],[x,-130]],col,8);card(d,txtt,x,-190,240,col)}label(e,'同じ「一票」へ収束することもある',0,300,K.paper,29);label(f,'反対維持 + 重要度低下',0,40,K.teal,28);label(g,'心理は別物',0,-285,K.paper,31);label(h,'外から区別しにくい',0,-335,K.gold,38);break;
-  case'cannot_infer':
-   rr(a,0,0,1920,920,'#0E1921',0);card(b,'選挙結果',-430,0,320,K.cyan);ln(c,[[-250,0],[-50,0]],K.red,9);label(c,'×',-150,0,K.red,58);card(d,'有権者の内面',430,0,360,K.red);card(e,'2019',-430,190,240,K.red);card(f,'2026',430,190,240,K.cyan);label(g,'慎重な推論が必要',0,-235,K.paper,34);label(h,'選挙結果は読心術ではない',0,-310,K.gold,40);break;
-
-  case'construction_progress':
-   rr(a,0,-120,1920,640,K.sea,0);rr(a,0,250,1920,300,K.soil,0);airstrip(b,0,-80,900);bar(c,0,180,1100,.995,K.red,'辺野古側埋立 約99.5%');label(d,'2026年5月',0,-255,K.paper,32);card(e,'政治対立',-420,285,300,K.cyan);card(f,'物理工事',420,285,300,K.red);ln(g,[[-220,285],[220,285]],K.gold,6);label(h,'二つの時間は同じ速度ではない',0,-315,K.gold,37);break;
-  case'fait_accompli':
-   rr(a,0,0,1920,920,'#101D25',0);bar(b,0,-70,1100,.88,K.red,'工事進行');['造るべきか','止めるか','完成後どうする'].forEach((x,i)=>card(c,x,-450+i*450,90,330,[K.cyan,K.gold,K.red][i]));for(let i=0;i<3;i++)rr(d,-450+i*450,210,250-(i*45),34,[K.cyan,K.gold,K.red][i],5);label(e,'選択肢が狭くなる',0,280,K.paper,31);label(f,'不可逆性',0,-210,K.red,35);label(g,'賛成への転向とは別',0,-270,K.muted,29);label(h,'政策の進行が問いを変える',0,-330,K.gold,38);break;
-  case'security_environment':
-   mapFrame(a,'東アジアの安全保障環境');for(let i=0;i<5;i++)cc(b,300+i*90,-120+i*45,28,K.red);card(c,'南西地域',-360,230,300,K.cyan);card(d,'防衛体制強化',0,230,330,K.red);card(e,'30年間の変化',360,230,330,K.gold);label(f,'1996と2026は同じ条件ではない',0,-250,K.paper,31);label(g,'評価も変わり得る',0,300,K.muted,28);label(h,'安全保障側の時間も進む',0,-315,K.gold,39);break;
-  case'local_autonomy_limits':
-   rr(a,0,0,1920,920,'#121E26',0);building(b,-430,20,430,500,'沖縄県');building(c,430,20,430,500,'国');ln(d,[[-180,20],[180,20]],K.red,12);card(e,'地方自治',-430,275,300,K.cyan);card(f,'法定権限',430,275,300,K.red);label(g,'2023 代執行',0,-230,K.gold,33);label(h,'国策を地方はどこまで止められるか',0,-310,K.paper,36);break;
-  case'legitimacy_layers':
-   rr(a,0,0,1920,920,'#101B23',0);paper(b,-430,0,480,560,'国の正当性');card(c,'国政選挙',-430,-80,300,K.cyan);card(c,'安全保障',-430,40,300,K.gold);paper(d,430,0,480,560,'県の正当性');card(e,'知事選',430,-80,300,K.cyan);card(e,'地域負担',430,40,300,K.red);ln(f,[[-140,0],[140,0]],K.gold,8);label(g,'両方とも選挙由来',0,270,K.paper,29);label(h,'正当性が衝突する',0,-310,K.gold,40);break;
-  case'national_analogy':
-   rr(a,0,0,1920,920,'#26323A',0);for(let i=0;i<5;i++)building(a,-650+i*320,110,230,330);person(b,-550,230,.4,K.paper);['原発','処分場','基地'].forEach((x,i)=>{rr(c,220+i*260,-40,220,180,'#3B4850',8,[K.gold,K.red,K.cyan][i]);label(c,x,220+i*260,-40,K.paper,25)});label(d,'もし自分の町なら',0,-250,K.gold,38);card(e,'全国利益',-350,300,300,K.cyan);card(f,'局地負担',350,300,300,K.red);label(g,'本州にも同じ構造',0,205,K.paper,29);label(h,'距離を縮めて考える',0,-315,K.paper,39);break;
-  case'democratic_design':
-   rr(a,0,0,1920,920,'#14242C',0);label(b,'多数決',0,-250,K.white,42);['補償','対話','権限配分','情報公開','異議申立て'].forEach((x,i)=>{const xx=-520+(i%3)*520,yy=-60+Math.floor(i/3)*150;card(c,x,xx,yy,300,[K.cyan,K.gold,K.red,K.teal,K.blue][i])});ln(d,[[-520,20],[0,170],[520,20]],K.muted,5);label(e,'決定後も仕事は残る',0,270,K.paper,32);label(f,'公平性',-380,320,K.cyan,27);label(g,'正統性',380,320,K.gold,27);label(h,'民主主義は投票で終わらない',0,-320,K.gold,39);break;
-
-  case'return_two_boxes':
-   rr(a,0,0,1920,920,'#10212A',0);ballot(b,-430,40,'2019 県民投票');ballot(c,430,40,'2026 知事選');card(d,'辺野古をどう思う？',-430,260,360,K.red);card(e,'誰に県政を任せる？',430,260,380,K.cyan);label(f,'箱は似ている',0,-210,K.paper,31);label(g,'問いは違う',0,-120,K.gold,36);label(h,'比較の出発点へ戻る',0,-310,K.paper,39);break;
-  case'both_are_public_opinion':
-   rr(a,0,0,1920,920,'#121F27',0);paper(b,-420,0,500,540,'2019');label(b,'反対 71.7%',-420,0,K.red,40);paper(c,420,0,500,540,'2026');label(c,'古謝氏 当選',420,0,K.cyan,38);ln(d,[[-110,0],[110,0]],K.gold,8);label(e,'どちらも制度上の結果',0,150,K.paper,30);label(f,'時点が違う',-270,270,K.muted,26);label(g,'問いが違う',270,270,K.muted,26);label(h,'片方を偽物にしない',0,-310,K.gold,40);break;
-  case'public_opinion_moves':
-   rr(a,0,0,1920,920,'#101D26',0);ln(b,[[-650,150],[-300,50],[0,100],[260,-30],[620,-120]],K.gold,10);['物価','年齢','安全保障','実績'].forEach((x,i)=>cc(c,-480+i*320,-80+(i%2)*120,55,[K.red,K.cyan,K.gold,K.teal][i]));label(c,'物価',-480,-80,K.black,20);label(c,'年齢',-160,40,K.black,20);label(c,'安保',160,-80,K.black,20);label(c,'実績',480,40,K.black,20);cc(d,120,55,30,K.paper);label(e,'社会の重心',120,120,K.paper,27);label(f,'固定されない',0,270,K.muted,29);label(g,'移動し続ける',0,-250,K.gold,32);label(h,'民意は石碑ではなく重心',0,-315,K.paper,39);break;
-  case'majority_not_end':
-   rr(a,0,0,1920,920,'#111D24',0);cc(b,-340,20,230,K.cyan);label(b,'多数',-340,20,K.black,36);cc(c,390,20,90,K.red);label(c,'地域',390,20,K.black,26);ln(d,[[-90,20],[280,20]],K.gold,8);card(e,'選挙勝利',-340,280,300,K.cyan);card(f,'負担継続',390,280,300,K.red);label(g,'決定後にも残る声',0,-230,K.paper,31);label(h,'多数決 = 問題終了ではない',0,-310,K.gold,39);break;
-  case'burden_distribution':
-   mapFrame(a,'最後に残る地理');ratioRing(b,-420,20,'0.6%','国土');ratioRing(c,420,20,'約70%','専用施設');card(d,'安全保障の費用',-420,255,330,K.cyan);card(e,'地域に集中',420,255,300,K.red);label(f,'選挙結果が変わっても',0,-230,K.paper,30);label(g,'地理は残る',0,-165,K.gold,33);label(h,'分配の問題',0,-315,K.red,41);break;
-  case'final_question':
-   rr(a,0,0,1920,920,'#090F15',0);label(b,'賛成？',-360,-50,K.cyan,58);label(c,'反対？',360,-50,K.red,58);label(d,'それだけではない',0,80,K.paper,34);paper(e,0,235,900,150,'');label(e,'選挙で勝った者は個別政策をどこまで代表するのか',0,235,K.ink,28);label(f,'候補者への一票',-420,-230,K.muted,26);label(g,'政策への委任',420,-230,K.muted,26);label(h,'民意の射程',0,-315,K.gold,42);break;
-  case'henoko_as_mirror':
-   rr(a,0,-110,1920,660,K.sea,0);rr(a,0,245,1920,250,K.soil,0);islandChain(b,0,-70,.8);for(let i=0;i<5;i++)ln(c,[[-700+i*350,80],[-620+i*350,130]],K.ice,4);['国家','地方','多数','少数'].forEach((x,i)=>card(d,x,-510+i*340,235,250,[K.cyan,K.gold,K.red,K.teal][i]));label(e,'安全保障 × 自治',0,-235,K.paper,34);label(f,'全国利益 × 地域負担',0,-165,K.gold,31);label(g,'沖縄だけの政治ではない',0,315,K.paper,32);label(h,'辺野古の海は民主主義の鏡',0,-320,K.gold,41);break;
-  default:
-   rr(a,0,0,1920,920,K.navy,0);card(b,plan.labels[0],-420,-80,320,K.cyan);card(c,plan.labels[1],420,-80,320,K.gold);card(d,plan.labels[3],-420,120,320,K.paper);card(e,plan.labels[4],420,120,320,K.red);label(f,plan.labels[5],0,-245,K.paper,31);label(g,plan.labels[6],0,285,K.paper,31);label(h,plan.labels[7],0,-305,K.red,38);
+  case'flooded_ricefield':farmField(a,true);for(let i=0;i<8;i++)ln(b,[[-680+i*180,150],[-620+i*180,245]],K.rice,7);rr(c,530,160,300,150,'#31454B',20);cc(c,430,235,55,K.black);cc(c,620,235,55,K.black);person(d,-480,170,.56,K.paper);folder(e,-80,-120,290,180,K.red,'災害');label(f,'収穫の季節',520,-220,K.gold,31);label(g,'政治は東京で炎上',0,285,K.red,31);label(h,'田んぼは待たない',0,-300,K.paper,42);break;
+  case'yana_statement_news':monitor(a,0,-30,1160,570);label(b,'「予算を大幅にカット」',0,-145,K.white,43);card(c,'発言を認める',-360,85,300,K.red);card(d,'撤回・謝罪',0,85,280,K.gold);card(e,'行政の公平性',360,85,330,K.cyan);label(f,'2026年10月',0,220,K.muted,26);label(g,'発言 ≠ 実行の確認',0,290,K.paper,29);label(h,'まず事実を分ける',0,-305,K.gold,39);break;
+  case'fact_check_pressure':rr(a,0,0,1920,920,'#17232A',0);paper(b,-450,0,460,560,'発言');paper(c,450,0,460,560,'国交省調査');card(d,'圧力確認なし',450,-60,300,K.cyan);card(e,'事業進捗等で配分',450,55,350,K.gold);card(f,'政治的報復は未確認',0,250,410,K.red);ln(g,[[-150,0],[150,0]],K.paper,6);label(h,'確認済み事実の境界',0,-310,K.gold,40);break;
+  case'resignation_reflex':chair(a,0,80,K.red);person(b,-520,120,.55,K.paper);card(c,'問題発生',-520,-100,280,K.red);ln(d,[[-300,30],[-120,30]],K.gold,9);chair(e,420,80,K.cyan);card(f,'後任へ',420,-100,260,K.cyan);label(g,'辞めさせれば正常化？',0,280,K.paper,34);label(h,'反射的な物語',0,-300,K.gold,41);break;
+  case'ministry_night_windows':ministryShell(a,true);for(let i=0;i<4;i++)folder(b,-500+i*330,210,260,150,[K.red,K.gold,K.cyan,K.teal][i],['国会答弁','米価','災害','備蓄'][i]);label(c,'23:40',650,-250,K.gold,34);person(d,-250,170,.38,K.paper);person(e,20,170,.38,K.paper);person(f,290,170,.38,K.paper);label(g,'行政の時計は進む',0,290,K.paper,31);label(h,'政治の決着を待たない',0,-310,K.gold,39);break;
+  case'two_invoices':paper(a,-410,0,470,570,'続投の請求書');paper(b,410,0,470,570,'交代の請求書');['国会対応','信頼低下'].forEach((x,i)=>card(c,x,-410,-40+i*105,300,K.red));['引継ぎ','学習'].forEach((x,i)=>card(d,x,410,-40+i*105,300,K.cyan));label(e,'どちらも0円ではない',0,255,K.paper,32);scale(f,0,-10);label(g,'誰が払う？',0,-220,K.gold,31);label(h,'大臣交代の値段',0,-310,K.white,43);break;
+  case'central_question_cost':rr(a,0,0,1920,920,'#080F15',0);scale(b,0,50);card(c,'政治責任',-310,135,300,K.red);card(d,'政策継続性',310,135,330,K.cyan);label(e,'簗氏を守る話ではない',0,-175,K.muted,29);label(f,'辞任を否定する話でもない',0,-110,K.muted,29);label(g,'境界はどこか',0,260,K.gold,35);label(h,'制度の問題へ',0,-300,K.paper,43);break;
+  case'kasumigaseki_morning':rr(a,0,0,1920,920,'#31454E',0);building(b,0,20,700,560,'農林水産省');crowd(c,0,265,11,K.paper);label(d,'08:00',-700,-250,K.gold,36);['米需給','漁業','農地','畜産'].forEach((x,i)=>card(e,x,-510+i*340,-165,250,[K.cyan,K.gold,K.teal,K.red][i]));label(f,'別々の仕事',-320,315,K.paper,28);label(g,'同じ建物',320,315,K.paper,28);label(h,'巨大行政機械が始動',0,-315,K.gold,39);break;
+  case'ministry_machine':rr(a,0,0,1920,920,'#15252D',0);for(let i=0;i<5;i++){cc(b,-520+i*260,30,72,[K.cyan,K.gold,K.teal,K.blue,K.red][i]);label(b,['本省','地方','研究','自治体','業界'][i],-520+i*260,30,K.black,21)}ln(c,[[-520,120],[520,120]],K.paper,5);folder(d,-390,220,260,150,K.gold,'記録');folder(e,0,220,260,150,K.cyan,'制度');folder(f,390,220,260,150,K.teal,'手続');label(g,'一人より長く生きる',0,-210,K.paper,31);label(h,'組織として続く',0,-300,K.gold,40);break;
+  case'continuity_bureaucracy':rr(a,0,0,1920,920,'#1B242A',0);for(let i=0;i<6;i++)folder(b,-600+i*240,-40,190,130,i%2?K.cyan:K.gold,['1990','2000','2010','2020','2025','2026'][i]);ln(c,[[-700,170],[700,170]],K.paper,8);card(d,'昨日',-430,260,230,K.muted);card(e,'今日',0,260,230,K.cyan);card(f,'明日',430,260,230,K.gold);label(g,'記憶を運ぶ',0,-220,K.paper,32);label(h,'官僚制の継続性',0,-310,K.gold,40);break;
+  case'minister_desk_democracy':desk(a,0,190,760);person(b,0,70,.58,K.paper);['価格保護','競争','食料安保','財政'].forEach((x,i)=>card(c,x,-510+i*340,-120,250,[K.red,K.cyan,K.gold,K.teal][i]));label(d,'専門知識',-360,240,K.cyan,31);label(e,'価値判断',360,240,K.red,31);ln(f,[[-170,240],[170,240]],K.paper,5);label(g,'民主的正統性',0,-220,K.gold,32);label(h,'だから大臣がいる',0,-310,K.paper,40);break;
+  case'delegation_chain':rr(a,0,0,1920,920,'#10212A',0);['有権者','議会','政府','大臣','官僚'].forEach((x,i)=>{rr(b,-560+i*280,-140+i*75,230,90,'#263B45',10,[K.paper,K.cyan,K.gold,K.red,K.teal][i]);label(b,x,-560+i*280,-140+i*75,K.paper,23)});for(let i=0;i<4;i++)ln(c,[[-445+i*280,-110+i*75],[-395+i*280,-65+i*75]],K.gold,5);label(d,'委任',-400,255,K.paper,28);label(e,'情報格差',0,255,K.red,28);label(f,'統制',400,255,K.cyan,28);label(g,'権限は階段を降りる',0,-250,K.muted,29);label(h,'プリンシパル＝エージェント',0,-320,K.gold,36);break;
+  case'minister_as_helm':rr(a,0,-180,1920,560,K.sea,0);ship(b,0,70,1.05);person(c,0,-80,.38,K.paper);ln(d,[[0,-90],[260,-190]],K.gold,6);card(e,'官僚＝海図と機関',-400,260,360,K.cyan);card(f,'大臣＝操舵',400,260,300,K.red);label(g,'船は同じでも航路は変わる',0,-250,K.paper,31);label(h,'政治が目的地を決める',0,-315,K.gold,39);break;
+  case'handover_cost_seed':rr(a,0,0,1920,920,'#1A242A',0);rr(b,-360,0,300,590,'#27383F',12);rr(c,360,0,300,590,'#27383F',12);label(b,'退任',-360,-230,K.red,30);label(c,'就任',360,-230,K.cyan,30);for(let i=0;i<5;i++)folder(d,-40, -130+i*85,300,65,i%2?K.gold:K.cyan,['判断','経緯','法案','交渉','期限'][i]);ln(e,[[-180,0],[180,0]],K.paper,7);label(f,'知識移転',0,250,K.gold,30);label(g,'ニュースの後ろ側',0,-275,K.muted,27);label(h,'引継ぎコストが始まる',0,-330,K.paper,38);break;
+  case'new_minister_first_day':desk(a,0,200,780);person(b,0,65,.5,K.paper);for(let i=0;i<7;i++)folder(c,-590+(i%4)*390,-175+Math.floor(i/4)*130,280,95,[K.red,K.gold,K.cyan,K.teal][i%4],['米需給','概算要求','輸出','検疫','災害','感染症','国会'][i]);label(d,'就任初日',0,-290,K.gold,34);label(e,'資料は増える',-330,300,K.paper,27);label(f,'時間は減る',330,300,K.red,27);label(g,'知らない論点が連鎖',0,240,K.muted,27);label(h,'一日で理解はできない',0,-340,K.paper,38);break;
+  case'briefing_carousel':rr(a,0,0,1920,920,'#17242B',0);for(let i=0;i<5;i++){const ang=-Math.PI/2+i*Math.PI*2/5;const x=Math.cos(ang)*430,y=Math.sin(ang)*210;folder(b,x,y,250,120,[K.cyan,K.gold,K.red,K.teal,K.blue][i],['説明','面会','国会','会見','翌朝資料'][i])}person(c,0,50,.45,K.paper);label(d,'午前',-640,-250,K.cyan,28);label(e,'午後',640,-250,K.gold,28);label(f,'夜',640,280,K.red,28);label(g,'一つ理解すると三つ増える',0,300,K.paper,29);label(h,'説明は回り続ける',0,-315,K.gold,39);break;
+  case'policy_memory_layers':rr(a,0,0,1920,920,'#191D20',0);['現在制度','法改正','予算折衝','業界妥協','国際交渉'].forEach((x,i)=>{rr(b,0,180-i*105,850-i*90,80,[K.slate,K.blue,K.cyan,K.gold,K.brown][i],8);label(b,x,0,180-i*105,K.white,23)});label(c,'なぜ今こうなっているのか',0,-285,K.paper,32);label(d,'条文',-500,280,K.cyan,25);label(e,'記録',-170,280,K.gold,25);label(f,'慣行',170,280,K.teal,25);label(g,'記憶',500,280,K.red,25);label(h,'政策の地層',0,-335,K.gold,39);break;
+  case'civil_servant_explains':desk(a,0,180,860);person(b,-330,40,.45,K.paper);person(c,330,40,.45,K.cyan);paper(d,0,10,400,340,'これまでの経緯');label(e,'説明',-330,240,K.paper,27);label(f,'質問',330,240,K.cyan,27);label(g,'理解して初めて疑える',0,-230,K.gold,30);label(h,'交代が早いと途中で終わる',0,-310,K.paper,38);break;
+  case'ifg_long_tenure':rr(a,0,0,1920,920,'#17252D',0);label(b,'Institute for Government',0,-260,K.gold,34);for(let i=0;i<5;i++)bar(c,0,-100+i*75,900,[.25,.42,.55,.72,.88][i],[K.red,K.orange,K.gold,K.cyan,K.teal][i],['短期','学習','関係','改革','継続'][i]);label(d,'頻繁な交代',-430,285,K.red,27);label(e,'長期改革',430,285,K.cyan,27);label(f,'担当を理解する時間',0,-180,K.paper,28);label(g,'方向変更のコスト',0,225,K.muted,26);label(h,'在任期間も政策資源',0,-325,K.paper,38);break;
+  case'company_analogy':factory(a);building(b,-520,40,330,420,'工場');building(c,0,40,330,420,'出版社');building(d,520,40,330,420,'病院');chair(e,-520,230,K.red);chair(f,0,230,K.gold);chair(g,520,230,K.cyan);label(h,'責任者が毎年替わる組織',0,-310,K.paper,40);break;
+  case'knowledge_transfer':rr(a,0,0,1920,920,'#101D25',0);cc(b,-450,10,130,K.red);cc(c,450,10,130,K.cyan);label(b,'旧',-450,10,K.black,34);label(c,'新',450,10,K.black,34);for(let i=0;i<6;i++)folder(d,-250+i*100,10,82,56,i<4?K.gold:K.muted,['法','予','業','交','慣','勘'][i]);bar(e,0,220,780,.72,K.cyan,'再インストール 72%');label(f,'再交代',500,220,K.red,26);rr(g,340,220,8,90,K.red,2);label(h,'初期設定から抜けられない',0,-300,K.gold,39);break;
+  case'postwar_diet_corridor':parliament(a);crowd(b,0,220,10,K.paper);label(c,'戦後・永田町',0,-300,K.gold,36);['派閥','人事','政策'].forEach((x,i)=>card(d,x,-350+i*350,-150,270,[K.red,K.gold,K.cyan][i]));label(e,'大臣ポスト',0,20,K.paper,31);label(f,'行政責任者',-300,290,K.cyan,27);label(g,'キャリアの到達点',300,290,K.red,27);label(h,'椅子に二つの意味',0,-350,K.paper,38);break;
+  case'too_many_candidates':chair(a,0,120,K.gold);for(let i=0;i<6;i++)person(b,-650+i*260,120,.35,K.paper);label(c,'大臣の椅子',0,-80,K.gold,29);ln(d,[[-650,260],[650,260]],K.muted,5);label(e,'順番待ち',0,305,K.paper,28);label(f,'議員は多い',-420,-230,K.cyan,27);label(g,'席は少ない',420,-230,K.red,27);label(h,'長く座れば順番は回らない',0,-310,K.paper,38);break;
+  case'yoshida_rotation':rr(a,0,0,1920,920,'#27231F',0);label(b,'吉田茂期',0,-280,K.gold,40);for(let i=0;i<8;i++){paper(c,-610+(i%4)*405,-100+Math.floor(i/4)*180,250,130,'閣僚');label(c,String(i+1),-610+(i%4)*405,-90+Math.floor(i/4)*180,K.ink,22)}timeline(d,290,[{x:-600,year:'1946',col:K.cyan},{x:0,year:'1950',col:K.gold},{x:600,year:'1954',col:K.red}]);label(e,'多数の政治家を起用',0,205,K.paper,29);label(f,'党内統治',-350,-205,K.cyan,26);label(g,'人事',350,-205,K.red,26);label(h,'ポストを回す政治',0,-330,K.paper,38);break;
+  case'kishi_full_reshuffle':rr(a,0,0,1920,920,'#202326',0);for(let i=0;i<5;i++)chair(b,-560+i*280,80,[K.red,K.gold,K.cyan,K.teal,K.blue][i]);label(c,'個別更迭',-420,-150,K.red,29);label(d,'→ 面子・対立',-420,-85,K.muted,25);rr(e,360,-120,520,95,K.deep,12,K.gold);label(e,'内閣全体を一括改造',360,-120,K.gold,27);label(f,'岸信介',360,0,K.paper,28);label(g,'人事技術として定着',0,280,K.paper,30);label(h,'「まとめて替える」慣行',0,-310,K.gold,39);break;
+  case'annual_reshuffle_calendar':rr(a,0,0,1920,920,'#18252C',0);for(let i=0;i<4;i++){paper(b,-570+i*380,15,300,470,['春','夏','秋','冬'][i]);chair(c,-570+i*380,75,.35 as any)}label(d,'内閣改造',0,-260,K.red,36);card(e,'表札交換',-350,280,280,K.cyan);card(f,'名刺刷り直し',0,280,300,K.gold);card(g,'次の予測',350,280,280,K.red);label(h,'年中行事化する人事',0,-325,K.paper,38);break;
+  case'bureaucrat_long_memory':rr(a,0,0,1920,920,'#11212A',0);bar(b,-350,-30,520,.22,K.red,'大臣 1年');bar(c,350,-30,520,.9,K.cyan,'官僚 10年');folder(d,350,135,360,180,K.cyan,'政策記憶');person(e,-350,140,.42,K.paper);person(f,350,140,.42,K.cyan);label(g,'助言への依存',0,285,K.gold,30);label(h,'時間の非対称性が権力になる',0,-315,K.paper,37);break;
+  case'rotation_paradox':rr(a,0,0,1920,920,'#101A22',0);for(let i=0;i<5;i++)person(b,-560+i*280,-80,.3,K.paper);ln(c,[[-560,-10],[0,160],[560,-10]],K.gold,8);building(d,0,170,430,330,'官僚機構');card(e,'政治家を増やす',-420,270,320,K.cyan);card(f,'専門性は薄くなる',420,270,330,K.red);label(g,'意図 ≠ 結果',0,-220,K.gold,32);label(h,'政治家を回して官僚が強くなる',0,-310,K.paper,36);break;
+  case'farm_ministry_2007':ministryShell(a,false);timeline(b,225,[{x:-600,year:'2007.5',col:K.red},{x:0,year:'6月',col:K.gold},{x:600,year:'8月',col:K.cyan}]);chair(c,-420,20,K.red);chair(d,0,20,K.gold);chair(e,420,20,K.cyan);label(f,'農水相が相次いで交代',0,-240,K.paper,33);label(g,'大臣室は不安定',0,300,K.red,28);label(h,'農政の日程は止まらない',0,-315,K.gold,38);break;
+  case'fresh_binder':desk(a,0,190,760);folder(b,-280,20,360,250,K.gold,'新任説明');folder(c,180,20,360,250,K.cyan,'政策資料');label(d,'背表紙は新品',-280,-150,K.paper,28);chair(e,500,150,K.red);label(f,'また交代',500,-20,K.red,29);ln(g,[[-20,90],[320,120]],K.muted,5);label(h,'知識移転を最初から',0,-300,K.gold,39);break;
+  case'budget_deadline':rr(a,0,0,1920,920,'#1A262C',0);['概算要求','国際交渉','台風','災害対応'].forEach((x,i)=>{folder(b,-520+i*350,-30,280,180,[K.gold,K.cyan,K.red,K.teal][i],x);label(c,['9/1','10/20','接近','即時'][i],-520+i*350,95,[K.gold,K.cyan,K.red,K.teal][i],23)}label(d,'政治危機',0,-245,K.red,34);label(e,'行政締切',0,210,K.paper,31);ln(f,[[-620,270],[620,270]],K.gold,8);label(g,'時間だけは進む',0,310,K.gold,29);label(h,'「落ち着くまで休止」はない',0,-315,K.paper,38);break;
+  case'resignation_tv':monitor(a,-430,0,650,420);label(b,'辞任会見',-430,-50,K.white,34);label(c,'10 sec',-430,90,K.red,30);building(d,430,0,520,500,'省庁の裏側');for(let i=0;i<4;i++)folder(e,250+i*120,170,100,80,[K.cyan,K.gold,K.red,K.teal][i]);label(f,'何日も続く',430,270,K.paper,27);ln(g,[[-90,0],[130,0]],K.gold,6);label(h,'テレビの短さ ≠ 行政の長さ',0,-310,K.gold,38);break;
+  case'nameplate_swap':rr(a,0,0,1920,920,'#20282C',0);rr(b,-420,10,430,150,K.brown,8);label(b,'農林水産大臣',-420,10,K.paper,28);['国会','業界','自治体','他省庁'].forEach((x,i)=>cc(c,300+(i%2)*240,-80+Math.floor(i/2)*180,72,[K.red,K.gold,K.cyan,K.teal][i]));for(let i=0;i<4;i++)ln(d,[[-150,10],[300+(i%2)*240,-80+Math.floor(i/2)*180]],K.muted,4);label(e,'表札 5分',-420,180,K.gold,25);label(f,'関係 再構築',420,230,K.paper,29);label(g,'物理交換は速い',-360,290,K.cyan,25);label(h,'関係資本は一瞬で替わらない',0,-310,K.gold,37);break;
+  case'handover_meeting':desk(a,0,180,920);person(b,-360,60,.4,K.muted);person(c,360,60,.4,K.paper);['法案','交渉','会議','未完判断'].forEach((x,i)=>folder(d,-270+i*180,-80,155,100,[K.red,K.gold,K.cyan,K.teal][i],x));ln(e,[[-240,60],[240,60]],K.gold,7);card(f,'前任',-360,270,240,K.muted);card(g,'後任',360,270,240,K.cyan);label(h,'未完の仕事まで受け渡す',0,-305,K.paper,39);break;
+  case'administrative_shadow':rr(a,0,0,1920,920,'#0B1218',0);person(b,-420,30,.5,K.paper);ln(c,[[-420,150],[520,250]],'#33434A',120);chair(d,-420,220,K.red);building(e,420,-10,450,480,'省庁');label(f,'政治の終幕',-420,-180,K.red,29);label(g,'行政の幕開け',420,260,K.cyan,29);label(h,'辞任の後ろに長い影が残る',0,-310,K.gold,38);break;
+  case'comparative_map':rr(a,0,0,1920,920,'#12232D',0);for(let i=0;i<11;i++)cc(b,-600+(i%6)*240,-100+Math.floor(i/6)*180,52,[K.cyan,K.gold,K.red,K.teal][i%4]);label(c,'11か国',-420,240,K.paper,29);label(d,'131内閣',0,240,K.gold,31);label(e,'1990–2018',420,240,K.paper,29);card(f,'閣僚交代',-300,-245,300,K.red);card(g,'首相パフォーマンス',300,-245,390,K.cyan);label(h,'比較政治のデータへ',0,-320,K.gold,39);break;
+  case'study_dataset':rr(a,0,0,1920,920,'#17252C',0);for(let r=0;r<5;r++)for(let c0=0;c0<9;c0++)cc(b,-560+c0*140,-140+r*80,12,(r+c0)%3?K.cyan:K.red);bar(c,0,270,900,.68,K.red,'交代頻度 ↑ → 平均的に性能 ↓');label(d,'131 cabinets',0,-260,K.paper,34);label(e,'国・制度差あり',-330,315,K.muted,25);label(f,'日本へ直輸入不可',330,315,K.gold,25);label(g,'関連を検証',0,-205,K.cyan,27);label(h,'結果よりメカニズムを見る',0,-325,K.paper,38);break;
+  case'expertise_loss':axes(a);ln(b,[[-560,160],[-380,80],[-180,-40],[60,-120],[320,-165],[580,-195]],K.cyan,10);label(c,'専門性',-690,-210,K.paper,24);label(d,'就任',-520,290,K.red,24);label(e,'学習',0,290,K.gold,24);label(f,'統制',520,290,K.cyan,24);card(g,'一時的な能力低下',0,40,340,K.red);label(h,'時間とともに回復',0,-310,K.gold,38);break;
+  case'cabinet_coordination':rr(a,0,0,1920,920,'#11212A',0);const names=['農水','財務','官房','国交','外務'];names.forEach((x,i)=>{const ang=-Math.PI/2+i*Math.PI*2/5;const xx=Math.cos(ang)*430,yy=Math.sin(ang)*210;cc(b,xx,yy,78,[K.red,K.gold,K.cyan,K.teal,K.blue][i]);label(b,x,xx,yy,K.black,22)});for(let i=0;i<5;i++)ln(c,[[0,0],[Math.cos(-Math.PI/2+i*Math.PI*2/5)*350,Math.sin(-Math.PI/2+i*Math.PI*2/5)*170]],K.muted,4);label(d,'交渉履歴',0,0,K.paper,26);label(e,'担当交代',0,285,K.red,27);label(f,'関係地図を描き直す',0,-245,K.paper,29);label(g,'省庁間調整',0,220,K.cyan,25);label(h,'失うのは知識だけではない',0,-315,K.gold,37);break;
+  case'limits_of_evidence':rr(a,0,0,1920,920,'#101920',0);paper(b,-380,10,500,560,'研究結果');paper(c,380,10,500,560,'日本の個別事例');ln(d,[[-100,10],[100,10]],K.red,12);label(d,'≠',0,10,K.red,62);card(e,'制度差',-380,210,260,K.gold);card(f,'交代理由',380,210,280,K.cyan);label(g,'「替えるな」という研究ではない',0,-245,K.paper,30);label(h,'証拠の射程を守る',0,-315,K.gold,40);break;
+  case'continuity_value':scale(a,0,30);folder(b,-310,165,330,190,K.red,'問題人物を除く');folder(c,310,165,330,190,K.cyan,'知識と関係を守る');label(d,'便益',-310,-120,K.red,31);label(e,'損失',310,-120,K.cyan,31);label(f,'人事判断',0,270,K.paper,31);label(g,'両方を同時に見る',0,-230,K.gold,30);label(h,'継続性にも価値がある',0,-315,K.paper,39);break;
+  case'learning_curve':axes(a);ln(b,[[-560,190],[-420,130],[-230,30],[0,-80],[260,-150],[580,-190]],K.gold,11);['説明','質問','疑問','交渉','判断'].forEach((x,i)=>label(c,x,-430+i*215,285,[K.red,K.orange,K.gold,K.cyan,K.teal][i],23));person(d,-560,160,.3,K.paper);person(e,580,-190,.3,K.cyan);label(f,'専門性',-690,-190,K.paper,23);label(g,'時間',580,245,K.muted,23);label(h,'大臣にも学習曲線がある',0,-315,K.gold,39);break;
+  case'new_broom_temptation':rr(a,0,0,1920,920,'#1A252B',0);paper(b,-420,0,500,560,'前任政策');paper(c,420,0,500,560,'新大臣案');['新会議','新名称','重点変更'].forEach((x,i)=>card(d,x,420,-90+i*110,300,[K.red,K.gold,K.cyan][i]));person(e,0,210,.36,K.paper);label(f,'成果を見せたい',0,-220,K.red,29);ln(g,[[-130,0],[130,0]],K.gold,6);label(h,'「自分の色」の誘惑',0,-310,K.gold,40);break;
+  case'signboard_change':rr(a,0,0,1920,920,'#243038',0);rr(b,-380,10,520,160,K.brown,8);label(b,'農業構造改革',-380,10,K.paper,29);rr(c,380,10,520,160,K.brown,8);label(c,'新・成長戦略',380,10,K.gold,29);['資料','説明会','指標','理解'].forEach((x,i)=>folder(d,-520+i*350,225,260,130,[K.red,K.gold,K.cyan,K.teal][i],x));label(e,'看板は一瞬',0,-170,K.paper,28);label(f,'現場は作り直し',0,310,K.red,28);label(g,'中身が同じでも時間は使う',0,-245,K.muted,27);label(h,'名称変更にも行政コスト',0,-315,K.gold,38);break;
+  case'policy_churn':rr(a,0,0,1920,920,'#19251E',0);tree(b,-420,110,.9,K.green);tree(c,0,110,.55,K.gold);tree(d,420,110,.35,K.red);ln(e,[[-420,230],[-40,230]],K.gold,7);ln(e,[[40,230],[420,230]],K.red,7);card(f,'植える',-420,-150,240,K.cyan);card(g,'抜く → 植え直す',260,-150,360,K.red);label(h,'policy churn：森が育たない',0,-310,K.gold,38);break;
+  case'long_term_tree':rr(a,0,0,1920,920,'#1B2D24',0);tree(b,-500,140,.3,K.green);tree(c,-170,140,.55,K.green);tree(d,170,140,.8,K.green);tree(e,500,140,1.05,K.green);['1年目','2年目','3年目','継続'].forEach((x,i)=>label(f,x,-500+i*335,280,K.paper,24));label(g,'変えないことも成果',0,-230,K.gold,30);label(h,'長期改革は根を張る時間が要る',0,-315,K.paper,37);break;
+  case'ministerial_ownership':rr(a,0,0,1920,920,'#15232A',0);folder(b,-430,20,360,230,K.muted,'前任政策');ln(c,[[-220,20],[220,20]],K.gold,9);folder(d,430,20,360,230,K.cyan,'自分の政策');timeline(e,260,[{x:-520,year:'就任',col:K.red},{x:0,year:'半年',col:K.gold},{x:520,year:'1年',col:K.cyan}]);label(f,'成果も失敗も引き受ける',0,-220,K.paper,30);label(g,'長く持つほど責任が自分になる',0,-275,K.gold,28);label(h,'政策の所有感',0,-330,K.white,39);break;
+  case'continuity_vs_refresh':scale(a,0,20);folder(b,-310,155,330,190,K.red,'刷新');folder(c,310,155,330,190,K.cyan,'継続');card(d,'新視点',-420,-105,260,K.red);card(e,'知識蓄積',420,-105,280,K.cyan);label(f,'停滞打破',-360,285,K.gold,25);label(g,'責任蓄積',360,285,K.teal,25);label(h,'どちらも必要、絶対視しない',0,-315,K.paper,37);break;
+  case'first_curve':axes(a);ln(b,[[-560,-160],[-450,-50],[-250,40],[0,100],[280,145],[580,175]],K.cyan,11);label(c,'交代コスト',-360,-180,K.cyan,31);card(d,'引継ぎ',-360,245,240,K.red);card(e,'学習',0,245,240,K.gold);card(f,'関係構築',360,245,270,K.cyan);label(g,'時間とともに低下',250,160,K.paper,25);label(h,'第一の曲線',0,-315,K.gold,40);break;
+  case'return_to_yana':ministryShell(a,true);monitor(b,520,-80,470,270);label(b,'簗大臣問題',520,-80,K.white,28);person(c,-420,150,.4,K.paper);folder(d,-280,170,250,130,K.red,'答弁');folder(e,0,170,250,130,K.gold,'報道');folder(f,280,170,250,130,K.cyan,'農政');label(g,'2026年10月へ戻る',0,-250,K.gold,31);label(h,'残すコストを見る',0,-315,K.paper,39);break;
+  case'support_team':rr(a,0,0,1920,920,'#172229',0);for(let i=0;i<7;i++)person(b,-600+i*200,120,.28,i<4?K.paper:K.muted);folder(c,-350,0,300,180,K.red,'国会答弁');folder(d,0,0,300,180,K.gold,'報道対応');folder(e,350,0,300,180,K.cyan,'本来業務');ln(f,[[-450,180],[0,240],[350,180]],K.muted,4);label(g,'人員をどこへ使うか',0,300,K.paper,28);label(h,'「お支え」にも機会費用',0,-310,K.gold,38);break;
+  case'farmers_wait':farmField(a,true);person(b,-420,170,.55,K.paper);rr(c,480,170,300,150,'#31454B',20);cc(c,390,240,52,K.black);cc(c,570,240,52,K.black);monitor(d,520,-150,380,220);label(d,'国会追及',520,-150,K.red,25);card(e,'農政待ち',-420,-100,290,K.gold);label(f,'水害復旧',-420,285,K.paper,26);label(g,'政治の決着より実働',280,285,K.cyan,27);label(h,'現場の時計は別に進む',0,-310,K.gold,38);break;
+  case'parliament_time':parliament(a);rr(b,0,190,1000,95,K.deep,12,K.gold);label(b,'国会の1時間',0,190,K.gold,29);for(let i=0;i<5;i++)folder(c,-520+i*260,-60,210,110,[K.red,K.gold,K.cyan,K.teal,K.blue][i],['説明','農政','法案','予算','災害'][i]);ln(d,[[-520,90],[520,90]],K.paper,6);label(e,'同時には審議できない',0,285,K.paper,29);label(f,'説明責任は必要',-330,-235,K.cyan,27);label(g,'時間にも代替用途がある',330,-235,K.red,27);label(h,'国会にも機会費用',0,-320,K.gold,40);break;
+  case'trust_as_capital':rr(a,0,-160,1920,600,K.sea,0);ln(b,[[-620,180],[-280,-20],[0,-40],[280,-20],[620,180]],K.paper,26);person(c,-500,110,.42,K.paper);person(d,500,110,.42,K.cyan);ln(e,[[-50,-40],[40,40]],K.red,12);label(e,'亀裂',0,70,K.red,25);card(f,'公平性への信頼',0,210,330,K.gold);label(g,'信用が下がると交渉コストが上がる',0,-230,K.paper,29);label(h,'信用は行政資本',0,-315,K.gold,40);break;
+  case'continued_scandal_cost':axes(a);ln(b,[[-560,180],[-350,150],[-160,80],[40,-20],[300,-110],[580,-190]],K.red,11);['新疑惑','答弁','資料','国会','権威低下'].forEach((x,i)=>card(c,x,-470+i*235,260,210,[K.red,K.orange,K.gold,K.cyan,K.teal][i]));label(d,'続投コスト',-350,-185,K.red,31);label(e,'時間',550,215,K.muted,23);label(f,'説明が増える',0,120,K.paper,26);label(g,'説得力が落ちる',0,60,K.gold,26);label(h,'残す側にも請求書',0,-315,K.paper,39);break;
+  case'second_curve':axes(a);ln(b,[[-560,175],[-300,140],[-80,70],[150,-20],[360,-110],[580,-180]],K.red,11);label(c,'続投コスト',-350,-180,K.red,31);card(d,'謝罪',-350,250,230,K.gold);card(e,'追及継続',0,250,260,K.red);card(f,'信頼低下',350,250,260,K.muted);label(g,'時間とともに上昇',250,-130,K.paper,25);label(h,'第二の曲線',0,-315,K.gold,40);break;
+  case'responsibility_phrase':monitor(a,0,0,1160,560);card(b,'「辞任する考えは？」',0,-130,460,K.cyan);card(c,'「職責を全うする」',0,-20,430,K.gold);card(d,'「辞任こそ責任」',0,90,420,K.red);label(e,'記者',-540,220,K.paper,26);label(f,'大臣',0,220,K.paper,26);label(g,'野党',540,220,K.paper,26);label(h,'責任という定型句',0,-310,K.gold,39);break;
+  case'resignation_not_eraser':paper(a,-380,0,500,570,'辞表');label(b,'辞任',-380,20,K.red,46);rr(c,380,0,520,570,'#253943',12,K.muted);['出来事','不信','行政課題'].forEach((x,i)=>card(d,x,380,-100+i*120,300,[K.red,K.gold,K.cyan][i]));ln(e,[[-100,0],[100,0]],K.paper,7);label(f,'消えない',380,230,K.paper,28);label(g,'続投でも自動回復しない',0,-240,K.muted,27);label(h,'辞表は消しゴムではない',0,-315,K.gold,39);break;
+  case'reshuffle_as_control':rr(a,0,0,1920,920,'#101D25',0);chair(b,-420,70,K.red);chair(c,420,70,K.cyan);person(d,0,20,.48,K.paper);card(e,'問題閣僚',-420,-130,280,K.red);card(f,'後任',420,-130,240,K.cyan);label(g,'首相が統制を取り戻す',0,270,K.paper,30);label(h,'交代は「罰」だけではない',0,-310,K.gold,39);break;
+  case'broken_machine':factory(a);rr(b,0,60,520,260,'#3A4C52',25,K.red);cc(c,-120,60,58,K.red);cc(c,120,60,58,K.muted);person(d,-480,130,.4,K.paper);card(e,'責任者を処分',-420,270,330,K.red);card(f,'機械を修理',0,270,300,K.gold);card(g,'生産を再開',420,270,300,K.cyan);label(h,'目的は正常に動かすこと',0,-310,K.paper,39);break;
+  case'restore_governance':rr(a,0,0,1920,920,'#112329',0);for(let i=0;i<7;i++)cc(b,-540+i*180,20,45,i<3?K.red:K.cyan);ln(c,[[-600,150],[-300,100],[0,20],[300,-80],[600,-120]],K.gold,8);card(d,'信頼回復',-350,260,280,K.cyan);card(e,'国会正常化',0,260,300,K.gold);card(f,'本来業務',350,260,280,K.teal);label(g,'辞任も続投も手段',0,-230,K.paper,30);label(h,'目的は統治能力の回復',0,-315,K.gold,40);break;
+  case'moral_score_vs_state':paper(a,-420,0,500,560,'人物採点');label(b,'好き / 嫌い',-420,-20,K.red,35);building(c,420,0,520,520,'国家運営');card(d,'残す',300,150,240,K.cyan);card(e,'替える',540,150,240,K.red);label(f,'道徳評価は重要',-420,245,K.paper,27);label(g,'しかしそれだけでは足りない',420,260,K.gold,27);label(h,'統治判断へ進む',0,-315,K.paper,40);break;
+  case'responsibility_reframe':rr(a,0,0,1920,920,'#0D1820',0);rr(b,-420,20,350,560,'#263741',12);label(b,'退場',-420,20,K.red,40);rr(c,420,20,350,560,'#263741',12);label(c,'正常化',420,20,K.cyan,40);ln(d,[[-210,20],[210,20]],K.gold,10);card(e,'信頼',420,-80,230,K.gold);card(f,'意思決定',420,90,260,K.teal);label(g,'責任の目的を再定義',0,285,K.paper,30);label(h,'儀式から機能回復へ',0,-315,K.gold,40);break;
+  case'two_cost_curves':axes(a);ln(b,[[-560,-170],[-380,-40],[-150,65],[120,120],[350,155],[580,180]],K.cyan,10);ln(c,[[-560,180],[-350,150],[-120,80],[100,0],[340,-105],[580,-180]],K.red,10);label(d,'交代コスト',-350,-190,K.cyan,29);label(e,'続投コスト',-350,150,K.red,29);label(f,'時間',580,250,K.muted,23);label(g,'二本を同時に見る',0,285,K.paper,29);label(h,'判断のグラフ',0,-315,K.gold,40);break;
+  case'crossing_point':axes(a);ln(b,[[-560,-170],[-320,-30],[-50,70],[260,140],[580,180]],K.cyan,10);ln(c,[[-560,180],[-320,140],[-50,70],[260,-50],[580,-180]],K.red,10);cc(d,-50,70,34,K.gold);label(e,'交点',-50,10,K.gold,28);card(f,'交代の方が安い',350,-110,330,K.cyan);card(g,'残す方が安い',-360,210,330,K.red);label(h,'行政的合理性が逆転する地点',0,-315,K.paper,37);break;
+  case'criteria_board':rr(a,0,0,1920,920,'#16242B',0);['重大性','信頼回復','国会','本来業務','後任','政策継続'].forEach((x,i)=>card(b,x,-520+(i%3)*520,-100+Math.floor(i/3)*150,300,[K.red,K.gold,K.cyan,K.teal,K.blue,K.orange][i]));label(c,'一項目では決めない',0,260,K.paper,31);scale(d,0,0);label(e,'総合判断',0,-245,K.gold,34);label(f,'辞任',-330,305,K.red,27);label(g,'続投',330,305,K.cyan,27);label(h,'交点を決める材料',0,-320,K.paper,39);break;
+  case'takaichi_shift':parliament(a);person(b,0,40,.45,K.paper);card(c,'「仕事で返す」',-380,-150,330,K.cyan);ln(d,[[-150,-100],[150,-100]],K.gold,8);card(e,'「行政運営してよいか考える」',360,-150,470,K.red);label(f,'2026.10.13',0,250,K.gold,29);label(g,'発言の適否 → 統治能力',0,310,K.paper,28);label(h,'首相の言葉も動く',0,-315,K.gold,39);break;
+  case'minister_as_obstacle':rr(a,0,-160,1920,600,K.sea,0);ship(b,-420,70,.75);rr(c,260,50,230,420,'#3A4850',10,K.red);for(let i=0;i<5;i++)ln(d,[[-40,-120+i*70],[140,-120+i*70]],K.ice,6);label(e,'行政の流れ',-420,250,K.cyan,27);label(f,'大臣自身が壁に？',300,250,K.red,29);label(g,'操舵手 → 障害物',0,-230,K.gold,31);label(h,'統治能力を失う瞬間',0,-315,K.paper,39);break;
+  case'public_anger_and_analysis':rr(a,0,0,1920,920,'#151C22',0);person(b,-420,80,.55,K.paper);cc(c,-420,-100,70,K.red);label(c,'怒り',-420,-100,K.black,24);scale(d,360,20);card(e,'感情',180,170,240,K.red);card(f,'制度分析',540,170,280,K.cyan);label(g,'両立する',360,275,K.gold,30);label(h,'怒った後にも考える',0,-315,K.paper,40);break;
+  case'decision_not_formula':rr(a,0,0,1920,920,'#0C161D',0);axes(b);label(c,'¥ ?',-300,-70,K.red,50);label(d,'信頼 ?',0,-70,K.gold,45);label(e,'行政能力 ?',300,-70,K.cyan,42);for(let i=0;i<8;i++)cc(f,-490+i*140,170,18,i%2?K.muted:K.paper);label(g,'数式ではない思考装置',0,275,K.paper,30);label(h,'不確実性を抱えて判断する',0,-315,K.gold,39);break;
+  case'return_farm_evening':farmField(a,true);cc(b,650,-240,70,K.orange);person(c,-430,175,.52,K.paper);ln(d,[[-780,260],[780,260]],K.gold,5);monitor(e,510,-120,360,210);label(e,'国会',510,-120,K.paper,24);label(f,'同じ夕方',0,290,K.muted,27);label(g,'遠く離れた現場',0,-225,K.paper,30);label(h,'時間は同時に流れている',0,-315,K.gold,39);break;
+  case'two_places_connected':rr(a,0,0,1920,920,'#12232B',0);farmField(b,false);building(c,520,-40,420,440,'霞が関');person(d,-520,120,.42,K.paper);ln(e,[[-380,80],[320,-40]],K.gold,8);['災害支援','米政策','所得対策'].forEach((x,i)=>card(f,x,-260+i*310,245,260,[K.red,K.gold,K.cyan][i]));label(g,'何百kmを政策がつなぐ',0,-230,K.paper,30);label(h,'大臣の責任は現場まで届く',0,-315,K.gold,38);break;
+  case'not_take_side':rr(a,0,0,1920,920,'#090F15',0);rr(b,-380,20,360,520,'#22343D',12,K.red);label(b,'辞任',-380,20,K.red,42);rr(c,380,20,360,520,'#22343D',12,K.cyan);label(c,'続投',380,20,K.cyan,42);label(d,'2026.10.13',0,-230,K.gold,29);card(e,'状況は流動的',0,180,320,K.muted);label(f,'新事実',-250,280,K.paper,25);label(g,'行政影響',250,280,K.paper,25);label(h,'結論を先回りしない',0,-315,K.gold,40);break;
+  case'both_prices':paper(a,-410,0,470,570,'交代');paper(b,410,0,470,570,'続投');['知識断絶','引継ぎ'].forEach((x,i)=>card(c,x,-410,-50+i*115,300,K.cyan));['信頼低下','政治対応'].forEach((x,i)=>card(d,x,410,-50+i*115,300,K.red));label(e,'双方に価格',0,235,K.gold,31);scale(f,0,10);label(g,'無料の選択肢はない',0,-235,K.paper,29);label(h,'二枚の請求書へ戻る',0,-315,K.gold,39);break;
+  case'who_pays':rr(a,0,0,1920,920,'#121D24',0);paper(b,0,-20,520,590,'請求書');['政策遅延','組織混乱','国会時間','信頼低下'].forEach((x,i)=>label(b,x,-50,-120+i*85,K.ink,23));label(c,'TOTAL',-80,240,K.ink,26);label(d,'国民',110,240,K.red,30);crowd(e,0,305,9,K.paper);ln(f,[[0,170],[0,260]],K.red,8);label(g,'政治家だけが払うのではない',0,-230,K.paper,29);label(h,'行政サービスへ転嫁される',0,-315,K.gold,38);break;
+  case'better_question':rr(a,0,0,1920,920,'#151D23',0);monitor(b,0,-30,1100,550);label(c,'「いつ辞める？」',0,-120,K.red,43);label(d,'＋',0,-10,K.gold,50);label(e,'「国家は今より正常に動く？」',0,105,K.cyan,35);person(f,-620,180,.4,K.paper);label(g,'問いを一つ増やす',0,285,K.paper,30);label(h,'辞任を制度として見る',0,-315,K.gold,39);break;
+  case'final_statecraft':rr(a,0,0,1920,920,'#060C11',0);axes(b);ln(c,[[-560,-160],[-200,20],[0,80],[250,130],[580,170]],K.cyan,8);ln(d,[[-560,170],[-200,130],[0,80],[250,-30],[580,-170]],K.red,8);cc(e,0,80,30,K.gold);label(f,'怒りの後にも',0,-200,K.paper,31);label(g,'考え続ける',0,-135,K.gold,38);label(h,'それが民主主義の難しさ',0,-315,K.white,41);break;
+  default:rr(a,0,0,1920,920,K.navy,0);card(b,L[0],-420,-80,320,K.cyan);card(c,L[1],420,-80,320,K.gold);card(d,L[3],-420,120,320,K.paper);card(e,L[4],420,120,320,K.red);label(f,L[5],0,-245,K.paper,31);label(g,L[6],0,285,K.paper,31);label(h,L[7],0,-305,K.red,38);
  }
  return s;
 }
 
 function offsetFor(scene:Scene,i:number):[number,number,number]{
- const p=hash(scene.motif+scene.id)%10;const mag=28+(i%4)*13;
- switch(p){
-  case 0:return[i%2?mag:-mag,0,.94];case 1:return[0,i%2?mag:-mag,.94];case 2:return[i%2?mag:-mag,i%3?18:-18,.9];
-  case 3:return[0,0,.82];case 4:return[i<4?-mag:mag,i%2?18:-18,.92];case 5:return[i%3===0?mag:0,i%2?mag:-mag,.95];
-  case 6:return[i%2?-mag:mag,i<4?-20:20,.9];case 7:return[i<4?-mag:mag,0,.88];case 8:return[0,i<4?mag:-mag,.88];
-  default:return[i%2?mag:-mag,i%2?-12:12,.91]
- }
+ const p=hash(scene.motif+scene.id)%12;const mag=24+(i%4)*11;
+ switch(p){case 0:return[i%2?mag:-mag,0,.94];case 1:return[0,i%2?mag:-mag,.94];case 2:return[i%2?mag:-mag,i%3?16:-16,.91];case 3:return[0,0,.83];case 4:return[i<4?-mag:mag,i%2?17:-17,.93];case 5:return[i%3===0?mag:0,i%2?mag:-mag,.95];case 6:return[i%2?-mag:mag,i<4?-18:18,.91];case 7:return[i<4?-mag:mag,0,.89];case 8:return[0,i<4?mag:-mag,.89];case 9:return[i%2?mag:-mag,i%2?-10:10,.92];case 10:return[i<2?0:(i%2?mag:-mag),i>5?-12:12,.9];default:return[i%3===0?-mag:mag*.5,i%2?12:-12,.93]}
 }
 function settleTarget(scene:Scene,plan:Plan,i:number):{x:number;y:number;r:number;s:number;opacity:number}{
- const h=hash(scene.motif+plan.motion+i);let x=((h%13)-6)*1.5,y=(((h>>4)%11)-5)*1.2,r=((h>>8)%7-3)*.45,s=1.012,opacity=1;
- if(plan.motion.includes('collapse')){s=i<3?.97:1.025;opacity=i<2?.78:1}
- if(plan.motion.includes('rewind')){x=i<4?10:-10;r=(i%2?1:-1)*1.2}
- if(plan.motion.includes('compress')){x=i<6?(6-i)*4:0;s=i>5?1.025:1.006}
- if(plan.motion.includes('shift')){x=(i-3.5)*3.5;y=i>4?-8:4}
- if(plan.motion.includes('rise')){y=i>2?-10:6;s=1.02}
- if(plan.motion.includes('map')){s=1.018;x=(i%2?1:-1)*6}
- if(plan.motion.includes('court')||plan.motion.includes('authority')){x=i%2?8:-8;r=i%2?.8:-.8}
- if(plan.motion.includes('bar')){s=i>3?1.025:1.008;y=i>4?-6:0}
- if(plan.motion.includes('paths')){x=i>3?(i%2?12:-12):0}
- if(plan.motion.includes('mirror')){y=i>3?-7:4;s=1.02}
+ const h=hash(scene.motif+plan.motion+i);let x=((h%13)-6)*1.3,y=(((h>>4)%11)-5),r=((h>>8)%7-3)*.4,s=1.01,opacity=1;
+ const m=plan.motion;
+ if(m.includes('curve')){x=(i-3.5)*2.5;y=i>4?-7:3;s=1.02}
+ if(m.includes('swap')||m.includes('rotate')){r=(i%2?1:-1)*(1.2+i*.15);x=i%2?7:-7}
+ if(m.includes('flow')||m.includes('stream')){x=i>3?10:-8;s=1.015}
+ if(m.includes('rise')||m.includes('climb')){y=i>2?-10:5;s=1.02}
+ if(m.includes('fall')||m.includes('drop')){y=i>3?9:-4;opacity=i<2?.82:1}
+ if(m.includes('separate')){x=i<4?-10:10}
+ if(m.includes('connect')||m.includes('network')){s=1.018;opacity=i<2?.88:1}
+ if(m.includes('pulse')){s=i>5?1.03:1.012}
+ if(m.includes('fade')){opacity=i<3?.84:1}
  return{x,y,r,s,opacity};
 }
 function* microStageFlow(stages:Node[],scene:Scene,plan:Plan):ThreadGenerator{
- const base=[.012,.115,.218,.321,.424,.527,.63,.733];let cursor=0;
+ const base=[.01,.11,.21,.31,.41,.51,.61,.71];let cursor=0;
  for(let i=0;i<8;i++){
-  const [ox,oy,os]=offsetFor(scene,i);stages[i].x(ox);stages[i].y(oy);stages[i].scale(os);stages[i].rotation(i%2?1.1:-1.1);
-  const jitter=((hash(scene.motif+i.toString())>>3)&7)*.002;const at=scene.duration*Math.min(.82,base[i]+jitter);
+  const [ox,oy,os]=offsetFor(scene,i);stages[i].x(ox);stages[i].y(oy);stages[i].scale(os);stages[i].rotation(i%2?1:-1);
+  const jitter=((hash(scene.motif+i.toString())>>3)&7)*.002;const at=scene.duration*Math.min(.8,base[i]+jitter);
   if(at>cursor)yield* waitFor(at-cursor);cursor=at;
-  const reveal=Math.min(.48,Math.max(.19,scene.duration*.014));
+  const reveal=Math.min(.42,Math.max(.16,scene.duration*.012));
   yield* all(stages[i].opacity(1,reveal),stages[i].x(0,reveal),stages[i].y(0,reveal),stages[i].scale(1,reveal),stages[i].rotation(0,reveal));cursor+=reveal;
-  const t=settleTarget(scene,plan,i);const settle=Math.min(.4,Math.max(.17,scene.duration*.012));
+  const t=settleTarget(scene,plan,i),settle=Math.min(.34,Math.max(.14,scene.duration*.01));
   yield* all(stages[i].x(t.x,settle),stages[i].y(t.y,settle),stages[i].rotation(t.r,settle),stages[i].scale(t.s,settle),stages[i].opacity(t.opacity,settle));cursor+=settle;
-  if(i>=3)stages[i-3].opacity(.74);
+  const accent=Math.min(.28,Math.max(.12,scene.duration*.008));
+  yield* all(stages[i].scale(t.s*(i%2?1.012:.995),accent),stages[i].opacity(Math.max(.72,t.opacity-(i%3===0?.08:0)),accent));cursor+=accent;
+  if(i>=3)stages[i-3].opacity(.72);
  }
  const end=scene.duration*.9;if(end>cursor){yield* waitFor(end-cursor);cursor=end}
- yield* all(stages[7].scale(1.035,.34),stages[6].opacity(.86,.34));cursor+=.34;
  if(scene.duration>cursor)yield* waitFor(scene.duration-cursor);
 }
 function* cameraFlow(node:Node,duration:number,motif:string):ThreadGenerator{
- const p=hash(motif)%8;const dx=[14,-16,11,-10,18,-14,9,-12][p],dy=[-6,8,7,-8,3,-4,9,-7][p];
- node.scale(1.006);const q=duration/4;
- yield* all(node.x(dx,q),node.y(dy,q),node.scale(1.013,q));
- yield* all(node.x(-dx*.55,q),node.y(-dy*.6,q),node.scale(1.021,q));
- yield* all(node.x(dx*.35,q),node.y(dy*.25,q),node.scale(1.014,q));
- yield* all(node.x(0,Math.max(.01,duration-3*q)),node.y(0,Math.max(.01,duration-3*q)),node.scale(1.008,Math.max(.01,duration-3*q)));
+ const p=hash(motif)%8,dx=[14,-16,11,-10,18,-14,9,-12][p],dy=[-6,8,7,-8,3,-4,9,-7][p];node.scale(1.006);const q=duration/6;
+ yield* all(node.x(dx,q),node.y(dy,q),node.scale(1.012,q));
+ yield* all(node.x(-dx*.45,q),node.y(-dy*.6,q),node.scale(1.018,q));
+ yield* all(node.x(dx*.6,q),node.y(dy*.2,q),node.scale(1.014,q));
+ yield* all(node.x(-dx*.25,q),node.y(-dy*.25,q),node.scale(1.021,q));
+ yield* all(node.x(dx*.15,q),node.y(dy*.1,q),node.scale(1.013,q));
+ yield* all(node.x(0,Math.max(.01,duration-5*q)),node.y(0,Math.max(.01,duration-5*q)),node.scale(1.008,Math.max(.01,duration-5*q)));
 }
 function* subtitleFlow(cues:Cue[],caption:Txt,duration:number):ThreadGenerator{let t=0;for(const c of cues){if(c.start>t)yield* waitFor(c.start-t);caption.text(c.display);t=c.start}if(duration>t)yield* waitFor(duration-t);caption.text('')}
 
 export function* playMeaningScene(view:View2D,scene:Scene):ThreadGenerator{
- const plan=(visualPlan as Record<string,Plan>)[scene.motif];if(!plan)throw new Error('V124 visual plan missing: '+scene.motif);
+ const plan=(visualPlan as Record<string,Plan>)[scene.motif];if(!plan)throw new Error('V125 visual plan missing: '+scene.motif);
  view.fill(K.bg);const contentLayer=new Node({});const headingLayer=new Node({});const subtitleBacking=new Node({});const subtitleTextLayer=new Node({});
  view.add(contentLayer);view.add(headingLayer);view.add(subtitleBacking);view.add(subtitleTextLayer);
  const stages=buildScene(contentLayer,scene,plan);
