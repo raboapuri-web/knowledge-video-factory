@@ -47,4 +47,4 @@ for chapter in chapters:
     (ROOT/'src/projects'/f'{chapter}.meta').write_text(json.dumps(MC_META,ensure_ascii=False,separators=(',',':')))
 chap=defaultdict(float)
 for r in rows:chap[r['chapter']]+=r['duration']
-print(json.dumps({'video':'V124','scene_count':len(rows),'estimated_duration_sec':round(sum(chap.values()),2),'chapters':chap,'cue_count':sum(len(r['cues']) for r in rows)},ensure_ascii=False))
+print(json.dumps({'video':'V125','scene_count':len(rows),'estimated_duration_sec':round(sum(chap.values()),2),'chapters':chap,'cue_count':sum(len(r['cues']) for r in rows)},ensure_ascii=False))
