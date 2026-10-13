@@ -1,69 +1,44 @@
-# V124 Sources — 沖縄は本当に「辺野古を受け入れた」のか？
+# V125 Sources — なぜ「問題大臣」をすぐ辞めさせると国民が損をするのか？
 
-## 2026年沖縄県知事選
-- 沖縄県「知事のプロフィール」更新 2026-09-30
-  - 古謝玄太氏が2026年9月に沖縄県知事へ初当選したことを確認。
-  - https://www.pref.okinawa.jp/kensei/kencho/1001519/1001520.html
-- RBC琉球放送「沖縄県知事選挙 古謝玄太氏が当選確実」2026-09-13
-  - 古謝氏の初当選と候補者プロフィール。
-  - https://newsdig.tbs.co.jp/articles/rbc/2940638
-- テレビ朝日「沖縄12年ぶり“保守知事”誕生」2026-09-14
-  - 古謝氏の当選後発言。暮らし、物価高、新産業、子育てを優先分野として挙げた。
-  - https://news.tv-asahi.co.jp/news_society/articles/900199577.html
-- 琉球新報「沖縄県知事選2026 候補者に聞いた」2026-08-28
-  - 古謝氏は辺野古移設容認と「現実的解決策」、県民所得向上等を掲げた。
-  - https://ryukyushimpo.jp/special/qahome-okinawa-governor-election2026.html
-- 琉球新報「知事選・政策点検4」2026-08-23
-  - 主要候補が物価高・県民所得等を重点政策としていたことを確認。
-  - https://ryukyushimpo.jp/politics/entry-5476862.html
-- テレビ朝日 / ABEMA NEWS 2026-09-17
-  - 出口調査で期待政策として景気・物価高対策が基地問題を上回ったとの報道。出口調査は母集団全体の完全な測定ではないため、動画では「態度の消滅」ではなく優先順位変化の示唆として扱う。
-  - https://news.tv-asahi.co.jp/news_society/articles/900199886.html
+## 簗和生農林水産大臣をめぐる2026年10月の状況
+- テレビ朝日「これまでの経緯 高市総理『事実なら本当に不適切』 簗農水大臣“予算カット”発言」2026-10-13
+  - 簗氏が発言を認め、撤回・謝罪した経緯。高市首相の対応。
+  - https://news.tv-asahi.co.jp/news_politics/articles/900201028.html
+- テレビ朝日「簗大臣釈明『高揚感で誇張』 『圧力なかった』国交省が調査結果公表」2026-10-07
+  - 国交省は簗氏から予算削減の圧力はなかったとの調査結果。動画では「政治的報復として実際に削らせた」と断定しない。
+  - https://news.tv-asahi.co.jp/news_politics/articles/900201305.html
+- テレビ朝日「予算カット発言で農政停滞の懸念」2026-10-13
+  - 農水省内のいわゆる「お支えチーム」、農家からの農政停滞への懸念。
+  - https://news.tv-asahi.co.jp/news_economy/articles/900201775.html
+- テレビ朝日「予算カット発言の簗農水大臣 予算委の焦点に」2026-10-13
+  - 野党の問責検討、千葉県の水害被災地視察取りやめ等、10月13日時点の状況。
+  - https://news.tv-asahi.co.jp/news_politics/articles/900201777.html
+- 広島ホームテレビ「高市総理 簗大臣発言『本当にダサい』 続投の是非『しっかり考える』」2026-10-13
+  - 高市首相が行政運営を続けてよいかを含め考える旨を表明。
+  - https://www.home-tv.co.jp/news/content/?news_id=000539844
 
-## 2019年県民投票
-- 沖縄県議会「県民投票の結果を尊重し、辺野古沿岸部の埋立工事を直ちに中止し、新たな米軍基地建設を断念することを求める決議」
-  - 投票資格者1,153,600人、投票605,396人、反対434,273票（71.7%）、賛成114,933票（19.0%）、どちらでもない52,682票（8.7%）。
-  - https://www.pref.okinawa.jp/_res/projects/default_project/_page_/001/016/910/2ketugi.pdf
+## 日本の内閣・官僚制
+- Tomohito Shinoda, “The Japanese prime minister and the executive institutional setting,” Asian Journal of Comparative Politics, 2023, 8(1):68–82.
+  - 戦後日本の首相・内閣・官僚制の制度配置、頻繁な内閣改造、短い閣僚任期が省庁統制と官僚依存へ与えた影響を論じる。
+  - https://journals.sagepub.com/doi/10.1177/20578911221107189
+  - 研究中では、吉田茂期の多数の閣僚登用、岸信介期以降の頻繁な一括改造、短期在任閣僚によるベテラン官僚への依存が整理されている。
+- 農林水産省『平成19年度 食料・農業・農村の動向』等
+  - 2007年の農水行政・閣僚交代を確認する公的資料。
+  - https://www.maff.go.jp/j/pr/annual/2007/pdf/zenbun.pdf
 
-## 基地集中・歴史
-- 沖縄県「令和8年第1回沖縄県議会」
-  - 国土面積約0.6%の沖縄県に在日米軍専用施設面積の約70.3%が集中。
-  - https://www.pref.okinawa.jp/kensei/kencho/1001519/1001591/1038323/1038392.html
-- 沖縄県「沖縄の米軍基地」
-  - 戦後の米軍基地形成、本島における基地面積等の基礎情報。
-  - https://www.pref.okinawa.jp/kyoiku/kodomo/1002657/1002668.html
-- 外務省「SACO Final Report」1996-12-02
-  - 普天間飛行場返還と代替施設の条件、当時の5〜7年以内返還目標。
-  - https://www.mofa.go.jp/region/n-america/us/security/96saco2.html
-- 名護市「移設問題の動向（年表）」
-  - 1997年名護市民投票で条件付き反対を含む反対票が過半数、1999年の辺野古沿岸域への移設先発表と政府方針。
-  - https://www.city.nago.okinawa.jp/kurashi/2018071900226/
-
-## 2013年以降・工事・代執行
-- 防衛省『令和8年版防衛白書』「在日米軍再編に向けた取組」
-  - 2013年埋立承認、2018年辺野古側埋立開始、2026年5月時点で辺野古側海域の埋立進捗約99.5%。
-  - https://www.mod.go.jp/j/press/wp/wp2026/html/n320402000.html
-- 国土交通省 2023-09-19大臣会見
-  - 設計変更承認を巡る司法判断確定後の代執行手続に関する政府説明。
-  - https://www.mlit.go.jp/report/interview/daijin230919.html
-
-## 政治学・学術アプローチ
-- Christopher Wlezien / Philip Moniz, “Issue Salience and Political Decisions,” Oxford Research Encyclopedia of Politics, 2020.
-  - salienceを、争点への重要度・注意と投票判断の関係として整理。
-  - https://academic.oup.com/edited-volume/62239/chapter-abstract/550726721
-- Steven Weldon / Denver McNeney, “Issue Voting: Modern and Classic Accounts,” Oxford Research Encyclopedia of Politics, 2019.
-  - 有権者の争点認知と候補選択が理想化された政策一致モデルほど単純でないことを整理。
-  - https://academic.oup.com/edited-volume/62239/chapter-abstract/550812134
-- Douglas A. Hibbs, “Voting and the Macroeconomy,” Oxford Handbook of Political Economy, 2009.
-  - prospective / retrospective economic votingを整理。
-  - https://academic.oup.com/edited-volume/44403/chapter-abstract/373580909
-- Miyume Tanji / Miyagi Yasuhiro, “Okinawa and the Paradox of Public Opinion: Base Politics and Protest in Nago City, 1997-2007,” Asia-Pacific Journal / Cambridge Core, online 2025.
-  - 名護市民投票後も基地受入れに前向きな首長が選出される「世論の逆説」を扱う。
-  - https://www.cambridge.org/core/journals/asia-pacific-journal/article/okinawa-and-the-paradox-of-public-opinion-base-politics-and-protest-in-nago-city-19972007/D6BDF269BF72F7DB6CB616E42230277F
+## 閣僚交代と政府パフォーマンス
+- Florian Grotz, Corinna Kroeber, Marko Kukec, “Cabinet Reshuffles and Prime-Ministerial Performance in Central and Eastern Europe,” Government and Opposition, 2024, 59:1252–1273. First published online 2022.
+  - 1990〜2018年の中東欧11か国131内閣を分析。頻繁な閣僚交代が首相パフォーマンスの低下と関連することを報告。
+  - 新任閣僚の政策専門性、閣内対立、官僚統制の難しさを想定メカニズムとして議論。
+  - https://www.cambridge.org/core/journals/government-and-opposition/article/cabinet-reshuffles-and-primeministerial-performance-in-central-and-eastern-europe/1E89018901487D822AC685DBE50DDF5B
+- Institute for Government, “Government reshuffles: the case for keeping ministers in post longer,” 2020.
+  - 過度の閣僚交代が担当分野の理解、長期改革、政策継続性を損ねる可能性を指摘。
+  - https://www.instituteforgovernment.org.uk/publication/report/government-reshuffles-case-keeping-ministers-post-longer
 
 ## 表現上の境界
-- 2026年知事選の勝利を「沖縄県民が辺野古移設そのものに賛成へ転じた」と断定しない。
-- 2019年県民投票を「現在も同じ強度の反対が固定されている」証拠として扱わない。
-- 「慣れ」「諦め」「現実適応」「政策転向」は仮説として区別し、選挙結果だけから心理状態を断定しない。
-- 国・県双方の制度上の正当性と主張を区別し、動画自体は辺野古移設への賛否を誘導しない。
-- 出口調査は調査時点・回答者・質問設計に依存するため、県民全体の単一意思として扱わない。
+- 簗氏が実際に政治的報復として道路予算を削減させたとは断定しない。国交省は圧力を確認していない。
+- 「お支えチーム」は報道に基づく表現であり、農水省公式名称として断定しない。
+- 中東欧11か国131内閣の研究結果を、日本の個別大臣に機械的に因果適用しない。
+- 頻繁な閣僚交代のコストを示す研究は「問題大臣を辞任させてはいけない」という結論を意味しない。
+- 動画公開時点で簗氏の進退が変化している可能性があるため、本編では2026年10月13日時点の状況として明示する。
+- 「交代コスト／続投コスト」の二曲線は実証推計値ではなく、複数の制度的コストを整理する説明モデルとして提示する。
