@@ -515,7 +515,7 @@ export function* playMeaningScene(view:View2D,scene:Scene):ThreadGenerator{
   view.add(subtitleBacking);
   view.add(subtitleTextLayer);
 
-  const stages=buildScene(contentLayer,scene,plan);
+  console.log('V126_SCENE_START',scene.id,scene.motif,scene.duration);\n  const stages=buildScene(contentLayer,scene,plan);\n  console.log('V126_SCENE_BUILT',scene.id,stages.length);
 
   rr(headingLayer,0,-474,1920,132,'#061018',0);
   const part=scene.chapter==='prologue'?'PROLOGUE':scene.chapter==='epilogue'?'EPILOGUE':scene.chapter.toUpperCase();
