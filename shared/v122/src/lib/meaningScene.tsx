@@ -7,177 +7,530 @@ import visualPlan from '../../content/visual_plan.json';
 type Cue={text:string;display:string;start:number;end:number};
 type Scene={id:string;chapter:string;motif:string;title:string;narration:string;cues:Cue[];duration:number};
 type Plan={kind:string;motion:string;labels:string[]};
+
 export const MICRO_BEATS_PER_SCENE=24;
 
-const K={bg:'#071018',deep:'#0D1B24',navy:'#132A36',slate:'#29434F',paper:'#F1EBDD',muted:'#9CAEB5',red:'#D45752',gold:'#D5AE68',cyan:'#6DB8BD',teal:'#6E9B8D',blue:'#6C88A5',green:'#738D72',brown:'#765F4B',sand:'#A99069',ice:'#A8C7CF',ink:'#17252E',soil:'#4E4036',orange:'#BD7C4D',white:'#F7F4EC',black:'#04090D',sea:'#173C4D',sky:'#496C7A',gray:'#65747A',rice:'#B7A86A'};
+const K={
+  bg:'#071018',deep:'#0B1720',navy:'#132A36',slate:'#29434F',paper:'#F2EEE5',muted:'#9BAAB0',
+  red:'#D45959',gold:'#D4AE69',cyan:'#6FBAC0',teal:'#79A38E',blue:'#718AA6',green:'#718F74',
+  brown:'#775F4B',sand:'#A98F69',ice:'#AFCAD2',ink:'#17252E',soil:'#514238',orange:'#C07F50',
+  white:'#FAF7F0',black:'#03080C',wine:'#4A1F2B',pink:'#C88492',cream:'#D8C7A8',violet:'#756B91'
+};
 const F='Noto Sans JP, Noto Sans CJK JP, sans-serif';
-const hash=(s:string)=>[...s].reduce((a,c)=>((a*33)^c.charCodeAt(0))>>>0,125);
+
+const hash=(s:string)=>[...s].reduce((a,c)=>((a*33)^c.charCodeAt(0))>>>0,126);
 const tx=(s:string,x:number,y:number,sz=30,col=K.paper,w=700)=>new Txt({text:s,x,y,fontFamily:F,fontSize:sz,fill:col,fontWeight:w});
-function rr(p:Node,x:number,y:number,w:number,h:number,fill:string,r=10,stroke?:string){const q=new Rect({x,y,width:w,height:h,fill,radius:r,stroke:stroke??fill,lineWidth:stroke?2:0});p.add(q);return q}
-function cc(p:Node,x:number,y:number,r:number,fill:string){const q=new Circle({x,y,width:r*2,height:r*2,fill});p.add(q);return q}
-function ln(p:Node,pts:[number,number][],col=K.muted,w=5){const q=new Line({points:pts,stroke:col,lineWidth:w,lineCap:'round',lineJoin:'round'});p.add(q);return q}
-function label(p:Node,s:string,x:number,y:number,col=K.paper,sz=25,w=700){const q=tx(s,x,y,sz,col,w);p.add(q);return q}
-function card(p:Node,s:string,x:number,y:number,w=270,col=K.cyan){rr(p,x,y,w,68,K.deep,12,col);label(p,s,x,y,col,22)}
-function person(p:Node,x:number,y:number,s=.7,col=K.paper){const g=new Node({x,y,scale:s});p.add(g);cc(g,0,-58,24,col);rr(g,0,24,62,118,col,18);ln(g,[[-20,-4],[-58,56]],col,11);ln(g,[[20,-4],[58,56]],col,11);ln(g,[[-18,78],[-25,150]],col,13);ln(g,[[18,78],[25,150]],col,13);return g}
-function sitting(p:Node,x:number,y:number,s=.7,col=K.paper){const g=new Node({x,y,scale:s});p.add(g);cc(g,0,-58,24,col);rr(g,0,20,60,110,col,18);ln(g,[[-18,66],[-60,100]],col,12);ln(g,[[18,66],[60,100]],col,12);ln(g,[[-60,100],[-15,110]],col,12);ln(g,[[60,100],[15,110]],col,12);return g}
-function desk(p:Node,x:number,y:number,w=520){rr(p,x,y,w,28,K.brown,4);ln(p,[[x-w*.4,y+12],[x-w*.4,y+110]],K.paper,7);ln(p,[[x+w*.4,y+12],[x+w*.4,y+110]],K.paper,7)}
-function paper(p:Node,x:number,y:number,w=320,h=410,title=''){rr(p,x,y,w,h,'#EAE4D8',8,'#899497');if(title)label(p,title,x,y-h*.38,K.ink,23);for(let i=0;i<5;i++)ln(p,[[x-w*.34,y-h*.14+i*48],[x+w*(i===4?.12:.34),y-h*.14+i*48]],'#90989A',4)}
-function monitor(p:Node,x:number,y:number,w=430,h=240){rr(p,x,y,w,h,'#1B303A',12,K.muted);rr(p,x,y,w-34,h-34,K.black,8);ln(p,[[x,y+h/2],[x,y+h/2+70]],K.muted,9);ln(p,[[x-90,y+h/2+72],[x+90,y+h/2+72]],K.muted,9)}
-function building(p:Node,x:number,y:number,w=360,h=420,title=''){rr(p,x,y,w,h,'#263D47',8,K.muted);for(let r=0;r<4;r++)for(let c=0;c<3;c++)rr(p,x-95+c*95,y-110+r*80,48,46,'#5F7A86',4);if(title)label(p,title,x,y-h*.58,K.paper,24)}
-function folder(p:Node,x:number,y:number,w=280,h=190,col=K.gold,title=''){rr(p,x,y,w,h,'#2B3E47',10,col);rr(p,x-w*.3,y-h*.55,w*.42,38,col,6);if(title)label(p,title,x,y,K.paper,22)}
-function bar(p:Node,x:number,y:number,w:number,v:number,col:string,txtLabel?:string){rr(p,x,y,w,30,'#243842',6);rr(p,x-w*(1-v)/2,y,Math.max(8,w*v),30,col,6);if(txtLabel)label(p,txtLabel,x,y-42,col,21)}
-function timeline(p:Node,y:number,items:{x:number;year:string;col:string}[]){ln(p,[[items[0].x,y],[items[items.length-1].x,y]],K.muted,7);for(const it of items){cc(p,it.x,y,14,it.col);label(p,it.year,it.x,y+48,it.col,21)}}
-function crowd(p:Node,x:number,y:number,n=9,col=K.paper){for(let i=0;i<n;i++){const xx=x+(i-(n-1)/2)*76;cc(p,xx,y-35-(i%2)*11,15,col);rr(p,xx,y+8,31,58,col,11)}}
-function farmField(p:Node,wet=false){rr(p,0,-120,1920,600,wet?'#4B6570':'#334D39',0);rr(p,0,220,1920,360,wet?'#536D71':'#745D3E',0);for(let i=0;i<19;i++){const x=-850+i*95;ln(p,[[x,280],[x+10,105]],wet?K.rice:K.gold,5);ln(p,[[x+10,160],[x-20,130]],wet?K.rice:K.gold,4)}}
-function ministryShell(p:Node,night=false){rr(p,0,0,1920,920,night?'#0B1720':'#1A3039',0);building(p,0,30,760,590,'農林水産省');for(let i=0;i<6;i++)rr(p,-250+(i%3)*250,-80+Math.floor(i/3)*180,95,90,night?'#D8B86F':'#708A92',4)}
-function parliament(p:Node){rr(p,0,0,1920,920,'#20282D',0);rr(p,0,-40,920,500,'#39464B',8,K.paper);for(let i=0;i<5;i++)rr(p,-320+i*160,110,110,70,'#4C5B60',4);rr(p,0,-250,480,100,'#2E3A3F',5)}
-function chair(p:Node,x:number,y:number,col=K.red){rr(p,x,y,150,180,col,18);rr(p,x,y-105,150,92,col,25);ln(p,[[x-55,y+80],[x-70,y+160]],K.paper,10);ln(p,[[x+55,y+80],[x+70,y+160]],K.paper,10)}
-function scale(p:Node,x:number,y:number){ln(p,[[x,y-180],[x,y+130]],K.paper,9);ln(p,[[x-280,y-80],[x+280,y-80]],K.paper,8);ln(p,[[x-260,y-80],[x-310,y+80]],K.paper,5);ln(p,[[x+260,y-80],[x+310,y+80]],K.paper,5)}
-function tree(p:Node,x:number,y:number,s=1,col=K.green){ln(p,[[x,y+80*s],[x,y-30*s]],K.brown,14*s);cc(p,x,y-70*s,55*s,col);cc(p,x-35*s,y-45*s,35*s,col);cc(p,x+35*s,y-45*s,35*s,col)}
-function ship(p:Node,x:number,y:number,s=1){rr(p,x,y,520*s,150*s,'#405A63',20);ln(p,[[x-220*s,y-75*s],[x+220*s,y-75*s]],K.paper,6);rr(p,x,y-150*s,220*s,120*s,'#243842',6);cc(p,x,y-150*s,38*s,K.gold)}
-function factory(p:Node){rr(p,0,0,1920,920,'#17242B',0);for(let i=0;i<5;i++){rr(p,-680+i*340,70,250,430,'#2A3B42',4);rr(p,-680+i*340,-150,150,110,'#3E555E',3)}}
-function axes(p:Node,x=0,y=0){ln(p,[[x-600,y+240],[x-600,y-250]],K.paper,5);ln(p,[[x-600,y+240],[x+650,y+240]],K.paper,5)}
-function stages8(){return Array.from({length:8},()=>new Node({opacity:0}))}
-function worldBase(root:Node,scene:Scene){const pal=['#071018','#0A1620','#101C25','#101F28','#151D23','#0B171D','#11191F','#0E2027'];rr(root,0,0,1920,1080,pal[hash(scene.motif)%pal.length],0);const h=hash(scene.motif);for(let i=0;i<12;i++)cc(root,-850+((h>>(i%11))%1700),-360+((h>>(i%9+1))%590),1.5+(i%3),i%2?K.gold:K.cyan);rr(root,0,344,1920,3,'#233A45',0)}
+
+function rr(p:Node,x:number,y:number,w:number,h:number,fill:string,r=10,stroke?:string){
+  const q=new Rect({x,y,width:w,height:h,fill,radius:r,stroke:stroke??fill,lineWidth:stroke?2:0});
+  p.add(q);return q;
+}
+function cc(p:Node,x:number,y:number,r:number,fill:string){
+  const q=new Circle({x,y,width:r*2,height:r*2,fill});p.add(q);return q;
+}
+function ln(p:Node,pts:[number,number][],col=K.muted,w=5){
+  const q=new Line({points:pts,stroke:col,lineWidth:w,lineCap:'round',lineJoin:'round'});p.add(q);return q;
+}
+function label(p:Node,s:string,x:number,y:number,col=K.paper,sz=25,w=700){
+  const q=tx(s,x,y,sz,col,w);p.add(q);return q;
+}
+function card(p:Node,s:string,x:number,y:number,w=280,col=K.cyan){
+  rr(p,x,y,w,70,K.deep,12,col);label(p,s,x,y,col,22);
+}
+function person(p:Node,x:number,y:number,s=.7,col=K.paper){
+  const g=new Node({x,y,scale:s});p.add(g);
+  cc(g,0,-62,24,col);rr(g,0,20,62,120,col,18);
+  ln(g,[[-18,-4],[-58,52]],col,11);ln(g,[[18,-4],[58,52]],col,11);
+  ln(g,[[-18,80],[-28,152]],col,13);ln(g,[[18,80],[28,152]],col,13);
+  return g;
+}
+function sitting(p:Node,x:number,y:number,s=.7,col=K.paper){
+  const g=new Node({x,y,scale:s});p.add(g);
+  cc(g,0,-58,24,col);rr(g,0,15,60,105,col,18);
+  ln(g,[[-18,56],[-70,85]],col,12);ln(g,[[18,56],[70,85]],col,12);
+  ln(g,[[-70,85],[-20,112]],col,12);ln(g,[[70,85],[20,112]],col,12);
+  return g;
+}
+function table(p:Node,x:number,y:number,w=620){
+  rr(p,x,y,w,34,K.brown,5);
+  ln(p,[[x-w*.4,y+15],[x-w*.4,y+125]],K.cream,8);
+  ln(p,[[x+w*.4,y+15],[x+w*.4,y+125]],K.cream,8);
+}
+function desk(p:Node,x:number,y:number,w=620){
+  rr(p,x,y,w,30,K.brown,5);
+  ln(p,[[x-w*.4,y+14],[x-w*.4,y+110]],K.paper,7);
+  ln(p,[[x+w*.4,y+14],[x+w*.4,y+110]],K.paper,7);
+}
+function phone(p:Node,x:number,y:number,w=260,h=500){
+  rr(p,x,y,w,h,'#1A2228',34,K.muted);rr(p,x,y,w-28,h-48,K.black,28);
+}
+function paper(p:Node,x:number,y:number,w=320,h=420,title=''){
+  rr(p,x,y,w,h,'#EEE7DB',8,'#90999C');
+  if(title)label(p,title,x,y-h*.38,K.ink,22);
+  for(let i=0;i<5;i++)ln(p,[[x-w*.34,y-h*.14+i*50],[x+w*(i===4?.08:.34),y-h*.14+i*50]],'#929A9C',4);
+}
+function monitor(p:Node,x:number,y:number,w=470,h=270){
+  rr(p,x,y,w,h,'#1B3039',12,K.muted);rr(p,x,y,w-32,h-32,K.black,8);
+  ln(p,[[x,y+h/2],[x,y+h/2+65]],K.muted,8);ln(p,[[x-85,y+h/2+66],[x+85,y+h/2+66]],K.muted,8);
+}
+function building(p:Node,x:number,y:number,w=430,h=480,title=''){
+  rr(p,x,y,w,h,'#263B45',8,K.muted);
+  for(let r0=0;r0<4;r0++)for(let c0=0;c0<3;c0++)rr(p,x-110+c0*110,y-130+r0*86,54,48,'#66808A',4);
+  if(title)label(p,title,x,y-h*.58,K.paper,24);
+}
+function folder(p:Node,x:number,y:number,w=280,h=180,col=K.gold,title=''){
+  rr(p,x,y,w,h,'#2A3E47',10,col);rr(p,x-w*.28,y-h*.55,w*.38,38,col,6);
+  if(title)label(p,title,x,y,K.paper,21);
+}
+function bar(p:Node,x:number,y:number,w:number,v:number,col:string,textLabel?:string){
+  rr(p,x,y,w,30,'#253942',6);rr(p,x-w*(1-v)/2,y,Math.max(8,w*v),30,col,6);
+  if(textLabel)label(p,textLabel,x,y-42,col,20);
+}
+function axis(p:Node,x=0,y=0){
+  ln(p,[[x-600,y+240],[x-600,y-250]],K.paper,5);ln(p,[[x-600,y+240],[x+650,y+240]],K.paper,5);
+}
+function crowd(p:Node,x:number,y:number,n=8,col=K.paper){
+  for(let i=0;i<n;i++){const xx=x+(i-(n-1)/2)*88;cc(p,xx,y-34-(i%2)*8,15,col);rr(p,xx,y+10,32,60,col,10);}
+}
+function heart(p:Node,x:number,y:number,s=1,col=K.red){
+  cc(p,x-18*s,y-12*s,28*s,col);cc(p,x+18*s,y-12*s,28*s,col);
+  const q=new Line({points:[[x-42*s,y-8*s],[x,y+52*s],[x+42*s,y-8*s]],closed:true,fill:col,stroke:col,lineWidth:2});p.add(q);return q;
+}
+function book(p:Node,x:number,y:number,w=250,h=170,col=K.blue,title=''){
+  rr(p,x-w*.26,y,w*.48,h,col,6,K.paper);rr(p,x+w*.26,y,w*.48,h,col,6,K.paper);
+  ln(p,[[x,y-h*.42],[x,y+h*.42]],K.paper,3);if(title)label(p,title,x,y,K.paper,18);
+}
+function cafe(p:Node){rr(p,0,0,1920,920,'#241D1C',0);rr(p,0,-250,1920,220,'#362725',0);for(let i=0;i<4;i++)cc(p,-650+i*430,-250,70,K.gold);table(p,0,160,780);}
+function izakaya(p:Node){rr(p,0,0,1920,920,'#261A1C',0);rr(p,0,-240,1920,240,'#3B2226',0);for(let i=0;i<5;i++)rr(p,-720+i*360,-250,170,76,'#B76E52',8);table(p,0,180,820);}
+function station(p:Node){rr(p,0,0,1920,920,'#101A23',0);ln(p,[[-850,230],[850,230]],K.paper,12);ln(p,[[-850,280],[850,280]],K.muted,4);for(let i=0;i<5;i++)rr(p,-700+i*350,-40,240,360,'#1B3039',6,K.slate);label(p,'23:18',680,-280,K.gold,32);}
+function lecture(p:Node){rr(p,0,0,1920,920,'#1A252C',0);for(let r0=0;r0<4;r0++)for(let c0=0;c0<5;c0++)rr(p,-620+c0*310,-120+r0*115,230,70,'#32454D',6);rr(p,0,-310,900,90,'#222E34',4);}
+function dorm(p:Node){rr(p,0,0,1920,920,'#20292D',0);for(let i=0;i<5;i++){rr(p,-700+i*350,-20,240,420,'#33444A',8);rr(p,-700+i*350,-20,120,250,'#182328',5);label(p,'R'+(i+1),-700+i*350,-190,K.muted,18);}ln(p,[[-900,245],[900,245]],K.cream,8);}
+function office(p:Node){rr(p,0,0,1920,920,'#17242B',0);for(let i=0;i<4;i++){desk(p,-570+i*380,180,300);monitor(p,-570+i*380,25,220,130);}for(let i=0;i<4;i++)rr(p,-570+i*380,-235,270,110,'#263C45',8);}
+function wedding(p:Node){rr(p,0,0,1920,920,'#2A2325',0);for(let i=0;i<5;i++){person(p,-600+i*300,80,.34,i%2?K.paper:K.cream);person(p,-520+i*300,80,.34,i%2?K.cream:K.paper);}heart(p,0,-245,.8,K.red);}
+function worldMap(p:Node){rr(p,0,0,1920,920,'#10222C',0);for(let i=0;i<18;i++){const h=hash('m'+i);cc(p,-760+(h%1520),-220+((h>>5)%450),28+(i%3)*5,[K.cyan,K.gold,K.teal,K.red][i%4]);}}
+function timeline(p:Node,y:number,items:{x:number;label:string;col:string}[]){ln(p,[[items[0].x,y],[items[items.length-1].x,y]],K.muted,7);for(const it of items){cc(p,it.x,y,14,it.col);label(p,it.label,it.x,y+48,it.col,20);}}
+function network(p:Node,nodes:{x:number;y:number;t:string;c:string}[]){
+  for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++)if((i+j)%2===0)ln(p,[[nodes[i].x,nodes[i].y],[nodes[j].x,nodes[j].y]],K.slate,3);
+  for(const n of nodes){cc(p,n.x,n.y,52,n.c);label(p,n.t,n.x,n.y,K.black,18);}
+}
+function stages8(){return Array.from({length:8},()=>new Node({opacity:0}));}
+function worldBase(root:Node,scene:Scene){
+  const pal=['#071018','#0B141C','#101C24','#101E26','#151B21','#0C171D','#121A21','#0F2027'];
+  rr(root,0,0,1920,1080,pal[hash(scene.motif)%pal.length],0);
+  const h=hash(scene.motif);
+  for(let i=0;i<10;i++)cc(root,-850+((h>>(i%9))%1700),-350+((h>>(i%8+1))%550),1.5+(i%3),i%2?K.gold:K.cyan);
+  rr(root,0,344,1920,3,'#233A45',0);
+}
 
 function buildScene(root:Node,scene:Scene,plan:Plan):Node[]{
- worldBase(root,scene);const s=stages8();s.forEach(n=>root.add(n));const[a,b,c,d,e,f,g,h]=s;const L=plan.labels;
- switch(scene.motif){
-  case'flooded_ricefield':farmField(a,true);for(let i=0;i<8;i++)ln(b,[[-680+i*180,150],[-620+i*180,245]],K.rice,7);rr(c,530,160,300,150,'#31454B',20);cc(c,430,235,55,K.black);cc(c,620,235,55,K.black);person(d,-480,170,.56,K.paper);folder(e,-80,-120,290,180,K.red,'災害');label(f,'収穫の季節',520,-220,K.gold,31);label(g,'政治は東京で炎上',0,285,K.red,31);label(h,'田んぼは待たない',0,-300,K.paper,42);break;
-  case'yana_statement_news':monitor(a,0,-30,1160,570);label(b,'「予算を大幅にカット」',0,-145,K.white,43);card(c,'発言を認める',-360,85,300,K.red);card(d,'撤回・謝罪',0,85,280,K.gold);card(e,'行政の公平性',360,85,330,K.cyan);label(f,'2026年10月',0,220,K.muted,26);label(g,'発言 ≠ 実行の確認',0,290,K.paper,29);label(h,'まず事実を分ける',0,-305,K.gold,39);break;
-  case'fact_check_pressure':rr(a,0,0,1920,920,'#17232A',0);paper(b,-450,0,460,560,'発言');paper(c,450,0,460,560,'国交省調査');card(d,'圧力確認なし',450,-60,300,K.cyan);card(e,'事業進捗等で配分',450,55,350,K.gold);card(f,'政治的報復は未確認',0,250,410,K.red);ln(g,[[-150,0],[150,0]],K.paper,6);label(h,'確認済み事実の境界',0,-310,K.gold,40);break;
-  case'resignation_reflex':chair(a,0,80,K.red);person(b,-520,120,.55,K.paper);card(c,'問題発生',-520,-100,280,K.red);ln(d,[[-300,30],[-120,30]],K.gold,9);chair(e,420,80,K.cyan);card(f,'後任へ',420,-100,260,K.cyan);label(g,'辞めさせれば正常化？',0,280,K.paper,34);label(h,'反射的な物語',0,-300,K.gold,41);break;
-  case'ministry_night_windows':ministryShell(a,true);for(let i=0;i<4;i++)folder(b,-500+i*330,210,260,150,[K.red,K.gold,K.cyan,K.teal][i],['国会答弁','米価','災害','備蓄'][i]);label(c,'23:40',650,-250,K.gold,34);person(d,-250,170,.38,K.paper);person(e,20,170,.38,K.paper);person(f,290,170,.38,K.paper);label(g,'行政の時計は進む',0,290,K.paper,31);label(h,'政治の決着を待たない',0,-310,K.gold,39);break;
-  case'two_invoices':paper(a,-410,0,470,570,'続投の請求書');paper(b,410,0,470,570,'交代の請求書');['国会対応','信頼低下'].forEach((x,i)=>card(c,x,-410,-40+i*105,300,K.red));['引継ぎ','学習'].forEach((x,i)=>card(d,x,410,-40+i*105,300,K.cyan));label(e,'どちらも0円ではない',0,255,K.paper,32);scale(f,0,-10);label(g,'誰が払う？',0,-220,K.gold,31);label(h,'大臣交代の値段',0,-310,K.white,43);break;
-  case'central_question_cost':rr(a,0,0,1920,920,'#080F15',0);scale(b,0,50);card(c,'政治責任',-310,135,300,K.red);card(d,'政策継続性',310,135,330,K.cyan);label(e,'簗氏を守る話ではない',0,-175,K.muted,29);label(f,'辞任を否定する話でもない',0,-110,K.muted,29);label(g,'境界はどこか',0,260,K.gold,35);label(h,'制度の問題へ',0,-300,K.paper,43);break;
-  case'kasumigaseki_morning':rr(a,0,0,1920,920,'#31454E',0);building(b,0,20,700,560,'農林水産省');crowd(c,0,265,11,K.paper);label(d,'08:00',-700,-250,K.gold,36);['米需給','漁業','農地','畜産'].forEach((x,i)=>card(e,x,-510+i*340,-165,250,[K.cyan,K.gold,K.teal,K.red][i]));label(f,'別々の仕事',-320,315,K.paper,28);label(g,'同じ建物',320,315,K.paper,28);label(h,'巨大行政機械が始動',0,-315,K.gold,39);break;
-  case'ministry_machine':rr(a,0,0,1920,920,'#15252D',0);for(let i=0;i<5;i++){cc(b,-520+i*260,30,72,[K.cyan,K.gold,K.teal,K.blue,K.red][i]);label(b,['本省','地方','研究','自治体','業界'][i],-520+i*260,30,K.black,21)}ln(c,[[-520,120],[520,120]],K.paper,5);folder(d,-390,220,260,150,K.gold,'記録');folder(e,0,220,260,150,K.cyan,'制度');folder(f,390,220,260,150,K.teal,'手続');label(g,'一人より長く生きる',0,-210,K.paper,31);label(h,'組織として続く',0,-300,K.gold,40);break;
-  case'continuity_bureaucracy':rr(a,0,0,1920,920,'#1B242A',0);for(let i=0;i<6;i++)folder(b,-600+i*240,-40,190,130,i%2?K.cyan:K.gold,['1990','2000','2010','2020','2025','2026'][i]);ln(c,[[-700,170],[700,170]],K.paper,8);card(d,'昨日',-430,260,230,K.muted);card(e,'今日',0,260,230,K.cyan);card(f,'明日',430,260,230,K.gold);label(g,'記憶を運ぶ',0,-220,K.paper,32);label(h,'官僚制の継続性',0,-310,K.gold,40);break;
-  case'minister_desk_democracy':desk(a,0,190,760);person(b,0,70,.58,K.paper);['価格保護','競争','食料安保','財政'].forEach((x,i)=>card(c,x,-510+i*340,-120,250,[K.red,K.cyan,K.gold,K.teal][i]));label(d,'専門知識',-360,240,K.cyan,31);label(e,'価値判断',360,240,K.red,31);ln(f,[[-170,240],[170,240]],K.paper,5);label(g,'民主的正統性',0,-220,K.gold,32);label(h,'だから大臣がいる',0,-310,K.paper,40);break;
-  case'delegation_chain':rr(a,0,0,1920,920,'#10212A',0);['有権者','議会','政府','大臣','官僚'].forEach((x,i)=>{rr(b,-560+i*280,-140+i*75,230,90,'#263B45',10,[K.paper,K.cyan,K.gold,K.red,K.teal][i]);label(b,x,-560+i*280,-140+i*75,K.paper,23)});for(let i=0;i<4;i++)ln(c,[[-445+i*280,-110+i*75],[-395+i*280,-65+i*75]],K.gold,5);label(d,'委任',-400,255,K.paper,28);label(e,'情報格差',0,255,K.red,28);label(f,'統制',400,255,K.cyan,28);label(g,'権限は階段を降りる',0,-250,K.muted,29);label(h,'プリンシパル＝エージェント',0,-320,K.gold,36);break;
-  case'minister_as_helm':rr(a,0,-180,1920,560,K.sea,0);ship(b,0,70,1.05);person(c,0,-80,.38,K.paper);ln(d,[[0,-90],[260,-190]],K.gold,6);card(e,'官僚＝海図と機関',-400,260,360,K.cyan);card(f,'大臣＝操舵',400,260,300,K.red);label(g,'船は同じでも航路は変わる',0,-250,K.paper,31);label(h,'政治が目的地を決める',0,-315,K.gold,39);break;
-  case'handover_cost_seed':rr(a,0,0,1920,920,'#1A242A',0);rr(b,-360,0,300,590,'#27383F',12);rr(c,360,0,300,590,'#27383F',12);label(b,'退任',-360,-230,K.red,30);label(c,'就任',360,-230,K.cyan,30);for(let i=0;i<5;i++)folder(d,-40, -130+i*85,300,65,i%2?K.gold:K.cyan,['判断','経緯','法案','交渉','期限'][i]);ln(e,[[-180,0],[180,0]],K.paper,7);label(f,'知識移転',0,250,K.gold,30);label(g,'ニュースの後ろ側',0,-275,K.muted,27);label(h,'引継ぎコストが始まる',0,-330,K.paper,38);break;
-  case'new_minister_first_day':desk(a,0,200,780);person(b,0,65,.5,K.paper);for(let i=0;i<7;i++)folder(c,-590+(i%4)*390,-175+Math.floor(i/4)*130,280,95,[K.red,K.gold,K.cyan,K.teal][i%4],['米需給','概算要求','輸出','検疫','災害','感染症','国会'][i]);label(d,'就任初日',0,-290,K.gold,34);label(e,'資料は増える',-330,300,K.paper,27);label(f,'時間は減る',330,300,K.red,27);label(g,'知らない論点が連鎖',0,240,K.muted,27);label(h,'一日で理解はできない',0,-340,K.paper,38);break;
-  case'briefing_carousel':rr(a,0,0,1920,920,'#17242B',0);for(let i=0;i<5;i++){const ang=-Math.PI/2+i*Math.PI*2/5;const x=Math.cos(ang)*430,y=Math.sin(ang)*210;folder(b,x,y,250,120,[K.cyan,K.gold,K.red,K.teal,K.blue][i],['説明','面会','国会','会見','翌朝資料'][i])}person(c,0,50,.45,K.paper);label(d,'午前',-640,-250,K.cyan,28);label(e,'午後',640,-250,K.gold,28);label(f,'夜',640,280,K.red,28);label(g,'一つ理解すると三つ増える',0,300,K.paper,29);label(h,'説明は回り続ける',0,-315,K.gold,39);break;
-  case'policy_memory_layers':rr(a,0,0,1920,920,'#191D20',0);['現在制度','法改正','予算折衝','業界妥協','国際交渉'].forEach((x,i)=>{rr(b,0,180-i*105,850-i*90,80,[K.slate,K.blue,K.cyan,K.gold,K.brown][i],8);label(b,x,0,180-i*105,K.white,23)});label(c,'なぜ今こうなっているのか',0,-285,K.paper,32);label(d,'条文',-500,280,K.cyan,25);label(e,'記録',-170,280,K.gold,25);label(f,'慣行',170,280,K.teal,25);label(g,'記憶',500,280,K.red,25);label(h,'政策の地層',0,-335,K.gold,39);break;
-  case'civil_servant_explains':desk(a,0,180,860);person(b,-330,40,.45,K.paper);person(c,330,40,.45,K.cyan);paper(d,0,10,400,340,'これまでの経緯');label(e,'説明',-330,240,K.paper,27);label(f,'質問',330,240,K.cyan,27);label(g,'理解して初めて疑える',0,-230,K.gold,30);label(h,'交代が早いと途中で終わる',0,-310,K.paper,38);break;
-  case'ifg_long_tenure':rr(a,0,0,1920,920,'#17252D',0);label(b,'Institute for Government',0,-260,K.gold,34);for(let i=0;i<5;i++)bar(c,0,-100+i*75,900,[.25,.42,.55,.72,.88][i],[K.red,K.orange,K.gold,K.cyan,K.teal][i],['短期','学習','関係','改革','継続'][i]);label(d,'頻繁な交代',-430,285,K.red,27);label(e,'長期改革',430,285,K.cyan,27);label(f,'担当を理解する時間',0,-180,K.paper,28);label(g,'方向変更のコスト',0,225,K.muted,26);label(h,'在任期間も政策資源',0,-325,K.paper,38);break;
-  case'company_analogy':factory(a);building(b,-520,40,330,420,'工場');building(c,0,40,330,420,'出版社');building(d,520,40,330,420,'病院');chair(e,-520,230,K.red);chair(f,0,230,K.gold);chair(g,520,230,K.cyan);label(h,'責任者が毎年替わる組織',0,-310,K.paper,40);break;
-  case'knowledge_transfer':rr(a,0,0,1920,920,'#101D25',0);cc(b,-450,10,130,K.red);cc(c,450,10,130,K.cyan);label(b,'旧',-450,10,K.black,34);label(c,'新',450,10,K.black,34);for(let i=0;i<6;i++)folder(d,-250+i*100,10,82,56,i<4?K.gold:K.muted,['法','予','業','交','慣','勘'][i]);bar(e,0,220,780,.72,K.cyan,'再インストール 72%');label(f,'再交代',500,220,K.red,26);rr(g,340,220,8,90,K.red,2);label(h,'初期設定から抜けられない',0,-300,K.gold,39);break;
-  case'postwar_diet_corridor':parliament(a);crowd(b,0,220,10,K.paper);label(c,'戦後・永田町',0,-300,K.gold,36);['派閥','人事','政策'].forEach((x,i)=>card(d,x,-350+i*350,-150,270,[K.red,K.gold,K.cyan][i]));label(e,'大臣ポスト',0,20,K.paper,31);label(f,'行政責任者',-300,290,K.cyan,27);label(g,'キャリアの到達点',300,290,K.red,27);label(h,'椅子に二つの意味',0,-350,K.paper,38);break;
-  case'too_many_candidates':chair(a,0,120,K.gold);for(let i=0;i<6;i++)person(b,-650+i*260,120,.35,K.paper);label(c,'大臣の椅子',0,-80,K.gold,29);ln(d,[[-650,260],[650,260]],K.muted,5);label(e,'順番待ち',0,305,K.paper,28);label(f,'議員は多い',-420,-230,K.cyan,27);label(g,'席は少ない',420,-230,K.red,27);label(h,'長く座れば順番は回らない',0,-310,K.paper,38);break;
-  case'yoshida_rotation':rr(a,0,0,1920,920,'#27231F',0);label(b,'吉田茂期',0,-280,K.gold,40);for(let i=0;i<8;i++){paper(c,-610+(i%4)*405,-100+Math.floor(i/4)*180,250,130,'閣僚');label(c,String(i+1),-610+(i%4)*405,-90+Math.floor(i/4)*180,K.ink,22)}timeline(d,290,[{x:-600,year:'1946',col:K.cyan},{x:0,year:'1950',col:K.gold},{x:600,year:'1954',col:K.red}]);label(e,'多数の政治家を起用',0,205,K.paper,29);label(f,'党内統治',-350,-205,K.cyan,26);label(g,'人事',350,-205,K.red,26);label(h,'ポストを回す政治',0,-330,K.paper,38);break;
-  case'kishi_full_reshuffle':rr(a,0,0,1920,920,'#202326',0);for(let i=0;i<5;i++)chair(b,-560+i*280,80,[K.red,K.gold,K.cyan,K.teal,K.blue][i]);label(c,'個別更迭',-420,-150,K.red,29);label(d,'→ 面子・対立',-420,-85,K.muted,25);rr(e,360,-120,520,95,K.deep,12,K.gold);label(e,'内閣全体を一括改造',360,-120,K.gold,27);label(f,'岸信介',360,0,K.paper,28);label(g,'人事技術として定着',0,280,K.paper,30);label(h,'「まとめて替える」慣行',0,-310,K.gold,39);break;
-  case'annual_reshuffle_calendar':rr(a,0,0,1920,920,'#18252C',0);for(let i=0;i<4;i++){paper(b,-570+i*380,15,300,470,['春','夏','秋','冬'][i]);chair(c,-570+i*380,75,[K.red,K.gold,K.cyan,K.teal][i]);};label(d,'内閣改造',0,-260,K.red,36);card(e,'表札交換',-350,280,280,K.cyan);card(f,'名刺刷り直し',0,280,300,K.gold);card(g,'次の予測',350,280,280,K.red);label(h,'年中行事化する人事',0,-325,K.paper,38);break;
-  case'bureaucrat_long_memory':rr(a,0,0,1920,920,'#11212A',0);bar(b,-350,-30,520,.22,K.red,'大臣 1年');bar(c,350,-30,520,.9,K.cyan,'官僚 10年');folder(d,350,135,360,180,K.cyan,'政策記憶');person(e,-350,140,.42,K.paper);person(f,350,140,.42,K.cyan);label(g,'助言への依存',0,285,K.gold,30);label(h,'時間の非対称性が権力になる',0,-315,K.paper,37);break;
-  case'rotation_paradox':rr(a,0,0,1920,920,'#101A22',0);for(let i=0;i<5;i++)person(b,-560+i*280,-80,.3,K.paper);ln(c,[[-560,-10],[0,160],[560,-10]],K.gold,8);building(d,0,170,430,330,'官僚機構');card(e,'政治家を増やす',-420,270,320,K.cyan);card(f,'専門性は薄くなる',420,270,330,K.red);label(g,'意図 ≠ 結果',0,-220,K.gold,32);label(h,'政治家を回して官僚が強くなる',0,-310,K.paper,36);break;
-  case'farm_ministry_2007':ministryShell(a,false);timeline(b,225,[{x:-600,year:'2007.5',col:K.red},{x:0,year:'6月',col:K.gold},{x:600,year:'8月',col:K.cyan}]);chair(c,-420,20,K.red);chair(d,0,20,K.gold);chair(e,420,20,K.cyan);label(f,'農水相が相次いで交代',0,-240,K.paper,33);label(g,'大臣室は不安定',0,300,K.red,28);label(h,'農政の日程は止まらない',0,-315,K.gold,38);break;
-  case'fresh_binder':desk(a,0,190,760);folder(b,-280,20,360,250,K.gold,'新任説明');folder(c,180,20,360,250,K.cyan,'政策資料');label(d,'背表紙は新品',-280,-150,K.paper,28);chair(e,500,150,K.red);label(f,'また交代',500,-20,K.red,29);ln(g,[[-20,90],[320,120]],K.muted,5);label(h,'知識移転を最初から',0,-300,K.gold,39);break;
-  case'budget_deadline':rr(a,0,0,1920,920,'#1A262C',0);['概算要求','国際交渉','台風','災害対応'].forEach((x,i)=>{folder(b,-520+i*350,-30,280,180,[K.gold,K.cyan,K.red,K.teal][i],x);label(c,['9/1','10/20','接近','即時'][i],-520+i*350,95,[K.gold,K.cyan,K.red,K.teal][i],23);});label(d,'政治危機',0,-245,K.red,34);label(e,'行政締切',0,210,K.paper,31);ln(f,[[-620,270],[620,270]],K.gold,8);label(g,'時間だけは進む',0,310,K.gold,29);label(h,'「落ち着くまで休止」はない',0,-315,K.paper,38);break;
-  case'resignation_tv':monitor(a,-430,0,650,420);label(b,'辞任会見',-430,-50,K.white,34);label(c,'10 sec',-430,90,K.red,30);building(d,430,0,520,500,'省庁の裏側');for(let i=0;i<4;i++)folder(e,250+i*120,170,100,80,[K.cyan,K.gold,K.red,K.teal][i]);label(f,'何日も続く',430,270,K.paper,27);ln(g,[[-90,0],[130,0]],K.gold,6);label(h,'テレビの短さ ≠ 行政の長さ',0,-310,K.gold,38);break;
-  case'nameplate_swap':rr(a,0,0,1920,920,'#20282C',0);rr(b,-420,10,430,150,K.brown,8);label(b,'農林水産大臣',-420,10,K.paper,28);['国会','業界','自治体','他省庁'].forEach((x,i)=>cc(c,300+(i%2)*240,-80+Math.floor(i/2)*180,72,[K.red,K.gold,K.cyan,K.teal][i]));for(let i=0;i<4;i++)ln(d,[[-150,10],[300+(i%2)*240,-80+Math.floor(i/2)*180]],K.muted,4);label(e,'表札 5分',-420,180,K.gold,25);label(f,'関係 再構築',420,230,K.paper,29);label(g,'物理交換は速い',-360,290,K.cyan,25);label(h,'関係資本は一瞬で替わらない',0,-310,K.gold,37);break;
-  case'handover_meeting':desk(a,0,180,920);person(b,-360,60,.4,K.muted);person(c,360,60,.4,K.paper);['法案','交渉','会議','未完判断'].forEach((x,i)=>folder(d,-270+i*180,-80,155,100,[K.red,K.gold,K.cyan,K.teal][i],x));ln(e,[[-240,60],[240,60]],K.gold,7);card(f,'前任',-360,270,240,K.muted);card(g,'後任',360,270,240,K.cyan);label(h,'未完の仕事まで受け渡す',0,-305,K.paper,39);break;
-  case'administrative_shadow':rr(a,0,0,1920,920,'#0B1218',0);person(b,-420,30,.5,K.paper);ln(c,[[-420,150],[520,250]],'#33434A',120);chair(d,-420,220,K.red);building(e,420,-10,450,480,'省庁');label(f,'政治の終幕',-420,-180,K.red,29);label(g,'行政の幕開け',420,260,K.cyan,29);label(h,'辞任の後ろに長い影が残る',0,-310,K.gold,38);break;
-  case'comparative_map':rr(a,0,0,1920,920,'#12232D',0);for(let i=0;i<11;i++)cc(b,-600+(i%6)*240,-100+Math.floor(i/6)*180,52,[K.cyan,K.gold,K.red,K.teal][i%4]);label(c,'11か国',-420,240,K.paper,29);label(d,'131内閣',0,240,K.gold,31);label(e,'1990–2018',420,240,K.paper,29);card(f,'閣僚交代',-300,-245,300,K.red);card(g,'首相パフォーマンス',300,-245,390,K.cyan);label(h,'比較政治のデータへ',0,-320,K.gold,39);break;
-  case'study_dataset':rr(a,0,0,1920,920,'#17252C',0);for(let r=0;r<5;r++)for(let c0=0;c0<9;c0++)cc(b,-560+c0*140,-140+r*80,12,(r+c0)%3?K.cyan:K.red);bar(c,0,270,900,.68,K.red,'交代頻度 ↑ → 平均的に性能 ↓');label(d,'131 cabinets',0,-260,K.paper,34);label(e,'国・制度差あり',-330,315,K.muted,25);label(f,'日本へ直輸入不可',330,315,K.gold,25);label(g,'関連を検証',0,-205,K.cyan,27);label(h,'結果よりメカニズムを見る',0,-325,K.paper,38);break;
-  case'expertise_loss':axes(a);ln(b,[[-560,160],[-380,80],[-180,-40],[60,-120],[320,-165],[580,-195]],K.cyan,10);label(c,'専門性',-690,-210,K.paper,24);label(d,'就任',-520,290,K.red,24);label(e,'学習',0,290,K.gold,24);label(f,'統制',520,290,K.cyan,24);card(g,'一時的な能力低下',0,40,340,K.red);label(h,'時間とともに回復',0,-310,K.gold,38);break;
-  case'cabinet_coordination':rr(a,0,0,1920,920,'#11212A',0);const names=['農水','財務','官房','国交','外務'];names.forEach((x,i)=>{const ang=-Math.PI/2+i*Math.PI*2/5;const xx=Math.cos(ang)*430,yy=Math.sin(ang)*210;cc(b,xx,yy,78,[K.red,K.gold,K.cyan,K.teal,K.blue][i]);label(b,x,xx,yy,K.black,22)});for(let i=0;i<5;i++)ln(c,[[0,0],[Math.cos(-Math.PI/2+i*Math.PI*2/5)*350,Math.sin(-Math.PI/2+i*Math.PI*2/5)*170]],K.muted,4);label(d,'交渉履歴',0,0,K.paper,26);label(e,'担当交代',0,285,K.red,27);label(f,'関係地図を描き直す',0,-245,K.paper,29);label(g,'省庁間調整',0,220,K.cyan,25);label(h,'失うのは知識だけではない',0,-315,K.gold,37);break;
-  case'limits_of_evidence':rr(a,0,0,1920,920,'#101920',0);paper(b,-380,10,500,560,'研究結果');paper(c,380,10,500,560,'日本の個別事例');ln(d,[[-100,10],[100,10]],K.red,12);label(d,'≠',0,10,K.red,62);card(e,'制度差',-380,210,260,K.gold);card(f,'交代理由',380,210,280,K.cyan);label(g,'「替えるな」という研究ではない',0,-245,K.paper,30);label(h,'証拠の射程を守る',0,-315,K.gold,40);break;
-  case'continuity_value':scale(a,0,30);folder(b,-310,165,330,190,K.red,'問題人物を除く');folder(c,310,165,330,190,K.cyan,'知識と関係を守る');label(d,'便益',-310,-120,K.red,31);label(e,'損失',310,-120,K.cyan,31);label(f,'人事判断',0,270,K.paper,31);label(g,'両方を同時に見る',0,-230,K.gold,30);label(h,'継続性にも価値がある',0,-315,K.paper,39);break;
-  case'learning_curve':axes(a);ln(b,[[-560,190],[-420,130],[-230,30],[0,-80],[260,-150],[580,-190]],K.gold,11);['説明','質問','疑問','交渉','判断'].forEach((x,i)=>label(c,x,-430+i*215,285,[K.red,K.orange,K.gold,K.cyan,K.teal][i],23));person(d,-560,160,.3,K.paper);person(e,580,-190,.3,K.cyan);label(f,'専門性',-690,-190,K.paper,23);label(g,'時間',580,245,K.muted,23);label(h,'大臣にも学習曲線がある',0,-315,K.gold,39);break;
-  case'new_broom_temptation':rr(a,0,0,1920,920,'#1A252B',0);paper(b,-420,0,500,560,'前任政策');paper(c,420,0,500,560,'新大臣案');['新会議','新名称','重点変更'].forEach((x,i)=>card(d,x,420,-90+i*110,300,[K.red,K.gold,K.cyan][i]));person(e,0,210,.36,K.paper);label(f,'成果を見せたい',0,-220,K.red,29);ln(g,[[-130,0],[130,0]],K.gold,6);label(h,'「自分の色」の誘惑',0,-310,K.gold,40);break;
-  case'signboard_change':rr(a,0,0,1920,920,'#243038',0);rr(b,-380,10,520,160,K.brown,8);label(b,'農業構造改革',-380,10,K.paper,29);rr(c,380,10,520,160,K.brown,8);label(c,'新・成長戦略',380,10,K.gold,29);['資料','説明会','指標','理解'].forEach((x,i)=>folder(d,-520+i*350,225,260,130,[K.red,K.gold,K.cyan,K.teal][i],x));label(e,'看板は一瞬',0,-170,K.paper,28);label(f,'現場は作り直し',0,310,K.red,28);label(g,'中身が同じでも時間は使う',0,-245,K.muted,27);label(h,'名称変更にも行政コスト',0,-315,K.gold,38);break;
-  case'policy_churn':rr(a,0,0,1920,920,'#19251E',0);tree(b,-420,110,.9,K.green);tree(c,0,110,.55,K.gold);tree(d,420,110,.35,K.red);ln(e,[[-420,230],[-40,230]],K.gold,7);ln(e,[[40,230],[420,230]],K.red,7);card(f,'植える',-420,-150,240,K.cyan);card(g,'抜く → 植え直す',260,-150,360,K.red);label(h,'policy churn：森が育たない',0,-310,K.gold,38);break;
-  case'long_term_tree':rr(a,0,0,1920,920,'#1B2D24',0);tree(b,-500,140,.3,K.green);tree(c,-170,140,.55,K.green);tree(d,170,140,.8,K.green);tree(e,500,140,1.05,K.green);['1年目','2年目','3年目','継続'].forEach((x,i)=>label(f,x,-500+i*335,280,K.paper,24));label(g,'変えないことも成果',0,-230,K.gold,30);label(h,'長期改革は根を張る時間が要る',0,-315,K.paper,37);break;
-  case'ministerial_ownership':rr(a,0,0,1920,920,'#15232A',0);folder(b,-430,20,360,230,K.muted,'前任政策');ln(c,[[-220,20],[220,20]],K.gold,9);folder(d,430,20,360,230,K.cyan,'自分の政策');timeline(e,260,[{x:-520,year:'就任',col:K.red},{x:0,year:'半年',col:K.gold},{x:520,year:'1年',col:K.cyan}]);label(f,'成果も失敗も引き受ける',0,-220,K.paper,30);label(g,'長く持つほど責任が自分になる',0,-275,K.gold,28);label(h,'政策の所有感',0,-330,K.white,39);break;
-  case'continuity_vs_refresh':scale(a,0,20);folder(b,-310,155,330,190,K.red,'刷新');folder(c,310,155,330,190,K.cyan,'継続');card(d,'新視点',-420,-105,260,K.red);card(e,'知識蓄積',420,-105,280,K.cyan);label(f,'停滞打破',-360,285,K.gold,25);label(g,'責任蓄積',360,285,K.teal,25);label(h,'どちらも必要、絶対視しない',0,-315,K.paper,37);break;
-  case'first_curve':axes(a);ln(b,[[-560,-160],[-450,-50],[-250,40],[0,100],[280,145],[580,175]],K.cyan,11);label(c,'交代コスト',-360,-180,K.cyan,31);card(d,'引継ぎ',-360,245,240,K.red);card(e,'学習',0,245,240,K.gold);card(f,'関係構築',360,245,270,K.cyan);label(g,'時間とともに低下',250,160,K.paper,25);label(h,'第一の曲線',0,-315,K.gold,40);break;
-  case'return_to_yana':ministryShell(a,true);monitor(b,520,-80,470,270);label(b,'簗大臣問題',520,-80,K.white,28);person(c,-420,150,.4,K.paper);folder(d,-280,170,250,130,K.red,'答弁');folder(e,0,170,250,130,K.gold,'報道');folder(f,280,170,250,130,K.cyan,'農政');label(g,'2026年10月へ戻る',0,-250,K.gold,31);label(h,'残すコストを見る',0,-315,K.paper,39);break;
-  case'support_team':rr(a,0,0,1920,920,'#172229',0);for(let i=0;i<7;i++)person(b,-600+i*200,120,.28,i<4?K.paper:K.muted);folder(c,-350,0,300,180,K.red,'国会答弁');folder(d,0,0,300,180,K.gold,'報道対応');folder(e,350,0,300,180,K.cyan,'本来業務');ln(f,[[-450,180],[0,240],[350,180]],K.muted,4);label(g,'人員をどこへ使うか',0,300,K.paper,28);label(h,'「お支え」にも機会費用',0,-310,K.gold,38);break;
-  case'farmers_wait':farmField(a,true);person(b,-420,170,.55,K.paper);rr(c,480,170,300,150,'#31454B',20);cc(c,390,240,52,K.black);cc(c,570,240,52,K.black);monitor(d,520,-150,380,220);label(d,'国会追及',520,-150,K.red,25);card(e,'農政待ち',-420,-100,290,K.gold);label(f,'水害復旧',-420,285,K.paper,26);label(g,'政治の決着より実働',280,285,K.cyan,27);label(h,'現場の時計は別に進む',0,-310,K.gold,38);break;
-  case'parliament_time':parliament(a);rr(b,0,190,1000,95,K.deep,12,K.gold);label(b,'国会の1時間',0,190,K.gold,29);for(let i=0;i<5;i++)folder(c,-520+i*260,-60,210,110,[K.red,K.gold,K.cyan,K.teal,K.blue][i],['説明','農政','法案','予算','災害'][i]);ln(d,[[-520,90],[520,90]],K.paper,6);label(e,'同時には審議できない',0,285,K.paper,29);label(f,'説明責任は必要',-330,-235,K.cyan,27);label(g,'時間にも代替用途がある',330,-235,K.red,27);label(h,'国会にも機会費用',0,-320,K.gold,40);break;
-  case'trust_as_capital':rr(a,0,-160,1920,600,K.sea,0);ln(b,[[-620,180],[-280,-20],[0,-40],[280,-20],[620,180]],K.paper,26);person(c,-500,110,.42,K.paper);person(d,500,110,.42,K.cyan);ln(e,[[-50,-40],[40,40]],K.red,12);label(e,'亀裂',0,70,K.red,25);card(f,'公平性への信頼',0,210,330,K.gold);label(g,'信用が下がると交渉コストが上がる',0,-230,K.paper,29);label(h,'信用は行政資本',0,-315,K.gold,40);break;
-  case'continued_scandal_cost':axes(a);ln(b,[[-560,180],[-350,150],[-160,80],[40,-20],[300,-110],[580,-190]],K.red,11);['新疑惑','答弁','資料','国会','権威低下'].forEach((x,i)=>card(c,x,-470+i*235,260,210,[K.red,K.orange,K.gold,K.cyan,K.teal][i]));label(d,'続投コスト',-350,-185,K.red,31);label(e,'時間',550,215,K.muted,23);label(f,'説明が増える',0,120,K.paper,26);label(g,'説得力が落ちる',0,60,K.gold,26);label(h,'残す側にも請求書',0,-315,K.paper,39);break;
-  case'second_curve':axes(a);ln(b,[[-560,175],[-300,140],[-80,70],[150,-20],[360,-110],[580,-180]],K.red,11);label(c,'続投コスト',-350,-180,K.red,31);card(d,'謝罪',-350,250,230,K.gold);card(e,'追及継続',0,250,260,K.red);card(f,'信頼低下',350,250,260,K.muted);label(g,'時間とともに上昇',250,-130,K.paper,25);label(h,'第二の曲線',0,-315,K.gold,40);break;
-  case'responsibility_phrase':monitor(a,0,0,1160,560);card(b,'「辞任する考えは？」',0,-130,460,K.cyan);card(c,'「職責を全うする」',0,-20,430,K.gold);card(d,'「辞任こそ責任」',0,90,420,K.red);label(e,'記者',-540,220,K.paper,26);label(f,'大臣',0,220,K.paper,26);label(g,'野党',540,220,K.paper,26);label(h,'責任という定型句',0,-310,K.gold,39);break;
-  case'resignation_not_eraser':paper(a,-380,0,500,570,'辞表');label(b,'辞任',-380,20,K.red,46);rr(c,380,0,520,570,'#253943',12,K.muted);['出来事','不信','行政課題'].forEach((x,i)=>card(d,x,380,-100+i*120,300,[K.red,K.gold,K.cyan][i]));ln(e,[[-100,0],[100,0]],K.paper,7);label(f,'消えない',380,230,K.paper,28);label(g,'続投でも自動回復しない',0,-240,K.muted,27);label(h,'辞表は消しゴムではない',0,-315,K.gold,39);break;
-  case'reshuffle_as_control':rr(a,0,0,1920,920,'#101D25',0);chair(b,-420,70,K.red);chair(c,420,70,K.cyan);person(d,0,20,.48,K.paper);card(e,'問題閣僚',-420,-130,280,K.red);card(f,'後任',420,-130,240,K.cyan);label(g,'首相が統制を取り戻す',0,270,K.paper,30);label(h,'交代は「罰」だけではない',0,-310,K.gold,39);break;
-  case'broken_machine':factory(a);rr(b,0,60,520,260,'#3A4C52',25,K.red);cc(c,-120,60,58,K.red);cc(c,120,60,58,K.muted);person(d,-480,130,.4,K.paper);card(e,'責任者を処分',-420,270,330,K.red);card(f,'機械を修理',0,270,300,K.gold);card(g,'生産を再開',420,270,300,K.cyan);label(h,'目的は正常に動かすこと',0,-310,K.paper,39);break;
-  case'restore_governance':rr(a,0,0,1920,920,'#112329',0);for(let i=0;i<7;i++)cc(b,-540+i*180,20,45,i<3?K.red:K.cyan);ln(c,[[-600,150],[-300,100],[0,20],[300,-80],[600,-120]],K.gold,8);card(d,'信頼回復',-350,260,280,K.cyan);card(e,'国会正常化',0,260,300,K.gold);card(f,'本来業務',350,260,280,K.teal);label(g,'辞任も続投も手段',0,-230,K.paper,30);label(h,'目的は統治能力の回復',0,-315,K.gold,40);break;
-  case'moral_score_vs_state':paper(a,-420,0,500,560,'人物採点');label(b,'好き / 嫌い',-420,-20,K.red,35);building(c,420,0,520,520,'国家運営');card(d,'残す',300,150,240,K.cyan);card(e,'替える',540,150,240,K.red);label(f,'道徳評価は重要',-420,245,K.paper,27);label(g,'しかしそれだけでは足りない',420,260,K.gold,27);label(h,'統治判断へ進む',0,-315,K.paper,40);break;
-  case'responsibility_reframe':rr(a,0,0,1920,920,'#0D1820',0);rr(b,-420,20,350,560,'#263741',12);label(b,'退場',-420,20,K.red,40);rr(c,420,20,350,560,'#263741',12);label(c,'正常化',420,20,K.cyan,40);ln(d,[[-210,20],[210,20]],K.gold,10);card(e,'信頼',420,-80,230,K.gold);card(f,'意思決定',420,90,260,K.teal);label(g,'責任の目的を再定義',0,285,K.paper,30);label(h,'儀式から機能回復へ',0,-315,K.gold,40);break;
-  case'two_cost_curves':axes(a);ln(b,[[-560,-170],[-380,-40],[-150,65],[120,120],[350,155],[580,180]],K.cyan,10);ln(c,[[-560,180],[-350,150],[-120,80],[100,0],[340,-105],[580,-180]],K.red,10);label(d,'交代コスト',-350,-190,K.cyan,29);label(e,'続投コスト',-350,150,K.red,29);label(f,'時間',580,250,K.muted,23);label(g,'二本を同時に見る',0,285,K.paper,29);label(h,'判断のグラフ',0,-315,K.gold,40);break;
-  case'crossing_point':axes(a);ln(b,[[-560,-170],[-320,-30],[-50,70],[260,140],[580,180]],K.cyan,10);ln(c,[[-560,180],[-320,140],[-50,70],[260,-50],[580,-180]],K.red,10);cc(d,-50,70,34,K.gold);label(e,'交点',-50,10,K.gold,28);card(f,'交代の方が安い',350,-110,330,K.cyan);card(g,'残す方が安い',-360,210,330,K.red);label(h,'行政的合理性が逆転する地点',0,-315,K.paper,37);break;
-  case'criteria_board':rr(a,0,0,1920,920,'#16242B',0);['重大性','信頼回復','国会','本来業務','後任','政策継続'].forEach((x,i)=>card(b,x,-520+(i%3)*520,-100+Math.floor(i/3)*150,300,[K.red,K.gold,K.cyan,K.teal,K.blue,K.orange][i]));label(c,'一項目では決めない',0,260,K.paper,31);scale(d,0,0);label(e,'総合判断',0,-245,K.gold,34);label(f,'辞任',-330,305,K.red,27);label(g,'続投',330,305,K.cyan,27);label(h,'交点を決める材料',0,-320,K.paper,39);break;
-  case'takaichi_shift':parliament(a);person(b,0,40,.45,K.paper);card(c,'「仕事で返す」',-380,-150,330,K.cyan);ln(d,[[-150,-100],[150,-100]],K.gold,8);card(e,'「行政運営してよいか考える」',360,-150,470,K.red);label(f,'2026.10.13',0,250,K.gold,29);label(g,'発言の適否 → 統治能力',0,310,K.paper,28);label(h,'首相の言葉も動く',0,-315,K.gold,39);break;
-  case'minister_as_obstacle':rr(a,0,-160,1920,600,K.sea,0);ship(b,-420,70,.75);rr(c,260,50,230,420,'#3A4850',10,K.red);for(let i=0;i<5;i++)ln(d,[[-40,-120+i*70],[140,-120+i*70]],K.ice,6);label(e,'行政の流れ',-420,250,K.cyan,27);label(f,'大臣自身が壁に？',300,250,K.red,29);label(g,'操舵手 → 障害物',0,-230,K.gold,31);label(h,'統治能力を失う瞬間',0,-315,K.paper,39);break;
-  case'public_anger_and_analysis':rr(a,0,0,1920,920,'#151C22',0);person(b,-420,80,.55,K.paper);cc(c,-420,-100,70,K.red);label(c,'怒り',-420,-100,K.black,24);scale(d,360,20);card(e,'感情',180,170,240,K.red);card(f,'制度分析',540,170,280,K.cyan);label(g,'両立する',360,275,K.gold,30);label(h,'怒った後にも考える',0,-315,K.paper,40);break;
-  case'decision_not_formula':rr(a,0,0,1920,920,'#0C161D',0);axes(b);label(c,'¥ ?',-300,-70,K.red,50);label(d,'信頼 ?',0,-70,K.gold,45);label(e,'行政能力 ?',300,-70,K.cyan,42);for(let i=0;i<8;i++)cc(f,-490+i*140,170,18,i%2?K.muted:K.paper);label(g,'数式ではない思考装置',0,275,K.paper,30);label(h,'不確実性を抱えて判断する',0,-315,K.gold,39);break;
-  case'return_farm_evening':farmField(a,true);cc(b,650,-240,70,K.orange);person(c,-430,175,.52,K.paper);ln(d,[[-780,260],[780,260]],K.gold,5);monitor(e,510,-120,360,210);label(e,'国会',510,-120,K.paper,24);label(f,'同じ夕方',0,290,K.muted,27);label(g,'遠く離れた現場',0,-225,K.paper,30);label(h,'時間は同時に流れている',0,-315,K.gold,39);break;
-  case'two_places_connected':rr(a,0,0,1920,920,'#12232B',0);farmField(b,false);building(c,520,-40,420,440,'霞が関');person(d,-520,120,.42,K.paper);ln(e,[[-380,80],[320,-40]],K.gold,8);['災害支援','米政策','所得対策'].forEach((x,i)=>card(f,x,-260+i*310,245,260,[K.red,K.gold,K.cyan][i]));label(g,'何百kmを政策がつなぐ',0,-230,K.paper,30);label(h,'大臣の責任は現場まで届く',0,-315,K.gold,38);break;
-  case'not_take_side':rr(a,0,0,1920,920,'#090F15',0);rr(b,-380,20,360,520,'#22343D',12,K.red);label(b,'辞任',-380,20,K.red,42);rr(c,380,20,360,520,'#22343D',12,K.cyan);label(c,'続投',380,20,K.cyan,42);label(d,'2026.10.13',0,-230,K.gold,29);card(e,'状況は流動的',0,180,320,K.muted);label(f,'新事実',-250,280,K.paper,25);label(g,'行政影響',250,280,K.paper,25);label(h,'結論を先回りしない',0,-315,K.gold,40);break;
-  case'both_prices':paper(a,-410,0,470,570,'交代');paper(b,410,0,470,570,'続投');['知識断絶','引継ぎ'].forEach((x,i)=>card(c,x,-410,-50+i*115,300,K.cyan));['信頼低下','政治対応'].forEach((x,i)=>card(d,x,410,-50+i*115,300,K.red));label(e,'双方に価格',0,235,K.gold,31);scale(f,0,10);label(g,'無料の選択肢はない',0,-235,K.paper,29);label(h,'二枚の請求書へ戻る',0,-315,K.gold,39);break;
-  case'who_pays':rr(a,0,0,1920,920,'#121D24',0);paper(b,0,-20,520,590,'請求書');['政策遅延','組織混乱','国会時間','信頼低下'].forEach((x,i)=>label(b,x,-50,-120+i*85,K.ink,23));label(c,'TOTAL',-80,240,K.ink,26);label(d,'国民',110,240,K.red,30);crowd(e,0,305,9,K.paper);ln(f,[[0,170],[0,260]],K.red,8);label(g,'政治家だけが払うのではない',0,-230,K.paper,29);label(h,'行政サービスへ転嫁される',0,-315,K.gold,38);break;
-  case'better_question':rr(a,0,0,1920,920,'#151D23',0);monitor(b,0,-30,1100,550);label(c,'「いつ辞める？」',0,-120,K.red,43);label(d,'＋',0,-10,K.gold,50);label(e,'「国家は今より正常に動く？」',0,105,K.cyan,35);person(f,-620,180,.4,K.paper);label(g,'問いを一つ増やす',0,285,K.paper,30);label(h,'辞任を制度として見る',0,-315,K.gold,39);break;
-  case'final_statecraft':rr(a,0,0,1920,920,'#060C11',0);axes(b);ln(c,[[-560,-160],[-200,20],[0,80],[250,130],[580,170]],K.cyan,8);ln(d,[[-560,170],[-200,130],[0,80],[250,-30],[580,-170]],K.red,8);cc(e,0,80,30,K.gold);label(f,'怒りの後にも',0,-200,K.paper,31);label(g,'考え続ける',0,-135,K.gold,38);label(h,'それが民主主義の難しさ',0,-315,K.white,41);break;
-  default:rr(a,0,0,1920,920,K.navy,0);card(b,L[0],-420,-80,320,K.cyan);card(c,L[1],420,-80,320,K.gold);card(d,L[3],-420,120,320,K.paper);card(e,L[4],420,120,320,K.red);label(f,L[5],0,-245,K.paper,31);label(g,L[6],0,285,K.paper,31);label(h,L[7],0,-305,K.red,38);
- }
- return s;
+  worldBase(root,scene);
+  const s=stages8();s.forEach(n=>root.add(n));
+  const[a,b,c,d,e,f,g,h]=s;
+
+  switch(scene.motif){
+    case 'izakaya_type_list':{
+      izakaya(a);sitting(b,-300,80,.55,K.paper);sitting(b,300,80,.55,K.cyan);
+      ['落ち着き','知性','趣味','静かな休日'].forEach((x,i)=>card(c,x,-510+i*340,-120,260,[K.gold,K.cyan,K.teal,K.red][i]));
+      phone(d,0,-10,230,420);label(d,'理想のタイプ',0,-130,K.paper,22);
+      for(let i=0;i<4;i++)rr(e,0,-40+i*60,150,32,[K.gold,K.cyan,K.teal,K.red][i],6);
+      label(f,'23:07',620,-260,K.gold,30);label(g,'条件は言葉にできる',0,285,K.paper,28);label(h,'まだ相手はいない',0,-315,K.gold,40);break;
+    }
+    case 'future_partner_contrast':{
+      cafe(a);sitting(b,-260,70,.52,K.paper);sitting(b,260,70,.52,K.pink);
+      book(c,-520,-120,230,150,K.blue,'本');cc(c,520,-120,62,K.gold);label(c,'♪',520,-120,K.black,42);
+      card(d,'静か',-500,250,240,K.muted);card(d,'よく喋る',500,250,260,K.red);
+      ln(e,[[-180,80],[180,80]],K.gold,7);heart(f,0,10,.8,K.red);
+      label(g,'数か月後',0,-245,K.gold,31);label(h,'理想と違うのに惹かれる',0,-315,K.paper,39);break;
+    }
+    case 'preference_paradox':{
+      rr(a,0,0,1920,920,'#101820',0);
+      paper(b,-430,0,500,570,'過去の理想');heart(c,430,0,1.5,K.red);
+      card(d,'静かな人',-430,-40,280,K.cyan);card(d,'趣味が近い',-430,70,280,K.gold);
+      label(e,'どちらも本気',0,240,K.paper,31);ln(f,[[-120,0],[120,0]],K.red,8);label(f,'≠',0,0,K.red,60);
+      label(g,'自分の好みを知らない？',0,-225,K.muted,28);label(h,'それとも理想の枠組みに限界？',0,-315,K.gold,38);break;
+    }
+    case 'thesis_map':{
+      rr(a,0,0,1920,920,'#0C1820',0);
+      const nodes=[{x:-560,y:-110,t:'歴史',c:K.gold},{x:-190,y:-170,t:'理想',c:K.cyan},{x:190,y:-170,t:'対面',c:K.red},{x:560,y:-110,t:'AI',c:K.violet},{x:-420,y:150,t:'近接',c:K.teal},{x:0,y:210,t:'社会',c:K.blue},{x:420,y:150,t:'更新',c:K.orange}];
+      network(b,nodes);heart(c,0,0,.9,K.red);label(d,'恋愛',0,0,K.black,25);
+      label(e,'理想は存在する',-360,300,K.cyan,28);label(f,'しかし十分ではない',360,300,K.red,28);
+      label(g,'複数の研究を一本に',0,-260,K.paper,29);label(h,'なぜ「タイプ外」を好きになるのか',0,-325,K.gold,38);break;
+    }
+    case 'premodern_marriage_table':{
+      rr(a,0,0,1920,920,'#2B2521',0);table(b,0,100,1000);
+      person(c,-560,30,.42,K.cream);person(c,-360,30,.42,K.paper);person(c,360,30,.42,K.paper);person(c,560,30,.42,K.cream);
+      ['土地','相続','商売','家族'].forEach((x,i)=>folder(d,-480+i*320,-100,250,135,[K.gold,K.cyan,K.teal,K.red][i],x));
+      person(e,-120,210,.34,K.paper);person(e,120,210,.34,K.pink);heart(f,0,205,.38,K.red);
+      label(g,'恋愛感情は昔にもあった',0,-245,K.paper,28);label(h,'結婚は家族と共同体の制度でもあった',0,-320,K.gold,37);break;
+    }
+    case 'love_marriage_shift':{
+      rr(a,0,0,1920,920,'#181F25',0);
+      timeline(b,40,[{x:-650,label:'家の結合',col:K.brown},{x:-220,label:'個人選択',col:K.gold},{x:220,label:'愛情',col:K.red},{x:650,label:'伴侶性',col:K.cyan}]);
+      building(c,-560,-120,320,300,'家');heart(d,0,-120,1.0,K.red);person(e,540,-80,.45,K.paper);person(e,660,-80,.45,K.pink);
+      ['信頼','会話','精神的支え'].forEach((x,i)=>card(f,x,-330+i*330,250,260,[K.cyan,K.gold,K.teal][i]));
+      label(g,'恋愛が発明されたのではない',0,-245,K.muted,28);label(h,'結婚へ求める役割が変わった',0,-320,K.paper,39);break;
+    }
+    case 'expectation_stack':{
+      rr(a,0,0,1920,920,'#111B22',0);person(b,-520,160,.5,K.paper);person(b,520,160,.5,K.pink);
+      const xs=['生活','愛情','性的魅力','理解','価値観','支え','成長','将来'];
+      xs.forEach((x,i)=>rr(c,0,260-i*65,420-i*12,50,[K.brown,K.red,K.pink,K.cyan,K.gold,K.teal,K.blue,K.orange][i],6));
+      xs.forEach((x,i)=>label(d,x,0,260-i*65,K.black,18));
+      label(e,'一人へ集中する期待',0,-250,K.gold,31);ln(f,[[-390,140],[-220,70]],K.muted,5);ln(f,[[390,140],[220,70]],K.muted,5);
+      label(g,'役割が増えるほど理想像も精密になる',0,305,K.paper,28);label(h,'「誰なら全部を満たす？」',0,-320,K.gold,39);break;
+    }
+    case 'forecasting_future_self':{
+      rr(a,0,0,1920,920,'#0E1B23',0);person(b,-500,110,.5,K.paper);rr(c,460,20,520,520,'#172D37',18,K.cyan);
+      label(c,'未来',460,-180,K.cyan,35);person(c,390,70,.34,K.paper);person(c,530,70,.34,K.pink);
+      paper(d,-130,30,360,480,'条件表');ln(e,[[-300,30],[220,30]],K.gold,8);
+      label(f,'現在の自分が',-500,265,K.paper,27);label(g,'未来の幸福を予測',460,265,K.gold,29);label(h,'理想のタイプ＝未来予測',0,-315,K.paper,40);break;
+    }
+    case 'ideal_standards_lab':{
+      rr(a,0,0,1920,920,'#121C23',0);label(b,'Ideal Standards Model',0,-265,K.gold,36);
+      cc(c,-430,20,120,K.cyan);cc(c,0,20,120,K.red);cc(c,430,20,120,K.gold);
+      label(c,'温かさ\n信頼',-430,20,K.black,22);label(c,'活力\n魅力',0,20,K.black,22);label(c,'地位\n資源',430,20,K.black,22);
+      heart(d,0,245,.55,K.red);ln(e,[[-430,140],[0,205],[430,140]],K.paper,5);
+      label(f,'相手評価の物差し',0,300,K.paper,27);label(g,'理想は認知的な基準',0,-205,K.muted,28);label(h,'「理想」は実在する心理構造',0,-325,K.paper,39);break;
+    }
+    case 'three_ideal_dimensions':{
+      rr(a,0,0,1920,920,'#102029',0);axis(b,0,20);
+      bar(c,-170,-130,760,.78,K.cyan,'温かさ・信頼');bar(d,-170,0,760,.56,K.red,'活力・魅力');bar(e,-170,130,760,.44,K.gold,'地位・資源');
+      person(f,520,60,.5,K.paper);label(g,'人によって重みが違う',300,280,K.paper,28);label(h,'理想は一枚の物差しではない',0,-315,K.gold,39);break;
+    }
+    case 'worldwide_ideal_study':{
+      worldMap(a);label(b,'43 countries',-430,-245,K.gold,32);label(b,'22 languages',0,-245,K.cyan,32);label(b,'N = 10,358',430,-245,K.red,32);
+      card(c,'2025',0,-120,240,K.paper);bar(d,0,40,850,.34,K.cyan,'本人特有の理想との一致');bar(e,0,150,850,.68,K.gold,'一般的に望ましい特徴');
+      label(f,'理想一致の効果は存在',0,270,K.paper,29);label(g,'ただし万能ではない',0,320,K.muted,26);label(h,'理想は無意味ではない',0,-325,K.gold,40);break;
+    }
+    case 'map_not_territory':{
+      rr(a,0,0,1920,920,'#152028',0);paper(b,-420,10,520,560,'地図');
+      ln(b,[[-560,90],[-420,-80],[-250,40],[-480,180]],K.red,7);cc(b,-480,180,18,K.red);
+      ln(c,[[100,220],[240,80],[420,-10],[610,-160]],K.gold,12);cc(c,240,80,26,K.cyan);cc(c,420,-10,26,K.red);cc(c,610,-160,26,K.gold);
+      card(d,'偶然の店',240,175,260,K.cyan);card(e,'雨宿り',470,95,240,K.red);
+      label(f,'地図は役立つ',-420,285,K.paper,27);label(g,'現地は地図より多い',390,285,K.gold,29);label(h,'理想 ≠ 現実そのもの',0,-320,K.paper,40);break;
+    }
+    case 'speed_dating_hall':{
+      rr(a,0,0,1920,920,'#19232A',0);
+      for(let i=0;i<4;i++){table(b,-570+i*380,105,260);sitting(b,-620+i*380,0,.29,K.paper);sitting(b,-520+i*380,0,.29,K.pink);}
+      label(c,'4 min',0,-245,K.gold,36);cc(d,0,-155,54,K.red);label(d,'ベル',0,-155,K.black,21);
+      for(let i=0;i<4;i++)ln(e,[[-500+i*350,230],[-280+i*350,230]],K.cyan,7);
+      card(f,'事前の理想',-370,300,300,K.cyan);card(g,'実際の対面',370,300,300,K.red);label(h,'人を本当に会わせる実験',0,-320,K.paper,39);break;
+    }
+    case 'stated_vs_revealed_preferences':{
+      rr(a,0,0,1920,920,'#101B22',0);paper(b,-430,0,500,580,'事前申告');paper(c,430,0,500,580,'実際のデート');
+      bar(d,-430,-60,340,.82,K.red,'身体的魅力');bar(d,-430,80,340,.72,K.gold,'収入見込み');
+      heart(e,430,-40,1.0,K.red);card(f,'特定相手への関心',430,150,330,K.cyan);
+      ln(g,[[-120,0],[120,0]],K.muted,6);label(g,'弱い予測',0,0,K.muted,24);label(h,'「言った好み」と「会った反応」は違う',0,-320,K.gold,36);break;
+    }
+    case 'living_trait_texture':{
+      cafe(a);sitting(b,-280,65,.48,K.paper);sitting(b,280,65,.48,K.pink);
+      card(c,'「明るい」',-520,-150,260,K.gold);card(c,'「優しい」',520,-150,260,K.cyan);
+      rr(d,0,20,360,120,K.deep,12,K.muted);label(d,'店員が注文を間違える',0,20,K.paper,21);
+      ln(e,[[280,110],[430,180]],K.cyan,6);label(e,'穏やかに返す',520,210,K.cyan,23);
+      label(f,'ラベル',-430,275,K.muted,24);label(g,'具体的な行動',430,275,K.gold,27);label(h,'形容詞は現実で質感を持つ',0,-315,K.paper,39);break;
+    }
+    case 'microinteraction_accumulation':{
+      rr(a,0,0,1920,920,'#111A21',0);person(b,-360,80,.48,K.paper);person(b,360,80,.48,K.pink);
+      const m=['声','返答の間','視線','冗談','安心','疲れ','自分への反応'];
+      m.forEach((x,i)=>cc(c,-480+i*160,-130+(i%2)*80,42,[K.cyan,K.gold,K.red,K.teal][i%4]));
+      m.forEach((x,i)=>label(d,x,-480+i*160,-130+(i%2)*80,K.black,15));
+      for(let i=0;i<6;i++)ln(e,[[-260+i*100,60],[260-i*80,60]],K.muted,3);
+      label(f,'数分で情報量が急増',0,270,K.gold,30);label(g,'条件表にない情報',0,-230,K.paper,28);label(h,'対面は変数を増やす',0,-315,K.gold,40);break;
+    }
+    case 'abstract_to_person':{
+      rr(a,0,0,1920,920,'#101920',0);paper(b,-500,0,420,580,'PROFILE A');paper(c,0,0,420,580,'PROFILE B');
+      bar(b,-500,-30,260,.8,K.cyan,'優しさ 8');bar(c,0,-30,260,.8,K.cyan,'優しさ 8');
+      person(d,500,60,.52,K.paper);card(e,'同じ数値でも',500,-140,290,K.gold);card(f,'現れ方は違う',500,-35,290,K.red);
+      label(g,'属性 → 文脈',350,280,K.paper,28);label(h,'人は点数ではなく人物を経験する',0,-315,K.gold,37);break;
+    }
+    case 'machine_learning_setup':{
+      rr(a,0,0,1920,920,'#0E1921',0);phone(b,-540,20,230,430);for(let i=0;i<6;i++)rr(b,-540,-100+i*55,150,24,[K.cyan,K.gold,K.red,K.teal][i%4],4);
+      for(let i=0;i<8;i++)folder(c,-200+(i%4)*135,-130+Math.floor(i/4)*130,110,90,[K.cyan,K.gold,K.red,K.teal][i%4],String(i+1));
+      monitor(d,520,0,520,320);label(d,'Random Forest',520,-40,K.paper,26);bar(d,520,70,340,.68,K.cyan);
+      label(e,'100+ self-reports',0,250,K.gold,28);label(f,'traits + preferences',0,305,K.paper,24);label(g,'2017',520,-225,K.red,29);label(h,'恋愛を機械学習で予測する',0,-320,K.gold,39);break;
+    }
+    case 'actor_partner_variance':{
+      rr(a,0,0,1920,920,'#10202A',0);axis(b,0,30);
+      bar(c,-120,-100,780,.18,K.cyan,'actor variance 4–18%');bar(d,-120,40,780,.27,K.gold,'partner variance 7–27%');
+      person(e,500,-80,.38,K.paper);heart(e,500,40,.55,K.red);person(f,500,150,.38,K.pink);
+      label(g,'惚れやすさ・好かれやすさは一部読める',0,290,K.paper,27);label(h,'一般傾向には予測可能性がある',0,-315,K.gold,38);break;
+    }
+    case 'relationship_variance_failure':{
+      rr(a,0,0,1920,920,'#0C151D',0);const pos=[[-450,-110],[-150,-110],[150,-110],[450,-110],[-450,130],[-150,130],[150,130],[450,130]];
+      pos.forEach((p0,i)=>person(b,p0[0],p0[1],.27,i<4?K.paper:K.pink));
+      for(let i=0;i<4;i++)for(let j=4;j<8;j++)ln(c,[[pos[i][0],pos[i][1]],[pos[j][0],pos[j][1]]],K.slate,2);
+      ln(d,[[-150,-110],[150,130]],K.red,10);heart(e,0,10,.75,K.red);label(f,'A × B',0,190,K.red,30);
+      card(g,'relationship variance：予測できず',0,285,500,K.gold);label(h,'「この二人だから」は読めなかった',0,-315,K.paper,38);break;
+    }
+    case 'interaction_generates_data':{
+      rr(a,0,0,1920,920,'#0F1A22',0);person(b,-460,80,.48,K.paper);person(c,460,80,.48,K.pink);
+      card(d,'Aが話す',-300,-120,240,K.cyan);card(d,'Bが笑う',300,-120,240,K.gold);
+      ln(e,[[-250,-30],[250,-30]],K.gold,8);card(e,'Aが本音を出す',0,20,300,K.red);
+      ln(f,[[250,80],[-250,80]],K.cyan,8);card(f,'Bの返答でAが変わる',0,140,390,K.teal);
+      label(g,'相互作用が次の入力を作る',0,285,K.paper,29);label(h,'二人の間でデータが生成される',0,-315,K.gold,38);break;
+    }
+    case 'compatibility_emergence':{
+      rr(a,0,0,1920,920,'#0B1720',0);cc(b,-420,30,150,K.cyan);label(b,'A',-420,30,K.black,50);cc(c,420,30,150,K.red);label(c,'B',420,30,K.black,50);
+      ln(d,[[-250,30],[250,30]],K.paper,6);cc(e,0,30,115,K.gold);label(e,'関係',0,30,K.black,30);
+      heart(f,0,30,.55,K.red);label(g,'接触前には存在しない第三の空間',0,275,K.paper,29);label(h,'相性は「後から生まれる」ことがある',0,-315,K.gold,37);break;
+    }
+    case 'dorm_corridor':{
+      dorm(a);person(b,-650,140,.34,K.paper);person(c,650,140,.34,K.pink);
+      ln(d,[[-550,140],[-120,140],[120,140],[550,140]],K.gold,6);card(e,'すれ違う',-330,280,240,K.muted);card(e,'会釈',0,280,220,K.cyan);card(e,'挨拶',330,280,220,K.gold);
+      label(f,'知らない人',-650,-260,K.muted,25);label(g,'知っている人',650,-260,K.cyan,25);label(h,'近さが関係の入口を作る',0,-315,K.paper,39);break;
+    }
+    case 'mere_exposure_classroom':{
+      lecture(a);for(let i=0;i<4;i++)person(b,-520+i*350,90,.25,K.pink);
+      ['0回','5回','10回','15回'].forEach((x,i)=>card(c,x,-520+i*350,-185,220,[K.muted,K.cyan,K.gold,K.red][i]));
+      bar(d,0,245,920,.76,K.cyan,'接触頻度が高いほど好意的評価の傾向');
+      label(e,'会話はしない',0,-110,K.paper,25);label(f,'講義室にいるだけ',0,-55,K.muted,23);label(g,'Moreland & Beach, 1992',0,305,K.gold,24);label(h,'繰り返し接触が親しさを変える',0,-315,K.paper,38);break;
+    }
+    case 'opportunity_structure':{
+      rr(a,0,0,1920,920,'#112029',0);const nodes=[{x:-590,y:-120,t:'学校',c:K.cyan},{x:-190,y:-170,t:'職場',c:K.gold},{x:220,y:-160,t:'友人',c:K.teal},{x:600,y:-100,t:'地域',c:K.red},{x:-380,y:150,t:'店',c:K.orange},{x:0,y:210,t:'趣味',c:K.violet},{x:380,y:150,t:'紹介',c:K.blue}];
+      network(b,nodes);cc(c,0,20,120,K.paper);label(c,'自分',0,20,K.black,25);
+      rr(d,0,20,1050,520,'transparent',20,K.gold);label(e,'生活圏',0,300,K.gold,28);
+      label(f,'世界の全員ではない',-360,-260,K.muted,27);label(g,'実際に会える少数',360,-260,K.paper,27);label(h,'環境が候補者を絞る',0,-325,K.gold,40);break;
+    }
+    case 'corridor_before_preference':{
+      rr(a,0,0,1920,920,'#0D1820',0);['座席表','勤務先','住所','友人ネット'].forEach((x,i)=>folder(b,-510+i*340,-100,260,150,[K.cyan,K.gold,K.red,K.teal][i],x));
+      const allPeople=[-650,-480,-310,-140,30,200,370,540,710];allPeople.forEach((x,i)=>person(c,x,150,.25,i<5?K.paper:K.muted));
+      rr(d,-250,150,920,270,'transparent',14,K.gold);label(e,'実際に出会える範囲',-250,295,K.gold,24);
+      card(f,'好み',520,220,220,K.red);ln(g,[[350,220],[200,220]],K.red,6);label(h,'選好より前に「候補」が選ばれる',0,-315,K.paper,38);break;
+    }
+    case 'assortative_couples':{
+      wedding(a);['年齢','教育','宗教性','政治','生活習慣'].forEach((x,i)=>card(b,x,-520+i*260,265,220,[K.cyan,K.gold,K.red,K.teal,K.blue][i]));
+      for(let i=0;i<4;i++)ln(c,[[-500+i*300,40],[-420+i*300,40]],K.gold,5);
+      label(d,'ランダムより似る',0,-210,K.paper,29);label(e,'assortative mating',0,-265,K.gold,31);
+      label(f,'結果として類似',-360,310,K.cyan,24);label(g,'原因は一つではない',360,310,K.red,24);label(h,'自由恋愛でもカップルは似る',0,-330,K.paper,38);break;
+    }
+    case 'education_funnel':{
+      rr(a,0,0,1920,920,'#111A21',0);const ys=[-190,-50,90,230];const ws=[1180,900,620,360];['高校','大学','就職','友人・紹介'].forEach((x,i)=>{rr(b,0,ys[i],ws[i],90,[K.slate,K.blue,K.cyan,K.gold][i],8);label(b,x,0,ys[i],K.paper,23);});
+      for(let i=0;i<10;i++)person(c,-560+i*125,-260,.18,i<5?K.paper:K.pink);
+      for(let i=0;i<4;i++)person(d,-180+i*120,310,.22,i%2?K.paper:K.pink);
+      label(e,'選んだ？',-430,300,K.red,26);label(f,'それとも残った候補が似ていた？',250,300,K.gold,26);label(g,'人生経路が市場を狭める',0,-270,K.paper,29);label(h,'似た人のいる場所へ進む',0,-330,K.gold,39);break;
+    }
+    case 'social_structure_market':{
+      rr(a,0,0,1920,920,'#102029',0);const nodes=[{x:-560,y:-140,t:'教育',c:K.cyan},{x:-180,y:-170,t:'職業',c:K.gold},{x:200,y:-170,t:'所得',c:K.red},{x:570,y:-130,t:'地域',c:K.teal},{x:-330,y:160,t:'友人',c:K.blue},{x:0,y:210,t:'紹介',c:K.violet},{x:350,y:160,t:'接触',c:K.orange}];
+      network(b,nodes);heart(c,0,20,.8,K.red);label(d,'恋愛市場',0,20,K.black,20);
+      label(e,'社会構造',-480,290,K.paper,28);label(f,'個人の選好',480,290,K.cyan,28);ln(g,[[-260,275],[260,275]],K.gold,6);label(h,'候補者集合は共同制作される',0,-320,K.gold,39);break;
+    }
+    case 'private_choice_public_structure':{
+      rr(a,0,0,1920,920,'#131B21',0);rr(b,0,40,1200,560,'#1D2A31',16,K.slate);heart(c,0,50,1.0,K.red);person(c,-180,90,.35,K.paper);person(c,180,90,.35,K.pink);
+      ['学校','職場','都市','制度'].forEach((x,i)=>building(d,-570+i*380,-110,260,270,x));
+      label(e,'私的な感情',0,280,K.red,29);label(f,'公的な構造',0,-245,K.cyan,29);label(g,'自由の舞台は先に用意される',0,325,K.paper,26);label(h,'恋愛の背後に社会がいる',0,-325,K.gold,40);break;
+    }
+    case 'ideal_changes_with_time':{
+      rr(a,0,0,1920,920,'#101A22',0);paper(b,-430,0,480,570,'20代前半');paper(c,430,0,480,570,'数年後');
+      ['社交的','野心','旅行'].forEach((x,i)=>card(d,x,-430,-100+i*110,280,[K.red,K.gold,K.cyan][i]));
+      ['穏やか','日常','競争弱め'].forEach((x,i)=>card(e,x,430,-100+i*110,280,[K.teal,K.blue,K.orange][i]));
+      ln(f,[[-140,0],[140,0]],K.gold,8);label(g,'経験',0,210,K.gold,27);label(h,'相手だけでなく理想も動く',0,-315,K.paper,39);break;
+    }
+    case 'thirteen_year_study':{
+      rr(a,0,0,1920,920,'#102029',0);timeline(b,30,[{x:-620,label:'2006',col:K.cyan},{x:0,label:'13 years',col:K.gold},{x:620,label:'再測定',col:K.red}]);
+      card(c,'N = 204',-410,-140,260,K.paper);card(d,'rank-order r=.42',0,-140,320,K.cyan);card(e,'profile r=.73',410,-140,300,K.gold);
+      bar(f,0,220,900,.73,K.cyan,'安定性');label(g,'それでも変化はある',0,300,K.red,27);label(h,'理想は安定しつつ可変',0,-315,K.paper,39);break;
+    }
+    case 'self_insight_gap':{
+      rr(a,0,0,1920,920,'#101920',0);paper(b,-420,0,500,560,'自分の認識');paper(c,420,0,500,560,'実際の変化');
+      bar(d,-420,30,340,.70,K.gold,'「変わった気がする」');bar(e,420,30,340,.20,K.red,'平均の一致 r≈.20');
+      ln(f,[[-100,20],[100,20]],K.muted,6);label(g,'自分の好みの変化も完全には読めない',0,285,K.paper,27);label(h,'自己理解にも誤差がある',0,-315,K.gold,40);break;
+    }
+    case 'experience_rewrites_criteria':{
+      rr(a,0,0,1920,920,'#111C23',0);paper(b,-470,0,430,560,'旧条件表');paper(c,470,0,430,560,'更新後');
+      ['刺激','冒険','外見'].forEach((x,i)=>card(d,x,-470,-100+i*110,260,[K.red,K.orange,K.pink][i]));
+      ['安定','信頼','日常'].forEach((x,i)=>card(e,x,470,-100+i*110,260,[K.cyan,K.teal,K.gold][i]));
+      ln(f,[[-200,0],[200,0]],K.gold,8);label(f,'経験',0,-20,K.gold,25);label(g,'項目と重みを書き換える',0,285,K.paper,29);label(h,'恋愛は採点基準まで更新する',0,-315,K.gold,38);break;
+    }
+    case 'moving_target':{
+      rr(a,0,0,1920,920,'#0E1820',0);cc(b,-450,0,130,K.cyan);label(b,'過去の理想',-450,0,K.black,22);cc(c,0,0,130,K.paper);label(c,'現在の自分',0,0,K.black,22);cc(d,450,0,130,K.red);label(d,'現在の相手',450,0,K.black,22);
+      ln(e,[[-320,0],[-130,0]],K.gold,7);ln(f,[[130,0],[320,0]],K.gold,7);label(g,'三つとも時間で動く',0,275,K.paper,29);label(h,'恋愛は「移動する標的」を扱う',0,-315,K.gold,39);break;
+    }
+    case 'restaurant_shared_history':{
+      cafe(a);sitting(b,-260,70,.48,K.paper);sitting(b,260,70,.48,K.pink);
+      ['二人だけの冗談','旅行の曲','呼び方','声の変化'].forEach((x,i)=>card(c,x,-510+i*340,-145,260,[K.red,K.gold,K.cyan,K.teal][i]));
+      heart(d,0,70,.55,K.red);folder(e,0,205,360,150,K.gold,'共有記憶');
+      label(f,'第三者には意味不明',-380,290,K.muted,25);label(g,'二人には意味がある',380,290,K.paper,27);label(h,'プロフィール外の共有世界',0,-315,K.gold,39);break;
+    }
+    case 'relationship_specific_value':{
+      rr(a,0,0,1920,920,'#101A21',0);paper(b,-470,0,430,560,'一般属性');folder(c,470,-80,440,170,K.cyan,'共有経験');folder(c,470,110,440,170,K.gold,'支え合い');
+      folder(d,470,300,440,120,K.red,'二人の歴史');heart(e,0,20,.7,K.red);ln(f,[[-180,20],[180,20]],K.paper,6);
+      label(g,'代替しにくい意味が蓄積',0,285,K.paper,28);label(h,'関係そのものが価値になる',0,-315,K.gold,39);break;
+    }
+    case 'self_with_partner':{
+      rr(a,0,0,1920,920,'#111B22',0);person(b,-500,110,.45,K.paper);person(c,500,110,.45,K.pink);
+      card(d,'静かな自分',-500,-120,280,K.muted);card(d,'よく喋る相手',500,-120,300,K.red);
+      ln(e,[[-350,60],[-100,60]],K.gold,6);person(e,0,110,.45,K.cyan);card(f,'話す自分',0,-80,260,K.cyan);
+      building(g,0,260,330,170,'知らない街');label(h,'好きなのは「その人といる自分」かもしれない',0,-315,K.gold,36);break;
+    }
+    case 'second_question':{
+      rr(a,0,0,1920,920,'#0D1720',0);paper(b,-420,0,520,560,'QUESTION 1');paper(c,420,0,520,560,'QUESTION 2');
+      label(d,'相手は\nどんな人？',-420,0,K.cyan,34);label(e,'その人といると\n自分はどんな人？',420,0,K.gold,32);
+      heart(f,0,210,.55,K.red);ln(g,[[-130,0],[130,0]],K.paper,6);label(h,'二つ目は会う前には答えられない',0,-315,K.paper,38);break;
+    }
+    case 'dating_app_filter':{
+      rr(a,0,0,1920,920,'#0A151C',0);phone(b,0,0,300,570);person(b,0,-70,.30,K.paper);
+      ['年齢','身長','職業','趣味','飲酒','喫煙','休日','結婚'].forEach((x,i)=>{const xx=-620+(i%4)*410;const yy=230+Math.floor(i/4)*80;card(c,x,xx,yy,210,[K.cyan,K.gold,K.red,K.teal][i%4]);});
+      label(d,'Swipe',0,200,K.gold,28);ln(e,[[-420,-30],[-160,-30]],K.red,8);ln(f,[[160,-30],[420,-30]],K.cyan,8);
+      label(g,'恋愛が検索へ近づく',0,-245,K.paper,29);label(h,'好みをフィルターに変換する',0,-315,K.gold,39);break;
+    }
+    case 'filter_power_limit':{
+      rr(a,0,0,1920,920,'#0F1B23',0);phone(b,-430,0,280,540);
+      ['距離','子ども','生活習慣','年齢'].forEach((x,i)=>card(c,x,-430,-130+i*100,220,[K.cyan,K.gold,K.red,K.teal][i]));
+      rr(d,430,0,520,540,'#172A33',16,K.muted);label(d,'未来の好み',430,-130,K.paper,31);
+      for(let i=0;i<5;i++)cc(e,250+i*90,50+(i%2)*80,28,K.muted);
+      label(f,'？',430,170,K.gold,80);ln(g,[[-120,0],[120,0]],K.paper,6);label(h,'精密な検索ほど自己予測を要求する',0,-315,K.gold,37);break;
+    }
+    case 'counterfactual_office_romance':{
+      office(a);person(b,-560,120,.3,K.muted);person(b,-180,120,.3,K.paper);
+      card(c,'検索で除外',-560,-160,270,K.red);label(d,'3か月後',0,-245,K.gold,30);
+      folder(e,-180,200,200,110,K.red,'失敗');rr(f,-10,120,90,110,K.brown,12);label(f,'☕',-10,120,K.paper,30);
+      person(g,200,120,.3,K.pink);card(g,'昼食・冗談・共有時間',380,220,360,K.cyan);label(h,'現実なら評価が変わったかもしれない',0,-315,K.paper,36);break;
+    }
+    case 'unsearchable_future_value':{
+      rr(a,0,0,1920,920,'#0B1720',0);phone(b,-430,0,280,540);label(b,'検索可能',-430,-190,K.cyan,27);
+      rr(c,430,0,560,540,'#172A33',18,K.gold);label(c,'まだ未発生',430,-190,K.gold,27);
+      heart(d,350,30,.55,K.red);folder(e,510,30,210,150,K.cyan,'共有経験');ln(f,[[-100,0],[100,0]],K.muted,7);
+      label(g,'未来にしか存在しない価値',430,220,K.paper,25);label(h,'検索エンジンは未発生の魅力を探せない',0,-315,K.gold,36);break;
+    }
+    case 'station_platform_return':{
+      station(a);sitting(b,-180,90,.42,K.paper);sitting(b,180,90,.42,K.pink);
+      ln(c,[[-120,20],[120,20]],K.gold,5);heart(d,0,15,.45,K.red);
+      folder(e,0,-130,340,150,K.cyan,'共有情報');label(f,'出会う前には0',-360,270,K.muted,25);label(g,'いまは大量にある',360,270,K.paper,27);
+      label(h,'条件表には書けなかった関係',0,-315,K.gold,39);break;
+    }
+    case 'map_metaphor':{
+      rr(a,0,0,1920,920,'#142029',0);paper(b,-480,0,470,560,'地図');ln(b,[[-580,120],[-470,-40],[-350,60],[-510,190]],K.red,7);
+      ln(c,[[30,220],[180,80],[340,20],[520,-140]],K.gold,11);cc(c,180,80,25,K.cyan);cc(c,340,20,25,K.red);cc(c,520,-140,25,K.gold);
+      card(d,'風',180,175,190,K.cyan);card(e,'偶然の店',340,115,230,K.red);card(f,'雨宿り',520,-45,210,K.gold);
+      label(g,'地図にない経験',340,280,K.paper,27);label(h,'理想は地図、恋愛は歩いた道',0,-315,K.gold,39);break;
+    }
+    case 'relationship_as_new_value':{
+      rr(a,0,0,1920,920,'#0E1921',0);paper(b,-500,0,420,560,'理想条件');person(c,420,-40,.42,K.paper);person(c,560,-40,.42,K.pink);
+      heart(d,490,100,.6,K.red);['接触','相互反応','共有経験','自己変化'].forEach((x,i)=>card(e,x,-170+i*230,260,210,[K.cyan,K.gold,K.red,K.teal][i]));
+      ln(f,[[-250,0],[230,60]],K.gold,7);label(g,'新しい価値',490,220,K.gold,29);label(h,'タイプ外が重要人物になる理由',0,-315,K.paper,38);break;
+    }
+    case 'final_love_changes_self':{
+      rr(a,0,0,1920,920,'#050B10',0);person(b,-420,80,.45,K.paper);person(c,420,80,.45,K.pink);heart(d,0,10,.8,K.red);
+      ln(e,[[-260,60],[-80,20],[80,20],[260,60]],K.gold,7);cc(f,0,180,70,K.cyan);label(f,'自分',0,180,K.black,22);
+      card(g,'相手を選ぶ過程で、自分も変わる',0,285,520,K.gold);label(h,'恋愛は二人の間で価値を生成する',0,-315,K.white,39);break;
+    }
+    default:{
+      rr(a,0,0,1920,920,K.navy,0);
+      card(b,plan.labels[0],-420,-80,320,K.cyan);card(c,plan.labels[1],420,-80,320,K.gold);
+      card(d,plan.labels[3],-420,120,320,K.paper);card(e,plan.labels[4],420,120,320,K.red);
+      label(f,plan.labels[5],0,-245,K.paper,31);label(g,plan.labels[6],0,285,K.paper,31);label(h,plan.labels[7],0,-305,K.red,38);
+    }
+  }
+  return s;
 }
 
 function offsetFor(scene:Scene,i:number):[number,number,number]{
- const p=hash(scene.motif+scene.id)%12;const mag=24+(i%4)*11;
- switch(p){case 0:return[i%2?mag:-mag,0,.94];case 1:return[0,i%2?mag:-mag,.94];case 2:return[i%2?mag:-mag,i%3?16:-16,.91];case 3:return[0,0,.83];case 4:return[i<4?-mag:mag,i%2?17:-17,.93];case 5:return[i%3===0?mag:0,i%2?mag:-mag,.95];case 6:return[i%2?-mag:mag,i<4?-18:18,.91];case 7:return[i<4?-mag:mag,0,.89];case 8:return[0,i<4?mag:-mag,.89];case 9:return[i%2?mag:-mag,i%2?-10:10,.92];case 10:return[i<2?0:(i%2?mag:-mag),i>5?-12:12,.9];default:return[i%3===0?-mag:mag*.5,i%2?12:-12,.93]}
+  const p=hash(scene.motif+scene.id)%10;
+  const mag=22+(i%4)*10;
+  switch(p){
+    case 0:return[i%2?mag:-mag,0,.94];
+    case 1:return[0,i%2?mag:-mag,.94];
+    case 2:return[i%2?mag:-mag,i%3?14:-14,.92];
+    case 3:return[0,0,.84];
+    case 4:return[i<4?-mag:mag,i%2?14:-14,.94];
+    case 5:return[i%3===0?mag:0,i%2?mag:-mag,.95];
+    case 6:return[i%2?-mag:mag,i<4?-15:15,.92];
+    case 7:return[i<4?-mag:mag,0,.9];
+    case 8:return[0,i<4?mag:-mag,.9];
+    default:return[i%3===0?-mag:mag*.5,i%2?11:-11,.93];
+  }
 }
-function settleTarget(scene:Scene,plan:Plan,i:number):{x:number;y:number;r:number;s:number;opacity:number}{
- const h=hash(scene.motif+plan.motion+i);let x=((h%13)-6)*1.3,y=(((h>>4)%11)-5),r=((h>>8)%7-3)*.4,s=1.01,opacity=1;
- const m=plan.motion;
- if(m.includes('curve')){x=(i-3.5)*2.5;y=i>4?-7:3;s=1.02}
- if(m.includes('swap')||m.includes('rotate')){r=(i%2?1:-1)*(1.2+i*.15);x=i%2?7:-7}
- if(m.includes('flow')||m.includes('stream')){x=i>3?10:-8;s=1.015}
- if(m.includes('rise')||m.includes('climb')){y=i>2?-10:5;s=1.02}
- if(m.includes('fall')||m.includes('drop')){y=i>3?9:-4;opacity=i<2?.82:1}
- if(m.includes('separate')){x=i<4?-10:10}
- if(m.includes('connect')||m.includes('network')){s=1.018;opacity=i<2?.88:1}
- if(m.includes('pulse')){s=i>5?1.03:1.012}
- if(m.includes('fade')){opacity=i<3?.84:1}
- return{x,y,r,s,opacity};
+function settleTarget(scene:Scene,plan:Plan,i:number){
+  const h=hash(scene.motif+plan.motion+i);
+  let x=((h%13)-6)*1.2,y=(((h>>4)%11)-5),r=((h>>8)%7-3)*.35,s=1.01,opacity=1;
+  const m=plan.motion;
+  if(m.includes('rotate'))r=(i%2?1:-1)*(1.1+i*.12);
+  if(m.includes('build')||m.includes('stack'))y=i>4?-8:4;
+  if(m.includes('narrow')||m.includes('funnel'))x=i<4?-8:8;
+  if(m.includes('grow')||m.includes('blooms')||m.includes('emerge'))s=1.025;
+  if(m.includes('fails')||m.includes('dissolve'))opacity=i<3?.82:1;
+  if(m.includes('connect')||m.includes('feedback')){x=i%2?-7:7;s=1.018;}
+  if(m.includes('reweight')||m.includes('rewrite'))r=i%2?.8:-.8;
+  return{x,y,r,s,opacity};
 }
 function* microStageFlow(stages:Node[],scene:Scene,plan:Plan):ThreadGenerator{
- const base=[.01,.11,.21,.31,.41,.51,.61,.71];let cursor=0;
- for(let i=0;i<8;i++){
-  const [ox,oy,os]=offsetFor(scene,i);stages[i].x(ox);stages[i].y(oy);stages[i].scale(os);stages[i].rotation(i%2?1:-1);
-  const jitter=((hash(scene.motif+i.toString())>>3)&7)*.002;const at=scene.duration*Math.min(.8,base[i]+jitter);
-  if(at>cursor)yield* waitFor(at-cursor);cursor=at;
-  const reveal=Math.min(.42,Math.max(.16,scene.duration*.012));
-  yield* all(stages[i].opacity(1,reveal),stages[i].x(0,reveal),stages[i].y(0,reveal),stages[i].scale(1,reveal),stages[i].rotation(0,reveal));cursor+=reveal;
-  const t=settleTarget(scene,plan,i),settle=Math.min(.34,Math.max(.14,scene.duration*.01));
-  yield* all(stages[i].x(t.x,settle),stages[i].y(t.y,settle),stages[i].rotation(t.r,settle),stages[i].scale(t.s,settle),stages[i].opacity(t.opacity,settle));cursor+=settle;
-  const accent=Math.min(.28,Math.max(.12,scene.duration*.008));
-  yield* all(stages[i].scale(t.s*(i%2?1.012:.995),accent),stages[i].opacity(Math.max(.72,t.opacity-(i%3===0?.08:0)),accent));cursor+=accent;
-  if(i>=3)stages[i-3].opacity(.72);
- }
- const end=scene.duration*.9;if(end>cursor){yield* waitFor(end-cursor);cursor=end}
- if(scene.duration>cursor)yield* waitFor(scene.duration-cursor);
+  const base=[.02,.12,.23,.34,.45,.56,.67,.78];
+  let cursor=0;
+  for(let i=0;i<8;i++){
+    const [ox,oy,os]=offsetFor(scene,i);
+    stages[i].x(ox);stages[i].y(oy);stages[i].scale(os);stages[i].rotation(i%2?.9:-.9);
+    const jitter=((hash(scene.motif+i.toString())>>3)&7)*.002;
+    const at=scene.duration*Math.min(.82,base[i]+jitter);
+    if(at>cursor)yield* waitFor(at-cursor);
+    cursor=at;
+    const reveal=Math.min(.46,Math.max(.16,scene.duration*.012));
+    yield* all(stages[i].opacity(1,reveal),stages[i].x(0,reveal),stages[i].y(0,reveal),stages[i].scale(1,reveal),stages[i].rotation(0,reveal));
+    cursor+=reveal;
+    const t=settleTarget(scene,plan,i);
+    const settle=Math.min(.34,Math.max(.14,scene.duration*.009));
+    yield* all(stages[i].x(t.x,settle),stages[i].y(t.y,settle),stages[i].rotation(t.r,settle),stages[i].scale(t.s,settle),stages[i].opacity(t.opacity,settle));
+    cursor+=settle;
+    const accent=Math.min(.26,Math.max(.11,scene.duration*.007));
+    yield* all(stages[i].scale(t.s*(i%2?1.012:.996),accent),stages[i].opacity(Math.max(.76,t.opacity-(i%3===0?.06:0)),accent));
+    cursor+=accent;
+    if(i>=3)stages[i-3].opacity(.72);
+  }
+  const end=scene.duration*.91;
+  if(end>cursor){yield* waitFor(end-cursor);cursor=end;}
+  if(scene.duration>cursor)yield* waitFor(scene.duration-cursor);
 }
 function* cameraFlow(node:Node,duration:number,motif:string):ThreadGenerator{
- const p=hash(motif)%8,dx=[14,-16,11,-10,18,-14,9,-12][p],dy=[-6,8,7,-8,3,-4,9,-7][p];node.scale(1.006);const q=duration/6;
- yield* all(node.x(dx,q),node.y(dy,q),node.scale(1.012,q));
- yield* all(node.x(-dx*.45,q),node.y(-dy*.6,q),node.scale(1.018,q));
- yield* all(node.x(dx*.6,q),node.y(dy*.2,q),node.scale(1.014,q));
- yield* all(node.x(-dx*.25,q),node.y(-dy*.25,q),node.scale(1.021,q));
- yield* all(node.x(dx*.15,q),node.y(dy*.1,q),node.scale(1.013,q));
- yield* all(node.x(0,Math.max(.01,duration-5*q)),node.y(0,Math.max(.01,duration-5*q)),node.scale(1.008,Math.max(.01,duration-5*q)));
+  const p=hash(motif)%8;
+  const dx=[12,-14,10,-9,16,-12,8,-10][p],dy=[-5,7,6,-7,3,-4,8,-6][p];
+  node.scale(1.006);
+  const q=duration/6;
+  yield* all(node.x(dx,q),node.y(dy,q),node.scale(1.012,q));
+  yield* all(node.x(-dx*.4,q),node.y(-dy*.55,q),node.scale(1.018,q));
+  yield* all(node.x(dx*.55,q),node.y(dy*.18,q),node.scale(1.014,q));
+  yield* all(node.x(-dx*.22,q),node.y(-dy*.22,q),node.scale(1.020,q));
+  yield* all(node.x(dx*.12,q),node.y(dy*.08,q),node.scale(1.013,q));
+  const tail=Math.max(.01,duration-5*q);
+  yield* all(node.x(0,tail),node.y(0,tail),node.scale(1.008,tail));
 }
-function* subtitleFlow(cues:Cue[],caption:Txt,duration:number):ThreadGenerator{let t=0;for(const c of cues){if(c.start>t)yield* waitFor(c.start-t);caption.text(c.display);t=c.start}if(duration>t)yield* waitFor(duration-t);caption.text('')}
+function* subtitleFlow(cues:Cue[],caption:Txt,duration:number):ThreadGenerator{
+  let t=0;
+  for(const c of cues){
+    if(c.start>t)yield* waitFor(c.start-t);
+    caption.text(c.display);t=c.start;
+  }
+  if(duration>t)yield* waitFor(duration-t);
+  caption.text('');
+}
 
 export function* playMeaningScene(view:View2D,scene:Scene):ThreadGenerator{
- const plan=(visualPlan as Record<string,Plan>)[scene.motif];if(!plan)throw new Error('V125 visual plan missing: '+scene.motif);
- view.fill(K.bg);const contentLayer=new Node({});const headingLayer=new Node({});const subtitleBacking=new Node({});const subtitleTextLayer=new Node({});
- view.add(contentLayer);view.add(headingLayer);view.add(subtitleBacking);view.add(subtitleTextLayer);
- const stages=buildScene(contentLayer,scene,plan);
- rr(headingLayer,0,-474,1920,132,'#061018',0);const part=scene.chapter==='prologue'?'PROLOGUE':scene.chapter==='epilogue'?'EPILOGUE':scene.chapter.toUpperCase();
- headingLayer.add(tx(part,-800,-508,22,K.gold,700));headingLayer.add(tx(scene.id,830,-508,21,K.muted,600));headingLayer.add(tx(scene.title,0,-452,scene.title.length>33?28:scene.title.length>23?33:42,K.paper,700));
- rr(subtitleBacking,0,460,1920,170,'#02060B',0).opacity(.94);const caption=tx('',0,458,40,K.paper,650);caption.lineHeight(57);subtitleTextLayer.add(caption);
- yield* all(microStageFlow(stages,scene,plan),cameraFlow(contentLayer,scene.duration,scene.motif),subtitleFlow(scene.cues,caption,scene.duration));
+  const plan=(visualPlan as Record<string,Plan>)[scene.motif];
+  if(!plan)throw new Error('V126 visual plan missing: '+scene.motif);
+  view.fill(K.bg);
+
+  const contentLayer=new Node({});
+  const headingLayer=new Node({});
+  const subtitleBacking=new Node({});
+  const subtitleTextLayer=new Node({});
+  view.add(contentLayer);
+  view.add(headingLayer);
+  view.add(subtitleBacking);
+  view.add(subtitleTextLayer);
+
+  const stages=buildScene(contentLayer,scene,plan);
+
+  rr(headingLayer,0,-474,1920,132,'#061018',0);
+  const part=scene.chapter==='prologue'?'PROLOGUE':scene.chapter==='epilogue'?'EPILOGUE':scene.chapter.toUpperCase();
+  headingLayer.add(tx(part,-800,-508,22,K.gold,700));
+  headingLayer.add(tx(scene.id,830,-508,21,K.muted,600));
+  headingLayer.add(tx(scene.title,0,-452,scene.title.length>34?27:scene.title.length>24?32:40,K.paper,700));
+
+  rr(subtitleBacking,0,460,1920,170,'#02060B',0).opacity(.92);
+  const caption=tx('',0,458,40,K.paper,650);
+  caption.lineHeight(57);
+  subtitleTextLayer.add(caption);
+
+  yield* all(
+    microStageFlow(stages,scene,plan),
+    cameraFlow(contentLayer,scene.duration,scene.motif),
+    subtitleFlow(scene.cues,caption,scene.duration),
+  );
 }
