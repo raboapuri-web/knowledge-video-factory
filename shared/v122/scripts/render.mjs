@@ -12,11 +12,11 @@ async function main(){
  const addr=server.httpServer?.address();if(!addr||typeof addr==='string')throw new Error('vite server address');
  const browser=await puppeteer.launch({protocolTimeout:900000,headless:true,args:['--no-sandbox','--use-gl=swiftshader','--enable-unsafe-swiftshader']});
  const page=await browser.newPage();const origin='http://localhost:'+addr.port;
- page.on('pageerror',e=>console.error('BROWSER_PAGE_ERROR',e.message));
+ page.on('pageerror',e=>console.error('BROWSER_PAGE_ERROR',e.message,e.stack??''));page.on('console',m=>{if(['error','warning'].includes(m.type()))console.error('BROWSER_CONSOLE',m.type(),m.text());});
  const start=Date.now();try{
   const run=async()=>{await page.goto(origin+'/headless.html',{waitUntil:'networkidle0'});await page.waitForFunction(()=>typeof window.renderProject==='function');return page.evaluate((p,a,n,end,scale)=>window.renderProject(p,a,n,end,scale),'/'+pf+'?project',audio,name,smoke?7:null,smoke?.5:1)};
   let outcome;try{outcome=await run();}catch(e){if(!(e instanceof Error&&e.message.includes('Execution context was destroyed')))throw e;outcome=await run();}
-  if(outcome!=='Success')throw new Error(String(outcome));
+  if(outcome!=='Success'){console.error('RENDERER_OUTCOME',outcome,'slug',slug,'smoke',smoke);throw new Error(String(outcome));}
  }finally{await page.close();await browser.close();await server.close();}
  const file=join(ROOT,'output',name+'.mp4'),info=await stat(file),report={video:'V126',slug,smoke,seconds:Number(((Date.now()-start)/1000).toFixed(1)),bytes:info.size,file};
  if(!smoke)await writeFile(join(ROOT,'render-report-'+slug+'.json'),JSON.stringify(report,null,2));
