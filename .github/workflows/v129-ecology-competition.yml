@@ -1,0 +1,127 @@
+name: V129 Ecology Competition Documentary
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v129-ecology-competition.yml'
+      - 'shared/v129/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v129-ecology-competition-main
+  cancel-in-progress: true
+
+jobs:
+  production:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    defaults:
+      run:
+        working-directory: shared/v129
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Japanese fonts, Python drawing and FFmpeg
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk ffmpeg fontconfig
+          python3 -m pip install --break-system-packages pillow==11.3.0
+          python3 -m py_compile production.py ../v125/production.py
+          ffmpeg -hide_banner -filters | grep subtitles
+      - name: Compile complete manuscript and prepare meaning-bound visuals
+        run: |
+          set -euo pipefail
+          python3 production.py prepare
+          test -s content/script.json
+          test -s output/slides.json
+          test -s output/v129-contact-sheet.jpg
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          script=json.loads(Path("content/script.json").read_text(encoding="utf-8"))
+          beats=script["beats"]
+          n=sum(x["chars"] for x in script["chapterAudit"].values())
+          unique={x["id"] for x in beats}
+          slides=json.loads(Path("output/slides.json").read_text())
+          assert n>=9000,(n,"full manuscript unexpectedly short")
+          assert len(unique)==len(beats)
+          assert len(beats)>=65
+          assert len({x["visual"] for x in beats})>=19
+          assert len(slides)>=2*len(beats)
+          assert sum(1 for p in Path("output").glob("shot-*.png"))==len(slides)
+          assert len({x["chapter"] for x in beats})==8
+          print("STORYBOARD_PREFLIGHT_PASSED",n,len(beats),len(slides),flush=True)
+          PY
+      - name: Upload visual storyboard proof
+        uses: actions/upload-artifact@v4
+        with:
+          name: v129-preflight-contact-sheet
+          path: shared/v129/output/v129-contact-sheet.jpg
+          retention-days: 21
+      - name: Start VOICEVOX speaker Aoyama Ryusei
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox-v129 -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..150}; do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null; then
+              echo "VOICEVOX_READY"; exit 0
+            fi
+            sleep 2
+          done
+          echo "VOICEVOX_STARTUP_FAILED"; exit 1
+      - name: Synthesize full narration and measured sentence subtitles
+        run: |
+          set -euo pipefail
+          python3 production.py voice
+          test -s output/narration.wav
+          test -s output/subtitles.srt
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          timing=json.loads(Path("output/timing.json").read_text())
+          data=json.loads(Path("content/script.json").read_text())
+          assert timing["totalSeconds"]>600
+          assert len(timing["beats"])==len(data["beats"])
+          assert timing["cues"]>160
+          print("VOICE_TIMING_VALIDATED",timing["totalSeconds"],timing["cues"])
+          PY
+      - name: Render documentary master 1920x1080 with burned-in Japanese captions
+        run: |
+          set -euo pipefail
+          python3 production.py render
+          test -s output/v129-ecology-competition-final.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 output/v129-ecology-competition-final.mp4
+          cat output/v129-final-qa.json
+      - name: Archive master film and QA evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: v129-ecology-competition-master
+          path: |
+            shared/v129/output/v129-ecology-competition-final.mp4
+            shared/v129/output/v129-contact-sheet.jpg
+            shared/v129/output/v129-final-qa.json
+            shared/v129/output/subtitles.srt
+            shared/v129/output/timing.json
+            shared/v129/output/SOURCES.txt
+          retention-days: 21
+          compression-level: 0
+      - name: Publish final film as GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v129-ecology-competition-${GITHUB_RUN_ID}"
+          gh release create "$TAG" \
+            output/v129-ecology-competition-final.mp4 \
+            output/v129-contact-sheet.jpg \
+            output/v129-final-qa.json \
+            output/subtitles.srt \
+            output/SOURCES.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V129 生態学から学ぶ なぜ敗者が社会に必要なのか？" \
+            --notes "Unabridged user-edited manuscript, 8 sections, meaning-based original diagrams, measured Japanese VOICEVOX 青山龍星 1.15, burned-in captions, 1080p H.264/AAC. Scientific charts annotated as study-specific. Images are illustrations, not field photography."
