@@ -12,7 +12,7 @@ async function main(){
  const addr=server.httpServer?.address();if(!addr||typeof addr==='string')throw new Error('vite server address');
  const browser=await puppeteer.launch({protocolTimeout:900000,headless:true,args:['--no-sandbox','--use-gl=swiftshader','--enable-unsafe-swiftshader']});
  const page=await browser.newPage();const origin='http://localhost:'+addr.port;
- page.on('pageerror',e=>console.error('BROWSER_PAGE_ERROR',e.message,e.stack??''));page.on('console',m=>{if(['error','warning'].includes(m.type()))console.error('BROWSER_CONSOLE',m.type(),m.text());});
+ page.on('pageerror',e=>console.error('BROWSER_PAGE_ERROR',e.message,e.stack??''));page.on('console',m=>console.error('BROWSER_CONSOLE',m.type(),m.text()));
  const start=Date.now();try{
   const run=async()=>{await page.goto(origin+'/headless.html',{waitUntil:'networkidle0'});await page.waitForFunction(()=>typeof window.renderProject==='function');return page.evaluate((p,a,n,end,scale)=>window.renderProject(p,a,n,end,scale),'/'+pf+'?project',audio,name,smoke?7:null,smoke?.5:1)};
   let outcome;try{outcome=await run();}catch(e){if(!(e instanceof Error&&e.message.includes('Execution context was destroyed')))throw e;outcome=await run();}
