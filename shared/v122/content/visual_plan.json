@@ -1,1080 +1,660 @@
 {
-  "flooded_ricefield": {
-    "kind": "flooded-ricefield-dawn",
-    "motion": "mud-water-reveal",
+  "izakaya_type_list": {
+    "kind": "izakaya-night",
+    "motion": "type-notes-build",
     "labels": [
-      "冠水田",
-      "倒れた稲",
-      "泥の農機",
-      "農家の手",
-      "秋の夕光",
-      "収穫直前",
-      "テレビ音声",
-      "現場は待たない"
+      "夜11時",
+      "友人",
+      "理想のタイプ",
+      "落ち着き",
+      "知性",
+      "趣味",
+      "休日",
+      "条件表"
     ]
   },
-  "yana_statement_news": {
-    "kind": "newsroom-politics",
-    "motion": "headline-to-quote",
+  "future_partner_contrast": {
+    "kind": "city-date-contrast",
+    "motion": "ideal-card-meets-reality",
     "labels": [
-      "簗農水相",
-      "予算カット発言",
-      "支持しない首長",
-      "撤回",
-      "謝罪",
-      "行政公平性",
-      "炎上",
-      "2026年10月"
+      "数か月後",
+      "よく喋る",
+      "本は読まない",
+      "外出好き",
+      "知らない音楽",
+      "予定変更",
+      "笑う二人",
+      "理想と違う"
     ]
   },
-  "fact_check_pressure": {
-    "kind": "fact-check-desk",
-    "motion": "claim-evidence-separate",
+  "preference_paradox": {
+    "kind": "split-memory",
+    "motion": "past-ideal-present-love",
     "labels": [
-      "発言",
-      "国交省調査",
-      "圧力確認なし",
-      "事業進捗",
-      "重点配分",
-      "報復実行は未確認",
-      "確認済み事実",
-      "線引き"
+      "過去の理想",
+      "現在の恋",
+      "どちらも本気",
+      "矛盾",
+      "自己理解",
+      "好み",
+      "恋愛",
+      "問い"
     ]
   },
-  "resignation_reflex": {
-    "kind": "cabinet-chair-stage",
-    "motion": "chair-swap-reflex",
+  "thesis_map": {
+    "kind": "research-map",
+    "motion": "questions-connect",
     "labels": [
-      "問題大臣",
-      "辞任要求",
-      "空いた椅子",
-      "後任",
-      "政治浄化",
-      "反射判断",
-      "簡単な物語",
-      "本当に？"
+      "歴史",
+      "理想基準",
+      "対面",
+      "機械学習",
+      "近接性",
+      "社会構造",
+      "理想の更新",
+      "関係価値"
     ]
   },
-  "ministry_night_windows": {
-    "kind": "kasumigaseki-night",
-    "motion": "windows-work-parallel",
+  "premodern_marriage_table": {
+    "kind": "premodern-house",
+    "motion": "family-bargain-transform",
     "labels": [
-      "農水省 夜",
-      "国会答弁",
-      "米価",
-      "災害",
-      "備蓄",
-      "家畜感染症",
-      "輸出",
-      "時計は止まらない"
+      "家族A",
+      "家族B",
+      "土地",
+      "相続",
+      "商売",
+      "共同体",
+      "若い二人",
+      "結婚制度"
     ]
   },
-  "two_invoices": {
-    "kind": "dual-invoice-ledger",
-    "motion": "cost-ledgers-open",
+  "love_marriage_shift": {
+    "kind": "history-timeline-house",
+    "motion": "institution-to-companion",
     "labels": [
-      "続投コスト",
-      "交代コスト",
-      "国会対応",
-      "引継ぎ",
-      "学習",
-      "関係再構築",
-      "国民負担",
-      "二枚の請求書"
+      "家の結合",
+      "個人選択",
+      "愛情",
+      "信頼",
+      "会話",
+      "精神的支え",
+      "近代化",
+      "期待集中"
     ]
   },
-  "central_question_cost": {
-    "kind": "thesis-theater",
-    "motion": "question-scale-rise",
+  "expectation_stack": {
+    "kind": "partner-expectation-tower",
+    "motion": "roles-stack",
     "labels": [
-      "簗氏個人ではない",
-      "政治責任",
-      "政策継続性",
-      "交代の値段",
-      "続投の値段",
-      "制度",
-      "境界",
-      "中心命題"
-    ]
-  },
-  "kasumigaseki_morning": {
-    "kind": "ministry-morning-lobby",
-    "motion": "staff-streams",
-    "labels": [
-      "08:00",
-      "地下鉄出口",
-      "職員",
-      "米需給",
-      "漁業",
-      "農地",
-      "畜産",
-      "巨大行政機械"
-    ]
-  },
-  "ministry_machine": {
-    "kind": "bureaucracy-cutaway",
-    "motion": "org-machine-rotate",
-    "labels": [
-      "本省",
-      "地方組織",
-      "研究機関",
-      "自治体",
-      "業界団体",
-      "制度",
-      "記録",
-      "継続"
-    ]
-  },
-  "continuity_bureaucracy": {
-    "kind": "archive-engine",
-    "motion": "memory-belt-move",
-    "labels": [
-      "昨日の判断",
-      "今日へ",
-      "人が替わる",
-      "制度は残る",
-      "記録",
-      "継続性",
-      "行政記憶",
-      "官僚制"
-    ]
-  },
-  "minister_desk_democracy": {
-    "kind": "minister-office-window",
-    "motion": "expertise-vs-value",
-    "labels": [
-      "専門知識",
-      "価値判断",
-      "価格保護",
-      "競争",
-      "食料安保",
-      "財政",
-      "民主的正統性",
-      "大臣"
-    ]
-  },
-  "delegation_chain": {
-    "kind": "delegation-staircase",
-    "motion": "authority-descend",
-    "labels": [
-      "有権者",
-      "議会",
-      "政府",
-      "大臣",
-      "官僚",
-      "委任",
-      "情報格差",
-      "統制"
-    ]
-  },
-  "minister_as_helm": {
-    "kind": "ship-bridge",
-    "motion": "helm-course-shift",
-    "labels": [
-      "船",
-      "海図",
-      "官僚",
-      "操舵手",
-      "目的地",
-      "政策方向",
-      "同じ船",
-      "航路"
-    ]
-  },
-  "handover_cost_seed": {
-    "kind": "door-transition",
-    "motion": "door-close-files-open",
-    "labels": [
-      "退任",
-      "扉",
-      "新資料",
-      "過去判断",
-      "現在地",
-      "引継ぎ",
-      "次の責任者",
-      "見えない仕事"
-    ]
-  },
-  "new_minister_first_day": {
-    "kind": "minister-first-day",
-    "motion": "folders-pile-up",
-    "labels": [
-      "就任写真",
-      "机",
-      "米需給",
-      "概算要求",
-      "輸出",
-      "検疫",
-      "災害",
-      "国会答弁"
-    ]
-  },
-  "briefing_carousel": {
-    "kind": "briefing-room",
-    "motion": "briefers-rotate",
-    "labels": [
-      "午前説明",
-      "業界面会",
-      "国会",
-      "記者会見",
-      "翌朝資料",
-      "知らない論点",
-      "時間不足",
-      "一日"
-    ]
-  },
-  "policy_memory_layers": {
-    "kind": "policy-archaeology",
-    "motion": "layers-unearth",
-    "labels": [
-      "現在制度",
-      "10年前法改正",
-      "予算折衝",
-      "業界妥協",
-      "国際交渉",
-      "記憶層",
-      "なぜ今",
-      "政策文脈"
-    ]
-  },
-  "civil_servant_explains": {
-    "kind": "briefing-table",
-    "motion": "document-unfold",
-    "labels": [
-      "官僚説明",
-      "これまでの経緯",
-      "必要な引継ぎ",
-      "質問",
+      "生活",
+      "愛情",
+      "性的魅力",
       "理解",
-      "省庁論理",
-      "交代前",
-      "時間"
+      "価値観",
+      "支え",
+      "成長",
+      "将来"
     ]
   },
-  "ifg_long_tenure": {
-    "kind": "research-board-uk",
-    "motion": "tenure-bar-extend",
+  "forecasting_future_self": {
+    "kind": "forecast-window",
+    "motion": "present-self-predicts-future",
     "labels": [
-      "Institute for Government",
-      "頻繁な交代",
-      "長期改革",
-      "学習時間",
-      "関係構築",
-      "継続",
-      "方向変更",
-      "在任期間"
+      "現在の自分",
+      "未知の相手",
+      "未来の関係",
+      "予測",
+      "条件表",
+      "不確実性",
+      "幸福",
+      "理想"
     ]
   },
-  "company_analogy": {
-    "kind": "three-workplaces",
-    "motion": "leader-swap-triple",
+  "ideal_standards_lab": {
+    "kind": "psychology-lab",
+    "motion": "ideal-model-assemble",
     "labels": [
-      "工場",
-      "出版社",
-      "病院",
-      "責任者交代",
-      "現在地説明",
-      "過去説明",
-      "未来時間",
-      "組織"
+      "Ideal Standards Model",
+      "評価基準",
+      "温かさ",
+      "活力",
+      "地位",
+      "資源",
+      "認知",
+      "恋人像"
     ]
   },
-  "knowledge_transfer": {
-    "kind": "brain-installation",
-    "motion": "knowledge-transfer-progress",
+  "three_ideal_dimensions": {
+    "kind": "three-axis-room",
+    "motion": "dimensions-balance",
     "labels": [
-      "政策知識",
-      "再インストール",
-      "20%",
-      "50%",
-      "80%",
-      "再交代",
-      "初期設定",
-      "学習コスト"
+      "温かさ・信頼",
+      "活力・魅力",
+      "地位・資源",
+      "理想",
+      "相手評価",
+      "重み",
+      "個人差",
+      "物差し"
     ]
   },
-  "postwar_diet_corridor": {
-    "kind": "postwar-diet",
-    "motion": "corridor-faction-flow",
+  "worldwide_ideal_study": {
+    "kind": "world-study-map",
+    "motion": "countries-languages-n",
     "labels": [
-      "戦後",
-      "国会議事堂",
-      "派閥",
-      "人事",
-      "政策",
-      "大臣ポスト",
-      "長期与党",
-      "永田町"
+      "43か国",
+      "22言語",
+      "10,358人",
+      "2025",
+      "理想との一致",
+      "小さい効果",
+      "一般的魅力",
+      "予測力"
     ]
   },
-  "too_many_candidates": {
-    "kind": "chair-queue",
-    "motion": "queue-around-chair",
+  "map_not_territory": {
+    "kind": "paper-map-walk",
+    "motion": "map-to-lived-road",
     "labels": [
-      "大臣の椅子",
-      "議員A",
-      "議員B",
-      "議員C",
-      "順番待ち",
-      "限られた席",
-      "キャリア",
-      "党内処遇"
+      "地図",
+      "目的地",
+      "道",
+      "偶然の店",
+      "雨宿り",
+      "現地",
+      "理想",
+      "経験"
     ]
   },
-  "yoshida_rotation": {
-    "kind": "yoshida-era-board",
-    "motion": "portraits-cycle",
+  "speed_dating_hall": {
+    "kind": "speed-dating-room",
+    "motion": "tables-rotate",
     "labels": [
-      "吉田茂",
-      "長期政権",
-      "多数登用",
-      "閣僚交代",
-      "党内統治",
-      "人事",
-      "戦後政治",
-      "回転"
+      "会場",
+      "複数テーブル",
+      "4分",
+      "ベル",
+      "移動",
+      "事前理想",
+      "対面",
+      "実測"
     ]
   },
-  "kishi_full_reshuffle": {
-    "kind": "kishi-cabinet-board",
-    "motion": "whole-cabinet-swap",
+  "stated_vs_revealed_preferences": {
+    "kind": "preference-vs-choice",
+    "motion": "self-report-vs-date",
     "labels": [
-      "岸信介",
-      "個別更迭",
-      "面子",
-      "党内対立",
-      "一括改造",
-      "慣行",
-      "内閣",
-      "人事技術"
+      "身体的魅力",
+      "収入見込み",
+      "事前申告",
+      "男女差",
+      "実際の相手",
+      "恋愛的関心",
+      "予測弱い",
+      "2008"
     ]
   },
-  "annual_reshuffle_calendar": {
-    "kind": "annual-calendar",
-    "motion": "nameplates-calendar-flip",
+  "living_trait_texture": {
+    "kind": "cafe-interaction",
+    "motion": "adjective-becomes-actions",
     "labels": [
-      "春",
-      "夏",
-      "秋",
-      "内閣改造",
-      "表札交換",
-      "名刺",
-      "新秘書官",
-      "次の改造"
+      "明るい",
+      "遮らない",
+      "優しい",
+      "店員対応",
+      "待つ",
+      "表情",
+      "行動",
+      "具体性"
     ]
   },
-  "bureaucrat_long_memory": {
-    "kind": "memory-asymmetry",
-    "motion": "two-tenures-diverge",
+  "microinteraction_accumulation": {
+    "kind": "conversation-closeup",
+    "motion": "micro-signals-accumulate",
     "labels": [
-      "大臣1年",
-      "官僚10年",
-      "政策知識",
-      "経験差",
-      "助言依存",
-      "省庁統制",
-      "組織記憶",
-      "相対的権力"
+      "声の調子",
+      "返答の間",
+      "視線",
+      "冗談",
+      "安心",
+      "疲れ",
+      "自分への反応",
+      "情報増加"
     ]
   },
-  "rotation_paradox": {
-    "kind": "paradox-machine",
-    "motion": "politicians-in-bureaucracy-up",
+  "abstract_to_person": {
+    "kind": "profile-to-person",
+    "motion": "scores-dissolve-person-emerge",
     "labels": [
-      "政治家を増やす",
-      "短期任期",
-      "専門性不足",
-      "官僚依存",
-      "政治主導",
-      "逆説",
-      "意図",
-      "結果"
+      "プロフィール",
+      "高得点",
+      "優しさ8点",
+      "魅力7点",
+      "人物A",
+      "人物B",
+      "文脈",
+      "現れ方"
     ]
   },
-  "farm_ministry_2007": {
-    "kind": "maff-2007-timeline",
-    "motion": "minister-portraits-drop",
+  "machine_learning_setup": {
+    "kind": "ml-dating-lab",
+    "motion": "features-into-model",
     "labels": [
-      "2007",
-      "農水省",
-      "松岡氏",
-      "赤城氏",
-      "短期交代",
-      "大臣室",
-      "不安定",
-      "農政"
+      "100+質問",
+      "性格",
+      "恋愛観",
+      "自己評価",
+      "好み",
+      "random forest",
+      "スピードデート",
+      "2017"
     ]
   },
-  "fresh_binder": {
-    "kind": "fresh-binder-room",
-    "motion": "binder-reset",
+  "actor_partner_variance": {
+    "kind": "prediction-dashboard",
+    "motion": "actor-partner-bars",
     "labels": [
-      "新品ファイル",
-      "新大臣",
-      "秘書官",
-      "説明開始",
-      "政治問題",
-      "また交代",
-      "知識移転",
-      "やり直し"
+      "惚れやすさ",
+      "好かれやすさ",
+      "actor variance",
+      "partner variance",
+      "予測可能",
+      "4–18%",
+      "7–27%",
+      "一般傾向"
     ]
   },
-  "budget_deadline": {
-    "kind": "deadline-wall",
-    "motion": "clocks-advance",
+  "relationship_variance_failure": {
+    "kind": "relationship-matrix",
+    "motion": "specific-pair-fails",
     "labels": [
-      "概算要求",
-      "国際交渉",
-      "台風",
-      "災害対応",
-      "締切",
-      "政治危機",
-      "待たない",
-      "行政日程"
+      "A",
+      "B",
+      "C",
+      "D",
+      "特定ペア",
+      "relationship variance",
+      "予測失敗",
+      "相性"
     ]
   },
-  "resignation_tv": {
-    "kind": "tv-vs-backoffice",
-    "motion": "screen-short-backoffice-long",
+  "interaction_generates_data": {
+    "kind": "two-person-feedback",
+    "motion": "feedback-loop-grows",
     "labels": [
-      "辞任会見",
-      "10秒映像",
-      "頭を下げる",
-      "官邸退出",
-      "新大臣説明",
-      "答弁修正",
-      "後処理",
-      "時間差"
+      "Aが話す",
+      "Bが笑う",
+      "Aが本音",
+      "Bが返す",
+      "態度変化",
+      "相互作用",
+      "新データ",
+      "二人の間"
     ]
   },
-  "nameplate_swap": {
-    "kind": "nameplate-wall",
-    "motion": "plate-fast-network-slow",
+  "compatibility_emergence": {
+    "kind": "emergent-space",
+    "motion": "third-space-appears",
     "labels": [
-      "表札",
-      "数分",
-      "国会関係",
+      "Aの特性",
+      "Bの特性",
+      "接触前",
+      "出会い",
+      "関係固有",
+      "生成",
+      "相性",
+      "後から生まれる"
+    ]
+  },
+  "dorm_corridor": {
+    "kind": "dorm-hallway",
+    "motion": "strangers-to-greeting",
+    "labels": [
+      "部屋",
+      "廊下",
+      "すれ違う",
+      "会釈",
+      "挨拶",
+      "食堂",
+      "知人",
+      "近接性"
+    ]
+  },
+  "mere_exposure_classroom": {
+    "kind": "lecture-hall",
+    "motion": "attendance-frequency",
+    "labels": [
+      "講義室",
+      "0回",
+      "5回",
+      "10回",
+      "15回",
+      "会話なし",
+      "学期末評価",
+      "1992"
+    ]
+  },
+  "opportunity_structure": {
+    "kind": "life-radius",
+    "motion": "candidate-funnel",
+    "labels": [
+      "学校",
+      "職場",
+      "友人",
+      "地域",
+      "店",
+      "趣味",
+      "生活圏",
+      "候補者"
+    ]
+  },
+  "corridor_before_preference": {
+    "kind": "corridor-filter",
+    "motion": "environment-before-choice",
+    "labels": [
+      "座席表",
+      "勤務先",
+      "住所",
+      "友人ネットワーク",
+      "出会える人",
+      "出会えない人",
+      "好み以前",
+      "最初の選別"
+    ]
+  },
+  "assortative_couples": {
+    "kind": "wedding-couples",
+    "motion": "similarity-patterns",
+    "labels": [
+      "年齢",
+      "教育",
+      "宗教性",
+      "政治",
+      "生活習慣",
+      "似た二人",
+      "assortative mating",
+      "非ランダム"
+    ]
+  },
+  "education_funnel": {
+    "kind": "education-career-funnel",
+    "motion": "path-narrows-market",
+    "labels": [
+      "高校",
+      "大学",
+      "就職",
       "業界",
-      "自治体",
-      "他省庁",
-      "関係資本",
-      "再構築"
+      "友人",
+      "紹介",
+      "同質化",
+      "候補集合"
     ]
   },
-  "handover_meeting": {
-    "kind": "handover-table",
-    "motion": "unfinished-files-pass",
+  "social_structure_market": {
+    "kind": "social-network-market",
+    "motion": "structures-compose-market",
     "labels": [
-      "法案",
-      "交渉",
-      "会議",
-      "未完判断",
-      "前任者",
-      "後任",
-      "方針変更",
-      "再調整"
+      "教育制度",
+      "職業",
+      "所得",
+      "地域",
+      "ネットワーク",
+      "接触機会",
+      "選好",
+      "市場構造"
     ]
   },
-  "administrative_shadow": {
-    "kind": "corridor-shadow",
-    "motion": "resignation-shadow-lengthen",
+  "private_choice_public_structure": {
+    "kind": "private-room-city-grid",
+    "motion": "heart-inside-structure",
     "labels": [
-      "政治の終幕",
-      "行政の幕開け",
-      "引継ぎ",
-      "見えない時間",
-      "後処理",
-      "組織",
-      "影",
-      "国民には見えない"
-    ]
-  },
-  "comparative_map": {
-    "kind": "cee-map-study",
-    "motion": "countries-light-up",
-    "labels": [
-      "中東欧",
-      "11か国",
-      "131内閣",
-      "1990",
-      "2018",
-      "閣僚交代",
-      "首相",
-      "比較政治"
-    ]
-  },
-  "study_dataset": {
-    "kind": "cabinet-grid",
-    "motion": "grid-filter-result",
-    "labels": [
-      "131内閣",
-      "交代頻度",
-      "パフォーマンス",
-      "平均的関連",
-      "国ごとの差",
-      "制度差",
-      "因果慎重",
-      "研究結果"
-    ]
-  },
-  "expertise_loss": {
-    "kind": "expertise-meter",
-    "motion": "expertise-dip-recover",
-    "labels": [
-      "新任大臣",
-      "専門性",
-      "学習",
-      "官僚統制",
-      "時間",
-      "一時低下",
-      "回復",
-      "メカニズム"
-    ]
-  },
-  "cabinet_coordination": {
-    "kind": "cabinet-network",
-    "motion": "network-rewire",
-    "labels": [
-      "農水省",
-      "財務省",
-      "官房",
-      "国交省",
-      "外務省",
-      "調整",
-      "関係地図",
-      "描き直し"
-    ]
-  },
-  "limits_of_evidence": {
-    "kind": "evidence-boundary",
-    "motion": "red-line-around-claim",
-    "labels": [
-      "日本へ直輸入しない",
-      "制度差",
-      "交代理由",
-      "無能大臣",
-      "交代便益",
-      "研究限界",
-      "慎重",
-      "境界"
-    ]
-  },
-  "continuity_value": {
-    "kind": "balance-policy",
-    "motion": "loss-gain-balance",
-    "labels": [
-      "問題人物除去",
-      "知識損失",
-      "関係損失",
-      "調整履歴",
-      "便益",
-      "コスト",
-      "継続性",
-      "人事判断"
-    ]
-  },
-  "learning_curve": {
-    "kind": "learning-curve",
-    "motion": "curve-climb",
-    "labels": [
-      "就任",
-      "説明",
-      "質問",
-      "疑問",
-      "交渉",
-      "判断",
-      "専門性",
-      "時間"
-    ]
-  },
-  "new_broom_temptation": {
-    "kind": "new-minister-whiteboard",
-    "motion": "new-plan-overwrite",
-    "labels": [
-      "前任政策",
-      "新会議",
-      "新名称",
-      "重点変更",
-      "自分の色",
-      "成果可視化",
-      "刷新",
-      "誘惑"
-    ]
-  },
-  "signboard_change": {
-    "kind": "policy-signboard",
-    "motion": "signboards-swap",
-    "labels": [
-      "旧看板",
-      "新看板",
-      "同じ現場",
-      "資料作り直し",
-      "説明会",
-      "評価指標",
-      "関係者",
-      "時間"
-    ]
-  },
-  "policy_churn": {
-    "kind": "policy-tree",
-    "motion": "tree-uproot-replant",
-    "labels": [
-      "長期改革",
-      "途中変更",
-      "policy churn",
-      "植え替え",
-      "根付かない",
-      "担当交代",
-      "再設計",
-      "継続阻害"
-    ]
-  },
-  "long_term_tree": {
-    "kind": "forest-growth",
-    "motion": "sapling-to-tree",
-    "labels": [
-      "一年目",
-      "二年目",
-      "三年目",
-      "継続",
-      "見えない成果",
-      "根",
-      "長期改革",
-      "森"
-    ]
-  },
-  "ministerial_ownership": {
-    "kind": "responsibility-baton",
-    "motion": "baton-becomes-own",
-    "labels": [
-      "前任政策",
-      "引継ぎ",
-      "半年",
-      "一年",
-      "成果",
-      "失敗",
-      "自分の責任",
-      "所有感"
-    ]
-  },
-  "continuity_vs_refresh": {
-    "kind": "two-tools",
-    "motion": "refresh-continuity-balance",
-    "labels": [
-      "刷新",
-      "新視点",
-      "継続",
-      "知識蓄積",
-      "責任",
-      "停滞打破",
-      "バランス",
-      "人事"
-    ]
-  },
-  "first_curve": {
-    "kind": "turnover-cost-curve",
-    "motion": "curve-spike-fall",
-    "labels": [
-      "交代直後",
-      "引継ぎ",
-      "学習",
-      "関係構築",
-      "政策再設計",
-      "高コスト",
-      "時間経過",
-      "低下"
-    ]
-  },
-  "return_to_yana": {
-    "kind": "maff-scandal-room",
-    "motion": "camera-return-news",
-    "labels": [
-      "2026年10月",
-      "農水省",
-      "簗大臣",
-      "答弁対応",
-      "報道対応",
-      "行政",
-      "説明負担",
-      "戻る"
-    ]
-  },
-  "support_team": {
-    "kind": "support-team-room",
-    "motion": "staff-reassign",
-    "labels": [
-      "お支えチーム",
-      "国会答弁",
-      "報道対応",
-      "職員",
-      "本来業務",
-      "再配置",
-      "疑問の声",
-      "続投コスト"
-    ]
-  },
-  "farmers_wait": {
-    "kind": "flooded-farm-return",
-    "motion": "farmer-clock-wait",
-    "labels": [
-      "冠水田",
-      "農機具被害",
-      "農家",
-      "農政待ち",
-      "国会",
-      "発言追及",
-      "後回し不安",
-      "実働"
-    ]
-  },
-  "parliament_time": {
-    "kind": "diet-clock",
-    "motion": "hourglass-policy-queue",
-    "labels": [
-      "国会1時間",
-      "説明責任",
-      "別法案",
-      "審議待ち",
-      "機会費用",
-      "時間配分",
-      "政策",
-      "後ろ倒し"
-    ]
-  },
-  "trust_as_capital": {
-    "kind": "trust-bridge",
-    "motion": "bridge-crack",
-    "labels": [
-      "大臣",
-      "農家",
-      "自治体",
-      "公平性",
-      "政策説明",
-      "不信",
-      "信用資本",
-      "交渉コスト"
-    ]
-  },
-  "continued_scandal_cost": {
-    "kind": "scandal-dashboard",
-    "motion": "cost-line-rise",
-    "labels": [
-      "新疑惑",
-      "説明齟齬",
-      "答弁資料",
-      "国会時間",
-      "首相判断",
-      "権威低下",
-      "説得力低下",
-      "続投負担"
-    ]
-  },
-  "second_curve": {
-    "kind": "stay-cost-curve",
-    "motion": "curve-rise-over-time",
-    "labels": [
-      "問題発生",
-      "謝罪",
-      "追及継続",
-      "省庁対応",
-      "信頼低下",
-      "時間",
-      "上昇",
-      "続投コスト"
-    ]
-  },
-  "responsibility_phrase": {
-    "kind": "press-conference-loop",
-    "motion": "question-answer-loop",
-    "labels": [
-      "辞任する？",
-      "職責を全う",
-      "辞任こそ責任",
-      "定型句",
-      "記者",
-      "大臣",
-      "野党",
-      "責任"
-    ]
-  },
-  "resignation_not_eraser": {
-    "kind": "paper-eraser",
-    "motion": "resignation-stamp-doesnt-erase",
-    "labels": [
-      "辞表",
-      "出来事",
-      "不信",
-      "残る",
-      "続投",
-      "仕事で返す",
-      "自動回復しない",
-      "責任"
-    ]
-  },
-  "reshuffle_as_control": {
-    "kind": "pm-control-room",
-    "motion": "remove-and-reset",
-    "labels": [
-      "首相",
-      "閣僚交代",
-      "能力不足",
-      "自己利益",
-      "統制回復",
-      "シグナル",
-      "組織再起動",
-      "人事"
-    ]
-  },
-  "broken_machine": {
-    "kind": "factory-breakdown",
-    "motion": "machine-repair-vs-punish",
-    "labels": [
-      "故障機械",
-      "責任者",
-      "処分",
-      "修理",
-      "安全運転",
-      "目的",
-      "政治責任",
-      "統治"
-    ]
-  },
-  "restore_governance": {
-    "kind": "governance-heartbeat",
-    "motion": "system-pulse-recover",
-    "labels": [
-      "信頼回復",
-      "国会正常化",
-      "省庁本来業務",
-      "辞任",
-      "続投",
-      "合理性",
-      "統治能力",
-      "回復"
-    ]
-  },
-  "moral_score_vs_state": {
-    "kind": "scorecard-vs-system",
-    "motion": "scorecard-slide-system-focus",
-    "labels": [
-      "道徳評価",
-      "好き嫌い",
-      "行政正常性",
-      "国家運営",
-      "残す",
-      "替える",
-      "統治判断",
-      "目的"
-    ]
-  },
-  "responsibility_reframe": {
-    "kind": "responsibility-door",
-    "motion": "exit-to-recovery-transform",
-    "labels": [
-      "退場儀式",
-      "正常化",
-      "信頼",
-      "意思決定",
-      "責任",
+      "私的感情",
+      "自由恋愛",
+      "学校",
+      "職場",
+      "都市",
       "制度",
-      "再機能",
-      "再定義"
+      "候補者リスト",
+      "社会構造"
     ]
   },
-  "two_cost_curves": {
-    "kind": "dual-cost-graph",
-    "motion": "curves-draw-together",
+  "ideal_changes_with_time": {
+    "kind": "life-stage-room",
+    "motion": "ideal-cards-reweight",
     "labels": [
+      "20代前半",
+      "社交的",
+      "野心",
+      "旅行",
+      "数年後",
+      "穏やか",
+      "日常",
+      "理想変化"
+    ]
+  },
+  "thirteen_year_study": {
+    "kind": "longitudinal-timeline",
+    "motion": "13year-points-connect",
+    "labels": [
+      "2006",
+      "13年後",
+      "204人",
+      "r=.42",
+      "profile r=.73",
+      "安定",
+      "変化",
+      "人生段階"
+    ]
+  },
+  "self_insight_gap": {
+    "kind": "self-report-mirror",
+    "motion": "perceived-vs-actual-change",
+    "labels": [
+      "自覚",
+      "実測",
+      "理想変化",
+      "一致限定",
+      "mean r=.20",
+      "自己認識",
+      "誤差",
+      "観察者"
+    ]
+  },
+  "experience_rewrites_criteria": {
+    "kind": "criterion-editor",
+    "motion": "weights-rewrite",
+    "labels": [
+      "刺激",
+      "疲労",
+      "安定",
+      "発見",
+      "経験",
+      "項目",
+      "重み",
+      "条件表更新"
+    ]
+  },
+  "moving_target": {
+    "kind": "moving-target",
+    "motion": "ideal-self-both-move",
+    "labels": [
+      "過去の理想",
+      "現在の相手",
+      "現在の自分",
+      "基準変化",
+      "相手変化",
+      "矛盾ではない",
       "時間",
-      "交代コスト",
-      "続投コスト",
-      "初期高",
-      "後から上昇",
-      "学習",
-      "混乱",
-      "比較"
+      "移動標的"
     ]
   },
-  "crossing_point": {
-    "kind": "curve-crossing",
-    "motion": "cross-point-pulse",
+  "restaurant_shared_history": {
+    "kind": "family-restaurant-evening",
+    "motion": "shared-memory-objects",
     "labels": [
-      "交点",
-      "交代混乱",
-      "続投混乱",
-      "逆転",
-      "行政効率",
-      "合理性",
-      "判断地点",
-      "時間"
+      "二人だけの冗談",
+      "旅行の曲",
+      "呼び方",
+      "声の変化",
+      "共有記憶",
+      "第三者には不明",
+      "関係史",
+      "積層"
     ]
   },
-  "criteria_board": {
-    "kind": "decision-board",
-    "motion": "criteria-populate",
+  "relationship_specific_value": {
+    "kind": "relationship-archive",
+    "motion": "generic-traits-to-history",
     "labels": [
-      "重大性",
-      "信頼回復可能性",
-      "国会正常性",
-      "省庁本来業務",
-      "後任",
-      "政策継続",
-      "総合判断",
-      "基準"
+      "一般属性",
+      "共有経験",
+      "支え合い",
+      "儀式",
+      "歴史",
+      "代替困難",
+      "関係価値",
+      "固有性"
     ]
   },
-  "takaichi_shift": {
-    "kind": "pm-diet-2026",
-    "motion": "quote-position-shift",
+  "self_with_partner": {
+    "kind": "self-transformation",
+    "motion": "partner-changes-self",
     "labels": [
-      "高市首相",
-      "10月13日",
-      "仕事で返す",
-      "行政運営",
-      "しっかり考える",
-      "姿勢変化",
-      "国会",
-      "統治問題"
+      "静かな理想",
+      "よく喋る相手",
+      "自分も話す",
+      "外出",
+      "知らない街",
+      "新しい自分",
+      "相手",
+      "自己変化"
     ]
   },
-  "minister_as_obstacle": {
-    "kind": "river-blockage",
-    "motion": "helm-to-dam",
+  "second_question": {
+    "kind": "two-questions-stage",
+    "motion": "question-shift",
     "labels": [
-      "操舵手",
-      "行政流",
-      "説明負担",
-      "国会",
-      "官僚",
-      "説得力",
-      "障害物",
-      "せき止め"
+      "どんな相手？",
+      "どんな自分？",
+      "理想のタイプ",
+      "関係の効果",
+      "会う前",
+      "会った後",
+      "自己",
+      "問い"
     ]
   },
-  "public_anger_and_analysis": {
-    "kind": "citizen-room",
-    "motion": "anger-and-scale-coexist",
+  "dating_app_filter": {
+    "kind": "dating-app-ui",
+    "motion": "filters-narrow",
     "labels": [
-      "怒り",
-      "不適切発言",
-      "制度分析",
-      "両立",
-      "民主主義",
-      "感情",
-      "社会状態",
-      "判断"
+      "年齢",
+      "身長",
+      "職業",
+      "趣味",
+      "飲酒",
+      "喫煙",
+      "休日",
+      "結婚願望"
     ]
   },
-  "decision_not_formula": {
-    "kind": "formula-board",
-    "motion": "numbers-dissolve",
+  "filter_power_limit": {
+    "kind": "filter-vs-future",
+    "motion": "precision-cost",
     "labels": [
-      "交代コスト",
-      "続投コスト",
-      "金額化不能",
-      "信頼",
-      "行政能力",
-      "思考装置",
-      "公式ではない",
-      "不確実性"
-    ]
-  },
-  "return_farm_evening": {
-    "kind": "ricefield-evening",
-    "motion": "sunset-reflection",
-    "labels": [
-      "夕方",
-      "水面",
-      "長靴",
-      "畦道",
-      "農家",
-      "東京",
-      "国会",
-      "同じ時間"
-    ]
-  },
-  "two_places_connected": {
-    "kind": "map-farm-tokyo",
-    "motion": "policy-line-connect",
-    "labels": [
-      "農村",
-      "霞が関",
-      "災害支援",
-      "米政策",
-      "所得対策",
+      "合理的条件",
+      "生活習慣",
+      "子ども",
       "距離",
-      "行政線",
-      "大臣責任"
+      "詳細フィルター",
+      "現在の自己理解",
+      "未来の好み",
+      "限界"
     ]
   },
-  "not_take_side": {
-    "kind": "neutral-stage",
-    "motion": "two-doors-open",
+  "counterfactual_office_romance": {
+    "kind": "office-counterfactual",
+    "motion": "filtered-person-enters-life",
     "labels": [
-      "辞任",
-      "続投",
-      "断定しない",
-      "10月13日",
-      "状況流動",
-      "新事実",
-      "行政影響",
-      "判断保留"
+      "検索で除外",
+      "同じ職場",
+      "3か月",
+      "失敗",
+      "コーヒー",
+      "昼食",
+      "冗談",
+      "評価変化"
     ]
   },
-  "both_prices": {
-    "kind": "final-two-invoices",
-    "motion": "invoices-stack",
+  "unsearchable_future_value": {
+    "kind": "search-engine-future",
+    "motion": "future-value-unavailable",
     "labels": [
-      "交代",
-      "知識断絶",
-      "引継ぎ",
-      "続投",
-      "信頼低下",
-      "政治対応",
-      "双方コスト",
-      "比較"
+      "検索可能情報",
+      "検索不能情報",
+      "出会い前",
+      "出会い後",
+      "生成価値",
+      "未来",
+      "プロフィール外",
+      "未発生"
     ]
   },
-  "who_pays": {
-    "kind": "citizen-bill",
-    "motion": "costs-flow-to-public",
+  "station_platform_return": {
+    "kind": "station-night",
+    "motion": "shared-presence-final",
     "labels": [
-      "政策遅延",
-      "組織混乱",
-      "国会時間",
-      "信頼低下",
-      "行政サービス",
-      "国民",
-      "請求書",
-      "最終負担"
+      "夜の駅",
+      "ホーム",
+      "二人",
+      "会話",
+      "笑い",
+      "待ち時間",
+      "共有情報",
+      "関係"
     ]
   },
-  "better_question": {
-    "kind": "news-viewer-room",
-    "motion": "second-question-appear",
+  "map_metaphor": {
+    "kind": "travel-map-final",
+    "motion": "map-walk-weather",
     "labels": [
-      "いつ辞める？",
-      "国家は正常化？",
-      "ニュース",
-      "一問追加",
-      "人事",
-      "統治",
-      "制度",
-      "見る目"
+      "地図",
+      "道",
+      "風",
+      "店",
+      "雨",
+      "雨宿り",
+      "経験",
+      "理想"
     ]
   },
-  "final_statecraft": {
-    "kind": "night-radio-finale",
-    "motion": "two-curves-fade-to-question",
+  "relationship_as_new_value": {
+    "kind": "two-person-space",
+    "motion": "new-value-blooms",
     "labels": [
-      "怒り",
-      "思考",
-      "続投の値段",
-      "交代の値段",
-      "民主主義",
-      "夜",
-      "選択",
-      "考え続ける"
+      "理想一致",
+      "予測力",
+      "接触",
+      "相互反応",
+      "共有経験",
+      "自己変化",
+      "新しい価値",
+      "タイプ外"
+    ]
+  },
+  "final_love_changes_self": {
+    "kind": "night-horizon",
+    "motion": "self-and-partner-transform",
+    "labels": [
+      "理想",
+      "出会い",
+      "関係",
+      "変化",
+      "相手を選ぶ",
+      "自分も変わる",
+      "二人の間",
+      "結論"
     ]
   }
 }
