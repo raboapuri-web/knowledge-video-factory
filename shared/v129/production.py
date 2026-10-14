@@ -162,7 +162,9 @@ def split_beats(paras,target=168):
             out.append(buf);buf=""
         buf+=sentence
     if buf:out.append(buf)
-    if len(out)>1 and len(out[-1])<58:out[-2]+=out.pop()
+    if len(out)>1 and len(out[-1])<58:
+        tail=out.pop()
+        out[-1]+=tail
     assert "".join(out)=="".join(map(norm,paras))
     return out
 def compile_manuscript():
@@ -430,7 +432,6 @@ def prepare():
     data=compile_manuscript();beats=data["beats"];slides=[]
     for i,b in enumerate(beats):
         stages=[0,1]
-        if b["visual"] in ("chart58","chart80","chart50","matrix","ending","logic","niche","triad"):stages=[0,1,0]
         for st in stages:
             # Third state returns to a readable baseline while the narration continues.
             p=OUT/f"shot-{i:03d}-{len([x for x in slides if x['index']==i])}.png"
