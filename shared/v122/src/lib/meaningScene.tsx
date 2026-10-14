@@ -287,13 +287,13 @@ function buildScene(root:Node,scene:Scene,plan:Plan):Node[]{
     case 'opportunity_structure':{
       rr(a,0,0,1920,920,'#112029',0);const nodes=[{x:-590,y:-120,t:'学校',c:K.cyan},{x:-190,y:-170,t:'職場',c:K.gold},{x:220,y:-160,t:'友人',c:K.teal},{x:600,y:-100,t:'地域',c:K.red},{x:-380,y:150,t:'店',c:K.orange},{x:0,y:210,t:'趣味',c:K.violet},{x:380,y:150,t:'紹介',c:K.blue}];
       network(b,nodes);cc(c,0,20,120,K.paper);label(c,'自分',0,20,K.black,25);
-      rr(d,0,20,1050,520,'transparent',20,K.gold);label(e,'生活圏',0,300,K.gold,28);
+      ln(d,[[-525,-240],[525,-240],[525,280],[-525,280],[-525,-240]],K.gold,4);label(e,'生活圏',0,300,K.gold,28);
       label(f,'世界の全員ではない',-360,-260,K.muted,27);label(g,'実際に会える少数',360,-260,K.paper,27);label(h,'環境が候補者を絞る',0,-325,K.gold,40);break;
     }
     case 'corridor_before_preference':{
       rr(a,0,0,1920,920,'#0D1820',0);['座席表','勤務先','住所','友人ネット'].forEach((x,i)=>folder(b,-510+i*340,-100,260,150,[K.cyan,K.gold,K.red,K.teal][i],x));
       const allPeople=[-650,-480,-310,-140,30,200,370,540,710];allPeople.forEach((x,i)=>person(c,x,150,.25,i<5?K.paper:K.muted));
-      rr(d,-250,150,920,270,'transparent',14,K.gold);label(e,'実際に出会える範囲',-250,295,K.gold,24);
+      ln(d,[[-710,15],[210,15],[210,285],[-710,285],[-710,15]],K.gold,4);label(e,'実際に出会える範囲',-250,295,K.gold,24);
       card(f,'好み',520,220,220,K.red);ln(g,[[350,220],[200,220]],K.red,6);label(h,'選好より前に「候補」が選ばれる',0,-315,K.paper,38);break;
     }
     case 'assortative_couples':{
