@@ -43,8 +43,8 @@ MC_META={"version":1,"shared":{"background":"rgb(7,16,24)","range":[0,None],"siz
 for chapter in chapters:
     ids=[r['id'] for r in rows if r['chapter']==chapter]
     imports='\n'.join(f"import s{i} from '../scenes/{sid}?scene';" for i,sid in enumerate(ids))
-    (ROOT/'src/projects'/f'{chapter}.ts').write_text("import {makeProject} from '@motion-canvas/core';\n"+imports+'\n'+f"export default makeProject({{name:'v125-{chapter}',scenes:[{','.join(f's{i}' for i in range(len(ids)))}],audio:'/media/{chapter}/narration.wav'}});\n")
+    (ROOT/'src/projects'/f'{chapter}.ts').write_text("import {makeProject} from '@motion-canvas/core';\n"+imports+'\n'+f"export default makeProject({{name:'v126-{chapter}',scenes:[{','.join(f's{i}' for i in range(len(ids)))}],audio:'/media/{chapter}/narration.wav'}});\n")
     (ROOT/'src/projects'/f'{chapter}.meta').write_text(json.dumps(MC_META,ensure_ascii=False,separators=(',',':')))
 chap=defaultdict(float)
 for r in rows:chap[r['chapter']]+=r['duration']
-print(json.dumps({'video':'V125','scene_count':len(rows),'estimated_duration_sec':round(sum(chap.values()),2),'chapters':chap,'cue_count':sum(len(r['cues']) for r in rows)},ensure_ascii=False))
+print(json.dumps({'video':'V126','scene_count':len(rows),'estimated_duration_sec':round(sum(chap.values()),2),'chapters':chap,'cue_count':sum(len(r['cues']) for r in rows)},ensure_ascii=False))
