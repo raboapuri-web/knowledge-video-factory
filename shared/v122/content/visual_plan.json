@@ -1,659 +1,967 @@
 {
-  "izakaya_type_list": {
-    "kind": "izakaya-night",
-    "motion": "type-notes-build",
+  "xuanwu_before_dawn": {
+    "kind": "v127-01-xuanwu_before_dawn",
+    "motion": "motion-01-xuanwu_before_dawn",
     "labels": [
-      "夜11時",
-      "友人",
-      "理想のタイプ",
-      "落ち着き",
-      "知性",
-      "趣味",
-      "休日",
-      "条件表"
-    ]
-  },
-  "future_partner_contrast": {
-    "kind": "city-date-contrast",
-    "motion": "ideal-card-meets-reality",
-    "labels": [
-      "数か月後",
-      "よく喋る",
-      "本は読まない",
-      "外出好き",
-      "知らない音楽",
-      "予定変更",
-      "笑う二人",
-      "理想と違う"
-    ]
-  },
-  "preference_paradox": {
-    "kind": "split-memory",
-    "motion": "past-ideal-present-love",
-    "labels": [
-      "過去の理想",
-      "現在の恋",
-      "どちらも本気",
-      "矛盾",
-      "自己理解",
-      "好み",
-      "恋愛",
+      "626年、夜明け前の玄武門",
+      "玄武門",
+      "継承争い",
+      "旧敵",
+      "諫言",
+      "天可汗",
+      "指導者",
       "問い"
     ]
   },
-  "thesis_map": {
-    "kind": "research-map",
-    "motion": "questions-connect",
+  "ambush_tension": {
+    "kind": "v127-02-ambush_tension",
+    "motion": "motion-02-ambush_tension",
     "labels": [
-      "歴史",
-      "理想基準",
-      "対面",
-      "機械学習",
-      "近接性",
-      "社会構造",
-      "理想の更新",
-      "関係価値"
+      "兄と弟が門へ近づく",
+      "玄武門",
+      "継承争い",
+      "旧敵",
+      "諫言",
+      "天可汗",
+      "指導者",
+      "問い"
     ]
   },
-  "premodern_marriage_table": {
-    "kind": "premodern-house",
-    "motion": "family-bargain-transform",
+  "brothers_fall": {
+    "kind": "v127-03-brothers_fall",
+    "motion": "motion-03-brothers_fall",
     "labels": [
-      "家族A",
-      "家族B",
-      "土地",
-      "相続",
-      "商売",
-      "共同体",
-      "若い二人",
-      "結婚制度"
+      "流血から始まる「名君」の物語",
+      "玄武門",
+      "継承争い",
+      "旧敵",
+      "諫言",
+      "天可汗",
+      "指導者",
+      "問い"
     ]
   },
-  "love_marriage_shift": {
-    "kind": "history-timeline-house",
-    "motion": "institution-to-companion",
+  "expected_tyrant_path": {
+    "kind": "v127-04-expected_tyrant_path",
+    "motion": "motion-04-expected_tyrant_path",
     "labels": [
-      "家の結合",
-      "個人選択",
-      "愛情",
-      "信頼",
-      "会話",
-      "精神的支え",
-      "近代化",
-      "期待集中"
+      "普通なら暴君の物語へ進みそうだった",
+      "玄武門",
+      "継承争い",
+      "旧敵",
+      "諫言",
+      "天可汗",
+      "指導者",
+      "問い"
     ]
   },
-  "expectation_stack": {
-    "kind": "partner-expectation-tower",
-    "motion": "roles-stack",
+  "weizheng_turn": {
+    "kind": "v127-05-weizheng_turn",
+    "motion": "motion-05-weizheng_turn",
     "labels": [
-      "生活",
-      "愛情",
-      "性的魅力",
-      "理解",
-      "価値観",
-      "支え",
-      "成長",
-      "将来"
+      "ところが旧敵の側近を自分の宮廷へ入れ",
+      "玄武門",
+      "継承争い",
+      "旧敵",
+      "諫言",
+      "天可汗",
+      "指導者",
+      "問い"
     ]
   },
-  "forecasting_future_self": {
-    "kind": "forecast-window",
-    "motion": "present-self-predicts-future",
+  "heavenly_khan_preview": {
+    "kind": "v127-06-heavenly_khan_preview",
+    "motion": "motion-06-heavenly_khan_preview",
     "labels": [
-      "現在の自分",
-      "未知の相手",
-      "未来の関係",
-      "予測",
-      "条件表",
-      "不確実性",
-      "幸福",
-      "理想"
+      "戦場でも宮廷でも、李世民は異なる種類",
+      "玄武門",
+      "継承争い",
+      "旧敵",
+      "諫言",
+      "天可汗",
+      "指導者",
+      "問い"
     ]
   },
-  "ideal_standards_lab": {
-    "kind": "psychology-lab",
-    "motion": "ideal-model-assemble",
+  "central_leadership_question": {
+    "kind": "v127-07-central_leadership_question",
+    "motion": "motion-07-central_leadership_question",
     "labels": [
-      "Ideal Standards Model",
-      "評価基準",
-      "温かさ",
-      "活力",
-      "地位",
-      "資源",
-      "認知",
-      "恋人像"
+      "最高の指導者とは、何でも知っている人",
+      "玄武門",
+      "継承争い",
+      "旧敵",
+      "諫言",
+      "天可汗",
+      "指導者",
+      "問い"
     ]
   },
-  "three_ideal_dimensions": {
-    "kind": "three-axis-room",
-    "motion": "dimensions-balance",
+  "sui_collapse_road": {
+    "kind": "v127-08-sui_collapse_road",
+    "motion": "motion-08-sui_collapse_road",
     "labels": [
-      "温かさ・信頼",
-      "活力・魅力",
-      "地位・資源",
-      "理想",
-      "相手評価",
-      "重み",
-      "個人差",
-      "物差し"
+      "李世民が育ったのは、安定した帝国の宮",
+      "隋末",
+      "反乱",
+      "戦場",
+      "徴発",
+      "民力",
+      "反面教師",
+      "自制"
     ]
   },
-  "worldwide_ideal_study": {
-    "kind": "world-study-map",
-    "motion": "countries-languages-n",
+  "sui_burden_machine": {
+    "kind": "v127-09-sui_burden_machine",
+    "motion": "motion-09-sui_burden_machine",
     "labels": [
-      "43か国",
-      "22言語",
-      "10,358人",
-      "2025",
-      "理想との一致",
-      "小さい効果",
-      "一般的魅力",
-      "予測力"
+      "強い国家が、社会へ負担をかけすぎて壊",
+      "隋末",
+      "反乱",
+      "戦場",
+      "徴発",
+      "民力",
+      "反面教師",
+      "自制"
     ]
   },
-  "map_not_territory": {
-    "kind": "paper-map-walk",
-    "motion": "map-to-lived-road",
+  "young_general_campaign": {
+    "kind": "v127-10-young_general_campaign",
+    "motion": "motion-10-young_general_campaign",
     "labels": [
-      "地図",
-      "目的地",
-      "道",
-      "偶然の店",
-      "雨宿り",
-      "現地",
-      "理想",
-      "経験"
+      "李世民の最初の教室は戦場だった",
+      "隋末",
+      "反乱",
+      "戦場",
+      "徴発",
+      "民力",
+      "反面教師",
+      "自制"
     ]
   },
-  "speed_dating_hall": {
-    "kind": "speed-dating-room",
-    "motion": "tables-rotate",
+  "occupation_is_not_rule": {
+    "kind": "v127-11-occupation_is_not_rule",
+    "motion": "motion-11-occupation_is_not_rule",
     "labels": [
-      "会場",
-      "複数テーブル",
-      "4分",
-      "ベル",
-      "移動",
-      "事前理想",
-      "対面",
-      "実測"
+      "都市を奪っても、統治できなければ勝利",
+      "隋末",
+      "反乱",
+      "戦場",
+      "徴発",
+      "民力",
+      "反面教師",
+      "自制"
     ]
   },
-  "stated_vs_revealed_preferences": {
-    "kind": "preference-vs-choice",
-    "motion": "self-report-vs-date",
+  "state_consumes_people": {
+    "kind": "v127-12-state_consumes_people",
+    "motion": "motion-12-state_consumes_people",
     "labels": [
-      "身体的魅力",
-      "収入見込み",
-      "事前申告",
-      "男女差",
-      "実際の相手",
-      "恋愛的関心",
-      "予測弱い",
-      "2008"
+      "国家は民衆の上ではなく、民衆の生産力",
+      "隋末",
+      "反乱",
+      "戦場",
+      "徴発",
+      "民力",
+      "反面教師",
+      "自制"
     ]
   },
-  "living_trait_texture": {
-    "kind": "cafe-interaction",
-    "motion": "adjective-becomes-actions",
+  "sui_as_negative_example": {
+    "kind": "v127-13-sui_as_negative_example",
+    "motion": "motion-13-sui_as_negative_example",
     "labels": [
-      "明るい",
-      "遮らない",
-      "優しい",
-      "店員対応",
-      "待つ",
-      "表情",
-      "行動",
-      "具体性"
+      "李世民の前には、巨大な反面教師が倒れ",
+      "隋末",
+      "反乱",
+      "戦場",
+      "徴発",
+      "民力",
+      "反面教師",
+      "自制"
     ]
   },
-  "microinteraction_accumulation": {
-    "kind": "conversation-closeup",
-    "motion": "micro-signals-accumulate",
+  "first_rule_of_governance": {
+    "kind": "v127-14-first_rule_of_governance",
+    "motion": "motion-14-first_rule_of_governance",
     "labels": [
-      "声の調子",
-      "返答の間",
-      "視線",
-      "冗談",
-      "安心",
-      "疲れ",
-      "自分への反応",
-      "情報増加"
+      "強い国家ほど、自制を制度化しなければ",
+      "隋末",
+      "反乱",
+      "戦場",
+      "徴発",
+      "民力",
+      "反面教師",
+      "自制"
     ]
   },
-  "abstract_to_person": {
-    "kind": "profile-to-person",
-    "motion": "scores-dissolve-person-emerge",
+  "inherited_bureaucracy": {
+    "kind": "v127-15-inherited_bureaucracy",
+    "motion": "motion-15-inherited_bureaucracy",
     "labels": [
-      "プロフィール",
-      "高得点",
-      "優しさ8点",
-      "魅力7点",
-      "人物A",
-      "人物B",
-      "文脈",
-      "現れ方"
+      "太宗は国家をゼロから作ったわけではな",
+      "制度継承",
+      "隋",
+      "高祖",
+      "編集",
+      "継続",
+      "改善",
+      "人材"
     ]
   },
-  "machine_learning_setup": {
-    "kind": "ml-dating-lab",
-    "motion": "features-into-model",
+  "new_ruler_temptation": {
+    "kind": "v127-16-new_ruler_temptation",
+    "motion": "motion-16-new_ruler_temptation",
     "labels": [
-      "100+質問",
-      "性格",
-      "恋愛観",
-      "自己評価",
-      "好み",
-      "random forest",
-      "スピードデート",
-      "2017"
+      "新しい権力者ほど「自分の時代」を作り",
+      "制度継承",
+      "隋",
+      "高祖",
+      "編集",
+      "継続",
+      "改善",
+      "人材"
     ]
   },
-  "actor_partner_variance": {
-    "kind": "prediction-dashboard",
-    "motion": "actor-partner-bars",
+  "editor_not_inventor": {
+    "kind": "v127-17-editor_not_inventor",
+    "motion": "motion-17-editor_not_inventor",
     "labels": [
-      "惚れやすさ",
-      "好かれやすさ",
-      "actor variance",
-      "partner variance",
-      "予測可能",
-      "4–18%",
-      "7–27%",
-      "一般傾向"
+      "李世民を「発明家」より「編集者」と見",
+      "制度継承",
+      "隋",
+      "高祖",
+      "編集",
+      "継続",
+      "改善",
+      "人材"
     ]
   },
-  "relationship_variance_failure": {
-    "kind": "relationship-matrix",
-    "motion": "specific-pair-fails",
+  "documents_on_table": {
+    "kind": "v127-18-documents_on_table",
+    "motion": "motion-18-documents_on_table",
     "labels": [
-      "A",
-      "B",
-      "C",
-      "D",
-      "特定ペア",
-      "relationship variance",
-      "予測失敗",
-      "相性"
+      "制度は、人間の思いつきより長く生きる",
+      "制度継承",
+      "隋",
+      "高祖",
+      "編集",
+      "継続",
+      "改善",
+      "人材"
     ]
   },
-  "interaction_generates_data": {
-    "kind": "two-person-feedback",
-    "motion": "feedback-loop-grows",
+  "institutional_continuity": {
+    "kind": "v127-19-institutional_continuity",
+    "motion": "motion-19-institutional_continuity",
     "labels": [
-      "Aが話す",
-      "Bが笑う",
-      "Aが本音",
-      "Bが返す",
-      "態度変化",
-      "相互作用",
-      "新データ",
-      "二人の間"
+      "継続性は、停滞とは違う",
+      "制度継承",
+      "隋",
+      "高祖",
+      "編集",
+      "継続",
+      "改善",
+      "人材"
     ]
   },
-  "compatibility_emergence": {
-    "kind": "emergent-space",
-    "motion": "third-space-appears",
+  "editor_leadership": {
+    "kind": "v127-20-editor_leadership",
+    "motion": "motion-20-editor_leadership",
     "labels": [
-      "Aの特性",
-      "Bの特性",
-      "接触前",
-      "出会い",
-      "関係固有",
-      "生成",
-      "相性",
-      "後から生まれる"
+      "優秀な指導者は、全部を自分で発明する",
+      "制度継承",
+      "隋",
+      "高祖",
+      "編集",
+      "継続",
+      "改善",
+      "人材"
     ]
   },
-  "dorm_corridor": {
-    "kind": "dorm-hallway",
-    "motion": "strangers-to-greeting",
+  "morning_court": {
+    "kind": "v127-21-morning_court",
+    "motion": "motion-21-morning_court",
     "labels": [
-      "部屋",
-      "廊下",
-      "すれ違う",
-      "会釈",
-      "挨拶",
-      "食堂",
-      "知人",
-      "近接性"
+      "朝の宮廷には「皇帝に何を言うか」とい",
+      "宮廷",
+      "報告",
+      "情報",
+      "魏徴",
+      "諫言",
+      "鏡",
+      "自己修正"
     ]
   },
-  "mere_exposure_classroom": {
-    "kind": "lecture-hall",
-    "motion": "attendance-frequency",
+  "information_distortion": {
+    "kind": "v127-22-information_distortion",
+    "motion": "motion-22-information_distortion",
     "labels": [
-      "講義室",
-      "0回",
-      "5回",
-      "10回",
-      "15回",
-      "会話なし",
-      "学期末評価",
-      "1992"
+      "権力が強いほど、悪い情報が上へ届きに",
+      "宮廷",
+      "報告",
+      "情報",
+      "魏徴",
+      "諫言",
+      "鏡",
+      "自己修正"
     ]
   },
-  "opportunity_structure": {
-    "kind": "life-radius",
-    "motion": "candidate-funnel",
+  "weizheng_origin": {
+    "kind": "v127-23-weizheng_origin",
+    "motion": "motion-23-weizheng_origin",
     "labels": [
-      "学校",
-      "職場",
-      "友人",
-      "地域",
-      "店",
-      "趣味",
-      "生活圏",
-      "候補者"
+      "魏徴は、もともと李世民の味方ではなか",
+      "宮廷",
+      "報告",
+      "情報",
+      "魏徴",
+      "諫言",
+      "鏡",
+      "自己修正"
     ]
   },
-  "corridor_before_preference": {
-    "kind": "corridor-filter",
-    "motion": "environment-before-choice",
+  "weizheng_remonstrates": {
+    "kind": "v127-24-weizheng_remonstrates",
+    "motion": "motion-24-weizheng_remonstrates",
     "labels": [
-      "座席表",
-      "勤務先",
-      "住所",
-      "友人ネットワーク",
-      "出会える人",
-      "出会えない人",
-      "好み以前",
-      "最初の選別"
+      "旧敵の側近が、今度は皇帝本人を批判す",
+      "宮廷",
+      "報告",
+      "情報",
+      "魏徴",
+      "諫言",
+      "鏡",
+      "自己修正"
     ]
   },
-  "assortative_couples": {
-    "kind": "wedding-couples",
-    "motion": "similarity-patterns",
+  "zhenguan_zhengyao_caution": {
+    "kind": "v127-25-zhenguan_zhengyao_caution",
+    "motion": "motion-25-zhenguan_zhengyao_caution",
     "labels": [
-      "年齢",
-      "教育",
-      "宗教性",
-      "政治",
-      "生活習慣",
-      "似た二人",
-      "assortative mating",
-      "非ランダム"
+      "ただし『貞観政要』を録音記録のように",
+      "宮廷",
+      "報告",
+      "情報",
+      "魏徴",
+      "諫言",
+      "鏡",
+      "自己修正"
     ]
   },
-  "education_funnel": {
-    "kind": "education-career-funnel",
-    "motion": "path-narrows-market",
+  "mirror_metaphor": {
+    "kind": "v127-26-mirror_metaphor",
+    "motion": "motion-26-mirror_metaphor",
     "labels": [
-      "高校",
-      "大学",
-      "就職",
-      "業界",
-      "友人",
-      "紹介",
-      "同質化",
-      "候補集合"
+      "魏徴は皇帝の「鏡」になった",
+      "宮廷",
+      "報告",
+      "情報",
+      "魏徴",
+      "諫言",
+      "鏡",
+      "自己修正"
     ]
   },
-  "social_structure_market": {
-    "kind": "social-network-market",
-    "motion": "structures-compose-market",
+  "self_correction_system": {
+    "kind": "v127-27-self_correction_system",
+    "motion": "motion-27-self_correction_system",
     "labels": [
-      "教育制度",
-      "職業",
-      "所得",
-      "地域",
-      "ネットワーク",
-      "接触機会",
-      "選好",
-      "市場構造"
+      "名君の条件は「正しいこと」より「訂正",
+      "宮廷",
+      "報告",
+      "情報",
+      "魏徴",
+      "諫言",
+      "鏡",
+      "自己修正"
     ]
   },
-  "private_choice_public_structure": {
-    "kind": "private-room-city-grid",
-    "motion": "heart-inside-structure",
+  "emperor_cannot_see_all": {
+    "kind": "v127-28-emperor_cannot_see_all",
+    "motion": "motion-28-emperor_cannot_see_all",
     "labels": [
-      "私的感情",
-      "自由恋愛",
-      "学校",
-      "職場",
-      "都市",
+      "皇帝は国家のほとんどを直接見ることが",
+      "地方",
+      "報告",
+      "歪み",
+      "恐怖",
+      "反対意見",
+      "修正",
+      "情報設計"
+    ]
+  },
+  "bad_news_filter": {
+    "kind": "v127-29-bad_news_filter",
+    "motion": "motion-29-bad_news_filter",
+    "labels": [
+      "悪いニュースは上へ行くほど薄まってい",
+      "地方",
+      "報告",
+      "歪み",
+      "恐怖",
+      "反対意見",
+      "修正",
+      "情報設計"
+    ]
+  },
+  "safe_dissent_signal": {
+    "kind": "v127-30-safe_dissent_signal",
+    "motion": "motion-30-safe_dissent_signal",
+    "labels": [
+      "「反対しても安全」という信号には実務",
+      "地方",
+      "報告",
+      "歪み",
+      "恐怖",
+      "反対意見",
+      "修正",
+      "情報設計"
+    ]
+  },
+  "fear_vs_information": {
+    "kind": "v127-31-fear_vs_information",
+    "motion": "motion-31-fear_vs_information",
+    "labels": [
+      "恐怖は命令を速くするが、情報を遅くす",
+      "地方",
+      "報告",
+      "歪み",
+      "恐怖",
+      "反対意見",
+      "修正",
+      "情報設計"
+    ]
+  },
+  "strong_leader_paradox": {
+    "kind": "v127-32-strong_leader_paradox",
+    "motion": "motion-32-strong_leader_paradox",
+    "labels": [
+      "本当に強い指導者は、自分を止められる",
+      "地方",
+      "報告",
+      "歪み",
+      "恐怖",
+      "反対意見",
+      "修正",
+      "情報設計"
+    ]
+  },
+  "information_architecture": {
+    "kind": "v127-33-information_architecture",
+    "motion": "motion-33-information_architecture",
+    "labels": [
+      "指導者の仕事は「正しい情報が届く構造",
+      "地方",
+      "報告",
+      "歪み",
+      "恐怖",
+      "反対意見",
+      "修正",
+      "情報設計"
+    ]
+  },
+  "talent_roster": {
+    "kind": "v127-34-talent_roster",
+    "motion": "motion-34-talent_roster",
+    "labels": [
+      "李世民の宮廷には、異なる役割の人間が",
+      "人材",
+      "房玄齢",
+      "杜如晦",
+      "魏徴",
+      "家門",
+      "配置",
+      "組織"
+    ]
+  },
+  "homophily_trap": {
+    "kind": "v127-35-homophily_trap",
+    "motion": "motion-35-homophily_trap",
+    "labels": [
+      "権力者の周囲には、似た人間が自然に集",
+      "人材",
+      "房玄齢",
+      "杜如晦",
+      "魏徴",
+      "家門",
+      "配置",
+      "組織"
+    ]
+  },
+  "different_roles": {
+    "kind": "v127-36-different_roles",
+    "motion": "motion-36-different_roles",
+    "labels": [
+      "「房謀杜断」のように、役割の違いを組",
+      "人材",
+      "房玄齢",
+      "杜如晦",
+      "魏徴",
+      "家門",
+      "配置",
+      "組織"
+    ]
+  },
+  "not_modern_meritocracy": {
+    "kind": "v127-37-not_modern_meritocracy",
+    "motion": "motion-37-not_modern_meritocracy",
+    "labels": [
+      "ただし初唐を現代的な完全能力主義とし",
+      "人材",
+      "房玄齢",
+      "杜如晦",
+      "魏徴",
+      "家門",
+      "配置",
+      "組織"
+    ]
+  },
+  "balance_elites": {
+    "kind": "v127-38-balance_elites",
+    "motion": "motion-38-balance_elites",
+    "labels": [
+      "既存の有力集団を消すのではなく、偏り",
+      "人材",
+      "房玄齢",
+      "杜如晦",
+      "魏徴",
+      "家門",
+      "配置",
+      "組織"
+    ]
+  },
+  "organization_smarter_than_leader": {
+    "kind": "v127-39-organization_smarter_than_leader",
+    "motion": "motion-39-organization_smarter_than_leader",
+    "labels": [
+      "最高の答えが出やすい配置を作る",
+      "人材",
+      "房玄齢",
+      "杜如晦",
+      "魏徴",
+      "家門",
+      "配置",
+      "組織"
+    ]
+  },
+  "steppe_after_victory": {
+    "kind": "v127-40-steppe_after_victory",
+    "motion": "motion-40-steppe_after_victory",
+    "labels": [
+      "630年、北方世界の秩序が変わる",
+      "東突厥",
+      "天可汗",
+      "羈縻",
+      "草原",
+      "統治コスト",
+      "外交",
+      "帝国"
+    ]
+  },
+  "heavenly_khan_title": {
+    "kind": "v127-41-heavenly_khan_title",
+    "motion": "motion-41-heavenly_khan_title",
+    "labels": [
+      "中国皇帝が「天可汗」と呼ばれる",
+      "東突厥",
+      "天可汗",
+      "羈縻",
+      "草原",
+      "統治コスト",
+      "外交",
+      "帝国"
+    ]
+  },
+  "jimi_governance": {
+    "kind": "v127-42-jimi_governance",
+    "motion": "motion-42-jimi_governance",
+    "labels": [
+      "勝った相手をすべて同じ制度へ押し込ま",
+      "東突厥",
+      "天可汗",
+      "羈縻",
+      "草原",
+      "統治コスト",
+      "外交",
+      "帝国"
+    ]
+  },
+  "direct_rule_cost": {
+    "kind": "v127-43-direct_rule_cost",
+    "motion": "motion-43-direct_rule_cost",
+    "labels": [
+      "すべてを直接支配すると、帝国は自分の",
+      "東突厥",
+      "天可汗",
+      "羈縻",
+      "草原",
+      "統治コスト",
+      "外交",
+      "帝国"
+    ]
+  },
+  "war_to_governance": {
+    "kind": "v127-44-war_to_governance",
+    "motion": "motion-44-war_to_governance",
+    "labels": [
+      "戦争は、勝った後に統治へ変換できて初",
+      "東突厥",
+      "天可汗",
+      "羈縻",
+      "草原",
+      "統治コスト",
+      "外交",
+      "帝国"
+    ]
+  },
+  "hybrid_empire": {
+    "kind": "v127-45-hybrid_empire",
+    "motion": "motion-45-hybrid_empire",
+    "labels": [
+      "唐の強さは、一つの型を全地域へ押しつ",
+      "東突厥",
+      "天可汗",
+      "羈縻",
+      "草原",
+      "統治コスト",
+      "外交",
+      "帝国"
+    ]
+  },
+  "success_changes_ruler": {
+    "kind": "v127-46-success_changes_ruler",
+    "motion": "motion-46-success_changes_ruler",
+    "labels": [
+      "成功した指導者は、成功によって別の人",
+      "成功",
+      "高句麗",
+      "遠征",
+      "継承",
+      "自信",
+      "過信",
+      "鏡"
+    ]
+  },
+  "goguryeo_campaign": {
+    "kind": "v127-47-goguryeo_campaign",
+    "motion": "motion-47-goguryeo_campaign",
+    "labels": [
+      "645年、李世民は高句麗へ大規模遠征",
+      "成功",
+      "高句麗",
+      "遠征",
+      "継承",
+      "自信",
+      "過信",
+      "鏡"
+    ]
+  },
+  "old_warning_returns": {
+    "kind": "v127-48-old_warning_returns",
+    "motion": "motion-48-old_warning_returns",
+    "labels": [
+      "若いころの反面教師が、晩年には自分の",
+      "成功",
+      "高句麗",
+      "遠征",
+      "継承",
+      "自信",
+      "過信",
+      "鏡"
+    ]
+  },
+  "succession_crisis": {
+    "kind": "v127-49-succession_crisis",
+    "motion": "motion-49-succession_crisis",
+    "labels": [
+      "宮廷内部では後継者問題も崩れていく",
+      "成功",
+      "高句麗",
+      "遠征",
+      "継承",
+      "自信",
+      "過信",
+      "鏡"
+    ]
+  },
+  "success_overconfidence": {
+    "kind": "v127-50-success_overconfidence",
+    "motion": "motion-50-success_overconfidence",
+    "labels": [
+      "成功体験は「自分は間違える」という感",
+      "成功",
+      "高句麗",
+      "遠征",
+      "継承",
+      "自信",
+      "過信",
+      "鏡"
+    ]
+  },
+  "need_for_mirror_grows": {
+    "kind": "v127-51-need_for_mirror_grows",
+    "motion": "motion-51-need_for_mirror_grows",
+    "labels": [
+      "だから成功するほど「鏡」が必要になる",
+      "成功",
+      "高句麗",
+      "遠征",
+      "継承",
+      "自信",
+      "過信",
+      "鏡"
+    ]
+  },
+  "historians_at_night": {
+    "kind": "v127-52-historians_at_night",
+    "motion": "motion-52-historians_at_night",
+    "labels": [
+      "長安の夜、歴史官は皇帝の今日を記録し",
+      "歴史官",
+      "実録",
+      "自己像",
+      "貞観",
+      "編集",
+      "記憶",
+      "政治教材"
+    ]
+  },
+  "taizong_reads_history": {
+    "kind": "v127-53-taizong_reads_history",
+    "motion": "motion-53-taizong_reads_history",
+    "labels": [
+      "太宗は、自分がどう記録されているかを",
+      "歴史官",
+      "実録",
+      "自己像",
+      "貞観",
+      "編集",
+      "記憶",
+      "政治教材"
+    ]
+  },
+  "performance_for_posterity": {
+    "kind": "v127-54-performance_for_posterity",
+    "motion": "motion-54-performance_for_posterity",
+    "labels": [
+      "名君は、名君として見られる自分を演じ",
+      "歴史官",
+      "実録",
+      "自己像",
+      "貞観",
+      "編集",
+      "記憶",
+      "政治教材"
+    ]
+  },
+  "zhenguan_as_constructed_memory": {
+    "kind": "v127-55-zhenguan_as_constructed_memory",
+    "motion": "motion-55-zhenguan_as_constructed_memory",
+    "labels": [
+      "「貞観の治」は事実であると同時に、編",
+      "歴史官",
+      "実録",
+      "自己像",
+      "貞観",
+      "編集",
+      "記憶",
+      "政治教材"
+    ]
+  },
+  "myth_does_not_erase_rule": {
+    "kind": "v127-56-myth_does_not_erase_rule",
+    "motion": "motion-56-myth_does_not_erase_rule",
+    "labels": [
+      "史料が編集されているからといって、成",
+      "歴史官",
+      "実録",
+      "自己像",
+      "貞観",
+      "編集",
+      "記憶",
+      "政治教材"
+    ]
+  },
+  "ruler_of_state_and_story": {
+    "kind": "v127-57-ruler_of_state_and_story",
+    "motion": "motion-57-ruler_of_state_and_story",
+    "labels": [
+      "李世民は国家だけでなく、自分の統治の",
+      "歴史官",
+      "実録",
+      "自己像",
+      "貞観",
+      "編集",
+      "記憶",
+      "政治教材"
+    ]
+  },
+  "why_him": {
+    "kind": "v127-58-why_him",
+    "motion": "motion-58-why_him",
+    "labels": [
+      "なぜ李世民が「最高の指導者」の教材と",
+      "指導者",
+      "諫言",
       "制度",
-      "候補者リスト",
-      "社会構造"
+      "勝利",
+      "修正",
+      "教科書",
+      "統治"
     ]
   },
-  "ideal_changes_with_time": {
-    "kind": "life-stage-room",
-    "motion": "ideal-cards-reweight",
+  "not_know_everything": {
+    "kind": "v127-59-not_know_everything",
+    "motion": "motion-59-not_know_everything",
     "labels": [
-      "20代前半",
-      "社交的",
-      "野心",
-      "旅行",
-      "数年後",
-      "穏やか",
-      "日常",
-      "理想変化"
+      "強い指導者は、何でも自分で決める人で",
+      "指導者",
+      "諫言",
+      "制度",
+      "勝利",
+      "修正",
+      "教科書",
+      "統治"
     ]
   },
-  "thirteen_year_study": {
-    "kind": "longitudinal-timeline",
-    "motion": "13year-points-connect",
+  "not_constant_reform": {
+    "kind": "v127-60-not_constant_reform",
+    "motion": "motion-60-not_constant_reform",
     "labels": [
-      "2006",
-      "13年後",
-      "204人",
-      "r=.42",
-      "profile r=.73",
-      "安定",
-      "変化",
-      "人生段階"
+      "良い統治は、毎年新制度を作ることでも",
+      "指導者",
+      "諫言",
+      "制度",
+      "勝利",
+      "修正",
+      "教科書",
+      "統治"
     ]
   },
-  "self_insight_gap": {
-    "kind": "self-report-mirror",
-    "motion": "perceived-vs-actual-change",
+  "victory_after_victory": {
+    "kind": "v127-61-victory_after_victory",
+    "motion": "motion-61-victory_after_victory",
     "labels": [
-      "自覚",
-      "実測",
-      "理想変化",
-      "一致限定",
-      "mean r=.20",
-      "自己認識",
-      "誤差",
-      "観察者"
+      "軍事的勝利は、統治へ変換できなければ",
+      "指導者",
+      "諫言",
+      "制度",
+      "勝利",
+      "修正",
+      "教科書",
+      "統治"
     ]
   },
-  "experience_rewrites_criteria": {
-    "kind": "criterion-editor",
-    "motion": "weights-rewrite",
+  "error_containment": {
+    "kind": "v127-62-error_containment",
+    "motion": "motion-62-error_containment",
     "labels": [
-      "刺激",
-      "疲労",
-      "安定",
-      "発見",
-      "経験",
-      "項目",
-      "重み",
-      "条件表更新"
+      "成功とは「間違えないこと」ではなく、",
+      "指導者",
+      "諫言",
+      "制度",
+      "勝利",
+      "修正",
+      "教科書",
+      "統治"
     ]
   },
-  "moving_target": {
-    "kind": "moving-target",
-    "motion": "ideal-self-both-move",
+  "teaching_model": {
+    "kind": "v127-63-teaching_model",
+    "motion": "motion-63-teaching_model",
     "labels": [
-      "過去の理想",
-      "現在の相手",
-      "現在の自分",
-      "基準変化",
-      "相手変化",
-      "矛盾ではない",
-      "時間",
-      "移動標的"
+      "李世民は「ランキング一位」より「統治",
+      "指導者",
+      "諫言",
+      "制度",
+      "勝利",
+      "修正",
+      "教科書",
+      "統治"
     ]
   },
-  "restaurant_shared_history": {
-    "kind": "family-restaurant-evening",
-    "motion": "shared-memory-objects",
+  "return_xuanwu": {
+    "kind": "v127-64-return_xuanwu",
+    "motion": "motion-64-return_xuanwu",
     "labels": [
-      "二人だけの冗談",
-      "旅行の曲",
-      "呼び方",
-      "声の変化",
-      "共有記憶",
-      "第三者には不明",
-      "関係史",
-      "積層"
+      "最後に、再び夜明け前の玄武門へ戻る",
+      "玄武門",
+      "649年",
+      "書物",
+      "不完全",
+      "制度",
+      "組織",
+      "結論"
     ]
   },
-  "relationship_specific_value": {
-    "kind": "relationship-archive",
-    "motion": "generic-traits-to-history",
+  "twenty_three_years_later": {
+    "kind": "v127-65-twenty_three_years_later",
+    "motion": "motion-65-twenty_three_years_later",
     "labels": [
-      "一般属性",
-      "共有経験",
-      "支え合い",
-      "儀式",
-      "歴史",
-      "代替困難",
-      "関係価値",
-      "固有性"
+      "二十三年後、唐はまったく違う国家にな",
+      "玄武門",
+      "649年",
+      "書物",
+      "不完全",
+      "制度",
+      "組織",
+      "結論"
     ]
   },
-  "self_with_partner": {
-    "kind": "self-transformation",
-    "motion": "partner-changes-self",
+  "books_after_death": {
+    "kind": "v127-66-books_after_death",
+    "motion": "motion-66-books_after_death",
     "labels": [
-      "静かな理想",
-      "よく喋る相手",
-      "自分も話す",
-      "外出",
-      "知らない街",
-      "新しい自分",
-      "相手",
-      "自己変化"
+      "さらに長く残ったのは、彼の死後に読ま",
+      "玄武門",
+      "649年",
+      "書物",
+      "不完全",
+      "制度",
+      "組織",
+      "結論"
     ]
   },
-  "second_question": {
-    "kind": "two-questions-stage",
-    "motion": "question-shift",
+  "imperfect_human_system": {
+    "kind": "v127-67-imperfect_human_system",
+    "motion": "motion-67-imperfect_human_system",
     "labels": [
-      "どんな相手？",
-      "どんな自分？",
-      "理想のタイプ",
-      "関係の効果",
-      "会う前",
-      "会った後",
-      "自己",
-      "問い"
+      "完璧な人間にしかできない政治は、制度",
+      "玄武門",
+      "649年",
+      "書物",
+      "不完全",
+      "制度",
+      "組織",
+      "結論"
     ]
   },
-  "dating_app_filter": {
-    "kind": "dating-app-ui",
-    "motion": "filters-narrow",
+  "make_state_smarter": {
+    "kind": "v127-68-make_state_smarter",
+    "motion": "motion-68-make_state_smarter",
     "labels": [
-      "年齢",
-      "身長",
-      "職業",
-      "趣味",
-      "飲酒",
-      "喫煙",
-      "休日",
-      "結婚願望"
+      "最高の指導者は、自分一人より賢い国家",
+      "玄武門",
+      "649年",
+      "書物",
+      "不完全",
+      "制度",
+      "組織",
+      "結論"
     ]
   },
-  "filter_power_limit": {
-    "kind": "filter-vs-future",
-    "motion": "precision-cost",
+  "final_definition": {
+    "kind": "v127-69-final_definition",
+    "motion": "motion-69-final_definition",
     "labels": [
-      "合理的条件",
-      "生活習慣",
-      "子ども",
-      "距離",
-      "詳細フィルター",
-      "現在の自己理解",
-      "未来の好み",
-      "限界"
-    ]
-  },
-  "counterfactual_office_romance": {
-    "kind": "office-counterfactual",
-    "motion": "filtered-person-enters-life",
-    "labels": [
-      "検索で除外",
-      "同じ職場",
-      "3か月",
-      "失敗",
-      "コーヒー",
-      "昼食",
-      "冗談",
-      "評価変化"
-    ]
-  },
-  "unsearchable_future_value": {
-    "kind": "search-engine-future",
-    "motion": "future-value-unavailable",
-    "labels": [
-      "検索可能情報",
-      "検索不能情報",
-      "出会い前",
-      "出会い後",
-      "生成価値",
-      "未来",
-      "プロフィール外",
-      "未発生"
-    ]
-  },
-  "station_platform_return": {
-    "kind": "station-night",
-    "motion": "shared-presence-final",
-    "labels": [
-      "夜の駅",
-      "ホーム",
-      "二人",
-      "会話",
-      "笑い",
-      "待ち時間",
-      "共有情報",
-      "関係"
-    ]
-  },
-  "map_metaphor": {
-    "kind": "travel-map-final",
-    "motion": "map-walk-weather",
-    "labels": [
-      "地図",
-      "道",
-      "風",
-      "店",
-      "雨",
-      "雨宿り",
-      "経験",
-      "理想"
-    ]
-  },
-  "relationship_as_new_value": {
-    "kind": "two-person-space",
-    "motion": "new-value-blooms",
-    "labels": [
-      "理想一致",
-      "予測力",
-      "接触",
-      "相互反応",
-      "共有経験",
-      "自己変化",
-      "新しい価値",
-      "タイプ外"
-    ]
-  },
-  "final_love_changes_self": {
-    "kind": "night-horizon",
-    "motion": "self-and-partner-transform",
-    "labels": [
-      "理想",
-      "出会い",
-      "関係",
-      "変化",
-      "相手を選ぶ",
-      "自分も変わる",
-      "二人の間",
+      "李世民の本当の強さは、正しさではなく",
+      "玄武門",
+      "649年",
+      "書物",
+      "不完全",
+      "制度",
+      "組織",
       "結論"
     ]
   }
