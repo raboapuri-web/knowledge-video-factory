@@ -33,6 +33,8 @@ function infoPyramid(p:Node){rr(p,0,0,1920,920,'#101820',0);const ys=[220,100,-2
 function steppe(p:Node){rr(p,0,0,1920,920,'#25312A',0);rr(p,0,180,1920,440,'#53634A',0);ln(p,[[-900,-40],[-520,-180],[-120,-80],[260,-210],[650,-100],[900,-170]],K.sky,80);}
 function historyRoom(p:Node){rr(p,0,0,1920,920,'#171513',0);table(p,0,185,900);for(let i=0;i<5;i++)scroll(p,-420+i*210,-40,170,110,['実録','詔','奏','史','記'][i]);cc(p,0,-210,90,K.gold);}
 function graphAxes(p:Node){ln(p,[[-620,230],[-620,-250]],K.paper,4);ln(p,[[-620,230],[650,230]],K.paper,4);}
+function bar(p:Node,x:number,y:number,w:number,v:number,col:string,textLabel?:string){rr(p,x,y,w,30,'#252D30',6);rr(p,x-w*(1-v)/2,y,Math.max(8,w*v),30,col,6);if(textLabel)label(p,textLabel,x,y-42,col,20);}
+function timeline(p:Node,y:number,items:{x:number;label:string;col:string}[]){ln(p,[[items[0].x,y],[items[items.length-1].x,y]],K.muted,7);for(const it of items){cc(p,it.x,y,14,it.col);label(p,it.label,it.x,y+48,it.col,20);}}
 function stages8(){return Array.from({length:8},()=>new Node({opacity:0}));}
 function worldBase(root:Node,scene:Scene){const pal=['#080D11','#0D1115','#111719','#131618','#0A1217','#181512'];rr(root,0,0,1920,1080,pal[hash(scene.motif)%pal.length],0);for(let i=0;i<10;i++)cc(root,-840+((hash(scene.motif+i.toString())%1680)),-350+((hash('y'+scene.motif+i)%560)),1.5+(i%3),i%2?K.gold:K.dust);rr(root,0,344,1920,3,'#282D2E',0)}
 
