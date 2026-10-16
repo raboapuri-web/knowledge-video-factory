@@ -1,56 +1,53 @@
-# V126 Sources — なぜ人間は「理想のタイプ」と違う人を好きになるのか？
+# V127 Sources — 過去最高の指導者・李世民
 
-## Ideal Standards Model
-- Fletcher, G. J. O. & Simpson, J. A. (2000). “Ideal Standards in Close Relationships: Their Structure and Functions.” Current Directions in Psychological Science, 9(3), 102–105. DOI: 10.1111/1467-8721.00070
-  - 理想を warmth/trustworthiness, vitality/attractiveness, status/resources の大きな次元で整理する枠組み。
-  - https://journals.sagepub.com/doi/10.1111/1467-8721.00070
-- Campbell, L., Simpson, J. A., Kashy, D. A., Fletcher, G. J. O. (2001). “Ideal Standards, the Self, and Flexibility of Ideals in Close Relationships.” Personality and Social Psychology Bulletin, 27(4).
-  - 理想と現在のパートナーの一致、理想の柔軟性、関係満足との関連。
-  - https://journals.sagepub.com/doi/10.1177/0146167201274006
+## 太宗の治世・玄武門・統治
+- Howard J. Wechsler, “T'ai-tsung (reign 626–49) the consolidator,” in *The Cambridge History of China, Volume 3: Sui and T'ang China, 589–906, Part 1*, Cambridge University Press.
+  - 太宗の即位、統治、官僚制、軍事・外交の基本的な年代と評価枠組み。
+  - https://www.cambridge.org/core/books/abs/cambridge-history-of-china/taitsung-reign-62649-the-consolidator/C1752C3B0E534B88A22AD2EAFF2249FC
 
-## 理想と実際の対面
-- Eastwick, P. W. & Finkel, E. J. (2008). “Sex differences in mate preferences revisited: Do people know what they initially desire in a romantic partner?” Journal of Personality and Social Psychology, 94(2), 245–264. DOI: 10.1037/0022-3514.94.2.245
-  - 事前の自己申告上の理想と、実際のスピードデーティングでの特定相手への欲求の対応を検討。
-  - https://pubmed.ncbi.nlm.nih.gov/18211175/
+## 魏徴・継承問題
+- “Succession Struggle and the Ethnic Identity of the Tang Imperial House,” *Journal of the Royal Asiatic Society*.
+  - 魏徴が高祖の本来の皇太子・李建成に忠実だったこと、太宗即位が嫡長子継承原則を破るものだったことを確認。
+  - https://www.cambridge.org/core/journals/journal-of-the-royal-asiatic-society/article/abs/succession-struggle-and-the-ethnic-identityof-the-tang-imperial-house/9833A3C945A374DD9BF864C5D318EFF9
 
-## 機械学習と恋愛的魅力
-- Joel, S., Eastwick, P. W., & Finkel, E. J. (2017). “Is Romantic Desire Predictable? Machine Learning Applied to Initial Romantic Attraction.” Psychological Science, 28(10), 1478–1489. DOI: 10.1177/0956797617714580
-  - 2つのスピードデーティング研究。100以上の自己報告項目を用いたrandom forestsは actor variance 4–18%、partner variance 7–27%を予測したが、特定の二人に固有のrelationship varianceは予測できなかった。
-  - https://pubmed.ncbi.nlm.nih.gov/28853645/
-  - https://www.psychologicalscience.org/journals/psychological-science/0956797617714580/
+## 『貞観政要』・諫言・政治的記憶
+- *Ordering Tang China: Cultural Memory, Emperor Taizong, and the Essentials*, Lever Press, 2024.
+  - 『貞観政要』を太宗時代の政治記憶、魏徴像、諫言、後世の政治教育として分析。
+  - https://www.jstor.org/stable/10.3998/mpub.14467609
+- *The Arts of Governance: Sinitic Political Advice Literature from Medieval Times to the Present*.
+  - 『貞観政要』が中国・東アジアで長期間政治助言文学として再解釈された経路を扱う。
+  - https://www.jstor.org/stable/jj.33476827
 
-## 理想との一致：大規模国際研究
-- Eastwick, P. W. et al. (2025). “A worldwide test of the predictive validity of ideal partner preference matching.” Journal of Personality and Social Psychology, 128(1), 123–146. DOI: 10.1037/pspp0000524
-  - 43か国、22言語、N=10,358の登録研究。理想との一致には予測力があるが、本人特有の理想だけで恋愛評価を十分に説明できるわけではない。
-  - https://pubmed.ncbi.nlm.nih.gov/39480282/
+## 天可汗・東突厥・初唐の対外秩序
+- Shao-yun Yang, *Early Tang China and the World, 618–750 CE*, Cambridge University Press.
+  - 630年の「Celestial Khagan / 天可汗」称号、唐と突厥・中央ユーラシアの政治秩序。
+  - https://assets.cambridge.org/97810092/14643/excerpt/9781009214643_excerpt.pdf
+- David A. Graff, “The Reach of the Military: Tang,” *Journal of Chinese History*.
+  - 630年の東突厥敗北後、10万人超の服属・移住、羈縻州と在地首長を利用した統治。
+  - https://www.cambridge.org/core/journals/journal-of-chinese-history/article/reach-of-the-military-tang/ECFE9C64AE6E73EC4319B165A606F88C
 
-## 理想の長期的安定と変化
-- Driebe, J. C., Stern, J., Penke, L., & Gerlach, T. M. (2024). “Stability and Change of Individual Differences in Ideal Partner Preferences Over 13 Years.” Personality and Social Psychology Bulletin, 50(8), 1263–1279. DOI: 10.1177/01461672231164757
-  - 204人を約13年後に再測定。mean rank-order stability r=.42、overall profile stability r=.73、変化への自己洞察は限定的。
-  - https://pubmed.ncbi.nlm.nih.gov/37029599/
-  - https://pmc.ncbi.nlm.nih.gov/articles/PMC11193321/
-- Driebe, J. C. et al. (2024). “Probing the predictive validity of ideal partner preferences for future partner traits and relationship outcomes across 13 years.” European Journal of Personality, 38(4).
-  - 13年間の縦断データで、理想が将来のパートナー特性や関係結果にどう関わるかを検討。
-  - https://journals.sagepub.com/doi/full/10.1177/08902070231213797
+## 隋末・高句麗遠征の反面教師
+- Shao-yun Yang, *Early Tang China and the World, 618–750 CE*, Cambridge University Press.
+  - 隋煬帝期の高句麗遠征、徴発・兵站・飢饉・反乱拡大の背景を確認。
+  - https://assets.cambridge.org/97810092/14643/excerpt/9781009214643_excerpt.pdf
 
-## 単純接触・近接性
-- Moreland, R. L. & Beach, S. R. (1992). “Exposure effects in the classroom: The development of affinity among students.” Journal of Experimental Social Psychology, 28(3), 255–276. DOI: 10.1016/0022-1031(92)90055-O
-  - 大学講義への出席頻度を操作し、交流をほぼ伴わない反復接触と好意評価の関係を検討。
-- Montoya, R. M. et al. (2017). “A re-examination of the mere exposure effect.” Psychological Bulletin, 143(5), 459–498. DOI: 10.1037/bul0000085
-  - 単純接触効果のメタ分析的再検討。
+## 唐の公式史学
+- Denis Twitchett, *The Writing of Official History under the T'ang*, Cambridge University Press, 1992.
+  - 唐代における起居注、日暦、実録、国史、正史の編集過程。
+  - https://www.cambridge.org/core/books/the-writing-of-official-history-under-the-tang/03E4E24317377C58D00455515C8D68B4
+- Denis Twitchett, “The Veritable Records (Shih-lu).”
+  - 640年、太宗が自身の治世について記録された内容を見ようとしたこと、実録編纂が政治目的を持ったこと。
+  - https://www.cambridge.org/core/books/abs/writing-of-official-history-under-the-tang/veritable-records-shihlu/70407B69AA5070F45D5B78ECFB40ECC6
 
-## Assortative mating
-- Felesina, T. (2026). “Assortative mating follows from co-inheritance of traits and preferences.” Nature Reviews Psychology, 5, 519.
-  - 人間のパートナーが教育、宗教性、身長など多くの特徴で類似するassortative matingを概観。
-  - https://www.nature.com/articles/s44159-026-00596-5
+## 太宗像・自己演出
+- Jack W. Chen, *The Poetics of Sovereignty: On Emperor Taizong of the Tang Dynasty*, Harvard University Asia Center, 2010.
+  - 太宗が主権者として自己像をどのように言語化・演出したかを研究。
+  - 書評: https://academic.oup.com/ahr/article-abstract/116/4/1099/42372
 
-## 歴史パートの注意
-- 「昔は愛が存在しなかった」とは描かない。恋愛感情と、恋愛を配偶者選択・結婚制度の中心へ置くことは区別する。
-- arranged marriage / self-choice marriage の比率や変化は地域・階層・時代で大きく異なるため、近代化を単線的な世界史として断定しない。
-
-## 表現上の境界
-- 「AIでも恋愛は予測不能」と一般化しない。2017年研究で予測できなかったのは、事前の自己報告特性・選好からの特定ペア固有のrelationship variance。
-- 43か国研究は「理想は無意味」という結論ではなく、理想との一致に小さいながら予測力があることを含めて表現する。
-- 単純接触は「何度も会えば必ず恋に落ちる」という法則ではない。
-- assortative matingを本人の意識的選好だけで説明せず、接触機会・教育・職業・社会ネットワークなどの機会構造も区別する。
-- 「その人といるときの自分を好きになる」は本編の解釈・比喩であり、単一研究の直接的因果結論として提示しない。
+## 史料上の注意
+- 玄武門の変を「正義の政変」とも「単純な悪」とも断定せず、太宗の政治的正統性に傷を残した権力闘争として描く。
+- 『貞観政要』の太宗・魏徴対話は逐語的な録音記録ではなく、後世に編集された政治助言テキストとして扱う。
+- 「天可汗」の授与場面は後世資料に依存するため、出来事の象徴性と史料形成を区別する。
+- 初唐を現代的な完全メリトクラシーとして描かない。有力家門・血縁・貴族政治の影響を残す。
+- 「最高の指導者」は客観的ランキングではなく、後世の統治モデルとしての影響力を示すテーマ設定。
+- 「自分一人より賢い国家を作る」は本動画の統治論的解釈であり、太宗本人の直接的な言葉として表示しない。
