@@ -1,25 +1,15 @@
-# V127 過去最高の指導者・李世民
+# V130 — なぜ男女は、お互いを「加害者」だと思っているのか？
 
-考える夜 / 唐太宗×貞観の治×統治論。
+知的YouTubeチャンネル「考える夜」本番動画。敬語、挑発的トーン。
+- 79のオリジナル意味シーン、28の図解構造、各シーン24の意味変化（基準）
+- Motion Canvas 3.17.2 / 1920x1080 / 30fps
+- VOICEVOX 青山龍星（ID13、速度1.15）を章別合成・実測タイミングで字幕化
+- 原稿: `content/v130-{chapter}.txt`（8本）、映像意味設計: `content/v130-shot-plan.json`
+- `python3 scripts/build_data.py` で画面構造データとシーンを作成
+- `python3 scripts/qa.py` で無省略照合・重複シーン・字幕長などを検査
+- 章単位でスモークレンダリング、字幕ピクセルチェック、出力の結合・BGM・最終検査
+- 全体8章の本番レンダー。リリースアセットにMP4、各章、コンタクトシート、QAを収録。
 
-## 制作設計
-- prologue + chapter1〜9 + epilogue の11独立レンダー単位。
-- 69意味シーン。文章ごとの切断ではなく、出来事・因果・比較・研究・比喩を単位に統合。
-- 各シーン8 semantic states × reveal / settle / accent = 24 micro beats / scene。設計上約1,656 visual beats。
-- 69 motif / 69 motion signatureをすべて固有化。
-- 玄武門、隋末の崩壊、制度アーカイブ、朝議、情報ピラミッド、人材配置、草原帝国、高句麗遠征、史官室、統治論という章別の画面文法を採用。
-- 同じ場所の出来事は背景固定。人物、馬、門、旗、巻物、報告経路、情報の色、地図、関係線、制度文書、鏡、時間軸を連続的に変化させる。
-- 2〜5秒ごとに意味のある状態変化を発生させ、単なるフェード連鎖・カード増殖・パン反復を避ける。
-- 外部画像に依存せず、Motion Canvasの安全なRect / Line / Circle / Txtのみで本編を構成。前作で問題化した透明fillなど実行時不安定要素は使用しない。
-
-## 字幕
-- contentLayer → headingLayer → subtitleBacking → subtitleTextLayer の固定順。
-- 下170pxを字幕専用セーフエリアとして予約。
-- 字幕は最大2行・1行19文字以内。VOICEVOX実測時間へ同期。
-- 本レンダー前に各章smoke render + pixel subtitle QAを必須化。
-
-## エラー抑制
-build_data → structural QA → TypeScript/Vite build → 11章VOICEVOX並列実測 → measured timing merge → chapter rebuild → smoke render → pixel subtitle QA → full render with retry → FFmpeg concat/BGM → ffprobe hard gate → black/freezedetect → contact sheet → release。
-
-## 完成基準
-1920×1080 / 30fps / H.264 / AAC / 青山龍星 speaker 13 / speed 1.15 / 字幕必須 / BGMあり。
+## 演出上の方針
+会話の内容に対応する「コメント欄」「最小集団実験」「象と乗り手」「被害者競争」「思想の複数性」「怒りの循環」を使う。
+文章を常に画面に貼るのではなく、原文全文は最上位の字幕層、画面の意味語は短く限定する。章内は画面上の意味変化を持続させ、連続ズーム・フェード・カード増殖を避ける。
