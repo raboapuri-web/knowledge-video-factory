@@ -1,0 +1,812 @@
+{
+  "video": "V130",
+  "title": "なぜ男女は、お互いを「加害者」だと思っているのか？",
+  "chapters": {
+    "prologue": [
+      {
+        "title": "コメントへの異論",
+        "mode": "forum",
+        "labels": [
+          "性犯罪の被害者",
+          "責めるべきではない",
+          "たった一つの賛成"
+        ],
+        "motion": "prologue-01-forum"
+      },
+      {
+        "title": "レッテル貼り",
+        "mode": "label",
+        "labels": [
+          "お前はフェミニスト？",
+          "チン騎士",
+          "主張が消える"
+        ],
+        "motion": "prologue-02-label"
+      },
+      {
+        "title": "九割と一割",
+        "mode": "matrix",
+        "labels": [
+          "反対 9",
+          "賛成 1",
+          "それでも敵？"
+        ],
+        "motion": "prologue-03-matrix"
+      },
+      {
+        "title": "反対側でも起こる",
+        "mode": "mirror",
+        "labels": [
+          "男性の孤独",
+          "女性の権利",
+          "忠誠テスト"
+        ],
+        "motion": "prologue-04-mirror"
+      },
+      {
+        "title": "二つの軍隊",
+        "mode": "tribes",
+        "labels": [
+          "男性軍",
+          "女性軍",
+          "本当に戦争か"
+        ],
+        "motion": "prologue-05-tribes"
+      },
+      {
+        "title": "あなたはどちら？",
+        "mode": "choice",
+        "labels": [
+          "両方に関心",
+          "所属はどこ？",
+          "無理な二択"
+        ],
+        "motion": "prologue-06-choice"
+      },
+      {
+        "title": "問いの提示",
+        "mode": "question",
+        "labels": [
+          "なぜ加害者？",
+          "集団心理",
+          "被害者意識"
+        ],
+        "motion": "prologue-07-question"
+      }
+    ],
+    "chapter1": [
+      {
+        "title": "公平への自信",
+        "mode": "mirror",
+        "labels": [
+          "私は合理的",
+          "集団心理",
+          "本当にそうか"
+        ],
+        "motion": "chapter1-01-mirror"
+      },
+      {
+        "title": "最小集団の実験",
+        "mode": "experiment",
+        "labels": [
+          "偶然の分類",
+          "二つの組",
+          "同じ人間"
+        ],
+        "motion": "chapter1-02-experiment"
+      },
+      {
+        "title": "理由のない偏り",
+        "mode": "balance",
+        "labels": [
+          "内集団",
+          "外集団",
+          "えこひいき"
+        ],
+        "motion": "chapter1-03-balance"
+      },
+      {
+        "title": "性別から思想へ",
+        "mode": "filter",
+        "labels": [
+          "性別の違い",
+          "思想の断定",
+          "飛躍"
+        ],
+        "motion": "chapter1-04-filter"
+      },
+      {
+        "title": "人物分類の作業",
+        "mode": "label",
+        "labels": [
+          "発言内容",
+          "所属認定",
+          "議論の消失"
+        ],
+        "motion": "chapter1-05-label"
+      },
+      {
+        "title": "離婚後の子の利益",
+        "mode": "family",
+        "labels": [
+          "子どもの利益",
+          "父母の事情",
+          "安全も考慮"
+        ],
+        "motion": "chapter1-06-family"
+      },
+      {
+        "title": "正義という感覚",
+        "mode": "scale",
+        "labels": [
+          "自分は正義",
+          "相手は敵",
+          "判断の歪み"
+        ],
+        "motion": "chapter1-07-scale"
+      },
+      {
+        "title": "ハイトの道徳心理",
+        "mode": "book",
+        "labels": [
+          "社会はなぜ左と右に",
+          "道徳判断",
+          "直観と推論"
+        ],
+        "motion": "chapter1-08-book"
+      },
+      {
+        "title": "象と乗り手",
+        "mode": "elephant",
+        "labels": [
+          "象＝直観",
+          "乗り手＝推論",
+          "後から理由"
+        ],
+        "motion": "chapter1-09-elephant"
+      },
+      {
+        "title": "同じ発言・異なる評価",
+        "mode": "mirror",
+        "labels": [
+          "好きな人",
+          "嫌いな人",
+          "内容は同じ"
+        ],
+        "motion": "chapter1-10-mirror"
+      },
+      {
+        "title": "道徳と忠誠",
+        "mode": "network",
+        "labels": [
+          "正義で結束",
+          "異論は裏切り",
+          "何が正しい？"
+        ],
+        "motion": "chapter1-11-network"
+      }
+    ],
+    "chapter2": [
+      {
+        "title": "二種類の苦しみ",
+        "mode": "balance",
+        "labels": [
+          "男性の困難",
+          "女性の困難",
+          "両立する問題"
+        ],
+        "motion": "chapter2-01-balance"
+      },
+      {
+        "title": "男性側の訴え",
+        "mode": "columns",
+        "labels": [
+          "自殺と孤独",
+          "危険な仕事",
+          "経済的期待"
+        ],
+        "motion": "chapter2-02-columns"
+      },
+      {
+        "title": "女性側の訴え",
+        "mode": "columns",
+        "labels": [
+          "性暴力被害",
+          "出産と負担",
+          "職場の壁"
+        ],
+        "motion": "chapter2-03-columns"
+      },
+      {
+        "title": "矛盾しているのか",
+        "mode": "logic",
+        "labels": [
+          "A は事実",
+          "B も事実",
+          "相殺しない"
+        ],
+        "motion": "chapter2-04-logic"
+      },
+      {
+        "title": "苦しみの世界選手権",
+        "mode": "podium",
+        "labels": [
+          "男性の方が",
+          "女性の方が",
+          "何の大会？"
+        ],
+        "motion": "chapter2-05-podium"
+      },
+      {
+        "title": "比較できない尺度",
+        "mode": "scale",
+        "labels": [
+          "孤独",
+          "性被害",
+          "単純な点数なし"
+        ],
+        "motion": "chapter2-06-scale"
+      },
+      {
+        "title": "競争的被害者意識",
+        "mode": "research",
+        "labels": [
+          "Sullivan et al.",
+          "2012年",
+          "集団の加害指摘"
+        ],
+        "motion": "chapter2-07-research"
+      },
+      {
+        "title": "実験の反応",
+        "mode": "experiment",
+        "labels": [
+          "相手への加害指摘",
+          "自集団も被害",
+          "男女双方で反応"
+        ],
+        "motion": "chapter2-08-experiment"
+      },
+      {
+        "title": "道徳的イメージ",
+        "mode": "mirror",
+        "labels": [
+          "加害者という指摘",
+          "居心地の悪さ",
+          "自分も被害者"
+        ],
+        "motion": "chapter2-09-mirror"
+      },
+      {
+        "title": "話題のすり替え",
+        "mode": "forum",
+        "labels": [
+          "性暴力の議論",
+          "男性の自殺",
+          "反論にならない"
+        ],
+        "motion": "chapter2-10-forum"
+      },
+      {
+        "title": "反対方向も同じ",
+        "mode": "forum",
+        "labels": [
+          "男性の孤独",
+          "女性の性被害",
+          "話題を選び直す"
+        ],
+        "motion": "chapter2-11-forum"
+      },
+      {
+        "title": "協力者を失う",
+        "mode": "bridge",
+        "labels": [
+          "男の問題を心配する女",
+          "女の問題を心配する男",
+          "共通目的"
+        ],
+        "motion": "chapter2-12-bridge"
+      }
+    ],
+    "chapter3": [
+      {
+        "title": "言葉の箱",
+        "mode": "label",
+        "labels": [
+          "フェミニスト",
+          "一つのラベル",
+          "誰を指す？"
+        ],
+        "motion": "chapter3-01-label"
+      },
+      {
+        "title": "どのフェミニスト？",
+        "mode": "spectrum",
+        "labels": [
+          "法的平等",
+          "社会構造",
+          "交差する差異"
+        ],
+        "motion": "chapter3-02-spectrum"
+      },
+      {
+        "title": "思想の歴史",
+        "mode": "timeline",
+        "labels": [
+          "異なる立場",
+          "異なる時代",
+          "複数の議論"
+        ],
+        "motion": "chapter3-03-timeline"
+      },
+      {
+        "title": "全体の代表？",
+        "mode": "magnifier",
+        "labels": [
+          "一人の発言",
+          "思想全体",
+          "一般化できる？"
+        ],
+        "motion": "chapter3-04-magnifier"
+      },
+      {
+        "title": "藤高の問い",
+        "mode": "book",
+        "labels": [
+          "トラブルとして",
+          "私たちとは誰か",
+          "包摂と排除"
+        ],
+        "motion": "chapter3-05-book"
+      },
+      {
+        "title": "私たちの境界",
+        "mode": "nested",
+        "labels": [
+          "含まれる人",
+          "排除される人",
+          "境界を問う"
+        ],
+        "motion": "chapter3-06-nested"
+      },
+      {
+        "title": "主婦と生き方",
+        "mode": "family",
+        "labels": [
+          "専業主婦の肯定",
+          "役割期待の批判",
+          "どちらも単純でない"
+        ],
+        "motion": "chapter3-07-family"
+      },
+      {
+        "title": "便利な敵の箱",
+        "mode": "filter",
+        "labels": [
+          "複雑な人々",
+          "一つの名前",
+          "攻撃しやすさ"
+        ],
+        "motion": "chapter3-08-filter"
+      },
+      {
+        "title": "反対陣営も多様",
+        "mode": "spectrum",
+        "labels": [
+          "反フェミニズム",
+          "男性の権利",
+          "それぞれ別"
+        ],
+        "motion": "chapter3-09-spectrum"
+      },
+      {
+        "title": "九割でも仲間？",
+        "mode": "matrix",
+        "labels": [
+          "反対 9",
+          "賛成 1",
+          "人物は一つの箱でない"
+        ],
+        "motion": "chapter3-10-matrix"
+      },
+      {
+        "title": "いつも全会一致？",
+        "mode": "network",
+        "labels": [
+          "経済政策",
+          "社会保障",
+          "男女平等"
+        ],
+        "motion": "chapter3-11-network"
+      },
+      {
+        "title": "誰が軍隊に入れた？",
+        "mode": "tribes",
+        "labels": [
+          "男性も多様",
+          "女性も多様",
+          "二軍に還元しない"
+        ],
+        "motion": "chapter3-12-tribes"
+      }
+    ],
+    "chapter4": [
+      {
+        "title": "自分だけ例外？",
+        "mode": "mirror",
+        "labels": [
+          "皆さん自身",
+          "私も例外ではない",
+          "公平への疑問"
+        ],
+        "motion": "chapter4-01-mirror"
+      },
+      {
+        "title": "敵には厳しい",
+        "mode": "magnifier",
+        "labels": [
+          "敵の一人の失言",
+          "集団全体に拡張",
+          "全体の代表"
+        ],
+        "motion": "chapter4-02-magnifier"
+      },
+      {
+        "title": "味方には寛大",
+        "mode": "scale",
+        "labels": [
+          "味方の失言",
+          "一部の例外",
+          "同じ基準？"
+        ],
+        "motion": "chapter4-03-scale"
+      },
+      {
+        "title": "都合のよい分類",
+        "mode": "matrix",
+        "labels": [
+          "敵＝代表",
+          "味方＝例外",
+          "便利な非対称"
+        ],
+        "motion": "chapter4-04-matrix"
+      },
+      {
+        "title": "動機づけられた推論",
+        "mode": "filter",
+        "labels": [
+          "信念",
+          "都合のよい証拠",
+          "判断の歪み"
+        ],
+        "motion": "chapter4-05-filter"
+      },
+      {
+        "title": "忠誠の道徳化",
+        "mode": "network",
+        "labels": [
+          "仲間を守る",
+          "事実を曲げる",
+          "どちらが正義？"
+        ],
+        "motion": "chapter4-06-network"
+      },
+      {
+        "title": "議論の消滅",
+        "mode": "forum",
+        "labels": [
+          "女性への差別発言",
+          "男性が批判",
+          "男なのに？"
+        ],
+        "motion": "chapter4-07-forum"
+      },
+      {
+        "title": "裏切り者の認定",
+        "mode": "label",
+        "labels": [
+          "反論する仲間",
+          "裏切り者",
+          "内容が消える"
+        ],
+        "motion": "chapter4-08-label"
+      },
+      {
+        "title": "敵との競争",
+        "mode": "podium",
+        "labels": [
+          "真実",
+          "忠誠",
+          "勝ち負けだけ"
+        ],
+        "motion": "chapter4-09-podium"
+      },
+      {
+        "title": "最初の目的は？",
+        "mode": "question",
+        "labels": [
+          "不公平の改善",
+          "相手を論破",
+          "別の目的"
+        ],
+        "motion": "chapter4-10-question"
+      }
+    ],
+    "chapter5": [
+      {
+        "title": "インセルとは",
+        "mode": "book",
+        "labels": [
+          "非自発的な独身",
+          "一部のオンライン思想",
+          "同一視しない"
+        ],
+        "motion": "chapter5-01-book"
+      },
+      {
+        "title": "拒絶の経験",
+        "mode": "person",
+        "labels": [
+          "恋愛での拒絶",
+          "孤独",
+          "本人の苦痛"
+        ],
+        "motion": "chapter5-02-person"
+      },
+      {
+        "title": "苦痛と敵意の距離",
+        "mode": "bridge",
+        "labels": [
+          "苦しみは現実",
+          "全女性への敵意",
+          "論理の飛躍"
+        ],
+        "motion": "chapter5-03-bridge"
+      },
+      {
+        "title": "被害と加害の分離",
+        "mode": "logic",
+        "labels": [
+          "被害を理解する",
+          "敵意を正当化する",
+          "別のこと"
+        ],
+        "motion": "chapter5-04-logic"
+      },
+      {
+        "title": "怒りの矛先",
+        "mode": "compass",
+        "labels": [
+          "行為者",
+          "制度や慣習",
+          "性別全体"
+        ],
+        "motion": "chapter5-05-compass"
+      },
+      {
+        "title": "どちらも悪意に見える",
+        "mode": "mirror",
+        "labels": [
+          "経済力を求める",
+          "自立する",
+          "何でも証拠？"
+        ],
+        "motion": "chapter5-06-mirror"
+      },
+      {
+        "title": "接近も拒絶も悪い",
+        "mode": "choice",
+        "labels": [
+          "近づく",
+          "近づかない",
+          "どちらも有罪？"
+        ],
+        "motion": "chapter5-07-choice"
+      },
+      {
+        "title": "怒りの循環",
+        "mode": "loop",
+        "labels": [
+          "相手が悪い",
+          "だから怒る",
+          "怒りが証拠に"
+        ],
+        "motion": "chapter5-08-loop"
+      },
+      {
+        "title": "誰が代表する？",
+        "mode": "nested",
+        "labels": [
+          "一人の過激発言",
+          "集団全体",
+          "拡張しない"
+        ],
+        "motion": "chapter5-09-nested"
+      },
+      {
+        "title": "批判の対象を定める",
+        "mode": "target",
+        "labels": [
+          "問題ある言動",
+          "正確な批判",
+          "集団の罪にしない"
+        ],
+        "motion": "chapter5-10-target"
+      }
+    ],
+    "chapter6": [
+      {
+        "title": "同じ数なら公平？",
+        "mode": "balance",
+        "labels": [
+          "男性の不利益",
+          "女性の不利益",
+          "原因は異なる"
+        ],
+        "motion": "chapter6-01-balance"
+      },
+      {
+        "title": "政策と原因",
+        "mode": "columns",
+        "labels": [
+          "根拠を調べる",
+          "制度を改善",
+          "同じ問題でない"
+        ],
+        "motion": "chapter6-02-columns"
+      },
+      {
+        "title": "協力可能な目標",
+        "mode": "bridge",
+        "labels": [
+          "女性への権利保障",
+          "男性への支援",
+          "共存できる"
+        ],
+        "motion": "chapter6-03-bridge"
+      },
+      {
+        "title": "現実の利害調整",
+        "mode": "scale",
+        "labels": [
+          "予算と優先順位",
+          "制度と政策",
+          "具体的に議論"
+        ],
+        "motion": "chapter6-04-scale"
+      },
+      {
+        "title": "冒頭の問いに戻る",
+        "mode": "forum",
+        "labels": [
+          "被害者を責めない",
+          "お前はフェミ？",
+          "関係がない"
+        ],
+        "motion": "chapter6-05-forum"
+      },
+      {
+        "title": "意見と所属を分ける",
+        "mode": "logic",
+        "labels": [
+          "発言の妥当性",
+          "集団への帰属",
+          "混同しない"
+        ],
+        "motion": "chapter6-06-logic"
+      },
+      {
+        "title": "先に主張を読む",
+        "mode": "magnifier",
+        "labels": [
+          "何を主張？",
+          "なぜ反対？",
+          "名前を見ない"
+        ],
+        "motion": "chapter6-07-magnifier"
+      },
+      {
+        "title": "距離を置く自由",
+        "mode": "compass",
+        "labels": [
+          "所属集団",
+          "自分の判断",
+          "自由に考える"
+        ],
+        "motion": "chapter6-08-compass"
+      },
+      {
+        "title": "自分を批判する勇気",
+        "mode": "network",
+        "labels": [
+          "仲間の問題点",
+          "改善への批判",
+          "忠誠から離れる"
+        ],
+        "motion": "chapter6-09-network"
+      },
+      {
+        "title": "本当の目的",
+        "mode": "choice",
+        "labels": [
+          "不公平の解消",
+          "陣営の勝利",
+          "どちらを望む？"
+        ],
+        "motion": "chapter6-10-choice"
+      },
+      {
+        "title": "あなたの敵は誰？",
+        "mode": "question",
+        "labels": [
+          "男性？",
+          "女性？",
+          "知らない誰か？"
+        ],
+        "motion": "chapter6-11-question"
+      }
+    ],
+    "epilogue": [
+      {
+        "title": "複数の所属",
+        "mode": "network",
+        "labels": [
+          "労働者",
+          "親子",
+          "思想と性別"
+        ],
+        "motion": "epilogue-01-network"
+      },
+      {
+        "title": "巨大な二つの箱",
+        "mode": "tribes",
+        "labels": [
+          "何十億もの人",
+          "男性",
+          "女性"
+        ],
+        "motion": "epilogue-02-tribes"
+      },
+      {
+        "title": "認めても消えない",
+        "mode": "logic",
+        "labels": [
+          "女性の不利益",
+          "男性の不利益",
+          "同時に存在"
+        ],
+        "motion": "epilogue-03-logic"
+      },
+      {
+        "title": "冒頭の発言",
+        "mode": "forum",
+        "labels": [
+          "被害者を責めない",
+          "お前はフェミ？",
+          "論点はどこ"
+        ],
+        "motion": "epilogue-04-forum"
+      },
+      {
+        "title": "所属より内容",
+        "mode": "magnifier",
+        "labels": [
+          "私の思想",
+          "目の前の主張",
+          "別の問題"
+        ],
+        "motion": "epilogue-05-magnifier"
+      },
+      {
+        "title": "最後の問い",
+        "mode": "question",
+        "labels": [
+          "誰と戦争？",
+          "敵と味方を数える",
+          "戦争などしていない"
+        ],
+        "motion": "epilogue-06-question"
+      }
+    ]
+  }
+}
