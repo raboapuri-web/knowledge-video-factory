@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Build measured VOICEVOX audio/timings for one V127 chapter. Strictly no fake timings."""
+"""Build measured VOICEVOX audio/timings for one V130 chapter. Strictly no fake timings."""
 from pathlib import Path
 import concurrent.futures,io,json,os,sys,urllib.parse,urllib.request,wave
 R=Path(__file__).resolve().parents[1]; chapter=sys.argv[1] if len(sys.argv)>1 else None
-if chapter not in ['prologue']+[f'chapter{i}' for i in range(1,10)]+['epilogue']:raise SystemExit('Invalid chapter')
+if chapter not in ['prologue']+[f'chapter{i}' for i in range(1,7)]+['epilogue']:raise SystemExit('Invalid chapter')
 BASE=os.getenv('VOICEVOX_URL','http://127.0.0.1:50021');SP=int(os.getenv('VOICEVOX_SPEAKER_ID','13'));SPEED=float(os.getenv('VOICEVOX_SPEED','1.15'))
 def post(url,payload=b''):
  req=urllib.request.Request(url,data=payload,method='POST',headers={'Content-Type':'application/json'})
