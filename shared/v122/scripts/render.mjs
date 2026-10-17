@@ -3,7 +3,7 @@ import {dirname,join,resolve} from 'node:path';import {fileURLToPath} from 'node
 import puppeteer from 'puppeteer';import {createServer} from 'vite';
 const ROOT=resolve(dirname(fileURLToPath(import.meta.url)),'..'),slug=process.argv[2],smoke=process.argv.includes('--smoke');
 if(!slug)throw new Error('missing chapter slug');
-const name=smoke?'v127-'+slug+'-smoke':'v127-'+slug,pf='src/projects/'+slug+'.ts',wav=join(ROOT,'media',slug,'narration.wav');
+const name=smoke?'v130-'+slug+'-smoke':'v130-'+slug,pf='src/projects/'+slug+'.ts',wav=join(ROOT,'media',slug,'narration.wav');
 const audio=!smoke&&await access(wav).then(()=>true,()=>false);
 if(!smoke&&!audio)throw new Error('VOICEVOX WAV missing: '+wav);
 async function main(){
@@ -18,7 +18,7 @@ async function main(){
   let outcome;try{outcome=await run();}catch(e){if(!(e instanceof Error&&e.message.includes('Execution context was destroyed')))throw e;outcome=await run();}
   if(outcome!=='Success'){console.error('RENDERER_OUTCOME',outcome,'slug',slug,'smoke',smoke);throw new Error(String(outcome));}
  }finally{await page.close();await browser.close();await server.close();}
- const file=join(ROOT,'output',name+'.mp4'),info=await stat(file),report={video:'V127',slug,smoke,seconds:Number(((Date.now()-start)/1000).toFixed(1)),bytes:info.size,file};
+ const file=join(ROOT,'output',name+'.mp4'),info=await stat(file),report={video:'V130',slug,smoke,seconds:Number(((Date.now()-start)/1000).toFixed(1)),bytes:info.size,file};
  if(!smoke)await writeFile(join(ROOT,'render-report-'+slug+'.json'),JSON.stringify(report,null,2));
  console.log(JSON.stringify(report));
 }
