@@ -7,7 +7,7 @@ import visualPlan from '../../content/visual_plan.json';
 type Cue={text:string;display:string;start:number;end:number};
 type Scene={id:string;chapter:string;motif:string;title:string;narration:string;cues:Cue[];duration:number};
 type Plan={kind:string;motion:string;labels:string[]};
-export const MICRO_BEATS_PER_SCENE=24;
+export const MICRO_BEATS_PER_SCENE=32;
 
 const K={bg:'#071015',deep:'#101A20',ink:'#172127',paper:'#F0EADF',muted:'#9DA7A7',red:'#B24A4A',crimson:'#742C31',gold:'#C8A55F',bronze:'#927247',jade:'#6D9A80',blue:'#55768B',cyan:'#74A7AB',earth:'#62503E',stone:'#4B5152',black:'#030608',white:'#FBF8F1',dust:'#C0B39A',night:'#091017',sky:'#385063',green:'#5D7657',orange:'#B06D45',violet:'#756E91',pink:'#C88998'};
 const F='Noto Sans JP, Noto Sans CJK JP, sans-serif';
@@ -42,7 +42,19 @@ function cityNight(p:Node){rr(p,0,0,1920,920,K.night,0);for(let i=0;i<8;i++){rr(
 function homeRoom(p:Node){rr(p,0,0,1920,920,'#29231F',0);rr(p,0,180,1920,260,'#4A3A2B',0);rr(p,-500,-20,500,520,'#352A21',3);rr(p,450,-40,560,420,'#1B2025',3);}
 function stages8(){return Array.from({length:8},()=>new Node({opacity:0}));}
 function worldBase(root:Node,scene:Scene){const pal=['#071015','#0A1116','#0C161B','#11181B','#121515','#15120F'];rr(root,0,0,1920,1080,pal[hash(scene.motif)%pal.length],0);for(let i=0;i<9;i++)cc(root,-840+(hash(scene.motif+i.toString())%1680),-350+(hash('r'+scene.motif+i)%550),1.4+(i%3),i%2?K.gold:K.dust);rr(root,0,344,1920,3,'#273239',0)}
-function addSceneText(p:Node,plan:Plan,v:number){const L=plan.labels;if(v%3===0){card(p,L[1]??'',-390,270,260,K.gold);card(p,L[2]??'',0,270,260,K.jade);card(p,L[3]??'',390,270,260,K.red);}else if(v%3===1){label(p,L[1]??'',-420,270,K.gold,23);label(p,L[2]??'',0,270,K.paper,23);label(p,L[3]??'',420,270,K.jade,23);}else{card(p,L[1]??'',-300,280,300,K.blue);card(p,L[2]??'',300,280,300,K.red);}}
+function planIndex(plan:Plan){const m=plan.motion.match(/motion-(\d+)/);return m?Math.max(1,Math.min(79,Number(m[1]))):1}
+function addSceneText(p:Node,plan:Plan,v:number){
+ const L=plan.labels,n=planIndex(plan);
+ const anchors:[number,number][]= [[-520,-310],[520,-310],[-520,315],[520,315],[0,-315],[-350,315],[350,315],[0,315]];
+ const [x,y]=anchors[(n+v)%anchors.length];
+ const col=[K.gold,K.jade,K.red,K.blue,K.cyan,K.dust,K.pink,K.paper][(n*3+v)%8];
+ const phrase=(L[0]??'').slice(0,28);
+ if(!phrase)return;
+ if((n+v)%4===0){ln(p,[[x-120,y+24],[x+120,y+24]],col,3);label(p,phrase,x,y,col,18,700);}
+ else if((n+v)%4===1){cc(p,x-145,y,7,col);label(p,phrase,x+15,y,col,18,650);}
+ else if((n+v)%4===2){ln(p,[[x-150,y],[x-105,y]],col,4);label(p,phrase,x+45,y,col,18,650);}
+ else{rr(p,x,y,Math.min(520,180+phrase.length*18),42,'#111A20',8,col);label(p,phrase,x,y,col,17,700);}
+}
 
 function prologue(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;
  if(v===0){rr(a,0,0,1920,920,'#15222A',0);shrineGate(b,0,-50,.85);for(let i=0;i<9;i++)person(c,-650+i*160,170,.22,K.paper);bowingPerson(d,0,20,.35,K.paper);card(e,'家族の健康',-300,250,260,K.gold);card(f,'仕事の成功',300,250,260,K.jade);label(g,'1月1日 11:00',0,-285,K.paper,28);}
@@ -179,9 +191,94 @@ case 'secular_city':chapterJ(root,s,plan,0);break;case 'leaving_religion':chapte
 case 'return_to_man':chapterK(root,s,plan,0);break;case 'what_mushukyo_denies':chapterK(root,s,plan,1);break;case 'mushukyo_as_common_language':chapterK(root,s,plan,2);break;case 'not_largest_religion_literal':chapterK(root,s,plan,3);break;case 'mushukyo_paradox_resolved':chapterK(root,s,plan,4);break;case 'question_reframed':chapterK(root,s,plan,5);break;
 case 'night_shrine':epilogue(root,s,plan,0);break;case 'three_spaces_same_city':epilogue(root,s,plan,1);break;case 'ask_three_questions':epilogue(root,s,plan,2);break;case 'look_at_actions':epilogue(root,s,plan,3);break;case 'religion_without_name':epilogue(root,s,plan,4);break;case 'final_answer':epilogue(root,s,plan,5);break;
 default:throw new Error('V129 missing dedicated scene '+scene.motif);}return s;}
-function offsetFor(scene:Scene,i:number):[number,number,number]{const p=hash(scene.motif+scene.id)%12,mag=20+(i%4)*9;switch(p){case 0:return[i%2?mag:-mag,0,.94];case 1:return[0,i%2?mag:-mag,.94];case 2:return[i%2?mag:-mag,i%3?13:-13,.92];case 3:return[0,0,.85];case 4:return[i<4?-mag:mag,i%2?13:-13,.94];case 5:return[i%3===0?mag:0,i%2?mag:-mag,.95];case 6:return[i%2?-mag:mag,i<4?-14:14,.92];case 7:return[i<4?-mag:mag,0,.9];case 8:return[0,i<4?mag:-mag,.9];case 9:return[i%2?mag:-mag,i%2?-10:10,.93];case 10:return[i<2?0:(i%2?mag:-mag),i>5?-12:12,.91];default:return[i%3===0?-mag:mag*.5,i%2?11:-11,.93];}}
-function settleTarget(scene:Scene,plan:Plan,i:number){const z=hash(scene.motif+plan.motion+i);let x=((z%13)-6)*1.1,y=(((z>>4)%11)-5),r=((z>>8)%7-3)*.3,s=1.01,opacity=1;const m=plan.motion;if(m.includes('shrine')||m.includes('temple'))x=i<4?-8:8;if(m.includes('classification')||m.includes('survey'))y=i>3?-7:5;if(m.includes('history')||m.includes('layer'))r=i%2?.7:-.7;if(m.includes('mushukyo')||m.includes('identity'))s=1.022;if(m.includes('secular'))x=i%2?7:-7;return{x,y,r,s,opacity};}
-function* microStageFlow(stages:Node[],scene:Scene,plan:Plan):ThreadGenerator{const base=[.02,.12,.23,.34,.45,.56,.67,.78];let cursor=0;for(let i=0;i<8;i++){const[ox,oy,os]=offsetFor(scene,i);stages[i].x(ox);stages[i].y(oy);stages[i].scale(os);stages[i].rotation(i%2?.8:-.8);const at=scene.duration*Math.min(.82,base[i]+(((hash(scene.motif+i.toString())>>3)&7)*.002));if(at>cursor)yield* waitFor(at-cursor);cursor=at;const reveal=Math.min(.44,Math.max(.16,scene.duration*.012));yield* all(stages[i].opacity(1,reveal),stages[i].x(0,reveal),stages[i].y(0,reveal),stages[i].scale(1,reveal),stages[i].rotation(0,reveal));cursor+=reveal;const t=settleTarget(scene,plan,i),settle=Math.min(.33,Math.max(.14,scene.duration*.009));yield* all(stages[i].x(t.x,settle),stages[i].y(t.y,settle),stages[i].rotation(t.r,settle),stages[i].scale(t.s,settle),stages[i].opacity(t.opacity,settle));cursor+=settle;const accent=Math.min(.25,Math.max(.11,scene.duration*.007));yield* all(stages[i].scale(t.s*(i%2?1.012:.996),accent),stages[i].opacity(i%3===0?.92:1,accent));cursor+=accent;if(i>=3)stages[i-3].opacity(.72);}const end=scene.duration*.91;if(end>cursor){yield* waitFor(end-cursor);cursor=end;}if(scene.duration>cursor)yield* waitFor(scene.duration-cursor);}
-function* cameraFlow(node:Node,duration:number,motif:string):ThreadGenerator{const p=hash(motif)%8,dx=[11,-13,10,-9,15,-11,8,-10][p],dy=[-5,7,6,-7,3,-4,8,-6][p];node.scale(1.006);const q=duration/6;yield* all(node.x(dx,q),node.y(dy,q),node.scale(1.012,q));yield* all(node.x(-dx*.4,q),node.y(-dy*.55,q),node.scale(1.018,q));yield* all(node.x(dx*.55,q),node.y(dy*.18,q),node.scale(1.014,q));yield* all(node.x(-dx*.22,q),node.y(-dy*.22,q),node.scale(1.02,q));yield* all(node.x(dx*.12,q),node.y(dy*.08,q),node.scale(1.013,q));const tail=Math.max(.01,duration-5*q);yield* all(node.x(0,tail),node.y(0,tail),node.scale(1.008,tail));}
+type MotionMode='procession'|'ceremony'|'memorial'|'evidence'|'classification'|'timeline'|'converge'|'ledger'|'split'|'taxonomy'|'service'|'dissolve'|'tableau';
+const ORDER_BANK:number[][]=[
+ [0,1,2,3,4,5,6,7],[0,2,1,3,5,4,6,7],[0,1,3,2,4,6,5,7],[0,3,1,4,2,5,6,7],
+ [0,2,4,1,3,6,5,7],[0,1,4,2,5,3,6,7],[0,3,2,1,5,4,6,7],[0,2,1,5,3,4,6,7],
+ [0,1,2,4,3,6,5,7],[0,4,2,1,3,5,6,7],[0,2,3,1,4,5,6,7],[0,1,3,4,2,6,5,7]
+];
+function motionMode(scene:Scene,plan:Plan):MotionMode{
+ const m=scene.motif;
+ if(/queue|day_of_many|salaryman/.test(m))return'procession';
+ if(/wedding|chapel/.test(m))return'ceremony';
+ if(/funeral|ancestor|altar|grave/.test(m))return'memorial';
+ if(/survey|population|count|measurement|overlap|split$|gap/.test(m))return'evidence';
+ if(/question|identity|mushukyo|category|classification|boundary/.test(m))return'classification';
+ if(/history|before_after|layers|secularization|return_to_man/.test(m))return'timeline';
+ if(/shugo|honji|sacred|ritual_ecology/.test(m))return'converge';
+ if(/terauke|danka|institutional|social_infrastructure/.test(m))return'ledger';
+ if(/bunri|haibutsu|order_arrives|bureaucracy|state_shinto|power/.test(m))return'split';
+ if(/religion_word|freedom|not_religion|modern_category/.test(m))return'taxonomy';
+ if(/service|planning|style|situation|specialization|one_person_many/.test(m))return'service';
+ if(/secular|leaving|dissolves|city|temple_without/.test(m))return'dissolve';
+ const i=planIndex(plan)%13;return ['tableau','evidence','classification','timeline','converge','ledger','split','taxonomy','service','dissolve','procession','ceremony','memorial'][i] as MotionMode;
+}
+function entranceFor(mode:MotionMode,slot:number,idx:number):[number,number,number]{
+ const side=((slot+idx)%2?1:-1),wide=120+((idx+slot)%4)*26,high=74+((idx+slot)%3)*24;
+ switch(mode){
+  case'procession':return[side*wide,0,.98];
+  case'ceremony':return[0,slot%2?-high:high,.94];
+  case'memorial':return[0,-high,.92];
+  case'evidence':return[0,high,.9];
+  case'classification':return[side*wide,0,.9];
+  case'timeline':return[side*(90+slot*9),0,.96];
+  case'converge':return[side*wide,0,.9];
+  case'ledger':return[0,slot%2?high:-high,.95];
+  case'split':return[side*(wide+35),0,.95];
+  case'taxonomy':return[0,slot%2?-high:high,.9];
+  case'service':return[side*(80+slot*11),0,.96];
+  case'dissolve':return[0,slot%2?high:-high,.92];
+  default:return[0,0,.84+((slot+idx)%3)*.04];
+ }
+}
+function emphasisTarget(mode:MotionMode,slot:number,idx:number){const side=((slot+idx)%2?1:-1);
+ switch(mode){
+  case'procession':return{x:side*10,y:0,s:1.012,o:1};
+  case'ceremony':return{x:0,y:slot%2?-7:7,s:1.018,o:1};
+  case'memorial':return{x:0,y:-6,s:1.01,o:1};
+  case'evidence':return{x:0,y:0,s:1.026,o:1};
+  case'classification':return{x:side*8,y:0,s:1.016,o:1};
+  case'timeline':return{x:side*12,y:0,s:1.006,o:1};
+  case'converge':return{x:-side*8,y:0,s:1.02,o:1};
+  case'ledger':return{x:0,y:slot%2?6:-6,s:1.008,o:1};
+  case'split':return{x:side*13,y:0,s:1.012,o:1};
+  case'taxonomy':return{x:0,y:slot%2?-8:8,s:1.014,o:1};
+  case'service':return{x:side*7,y:0,s:1.02,o:1};
+  case'dissolve':return{x:0,y:slot%2?5:-5,s:.996,o:.94};
+  default:return{x:0,y:0,s:1.018,o:1};
+ }}
+function* directedSceneFlow(stages:Node[],scene:Scene,plan:Plan):ThreadGenerator{
+ const idx=planIndex(plan),mode=motionMode(scene,plan),order=ORDER_BANK[(idx-1)%ORDER_BANK.length];
+ const base=[.015,.105,.205,.315,.43,.55,.675,.79];let cursor=0;
+ stages.forEach((stage,i)=>{const [x,y,s]=entranceFor(mode,i,idx);stage.opacity(0);stage.x(x);stage.y(y);stage.scale(s);});
+ for(let step=0;step<order.length;step++){
+  const i=order[step],stage=stages[i],at=scene.duration*Math.min(.82,base[step]+((idx+step)%4)*.004);
+  if(at>cursor){yield* waitFor(at-cursor);cursor=at;}
+  const reveal=Math.min(.34,Math.max(.14,scene.duration*.009));
+  yield* all(stage.opacity(1,reveal),stage.x(0,reveal),stage.y(0,reveal),stage.scale(1,reveal));cursor+=reveal;
+  const e=emphasisTarget(mode,i,idx),accent=Math.min(.22,Math.max(.08,scene.duration*.0055));
+  yield* all(stage.x(e.x,accent),stage.y(e.y,accent),stage.scale(e.s,accent),stage.opacity(e.o,accent));cursor+=accent;
+  const policy=idx%5;
+  if(step>2&&i!==0){
+   const back=policy===0?1:policy===1?2:3,prev=order[Math.max(0,step-back)];
+   if(prev>0&&prev!==i){const dim=policy===4?.42:policy===3?.58:.72;stages[prev].opacity(dim);}
+  }
+ }
+ const recomposeAt=scene.duration*.9;if(recomposeAt>cursor){yield* waitFor(recomposeAt-cursor);cursor=recomposeAt;}
+ const settle=Math.min(.32,Math.max(.12,scene.duration*.007));
+ yield* all(...stages.map((stage,i)=>all(stage.x(0,settle),stage.y(0,settle),stage.scale(1,settle),stage.opacity(i===0?1:(i<7?.9:1),settle))));cursor+=settle;
+ if(scene.duration>cursor)yield* waitFor(scene.duration-cursor);
+}
+function* cameraProgram(node:Node,duration:number,scene:Scene,plan:Plan):ThreadGenerator{
+ const idx=planIndex(plan),mode=motionMode(scene,plan),program=(idx+(mode.length%7))%7,q=duration/5;
+ node.x(0);node.y(0);node.scale(1);
+ if(program===0){yield* node.scale(1.018,q);yield* node.scale(1.006,q);yield* waitFor(q);yield* node.scale(1.014,q);yield* node.scale(1,q);}
+ else if(program===1){yield* node.x(14,q);yield* node.x(-8,q);yield* node.x(7,q);yield* node.x(-4,q);yield* node.x(0,q);}
+ else if(program===2){yield* node.y(-10,q);yield* node.y(7,q);yield* node.y(-5,q);yield* node.y(3,q);yield* node.y(0,q);}
+ else if(program===3){yield* node.scale(1.01,q);yield* node.scale(1.024,q);yield* node.scale(1.016,q);yield* node.scale(1.028,q);yield* node.scale(1,q);}
+ else if(program===4){yield* node.x(-12,q);yield* node.x(-5,q);yield* node.x(9,q);yield* node.x(4,q);yield* node.x(0,q);}
+ else if(program===5){yield* node.y(9,q);yield* node.y(3,q);yield* node.y(-8,q);yield* node.y(-3,q);yield* node.y(0,q);}
+ else{yield* node.scale(.992,q);yield* node.scale(1.012,q);yield* node.scale(1.003,q);yield* node.scale(1.02,q);yield* node.scale(1,q);}
+}
 function* subtitleFlow(cues:Cue[],caption:Txt,duration:number):ThreadGenerator{let t=0;for(const c of cues){if(c.start>t)yield* waitFor(c.start-t);caption.text(c.display);t=c.start;}if(duration>t)yield* waitFor(duration-t);caption.text('');}
-export function* playMeaningScene(view:View2D,scene:Scene):ThreadGenerator{const plan=(visualPlan as Record<string,Plan>)[scene.motif];if(!plan)throw new Error('V129 visual plan missing: '+scene.motif);view.fill(K.bg);const contentLayer=new Node({});const headingLayer=new Node({});const subtitleBacking=new Node({});const subtitleTextLayer=new Node({});view.add(contentLayer);view.add(headingLayer);view.add(subtitleBacking);view.add(subtitleTextLayer);const stages=buildScene(contentLayer,scene,plan);rr(headingLayer,0,-474,1920,132,'#05090D',0);const part=scene.chapter==='prologue'?'PROLOGUE':scene.chapter==='epilogue'?'EPILOGUE':scene.chapter.toUpperCase();headingLayer.add(tx(part,-800,-508,22,K.gold,700));headingLayer.add(tx(scene.id,830,-508,21,K.muted,600));headingLayer.add(tx(scene.title,0,-452,scene.title.length>35?27:scene.title.length>25?31:40,K.paper,700));rr(subtitleBacking,0,460,1920,170,'#020406',0).opacity(.92);const caption=tx('',0,458,40,K.paper,650);caption.lineHeight(57);subtitleTextLayer.add(caption);yield* all(microStageFlow(stages,scene,plan),cameraFlow(contentLayer,scene.duration,scene.motif),subtitleFlow(scene.cues,caption,scene.duration));}
+export function* playMeaningScene(view:View2D,scene:Scene):ThreadGenerator{const plan=(visualPlan as Record<string,Plan>)[scene.motif];if(!plan)throw new Error('V129 visual plan missing: '+scene.motif);view.fill(K.bg);const contentLayer=new Node({});const headingLayer=new Node({});const subtitleBacking=new Node({});const subtitleTextLayer=new Node({});view.add(contentLayer);view.add(headingLayer);view.add(subtitleBacking);view.add(subtitleTextLayer);const stages=buildScene(contentLayer,scene,plan);rr(headingLayer,0,-474,1920,132,'#05090D',0);const part=scene.chapter==='prologue'?'PROLOGUE':scene.chapter==='epilogue'?'EPILOGUE':scene.chapter.toUpperCase();headingLayer.add(tx(part,-800,-508,22,K.gold,700));headingLayer.add(tx(scene.id,830,-508,21,K.muted,600));headingLayer.add(tx(scene.title,0,-452,scene.title.length>35?27:scene.title.length>25?31:40,K.paper,700));rr(subtitleBacking,0,460,1920,170,'#020406',0).opacity(.92);const caption=tx('',0,458,40,K.paper,650);caption.lineHeight(57);subtitleTextLayer.add(caption);yield* all(directedSceneFlow(stages,scene,plan),cameraProgram(contentLayer,scene.duration,scene,plan),subtitleFlow(scene.cues,caption,scene.duration));}

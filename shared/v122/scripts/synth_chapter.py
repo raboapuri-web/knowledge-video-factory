@@ -5,12 +5,16 @@ import concurrent.futures,io,json,os,sys,urllib.parse,urllib.request,wave
 R=Path(__file__).resolve().parents[1]; chapter=sys.argv[1] if len(sys.argv)>1 else None
 if chapter not in ['prologue']+[f'chapter{i}' for i in range(1,12)]+['epilogue']:raise SystemExit('Invalid chapter')
 BASE=os.getenv('VOICEVOX_URL','http://127.0.0.1:50021');SP=int(os.getenv('VOICEVOX_SPEAKER_ID','13'));SPEED=float(os.getenv('VOICEVOX_SPEED','1.15'))
+PRONUNCIATION_MAP={'何教':'なにきょう'}
+def spoken_text(text):
+ for src,dst in PRONUNCIATION_MAP.items(): text=text.replace(src,dst)
+ return text
 def post(url,payload=b''):
  req=urllib.request.Request(url,data=payload,method='POST',headers={'Content-Type':'application/json'})
  with urllib.request.urlopen(req,timeout=140) as response:return response.read()
 def synth(task):
  scene,ix,cue=task
- q=urllib.parse.urlencode({'speaker':SP,'text':cue['text']})
+ q=urllib.parse.urlencode({'speaker':SP,'text':spoken_text(cue['text'])})
  data=json.loads(post(BASE+'/audio_query?'+q))
  data.update(speedScale=SPEED,prePhonemeLength=0.055,postPhonemeLength=0.085)
  raw=post(BASE+'/synthesis?speaker='+str(SP),json.dumps(data,ensure_ascii=False).encode())
@@ -35,5 +39,5 @@ out=R/'media'/chapter/'narration.wav';out.parent.mkdir(parents=True,exist_ok=Tru
 with wave.open(str(out),'wb') as wf:
  wf.setnchannels(spec[0]);wf.setsampwidth(spec[1]);wf.setframerate(spec[2]);wf.writeframes(b''.join(frames))
 (R/'content'/f'measured-{chapter}.json').write_text(json.dumps(measured,ensure_ascii=False,indent=2))
-(R/f'voice-report-{chapter}.json').write_text(json.dumps({'chapter':chapter,'voice':'青山龍星 ノーマル','speaker':SP,'speedScale':SPEED,'totalSeconds':round(t,3),'scenes':len(scenes),'cues':len(tasks)},ensure_ascii=False,indent=2))
+(R/f'voice-report-{chapter}.json').write_text(json.dumps({'chapter':chapter,'voice':'青山龍星 ノーマル','speaker':SP,'speedScale':SPEED,'totalSeconds':round(t,3),'scenes':len(scenes),'cues':len(tasks),'pronunciationMap':PRONUNCIATION_MAP},ensure_ascii=False,indent=2))
 print('VOICE_OK',chapter,'seconds',round(t,3),'cues',len(tasks))

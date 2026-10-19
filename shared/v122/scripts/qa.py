@@ -35,12 +35,15 @@ source=(R/'src/lib/meaningScene.tsx').read_text()
 if 'const contentLayer' not in source or 'const subtitleTextLayer' not in source:errors.append('missing subtitle separation')
 if source.find('contentLayer')>source.find('subtitleTextLayer'):errors.append('unexpected z-order declarations')
 if len(re.findall(r'view\.add\(',source))!=4:errors.append('unexpected root view.add usage')
-if 'MICRO_BEATS_PER_SCENE=24' not in source:errors.append('V129 requires 24 micro beats per meaning scene')
+if 'MICRO_BEATS_PER_SCENE=32' not in source:errors.append('V129 requires 32 micro beats per meaning scene')
 if len(re.findall(r"case\s+'[^']+':",source))!=79:errors.append('V129 requires 79 dedicated motif scene layouts')
-if 'microStageFlow' not in source or 'cameraFlow' not in source:errors.append('V129 requires micro choreography and continuous camera flow')
+if 'directedSceneFlow' not in source or 'cameraProgram' not in source or 'motionMode' not in source or 'ORDER_BANK' not in source:errors.append('V129 requires semantic choreography and varied camera programs')
+if 'microStageFlow(' in source or 'cameraFlow(' in source or 'stages[i].rotation' in source:errors.append('legacy repeated or diagonal motion engine remains')
 if "hash(scene.motif" not in source:errors.append('V129 requires motif-seeded variation')
+voice=(R/'scripts/synth_chapter.py').read_text()
+if "PRONUNCIATION_MAP={'何教':'なにきょう'}" not in voice or "spoken_text(cue['text'])" not in voice:errors.append('何教 pronunciation must be なにきょう in VOICEVOX input')
 report={'status':'BLOCKED' if errors else ('MEASURED_PENDING' if warn else 'READY_FOR_SMOKE_QA'),
- 'video':'V129','scene_count':len(ss),'chapter_count':len(chapters),'visual_beats':len(ss)*24,'micro_beats_per_scene':24,
+ 'video':'V129','scene_count':len(ss),'chapter_count':len(chapters),'visual_beats':len(ss)*24,'micro_beats_per_scene':32,
  'subtitle_cues':sum(len(s['cues']) for s in ss),'seconds':round(sum(s['duration'] for s in ss),2),
  'errors':errors,'timing_blockers':warn[:5]+(['...'] if len(warn)>5 else [])}
 (R/'qa').mkdir(parents=True,exist_ok=True)
