@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 (ROOT/'src/scenes').mkdir(parents=True,exist_ok=True)
 (ROOT/'src/projects').mkdir(parents=True,exist_ok=True)
 rows=[]
-chapter_map={'A':'chapter1','B':'chapter2','C':'chapter3','D':'chapter4','E':'chapter5','F':'chapter6','G':'chapter7','H':'chapter8','I':'chapter9'}
+chapter_map={'A':'chapter1','B':'chapter2','C':'chapter3','D':'chapter4','E':'chapter5','F':'chapter6','G':'chapter7','H':'chapter8','I':'chapter9','J':'chapter10','K':'chapter11'}
 for line in (ROOT/'content/scene_narration.tsv').read_text(encoding='utf-8').splitlines():
     line=line.strip()
     if not line: continue
@@ -38,13 +38,13 @@ for r in rows:
       "import sceneData from '../../content/scenes.json';\n"
       f"const scene = sceneData.find(s => s.id === '{r['id']}')!;\n"
       "export default makeScene2D(function* (view) {yield* playMeaningScene(view, scene);});\n")
-chapters=['prologue']+[f'chapter{i}' for i in range(1,10)]+['epilogue']
+chapters=['prologue']+[f'chapter{i}' for i in range(1,12)]+['epilogue']
 MC_META={"version":1,"shared":{"background":"rgb(7,16,24)","range":[0,None],"size":{"x":1920,"y":1080},"audioOffset":0},"preview":{"fps":30,"resolutionScale":0.5},"rendering":{"fps":30,"resolutionScale":1,"colorSpace":"srgb","exporter":{"name":"@motion-canvas/ffmpeg","options":{"fastStart":True,"includeAudio":True}},"fileType":"image/png","quality":1}}
 for chapter in chapters:
     ids=[r['id'] for r in rows if r['chapter']==chapter]
     imports='\n'.join(f"import s{i} from '../scenes/{sid}?scene';" for i,sid in enumerate(ids))
-    (ROOT/'src/projects'/f'{chapter}.ts').write_text("import {makeProject} from '@motion-canvas/core';\n"+imports+'\n'+f"export default makeProject({{name:'v127-{chapter}',scenes:[{','.join(f's{i}' for i in range(len(ids)))}],audio:'/media/{chapter}/narration.wav'}});\n")
+    (ROOT/'src/projects'/f'{chapter}.ts').write_text("import {makeProject} from '@motion-canvas/core';\n"+imports+'\n'+f"export default makeProject({{name:'v129-{chapter}',scenes:[{','.join(f's{i}' for i in range(len(ids)))}],audio:'/media/{chapter}/narration.wav'}});\n")
     (ROOT/'src/projects'/f'{chapter}.meta').write_text(json.dumps(MC_META,ensure_ascii=False,separators=(',',':')))
 chap=defaultdict(float)
 for r in rows:chap[r['chapter']]+=r['duration']
-print(json.dumps({'video':'V127','scene_count':len(rows),'estimated_duration_sec':round(sum(chap.values()),2),'chapters':chap,'cue_count':sum(len(r['cues']) for r in rows)},ensure_ascii=False))
+print(json.dumps({'video':'V129','scene_count':len(rows),'estimated_duration_sec':round(sum(chap.values()),2),'chapters':chap,'cue_count':sum(len(r['cues']) for r in rows)},ensure_ascii=False))
