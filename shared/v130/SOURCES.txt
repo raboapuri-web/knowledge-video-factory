@@ -1,0 +1,12 @@
+V130 Sources / 学術資料
+Bernard Mandeville, The Fable of the Bees (1714). A satirical and philosophical fable, not a quantitative economic study.
+John Maynard Keynes, The General Theory of Employment, Interest and Money (1936), especially the discussion of saving, investment, and effective demand.
+Federal Reserve Bank of St. Louis, Wait, Is Saving Good or Bad? The Paradox of Thrift (2012).
+Atif Mian and Amir Sufi (2010), Household Leverage and the Recession of 2007 to 2009.
+Atif Mian and Amir Sufi (2012), What Explains High Unemployment? The Aggregate Demand Channel, NBER Working Paper 17830.
+Atif Mian, Kamalesh Rao and Amir Sufi (2013), Household Balance Sheets, Consumption, and the Economic Slump.
+McLeay, Radia and Thomas (2014), Money Creation in the Modern Economy, Bank of England Quarterly Bulletin.
+Auerbach and Gorodnichenko (2012), Measuring the Output Responses to Fiscal Policy, American Economic Journal: Economic Policy.
+Blanchard and Leigh (2013), Growth Forecast Errors and Fiscal Multipliers, IMF Working Paper 13/1.
+
+The numerical model (income 1000 -> approximately 667 -> 500; savings 200 -> 200 -> 150) is a hypothetical two-sector fixed-investment Keynesian-cross example, not observed time-series data. All icons and illustrations are original flat vector drawings. No documentary photographs or falsified empirical series are used.
