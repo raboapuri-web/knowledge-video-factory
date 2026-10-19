@@ -34,7 +34,7 @@ jobs:
         run: |
           python3 scripts/build_data.py
           python3 scripts/qa.py
-      - name: Install once and typecheck all eleven projects
+      - name: Install once and typecheck all thirteen projects
         working-directory: shared/v122
         run: |
           npm install --no-audit --no-fund
@@ -204,7 +204,7 @@ jobs:
           SIZE=$(stat -c%s output/v129-final.mp4)
           test "$W" = 1920 && test "$H" = 1080 && test "$FPS" = '30/1' && test "$AUD" -ge 1 && test "$SIZE" -gt 5000000
           awk "BEGIN {exit !($D>=600)}"
-          printf '{"videoId":"V129","scenes":79,"visualStatesPerScene":8,"microBeatsPerScene":24,"approxVisualBeats":1896,"renderUnits":11,"resolution":"1920x1080","fps":30,"durationSeconds":%s,"audioTracks":%s,"bytes":%s,"passed":true}\n' "$D" "$AUD" "$SIZE" > qa/final-validation.json
+          printf '{"videoId":"V129","scenes":79,"visualStatesPerScene":8,"microBeatsPerScene":24,"approxVisualBeats":1896,"renderUnits":13,"resolution":"1920x1080","fps":30,"durationSeconds":%s,"audioTracks":%s,"bytes":%s,"passed":true}\n' "$D" "$AUD" "$SIZE" > qa/final-validation.json
           set +e
           ffmpeg -hide_banner -i output/v129-final.mp4 -vf 'blackdetect=d=2:pix_th=0.02,freezedetect=n=-55dB:d=6' -an -f null - 2> qa/visual-anomaly-scan.txt
           set -e
@@ -218,4 +218,4 @@ jobs:
           TAG="v129-japan-mushukyo-${GITHUB_RUN_ID}"
           NAME="knowledge-video-v129-japan-mushukyo-${GITHUB_RUN_ID}.mp4"
           cp output/v129-final.mp4 "output/$NAME"
-          gh release create "$TAG" "output/$NAME" output/v129-contact-sheet.jpg qa/final-validation.json qa/visual-anomaly-scan.txt SOURCES.md README.md output/v129-prologue.mp4 output/v129-chapter1.mp4 output/v129-chapter2.mp4 output/v129-chapter3.mp4 output/v129-chapter4.mp4 output/v129-chapter5.mp4 output/v129-chapter6.mp4 output/v129-chapter7.mp4 output/v129-chapter8.mp4 output/v129-chapter9.mp4 output/v129-epilogue.mp4 --repo "$GITHUB_REPOSITORY" --title "V129 日本は何教なのか？――「無宗教」という日本最大の宗教" --notes '考える夜 / 神道×仏教×宗教社会学×世俗化 / 79 continuous meaning scenes / 24 micro beats each / approx 1896 visual beats / unique motion signatures / 11 render units / measured VOICEVOX / smoke + pixel subtitle QA / final ffmpeg QA'
+          gh release create "$TAG" "output/$NAME" output/v129-contact-sheet.jpg qa/final-validation.json qa/visual-anomaly-scan.txt SOURCES.md README.md output/v129-prologue.mp4 output/v129-chapter1.mp4 output/v129-chapter2.mp4 output/v129-chapter3.mp4 output/v129-chapter4.mp4 output/v129-chapter5.mp4 output/v129-chapter6.mp4 output/v129-chapter7.mp4 output/v129-chapter8.mp4 output/v129-chapter9.mp4 output/v129-chapter10.mp4 output/v129-chapter11.mp4 output/v129-epilogue.mp4 --repo "$GITHUB_REPOSITORY" --title "V129 日本は何教なのか？――「無宗教」という日本最大の宗教" --notes '考える夜 / 神道×仏教×宗教社会学×世俗化 / 79 continuous meaning scenes / 24 micro beats each / approx 1896 visual beats / unique motion signatures / 13 render units / measured VOICEVOX / smoke + pixel subtitle QA / final ffmpeg QA'
