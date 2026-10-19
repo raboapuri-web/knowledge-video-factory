@@ -129,7 +129,7 @@ function chapterH(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=
 }
 function chapterI(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;
  if(v===0){rr(a,0,0,1920,920,'#121A1E',0);shrineGate(b,-520,60,.32);chapelMini(c,-170,60);gravestone(d,180,80,.45);altar(e,520,40,.36);ln(f,[[-520,190],[520,190]],K.gold,5);label(g,'同じ一日',0,-245,K.paper,31);}
- else if(v===1){person(b,0,-40,.38,K.paper);['正月','死者','結婚','祭り','受験'].forEach((x,i)=>card(c,-480+i*240===0?'':x,-480+i*240,150+(i%2)*60,210,[K.red,K.gold,K.blue,K.jade,K.paper][i]));card(d,'場面が選ぶ',0,280,270,K.gold);}
+ else if(v===1){person(b,0,-40,.38,K.paper);['正月','死者','結婚','祭り','受験'].forEach((x,i)=>card(c,x,-480+i*240,150+(i%2)*60,210,[K.red,K.gold,K.blue,K.jade,K.paper][i]));card(d,'場面が選ぶ',0,280,270,K.gold);}
  else if(v===2){shrineGate(b,-500,70,.3);temple(c,-170,90,.3);cross(d,170,20,.45,K.gold);rr(e,500,70,190,190,'#283128',5,K.jade);label(e,'地域祭り',500,70,K.paper,18);['祝い','葬送','結婚','共同体'].forEach((x,i)=>label(f,x,-500+i*330,250,[K.red,K.gold,K.blue,K.jade][i],21));}
  else if(v===3){scroll(b,-430,-20,380,520,'民族性');scroll(c,430,-20,380,520,'制度史');ln(d,[[-150,-20],[150,-20]],K.gold,7);card(e,'「何でも混ぜる民族」では足りない',0,270,420,K.red);}
  else if(v===4){timeline(a,10,[{x:-650,label:'神仏習合',col:K.gold},{x:-390,label:'寺請',col:K.jade},{x:-130,label:'神仏分離',col:K.red},{x:130,label:'宗教概念',col:K.blue},{x:390,label:'国家神道',col:K.violet},{x:650,label:'無宗教',col:K.paper}]);person(b,0,190,.3,K.paper);card(c,'一人の生活に歴史層が重なる',0,290,430,K.gold);}
