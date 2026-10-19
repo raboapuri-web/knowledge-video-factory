@@ -18,8 +18,8 @@ for s in ss:
  if s['durationSource']!='VOICEVOX_MEASURED':warn.append(s['id']+' uses estimated durations')
  if not (R/'src/scenes'/f"{s['id']}.tsx").exists():errors.append('missing scene source '+s['id'])
 if len(ss)!=79:errors.append('expected 79 meaning scenes, got '+str(len(ss)))
-if len(chapters)!=11:errors.append('expected 11 render units, got '+str(len(chapters)))
-expected={'prologue','chapter1','chapter2','chapter3','chapter4','chapter5','chapter6','chapter7','chapter8','chapter9','epilogue'}
+if len(chapters)!=13:errors.append('expected 13 render units, got '+str(len(chapters)))
+expected={'prologue','chapter1','chapter2','chapter3','chapter4','chapter5','chapter6','chapter7','chapter8','chapter9','chapter10','chapter11','epilogue'}
 if set(chapters)!=expected:errors.append('unexpected chapter set '+str(sorted(chapters)))
 if len(vp)!=79:errors.append('expected 79 visual plans, got '+str(len(vp)))
 motifs=[s['motif'] for s in ss]
