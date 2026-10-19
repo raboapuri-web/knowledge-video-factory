@@ -1,967 +1,1035 @@
 {
-  "xuanwu_before_dawn": {
-    "kind": "v127-01-xuanwu_before_dawn",
-    "motion": "motion-01-xuanwu_before_dawn",
+  "newyear_shrine_queue": {
+    "kind": "v129-01-newyear_shrine_queue",
+    "motion": "motion-01-newyear_shrine_queue",
     "labels": [
-      "626年、夜明け前の玄武門",
-      "玄武門",
-      "継承争い",
-      "旧敵",
-      "諫言",
-      "天可汗",
-      "指導者",
+      "元旦の神社、長い列の中で祈る",
+      "初詣",
+      "チャペル",
+      "葬儀",
+      "無宗教",
+      "所属と実践",
+      "問い",
+      "歴史"
+    ]
+  },
+  "chapel_wedding": {
+    "kind": "v129-02-chapel_wedding",
+    "motion": "motion-02-chapel_wedding",
+    "labels": [
+      "半年後、同じ男は十字架の前に立つ",
+      "初詣",
+      "チャペル",
+      "葬儀",
+      "無宗教",
+      "所属と実践",
+      "問い",
+      "歴史"
+    ]
+  },
+  "buddhist_funeral": {
+    "kind": "v129-03-buddhist_funeral",
+    "motion": "motion-03-buddhist_funeral",
+    "labels": [
+      "さらに数年後、寺で僧侶の読経を聞く",
+      "初詣",
+      "チャペル",
+      "葬儀",
+      "無宗教",
+      "所属と実践",
+      "問い",
+      "歴史"
+    ]
+  },
+  "religion_identity_question": {
+    "kind": "v129-04-religion_identity_question",
+    "motion": "motion-04-religion_identity_question",
+    "labels": [
+      "行動だけを見れば三つの宗教が現れる",
+      "初詣",
+      "チャペル",
+      "葬儀",
+      "無宗教",
+      "所属と実践",
+      "問い",
+      "歴史"
+    ]
+  },
+  "survey_paradox": {
+    "kind": "v129-05-survey_paradox",
+    "motion": "motion-05-survey_paradox",
+    "labels": [
+      "宗教なしと答える人も、宗教的に行動す",
+      "初詣",
+      "チャペル",
+      "葬儀",
+      "無宗教",
+      "所属と実践",
+      "問い",
+      "歴史"
+    ]
+  },
+  "central_paradox": {
+    "kind": "v129-06-central_paradox",
+    "motion": "motion-06-central_paradox",
+    "labels": [
+      "日本人は宗教を持たないのか、それとも",
+      "初詣",
+      "チャペル",
+      "葬儀",
+      "無宗教",
+      "所属と実践",
+      "問い",
+      "歴史"
+    ]
+  },
+  "journey_through_history": {
+    "kind": "v129-07-journey_through_history",
+    "motion": "motion-07-journey_through_history",
+    "labels": [
+      "神仏習合から世俗化までをたどる",
+      "初詣",
+      "チャペル",
+      "葬儀",
+      "無宗教",
+      "所属と実践",
+      "問い",
+      "歴史"
+    ]
+  },
+  "population_table": {
+    "kind": "v129-08-population_table",
+    "motion": "motion-08-population_table",
+    "labels": [
+      "日本の人口と宗教統計を机に並べる",
+      "人口統計",
+      "宗教統計",
+      "氏子",
+      "檀家",
+      "一人一宗教",
+      "測定"
+    ]
+  },
+  "religion_count_exceeds_population": {
+    "kind": "v129-09-religion_count_exceeds_population",
+    "motion": "motion-09-religion_count_exceeds_population",
+    "labels": [
+      "宗教人口を足すと、日本人が増殖する",
+      "人口統計",
+      "宗教統計",
+      "氏子",
+      "檀家",
+      "一人一宗教",
+      "測定"
+    ]
+  },
+  "ujiko_danka_overlap": {
+    "kind": "v129-10-ujiko_danka_overlap",
+    "motion": "motion-10-ujiko_danka_overlap",
+    "labels": [
+      "氏子であり、檀家でもあるという二重所",
+      "人口統計",
+      "宗教統計",
+      "氏子",
+      "檀家",
+      "一人一宗教",
+      "測定"
+    ]
+  },
+  "one_person_many_rituals": {
+    "kind": "v129-11-one_person_many_rituals",
+    "motion": "motion-11-one_person_many_rituals",
+    "labels": [
+      "人生の場面ごとに異なる宗教実践を使う",
+      "人口統計",
+      "宗教統計",
+      "氏子",
+      "檀家",
+      "一人一宗教",
+      "測定"
+    ]
+  },
+  "western_membership_model": {
+    "kind": "v129-12-western_membership_model",
+    "motion": "motion-12-western_membership_model",
+    "labels": [
+      "一人一宗教という物差しは普遍ではない",
+      "人口統計",
+      "宗教統計",
+      "氏子",
+      "檀家",
+      "一人一宗教",
+      "測定"
+    ]
+  },
+  "measurement_problem": {
+    "kind": "v129-13-measurement_problem",
+    "motion": "motion-13-measurement_problem",
+    "labels": [
+      "「宗教的ではない」のか、「測り方が合",
+      "人口統計",
+      "宗教統計",
+      "氏子",
+      "檀家",
+      "一人一宗教",
+      "測定"
+    ]
+  },
+  "ancient_sacred_site": {
+    "kind": "v129-14-ancient_sacred_site",
+    "motion": "motion-14-ancient_sacred_site",
+    "labels": [
+      "神社の奥に寺がある風景",
+      "山岳聖地",
+      "神仏習合",
+      "本地垂迹",
+      "神宮寺",
+      "祭り",
+      "境界"
+    ]
+  },
+  "shinbutsu_shugo": {
+    "kind": "v129-15-shinbutsu_shugo",
+    "motion": "motion-15-shinbutsu_shugo",
+    "labels": [
+      "神と仏は長く一つの世界で共存していた",
+      "山岳聖地",
+      "神仏習合",
+      "本地垂迹",
+      "神宮寺",
+      "祭り",
+      "境界"
+    ]
+  },
+  "honji_suijaku": {
+    "kind": "v129-16-honji_suijaku",
+    "motion": "motion-16-honji_suijaku",
+    "labels": [
+      "神は仏の現れとして説明されることもあ",
+      "山岳聖地",
+      "神仏習合",
+      "本地垂迹",
+      "神宮寺",
+      "祭り",
+      "境界"
+    ]
+  },
+  "modern_categories_fail": {
+    "kind": "v129-17-modern_categories_fail",
+    "motion": "motion-17-modern_categories_fail",
+    "labels": [
+      "「神道か仏教か」という質問がそもそも",
+      "山岳聖地",
+      "神仏習合",
+      "本地垂迹",
+      "神宮寺",
+      "祭り",
+      "境界"
+    ]
+  },
+  "ritual_ecology": {
+    "kind": "v129-18-ritual_ecology",
+    "motion": "motion-18-ritual_ecology",
+    "labels": [
+      "祭り、死者供養、修行が同じ社会で共存",
+      "山岳聖地",
+      "神仏習合",
+      "本地垂迹",
+      "神宮寺",
+      "祭り",
+      "境界"
+    ]
+  },
+  "historian_labels": {
+    "kind": "v129-19-historian_labels",
+    "motion": "motion-19-historian_labels",
+    "labels": [
+      "後世の私たちが境界線を引いている",
+      "山岳聖地",
+      "神仏習合",
+      "本地垂迹",
+      "神宮寺",
+      "祭り",
+      "境界"
+    ]
+  },
+  "edo_village_temple": {
+    "kind": "v129-20-edo_village_temple",
+    "motion": "motion-20-edo_village_temple",
+    "labels": [
+      "江戸時代、家の主人が寺へ証明を求めに",
+      "江戸村",
+      "寺請証文",
+      "檀家",
+      "葬送",
+      "家制度",
+      "寺院"
+    ]
+  },
+  "terauke_certificate": {
+    "kind": "v129-21-terauke_certificate",
+    "motion": "motion-21-terauke_certificate",
+    "labels": [
+      "寺請証文が宗教と住民管理を結びつける",
+      "江戸村",
+      "寺請証文",
+      "檀家",
+      "葬送",
+      "家制度",
+      "寺院"
+    ]
+  },
+  "danka_system": {
+    "kind": "v129-22-danka_system",
+    "motion": "motion-22-danka_system",
+    "labels": [
+      "家と寺の関係が世代を越えて固定される",
+      "江戸村",
+      "寺請証文",
+      "檀家",
+      "葬送",
+      "家制度",
+      "寺院"
+    ]
+  },
+  "buddhism_as_social_infrastructure": {
+    "kind": "v129-23-buddhism_as_social_infrastructure",
+    "motion": "motion-23-buddhism_as_social_infrastructure",
+    "labels": [
+      "仏教は信仰だけでなく人生管理のインフ",
+      "江戸村",
+      "寺請証文",
+      "檀家",
+      "葬送",
+      "家制度",
+      "寺院"
+    ]
+  },
+  "belonging_before_belief": {
+    "kind": "v129-24-belonging_before_belief",
+    "motion": "motion-24-belonging_before_belief",
+    "labels": [
+      "「何を信じるか」より「どの寺と結びつ",
+      "江戸村",
+      "寺請証文",
+      "檀家",
+      "葬送",
+      "家制度",
+      "寺院"
+    ]
+  },
+  "institutional_memory": {
+    "kind": "v129-25-institutional_memory",
+    "motion": "motion-25-institutional_memory",
+    "labels": [
+      "現代の葬送仏教には長い制度史がある",
+      "江戸村",
+      "寺請証文",
+      "檀家",
+      "葬送",
+      "家制度",
+      "寺院"
+    ]
+  },
+  "meiji_order_arrives": {
+    "kind": "v129-26-meiji_order_arrives",
+    "motion": "motion-26-meiji_order_arrives",
+    "labels": [
+      "1868年、神仏を分ける命令が届く",
+      "1868",
+      "神仏分離",
+      "廃仏毀釈",
+      "境内再編",
+      "近代国家",
+      "境界"
+    ]
+  },
+  "shinbutsu_bunri": {
+    "kind": "v129-27-shinbutsu_bunri",
+    "motion": "motion-27-shinbutsu_bunri",
+    "labels": [
+      "千年以上混ざってきた宗教空間を制度で",
+      "1868",
+      "神仏分離",
+      "廃仏毀釈",
+      "境内再編",
+      "近代国家",
+      "境界"
+    ]
+  },
+  "haibutsu_kishaku": {
+    "kind": "v129-28-haibutsu_kishaku",
+    "motion": "motion-28-haibutsu_kishaku",
+    "labels": [
+      "分離政策が地域によっては破壊へつなが",
+      "1868",
+      "神仏分離",
+      "廃仏毀釈",
+      "境内再編",
+      "近代国家",
+      "境界"
+    ]
+  },
+  "before_after_sacred_space": {
+    "kind": "v129-29-before_after_sacred_space",
+    "motion": "motion-29-before_after_sacred_space",
+    "labels": [
+      "同じ聖地の「昨日」と「今日」を比較す",
+      "1868",
+      "神仏分離",
+      "廃仏毀釈",
+      "境内再編",
+      "近代国家",
+      "境界"
+    ]
+  },
+  "modern_naturalness": {
+    "kind": "v129-30-modern_naturalness",
+    "motion": "motion-30-modern_naturalness",
+    "labels": [
+      "現代人の「神社と寺は別」という常識は",
+      "1868",
+      "神仏分離",
+      "廃仏毀釈",
+      "境内再編",
+      "近代国家",
+      "境界"
+    ]
+  },
+  "question_transformed": {
+    "kind": "v129-31-question_transformed",
+    "motion": "motion-31-question_transformed",
+    "labels": [
+      "「神道か仏教か」という質問自体が近代",
+      "1868",
+      "神仏分離",
+      "廃仏毀釈",
+      "境内再編",
+      "近代国家",
+      "境界"
+    ]
+  },
+  "religion_word_import": {
+    "kind": "v129-32-religion_word_import",
+    "motion": "motion-32-religion_word_import",
+    "labels": [
+      "「宗教」という箱そのものが近代に整え",
+      "宗教概念",
+      "religion",
+      "信教の自由",
+      "行政分類",
+      "宗教/非宗教",
+      "自己認識"
+    ]
+  },
+  "freedom_of_religion_problem": {
+    "kind": "v129-33-freedom_of_religion_problem",
+    "motion": "motion-33-freedom_of_religion_problem",
+    "labels": [
+      "信教の自由を作るには、何が宗教かを決",
+      "宗教概念",
+      "religion",
+      "信教の自由",
+      "行政分類",
+      "宗教/非宗教",
+      "自己認識"
+    ]
+  },
+  "classification_desk": {
+    "kind": "v129-34-classification_desk",
+    "motion": "motion-34-classification_desk",
+    "labels": [
+      "行政の机で信仰と習慣が分類される",
+      "宗教概念",
+      "religion",
+      "信教の自由",
+      "行政分類",
+      "宗教/非宗教",
+      "自己認識"
+    ]
+  },
+  "religion_nonreligion_boundary": {
+    "kind": "v129-35-religion_nonreligion_boundary",
+    "motion": "motion-35-religion_nonreligion_boundary",
+    "labels": [
+      "宗教と非宗教の境界は自然界に最初から",
+      "宗教概念",
+      "religion",
+      "信教の自由",
+      "行政分類",
+      "宗教/非宗教",
+      "自己認識"
+    ]
+  },
+  "modern_category_creation": {
+    "kind": "v129-36-modern_category_creation",
+    "motion": "motion-36-modern_category_creation",
+    "labels": [
+      "日本の近代化は宗教を輸入しただけでは",
+      "宗教概念",
+      "religion",
+      "信教の自由",
+      "行政分類",
+      "宗教/非宗教",
+      "自己認識"
+    ]
+  },
+  "category_shapes_identity": {
+    "kind": "v129-37-category_shapes_identity",
+    "motion": "motion-37-category_shapes_identity",
+    "labels": [
+      "分類が変わると、人々の自己認識も変わ",
+      "宗教概念",
+      "religion",
+      "信教の自由",
+      "行政分類",
+      "宗教/非宗教",
+      "自己認識"
+    ]
+  },
+  "shrine_bureaucracy": {
+    "kind": "v129-38-shrine_bureaucracy",
+    "motion": "motion-38-shrine_bureaucracy",
+    "labels": [
+      "神社が宗教行政と別に置かれる",
+      "神社行政",
+      "国家神道",
+      "公共儀礼",
+      "信教の自由",
+      "習慣",
+      "分類権力"
+    ]
+  },
+  "not_religion_claim": {
+    "kind": "v129-39-not_religion_claim",
+    "motion": "motion-39-not_religion_claim",
+    "labels": [
+      "神を祀るのに「宗教ではない」という奇",
+      "神社行政",
+      "国家神道",
+      "公共儀礼",
+      "信教の自由",
+      "習慣",
+      "分類権力"
+    ]
+  },
+  "freedom_and_compulsion": {
+    "kind": "v129-40-freedom_and_compulsion",
+    "motion": "motion-40-freedom_and_compulsion",
+    "labels": [
+      "信教の自由と国家儀礼を同時に成立させ",
+      "神社行政",
+      "国家神道",
+      "公共儀礼",
+      "信教の自由",
+      "習慣",
+      "分類権力"
+    ]
+  },
+  "state_shinto_structure": {
+    "kind": "v129-41-state_shinto_structure",
+    "motion": "motion-41-state_shinto_structure",
+    "labels": [
+      "国家神道は一つの宗派名ではなく制度の",
+      "神社行政",
+      "国家神道",
+      "公共儀礼",
+      "信教の自由",
+      "習慣",
+      "分類権力"
+    ]
+  },
+  "habit_not_religion_memory": {
+    "kind": "v129-42-habit_not_religion_memory",
+    "motion": "motion-42-habit_not_religion_memory",
+    "labels": [
+      "「これは宗教ではなく習慣」という感覚",
+      "神社行政",
+      "国家神道",
+      "公共儀礼",
+      "信教の自由",
+      "習慣",
+      "分類権力"
+    ]
+  },
+  "classification_is_power": {
+    "kind": "v129-43-classification_is_power",
+    "motion": "motion-43-classification_is_power",
+    "labels": [
+      "何を宗教と呼ぶかは、権力の問題でもあ",
+      "神社行政",
+      "国家神道",
+      "公共儀礼",
+      "信教の自由",
+      "習慣",
+      "分類権力"
+    ]
+  },
+  "wedding_planning_room": {
+    "kind": "v129-44-wedding_planning_room",
+    "motion": "motion-44-wedding_planning_room",
+    "labels": [
+      "現代の結婚式場で宗教形式をメニューか",
+      "式場打合せ",
+      "チャペル式",
+      "無宗教",
+      "宗教距離",
+      "儀礼サービス",
+      "所属/実践"
+    ]
+  },
+  "christian_style_without_conversion": {
+    "kind": "v129-45-christian_style_without_conversion",
+    "motion": "motion-45-christian_style_without_conversion",
+    "labels": [
+      "チャペルで結婚してもキリスト教徒にな",
+      "式場打合せ",
+      "チャペル式",
+      "無宗教",
+      "宗教距離",
+      "儀礼サービス",
+      "所属/実践"
+    ]
+  },
+  "mushukyo_self_description": {
+    "kind": "v129-46-mushukyo_self_description",
+    "motion": "motion-46-mushukyo_self_description",
+    "labels": [
+      "「無宗教」は強い無神論とは限らない",
+      "式場打合せ",
+      "チャペル式",
+      "無宗教",
+      "宗教距離",
+      "儀礼サービス",
+      "所属/実践"
+    ]
+  },
+  "distance_from_religious_intensity": {
+    "kind": "v129-47-distance_from_religious_intensity",
+    "motion": "motion-47-distance_from_religious_intensity",
+    "labels": [
+      "宗教への距離を示すための「無宗教」",
+      "式場打合せ",
+      "チャペル式",
+      "無宗教",
+      "宗教距離",
+      "儀礼サービス",
+      "所属/実践"
+    ]
+  },
+  "ritual_as_service": {
+    "kind": "v129-48-ritual_as_service",
+    "motion": "motion-48-ritual_as_service",
+    "labels": [
+      "信仰を宣言せずに儀礼を利用できる",
+      "式場打合せ",
+      "チャペル式",
+      "無宗教",
+      "宗教距離",
+      "儀礼サービス",
+      "所属/実践"
+    ]
+  },
+  "belonging_and_practice_split": {
+    "kind": "v129-49-belonging_and_practice_split",
+    "motion": "motion-49-belonging_and_practice_split",
+    "labels": [
+      "所属と実践が分離している",
+      "式場打合せ",
+      "チャペル式",
+      "無宗教",
+      "宗教距離",
+      "儀礼サービス",
+      "所属/実践"
+    ]
+  },
+  "salaryman_shrine": {
+    "kind": "v129-50-salaryman_shrine",
+    "motion": "motion-50-salaryman_shrine",
+    "labels": [
+      "無宗教の会社員が商談前に神社へ立ち寄",
+      "会社員",
+      "祈り",
+      "仏壇",
+      "祖先",
+      "習慣",
+      "三層モデル"
+    ]
+  },
+  "prayer_without_identity": {
+    "kind": "v129-51-prayer_without_identity",
+    "motion": "motion-51-prayer_without_identity",
+    "labels": [
+      "宗教なしの人も祈る",
+      "会社員",
+      "祈り",
+      "仏壇",
+      "祖先",
+      "習慣",
+      "三層モデル"
+    ]
+  },
+  "home_altar": {
+    "kind": "v129-52-home_altar",
+    "motion": "motion-52-home_altar",
+    "labels": [
+      "家庭の中にも宗教的な空間が残る",
+      "会社員",
+      "祈り",
+      "仏壇",
+      "祖先",
+      "習慣",
+      "三層モデル"
+    ]
+  },
+  "ancestor_as_near_transcendence": {
+    "kind": "v129-53-ancestor_as_near_transcendence",
+    "motion": "motion-53-ancestor_as_near_transcendence",
+    "labels": [
+      "最も身近な超越者は亡くなった家族かも",
+      "会社員",
+      "祈り",
+      "仏壇",
+      "祖先",
+      "習慣",
+      "三層モデル"
+    ]
+  },
+  "ritual_without_religion_label": {
+    "kind": "v129-54-ritual_without_religion_label",
+    "motion": "motion-54-ritual_without_religion_label",
+    "labels": [
+      "同じ行為でも本人が宗教だと思っていな",
+      "会社員",
+      "祈り",
+      "仏壇",
+      "祖先",
+      "習慣",
+      "三層モデル"
+    ]
+  },
+  "identity_behavior_gap": {
+    "kind": "v129-55-identity_behavior_gap",
+    "motion": "motion-55-identity_behavior_gap",
+    "labels": [
+      "所属、信念、行動の三つがずれる",
+      "会社員",
+      "祈り",
+      "仏壇",
+      "祖先",
+      "習慣",
+      "三層モデル"
+    ]
+  },
+  "day_of_many_religions": {
+    "kind": "v129-56-day_of_many_religions",
+    "motion": "motion-56-day_of_many_religions",
+    "labels": [
+      "朝の神社、昼の結婚式、夕方の墓地",
+      "一日の移動",
+      "場面",
+      "機能分業",
+      "歴史層",
+      "民族性ではない",
       "問い"
     ]
   },
-  "ambush_tension": {
-    "kind": "v127-02-ambush_tension",
-    "motion": "motion-02-ambush_tension",
+  "situation_over_membership": {
+    "kind": "v129-57-situation_over_membership",
+    "motion": "motion-57-situation_over_membership",
     "labels": [
-      "兄と弟が門へ近づく",
-      "玄武門",
-      "継承争い",
-      "旧敵",
-      "諫言",
-      "天可汗",
-      "指導者",
+      "日本では所属より場面が重要なのか",
+      "一日の移動",
+      "場面",
+      "機能分業",
+      "歴史層",
+      "民族性ではない",
       "問い"
     ]
   },
-  "brothers_fall": {
-    "kind": "v127-03-brothers_fall",
-    "motion": "motion-03-brothers_fall",
+  "functional_specialization": {
+    "kind": "v129-58-functional_specialization",
+    "motion": "motion-58-functional_specialization",
     "labels": [
-      "流血から始まる「名君」の物語",
-      "玄武門",
-      "継承争い",
-      "旧敵",
-      "諫言",
-      "天可汗",
-      "指導者",
+      "宗教が用途ごとに分業しているように見",
+      "一日の移動",
+      "場面",
+      "機能分業",
+      "歴史層",
+      "民族性ではない",
       "問い"
     ]
   },
-  "expected_tyrant_path": {
-    "kind": "v127-04-expected_tyrant_path",
-    "motion": "motion-04-expected_tyrant_path",
+  "not_national_character": {
+    "kind": "v129-59-not_national_character",
+    "motion": "motion-59-not_national_character",
     "labels": [
-      "普通なら暴君の物語へ進みそうだった",
-      "玄武門",
-      "継承争い",
-      "旧敵",
-      "諫言",
-      "天可汗",
-      "指導者",
+      "「日本人は何でも混ぜる民族だから」で",
+      "一日の移動",
+      "場面",
+      "機能分業",
+      "歴史層",
+      "民族性ではない",
       "問い"
     ]
   },
-  "weizheng_turn": {
-    "kind": "v127-05-weizheng_turn",
-    "motion": "motion-05-weizheng_turn",
+  "historical_layers": {
+    "kind": "v129-60-historical_layers",
+    "motion": "motion-60-historical_layers",
     "labels": [
-      "ところが旧敵の側近を自分の宮廷へ入れ",
-      "玄武門",
-      "継承争い",
-      "旧敵",
-      "諫言",
-      "天可汗",
-      "指導者",
+      "現代人の一日の中に、異なる時代の制度",
+      "一日の移動",
+      "場面",
+      "機能分業",
+      "歴史層",
+      "民族性ではない",
       "問い"
     ]
   },
-  "heavenly_khan_preview": {
-    "kind": "v127-06-heavenly_khan_preview",
-    "motion": "motion-06-heavenly_khan_preview",
+  "question_does_not_fit": {
+    "kind": "v129-61-question_does_not_fit",
+    "motion": "motion-61-question_does_not_fit",
     "labels": [
-      "戦場でも宮廷でも、李世民は異なる種類",
-      "玄武門",
-      "継承争い",
-      "旧敵",
-      "諫言",
-      "天可汗",
-      "指導者",
+      "「何教か」という一問一答では取りこぼ",
+      "一日の移動",
+      "場面",
+      "機能分業",
+      "歴史層",
+      "民族性ではない",
       "問い"
     ]
   },
-  "central_leadership_question": {
-    "kind": "v127-07-central_leadership_question",
-    "motion": "motion-07-central_leadership_question",
+  "secular_city": {
+    "kind": "v129-62-secular_city",
+    "motion": "motion-62-secular_city",
     "labels": [
-      "最高の指導者とは、何でも知っている人",
-      "玄武門",
-      "継承争い",
-      "旧敵",
-      "諫言",
-      "天可汗",
-      "指導者",
-      "問い"
+      "都市化した日本は確かに昔より世俗化し",
+      "都市化",
+      "離脱",
+      "檀家減少",
+      "世俗化",
+      "生活化",
+      "儀礼残存"
     ]
   },
-  "sui_collapse_road": {
-    "kind": "v127-08-sui_collapse_road",
-    "motion": "motion-08-sui_collapse_road",
+  "leaving_religion": {
+    "kind": "v129-63-leaving_religion",
+    "motion": "motion-63-leaving_religion",
     "labels": [
-      "李世民が育ったのは、安定した帝国の宮",
-      "隋末",
-      "反乱",
-      "戦場",
-      "徴発",
-      "民力",
-      "反面教師",
-      "自制"
+      "育った宗教から離れる人もいる",
+      "都市化",
+      "離脱",
+      "檀家減少",
+      "世俗化",
+      "生活化",
+      "儀礼残存"
     ]
   },
-  "sui_burden_machine": {
-    "kind": "v127-09-sui_burden_machine",
-    "motion": "motion-09-sui_burden_machine",
+  "temple_without_danka": {
+    "kind": "v129-64-temple_without_danka",
+    "motion": "motion-64-temple_without_danka",
     "labels": [
-      "強い国家が、社会へ負担をかけすぎて壊",
-      "隋末",
-      "反乱",
-      "戦場",
-      "徴発",
-      "民力",
-      "反面教師",
-      "自制"
+      "檀家制度の弱まりが寺院経営を変える",
+      "都市化",
+      "離脱",
+      "檀家減少",
+      "世俗化",
+      "生活化",
+      "儀礼残存"
     ]
   },
-  "young_general_campaign": {
-    "kind": "v127-10-young_general_campaign",
-    "motion": "motion-10-young_general_campaign",
+  "secularization_not_disappearance": {
+    "kind": "v129-65-secularization_not_disappearance",
+    "motion": "motion-65-secularization_not_disappearance",
     "labels": [
-      "李世民の最初の教室は戦場だった",
-      "隋末",
-      "反乱",
-      "戦場",
-      "徴発",
-      "民力",
-      "反面教師",
-      "自制"
+      "世俗化は神や仏が完全に消えることでは",
+      "都市化",
+      "離脱",
+      "檀家減少",
+      "世俗化",
+      "生活化",
+      "儀礼残存"
     ]
   },
-  "occupation_is_not_rule": {
-    "kind": "v127-11-occupation_is_not_rule",
-    "motion": "motion-11-occupation_is_not_rule",
+  "religion_dissolves_into_life": {
+    "kind": "v129-66-religion_dissolves_into_life",
+    "motion": "motion-66-religion_dissolves_into_life",
     "labels": [
-      "都市を奪っても、統治できなければ勝利",
-      "隋末",
-      "反乱",
-      "戦場",
-      "徴発",
-      "民力",
-      "反面教師",
-      "自制"
+      "宗教が生活へ溶け込み、宗教と呼ばれな",
+      "都市化",
+      "離脱",
+      "檀家減少",
+      "世俗化",
+      "生活化",
+      "儀礼残存"
     ]
   },
-  "state_consumes_people": {
-    "kind": "v127-12-state_consumes_people",
-    "motion": "motion-12-state_consumes_people",
+  "secular_but_ritual": {
+    "kind": "v129-67-secular_but_ritual",
+    "motion": "motion-67-secular_but_ritual",
     "labels": [
-      "国家は民衆の上ではなく、民衆の生産力",
-      "隋末",
-      "反乱",
-      "戦場",
-      "徴発",
-      "民力",
-      "反面教師",
-      "自制"
+      "世俗的でありながら儀礼的でもある",
+      "都市化",
+      "離脱",
+      "檀家減少",
+      "世俗化",
+      "生活化",
+      "儀礼残存"
     ]
   },
-  "sui_as_negative_example": {
-    "kind": "v127-13-sui_as_negative_example",
-    "motion": "motion-13-sui_as_negative_example",
+  "return_to_man": {
+    "kind": "v129-68-return_to_man",
+    "motion": "motion-68-return_to_man",
     "labels": [
-      "李世民の前には、巨大な反面教師が倒れ",
-      "隋末",
-      "反乱",
-      "戦場",
-      "徴発",
-      "民力",
-      "反面教師",
-      "自制"
+      "最初の男へ戻る",
+      "最初の男",
+      "所属否定",
+      "共通言語",
+      "比喩",
+      "矛盾解消",
+      "問い直し"
     ]
   },
-  "first_rule_of_governance": {
-    "kind": "v127-14-first_rule_of_governance",
-    "motion": "motion-14-first_rule_of_governance",
+  "what_mushukyo_denies": {
+    "kind": "v129-69-what_mushukyo_denies",
+    "motion": "motion-69-what_mushukyo_denies",
     "labels": [
-      "強い国家ほど、自制を制度化しなければ",
-      "隋末",
-      "反乱",
-      "戦場",
-      "徴発",
-      "民力",
-      "反面教師",
-      "自制"
+      "彼が否定しているのは神ではなく「一つ",
+      "最初の男",
+      "所属否定",
+      "共通言語",
+      "比喩",
+      "矛盾解消",
+      "問い直し"
     ]
   },
-  "inherited_bureaucracy": {
-    "kind": "v127-15-inherited_bureaucracy",
-    "motion": "motion-15-inherited_bureaucracy",
+  "mushukyo_as_common_language": {
+    "kind": "v129-70-mushukyo_as_common_language",
+    "motion": "motion-70-mushukyo_as_common_language",
     "labels": [
-      "太宗は国家をゼロから作ったわけではな",
-      "制度継承",
-      "隋",
-      "高祖",
-      "編集",
-      "継続",
-      "改善",
-      "人材"
+      "「無宗教」は日本社会の共通言語として",
+      "最初の男",
+      "所属否定",
+      "共通言語",
+      "比喩",
+      "矛盾解消",
+      "問い直し"
     ]
   },
-  "new_ruler_temptation": {
-    "kind": "v127-16-new_ruler_temptation",
-    "motion": "motion-16-new_ruler_temptation",
+  "not_largest_religion_literal": {
+    "kind": "v129-71-not_largest_religion_literal",
+    "motion": "motion-71-not_largest_religion_literal",
     "labels": [
-      "新しい権力者ほど「自分の時代」を作り",
-      "制度継承",
-      "隋",
-      "高祖",
-      "編集",
-      "継続",
-      "改善",
-      "人材"
+      "「無宗教という最大の宗教」は統計上の",
+      "最初の男",
+      "所属否定",
+      "共通言語",
+      "比喩",
+      "矛盾解消",
+      "問い直し"
     ]
   },
-  "editor_not_inventor": {
-    "kind": "v127-17-editor_not_inventor",
-    "motion": "motion-17-editor_not_inventor",
+  "mushukyo_paradox_resolved": {
+    "kind": "v129-72-mushukyo_paradox_resolved",
+    "motion": "motion-72-mushukyo_paradox_resolved",
     "labels": [
-      "李世民を「発明家」より「編集者」と見",
-      "制度継承",
-      "隋",
-      "高祖",
-      "編集",
-      "継続",
-      "改善",
-      "人材"
+      "矛盾ではなく、所属と実践のルールが違",
+      "最初の男",
+      "所属否定",
+      "共通言語",
+      "比喩",
+      "矛盾解消",
+      "問い直し"
     ]
   },
-  "documents_on_table": {
-    "kind": "v127-18-documents_on_table",
-    "motion": "motion-18-documents_on_table",
+  "question_reframed": {
+    "kind": "v129-73-question_reframed",
+    "motion": "motion-73-question_reframed",
     "labels": [
-      "制度は、人間の思いつきより長く生きる",
-      "制度継承",
-      "隋",
-      "高祖",
-      "編集",
-      "継続",
-      "改善",
-      "人材"
+      "「日本は何教か」ではなく「日本人は宗",
+      "最初の男",
+      "所属否定",
+      "共通言語",
+      "比喩",
+      "矛盾解消",
+      "問い直し"
     ]
   },
-  "institutional_continuity": {
-    "kind": "v127-19-institutional_continuity",
-    "motion": "motion-19-institutional_continuity",
+  "night_shrine": {
+    "kind": "v129-74-night_shrine",
+    "motion": "motion-74-night_shrine",
     "labels": [
-      "継続性は、停滞とは違う",
-      "制度継承",
-      "隋",
-      "高祖",
-      "編集",
-      "継続",
-      "改善",
-      "人材"
-    ]
-  },
-  "editor_leadership": {
-    "kind": "v127-20-editor_leadership",
-    "motion": "motion-20-editor_leadership",
-    "labels": [
-      "優秀な指導者は、全部を自分で発明する",
-      "制度継承",
-      "隋",
-      "高祖",
-      "編集",
-      "継続",
-      "改善",
-      "人材"
-    ]
-  },
-  "morning_court": {
-    "kind": "v127-21-morning_court",
-    "motion": "motion-21-morning_court",
-    "labels": [
-      "朝の宮廷には「皇帝に何を言うか」とい",
-      "宮廷",
-      "報告",
-      "情報",
-      "魏徴",
-      "諫言",
-      "鏡",
-      "自己修正"
-    ]
-  },
-  "information_distortion": {
-    "kind": "v127-22-information_distortion",
-    "motion": "motion-22-information_distortion",
-    "labels": [
-      "権力が強いほど、悪い情報が上へ届きに",
-      "宮廷",
-      "報告",
-      "情報",
-      "魏徴",
-      "諫言",
-      "鏡",
-      "自己修正"
-    ]
-  },
-  "weizheng_origin": {
-    "kind": "v127-23-weizheng_origin",
-    "motion": "motion-23-weizheng_origin",
-    "labels": [
-      "魏徴は、もともと李世民の味方ではなか",
-      "宮廷",
-      "報告",
-      "情報",
-      "魏徴",
-      "諫言",
-      "鏡",
-      "自己修正"
-    ]
-  },
-  "weizheng_remonstrates": {
-    "kind": "v127-24-weizheng_remonstrates",
-    "motion": "motion-24-weizheng_remonstrates",
-    "labels": [
-      "旧敵の側近が、今度は皇帝本人を批判す",
-      "宮廷",
-      "報告",
-      "情報",
-      "魏徴",
-      "諫言",
-      "鏡",
-      "自己修正"
-    ]
-  },
-  "zhenguan_zhengyao_caution": {
-    "kind": "v127-25-zhenguan_zhengyao_caution",
-    "motion": "motion-25-zhenguan_zhengyao_caution",
-    "labels": [
-      "ただし『貞観政要』を録音記録のように",
-      "宮廷",
-      "報告",
-      "情報",
-      "魏徴",
-      "諫言",
-      "鏡",
-      "自己修正"
-    ]
-  },
-  "mirror_metaphor": {
-    "kind": "v127-26-mirror_metaphor",
-    "motion": "motion-26-mirror_metaphor",
-    "labels": [
-      "魏徴は皇帝の「鏡」になった",
-      "宮廷",
-      "報告",
-      "情報",
-      "魏徴",
-      "諫言",
-      "鏡",
-      "自己修正"
-    ]
-  },
-  "self_correction_system": {
-    "kind": "v127-27-self_correction_system",
-    "motion": "motion-27-self_correction_system",
-    "labels": [
-      "名君の条件は「正しいこと」より「訂正",
-      "宮廷",
-      "報告",
-      "情報",
-      "魏徴",
-      "諫言",
-      "鏡",
-      "自己修正"
-    ]
-  },
-  "emperor_cannot_see_all": {
-    "kind": "v127-28-emperor_cannot_see_all",
-    "motion": "motion-28-emperor_cannot_see_all",
-    "labels": [
-      "皇帝は国家のほとんどを直接見ることが",
-      "地方",
-      "報告",
-      "歪み",
-      "恐怖",
-      "反対意見",
-      "修正",
-      "情報設計"
-    ]
-  },
-  "bad_news_filter": {
-    "kind": "v127-29-bad_news_filter",
-    "motion": "motion-29-bad_news_filter",
-    "labels": [
-      "悪いニュースは上へ行くほど薄まってい",
-      "地方",
-      "報告",
-      "歪み",
-      "恐怖",
-      "反対意見",
-      "修正",
-      "情報設計"
-    ]
-  },
-  "safe_dissent_signal": {
-    "kind": "v127-30-safe_dissent_signal",
-    "motion": "motion-30-safe_dissent_signal",
-    "labels": [
-      "「反対しても安全」という信号には実務",
-      "地方",
-      "報告",
-      "歪み",
-      "恐怖",
-      "反対意見",
-      "修正",
-      "情報設計"
-    ]
-  },
-  "fear_vs_information": {
-    "kind": "v127-31-fear_vs_information",
-    "motion": "motion-31-fear_vs_information",
-    "labels": [
-      "恐怖は命令を速くするが、情報を遅くす",
-      "地方",
-      "報告",
-      "歪み",
-      "恐怖",
-      "反対意見",
-      "修正",
-      "情報設計"
-    ]
-  },
-  "strong_leader_paradox": {
-    "kind": "v127-32-strong_leader_paradox",
-    "motion": "motion-32-strong_leader_paradox",
-    "labels": [
-      "本当に強い指導者は、自分を止められる",
-      "地方",
-      "報告",
-      "歪み",
-      "恐怖",
-      "反対意見",
-      "修正",
-      "情報設計"
-    ]
-  },
-  "information_architecture": {
-    "kind": "v127-33-information_architecture",
-    "motion": "motion-33-information_architecture",
-    "labels": [
-      "指導者の仕事は「正しい情報が届く構造",
-      "地方",
-      "報告",
-      "歪み",
-      "恐怖",
-      "反対意見",
-      "修正",
-      "情報設計"
-    ]
-  },
-  "talent_roster": {
-    "kind": "v127-34-talent_roster",
-    "motion": "motion-34-talent_roster",
-    "labels": [
-      "李世民の宮廷には、異なる役割の人間が",
-      "人材",
-      "房玄齢",
-      "杜如晦",
-      "魏徴",
-      "家門",
-      "配置",
-      "組織"
-    ]
-  },
-  "homophily_trap": {
-    "kind": "v127-35-homophily_trap",
-    "motion": "motion-35-homophily_trap",
-    "labels": [
-      "権力者の周囲には、似た人間が自然に集",
-      "人材",
-      "房玄齢",
-      "杜如晦",
-      "魏徴",
-      "家門",
-      "配置",
-      "組織"
-    ]
-  },
-  "different_roles": {
-    "kind": "v127-36-different_roles",
-    "motion": "motion-36-different_roles",
-    "labels": [
-      "「房謀杜断」のように、役割の違いを組",
-      "人材",
-      "房玄齢",
-      "杜如晦",
-      "魏徴",
-      "家門",
-      "配置",
-      "組織"
-    ]
-  },
-  "not_modern_meritocracy": {
-    "kind": "v127-37-not_modern_meritocracy",
-    "motion": "motion-37-not_modern_meritocracy",
-    "labels": [
-      "ただし初唐を現代的な完全能力主義とし",
-      "人材",
-      "房玄齢",
-      "杜如晦",
-      "魏徴",
-      "家門",
-      "配置",
-      "組織"
-    ]
-  },
-  "balance_elites": {
-    "kind": "v127-38-balance_elites",
-    "motion": "motion-38-balance_elites",
-    "labels": [
-      "既存の有力集団を消すのではなく、偏り",
-      "人材",
-      "房玄齢",
-      "杜如晦",
-      "魏徴",
-      "家門",
-      "配置",
-      "組織"
-    ]
-  },
-  "organization_smarter_than_leader": {
-    "kind": "v127-39-organization_smarter_than_leader",
-    "motion": "motion-39-organization_smarter_than_leader",
-    "labels": [
-      "最高の答えが出やすい配置を作る",
-      "人材",
-      "房玄齢",
-      "杜如晦",
-      "魏徴",
-      "家門",
-      "配置",
-      "組織"
-    ]
-  },
-  "steppe_after_victory": {
-    "kind": "v127-40-steppe_after_victory",
-    "motion": "motion-40-steppe_after_victory",
-    "labels": [
-      "630年、北方世界の秩序が変わる",
-      "東突厥",
-      "天可汗",
-      "羈縻",
-      "草原",
-      "統治コスト",
-      "外交",
-      "帝国"
-    ]
-  },
-  "heavenly_khan_title": {
-    "kind": "v127-41-heavenly_khan_title",
-    "motion": "motion-41-heavenly_khan_title",
-    "labels": [
-      "中国皇帝が「天可汗」と呼ばれる",
-      "東突厥",
-      "天可汗",
-      "羈縻",
-      "草原",
-      "統治コスト",
-      "外交",
-      "帝国"
-    ]
-  },
-  "jimi_governance": {
-    "kind": "v127-42-jimi_governance",
-    "motion": "motion-42-jimi_governance",
-    "labels": [
-      "勝った相手をすべて同じ制度へ押し込ま",
-      "東突厥",
-      "天可汗",
-      "羈縻",
-      "草原",
-      "統治コスト",
-      "外交",
-      "帝国"
-    ]
-  },
-  "direct_rule_cost": {
-    "kind": "v127-43-direct_rule_cost",
-    "motion": "motion-43-direct_rule_cost",
-    "labels": [
-      "すべてを直接支配すると、帝国は自分の",
-      "東突厥",
-      "天可汗",
-      "羈縻",
-      "草原",
-      "統治コスト",
-      "外交",
-      "帝国"
-    ]
-  },
-  "war_to_governance": {
-    "kind": "v127-44-war_to_governance",
-    "motion": "motion-44-war_to_governance",
-    "labels": [
-      "戦争は、勝った後に統治へ変換できて初",
-      "東突厥",
-      "天可汗",
-      "羈縻",
-      "草原",
-      "統治コスト",
-      "外交",
-      "帝国"
-    ]
-  },
-  "hybrid_empire": {
-    "kind": "v127-45-hybrid_empire",
-    "motion": "motion-45-hybrid_empire",
-    "labels": [
-      "唐の強さは、一つの型を全地域へ押しつ",
-      "東突厥",
-      "天可汗",
-      "羈縻",
-      "草原",
-      "統治コスト",
-      "外交",
-      "帝国"
-    ]
-  },
-  "success_changes_ruler": {
-    "kind": "v127-46-success_changes_ruler",
-    "motion": "motion-46-success_changes_ruler",
-    "labels": [
-      "成功した指導者は、成功によって別の人",
-      "成功",
-      "高句麗",
-      "遠征",
-      "継承",
-      "自信",
-      "過信",
-      "鏡"
-    ]
-  },
-  "goguryeo_campaign": {
-    "kind": "v127-47-goguryeo_campaign",
-    "motion": "motion-47-goguryeo_campaign",
-    "labels": [
-      "645年、李世民は高句麗へ大規模遠征",
-      "成功",
-      "高句麗",
-      "遠征",
-      "継承",
-      "自信",
-      "過信",
-      "鏡"
-    ]
-  },
-  "old_warning_returns": {
-    "kind": "v127-48-old_warning_returns",
-    "motion": "motion-48-old_warning_returns",
-    "labels": [
-      "若いころの反面教師が、晩年には自分の",
-      "成功",
-      "高句麗",
-      "遠征",
-      "継承",
-      "自信",
-      "過信",
-      "鏡"
-    ]
-  },
-  "succession_crisis": {
-    "kind": "v127-49-succession_crisis",
-    "motion": "motion-49-succession_crisis",
-    "labels": [
-      "宮廷内部では後継者問題も崩れていく",
-      "成功",
-      "高句麗",
-      "遠征",
-      "継承",
-      "自信",
-      "過信",
-      "鏡"
-    ]
-  },
-  "success_overconfidence": {
-    "kind": "v127-50-success_overconfidence",
-    "motion": "motion-50-success_overconfidence",
-    "labels": [
-      "成功体験は「自分は間違える」という感",
-      "成功",
-      "高句麗",
-      "遠征",
-      "継承",
-      "自信",
-      "過信",
-      "鏡"
-    ]
-  },
-  "need_for_mirror_grows": {
-    "kind": "v127-51-need_for_mirror_grows",
-    "motion": "motion-51-need_for_mirror_grows",
-    "labels": [
-      "だから成功するほど「鏡」が必要になる",
-      "成功",
-      "高句麗",
-      "遠征",
-      "継承",
-      "自信",
-      "過信",
-      "鏡"
-    ]
-  },
-  "historians_at_night": {
-    "kind": "v127-52-historians_at_night",
-    "motion": "motion-52-historians_at_night",
-    "labels": [
-      "長安の夜、歴史官は皇帝の今日を記録し",
-      "歴史官",
-      "実録",
-      "自己像",
-      "貞観",
-      "編集",
-      "記憶",
-      "政治教材"
-    ]
-  },
-  "taizong_reads_history": {
-    "kind": "v127-53-taizong_reads_history",
-    "motion": "motion-53-taizong_reads_history",
-    "labels": [
-      "太宗は、自分がどう記録されているかを",
-      "歴史官",
-      "実録",
-      "自己像",
-      "貞観",
-      "編集",
-      "記憶",
-      "政治教材"
-    ]
-  },
-  "performance_for_posterity": {
-    "kind": "v127-54-performance_for_posterity",
-    "motion": "motion-54-performance_for_posterity",
-    "labels": [
-      "名君は、名君として見られる自分を演じ",
-      "歴史官",
-      "実録",
-      "自己像",
-      "貞観",
-      "編集",
-      "記憶",
-      "政治教材"
-    ]
-  },
-  "zhenguan_as_constructed_memory": {
-    "kind": "v127-55-zhenguan_as_constructed_memory",
-    "motion": "motion-55-zhenguan_as_constructed_memory",
-    "labels": [
-      "「貞観の治」は事実であると同時に、編",
-      "歴史官",
-      "実録",
-      "自己像",
-      "貞観",
-      "編集",
-      "記憶",
-      "政治教材"
-    ]
-  },
-  "myth_does_not_erase_rule": {
-    "kind": "v127-56-myth_does_not_erase_rule",
-    "motion": "motion-56-myth_does_not_erase_rule",
-    "labels": [
-      "史料が編集されているからといって、成",
-      "歴史官",
-      "実録",
-      "自己像",
-      "貞観",
-      "編集",
-      "記憶",
-      "政治教材"
-    ]
-  },
-  "ruler_of_state_and_story": {
-    "kind": "v127-57-ruler_of_state_and_story",
-    "motion": "motion-57-ruler_of_state_and_story",
-    "labels": [
-      "李世民は国家だけでなく、自分の統治の",
-      "歴史官",
-      "実録",
-      "自己像",
-      "貞観",
-      "編集",
-      "記憶",
-      "政治教材"
-    ]
-  },
-  "why_him": {
-    "kind": "v127-58-why_him",
-    "motion": "motion-58-why_him",
-    "labels": [
-      "なぜ李世民が「最高の指導者」の教材と",
-      "指導者",
-      "諫言",
-      "制度",
-      "勝利",
-      "修正",
-      "教科書",
-      "統治"
-    ]
-  },
-  "not_know_everything": {
-    "kind": "v127-59-not_know_everything",
-    "motion": "motion-59-not_know_everything",
-    "labels": [
-      "強い指導者は、何でも自分で決める人で",
-      "指導者",
-      "諫言",
-      "制度",
-      "勝利",
-      "修正",
-      "教科書",
-      "統治"
-    ]
-  },
-  "not_constant_reform": {
-    "kind": "v127-60-not_constant_reform",
-    "motion": "motion-60-not_constant_reform",
-    "labels": [
-      "良い統治は、毎年新制度を作ることでも",
-      "指導者",
-      "諫言",
-      "制度",
-      "勝利",
-      "修正",
-      "教科書",
-      "統治"
-    ]
-  },
-  "victory_after_victory": {
-    "kind": "v127-61-victory_after_victory",
-    "motion": "motion-61-victory_after_victory",
-    "labels": [
-      "軍事的勝利は、統治へ変換できなければ",
-      "指導者",
-      "諫言",
-      "制度",
-      "勝利",
-      "修正",
-      "教科書",
-      "統治"
-    ]
-  },
-  "error_containment": {
-    "kind": "v127-62-error_containment",
-    "motion": "motion-62-error_containment",
-    "labels": [
-      "成功とは「間違えないこと」ではなく、",
-      "指導者",
-      "諫言",
-      "制度",
-      "勝利",
-      "修正",
-      "教科書",
-      "統治"
-    ]
-  },
-  "teaching_model": {
-    "kind": "v127-63-teaching_model",
-    "motion": "motion-63-teaching_model",
-    "labels": [
-      "李世民は「ランキング一位」より「統治",
-      "指導者",
-      "諫言",
-      "制度",
-      "勝利",
-      "修正",
-      "教科書",
-      "統治"
-    ]
-  },
-  "return_xuanwu": {
-    "kind": "v127-64-return_xuanwu",
-    "motion": "motion-64-return_xuanwu",
-    "labels": [
-      "最後に、再び夜明け前の玄武門へ戻る",
-      "玄武門",
-      "649年",
-      "書物",
-      "不完全",
-      "制度",
-      "組織",
+      "元日の夜、神社から人影が減っていく",
+      "夜の神社",
+      "仏壇",
+      "チャペル",
+      "質問",
+      "行動",
       "結論"
     ]
   },
-  "twenty_three_years_later": {
-    "kind": "v127-65-twenty_three_years_later",
-    "motion": "motion-65-twenty_three_years_later",
+  "three_spaces_same_city": {
+    "kind": "v129-75-three_spaces_same_city",
+    "motion": "motion-75-three_spaces_same_city",
     "labels": [
-      "二十三年後、唐はまったく違う国家にな",
-      "玄武門",
-      "649年",
-      "書物",
-      "不完全",
-      "制度",
-      "組織",
+      "同じ町に神社、仏壇、チャペルが同時に",
+      "夜の神社",
+      "仏壇",
+      "チャペル",
+      "質問",
+      "行動",
       "結論"
     ]
   },
-  "books_after_death": {
-    "kind": "v127-66-books_after_death",
-    "motion": "motion-66-books_after_death",
+  "ask_three_questions": {
+    "kind": "v129-76-ask_three_questions",
+    "motion": "motion-76-ask_three_questions",
     "labels": [
-      "さらに長く残ったのは、彼の死後に読ま",
-      "玄武門",
-      "649年",
-      "書物",
-      "不完全",
-      "制度",
-      "組織",
+      "質問を変えると、日本の宗教像も変わる",
+      "夜の神社",
+      "仏壇",
+      "チャペル",
+      "質問",
+      "行動",
       "結論"
     ]
   },
-  "imperfect_human_system": {
-    "kind": "v127-67-imperfect_human_system",
-    "motion": "motion-67-imperfect_human_system",
+  "look_at_actions": {
+    "kind": "v129-77-look_at_actions",
+    "motion": "motion-77-look_at_actions",
     "labels": [
-      "完璧な人間にしかできない政治は、制度",
-      "玄武門",
-      "649年",
-      "書物",
-      "不完全",
-      "制度",
-      "組織",
+      "宗教を理解するには、信念だけでなく行",
+      "夜の神社",
+      "仏壇",
+      "チャペル",
+      "質問",
+      "行動",
       "結論"
     ]
   },
-  "make_state_smarter": {
-    "kind": "v127-68-make_state_smarter",
-    "motion": "motion-68-make_state_smarter",
+  "religion_without_name": {
+    "kind": "v129-78-religion_without_name",
+    "motion": "motion-78-religion_without_name",
     "labels": [
-      "最高の指導者は、自分一人より賢い国家",
-      "玄武門",
-      "649年",
-      "書物",
-      "不完全",
-      "制度",
-      "組織",
+      "宗教があるのに「宗教」という名前がな",
+      "夜の神社",
+      "仏壇",
+      "チャペル",
+      "質問",
+      "行動",
       "結論"
     ]
   },
-  "final_definition": {
-    "kind": "v127-69-final_definition",
-    "motion": "motion-69-final_definition",
+  "final_answer": {
+    "kind": "v129-79-final_answer",
+    "motion": "motion-79-final_answer",
     "labels": [
-      "李世民の本当の強さは、正しさではなく",
-      "玄武門",
-      "649年",
-      "書物",
-      "不完全",
-      "制度",
-      "組織",
+      "日本は何教なのか、という問いそのもの",
+      "夜の神社",
+      "仏壇",
+      "チャペル",
+      "質問",
+      "行動",
       "結論"
     ]
   }
