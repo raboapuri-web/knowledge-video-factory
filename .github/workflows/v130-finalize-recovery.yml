@@ -1,0 +1,104 @@
+name: V130 Thrift Paradox Finalize Recovery
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v130-finalize-recovery.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v130-recover-final-master
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Download eight already-completed chapter outputs from prior production run
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 39268003369
+          github-token: ${{ github.token }}
+          pattern: v130-segment-*
+          path: segments
+          merge-multiple: true
+      - name: Prove that all eight chapter MP4 files exist
+        run: |
+          set -euo pipefail
+          find segments -maxdepth 3 -type f -printf '%p %s bytes\n' | head -40
+          for ch in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do
+            test -s "segments/output/v130-$ch.mp4" || {
+              echo "Missing audio-video segment: segments/output/v130-$ch.mp4"
+              exit 1
+            }
+          done
+      - name: Stream-copy chapter-accurate video and narration
+        working-directory: shared/v130
+        run: |
+          set -euo pipefail
+          mkdir -p output qa
+          : > output/concat.txt
+          for ch in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do
+            printf "file '%s'\n" "$(realpath "../../segments/output/v130-$ch.mp4")" >> output/concat.txt
+          done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy -movflags +faststart output/v130-voice-master.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=nw=1 output/v130-voice-master.mp4
+      - name: Mix non-copyright ambient pad with measured voice
+        working-directory: shared/v130
+        run: |
+          set -euo pipefail
+          mkdir -p scripts
+          cp ../v124/scripts/generate-bgm.mjs scripts/generate-bgm.mjs
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v130-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+          ffmpeg -y -loglevel error -i output/v130-voice-master.mp4 -i output/bgm.m4a \
+            -filter_complex '[0:a]volume=1[voice];[1:a]volume=.035[music];[voice][music]amix=inputs=2:duration=first[a]' \
+            -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 192k -shortest \
+            -movflags +faststart output/v130-paradox-thrift-final.mp4
+      - name: Final video inspection and review contact sheet
+        working-directory: shared/v130
+        run: |
+          set -euo pipefail
+          python3 scripts/qa.py final output/v130-paradox-thrift-final.mp4
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v130-paradox-thrift-final.mp4)
+          I=$(awk "BEGIN {print $D/24}")
+          ffmpeg -y -loglevel error -i output/v130-paradox-thrift-final.mp4 \
+            -vf "fps=1/$I,scale=384:-1,tile=6x4:padding=4:margin=4" \
+            -frames:v 1 output/v130-contact-sheet.jpg
+          test -s output/v130-contact-sheet.jpg
+      - name: Upload verified video and sources
+        uses: actions/upload-artifact@v4
+        with:
+          name: v130-paradox-thrift-master
+          path: |
+            shared/v130/output/v130-paradox-thrift-final.mp4
+            shared/v130/output/v130-contact-sheet.jpg
+            shared/v130/qa/final.json
+            shared/v130/SOURCES.txt
+          retention-days: 21
+          compression-level: 0
+      - name: Publish final MP4 as GitHub Release
+        working-directory: shared/v130
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v130-paradox-thrift-${{ github.run_id }}"
+          gh release create "$TAG" \
+            output/v130-paradox-thrift-final.mp4 \
+            output/v130-contact-sheet.jpg \
+            qa/final.json \
+            SOURCES.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V130 倹約のパラドックス 完成本番動画" \
+            --notes "8 original chapter renders reused without recomputation. Motion Canvas 1920x1080 at 30fps, VOICEVOX 青山龍星 1.15x, measured captions, original stateful economic illustrations and a hypothetical-model disclaimer."
