@@ -1,30 +1,44 @@
-# V131 Sources — なぜ優秀な社員を出世させると会社が弱くなるのか？
+# V132 Sources — なぜ「官僚制」は人類が発明した完璧な管理システムなのか？
 
-## Primary research
-1. Alan Benson, Danielle Li, Kelly Shue (2019), “Promotions and the Peter Principle,” *The Quarterly Journal of Economics* 134(4):2085–2134. DOI: 10.1093/qje/qjz022.
-   - 131 U.S. firms, 38,843 sales workers, 1,553 promotions to management.
-   - Firms prioritize current sales performance in promotion decisions; pre-promotion sales performance negatively predicts subsequent manager value added.
-   - The video uses the paper's reported association that doubling sales is associated with roughly 6.1% lower sales per subordinate after promotion. This is an average empirical relationship, not a claim that every star salesperson becomes a poor manager.
+## Historical foundations
+1. The Metropolitan Museum of Art, “Northern Song Dynasty (960–1127)” and “Scholar-Officials of China.”
+   - Used for the shift toward a central bureaucracy staffed by scholar-officials chosen through civil-service examinations in Northern Song China.
+   - The video does not describe the examinations as modern egalitarian meritocracy; family resources and social background still mattered.
+   - https://www.metmuseum.org/toah/hd/nsong/hd_nsong.htm
+   - https://www.metmuseum.org/essays/scholar-officials-of-china
 
-2. Ben Weidmann, Joseph Vecci, Farah Said, Jorge Tamayo, David Deming (2026), “How Do You Identify a Good Manager?”, *The Quarterly Journal of Economics* 141(2):1581–1633. DOI: 10.1093/qje/qjag004.
-   - Preregistered laboratory experiment with n=555 plus validation studies.
-   - A one-standard-deviation increase in managerial skill improves team performance by about 0.22 standard deviations, conditional on productive skill.
-   - Teams with self-promoted managers perform worse on average than teams with randomly assigned managers; the paper cautions against using desire to lead as a direct proxy for management skill.
-   - Strong predictors include economic decision-making skill; mechanisms include monitoring, matching workers to tasks, and motivation.
+2. The Cambridge History of China, “Sung government and politics.”
+   - Used for the broader social reach and administrative importance of the Song examination system.
+   - https://www.cambridge.org/core/books/cambridge-history-of-china/sung-government-and-politics/B360D3EB6D72ADEE74E46FD8570548EC
 
-3. Edward P. Lazear & Sherwin Rosen (1981), “Rank-Order Tournaments as Optimum Labor Contracts,” *Journal of Political Economy* 89(5):841–864. DOI: 10.1086/261010. Earlier NBER Working Paper 0401 (1979).
-   - Used for the explanation of promotion prizes and rank-based incentives, not as proof that all promotion systems are tournaments.
+3. Max Weber, Economy and Society, ideal-type account of modern bureaucracy.
+   - Used for jurisdictional specialization, hierarchy, written files, technical qualification, separation of office from the officeholder, and impersonal rule-bound administration.
+   - “Ideal type” is an analytical model, not a claim that real bureaucracies perfectly match it.
 
-## Historical / conceptual background
-4. Laurence J. Peter & Raymond Hull (1969), *The Peter Principle*. William Morrow.
-   - Used as the historical origin of the “promoted to the level of incompetence” formulation. The video distinguishes the original satirical/general claim from later empirical tests.
+## Merit civil service and state capacity
+4. U.S. National Archives, “Pendleton Act (1883).”
+   - Approved January 16, 1883 after President Garfield’s assassination.
+   - Established merit-based selection and competitive examinations, and restricted political firing/demotion for covered employees.
+   - Initial coverage was about 10 percent of the federal workforce.
+   - https://www.archives.gov/milestone-documents/pendleton-act
 
-5. Alfred D. Chandler Jr. (1977), *The Visible Hand: The Managerial Revolution in American Business*. Harvard University Press.
-   - Used for the broad historical description of large enterprise, professional management, and expanding administrative hierarchies.
+5. Peter Evans & James E. Rauch (1999), “Bureaucracy and Growth: A Cross-National Analysis of the Effects of ‘Weberian’ State Structures on Economic Growth,” American Sociological Review 64(5).
+   - 35 developing countries, 1970–1990.
+   - Meritocratic recruitment and predictable long-term careers were positively associated with economic growth after controls.
+   - The video treats this as observational evidence, not proof that bureaucracy mechanically causes growth.
+   - DOI: 10.1177/000312249906400508
+
+## Dysfunctions and limits
+6. Robert K. Merton, “Bureaucratic Structure and Personality.”
+   - Used for trained incapacity / displacement of goals: procedures intended as means can become ends in themselves.
+
+7. James C. Scott, Seeing Like a State (Yale University Press).
+   - Used for administrative legibility: states simplify complex social reality into maps, categories, registries, and standardized units.
+   - The video does not claim that all state simplification fails; it emphasizes the danger of mistaking the administrative representation for the full local reality.
+   - https://yalebooks.yale.edu/book/9780300078152/seeing-like-a-state/
 
 ## Editorial guardrails
-- “優秀な社員を出世させると会社が弱くなる” is a deliberately paradoxical title, not a universal causal law.
-- Individual performance and managerial performance can both be high; the argument is that they are distinct constructs and should not be treated as identical.
-- The 2019 estimates describe associations in a specific sales-worker dataset and should not be generalized mechanically to every occupation or country.
-- The 2026 self-promotion result comes from a controlled experimental design; the video explicitly avoids claiming that every person who wants to manage is a bad manager.
-- “報酬と配置を分ける” is an organizational design implication, not a claim that one career-ladder structure is optimal for every firm.
+- “完璧な管理システム” is a provocative title, not a literal claim that bureaucracy is error-free or morally optimal.
+- The central claim is narrower: bureaucracy is extraordinarily effective at preserving organizational continuity, scaling coordination, externalizing memory, and reducing dependence on personal whim.
+- Impersonality can reduce favoritism but can also become insensitive to legitimate exceptional cases.
+- Strong bureaucracies still require appeal, expert discretion, feedback, and local knowledge.

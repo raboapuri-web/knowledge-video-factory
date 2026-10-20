@@ -1,0 +1,1617 @@
+{
+  "video": "V132",
+  "title": "なぜ「官僚制」は人類が発明した完璧な管理システムなのか？",
+  "sceneCount": 90,
+  "spaces": [
+    "counter",
+    "office",
+    "village",
+    "recordsRoom",
+    "archive",
+    "cityNetwork",
+    "dataCenter",
+    "mapRoom",
+    "nightOffice",
+    "throneRoom",
+    "registry",
+    "examHall",
+    "palace",
+    "ministry",
+    "university",
+    "kitchen",
+    "chainStore",
+    "trainStation",
+    "campaignOffice",
+    "railNetwork",
+    "civilServiceExam",
+    "dataLab",
+    "emergencyCenter",
+    "disasterDesk",
+    "landMap",
+    "forestGrid",
+    "appealsRoom"
+  ],
+  "diagrams": [
+    "handoff",
+    "checksum",
+    "barrier",
+    "dissolve",
+    "fork",
+    "network",
+    "split",
+    "memory",
+    "pipeline",
+    "loop",
+    "matrix",
+    "layers",
+    "question",
+    "scale",
+    "overflow",
+    "ledger",
+    "flow",
+    "timeline",
+    "sieve",
+    "comparison",
+    "container",
+    "partition",
+    "hierarchy",
+    "spotlight",
+    "collapse",
+    "balance",
+    "target",
+    "scatter",
+    "swap",
+    "paradox",
+    "map",
+    "grid",
+    "reverse",
+    "gateway",
+    "continuity",
+    "assembly",
+    "reveal"
+  ],
+  "chapters": {
+    "prologue": [
+      {
+        "title": "窓口に差し出す一枚",
+        "space": "counter",
+        "diagram": "handoff",
+        "labels": [
+          "窓口に差し出す一枚",
+          "申請書",
+          "確認",
+          "窓口"
+        ],
+        "action": "form_handoff",
+        "motionSignature": "v132-001-form_handoff",
+        "actionProgram": 0,
+        "camera": 3,
+        "tempo": 2,
+        "variant": 1
+      },
+      {
+        "title": "指が止まる欄",
+        "space": "counter",
+        "diagram": "checksum",
+        "labels": [
+          "指が止まる欄",
+          "未記入",
+          "この欄も",
+          "規則"
+        ],
+        "action": "finger_stop",
+        "motionSignature": "v132-002-finger_stop",
+        "actionProgram": 1,
+        "camera": 10,
+        "tempo": 7,
+        "variant": 5
+      },
+      {
+        "title": "「規則ですので」",
+        "space": "office",
+        "diagram": "barrier",
+        "labels": [
+          "「規則ですので」",
+          "規則",
+          "裁量",
+          "苛立ち"
+        ],
+        "action": "rule_barrier",
+        "motionSignature": "v132-003-rule_barrier",
+        "actionProgram": 2,
+        "camera": 3,
+        "tempo": 3,
+        "variant": 2
+      },
+      {
+        "title": "書類のない世界",
+        "space": "counter",
+        "diagram": "dissolve",
+        "labels": [
+          "書類のない世界",
+          "書類を消す",
+          "規則を消す",
+          "自由"
+        ],
+        "action": "forms_vanish",
+        "motionSignature": "v132-004-forms_vanish",
+        "actionProgram": 3,
+        "camera": 10,
+        "tempo": 8,
+        "variant": 6
+      },
+      {
+        "title": "その場の判断",
+        "space": "office",
+        "diagram": "fork",
+        "labels": [
+          "その場の判断",
+          "許可",
+          "却下",
+          "気分"
+        ],
+        "action": "arbitrary_fork",
+        "motionSignature": "v132-005-arbitrary_fork",
+        "actionProgram": 4,
+        "camera": 3,
+        "tempo": 4,
+        "variant": 3
+      },
+      {
+        "title": "顔なじみの特別扱い",
+        "space": "village",
+        "diagram": "network",
+        "labels": [
+          "顔なじみの特別扱い",
+          "顔なじみ",
+          "友人",
+          "後回し"
+        ],
+        "action": "favor_network",
+        "motionSignature": "v132-006-favor_network",
+        "actionProgram": 5,
+        "camera": 10,
+        "tempo": 0,
+        "variant": 0
+      },
+      {
+        "title": "昨日と今日で違う",
+        "space": "counter",
+        "diagram": "split",
+        "labels": [
+          "昨日と今日で違う",
+          "昨日",
+          "今日",
+          "判断が変わる"
+        ],
+        "action": "clerk_swap",
+        "motionSignature": "v132-007-clerk_swap",
+        "actionProgram": 6,
+        "camera": 3,
+        "tempo": 5,
+        "variant": 4
+      },
+      {
+        "title": "退職とともに消える知識",
+        "space": "recordsRoom",
+        "diagram": "memory",
+        "labels": [
+          "退職とともに消える知識",
+          "頭の中",
+          "退職",
+          "知識消失"
+        ],
+        "action": "memory_evaporates",
+        "motionSignature": "v132-008-memory_evaporates",
+        "actionProgram": 7,
+        "camera": 10,
+        "tempo": 1,
+        "variant": 1
+      },
+      {
+        "title": "もう一度ルールを作る",
+        "space": "office",
+        "diagram": "pipeline",
+        "labels": [
+          "もう一度ルールを作る",
+          "ルール",
+          "記録",
+          "一貫性"
+        ],
+        "action": "rules_rebuilt",
+        "motionSignature": "v132-009-rules_rebuilt",
+        "actionProgram": 8,
+        "camera": 3,
+        "tempo": 6,
+        "variant": 5
+      },
+      {
+        "title": "官僚制を再発明する",
+        "space": "archive",
+        "diagram": "loop",
+        "labels": [
+          "官僚制を再発明する",
+          "逃げる",
+          "混乱",
+          "再発明"
+        ],
+        "action": "bureaucracy_returns",
+        "motionSignature": "v132-010-bureaucracy_returns",
+        "actionProgram": 9,
+        "camera": 10,
+        "tempo": 2,
+        "variant": 2
+      },
+      {
+        "title": "国家以外にも現れる",
+        "space": "cityNetwork",
+        "diagram": "network",
+        "labels": [
+          "国家以外にも現れる",
+          "病院",
+          "銀行",
+          "大学"
+        ],
+        "action": "institutions_light_up",
+        "motionSignature": "v132-011-institutions_light_up",
+        "actionProgram": 10,
+        "camera": 3,
+        "tempo": 7,
+        "variant": 6
+      },
+      {
+        "title": "巨大組織の共通部品",
+        "space": "dataCenter",
+        "diagram": "matrix",
+        "labels": [
+          "巨大組織の共通部品",
+          "役職",
+          "規則",
+          "承認"
+        ],
+        "action": "components_lock",
+        "motionSignature": "v132-012-components_lock",
+        "actionProgram": 11,
+        "camera": 10,
+        "tempo": 3,
+        "variant": 3
+      },
+      {
+        "title": "嫌われても増殖する",
+        "space": "cityNetwork",
+        "diagram": "layers",
+        "labels": [
+          "嫌われても増殖する",
+          "軍隊",
+          "企業",
+          "国際機関"
+        ],
+        "action": "system_spreads",
+        "motionSignature": "v132-013-system_spreads",
+        "actionProgram": 12,
+        "camera": 3,
+        "tempo": 8,
+        "variant": 0
+      },
+      {
+        "title": "何百万人を一つにする",
+        "space": "mapRoom",
+        "diagram": "network",
+        "labels": [
+          "何百万人を一つにする",
+          "見知らぬ人",
+          "一つの組織",
+          "管理"
+        ],
+        "action": "millions_connect",
+        "motionSignature": "v132-014-millions_connect",
+        "actionProgram": 13,
+        "camera": 10,
+        "tempo": 4,
+        "variant": 4
+      },
+      {
+        "title": "今夜の問い",
+        "space": "nightOffice",
+        "diagram": "question",
+        "labels": [
+          "今夜の問い",
+          "最も嫌われる",
+          "最も残る",
+          "なぜ？"
+        ],
+        "action": "question_closes",
+        "motionSignature": "v132-015-question_closes",
+        "actionProgram": 14,
+        "camera": 3,
+        "tempo": 0,
+        "variant": 1
+      }
+    ],
+    "chapter1": [
+      {
+        "title": "百人の村",
+        "space": "village",
+        "diagram": "network",
+        "labels": [
+          "百人の村",
+          "顔を知る",
+          "評判",
+          "共同体"
+        ],
+        "action": "village_faces",
+        "motionSignature": "v132-016-village_faces",
+        "actionProgram": 15,
+        "camera": 10,
+        "tempo": 5,
+        "variant": 5
+      },
+      {
+        "title": "共同体が記憶する",
+        "space": "village",
+        "diagram": "memory",
+        "labels": [
+          "共同体が記憶する",
+          "長老",
+          "土地",
+          "記憶"
+        ],
+        "action": "oral_memory",
+        "motionSignature": "v132-017-oral_memory",
+        "actionProgram": 16,
+        "camera": 3,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "十万人で破綻する",
+        "space": "cityNetwork",
+        "diagram": "scale",
+        "labels": [
+          "十万人で破綻する",
+          "人口100",
+          "人口10万",
+          "限界"
+        ],
+        "action": "scale_break",
+        "motionSignature": "v132-018-scale_break",
+        "actionProgram": 17,
+        "camera": 10,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "王の頭では足りない",
+        "space": "throneRoom",
+        "diagram": "overflow",
+        "labels": [
+          "王の頭では足りない",
+          "税",
+          "兵役",
+          "土地"
+        ],
+        "action": "king_overflow",
+        "motionSignature": "v132-019-king_overflow",
+        "actionProgram": 18,
+        "camera": 3,
+        "tempo": 2,
+        "variant": 3
+      },
+      {
+        "title": "記憶を外へ出す",
+        "space": "registry",
+        "diagram": "ledger",
+        "labels": [
+          "記憶を外へ出す",
+          "台帳",
+          "戸籍",
+          "地図"
+        ],
+        "action": "memory_externalized",
+        "motionSignature": "v132-020-memory_externalized",
+        "actionProgram": 19,
+        "camera": 10,
+        "tempo": 7,
+        "variant": 0
+      },
+      {
+        "title": "書く人が生まれる",
+        "space": "registry",
+        "diagram": "handoff",
+        "labels": [
+          "書く人が生まれる",
+          "記録",
+          "分類",
+          "保存"
+        ],
+        "action": "scribe_work",
+        "motionSignature": "v132-021-scribe_work",
+        "actionProgram": 20,
+        "camera": 3,
+        "tempo": 3,
+        "variant": 4
+      },
+      {
+        "title": "国家は情報処理装置",
+        "space": "mapRoom",
+        "diagram": "pipeline",
+        "labels": [
+          "国家は情報処理装置",
+          "地方",
+          "中央",
+          "結果"
+        ],
+        "action": "state_pipeline",
+        "motionSignature": "v132-022-state_pipeline",
+        "actionProgram": 21,
+        "camera": 10,
+        "tempo": 8,
+        "variant": 1
+      },
+      {
+        "title": "遠隔地へ命令を送る",
+        "space": "mapRoom",
+        "diagram": "flow",
+        "labels": [
+          "遠隔地へ命令を送る",
+          "観測",
+          "命令",
+          "報告"
+        ],
+        "action": "command_roundtrip",
+        "motionSignature": "v132-023-command_roundtrip",
+        "actionProgram": 22,
+        "camera": 3,
+        "tempo": 4,
+        "variant": 5
+      },
+      {
+        "title": "中国の官僚選抜",
+        "space": "examHall",
+        "diagram": "timeline",
+        "labels": [
+          "中国の官僚選抜",
+          "長い制度史",
+          "試験",
+          "官僚"
+        ],
+        "action": "exam_history",
+        "motionSignature": "v132-024-exam_history",
+        "actionProgram": 23,
+        "camera": 10,
+        "tempo": 0,
+        "variant": 2
+      },
+      {
+        "title": "宋代の科挙",
+        "space": "examHall",
+        "diagram": "sieve",
+        "labels": [
+          "宋代の科挙",
+          "古典",
+          "文章",
+          "選抜"
+        ],
+        "action": "exam_filter",
+        "motionSignature": "v132-025-exam_filter",
+        "actionProgram": 24,
+        "camera": 3,
+        "tempo": 5,
+        "variant": 6
+      },
+      {
+        "title": "世襲だけではない",
+        "space": "palace",
+        "diagram": "comparison",
+        "labels": [
+          "世襲だけではない",
+          "父の地位",
+          "試験",
+          "別原理"
+        ],
+        "action": "heredity_vs_merit",
+        "motionSignature": "v132-026-heredity_vs_merit",
+        "actionProgram": 25,
+        "camera": 10,
+        "tempo": 1,
+        "variant": 3
+      },
+      {
+        "title": "人と役職を分離する",
+        "space": "ministry",
+        "diagram": "split",
+        "labels": [
+          "人と役職を分離する",
+          "人物",
+          "役職",
+          "権限"
+        ],
+        "action": "office_detaches",
+        "motionSignature": "v132-027-office_detaches",
+        "actionProgram": 26,
+        "camera": 3,
+        "tempo": 6,
+        "variant": 0
+      },
+      {
+        "title": "県令の椅子",
+        "space": "ministry",
+        "diagram": "handoff",
+        "labels": [
+          "県令の椅子",
+          "着任",
+          "権限",
+          "退任"
+        ],
+        "action": "authority_transfer",
+        "motionSignature": "v132-028-authority_transfer",
+        "actionProgram": 27,
+        "camera": 10,
+        "tempo": 2,
+        "variant": 4
+      },
+      {
+        "title": "現代にも残る原理",
+        "space": "cityNetwork",
+        "diagram": "layers",
+        "labels": [
+          "現代にも残る原理",
+          "社長",
+          "警察官",
+          "大臣"
+        ],
+        "action": "modern_roles",
+        "motionSignature": "v132-029-modern_roles",
+        "actionProgram": 28,
+        "camera": 3,
+        "tempo": 7,
+        "variant": 1
+      },
+      {
+        "title": "権力を箱へ入れる",
+        "space": "archive",
+        "diagram": "container",
+        "labels": [
+          "権力を箱へ入れる",
+          "権力",
+          "役職",
+          "制度"
+        ],
+        "action": "power_boxed",
+        "motionSignature": "v132-030-power_boxed",
+        "actionProgram": 29,
+        "camera": 10,
+        "tempo": 3,
+        "variant": 5
+      }
+    ],
+    "chapter2": [
+      {
+        "title": "ウェーバーの観察",
+        "space": "university",
+        "diagram": "timeline",
+        "labels": [
+          "ウェーバーの観察",
+          "国家",
+          "企業",
+          "軍隊"
+        ],
+        "action": "weber_observes",
+        "motionSignature": "v132-031-weber_observes",
+        "actionProgram": 30,
+        "camera": 3,
+        "tempo": 8,
+        "variant": 2
+      },
+      {
+        "title": "同じ構造が現れる",
+        "space": "cityNetwork",
+        "diagram": "matrix",
+        "labels": [
+          "同じ構造が現れる",
+          "大学",
+          "役所",
+          "企業"
+        ],
+        "action": "structures_align",
+        "motionSignature": "v132-032-structures_align",
+        "actionProgram": 31,
+        "camera": 10,
+        "tempo": 4,
+        "variant": 6
+      },
+      {
+        "title": "仕事を専門分化する",
+        "space": "ministry",
+        "diagram": "partition",
+        "labels": [
+          "仕事を専門分化する",
+          "担当",
+          "専門",
+          "境界"
+        ],
+        "action": "tasks_partition",
+        "motionSignature": "v132-033-tasks_partition",
+        "actionProgram": 32,
+        "camera": 3,
+        "tempo": 0,
+        "variant": 3
+      },
+      {
+        "title": "上司の上に上司",
+        "space": "ministry",
+        "diagram": "hierarchy",
+        "labels": [
+          "上司の上に上司",
+          "係",
+          "課",
+          "部"
+        ],
+        "action": "hierarchy_builds",
+        "motionSignature": "v132-034-hierarchy_builds",
+        "actionProgram": 33,
+        "camera": 10,
+        "tempo": 5,
+        "variant": 0
+      },
+      {
+        "title": "規則で判断する",
+        "space": "office",
+        "diagram": "checksum",
+        "labels": [
+          "規則で判断する",
+          "規則",
+          "同一条件",
+          "同一処理"
+        ],
+        "action": "rule_engine",
+        "motionSignature": "v132-035-rule_engine",
+        "actionProgram": 34,
+        "camera": 3,
+        "tempo": 1,
+        "variant": 4
+      },
+      {
+        "title": "文書に残す",
+        "space": "recordsRoom",
+        "diagram": "ledger",
+        "labels": [
+          "文書に残す",
+          "決裁",
+          "記録",
+          "保存"
+        ],
+        "action": "decision_archived",
+        "motionSignature": "v132-036-decision_archived",
+        "actionProgram": 35,
+        "camera": 10,
+        "tempo": 6,
+        "variant": 1
+      },
+      {
+        "title": "資格で任用する",
+        "space": "examHall",
+        "diagram": "sieve",
+        "labels": [
+          "資格で任用する",
+          "知識",
+          "資格",
+          "任用"
+        ],
+        "action": "credential_filter",
+        "motionSignature": "v132-037-credential_filter",
+        "actionProgram": 36,
+        "camera": 3,
+        "tempo": 2,
+        "variant": 5
+      },
+      {
+        "title": "組織を私物化しない",
+        "space": "office",
+        "diagram": "split",
+        "labels": [
+          "組織を私物化しない",
+          "公的職務",
+          "個人所有",
+          "分離"
+        ],
+        "action": "public_private_split",
+        "motionSignature": "v132-038-public_private_split",
+        "actionProgram": 37,
+        "camera": 10,
+        "tempo": 7,
+        "variant": 2
+      },
+      {
+        "title": "誰でも動く組織",
+        "space": "dataCenter",
+        "diagram": "handoff",
+        "labels": [
+          "誰でも動く組織",
+          "担当A",
+          "担当B",
+          "継続"
+        ],
+        "action": "replaceable_operator",
+        "motionSignature": "v132-039-replaceable_operator",
+        "actionProgram": 38,
+        "camera": 3,
+        "tempo": 3,
+        "variant": 6
+      },
+      {
+        "title": "天才料理人の店",
+        "space": "kitchen",
+        "diagram": "spotlight",
+        "labels": [
+          "天才料理人の店",
+          "鮮度",
+          "火加減",
+          "勘"
+        ],
+        "action": "chef_intuition",
+        "motionSignature": "v132-040-chef_intuition",
+        "actionProgram": 39,
+        "camera": 10,
+        "tempo": 8,
+        "variant": 3
+      },
+      {
+        "title": "天才が倒れる",
+        "space": "kitchen",
+        "diagram": "collapse",
+        "labels": [
+          "天才が倒れる",
+          "天才",
+          "欠勤",
+          "停止"
+        ],
+        "action": "chef_absence",
+        "motionSignature": "v132-041-chef_absence",
+        "actionProgram": 40,
+        "camera": 3,
+        "tempo": 4,
+        "variant": 0
+      },
+      {
+        "title": "百店舗では再現できない",
+        "space": "chainStore",
+        "diagram": "scale",
+        "labels": [
+          "百店舗では再現できない",
+          "1店舗",
+          "100店舗",
+          "限界"
+        ],
+        "action": "hundred_stores",
+        "motionSignature": "v132-042-hundred_stores",
+        "actionProgram": 41,
+        "camera": 10,
+        "tempo": 0,
+        "variant": 4
+      },
+      {
+        "title": "レシピへ変換する",
+        "space": "chainStore",
+        "diagram": "pipeline",
+        "labels": [
+          "レシピへ変換する",
+          "勘",
+          "レシピ",
+          "研修"
+        ],
+        "action": "recipe_codifies",
+        "motionSignature": "v132-043-recipe_codifies",
+        "actionProgram": 42,
+        "camera": 3,
+        "tempo": 5,
+        "variant": 1
+      },
+      {
+        "title": "記録という人工記憶",
+        "space": "recordsRoom",
+        "diagram": "memory",
+        "labels": [
+          "記録という人工記憶",
+          "人は忘れる",
+          "記録は残る",
+          "引継ぎ"
+        ],
+        "action": "institutional_memory",
+        "motionSignature": "v132-044-institutional_memory",
+        "actionProgram": 43,
+        "camera": 10,
+        "tempo": 1,
+        "variant": 5
+      },
+      {
+        "title": "気分を排除する",
+        "space": "counter",
+        "diagram": "balance",
+        "labels": [
+          "気分を排除する",
+          "友人",
+          "嫌いな人",
+          "同じ条件"
+        ],
+        "action": "impersonality_balance",
+        "motionSignature": "v132-045-impersonality_balance",
+        "actionProgram": 44,
+        "camera": 3,
+        "tempo": 6,
+        "variant": 2
+      }
+    ],
+    "chapter3": [
+      {
+        "title": "1881年の駅",
+        "space": "trainStation",
+        "diagram": "timeline",
+        "labels": [
+          "1881年の駅",
+          "ワシントン",
+          "ガーフィールド",
+          "銃撃"
+        ],
+        "action": "station_moment",
+        "motionSignature": "v132-046-station_moment",
+        "actionProgram": 45,
+        "camera": 10,
+        "tempo": 2,
+        "variant": 6
+      },
+      {
+        "title": "役職を求めた犯人",
+        "space": "campaignOffice",
+        "diagram": "target",
+        "labels": [
+          "役職を求めた犯人",
+          "ギトー",
+          "政府の役職",
+          "不満"
+        ],
+        "action": "job_seeker_target",
+        "motionSignature": "v132-047-job_seeker_target",
+        "actionProgram": 46,
+        "camera": 3,
+        "tempo": 7,
+        "variant": 3
+      },
+      {
+        "title": "猟官制の仕組み",
+        "space": "campaignOffice",
+        "diagram": "network",
+        "labels": [
+          "猟官制の仕組み",
+          "選挙支援",
+          "政府ポスト",
+          "報酬"
+        ],
+        "action": "spoils_network",
+        "motionSignature": "v132-048-spoils_network",
+        "actionProgram": 47,
+        "camera": 10,
+        "tempo": 3,
+        "variant": 0
+      },
+      {
+        "title": "友人へ仕事を渡す",
+        "space": "campaignOffice",
+        "diagram": "handoff",
+        "labels": [
+          "友人へ仕事を渡す",
+          "支持者",
+          "郵便局長",
+          "人脈"
+        ],
+        "action": "patronage_handoff",
+        "motionSignature": "v132-049-patronage_handoff",
+        "actionProgram": 48,
+        "camera": 3,
+        "tempo": 8,
+        "variant": 4
+      },
+      {
+        "title": "人間的には自然",
+        "space": "village",
+        "diagram": "network",
+        "labels": [
+          "人間的には自然",
+          "仲間",
+          "信頼",
+          "任せる"
+        ],
+        "action": "trust_circle",
+        "motionSignature": "v132-050-trust_circle",
+        "actionProgram": 49,
+        "camera": 10,
+        "tempo": 4,
+        "variant": 1
+      },
+      {
+        "title": "国家巨大化で限界",
+        "space": "railNetwork",
+        "diagram": "scale",
+        "labels": [
+          "国家巨大化で限界",
+          "鉄道",
+          "郵便",
+          "産業"
+        ],
+        "action": "complexity_grows",
+        "motionSignature": "v132-051-complexity_grows",
+        "actionProgram": 50,
+        "camera": 3,
+        "tempo": 0,
+        "variant": 5
+      },
+      {
+        "title": "友人≠専門家",
+        "space": "railNetwork",
+        "diagram": "comparison",
+        "labels": [
+          "友人≠専門家",
+          "忠誠",
+          "税制",
+          "鉄道行政"
+        ],
+        "action": "loyalty_skill_gap",
+        "motionSignature": "v132-052-loyalty_skill_gap",
+        "actionProgram": 51,
+        "camera": 10,
+        "tempo": 5,
+        "variant": 2
+      },
+      {
+        "title": "1883年ペンドルトン法",
+        "space": "civilServiceExam",
+        "diagram": "timeline",
+        "labels": [
+          "1883年ペンドルトン法",
+          "1883",
+          "能力本位",
+          "競争試験"
+        ],
+        "action": "pendleton_arrives",
+        "motionSignature": "v132-053-pendleton_arrives",
+        "actionProgram": 52,
+        "camera": 3,
+        "tempo": 1,
+        "variant": 6
+      },
+      {
+        "title": "政治から採用を切る",
+        "space": "civilServiceExam",
+        "diagram": "split",
+        "labels": [
+          "政治から採用を切る",
+          "政治",
+          "採用",
+          "分離"
+        ],
+        "action": "politics_detached",
+        "motionSignature": "v132-054-politics_detached",
+        "actionProgram": 53,
+        "camera": 10,
+        "tempo": 6,
+        "variant": 3
+      },
+      {
+        "title": "最初は約一割",
+        "space": "civilServiceExam",
+        "diagram": "scale",
+        "labels": [
+          "最初は約一割",
+          "約10%",
+          "連邦職員",
+          "拡大"
+        ],
+        "action": "ten_percent",
+        "motionSignature": "v132-055-ten_percent",
+        "actionProgram": 54,
+        "camera": 3,
+        "tempo": 2,
+        "variant": 0
+      },
+      {
+        "title": "誰を知るか→何ができるか",
+        "space": "civilServiceExam",
+        "diagram": "sieve",
+        "labels": [
+          "誰を知るか→何ができるか",
+          "人脈",
+          "能力",
+          "採用"
+        ],
+        "action": "merit_turn",
+        "motionSignature": "v132-056-merit_turn",
+        "actionProgram": 55,
+        "camera": 10,
+        "tempo": 7,
+        "variant": 4
+      },
+      {
+        "title": "35か国のデータ",
+        "space": "dataLab",
+        "diagram": "scatter",
+        "labels": [
+          "35か国のデータ",
+          "35か国",
+          "1970–1990",
+          "成長"
+        ],
+        "action": "cross_national_data",
+        "motionSignature": "v132-057-cross_national_data",
+        "actionProgram": 56,
+        "camera": 3,
+        "tempo": 3,
+        "variant": 1
+      },
+      {
+        "title": "ウェーバー的特徴",
+        "space": "dataLab",
+        "diagram": "matrix",
+        "labels": [
+          "ウェーバー的特徴",
+          "能力採用",
+          "長期キャリア",
+          "予測可能性"
+        ],
+        "action": "weberian_scale",
+        "motionSignature": "v132-058-weberian_scale",
+        "actionProgram": 57,
+        "camera": 10,
+        "tempo": 8,
+        "variant": 5
+      },
+      {
+        "title": "国家能力が実行へ変える",
+        "space": "emergencyCenter",
+        "diagram": "pipeline",
+        "labels": [
+          "国家能力が実行へ変える",
+          "道路",
+          "感染症",
+          "税"
+        ],
+        "action": "capacity_executes",
+        "motionSignature": "v132-059-capacity_executes",
+        "actionProgram": 58,
+        "camera": 3,
+        "tempo": 4,
+        "variant": 2
+      },
+      {
+        "title": "普通の人間を接続する",
+        "space": "cityNetwork",
+        "diagram": "network",
+        "labels": [
+          "普通の人間を接続する",
+          "何万人",
+          "分業",
+          "巨大成果"
+        ],
+        "action": "ordinary_people_machine",
+        "motionSignature": "v132-060-ordinary_people_machine",
+        "actionProgram": 59,
+        "camera": 10,
+        "tempo": 0,
+        "variant": 6
+      }
+    ],
+    "chapter4": [
+      {
+        "title": "なぜこんなに嫌われる",
+        "space": "counter",
+        "diagram": "question",
+        "labels": [
+          "なぜこんなに嫌われる",
+          "書類",
+          "遅い",
+          "融通が利かない"
+        ],
+        "action": "hate_question",
+        "motionSignature": "v132-061-hate_question",
+        "actionProgram": 60,
+        "camera": 3,
+        "tempo": 5,
+        "variant": 3
+      },
+      {
+        "title": "たらい回し",
+        "space": "ministry",
+        "diagram": "loop",
+        "labels": [
+          "たらい回し",
+          "窓口A",
+          "窓口B",
+          "窓口C"
+        ],
+        "action": "desk_loop",
+        "motionSignature": "v132-062-desk_loop",
+        "actionProgram": 61,
+        "camera": 10,
+        "tempo": 1,
+        "variant": 0
+      },
+      {
+        "title": "マートンの問い",
+        "space": "university",
+        "diagram": "spotlight",
+        "labels": [
+          "マートンの問い",
+          "合理性",
+          "逆機能",
+          "官僚制"
+        ],
+        "action": "merton_focus",
+        "motionSignature": "v132-063-merton_focus",
+        "actionProgram": 62,
+        "camera": 3,
+        "tempo": 6,
+        "variant": 4
+      },
+      {
+        "title": "規則遵守を訓練する",
+        "space": "office",
+        "diagram": "pipeline",
+        "labels": [
+          "規則遵守を訓練する",
+          "一貫性",
+          "訓練",
+          "遵守"
+        ],
+        "action": "compliance_training",
+        "motionSignature": "v132-064-compliance_training",
+        "actionProgram": 63,
+        "camera": 10,
+        "tempo": 2,
+        "variant": 1
+      },
+      {
+        "title": "手段が目的へ変わる",
+        "space": "office",
+        "diagram": "swap",
+        "labels": [
+          "手段が目的へ変わる",
+          "目的",
+          "規則",
+          "目標置換"
+        ],
+        "action": "goal_displacement",
+        "motionSignature": "v132-065-goal_displacement",
+        "actionProgram": 64,
+        "camera": 3,
+        "tempo": 7,
+        "variant": 5
+      },
+      {
+        "title": "災害支援の本来目的",
+        "space": "disasterDesk",
+        "diagram": "target",
+        "labels": [
+          "災害支援の本来目的",
+          "被災者",
+          "支援金",
+          "一刻も早く"
+        ],
+        "action": "aid_target",
+        "motionSignature": "v132-066-aid_target",
+        "actionProgram": 65,
+        "camera": 10,
+        "tempo": 3,
+        "variant": 2
+      },
+      {
+        "title": "条件が積み上がる",
+        "space": "disasterDesk",
+        "diagram": "layers",
+        "labels": [
+          "条件が積み上がる",
+          "本人確認",
+          "罹災証明",
+          "所得"
+        ],
+        "action": "requirements_stack",
+        "motionSignature": "v132-067-requirements_stack",
+        "actionProgram": 66,
+        "camera": 3,
+        "tempo": 8,
+        "variant": 6
+      },
+      {
+        "title": "書類不足で止まる",
+        "space": "disasterDesk",
+        "diagram": "barrier",
+        "labels": [
+          "書類不足で止まる",
+          "家を失う",
+          "不足書類",
+          "受理不可"
+        ],
+        "action": "aid_blocked",
+        "motionSignature": "v132-068-aid_blocked",
+        "actionProgram": 67,
+        "camera": 10,
+        "tempo": 4,
+        "variant": 3
+      },
+      {
+        "title": "忠実だから失敗する",
+        "space": "office",
+        "diagram": "paradox",
+        "labels": [
+          "忠実だから失敗する",
+          "忠実",
+          "規則",
+          "救えない"
+        ],
+        "action": "faithful_failure",
+        "motionSignature": "v132-069-faithful_failure",
+        "actionProgram": 68,
+        "camera": 3,
+        "tempo": 0,
+        "variant": 0
+      },
+      {
+        "title": "スコットの国家の視線",
+        "space": "landMap",
+        "diagram": "map",
+        "labels": [
+          "スコットの国家の視線",
+          "社会",
+          "行政",
+          "可読化"
+        ],
+        "action": "state_vision",
+        "motionSignature": "v132-070-state_vision",
+        "actionProgram": 69,
+        "camera": 10,
+        "tempo": 5,
+        "variant": 4
+      },
+      {
+        "title": "土地を番号へ変える",
+        "space": "landMap",
+        "diagram": "grid",
+        "labels": [
+          "土地を番号へ変える",
+          "土地",
+          "地番",
+          "地図"
+        ],
+        "action": "land_numbered",
+        "motionSignature": "v132-071-land_numbered",
+        "actionProgram": 70,
+        "camera": 3,
+        "tempo": 1,
+        "variant": 1
+      },
+      {
+        "title": "森を表へ変える",
+        "space": "forestGrid",
+        "diagram": "matrix",
+        "labels": [
+          "森を表へ変える",
+          "森",
+          "樹種",
+          "面積"
+        ],
+        "action": "forest_table",
+        "motionSignature": "v132-072-forest_table",
+        "actionProgram": 71,
+        "camera": 10,
+        "tempo": 6,
+        "variant": 5
+      },
+      {
+        "title": "地図は土地ではない",
+        "space": "landMap",
+        "diagram": "comparison",
+        "labels": [
+          "地図は土地ではない",
+          "地図",
+          "現地",
+          "差"
+        ],
+        "action": "map_not_terrain",
+        "motionSignature": "v132-073-map_not_terrain",
+        "actionProgram": 72,
+        "camera": 3,
+        "tempo": 2,
+        "variant": 2
+      },
+      {
+        "title": "規則を消せば人脈が戻る",
+        "space": "counter",
+        "diagram": "reverse",
+        "labels": [
+          "規則を消せば人脈が戻る",
+          "裁量",
+          "人脈",
+          "えこひいき"
+        ],
+        "action": "favor_returns",
+        "motionSignature": "v132-074-favor_returns",
+        "actionProgram": 73,
+        "camera": 10,
+        "tempo": 7,
+        "variant": 6
+      },
+      {
+        "title": "脱出する扉を作る",
+        "space": "appealsRoom",
+        "diagram": "gateway",
+        "labels": [
+          "脱出する扉を作る",
+          "異議申立て",
+          "専門判断",
+          "例外"
+        ],
+        "action": "appeal_gateway",
+        "motionSignature": "v132-075-appeal_gateway",
+        "actionProgram": 74,
+        "camera": 3,
+        "tempo": 3,
+        "variant": 3
+      }
+    ],
+    "epilogue": [
+      {
+        "title": "夕方5時の退勤",
+        "space": "office",
+        "diagram": "timeline",
+        "labels": [
+          "夕方5時の退勤",
+          "17:00",
+          "異動前日",
+          "未処理案件"
+        ],
+        "action": "clerk_closes",
+        "motionSignature": "v132-076-clerk_closes",
+        "actionProgram": 75,
+        "camera": 10,
+        "tempo": 8,
+        "variant": 0
+      },
+      {
+        "title": "机に残る案件",
+        "space": "recordsRoom",
+        "diagram": "ledger",
+        "labels": [
+          "机に残る案件",
+          "申請",
+          "途中",
+          "記録"
+        ],
+        "action": "case_remains",
+        "motionSignature": "v132-077-case_remains",
+        "actionProgram": 76,
+        "camera": 3,
+        "tempo": 4,
+        "variant": 4
+      },
+      {
+        "title": "村なら知識も消える",
+        "space": "village",
+        "diagram": "memory",
+        "labels": [
+          "村なら知識も消える",
+          "担当者",
+          "事情",
+          "消失"
+        ],
+        "action": "village_loss",
+        "motionSignature": "v132-078-village_loss",
+        "actionProgram": 77,
+        "camera": 10,
+        "tempo": 0,
+        "variant": 1
+      },
+      {
+        "title": "データベースには履歴",
+        "space": "dataCenter",
+        "diagram": "layers",
+        "labels": [
+          "データベースには履歴",
+          "申請日",
+          "確認者",
+          "規則"
+        ],
+        "action": "history_layers",
+        "motionSignature": "v132-079-history_layers",
+        "actionProgram": 78,
+        "camera": 3,
+        "tempo": 5,
+        "variant": 5
+      },
+      {
+        "title": "翌朝別の人が座る",
+        "space": "office",
+        "diagram": "handoff",
+        "labels": [
+          "翌朝別の人が座る",
+          "前任者",
+          "後任者",
+          "同じ席"
+        ],
+        "action": "next_clerk",
+        "motionSignature": "v132-080-next_clerk",
+        "actionProgram": 79,
+        "camera": 10,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "性格も思想も違う",
+        "space": "office",
+        "diagram": "split",
+        "labels": [
+          "性格も思想も違う",
+          "性格",
+          "出身",
+          "思想"
+        ],
+        "action": "people_differ",
+        "motionSignature": "v132-081-people_differ",
+        "actionProgram": 80,
+        "camera": 3,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "それでも続きから始まる",
+        "space": "recordsRoom",
+        "diagram": "pipeline",
+        "labels": [
+          "それでも続きから始まる",
+          "ファイル",
+          "履歴",
+          "継続"
+        ],
+        "action": "resume_work",
+        "motionSignature": "v132-082-resume_work",
+        "actionProgram": 81,
+        "camera": 10,
+        "tempo": 2,
+        "variant": 3
+      },
+      {
+        "title": "王が死んでも動く",
+        "space": "throneRoom",
+        "diagram": "continuity",
+        "labels": [
+          "王が死んでも動く",
+          "王",
+          "大臣",
+          "担当者"
+        ],
+        "action": "outlive_people",
+        "motionSignature": "v132-083-outlive_people",
+        "actionProgram": 82,
+        "camera": 3,
+        "tempo": 7,
+        "variant": 0
+      },
+      {
+        "title": "人間が入れ替わる前提",
+        "space": "cityNetwork",
+        "diagram": "flow",
+        "labels": [
+          "人間が入れ替わる前提",
+          "交代",
+          "引継ぎ",
+          "継続"
+        ],
+        "action": "replacement_assumption",
+        "motionSignature": "v132-084-replacement_assumption",
+        "actionProgram": 83,
+        "camera": 10,
+        "tempo": 3,
+        "variant": 4
+      },
+      {
+        "title": "冷たさの意味",
+        "space": "counter",
+        "diagram": "balance",
+        "labels": [
+          "冷たさの意味",
+          "顔",
+          "資格",
+          "同じ扱い"
+        ],
+        "action": "coldness_explained",
+        "motionSignature": "v132-085-coldness_explained",
+        "actionProgram": 84,
+        "camera": 3,
+        "tempo": 8,
+        "variant": 1
+      },
+      {
+        "title": "遅さの意味",
+        "space": "ministry",
+        "diagram": "checksum",
+        "labels": [
+          "遅さの意味",
+          "直感",
+          "確認",
+          "組織判断"
+        ],
+        "action": "slowness_explained",
+        "motionSignature": "v132-086-slowness_explained",
+        "actionProgram": 85,
+        "camera": 10,
+        "tempo": 4,
+        "variant": 5
+      },
+      {
+        "title": "融通が利かない意味",
+        "space": "office",
+        "diagram": "barrier",
+        "labels": [
+          "融通が利かない意味",
+          "善意",
+          "悪意",
+          "一貫性"
+        ],
+        "action": "rigidity_explained",
+        "motionSignature": "v132-087-rigidity_explained",
+        "actionProgram": 86,
+        "camera": 3,
+        "tempo": 0,
+        "variant": 2
+      },
+      {
+        "title": "英雄より長生きする",
+        "space": "archive",
+        "diagram": "timeline",
+        "labels": [
+          "英雄より長生きする",
+          "王",
+          "英雄",
+          "制度"
+        ],
+        "action": "institution_outlives",
+        "motionSignature": "v132-088-institution_outlives",
+        "actionProgram": 87,
+        "camera": 10,
+        "tempo": 5,
+        "variant": 6
+      },
+      {
+        "title": "規則・役職・記録・試験",
+        "space": "archive",
+        "diagram": "assembly",
+        "labels": [
+          "規則・役職・記録・試験",
+          "規則",
+          "役職",
+          "記録"
+        ],
+        "action": "bureaucracy_assembled",
+        "motionSignature": "v132-089-bureaucracy_assembled",
+        "actionProgram": 88,
+        "camera": 3,
+        "tempo": 1,
+        "variant": 3
+      },
+      {
+        "title": "人間を信じないから強い",
+        "space": "nightOffice",
+        "diagram": "reveal",
+        "labels": [
+          "人間を信じないから強い",
+          "気まぐれ",
+          "忘れる",
+          "それでも動く"
+        ],
+        "action": "final_reveal",
+        "motionSignature": "v132-090-final_reveal",
+        "actionProgram": 89,
+        "camera": 10,
+        "tempo": 6,
+        "variant": 0
+      }
+    ]
+  }
+}

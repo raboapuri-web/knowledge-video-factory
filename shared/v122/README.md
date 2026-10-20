@@ -1,19 +1,19 @@
-# V131 — なぜ優秀な社員を出世させると会社が弱くなるのか？
+# V132 — なぜ「官僚制」は人類が発明した完璧な管理システムなのか？
 
-「考える夜」本番 Motion Canvas 版。ピーターの法則、昇進制度、トーナメント理論、2019年QJEの企業データ、2026年QJEの管理職実験を一本の物語に統合する。
+「考える夜」本番 Motion Canvas 版。古代・宋代の官僚登用、ウェーバー、アメリカ猟官制とペンドルトン法、国家能力、マートン、ジェームズ・C・スコットを一つの物語へ統合する。
 
-## Visual direction
-- 90 meaning scenes / 9 render units / 10 scenes per unit.
-- 38 distinct layout grammars: office ranking, promotion room, factory hierarchy, Peter staircase, research scatter, HR comparison, tournament ladder, management experiment, delegation, dual career tracks, etc.
-- 18 temporal motion programs and 10 camera programs. Adjacent scenes may not reuse layout, motion program, or camera program.
-- Every scene has a unique motion signature. The renderer does not use the old shared reveal-settle-accent loop.
-- No scene-level rotation. Camera motion is horizontal, vertical, or frontal scale only; diagrams remain front-facing.
-- Background geometry is generated from the scene motif plus the scene-specific layout, preventing identical background reuse.
-- Full subtitles are isolated in their own topmost layer. Main graphics stay above the subtitle-safe boundary.
-- 90 scenes × at least 6 semantic actions = at least 540 deliberate visual changes, before internal prop animation and camera movement.
+## Visual system
+- 90 meaning scenes / 6 render units / 15 scenes per unit.
+- 27 concrete spatial worlds: municipal counter, village, registry, examination hall, ministry, kitchen, chain store, campaign office, rail network, civil-service exam room, data lab, emergency center, disaster desk, land map, forest grid, appeals room, etc.
+- 37 information grammars: handoff, checksum, barrier, dissolve, fork, network, memory, pipeline, hierarchy, sieve, scatter, map, goal swap, exception gateway, continuity, assembly, final reveal, etc.
+- 90 unique semantic actions and 90 unique motion signatures. No narration shares the same action ID.
+- 12 semantic stages per scene, giving at least 1,080 deliberate state changes before camera movement and internal object accents.
+- Scene-level rotation is prohibited. Diagrams stay frontal; camera movement is horizontal, vertical, or frontal-scale only.
+- Adjacent scenes may not reuse the same space, diagram grammar, camera program, or semantic action. Structural QA blocks the render if they do.
+- Background architecture is generated per scene and then transformed by a space-specific environment, preventing one generic background from being recycled throughout the video.
 
 ## Production
-VOICEVOX: 青山龍星 / speaker 13 / speed 1.15. Each of the 9 chapters is synthesized and rendered independently after one shared prepare/build job. Every render performs smoke rendering and pixel subtitle QA before full rendering. Failed full renders retry once. Final assembly uses ffmpeg concat, low-level BGM mix, structural validation, black/freeze scan, and contact-sheet generation.
+VOICEVOX: 青山龍星 / speaker 13 / speed 1.15. Prepare runs structural QA and TypeScript/Vite build once. Six VOICEVOX jobs synthesize measured cues, followed by six chapter renders. Every chapter performs measured-timing merge, rebuild, smoke render, pixel subtitle QA, full render with retry, and packaging. Finalize performs concat, BGM mix, 1920×1080/30fps/audio validation, black/freeze scan, contact-sheet generation, and GitHub Release publication.
 
-## Editorial rule
-The video does not argue that high performers should never be promoted. The core distinction is between rewarding past performance and selecting for the requirements of the next role.
+## Core editorial thesis
+Bureaucracy is powerful not because humans are perfect, but because it assumes they are replaceable, forgetful, biased, and temporary—and moves authority, memory, and procedure outside the individual.
