@@ -111,23 +111,23 @@ const STEPS=[1,5,7,11];
 function orderFor(program:number){const start=program%12,step=STEPS[Math.floor(program/12)%4],phase=Math.floor(program/48)%2;let arr=Array.from({length:12},(_,i)=>(start+i*step)%12);if(phase){arr=[...arr.slice(6),...arr.slice(0,6)];for(let i=0;i<12;i+=3){const t=arr[i];arr[i]=arr[i+2];arr[i+2]=t}}return arr}
 function initStage(n:Node,slot:number,plan:Plan){const p=plan.actionProgram,mode=p%9,side=(slot+p)%2?1:-1,mag=45+((p*17+slot*29)%105);n.opacity(0);n.scale(.88+((p+slot)%5)*.025);if(mode===0){n.x(side*mag);n.y(0)}else if(mode===1){n.x(0);n.y(side*mag)}else if(mode===2){n.x(side*mag);n.y(-side*(25+slot%4*18))}else if(mode===3){n.x(side*(20+slot*15));n.y(side*mag)}else if(mode===4){n.x(side*mag*.55);n.y(-mag*.45)}else if(mode===5){n.x(-side*mag*.6);n.y(mag*.35)}else if(mode===6){n.x(side*(70+slot*8));n.y(0)}else if(mode===7){n.x(0);n.y(-80-(slot%3)*25)}else{n.x(side*(35+(slot%5)*12));n.y(side*(35+((slot+2)%4)*16))}}
 function* directorFlow(s:Node[],scene:Scene,plan:Plan):ThreadGenerator{
- const order=orderFor(plan.actionProgram),d=scene.duration,tempo=.78+(plan.tempo%9)*.035,beat=Math.max(.13,Math.min(.38,d/34*tempo));let used=0;
+ const order=orderFor(plan.actionProgram),d=scene.duration,slot=d/12;
  s.forEach((n,idx)=>initStage(n,idx,plan));
  for(let step=0;step<12;step++){
-  const idx=order[step],n=s[idx],reveal=beat*(.78+((plan.actionProgram+step)%4)*.08);
-  yield* all(n.opacity(1,reveal),n.x(0,reveal),n.y(0,reveal),n.scale(1,reveal));used+=reveal;
-  const verb=(plan.actionProgram+step)%7,accent=beat*.55;
-  if(verb===0){yield* n.scale(1.045,accent);yield* n.scale(1,accent);used+=accent*2}
-  else if(verb===1){yield* n.x((step%2?1:-1)*(9+plan.variant*2),accent);yield* n.x(0,accent);used+=accent*2}
-  else if(verb===2){yield* n.y((step%2?1:-1)*(8+plan.variant),accent);yield* n.y(0,accent);used+=accent*2}
-  else if(verb===3&&step>2){const prev=s[order[step-2]];yield* all(prev.opacity(.48,accent),n.scale(1.03,accent));used+=accent;yield* all(prev.opacity(.88,accent),n.scale(1,accent));used+=accent}
-  else if(verb===4){yield* n.opacity(.72,accent);yield* n.opacity(1,accent);used+=accent*2}
-  else if(verb===5&&step>3){const prev=s[order[step-3]];yield* all(prev.x(-12,accent),n.x(12,accent));used+=accent;yield* all(prev.x(0,accent),n.x(0,accent));used+=accent}
-  else{yield* n.scale(.985,accent);yield* n.scale(1,accent);used+=accent*2}
-  const pause=Math.max(.02,d/12-reveal-accent*1.25);yield* waitFor(pause);used+=pause;
+  const idx=order[step],n=s[idx];
+  const reveal=Math.min(.22,slot*.42),accent=Math.min(.10,slot*.22);
+  let spent=reveal;
+  yield* all(n.opacity(1,reveal),n.x(0,reveal),n.y(0,reveal),n.scale(1,reveal));
+  const verb=(plan.actionProgram+step)%7;
+  if(verb===0){yield* n.scale(1.045,accent);yield* n.scale(1,accent);spent+=accent*2}
+  else if(verb===1){yield* n.x((step%2?1:-1)*(9+plan.variant*2),accent);yield* n.x(0,accent);spent+=accent*2}
+  else if(verb===2){yield* n.y((step%2?1:-1)*(8+plan.variant),accent);yield* n.y(0,accent);spent+=accent*2}
+  else if(verb===3&&step>2){const prev=s[order[step-2]];yield* all(prev.opacity(.48,accent),n.scale(1.03,accent));yield* all(prev.opacity(.88,accent),n.scale(1,accent));spent+=accent*2}
+  else if(verb===4){yield* n.opacity(.72,accent);yield* n.opacity(1,accent);spent+=accent*2}
+  else if(verb===5&&step>3){const prev=s[order[step-3]];yield* all(prev.x(-12,accent),n.x(12,accent));yield* all(prev.x(0,accent),n.x(0,accent));spent+=accent*2}
+  else{yield* n.scale(.985,accent);yield* n.scale(1,accent);spent+=accent*2}
+  if(spent<slot)yield* waitFor(slot-spent);
  }
- const settle=Math.min(.35,Math.max(.14,d*.008));yield* all(...s.map((n,idx)=>all(n.x(0,settle),n.y(0,settle),n.scale(1,settle),n.opacity(idx<4?.94:1,settle))));used+=settle;
- if(used<d)yield* waitFor(d-used);
 }
 function* cameraFlow(n:Node,d:number,plan:Plan):ThreadGenerator{const q=d/5;n.x(0);n.y(0);n.scale(1);switch(plan.camera%14){
  case 0:yield* waitFor(d);break;case 1:yield* n.scale(1.024,d);break;case 2:yield* n.scale(.992,q);yield* n.scale(1.02,q*2);yield* n.scale(1,q*2);break;
@@ -143,12 +143,14 @@ function* cameraFlow(n:Node,d:number,plan:Plan):ThreadGenerator{const q=d/5;n.x(
  case 12:yield* n.x(10,q);yield* n.x(5,q);yield* n.x(-9,q);yield* n.x(-4,q);yield* n.x(0,q);break;
  default:yield* n.scale(.994,q);yield* n.scale(1.018,q);yield* n.scale(1.004,q);yield* n.scale(1.028,q);yield* n.scale(1,q);break;
 }}
-function* subtitleFlow(cues:Cue[],caption:Txt,duration:number):ThreadGenerator{let t=0;for(const c of cues){if(c.start>t)yield* waitFor(c.start-t);caption.text(c.display);t=c.start}if(duration>t)yield* waitFor(duration-t);caption.text('')}
-export function* playMeaningScene(view:View2D,scene:Scene):ThreadGenerator{
- const plan=(visualPlan as Record<string,Plan>)[scene.motif];if(!plan)throw new Error('V132 visual plan missing '+scene.motif);view.fill(K.bg);
- const contentLayer=new Node({}),headingLayer=new Node({}),subtitleBacking=new Node({}),subtitleTextLayer=new Node({});view.add(contentLayer);view.add(headingLayer);view.add(subtitleBacking);view.add(subtitleTextLayer);
- worldBase(contentLayer,scene,plan);const ss=stages();ss.forEach(x=>contentLayer.add(x));buildSpace(contentLayer,ss,scene,plan);buildDiagram(ss.slice(4),scene,plan);
- rr(headingLayer,0,-474,1920,132,K.ink,0);tx(headingLayer,'考える夜',-805,-505,24,K.gold);tx(headingLayer,scene.chapter.toUpperCase(),-690,-445,18,K.muted);tx(headingLayer,scene.title,0,-465,scene.title.length>19?30:37,K.paper);tx(headingLayer,scene.id,840,-505,20,K.muted);
- rr(subtitleBacking,0,458,1920,176,'#020406',0).opacity(.96);const caption=new Txt({text:'',x:0,y:458,fontFamily:F,fontSize:40,fill:K.paper,fontWeight:650,lineHeight:57});subtitleTextLayer.add(caption);
- yield* all(directorFlow(ss,scene,plan),cameraFlow(contentLayer,scene.duration,plan),subtitleFlow(scene.cues,caption,scene.duration));
+function* subtitleFlow(cues:Cue[],caption:Txt,duration:number):ThreadGenerator{
+ let cursor=0;
+ for(const c of cues){
+  if(c.start>cursor)yield* waitFor(c.start-cursor);
+  caption.text(c.display);
+  if(c.end>c.start)yield* waitFor(c.end-c.start);
+  caption.text('');
+  cursor=c.end;
+ }
+ if(duration>cursor)yield* waitFor(duration-cursor);
 }

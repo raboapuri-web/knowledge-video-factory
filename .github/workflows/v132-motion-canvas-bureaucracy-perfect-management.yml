@@ -139,10 +139,15 @@ jobs:
         run: |
           chmod +x ../motion-canvas-standard/render-with-retry.sh
           MAX_ATTEMPTS=2 ../motion-canvas-standard/render-with-retry.sh 42m node scripts/render.mjs "${{ matrix.slug }}"
+      - name: Verify narration subtitle frame lock
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v122
+        run: |
+          python3 scripts/check_sync.py "output/v132-${{ matrix.slug }}.mp4" "media/${{ matrix.slug }}/narration.wav" "sync-report-${{ matrix.slug }}.json"
       - name: Package finished chapter
         if: success()
         run: |
-          tar -czf "v132-render-${{ matrix.slug }}.tar.gz" "shared/v122/output/v132-${{ matrix.slug }}.mp4" "shared/v122/render-report-${{ matrix.slug }}.json" "shared/v122/voice-report-${{ matrix.slug }}.json"
+          tar -czf "v132-render-${{ matrix.slug }}.tar.gz" "shared/v122/output/v132-${{ matrix.slug }}.mp4" "shared/v122/render-report-${{ matrix.slug }}.json" "shared/v122/voice-report-${{ matrix.slug }}.json" "shared/v122/sync-report-${{ matrix.slug }}.json"
       - uses: actions/upload-artifact@v4
         if: success()
         with:
@@ -187,7 +192,11 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p output qa
-          for c in prologue chapter1 chapter2 chapter3 chapter4 epilogue; do test -s "output/v132-$c.mp4"; done
+          for c in prologue chapter1 chapter2 chapter3 chapter4 epilogue; do
+            test -s "output/v132-$c.mp4"
+            test -s "sync-report-$c.json"
+            python3 -c "import json; assert json.load(open('sync-report-$c.json'))['passed']"
+          done
           : > output/concat.txt
           for c in prologue chapter1 chapter2 chapter3 chapter4 epilogue; do printf "file '%s'\n" "$(realpath "output/v132-$c.mp4")" >> output/concat.txt; done
           ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy output/v132-voice-master.mp4
@@ -201,7 +210,7 @@ jobs:
           SIZE=$(stat -c%s output/v132-final.mp4)
           test "$W" = 1920 && test "$H" = 1080 && test "$FPS" = '30/1' && test "$AUD" -ge 1 && test "$SIZE" -gt 5000000
           awk "BEGIN {exit !($D>=600)}"
-          printf '{"videoId":"V132","scenes":90,"spaces":27,"diagramGrammars":37,"semanticStageMinimum":1080,"renderUnits":6,"resolution":"1920x1080","fps":30,"durationSeconds":%s,"audioTracks":%s,"bytes":%s,"passed":true}\n' "$D" "$AUD" "$SIZE" > qa/final-validation.json
+          printf '{"videoId":"V132","scenes":90,"spaces":27,"diagramGrammars":37,"semanticStageMinimum":1080,"renderUnits":6,"resolution":"1920x1080","fps":30,"syncFrameLocked":true,"chapterSyncVerified":true,"durationSeconds":%s,"audioTracks":%s,"bytes":%s,"passed":true}\n' "$D" "$AUD" "$SIZE" > qa/final-validation.json
           set +e
           ffmpeg -hide_banner -i output/v132-final.mp4 -vf 'blackdetect=d=2:pix_th=0.02,freezedetect=n=-55dB:d=6' -an -f null - 2> qa/visual-anomaly-scan.txt
           set -e

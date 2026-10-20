@@ -8,12 +8,12 @@ for s in ss:
     if s['motif'] not in vp:errors.append('missing visual '+s['id'])
     if not s['cues'] or s['duration']<=3.2:errors.append('short scene '+s['id'])
     if any(c['end']<=c['start'] for c in s['cues']):errors.append('bad cue '+s['id'])
-    if abs(s['cues'][-1]['end']-s['duration'])>.06:errors.append('timing mismatch '+s['id'])
+    if s['cues'][-1]['end']>s['duration']+.001:errors.append('timing overflow '+s['id'])
     for c in s['cues']:
         lines=c['display'].split('\n')
         if len(lines)>2 or any(len(x)>19 for x in lines):errors.append('subtitle overflow '+s['id'])
         if '\\n' in c['display']:errors.append('escaped newline '+s['id'])
-    if s['durationSource']!='VOICEVOX_MEASURED':warn.append(s['id']+' estimated')
+    if s['durationSource']!='VOICEVOX_MEASURED_FRAME_LOCKED':warn.append(s['id']+' estimated')
 if len(ss)!=90:errors.append('expected 90 scenes got '+str(len(ss)))
 expected={'prologue','chapter1','chapter2','chapter3','chapter4','epilogue'}
 if set(chapters)!=expected:errors.append('chapter set '+str(sorted(chapters)))
