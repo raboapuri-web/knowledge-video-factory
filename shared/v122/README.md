@@ -17,3 +17,6 @@ VOICEVOX: 青山龍星 / speaker 13 / speed 1.15. Prepare runs structural QA and
 
 ## Core editorial thesis
 Bureaucracy is powerful not because humans are perfect, but because it assumes they are replaceable, forgetful, biased, and temporary—and moves authority, memory, and procedure outside the individual.
+
+## Pipeline retry
+GitHub runner checkout stall was isolated from content/render code; this commit retriggers the validated V132 pipeline.
