@@ -20,3 +20,5 @@ Bureaucracy is powerful not because humans are perfect, but because it assumes t
 
 ## Pipeline retry
 GitHub runner checkout stall was isolated from content/render code; this commit retriggers the validated V132 pipeline.
+
+<!-- retry runner for subtitle-sync rebuild -->
