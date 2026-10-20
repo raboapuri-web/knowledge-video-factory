@@ -159,6 +159,6 @@ export function* playMeaningScene(view:View2D,scene:Scene):ThreadGenerator{
  const contentLayer=new Node({}),headingLayer=new Node({}),subtitleBacking=new Node({}),subtitleTextLayer=new Node({});view.add(contentLayer);view.add(headingLayer);view.add(subtitleBacking);view.add(subtitleTextLayer);
  worldBase(contentLayer,scene,plan);const ss=stages();ss.forEach(x=>contentLayer.add(x));buildSpace(contentLayer,ss,scene,plan);buildDiagram(ss.slice(4),scene,plan);
  rr(headingLayer,0,-474,1920,132,K.ink,0);tx(headingLayer,'考える夜',-805,-505,24,K.gold);tx(headingLayer,scene.chapter.toUpperCase(),-690,-445,18,K.muted);tx(headingLayer,scene.title,0,-465,scene.title.length>19?30:37,K.paper);tx(headingLayer,scene.id,840,-505,20,K.muted);
- rr(subtitleBacking,0,458,1920,176,'#020406',0).opacity(.96);const caption=new Txt({text:'',x:0,y:458,fontFamily:F,fontSize:40,fill:K.paper,fontWeight:650,lineHeight:57});subtitleTextLayer.add(caption);
- yield* all(directorFlow(ss,scene,plan),cameraFlow(contentLayer,scene.duration,plan),subtitleFlow(scene.cues,caption,scene.duration));
+ rr(subtitleBacking,0,458,1920,176,'#020406',0).opacity(.96);const caption=new Txt({text:'',x:0,y:458,fontFamily:F,fontSize:40,fill:'#00000000',fontWeight:650,lineHeight:57});subtitleTextLayer.add(caption);
+ yield* all(directorFlow(ss,scene,plan),cameraFlow(contentLayer,scene.duration,plan),waitFor(scene.duration));
 }
