@@ -91,7 +91,7 @@
       },
       {
         "title": "指が止まる欄",
-        "space": "counter",
+        "space": "registry",
         "diagram": "checksum",
         "labels": [
           "指が止まる欄",
@@ -348,7 +348,7 @@
       },
       {
         "title": "共同体が記憶する",
-        "space": "village",
+        "space": "recordsRoom",
         "diagram": "memory",
         "labels": [
           "共同体が記憶する",
@@ -416,7 +416,7 @@
       },
       {
         "title": "書く人が生まれる",
-        "space": "registry",
+        "space": "archive",
         "diagram": "handoff",
         "labels": [
           "書く人が生まれる",
@@ -433,7 +433,7 @@
       },
       {
         "title": "国家は情報処理装置",
-        "space": "mapRoom",
+        "space": "dataCenter",
         "diagram": "pipeline",
         "labels": [
           "国家は情報処理装置",
@@ -484,7 +484,7 @@
       },
       {
         "title": "宋代の科挙",
-        "space": "examHall",
+        "space": "civilServiceExam",
         "diagram": "sieve",
         "labels": [
           "宋代の科挙",
@@ -518,7 +518,7 @@
       },
       {
         "title": "人と役職を分離する",
-        "space": "ministry",
+        "space": "office",
         "diagram": "split",
         "labels": [
           "人と役職を分離する",
@@ -622,7 +622,7 @@
       },
       {
         "title": "仕事を専門分化する",
-        "space": "ministry",
+        "space": "dataCenter",
         "diagram": "partition",
         "labels": [
           "仕事を専門分化する",
@@ -758,7 +758,7 @@
       },
       {
         "title": "天才が倒れる",
-        "space": "kitchen",
+        "space": "chainStore",
         "diagram": "collapse",
         "labels": [
           "天才が倒れる",
@@ -775,7 +775,7 @@
       },
       {
         "title": "百店舗では再現できない",
-        "space": "chainStore",
+        "space": "cityNetwork",
         "diagram": "scale",
         "labels": [
           "百店舗では再現できない",
@@ -879,7 +879,7 @@
       },
       {
         "title": "猟官制の仕組み",
-        "space": "campaignOffice",
+        "space": "cityNetwork",
         "diagram": "network",
         "labels": [
           "猟官制の仕組み",
@@ -930,7 +930,7 @@
       },
       {
         "title": "国家巨大化で限界",
-        "space": "railNetwork",
+        "space": "cityNetwork",
         "diagram": "scale",
         "labels": [
           "国家巨大化で限界",
@@ -981,7 +981,7 @@
       },
       {
         "title": "政治から採用を切る",
-        "space": "civilServiceExam",
+        "space": "ministry",
         "diagram": "split",
         "labels": [
           "政治から採用を切る",
@@ -998,7 +998,7 @@
       },
       {
         "title": "最初は約一割",
-        "space": "civilServiceExam",
+        "space": "dataLab",
         "diagram": "scale",
         "labels": [
           "最初は約一割",
@@ -1032,7 +1032,7 @@
       },
       {
         "title": "35か国のデータ",
-        "space": "dataLab",
+        "space": "mapRoom",
         "diagram": "scatter",
         "labels": [
           "35か国のデータ",
@@ -1153,7 +1153,7 @@
       },
       {
         "title": "規則遵守を訓練する",
-        "space": "office",
+        "space": "ministry",
         "diagram": "pipeline",
         "labels": [
           "規則遵守を訓練する",
@@ -1204,7 +1204,7 @@
       },
       {
         "title": "条件が積み上がる",
-        "space": "disasterDesk",
+        "space": "recordsRoom",
         "diagram": "layers",
         "labels": [
           "条件が積み上がる",
@@ -1255,7 +1255,7 @@
       },
       {
         "title": "スコットの国家の視線",
-        "space": "landMap",
+        "space": "mapRoom",
         "diagram": "map",
         "labels": [
           "スコットの国家の視線",
@@ -1272,7 +1272,7 @@
       },
       {
         "title": "土地を番号へ変える",
-        "space": "landMap",
+        "space": "registry",
         "diagram": "grid",
         "labels": [
           "土地を番号へ変える",
@@ -1444,7 +1444,7 @@
       },
       {
         "title": "性格も思想も違う",
-        "space": "office",
+        "space": "ministry",
         "diagram": "split",
         "labels": [
           "性格も思想も違う",
@@ -1580,7 +1580,7 @@
       },
       {
         "title": "規則・役職・記録・試験",
-        "space": "archive",
+        "space": "recordsRoom",
         "diagram": "assembly",
         "labels": [
           "規則・役職・記録・試験",
