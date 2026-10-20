@@ -955,7 +955,7 @@
       },
       {
         "title": "報酬と配置を分離",
-        "kind": "splitTrack",
+        "kind": "incentiveFork",
         "labels": [
           "報いる",
           "任せる",
