@@ -1,25 +1,19 @@
-# V129 日本は何教なのか？――「無宗教」という日本最大の宗教
+# V131 — なぜ優秀な社員を出世させると会社が弱くなるのか？
 
-考える夜 / 神道×仏教×宗教社会学×世俗化。
+「考える夜」本番 Motion Canvas 版。ピーターの法則、昇進制度、トーナメント理論、2019年QJEの企業データ、2026年QJEの管理職実験を一本の物語に統合する。
 
-## 制作設計
-- prologue + chapter1〜11 + epilogue の13独立レンダー単位。
-- 79意味シーン。文章・句読点では切らず、一つの出来事・制度変化・比較・学術概念・比喩を単位に統合。
-- 各シーン8 semantic statesを、意味別の進入・強調・退避・再構成へ分解して32 micro beats / scene。設計上約2,528 visual beats。
-- 79 motif / 79 motion signatureをすべて固有化。共通のreveal→settle→accentループは廃止し、行列・儀礼・追悼・統計・分類・時系列・収束・台帳・分離・制度分類・サービス化・世俗化など意味別の動作文法へ分岐。
-- 現代の初詣、チャペル結婚式、仏教葬儀、宗教統計、神仏習合、江戸村と寺請、明治の神仏分離、近代宗教概念の分類机、国家神道、現代の式場打合せ、家庭の仏壇、都市化と世俗化、元日夜の三宗教空間という13の画面文法を採用。
-- 同一出来事内では背景固定。人物、行列、祈り、証文、宗教施設、行政分類、祭祀カード、家族、統計、時間軸、関係線を連続的に変化させる。
-- 2〜5秒ごとに意味のある状態変化を発生させ、フェード連鎖、ズーム反復、同型カード連発を避ける。全体レイヤーの回転と斜めドリフトは禁止し、カメラ移動は水平・垂直・正対ズームのみ。
-- 外部画像に依存せず、Rect / Line / Circle / Txtのみの安全なMotion Canvasプリミティブで構成。前作の実行時エラー要因だった不安定な透明fill等は使用しない。
+## Visual direction
+- 90 meaning scenes / 9 render units / 10 scenes per unit.
+- 38 distinct layout grammars: office ranking, promotion room, factory hierarchy, Peter staircase, research scatter, HR comparison, tournament ladder, management experiment, delegation, dual career tracks, etc.
+- 18 temporal motion programs and 10 camera programs. Adjacent scenes may not reuse layout, motion program, or camera program.
+- Every scene has a unique motion signature. The renderer does not use the old shared reveal-settle-accent loop.
+- No scene-level rotation. Camera motion is horizontal, vertical, or frontal scale only; diagrams remain front-facing.
+- Background geometry is generated from the scene motif plus the scene-specific layout, preventing identical background reuse.
+- Full subtitles are isolated in their own topmost layer. Main graphics stay above the subtitle-safe boundary.
+- 90 scenes × at least 6 semantic actions = at least 540 deliberate visual changes, before internal prop animation and camera movement.
 
-## 音声\n- 画面上の表記は「何教」を維持しつつ、VOICEVOXへ渡す読みだけ「なにきょう」に正規化。\n\n## 字幕
-- contentLayer → headingLayer → subtitleBacking → subtitleTextLayer の固定順。
-- 下170pxを恒久字幕セーフエリアとして予約。
-- 最大2行、1行19文字以内。VOICEVOX実測タイミングへ同期。
-- 本尺前に各章smoke render + pixel subtitle QA必須。
+## Production
+VOICEVOX: 青山龍星 / speaker 13 / speed 1.15. Each of the 9 chapters is synthesized and rendered independently after one shared prepare/build job. Every render performs smoke rendering and pixel subtitle QA before full rendering. Failed full renders retry once. Final assembly uses ffmpeg concat, low-level BGM mix, structural validation, black/freeze scan, and contact-sheet generation.
 
-## エラー抑制
-build_data → structural QA → TypeScript/Vite build → 13章VOICEVOX並列実測 → measured timing merge → chapter rebuild → smoke render → pixel subtitle QA → full render with retry → FFmpeg concat/BGM → ffprobe hard gate → black/freezedetect → 42-frame contact sheet → release。
-
-## 完成基準
-1920×1080 / 30fps / H.264 / AAC / 青山龍星 speaker 13 / speed 1.15 / 字幕必須 / BGMあり。
+## Editorial rule
+The video does not argue that high performers should never be promoted. The core distinction is between rewarding past performance and selecting for the requirements of the next role.

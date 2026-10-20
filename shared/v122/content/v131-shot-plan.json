@@ -1,0 +1,1194 @@
+{
+  "video": "V131",
+  "title": "なぜ優秀な社員を出世させると会社が弱くなるのか？",
+  "chapters": {
+    "prologue": [
+      {
+        "title": "朝9時の売上ランキング",
+        "kind": "rankingFloor",
+        "labels": [
+          "一位 140%",
+          "二位との差",
+          "王冠がつく"
+        ],
+        "motion": "v131-001-rankingFloor",
+        "program": 3,
+        "camera": 1,
+        "variant": 0
+      },
+      {
+        "title": "会議室の昇進通知",
+        "kind": "promotionDoor",
+        "labels": [
+          "来月から課長",
+          "拍手",
+          "当然の人事"
+        ],
+        "motion": "v131-002-promotionDoor",
+        "program": 10,
+        "camera": 4,
+        "variant": 1
+      },
+      {
+        "title": "三か月後の異変",
+        "kind": "lossSplit",
+        "labels": [
+          "大型顧客の失速",
+          "後任者の苦戦",
+          "別の場所で損失"
+        ],
+        "motion": "v131-003-lossSplit",
+        "program": 17,
+        "camera": 7,
+        "variant": 2
+      },
+      {
+        "title": "資料を書き直す上司",
+        "kind": "micromanageDesk",
+        "labels": [
+          "赤字修正",
+          "メール代筆",
+          "判断が消える"
+        ],
+        "motion": "v131-004-micromanageDesk",
+        "program": 6,
+        "camera": 0,
+        "variant": 3
+      },
+      {
+        "title": "商談を奪う瞬間",
+        "kind": "handoffTable",
+        "labels": [
+          "説明を引き取る",
+          "部下は黙る",
+          "短期的には速い"
+        ],
+        "motion": "v131-005-handoffTable",
+        "program": 13,
+        "camera": 3,
+        "variant": 4
+      },
+      {
+        "title": "一時間と三時間",
+        "kind": "bottleneck",
+        "labels": [
+          "自分なら1時間",
+          "部下は3時間",
+          "焦り"
+        ],
+        "motion": "v131-006-bottleneck",
+        "program": 2,
+        "camera": 6,
+        "variant": 0
+      },
+      {
+        "title": "夜のオフィス",
+        "kind": "nightOffice",
+        "labels": [
+          "一人だけ残業",
+          "部下の資料",
+          "22:58"
+        ],
+        "motion": "v131-007-nightOffice",
+        "program": 9,
+        "camera": 9,
+        "variant": 1
+      },
+      {
+        "title": "失われたエース",
+        "kind": "dualLoss",
+        "labels": [
+          "トップ営業を失う",
+          "未知の管理職を得る",
+          "二重の賭け"
+        ],
+        "motion": "v131-008-dualLoss",
+        "program": 16,
+        "camera": 2,
+        "variant": 2
+      },
+      {
+        "title": "同じ能力なのか",
+        "kind": "playerCoach",
+        "labels": [
+          "売る",
+          "売らせる",
+          "競技が違う"
+        ],
+        "motion": "v131-009-playerCoach",
+        "program": 5,
+        "camera": 5,
+        "variant": 3
+      },
+      {
+        "title": "今夜の問い",
+        "kind": "questionDesk",
+        "labels": [
+          "優秀な社員",
+          "昇進",
+          "なぜ会社が弱る？"
+        ],
+        "motion": "v131-010-questionDesk",
+        "program": 12,
+        "camera": 8,
+        "variant": 4
+      }
+    ],
+    "chapter1": [
+      {
+        "title": "巨大化する工場",
+        "kind": "factoryShift",
+        "labels": [
+          "数十人から数千人",
+          "産業化",
+          "一人では管理不能"
+        ],
+        "motion": "v131-011-factoryShift",
+        "program": 1,
+        "camera": 1,
+        "variant": 0
+      },
+      {
+        "title": "階層の誕生",
+        "kind": "hierarchyTower",
+        "labels": [
+          "主任",
+          "課長",
+          "部長"
+        ],
+        "motion": "v131-012-hierarchyTower",
+        "program": 8,
+        "camera": 4,
+        "variant": 1
+      },
+      {
+        "title": "経営者革命",
+        "kind": "archiveBook",
+        "labels": [
+          "巨大企業",
+          "専門管理層",
+          "チャンドラー"
+        ],
+        "motion": "v131-013-archiveBook",
+        "program": 15,
+        "camera": 7,
+        "variant": 2
+      },
+      {
+        "title": "内部昇進の合理性",
+        "kind": "promotionDoor",
+        "labels": [
+          "会社を知る",
+          "製品を知る",
+          "顧客を知る"
+        ],
+        "motion": "v131-014-promotionDoor",
+        "program": 4,
+        "camera": 0,
+        "variant": 3
+      },
+      {
+        "title": "頑張れば上へ行ける",
+        "kind": "tournamentLadder",
+        "labels": [
+          "希望",
+          "報酬",
+          "社内の梯子"
+        ],
+        "motion": "v131-015-tournamentLadder",
+        "program": 11,
+        "camera": 3,
+        "variant": 4
+      },
+      {
+        "title": "梯子の途中で競技が変わる",
+        "kind": "peterStairs",
+        "labels": [
+          "営業",
+          "主任",
+          "課長"
+        ],
+        "motion": "v131-016-peterStairs",
+        "program": 0,
+        "camera": 6,
+        "variant": 0
+      },
+      {
+        "title": "仕事内容の断絶",
+        "kind": "playerCoach",
+        "labels": [
+          "上位版ではない",
+          "職種変更",
+          "異なる能力"
+        ],
+        "motion": "v131-017-playerCoach",
+        "program": 7,
+        "camera": 9,
+        "variant": 1
+      },
+      {
+        "title": "1969年の風刺",
+        "kind": "archiveBook",
+        "labels": [
+          "Peter & Hull",
+          "ピーターの法則",
+          "階層組織"
+        ],
+        "motion": "v131-018-archiveBook",
+        "program": 14,
+        "camera": 2,
+        "variant": 2
+      },
+      {
+        "title": "成功する限り昇進",
+        "kind": "peterStairs",
+        "labels": [
+          "成功→昇進",
+          "成功→昇進",
+          "止まる場所"
+        ],
+        "motion": "v131-019-peterStairs",
+        "program": 3,
+        "camera": 5,
+        "variant": 3
+      },
+      {
+        "title": "無能になる場所で停止",
+        "kind": "collapseRebuild",
+        "labels": [
+          "能力発揮",
+          "役職上昇",
+          "不適合で固定"
+        ],
+        "motion": "v131-020-collapseRebuild",
+        "program": 10,
+        "camera": 8,
+        "variant": 4
+      }
+    ],
+    "chapter2": [
+      {
+        "title": "風刺をデータで検証",
+        "kind": "datasetCloud",
+        "labels": [
+          "2019 QJE",
+          "131社",
+          "38,843人"
+        ],
+        "motion": "v131-021-datasetCloud",
+        "program": 17,
+        "camera": 1,
+        "variant": 0
+      },
+      {
+        "title": "昇進前の営業成績",
+        "kind": "promotionSlope",
+        "labels": [
+          "売上",
+          "昇進確率",
+          "正の関係"
+        ],
+        "motion": "v131-022-promotionSlope",
+        "program": 6,
+        "camera": 4,
+        "variant": 1
+      },
+      {
+        "title": "会社は成果を評価する",
+        "kind": "spotlightMetric",
+        "labels": [
+          "売上トップ",
+          "公平に見える",
+          "ここまでは正常"
+        ],
+        "motion": "v131-023-spotlightMetric",
+        "program": 13,
+        "camera": 7,
+        "variant": 2
+      },
+      {
+        "title": "昇進後まで追跡",
+        "kind": "datasetCloud",
+        "labels": [
+          "管理職へ",
+          "部下の売上",
+          "manager value added"
+        ],
+        "motion": "v131-024-datasetCloud",
+        "program": 2,
+        "camera": 0,
+        "variant": 3
+      },
+      {
+        "title": "逆方向の関係",
+        "kind": "managerScatter",
+        "labels": [
+          "本人の売上↑",
+          "部下の売上↓",
+          "不穏な傾向"
+        ],
+        "motion": "v131-025-managerScatter",
+        "program": 9,
+        "camera": 3,
+        "variant": 4
+      },
+      {
+        "title": "6.1%という数字",
+        "kind": "evidenceBoard",
+        "labels": [
+          "売上2倍",
+          "部下一人あたり",
+          "約6.1%低い"
+        ],
+        "motion": "v131-026-evidenceBoard",
+        "program": 16,
+        "camera": 6,
+        "variant": 0
+      },
+      {
+        "title": "一人分と五人分",
+        "kind": "teamRipple",
+        "labels": [
+          "プレイヤー",
+          "管理職",
+          "影響の増幅"
+        ],
+        "motion": "v131-027-teamRipple",
+        "program": 5,
+        "camera": 9,
+        "variant": 1
+      },
+      {
+        "title": "管理職は掛け算",
+        "kind": "teamRipple",
+        "labels": [
+          "配分",
+          "判断",
+          "育成"
+        ],
+        "motion": "v131-028-teamRipple",
+        "program": 12,
+        "camera": 2,
+        "variant": 2
+      },
+      {
+        "title": "反実仮想の昇進制度",
+        "kind": "counterfactualSwitch",
+        "labels": [
+          "今の成果",
+          "将来の管理能力",
+          "別の選抜"
+        ],
+        "motion": "v131-029-counterfactualSwitch",
+        "program": 1,
+        "camera": 5,
+        "variant": 3
+      },
+      {
+        "title": "情報はあるのに使わない",
+        "kind": "questionDesk",
+        "labels": [
+          "予測材料は存在",
+          "それでも売上を優先",
+          "なぜ？"
+        ],
+        "motion": "v131-030-questionDesk",
+        "program": 8,
+        "camera": 8,
+        "variant": 4
+      }
+    ],
+    "chapter3": [
+      {
+        "title": "人事会議の二人",
+        "kind": "hrCards",
+        "labels": [
+          "A 売上トップ",
+          "B 協働型",
+          "どちらを課長に？"
+        ],
+        "motion": "v131-031-hrCards",
+        "program": 15,
+        "camera": 1,
+        "variant": 0
+      },
+      {
+        "title": "Aの数字は見える",
+        "kind": "spotlightMetric",
+        "labels": [
+          "売上",
+          "契約件数",
+          "達成率"
+        ],
+        "motion": "v131-032-spotlightMetric",
+        "program": 4,
+        "camera": 4,
+        "variant": 1
+      },
+      {
+        "title": "Bの能力は見えにくい",
+        "kind": "skillShadow",
+        "labels": [
+          "相談",
+          "調整",
+          "育成"
+        ],
+        "motion": "v131-033-skillShadow",
+        "program": 11,
+        "camera": 7,
+        "variant": 2
+      },
+      {
+        "title": "困っている部下に気づく",
+        "kind": "allocationBoard",
+        "labels": [
+          "観察",
+          "配置",
+          "支援"
+        ],
+        "motion": "v131-034-allocationBoard",
+        "program": 0,
+        "camera": 0,
+        "variant": 3
+      },
+      {
+        "title": "自分より詳しい部下",
+        "kind": "delegation",
+        "labels": [
+          "任せる",
+          "聞く",
+          "権限移譲"
+        ],
+        "motion": "v131-035-delegation",
+        "program": 7,
+        "camera": 3,
+        "variant": 4
+      },
+      {
+        "title": "測れるものの誘惑",
+        "kind": "spotlightMetric",
+        "labels": [
+          "数字",
+          "可視化",
+          "評価"
+        ],
+        "motion": "v131-036-spotlightMetric",
+        "program": 14,
+        "camera": 6,
+        "variant": 0
+      },
+      {
+        "title": "説明責任の圧力",
+        "kind": "hrCards",
+        "labels": [
+          "なぜB？",
+          "好き嫌い？",
+          "人事の防御"
+        ],
+        "motion": "v131-037-hrCards",
+        "program": 3,
+        "camera": 9,
+        "variant": 1
+      },
+      {
+        "title": "売上一位なら説明できる",
+        "kind": "evidenceBoard",
+        "labels": [
+          "誰でも確認",
+          "反論しにくい",
+          "公平感"
+        ],
+        "motion": "v131-038-evidenceBoard",
+        "program": 10,
+        "camera": 2,
+        "variant": 2
+      },
+      {
+        "title": "数字は公平を演出する",
+        "kind": "filterGate",
+        "labels": [
+          "能力の測定",
+          "説明の道具",
+          "同じではない"
+        ],
+        "motion": "v131-039-filterGate",
+        "program": 17,
+        "camera": 5,
+        "variant": 3
+      },
+      {
+        "title": "現在で未来を予測する",
+        "kind": "questionDesk",
+        "labels": [
+          "今の成果",
+          "次の適性",
+          "代用品にする"
+        ],
+        "motion": "v131-040-questionDesk",
+        "program": 6,
+        "camera": 8,
+        "variant": 4
+      }
+    ],
+    "chapter4": [
+      {
+        "title": "昇進の二つの仕事",
+        "kind": "leverDual",
+        "labels": [
+          "人材配置",
+          "成果への報酬",
+          "一本のレバー"
+        ],
+        "motion": "v131-041-leverDual",
+        "program": 13,
+        "camera": 1,
+        "variant": 0
+      },
+      {
+        "title": "報酬と配置は別問題",
+        "kind": "splitTrack",
+        "labels": [
+          "昨日への報酬",
+          "明日の仕事",
+          "混同"
+        ],
+        "motion": "v131-042-splitTrack",
+        "program": 2,
+        "camera": 4,
+        "variant": 1
+      },
+      {
+        "title": "天才プログラマー",
+        "kind": "coderCalendar",
+        "labels": [
+          "コード",
+          "障害対応",
+          "専門技能"
+        ],
+        "motion": "v131-043-coderCalendar",
+        "program": 9,
+        "camera": 7,
+        "variant": 2
+      },
+      {
+        "title": "翌月の予定表",
+        "kind": "coderCalendar",
+        "labels": [
+          "1on1",
+          "採用面接",
+          "会議"
+        ],
+        "motion": "v131-044-coderCalendar",
+        "program": 16,
+        "camera": 0,
+        "variant": 3
+      },
+      {
+        "title": "昇進ではなく職種変更",
+        "kind": "playerCoach",
+        "labels": [
+          "コード→管理",
+          "営業→課長",
+          "研究→所長"
+        ],
+        "motion": "v131-045-playerCoach",
+        "program": 5,
+        "camera": 3,
+        "variant": 4
+      },
+      {
+        "title": "選手から監督へ",
+        "kind": "playerCoach",
+        "labels": [
+          "得点する",
+          "得点させる",
+          "別競技"
+        ],
+        "motion": "v131-046-playerCoach",
+        "program": 12,
+        "camera": 6,
+        "variant": 0
+      },
+      {
+        "title": "一本の梯子という錯覚",
+        "kind": "peterStairs",
+        "labels": [
+          "上位版",
+          "役職",
+          "能力"
+        ],
+        "motion": "v131-047-peterStairs",
+        "program": 1,
+        "camera": 9,
+        "variant": 1
+      },
+      {
+        "title": "トーナメント理論",
+        "kind": "tournamentLadder",
+        "labels": [
+          "Lazear & Rosen",
+          "順位",
+          "賞品"
+        ],
+        "motion": "v131-048-tournamentLadder",
+        "program": 8,
+        "camera": 2,
+        "variant": 2
+      },
+      {
+        "title": "上の席が努力を生む",
+        "kind": "tournamentLadder",
+        "labels": [
+          "課長",
+          "部長",
+          "報酬差"
+        ],
+        "motion": "v131-049-tournamentLadder",
+        "program": 15,
+        "camera": 5,
+        "variant": 3
+      },
+      {
+        "title": "良い管理職と努力の衝突",
+        "kind": "incentiveFork",
+        "labels": [
+          "選抜の質",
+          "現在の努力",
+          "トレードオフ"
+        ],
+        "motion": "v131-050-incentiveFork",
+        "program": 4,
+        "camera": 8,
+        "variant": 4
+      }
+    ],
+    "chapter5": [
+      {
+        "title": "管理職志望者を選ぶ？",
+        "kind": "selfSelect",
+        "labels": [
+          "やりたい人",
+          "嫌々より良い？",
+          "直感"
+        ],
+        "motion": "v131-051-selfSelect",
+        "program": 11,
+        "camera": 1,
+        "variant": 0
+      },
+      {
+        "title": "2026年の実験",
+        "kind": "experimentTeams",
+        "labels": [
+          "555人",
+          "事前登録",
+          "QJE"
+        ],
+        "motion": "v131-052-experimentTeams",
+        "program": 0,
+        "camera": 4,
+        "variant": 1
+      },
+      {
+        "title": "三人一組のチーム",
+        "kind": "experimentTeams",
+        "labels": [
+          "管理職1",
+          "ワーカー2",
+          "共同課題"
+        ],
+        "motion": "v131-053-experimentTeams",
+        "program": 7,
+        "camera": 7,
+        "variant": 2
+      },
+      {
+        "title": "仕事を割り振る",
+        "kind": "allocationBoard",
+        "labels": [
+          "誰に何を",
+          "進捗を見る",
+          "配置を変える"
+        ],
+        "motion": "v131-054-allocationBoard",
+        "program": 14,
+        "camera": 0,
+        "variant": 3
+      },
+      {
+        "title": "同じ管理職を複数チームへ",
+        "kind": "teamRotation",
+        "labels": [
+          "4チーム",
+          "ランダム配置",
+          "効果を分離"
+        ],
+        "motion": "v131-055-teamRotation",
+        "program": 3,
+        "camera": 3,
+        "variant": 4
+      },
+      {
+        "title": "管理職の質は存在する",
+        "kind": "managerScatter",
+        "labels": [
+          "1SD",
+          "0.22SD",
+          "チーム成果"
+        ],
+        "motion": "v131-056-managerScatter",
+        "program": 10,
+        "camera": 6,
+        "variant": 0
+      },
+      {
+        "title": "自己推薦の意外な結果",
+        "kind": "selfSelect",
+        "labels": [
+          "強い希望",
+          "自己推薦",
+          "平均的に低い"
+        ],
+        "motion": "v131-057-selfSelect",
+        "program": 17,
+        "camera": 9,
+        "variant": 1
+      },
+      {
+        "title": "上に立ちたい≠上手い",
+        "kind": "filterGate",
+        "labels": [
+          "欲望",
+          "管理能力",
+          "別物"
+        ],
+        "motion": "v131-058-filterGate",
+        "program": 6,
+        "camera": 2,
+        "variant": 2
+      },
+      {
+        "title": "経済的意思決定能力",
+        "kind": "allocationBoard",
+        "labels": [
+          "資源配分",
+          "注意配分",
+          "ボトルネック"
+        ],
+        "motion": "v131-059-allocationBoard",
+        "program": 13,
+        "camera": 5,
+        "variant": 3
+      },
+      {
+        "title": "管理職の正体",
+        "kind": "teamRipple",
+        "labels": [
+          "自分で稼ぐ",
+          "他人を強くする",
+          "構造を設計"
+        ],
+        "motion": "v131-060-teamRipple",
+        "program": 2,
+        "camera": 8,
+        "variant": 4
+      }
+    ],
+    "chapter6": [
+      {
+        "title": "会社は二つの賭けをする",
+        "kind": "dualLoss",
+        "labels": [
+          "現場から外す",
+          "部下を預ける",
+          "同時発生"
+        ],
+        "motion": "v131-061-dualLoss",
+        "program": 9,
+        "camera": 1,
+        "variant": 0
+      },
+      {
+        "title": "確実な成果を失う",
+        "kind": "lossSplit",
+        "labels": [
+          "顧客関係",
+          "技能",
+          "機会費用"
+        ],
+        "motion": "v131-062-lossSplit",
+        "program": 16,
+        "camera": 4,
+        "variant": 1
+      },
+      {
+        "title": "未知の管理能力に賭ける",
+        "kind": "promotionDoor",
+        "labels": [
+          "新しい役割",
+          "複数の部下",
+          "不確実性"
+        ],
+        "motion": "v131-063-promotionDoor",
+        "program": 5,
+        "camera": 7,
+        "variant": 2
+      },
+      {
+        "title": "エースもチームも弱る",
+        "kind": "dualLoss",
+        "labels": [
+          "プレイヤー損失",
+          "管理損失",
+          "二重損失"
+        ],
+        "motion": "v131-064-dualLoss",
+        "program": 12,
+        "camera": 0,
+        "variant": 3
+      },
+      {
+        "title": "昨日のスターが今日の上司",
+        "kind": "collapseRebuild",
+        "labels": [
+          "評価が反転",
+          "別の能力",
+          "本人の困惑"
+        ],
+        "motion": "v131-065-collapseRebuild",
+        "program": 1,
+        "camera": 3,
+        "variant": 4
+      },
+      {
+        "title": "努力すると悪化する",
+        "kind": "micromanageDesk",
+        "labels": [
+          "資料修正",
+          "商談同行",
+          "コード代筆"
+        ],
+        "motion": "v131-066-micromanageDesk",
+        "program": 8,
+        "camera": 6,
+        "variant": 0
+      },
+      {
+        "title": "自分でやる方が速い",
+        "kind": "bottleneck",
+        "labels": [
+          "短期効率",
+          "長期育成",
+          "罠"
+        ],
+        "motion": "v131-067-bottleneck",
+        "program": 15,
+        "camera": 9,
+        "variant": 1
+      },
+      {
+        "title": "部下の学習機会が消える",
+        "kind": "delegation",
+        "labels": [
+          "失敗",
+          "助言",
+          "成長"
+        ],
+        "motion": "v131-068-delegation",
+        "program": 4,
+        "camera": 2,
+        "variant": 2
+      },
+      {
+        "title": "一時間を三時間で任せる",
+        "kind": "delegation",
+        "labels": [
+          "待つ",
+          "任せる",
+          "半年後に速くなる"
+        ],
+        "motion": "v131-069-delegation",
+        "program": 11,
+        "camera": 5,
+        "variant": 3
+      },
+      {
+        "title": "管理は他人を速くする仕事",
+        "kind": "teamRipple",
+        "labels": [
+          "自分の速さ",
+          "チームの速さ",
+          "増幅"
+        ],
+        "motion": "v131-070-teamRipple",
+        "program": 0,
+        "camera": 8,
+        "variant": 4
+      }
+    ],
+    "chapter7": [
+      {
+        "title": "優秀な人を昇進させるな？",
+        "kind": "questionDesk",
+        "labels": [
+          "極端な結論",
+          "それも違う",
+          "適性を見る"
+        ],
+        "motion": "v131-071-questionDesk",
+        "program": 7,
+        "camera": 1,
+        "variant": 0
+      },
+      {
+        "title": "成果と適性を分ける",
+        "kind": "filterGate",
+        "labels": [
+          "現在の成果",
+          "次の仕事",
+          "別指標"
+        ],
+        "motion": "v131-072-filterGate",
+        "program": 14,
+        "camera": 4,
+        "variant": 1
+      },
+      {
+        "title": "報酬と配置を分離",
+        "kind": "splitTrack",
+        "labels": [
+          "報いる",
+          "任せる",
+          "別制度"
+        ],
+        "motion": "v131-073-splitTrack",
+        "program": 3,
+        "camera": 7,
+        "variant": 2
+      },
+      {
+        "title": "専門職でも高給",
+        "kind": "dualCareer",
+        "labels": [
+          "エンジニア",
+          "研究者",
+          "営業"
+        ],
+        "motion": "v131-074-dualCareer",
+        "program": 10,
+        "camera": 0,
+        "variant": 3
+      },
+      {
+        "title": "上司より稼ぐ専門家",
+        "kind": "dualCareer",
+        "labels": [
+          "報酬",
+          "肩書",
+          "部下なし"
+        ],
+        "motion": "v131-075-dualCareer",
+        "program": 17,
+        "camera": 3,
+        "variant": 4
+      },
+      {
+        "title": "管理職を功労賞にしない",
+        "kind": "leverDual",
+        "labels": [
+          "椅子",
+          "賞品",
+          "配置"
+        ],
+        "motion": "v131-076-leverDual",
+        "program": 6,
+        "camera": 6,
+        "variant": 0
+      },
+      {
+        "title": "小さなプロジェクトで試す",
+        "kind": "pilotProject",
+        "labels": [
+          "少人数",
+          "期限",
+          "観察"
+        ],
+        "motion": "v131-077-pilotProject",
+        "program": 13,
+        "camera": 9,
+        "variant": 1
+      },
+      {
+        "title": "周囲の成果を見る",
+        "kind": "evidenceBoard",
+        "labels": [
+          "本人の成果",
+          "周囲の変化",
+          "manager effect"
+        ],
+        "motion": "v131-078-evidenceBoard",
+        "program": 2,
+        "camera": 2,
+        "variant": 2
+      },
+      {
+        "title": "専門職を二軍にしない",
+        "kind": "dualCareer",
+        "labels": [
+          "尊敬",
+          "報酬",
+          "対等な道"
+        ],
+        "motion": "v131-079-dualCareer",
+        "program": 9,
+        "camera": 5,
+        "variant": 3
+      },
+      {
+        "title": "一本の梯子を複線化する",
+        "kind": "branchingCareer",
+        "labels": [
+          "専門職",
+          "管理職",
+          "複数の成功"
+        ],
+        "motion": "v131-080-branchingCareer",
+        "program": 16,
+        "camera": 8,
+        "variant": 4
+      }
+    ],
+    "epilogue": [
+      {
+        "title": "夜11時の佐藤",
+        "kind": "nightOffice",
+        "labels": [
+          "提案資料",
+          "売上推移",
+          "一人残る"
+        ],
+        "motion": "v131-081-nightOffice",
+        "program": 5,
+        "camera": 1,
+        "variant": 0
+      },
+      {
+        "title": "優秀だから帰れない",
+        "kind": "micromanageDesk",
+        "labels": [
+          "速い",
+          "責任感",
+          "抱え込む"
+        ],
+        "motion": "v131-082-micromanageDesk",
+        "program": 12,
+        "camera": 4,
+        "variant": 1
+      },
+      {
+        "title": "評価した結果引き離す",
+        "kind": "lossSplit",
+        "labels": [
+          "得意な仕事",
+          "新しい椅子",
+          "逆説"
+        ],
+        "motion": "v131-083-lossSplit",
+        "program": 1,
+        "camera": 7,
+        "variant": 2
+      },
+      {
+        "title": "階段ではなく競技変更",
+        "kind": "peterStairs",
+        "labels": [
+          "成長？",
+          "役職",
+          "競技"
+        ],
+        "motion": "v131-084-peterStairs",
+        "program": 8,
+        "camera": 0,
+        "variant": 3
+      },
+      {
+        "title": "得点王を監督にする",
+        "kind": "playerCoach",
+        "labels": [
+          "昨日の得点",
+          "明日の采配",
+          "自動ではない"
+        ],
+        "motion": "v131-085-playerCoach",
+        "program": 15,
+        "camera": 3,
+        "variant": 4
+      },
+      {
+        "title": "強い会社の条件",
+        "kind": "branchingCareer",
+        "labels": [
+          "強みを維持",
+          "十分な報酬",
+          "適材適所"
+        ],
+        "motion": "v131-086-branchingCareer",
+        "program": 4,
+        "camera": 6,
+        "variant": 0
+      },
+      {
+        "title": "監督席に誰を置くか",
+        "kind": "allocationBoard",
+        "labels": [
+          "選手を残す",
+          "監督を選ぶ",
+          "全体得点"
+        ],
+        "motion": "v131-087-allocationBoard",
+        "program": 11,
+        "camera": 9,
+        "variant": 1
+      },
+      {
+        "title": "問いへの答え",
+        "kind": "leverDual",
+        "labels": [
+          "成果への報酬",
+          "次の適性",
+          "同じ梯子"
+        ],
+        "motion": "v131-088-leverDual",
+        "program": 0,
+        "camera": 2,
+        "variant": 2
+      },
+      {
+        "title": "部下も役職もいらないかも",
+        "kind": "dualCareer",
+        "labels": [
+          "専門性",
+          "自由",
+          "報酬"
+        ],
+        "motion": "v131-089-dualCareer",
+        "program": 7,
+        "camera": 5,
+        "variant": 3
+      },
+      {
+        "title": "最後の分岐",
+        "kind": "branchingCareer",
+        "labels": [
+          "管理職",
+          "専門職",
+          "会社を強くする道"
+        ],
+        "motion": "v131-090-branchingCareer",
+        "program": 14,
+        "camera": 8,
+        "variant": 4
+      }
+    ]
+  }
+}

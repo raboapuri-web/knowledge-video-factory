@@ -1,50 +1,79 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import json,re
 from collections import defaultdict
+import json,re
 ROOT=Path(__file__).resolve().parents[1]
-(ROOT/'src/scenes').mkdir(parents=True,exist_ok=True)
-(ROOT/'src/projects').mkdir(parents=True,exist_ok=True)
-rows=[]
-chapter_map={'A':'chapter1','B':'chapter2','C':'chapter3','D':'chapter4','E':'chapter5','F':'chapter6','G':'chapter7','H':'chapter8','I':'chapter9','J':'chapter10','K':'chapter11'}
-for line in (ROOT/'content/scene_narration.tsv').read_text(encoding='utf-8').splitlines():
-    line=line.strip()
-    if not line: continue
-    sid,motif,title,narration=line.split('|',3)
-    assert '\\n' not in title+narration
-    chapter='prologue' if sid.startswith('P') else 'epilogue' if sid.startswith('Z') else chapter_map[sid[0]]
-    items=[]
+CONTENT=ROOT/'content'
+PLAN=json.loads((CONTENT/'v131-shot-plan.json').read_text(encoding='utf-8'))['chapters']
+SCENES=ROOT/'src/scenes'; PROJECTS=ROOT/'src/projects'
+SCENES.mkdir(parents=True,exist_ok=True); PROJECTS.mkdir(parents=True,exist_ok=True)
+CHAPTERS=['prologue']+[f'chapter{i}' for i in range(1,8)]+['epilogue']
+PREFIX={'prologue':'P','chapter1':'A','chapter2':'B','chapter3':'C','chapter4':'D','chapter5':'E','chapter6':'F','chapter7':'G','epilogue':'Z'}
+
+def units(text):
+    out=[]
+    for s in re.findall(r'[^。！？!?]+[。！？!?]?',text):
+        s=re.sub(r'\s+','',s)
+        if s: out.append(s)
+    return out
+
+def divide(parts,wanted):
+    assert len(parts)>=wanted,(len(parts),wanted)
+    grouped=[];pos=0
+    for idx in range(wanted):
+        left=wanted-idx
+        if left==1: grouped.append(parts[pos:]);break
+        max_end=len(parts)-(left-1)
+        target=sum(map(len,parts[pos:]))/left
+        end=pos+1
+        while end<max_end and sum(map(len,parts[pos:end]))<target:end+=1
+        if end>pos+1 and abs(sum(map(len,parts[pos:end-1]))-target)<abs(sum(map(len,parts[pos:end]))-target):end-=1
+        grouped.append(parts[pos:end]);pos=end
+    assert len(grouped)==wanted and all(grouped)
+    assert ''.join(map(''.join,grouped))==''.join(parts)
+    return grouped
+
+def cue_break(narration):
+    chunks=[]
     for sentence in re.findall(r'[^。！？!?]+[。！？!?]?',narration):
         sentence=sentence.strip()
-        if not sentence: continue
+        if not sentence:continue
         while len(sentence)>35:
-            candidates=[i+1 for i,c in enumerate(sentence[:36]) if c in '、，,。' and i>=12]
-            boundary=max(candidates) if candidates else min([i for i in range(17,min(35,len(sentence))) if sentence[i] in 'はがをにでとへも'] or [33])
-            items.append(sentence[:boundary]);sentence=sentence[boundary:]
-        if sentence:items.append(sentence)
-    cues=[];t=0.0
-    for s in items:
-        duration=max(1.1,len(s)/6.1+0.18);t1=t+duration
-        display=s if len(s)<=19 else s[:19]+'\n'+s[19:]
-        assert len(display.split('\n'))<=2 and max(map(len,display.split('\n')))<=19,(sid,s,display)
-        cues.append({'text':s,'display':display,'start':round(t,3),'end':round(t1,3)});t=t1
-    rows.append({'id':sid,'chapter':chapter,'motif':motif,'title':title,'narration':narration,'cues':cues,'duration':round(t,3),'durationSource':'ESTIMATED_NOT_FOR_FINAL'})
-(ROOT/'content/scenes.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
-(ROOT/'content/timing_preview.json').write_text(json.dumps({r['id']:r for r in rows},ensure_ascii=False,indent=2)+'\n')
-for r in rows:
-    (ROOT/'src/scenes'/f"{r['id']}.tsx").write_text(
-      "import {makeScene2D} from '@motion-canvas/2d';\n"
-      "import {playMeaningScene} from '../lib/meaningScene';\n"
-      "import sceneData from '../../content/scenes.json';\n"
-      f"const scene = sceneData.find(s => s.id === '{r['id']}')!;\n"
-      "export default makeScene2D(function* (view) {yield* playMeaningScene(view, scene);});\n")
-chapters=['prologue']+[f'chapter{i}' for i in range(1,12)]+['epilogue']
+            opts=[i+1 for i,c in enumerate(sentence[:36]) if c in '、，,。' and i>=12]
+            if opts:boundary=max(opts)
+            else:
+                opts=[i for i in range(17,min(35,len(sentence))) if sentence[i] in 'はがをにでとへも']
+                boundary=min(opts) if opts else 33
+            chunks.append(sentence[:boundary]);sentence=sentence[boundary:]
+        if sentence:chunks.append(sentence)
+    assert ''.join(chunks).replace(' ','')==re.sub(r'\s+','',narration)
+    t=0.;cues=[]
+    for s in chunks:
+        d=max(1.10,len(s)/6.1+.18);display=s if len(s)<=19 else s[:19]+'\n'+s[19:]
+        assert len(display.split('\n'))<=2 and max(map(len,display.split('\n')))<=19
+        cues.append({'text':s,'display':display,'start':round(t,4),'end':round(t+d,4)});t+=d
+    return cues,round(t,4)
+
+rows=[];visual={};tsv=[]
+for chap in CHAPTERS:
+    raw=(CONTENT/f'v131-{chap}.txt').read_text(encoding='utf-8').strip()
+    plans=PLAN[chap];groups=divide(units(raw),len(plans))
+    for idx,(group,p) in enumerate(zip(groups,plans)):
+        sid=PREFIX[chap]+f'{idx:02d}';narration=''.join(group);cues,duration=cue_break(narration)
+        motif=f'v131_{chap}_{idx:02d}'
+        rows.append({'id':sid,'chapter':chap,'motif':motif,'title':p['title'],'narration':narration,'cues':cues,'duration':duration,'durationSource':'ESTIMATED_NOT_FOR_FINAL'})
+        visual[motif]={'kind':p['kind'],'motion':p['motion'],'labels':[p['title']]+p['labels'],'program':p['program'],'camera':p['camera'],'variant':p['variant']}
+        tsv.append('|'.join([sid,motif,p['title'],narration]))
+        (SCENES/f'{sid}.tsx').write_text("import {makeScene2D} from '@motion-canvas/2d';\nimport {playMeaningScene} from '../lib/meaningScene';\nimport sceneData from '../../content/scenes.json';\n"+f"const scene = sceneData.find(s => s.id === '{sid}')!;\n"+"export default makeScene2D(function* (view) {yield* playMeaningScene(view, scene);});\n")
+(CONTENT/'scenes.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
+(CONTENT/'visual_plan.json').write_text(json.dumps(visual,ensure_ascii=False,indent=2)+'\n')
+(CONTENT/'scene_narration.tsv').write_text('\n'.join(tsv)+'\n')
 MC_META={"version":1,"shared":{"background":"rgb(7,16,24)","range":[0,None],"size":{"x":1920,"y":1080},"audioOffset":0},"preview":{"fps":30,"resolutionScale":0.5},"rendering":{"fps":30,"resolutionScale":1,"colorSpace":"srgb","exporter":{"name":"@motion-canvas/ffmpeg","options":{"fastStart":True,"includeAudio":True}},"fileType":"image/png","quality":1}}
-for chapter in chapters:
-    ids=[r['id'] for r in rows if r['chapter']==chapter]
+for chap in CHAPTERS:
+    ids=[r['id'] for r in rows if r['chapter']==chap]
     imports='\n'.join(f"import s{i} from '../scenes/{sid}?scene';" for i,sid in enumerate(ids))
-    (ROOT/'src/projects'/f'{chapter}.ts').write_text("import {makeProject} from '@motion-canvas/core';\n"+imports+'\n'+f"export default makeProject({{name:'v129-{chapter}',scenes:[{','.join(f's{i}' for i in range(len(ids)))}],audio:'/media/{chapter}/narration.wav'}});\n")
-    (ROOT/'src/projects'/f'{chapter}.meta').write_text(json.dumps(MC_META,ensure_ascii=False,separators=(',',':')))
-chap=defaultdict(float)
-for r in rows:chap[r['chapter']]+=r['duration']
-print(json.dumps({'video':'V129','scene_count':len(rows),'estimated_duration_sec':round(sum(chap.values()),2),'chapters':chap,'cue_count':sum(len(r['cues']) for r in rows)},ensure_ascii=False))
+    (PROJECTS/f'{chap}.ts').write_text("import {makeProject} from '@motion-canvas/core';\n"+imports+'\n'+f"export default makeProject({{name:'v131-{chap}',scenes:[{','.join(f's{i}' for i in range(len(ids)))}],audio:'/media/{chap}/narration.wav'}});\n")
+    (PROJECTS/f'{chap}.meta').write_text(json.dumps(MC_META,ensure_ascii=False,separators=(',',':')))
+chapdur=defaultdict(float)
+for r in rows:chapdur[r['chapter']]+=r['duration']
+print(json.dumps({'video':'V131','scene_count':len(rows),'estimated_duration_sec':round(sum(chapdur.values()),2),'chapters':chapdur,'cue_count':sum(len(r['cues']) for r in rows)},ensure_ascii=False))

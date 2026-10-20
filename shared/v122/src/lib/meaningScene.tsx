@@ -6,279 +6,118 @@ import visualPlan from '../../content/visual_plan.json';
 
 type Cue={text:string;display:string;start:number;end:number};
 type Scene={id:string;chapter:string;motif:string;title:string;narration:string;cues:Cue[];duration:number};
-type Plan={kind:string;motion:string;labels:string[]};
-export const MICRO_BEATS_PER_SCENE=32;
-
-const K={bg:'#071015',deep:'#101A20',ink:'#172127',paper:'#F0EADF',muted:'#9DA7A7',red:'#B24A4A',crimson:'#742C31',gold:'#C8A55F',bronze:'#927247',jade:'#6D9A80',blue:'#55768B',cyan:'#74A7AB',earth:'#62503E',stone:'#4B5152',black:'#030608',white:'#FBF8F1',dust:'#C0B39A',night:'#091017',sky:'#385063',green:'#5D7657',orange:'#B06D45',violet:'#756E91',pink:'#C88998'};
+type Plan={kind:string;motion:string;labels:string[];program:number;camera:number;variant:number};
 const F='Noto Sans JP, Noto Sans CJK JP, sans-serif';
-const hash=(s:string)=>[...s].reduce((a,c)=>((a*33)^c.charCodeAt(0))>>>0,129);
-const tx=(s:string,x:number,y:number,sz=30,col=K.paper,w=700)=>new Txt({text:s,x,y,fontFamily:F,fontSize:sz,fill:col,fontWeight:w});
+const K={bg:'#071015',deep:'#101A22',panel:'#16242D',panel2:'#1C2D37',paper:'#F2EEE6',muted:'#98A6AE',red:'#C35660',red2:'#7E3137',gold:'#D1AE69',blue:'#5D8FB8',cyan:'#65AAB0',jade:'#6FA58C',orange:'#B7784D',violet:'#8378A6',ink:'#05090D',steel:'#41505B',floor:'#26323A',green:'#5D7F63'};
+export const V131_SCENE_COUNT=90;
+export const MOTION_PROGRAMS=18;
+const hash=(s:string)=>[...s].reduce((a,c)=>((a*33)^c.charCodeAt(0))>>>0,131);
 function rr(p:Node,x:number,y:number,w:number,h:number,fill:string,r=8,stroke?:string){const q=new Rect({x,y,width:w,height:h,fill,radius:r,stroke:stroke??fill,lineWidth:stroke?2:0});p.add(q);return q}
-function cc(p:Node,x:number,y:number,r:number,fill:string){const q=new Circle({x,y,width:r*2,height:r*2,fill});p.add(q);return q}
+function cc(p:Node,x:number,y:number,r:number,fill:string,stroke?:string){const q=new Circle({x,y,width:r*2,height:r*2,fill,stroke:stroke??fill,lineWidth:stroke?2:0});p.add(q);return q}
 function ln(p:Node,pts:[number,number][],col=K.muted,w=5){const q=new Line({points:pts,stroke:col,lineWidth:w,lineCap:'round',lineJoin:'round'});p.add(q);return q}
-function label(p:Node,s:string,x:number,y:number,col=K.paper,sz=25,w=700){const q=tx(s,x,y,sz,col,w);p.add(q);return q}
-function card(p:Node,s:string,x:number,y:number,w=280,col=K.gold){rr(p,x,y,w,68,K.deep,10,col);label(p,s,x,y,col,21)}
-function bar(p:Node,x:number,y:number,w:number,v:number,col:string,textLabel?:string){rr(p,x,y,w,30,'#263238',6);rr(p,x-w*(1-v)/2,y,Math.max(8,w*v),30,col,6);if(textLabel)label(p,textLabel,x,y-42,col,20);}
-function timeline(p:Node,y:number,items:{x:number;label:string;col:string}[]){ln(p,[[items[0].x,y],[items[items.length-1].x,y]],K.muted,7);for(const it of items){cc(p,it.x,y,14,it.col);label(p,it.label,it.x,y+48,it.col,20);}}
-function person(p:Node,x:number,y:number,s=.7,col=K.paper){const g=new Node({x,y,scale:s});p.add(g);cc(g,0,-60,24,col);rr(g,0,20,60,118,col,16);ln(g,[[-18,-4],[-55,55]],col,10);ln(g,[[18,-4],[55,55]],col,10);ln(g,[[-18,80],[-26,150]],col,12);ln(g,[[18,80],[26,150]],col,12);return g}
-function bowingPerson(p:Node,x:number,y:number,s=.6,col=K.paper){const g=person(p,x,y,s,col);g.rotation(18);return g}
-function table(p:Node,x:number,y:number,w=700){rr(p,x,y,w,30,K.earth,4);ln(p,[[x-w*.4,y+15],[x-w*.4,y+115]],K.dust,7);ln(p,[[x+w*.4,y+15],[x+w*.4,y+115]],K.dust,7)}
-function scroll(p:Node,x:number,y:number,w=340,h=180,title=''){rr(p,x,y,w,h,'#D8C9A9',5,K.bronze);cc(p,x-w/2,y,15,K.bronze);cc(p,x+w/2,y,15,K.bronze);if(title)label(p,title,x,y,K.ink,21)}
-function shrineGate(p:Node,x=0,y=0,s=1,col=K.red){ln(p,[[x-190*s,y+170*s],[x-190*s,y-150*s]],col,20*s);ln(p,[[x+190*s,y+170*s],[x+190*s,y-150*s]],col,20*s);ln(p,[[x-260*s,y-140*s],[x+260*s,y-140*s]],col,24*s);ln(p,[[x-220*s,y-90*s],[x+220*s,y-90*s]],col,15*s)}
-function shrine(p:Node,x=0,y=0,s=1){rr(p,x,y+60*s,520*s,280*s,'#4A2C2D',4);ln(p,[[x-330*s,y-80*s],[x,y-210*s],[x+330*s,y-80*s]],K.red,28*s);rr(p,x,y+40*s,180*s,210*s,'#24191B',4,K.gold);shrineGate(p,x,y+210*s,.45*s,K.red)}
-function temple(p:Node,x=0,y=0,s=1){rr(p,x,y+80*s,560*s,260*s,'#3B332A',4);ln(p,[[x-340*s,y-70*s],[x,y-190*s],[x+340*s,y-70*s]],K.bronze,24*s);for(let i=-1;i<=1;i++)rr(p,x+i*150*s,y+70*s,85*s,180*s,'#241E1B',4,K.dust)}
-function cross(p:Node,x:number,y:number,s=1,col=K.white){rr(p,x,y,34*s,220*s,col,4);rr(p,x,y-25*s,150*s,34*s,col,4)}
-function chapel(p:Node){rr(p,0,0,1920,920,'#2A2730',0);for(let i=0;i<5;i++)ln(p,[[-760+i*380,250],[-760+i*380,-170]],'#4B4454',7);cross(p,0,-125,1.1,K.gold);for(let i=0;i<5;i++)rr(p,-600+i*300,140,180,55,'#514843',5);}
-function gravestone(p:Node,x:number,y:number,s=.7){rr(p,x,y,120*s,220*s,'#676C6C',8);rr(p,x,y+125*s,190*s,36*s,'#555A5A',4)}
-function altar(p:Node,x:number,y:number,s=1){rr(p,x,y,420*s,500*s,'#3A2A20',8,K.bronze);rr(p,x,y-90*s,250*s,220*s,'#1E1713',4);cc(p,x,y-80*s,52*s,K.gold);rr(p,x-120*s,y+95*s,45*s,120*s,K.red,5);rr(p,x+120*s,y+95*s,45*s,120*s,K.red,5);rr(p,x,y+120*s,150*s,35*s,K.dust,4)}
-function survey(p:Node){rr(p,0,0,1920,920,'#101C23',0);graphAxes(p);}
-function graphAxes(p:Node){ln(p,[[-620,230],[-620,-250]],K.paper,4);ln(p,[[-620,230],[650,230]],K.paper,4)}
-function village(p:Node){rr(p,0,0,1920,920,'#20241F',0);rr(p,0,220,1920,300,'#384134',0);for(let i=0;i<5;i++){rr(p,-650+i*325,70,230,150,'#5A493A',3);ln(p,[[-780+i*325,-10],[-650+i*325,-100],[-520+i*325,-10]],K.earth,18);}}
-function mountainSite(p:Node){rr(p,0,0,1920,920,'#18221D',0);ln(p,[[-900,180],[-500,-160],[-160,30],[180,-220],[560,-50],[900,-180]],K.green,120);rr(p,0,230,1920,240,'#394A38',0)}
-function meijiOffice(p:Node){rr(p,0,0,1920,920,'#1B2024',0);table(p,0,170,950);for(let i=0;i<4;i++)scroll(p,-450+i*300,-80,240,130,['神','仏','祭祀','行政'][i]);}
-function classificationDesk(p:Node){rr(p,0,0,1920,920,'#101820',0);table(p,0,200,1100);['宗教','非宗教','慣習','公共儀礼'].forEach((x,i)=>card(p,x,-450+i*300,-170,230,[K.red,K.blue,K.gold,K.jade][i]));}
-function hotelPlanning(p:Node){rr(p,0,0,1920,920,'#211C22',0);table(p,0,180,900);for(let i=0;i<3;i++)scroll(p,-330+i*330,-70,270,160,['神前式','人前式','チャペル'][i]);}
-function cityNight(p:Node){rr(p,0,0,1920,920,K.night,0);for(let i=0;i<8;i++){rr(p,-760+i*220,40+(i%3)*60,150,500-(i%3)*70,'#1A252E',2);for(let j=0;j<4;j++)rr(p,-790+i*220, -100+j*90+(i%3)*60,28,36,j%2?K.gold:'#2C3A42',2);}}
-function homeRoom(p:Node){rr(p,0,0,1920,920,'#29231F',0);rr(p,0,180,1920,260,'#4A3A2B',0);rr(p,-500,-20,500,520,'#352A21',3);rr(p,450,-40,560,420,'#1B2025',3);}
-function stages8(){return Array.from({length:8},()=>new Node({opacity:0}));}
-function worldBase(root:Node,scene:Scene){const pal=['#071015','#0A1116','#0C161B','#11181B','#121515','#15120F'];rr(root,0,0,1920,1080,pal[hash(scene.motif)%pal.length],0);for(let i=0;i<9;i++)cc(root,-840+(hash(scene.motif+i.toString())%1680),-350+(hash('r'+scene.motif+i)%550),1.4+(i%3),i%2?K.gold:K.dust);rr(root,0,344,1920,3,'#273239',0)}
-function planIndex(plan:Plan){const m=plan.motion.match(/motion-(\d+)/);return m?Math.max(1,Math.min(79,Number(m[1]))):1}
-function addSceneText(p:Node,plan:Plan,v:number){
- const L=plan.labels,n=planIndex(plan);
- const anchors:[number,number][]= [[-520,-310],[520,-310],[-520,315],[520,315],[0,-315],[-350,315],[350,315],[0,315]];
- const [x,y]=anchors[(n+v)%anchors.length];
- const col=[K.gold,K.jade,K.red,K.blue,K.cyan,K.dust,K.pink,K.paper][(n*3+v)%8];
- const phrase=(L[0]??'').slice(0,28);
- if(!phrase)return;
- if((n+v)%4===0){ln(p,[[x-120,y+24],[x+120,y+24]],col,3);label(p,phrase,x,y,col,18,700);}
- else if((n+v)%4===1){cc(p,x-145,y,7,col);label(p,phrase,x+15,y,col,18,650);}
- else if((n+v)%4===2){ln(p,[[x-150,y],[x-105,y]],col,4);label(p,phrase,x+45,y,col,18,650);}
- else{rr(p,x,y,Math.min(520,180+phrase.length*18),42,'#111A20',8,col);label(p,phrase,x,y,col,17,700);}
-}
+function tx(p:Node,s:string,x:number,y:number,sz=28,col=K.paper,w=700){const q=new Txt({text:s,x,y,fontFamily:F,fontSize:sz,fill:col,fontWeight:w});p.add(q);return q}
+function pill(p:Node,s:string,x:number,y:number,w=300,col=K.gold){rr(p,x,y,w,66,K.deep,10,col);tx(p,s,x,y,20,col)}
+function person(p:Node,x:number,y:number,s=.55,col=K.paper){const g=new Node({x,y,scale:s});p.add(g);cc(g,0,-62,24,col);rr(g,0,20,58,116,col,16);ln(g,[[-18,-5],[-56,55]],col,10);ln(g,[[18,-5],[56,55]],col,10);ln(g,[[-18,80],[-28,150]],col,12);ln(g,[[18,80],[28,150]],col,12);return g}
+function desk(p:Node,x:number,y:number,w=620){rr(p,x,y,w,26,'#66513F',4);ln(p,[[x-w*.4,y+13],[x-w*.4,y+125]],'#8B735B',8);ln(p,[[x+w*.4,y+13],[x+w*.4,y+125]],'#8B735B',8)}
+function monitor(p:Node,x:number,y:number,w=440,h=250){rr(p,x,y,w,h,'#0A1117',8,K.steel);rr(p,x,y,w-28,h-28,'#12232D',5);ln(p,[[x,y+h/2],[x,y+h/2+55]],K.steel,8);rr(p,x,y+h/2+70,150,14,K.steel,3)}
+function bar(p:Node,x:number,y:number,w:number,v:number,col:string,label:string){rr(p,x,y,w,28,K.floor,5);rr(p,x-w*(1-v)/2,y,Math.max(10,w*v),28,col,5);tx(p,label,x,y-34,18,col)}
+function folder(p:Node,x:number,y:number,s:string,col=K.gold){rr(p,x,y,300,170,'#D5C5A7',6,col);rr(p,x-90,y-98,110,34,'#D5C5A7',4,col);tx(p,s,x,y,22,K.ink)}
+function arrow(p:Node,a:[number,number],b:[number,number],col=K.gold,w=6){ln(p,[a,b],col,w);cc(p,b[0],b[1],8,col)}
+function backdrop(root:Node,scene:Scene,plan:Plan){const seed=hash(scene.motif),pal=['#071015','#09131A','#0B141B','#0D1519','#101518','#111318'];rr(root,0,0,1920,930,pal[seed%pal.length],0);rr(root,0,335,1920,3,K.floor,0);const n=3+(seed%5);for(let i=0;i<n;i++){const x=-820+i*(1640/Math.max(1,n-1));const h=80+((seed+i*71)%180);rr(root,x,-260+h/2,120,h,'#101C24',4,'#20303A');}for(let i=0;i<5;i++)cc(root,-760+((seed+i*193)%1520),-350+((seed+i*67)%90),2+(i%2),i%2?K.gold:K.muted);tx(root,'V131 / '+scene.id,820,315,14,K.muted,500);tx(root,plan.kind.toUpperCase(),-780,315,13,K.muted,500)}
+function stages(){return Array.from({length:8},()=>new Node({opacity:0}));}
+function graphAxes(p:Node,x=0,y=0,w=900,h=430){ln(p,[[x-w/2,y+h/2],[x-w/2,y-h/2]],K.muted,3);ln(p,[[x-w/2,y+h/2],[x+w/2,y+h/2]],K.muted,3)}
 
-function prologue(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;
- if(v===0){rr(a,0,0,1920,920,'#15222A',0);shrineGate(b,0,-50,.85);for(let i=0;i<9;i++)person(c,-650+i*160,170,.22,K.paper);bowingPerson(d,0,20,.35,K.paper);card(e,'家族の健康',-300,250,260,K.gold);card(f,'仕事の成功',300,250,260,K.jade);label(g,'1月1日 11:00',0,-285,K.paper,28);}
- else if(v===1){chapel(a);person(b,-140,80,.35,K.paper);person(b,140,80,.35,K.white);cross(c,0,-120,.85,K.gold);ln(d,[[-120,70],[120,70]],K.gold,6);cc(e,0,70,24,K.gold);card(f,'誓い',0,260,220,K.paper);label(g,'半年後',0,-270,K.gold,31);}
- else if(v===2){rr(a,0,0,1920,920,'#171617',0);temple(b,0,-40,.82);for(let i=0;i<6;i++)person(c,-500+i*200,170,.25,K.black);scroll(d,0,-20,240,130,'戒名');gravestone(e,520,160,.55);card(f,'読経・焼香・墓参り',0,280,360,K.dust);label(g,'数年後',0,-270,K.muted,30);}
- else if(v===3){rr(a,0,0,1920,920,'#0E161C',0);shrineGate(b,-500,-20,.42);cross(c,0,-10,.55,K.gold);temple(d,500,30,.5);person(e,0,170,.38,K.paper);['神道？','キリスト教？','仏教？'].forEach((x,i)=>card(f,x,-500+i*500,260,250,[K.red,K.gold,K.jade][i]));label(g,'「宗教は特に…」',0,-245,K.paper,31);}
- else if(v===4){survey(a);bar(b,0,-120,900,.46,K.gold,'仏教');bar(c,0,0,900,.42,K.blue,'宗教なし');bar(d,0,120,900,.04,K.red,'神道');person(e,520,-70,.32,K.paper);card(f,'宗教なしでも祈る',330,250,330,K.jade);label(g,'所属 ≠ 行動',0,-260,K.paper,30);}
- else if(v===5){rr(a,0,0,1920,920,'#11191E',0);person(b,0,-40,.42,K.paper);shrineGate(c,-520,100,.35);gravestone(d,-170,120,.45);altar(e,210,100,.55);scroll(f,520,100,260,160,'お守り');ln(g,[[-480,210],[480,210]],K.gold,5);}
- else{timeline(a,20,[{x:-650,label:'神仏習合',col:K.gold},{x:-320,label:'寺請',col:K.jade},{x:0,label:'神仏分離',col:K.red},{x:320,label:'国家神道',col:K.blue},{x:650,label:'無宗教',col:K.paper}]);label(b,'日本は何教なのか？',0,-250,K.paper,40);card(c,'問いそのものを疑う',0,250,350,K.gold);}
- addSceneText(h,plan,v);
-}
-function chapterA(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;
- if(v===0){survey(a);bar(b,0,-100,900,.77,K.cyan,'総人口');bar(c,0,60,900,1.0,K.gold,'宗教団体の信者合計');label(d,'人口 < 信者数',0,235,K.red,35);}
- else if(v===1){rr(a,0,0,1920,920,'#10181D',0);for(let i=0;i<8;i++)person(b,-600+i*170,150,.24,K.paper);for(let i=0;i<5;i++)cc(c,-400+i*200,-80,38,K.red);for(let i=0;i<5;i++)cc(d,-300+i*200,20,38,K.gold);label(e,'同じ人が複数回カウント',0,-250,K.paper,29);}
- else if(v===2){person(a,0,30,.4,K.paper);shrineGate(b,-420,40,.38);temple(c,420,70,.4);ln(d,[[-260,60],[-70,40]],K.red,5);ln(d,[[260,60],[70,40]],K.gold,5);card(e,'氏子',-420,250,220,K.red);card(f,'檀家',420,250,220,K.gold);}
- else if(v===3){rr(a,0,0,1920,920,'#121B1F',0);person(b,0,0,.38,K.paper);['初詣','受験祈願','仏壇','葬儀'].forEach((x,i)=>card(c,x,-510+i*340,150+(i%2)*80,250,[K.red,K.gold,K.jade,K.blue][i]));ln(d,[[-480,80],[480,80]],K.dust,4);label(e,'場面ごとに使う',0,-245,K.paper,30);}
- else if(v===4){classificationDesk(a);['キリスト教徒','イスラム教徒','仏教徒','無宗教'].forEach((x,i)=>scroll(b,-450+i*300,40,240,130,x));card(c,'一人一箱',0,260,250,K.red);label(d,'普遍的なモデル？',0,-245,K.paper,29);}
- else{survey(a);bar(b,-50,-120,850,.28,K.red,'所属');bar(c,-50,0,850,.62,K.gold,'儀礼');bar(d,-50,120,850,.48,K.jade,'祖先・寺社');label(e,'測り方で見える姿が変わる',0,270,K.paper,28);card(f,'測定問題',480,-210,240,K.gold);}
- addSceneText(h,plan,v);
-}
-function chapterB(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;mountainSite(a);
- if(v===0){shrine(b,-350,30,.5);temple(c,350,30,.5);person(d,0,150,.3,K.paper);ln(e,[[-140,60],[140,60]],K.gold,5);card(f,'同じ聖地',0,270,260,K.gold);}
- else if(v===1){shrine(b,-420,40,.42);temple(c,420,40,.42);ln(d,[[-230,40],[230,40]],K.gold,8);cc(e,0,40,70,K.gold);label(e,'神仏習合',0,40,K.ink,18);card(f,'対立ではなく複合',0,270,310,K.jade);}
- else if(v===2){cc(b,-370,-20,110,K.gold);label(b,'仏・菩薩',-370,-20,K.ink,23);cc(c,370,-20,110,K.red);label(c,'神',370,-20,K.paper,26);ln(d,[[-240,-20],[240,-20]],K.gold,7);card(e,'本地垂迹',0,160,260,K.gold);label(f,'異なる姿で現れる',0,270,K.paper,26);}
- else if(v===3){shrineGate(b,-420,30,.42);temple(c,420,70,.42);person(d,0,160,.35,K.paper);card(e,'神道？',-350,260,230,K.red);card(f,'仏教？',350,260,230,K.gold);label(g,'「なぜ一つに決める？」',0,-245,K.paper,30);}
- else if(v===4){bannerMix(b,-480,60,'祭り',K.red);bannerMix(c,-160,60,'供養',K.gold);bannerMix(d,160,60,'修行',K.jade);bannerMix(e,480,60,'祈願',K.blue);ln(f,[[-480,170],[480,170]],K.dust,5);card(g,'一人の生活に共存',0,270,330,K.paper);}
- else{classificationDesk(b);scroll(c,-350,40,300,150,'神道的');scroll(d,0,40,300,150,'仏教的');scroll(e,350,40,300,150,'民間信仰');label(f,'後世の分類',0,220,K.gold,27);label(g,'当時の自己理解とは限らない',0,-245,K.paper,28);}
- addSceneText(h,plan,v);
-}
-function bannerMix(p:Node,x:number,y:number,t:string,c:string){rr(p,x,y,190,300,'#22292B',6,c);label(p,t,x,y,c,24);}
-function chapterC(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;village(a);
- if(v===0){person(b,-520,170,.35,K.paper);temple(c,380,40,.55);ln(d,[[-400,150],[180,80]],K.gold,6);scroll(e,-120,-40,300,140,'寺へ証明を求める');card(f,'キリシタンではない',0,270,300,K.red);}
- else if(v===1){scroll(b,-420,-30,360,180,'寺請証文');temple(c,380,50,.55);for(let i=0;i<5;i++)person(d,-400+i*180,180,.22,K.paper);ln(e,[[-260,20],[220,40]],K.gold,5);card(f,'宗教 + 住民管理',0,270,320,K.gold);}
- else if(v===2){temple(b,0,-30,.52);for(let i=0;i<4;i++){person(c,-450+i*300,160,.22,K.paper);scroll(d,-450+i*300,30,210,95,['祖父','父','子','孫'][i]);}ln(e,[[-450,230],[450,230]],K.jade,6);card(f,'世代を越える檀家関係',0,285,360,K.jade);}
- else if(v===3){temple(b,-420,40,.42);['出生','結婚','死亡','葬儀','法事'].forEach((x,i)=>card(c,x,-120+(i%3)*300,-40+Math.floor(i/3)*120,240,[K.gold,K.blue,K.red,K.jade,K.paper][i]));card(d,'社会インフラ',380,260,300,K.gold);label(e,'寺が人生の節目へ入る',0,-250,K.paper,29);}
- else if(v===4){scroll(b,-430,-20,390,520,'何を信じる？');scroll(c,430,-20,390,520,'どの寺と結びつく？');ln(d,[[-150,-20],[150,-20]],K.gold,7);card(e,'所属は家単位',0,260,280,K.jade);}
- else{temple(b,0,-20,.5);gravestone(c,-430,160,.48);altar(d,420,80,.45);person(e,0,170,.3,K.paper);card(f,'葬送仏教の長い制度史',0,285,390,K.gold);label(g,'信仰心と儀礼参加が分離',0,-250,K.paper,27);}
- addSceneText(h,plan,v);
-}
-function chapterD(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;
- if(v===0){mountainSite(a);shrine(b,-350,30,.45);temple(c,350,30,.45);scroll(d,0,-120,320,150,'1868年 命令');ln(e,[[-180,-60],[-360,40]],K.red,6);ln(e,[[180,-60],[360,40]],K.gold,6);card(f,'分けなさい',0,270,270,K.red);}
- else if(v===1){rr(a,0,0,1920,920,'#171D20',0);shrine(b,-420,20,.5);temple(c,420,20,.5);ln(d,[[0,-190],[0,230]],K.red,10);card(e,'神',-420,260,210,K.red);card(f,'仏',420,260,210,K.gold);label(g,'行政が境界線を引く',0,-245,K.paper,29);}
- else if(v===2){temple(b,0,20,.5);scroll(c,-420,20,240,160,'仏像');scroll(d,420,20,240,160,'寺領');ln(e,[[-300,80],[-550,180]],K.red,7);ln(e,[[300,80],[550,180]],K.red,7);card(f,'地域によっては破壊へ',0,270,350,K.red);label(g,'神仏分離 ≠ 廃仏毀釈',0,-245,K.paper,27);}
- else if(v===3){mountainSite(a);shrine(b,-480,30,.38);temple(c,-120,50,.35);label(d,'昨日',-300,-200,K.dust,28);shrine(e,430,30,.5);ln(f,[[0,-250],[0,260]],K.red,7);label(g,'今日：制度上分離',420,-220,K.paper,27);}
- else if(v===4){shrineGate(b,-430,50,.48);temple(c,430,70,.45);card(d,'自然な違い？',0,-150,280,K.paper);timeline(e,230,[{x:-450,label:'長い習合',col:K.gold},{x:0,label:'1868',col:K.red},{x:450,label:'明確な分離',col:K.blue}]);}
- else{classificationDesk(a);scroll(b,-380,40,320,150,'神道');scroll(c,380,40,320,150,'仏教');person(d,0,120,.35,K.paper);card(e,'どちら？',0,-130,250,K.red);label(f,'質問自体が近代的',0,275,K.gold,29);}
- addSceneText(h,plan,v);
-}
-function chapterE(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;classificationDesk(a);
- if(v===0){scroll(b,-420,40,320,150,'religion');scroll(c,420,40,320,150,'宗教');ln(d,[[-230,40],[230,40]],K.gold,8);card(e,'近代の翻訳・概念化',0,270,340,K.gold);}
- else if(v===1){card(b,'信教の自由',0,-120,320,K.jade);['仏教','キリスト教','神社祭祀','祖先祭祀'].forEach((x,i)=>scroll(c,-450+i*300,80,240,130,x));label(d,'何が宗教？',0,255,K.paper,29);}
- else if(v===2){['宗教','道徳','慣習','公共儀礼'].forEach((x,i)=>rr(b,-450+i*300,80,240,200,'#1C272D',8,[K.red,K.blue,K.gold,K.jade][i]));['仏教','教会','祖先','神社'].forEach((x,i)=>card(c,x,-450+i*300,-80,200,[K.red,K.blue,K.gold,K.jade][i]));ln(d,[[-450,-40],[-450,10]],K.red,5);ln(e,[[-150,-40],[150,10]],K.gold,5);ln(f,[[450,-40],[450,10]],K.jade,5);}
- else if(v===3){cc(b,-380,30,125,K.red);label(b,'宗教',-380,30,K.paper,30);cc(c,380,30,125,K.blue);label(c,'非宗教',380,30,K.paper,26);ln(d,[[-250,30],[250,30]],K.gold,9);card(e,'境界は制度で動く',0,270,340,K.gold);}
- else if(v===4){timeline(b,20,[{x:-600,label:'習合',col:K.gold},{x:-200,label:'分離',col:K.red},{x:200,label:'分類',col:K.blue},{x:600,label:'所属',col:K.jade}]);card(c,'宗教を輸入',-330,260,280,K.red);card(d,'物差しも再編',330,260,300,K.gold);label(e,'近代化',0,-240,K.paper,34);}
- else{person(b,0,40,.4,K.paper);card(c,'宗教あり',-350,120,280,K.red);card(d,'宗教なし',350,120,280,K.blue);ln(e,[[-180,100],[180,100]],K.gold,5);label(f,'自己認識も分類語で作られる',0,280,K.paper,27);card(g,'無宗教',0,-150,260,K.gold);}
- addSceneText(h,plan,v);
-}
-function chapterF(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;meijiOffice(a);
- if(v===0){scroll(b,-430,-50,360,160,'神社局');scroll(c,430,-50,360,160,'宗教行政');ln(d,[[0,-190],[0,220]],K.red,7);card(e,'別の行政枠',0,270,280,K.gold);}
- else if(v===1){shrine(b,0,-30,.55);person(c,0,170,.28,K.paper);card(d,'神職',-380,220,220,K.red);card(e,'祭祀',0,220,220,K.gold);card(f,'「宗教ではない」',380,220,300,K.blue);label(g,'奇妙な整理',0,-250,K.paper,29);}
- else if(v===2){card(b,'信教の自由',-350,-80,300,K.jade);card(c,'国家儀礼',350,-80,300,K.red);ln(d,[[-140,-60],[140,-60]],K.gold,7);person(e,0,140,.35,K.paper);card(f,'両立させる論理',0,275,300,K.gold);}
- else if(v===3){['神社制度','皇室祭祀','教育','行政','国民儀礼'].forEach((x,i)=>card(b,x,-500+(i%3)*500,-80+Math.floor(i/3)*130,300,[K.red,K.gold,K.blue,K.jade,K.paper][i]));ln(c,[[-480,150],[480,150]],K.dust,4);label(d,'国家神道＝制度の組み合わせ',0,280,K.paper,28);}
- else if(v===4){shrineGate(b,-420,20,.4);gravestone(c,0,90,.45);altar(d,420,20,.42);card(e,'宗教ではなく習慣',0,250,340,K.gold);label(f,'直接の因果ではなく歴史的背景',0,-240,K.paper,26);}
- else{classificationDesk(a);['自由','教育','行政','公共'].forEach((x,i)=>scroll(b,-450+i*300,50,240,130,x));card(c,'分類が扱いを変える',0,260,340,K.red);label(d,'分類＝権力',0,-245,K.gold,32);}
- addSceneText(h,plan,v);
-}
-function chapterG(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;hotelPlanning(a);
- if(v===0){person(b,-180,100,.33,K.paper);person(b,180,100,.33,K.white);['料理','衣装','花','写真'].forEach((x,i)=>card(c,x,-450+i*300,-100,220,[K.gold,K.pink,K.jade,K.blue][i]));scroll(d,0,100,320,150,'式の形式を選ぶ');}
- else if(v===1){chapel(a);person(b,-140,80,.3,K.paper);person(b,140,80,.3,K.white);cross(c,0,-120,.7,K.gold);card(d,'改宗ではない',0,250,280,K.blue);label(e,'様式として選ばれる',0,-245,K.paper,29);}
- else if(v===2){person(b,0,20,.4,K.paper);card(c,'強い無神論',-360,140,300,K.red);card(d,'特定宗教に属さない',360,140,340,K.jade);ln(e,[[-150,120],[150,120]],K.gold,6);card(f,'無宗教',0,-150,260,K.gold);}
- else if(v===3){person(b,0,0,.4,K.paper);rr(c,0,170,900,150,'#1B252A',8,K.muted);label(c,'「宗教に強く傾倒していません」',0,170,K.paper,25);card(d,'社会的な距離',0,-150,290,K.gold);}
- else if(v===4){['七五三','厄除け','安産','葬儀','法事'].forEach((x,i)=>card(b,x,-500+(i%3)*500,-70+Math.floor(i/3)*120,300,[K.red,K.gold,K.jade,K.blue,K.paper][i]));person(c,0,200,.3,K.paper);card(d,'所属宣言なしで利用',0,290,360,K.jade);}
- else{survey(a);bar(b,-40,-120,850,.24,K.red,'所属');bar(c,-40,0,850,.52,K.gold,'信念');bar(d,-40,120,850,.76,K.jade,'実践');label(e,'三つを分けて見る',0,275,K.paper,29);card(f,'所属弱い・実践残る',420,-210,320,K.gold);}
- addSceneText(h,plan,v);
-}
-function chapterH(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;
- if(v===0){cityNight(a);shrineGate(b,420,80,.32);person(c,-420,150,.3,K.paper);ln(d,[[-300,140],[280,100]],K.gold,5);card(e,'明日の商談',-420,-120,260,K.red);bowingPerson(f,420,120,.28,K.paper);}
- else if(v===1){survey(a);person(b,-480,80,.3,K.paper);bar(c,50,-50,800,.25,K.gold,'宗教なし層でも祈る人');shrineGate(d,460,100,.28);label(e,'自己認識 ≠ 祈り',0,260,K.paper,29);}
- else if(v===2){homeRoom(a);altar(b,-360,20,.62);rr(c,420,10,250,320,'#2C2A25',6,K.dust);label(c,'家族写真',420,10,K.paper,24);person(d,0,180,.28,K.paper);card(e,'家庭の宗教空間',0,280,320,K.gold);}
- else if(v===3){homeRoom(a);cc(b,-360,-20,75,K.gold);label(b,'祖父母',-360,-20,K.ink,22);person(c,360,120,.35,K.paper);ln(d,[[-280,10],[240,90]],K.gold,4);card(e,'「見守っている」',0,260,300,K.jade);label(f,'身近な超越者',0,-245,K.paper,29);}
- else if(v===4){altar(b,-420,10,.5);person(c,420,120,.35,K.paper);card(d,'外から：宗教儀礼',-360,260,320,K.red);card(e,'本人：家族の習慣',360,260,320,K.gold);ln(f,[[-150,80],[150,80]],K.dust,5);}
- else{rr(a,0,0,1920,920,'#10191E',0);cc(b,-430,20,110,K.red);label(b,'所属',-430,20,K.paper,26);cc(c,0,20,110,K.gold);label(c,'信念',0,20,K.ink,26);cc(d,430,20,110,K.jade);label(d,'実践',430,20,K.ink,26);ln(e,[[-300,20],[-120,20],[120,20],[300,20]],K.dust,5);card(f,'三つはずれる',0,270,300,K.paper);}
- addSceneText(h,plan,v);
-}
-function chapterI(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;
- if(v===0){rr(a,0,0,1920,920,'#121A1E',0);shrineGate(b,-520,60,.32);chapelMini(c,-170,60);gravestone(d,180,80,.45);altar(e,520,40,.36);ln(f,[[-520,190],[520,190]],K.gold,5);label(g,'同じ一日',0,-245,K.paper,31);}
- else if(v===1){person(b,0,-40,.38,K.paper);['正月','死者','結婚','祭り','受験'].forEach((x,i)=>card(c,x,-480+i*240,150+(i%2)*60,210,[K.red,K.gold,K.blue,K.jade,K.paper][i]));card(d,'場面が選ぶ',0,280,270,K.gold);}
- else if(v===2){shrineGate(b,-500,70,.3);temple(c,-170,90,.3);cross(d,170,20,.45,K.gold);rr(e,500,70,190,190,'#283128',5,K.jade);label(e,'地域祭り',500,70,K.paper,18);['祝い','葬送','結婚','共同体'].forEach((x,i)=>label(f,x,-500+i*330,250,[K.red,K.gold,K.blue,K.jade][i],21));}
- else if(v===3){scroll(b,-430,-20,380,520,'民族性');scroll(c,430,-20,380,520,'制度史');ln(d,[[-150,-20],[150,-20]],K.gold,7);card(e,'「何でも混ぜる民族」では足りない',0,270,420,K.red);}
- else if(v===4){timeline(a,10,[{x:-650,label:'神仏習合',col:K.gold},{x:-390,label:'寺請',col:K.jade},{x:-130,label:'神仏分離',col:K.red},{x:130,label:'宗教概念',col:K.blue},{x:390,label:'国家神道',col:K.violet},{x:650,label:'無宗教',col:K.paper}]);person(b,0,190,.3,K.paper);card(c,'一人の生活に歴史層が重なる',0,290,430,K.gold);}
- else{classificationDesk(a);person(b,0,140,.32,K.paper);card(c,'「何教？」',-330,-40,280,K.red);card(d,'「何をする？」',330,-40,300,K.jade);ln(e,[[-120,-20],[120,-20]],K.gold,6);label(f,'質問を変える',0,270,K.paper,29);}
- addSceneText(h,plan,v);
-}
-function chapelMini(p:Node,x:number,y:number){rr(p,x,y,230,280,'#322B34',4);cross(p,x,y-40,.42,K.gold);}
-function chapterJ(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;
- if(v===0){cityNight(a);for(let i=0;i<6;i++)person(b,-500+i*200,210,.22,K.paper);temple(c,500,60,.32);ln(d,[[-400,180],[400,80]],K.muted,4);card(e,'都市化・人口移動',0,-170,320,K.gold);}
- else if(v===1){survey(a);bar(b,-30,-80,850,.75,K.gold,'育った宗教');bar(c,-30,80,850,.43,K.blue,'成人後の所属');ln(d,[[420,-80],[420,80]],K.red,6);card(e,'離脱',480,0,180,K.red);}
- else if(v===2){village(a);temple(b,0,-20,.45);for(let i=0;i<5;i++)person(c,-480+i*240,180,.22,i<2?K.paper:K.muted);card(d,'檀家関係の弱まり',0,280,340,K.red);label(e,'家族構造も変化',0,-245,K.paper,29);}
- else if(v===3){graphAxes(a);ln(b,[[-560,-160],[-300,-80],[0,20],[300,100],[560,160]],K.red,9);ln(c,[[-560,170],[-300,120],[0,80],[300,50],[560,30]],K.gold,9);label(d,'所属',-430,-190,K.red,24);label(e,'儀礼',-430,160,K.gold,24);card(f,'世俗化 ≠ 消滅',0,280,300,K.paper);}
- else if(v===4){altar(b,-420,20,.45);shrineGate(c,0,40,.3);gravestone(d,420,100,.42);card(e,'文化・家族習慣へ溶け込む',0,270,390,K.gold);label(f,'宗教という名前が薄れる',0,-245,K.paper,28);}
- else{survey(a);bar(b,-40,-100,850,.34,K.red,'強い所属');bar(c,-40,40,850,.71,K.gold,'儀礼参加');bar(d,-40,180,850,.56,K.jade,'祖先との関係');card(e,'世俗的 + 儀礼的',0,-210,320,K.paper);}
- addSceneText(h,plan,v);
-}
-function chapterK(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;
- if(v===0){rr(a,0,0,1920,920,'#10181E',0);person(b,0,-30,.4,K.paper);shrineGate(c,-520,130,.3);cross(d,-170,80,.38,K.gold);temple(e,180,130,.3);altar(f,520,80,.3);card(g,'「無宗教です」',0,270,300,K.blue);}
- else if(v===1){person(b,0,0,.4,K.paper);card(c,'神や祖先を否定',-360,150,320,K.red);card(d,'一つの所属を否定',360,150,340,K.jade);ln(e,[[-150,130],[150,130]],K.gold,6);label(f,'どちらを意味している？',0,-240,K.paper,28);}
- else if(v===2){['神社','墓参り','仏壇','無宗教'].forEach((x,i)=>card(b,x,-450+i*300,80,240,[K.red,K.gold,K.jade,K.blue][i]));ln(c,[[-450,160],[450,160]],K.dust,5);card(d,'共通言語',0,270,280,K.gold);}
- else if(v===3){scroll(b,-430,-10,400,540,'統計の宗教');scroll(c,430,-10,400,540,'比喩としての無宗教');ln(d,[[-150,-10],[150,-10]],K.gold,6);card(e,'「最大の宗教」は比喩',0,270,340,K.red);}
- else if(v===4){rr(a,0,0,1920,920,'#0F181D',0);cc(b,-420,20,100,K.red);label(b,'所属',-420,20,K.paper,24);cc(c,0,20,100,K.gold);label(c,'信念',0,20,K.ink,24);cc(d,420,20,100,K.jade);label(d,'実践',420,20,K.ink,24);person(e,0,185,.28,K.paper);card(f,'別々のルールで動く',0,285,340,K.gold);}
- else{classificationDesk(a);card(b,'日本は何教？',-350,-50,300,K.red);card(c,'日本人は宗教をどう使う？',350,-50,390,K.jade);ln(d,[[-120,-30],[120,-30]],K.gold,7);card(e,'問いを作り直す',0,270,300,K.gold);}
- addSceneText(h,plan,v);
-}
-function epilogue(root:Node,s:Node[],plan:Plan,v:number){const[a,b,c,d,e,f,g,h]=s;
- if(v===0){rr(a,0,0,1920,920,'#091017',0);shrineGate(b,0,0,.58);for(let i=0;i<5;i++)person(c,-400+i*200,180,.18,K.muted);label(d,'1月1日 夜',0,-250,K.paper,30);card(e,'参拝客が減る',0,270,280,K.gold);}
- else if(v===1){rr(a,0,0,1920,920,'#0C1318',0);shrineGate(b,-500,80,.28);altar(c,0,60,.33);chapelMini(d,500,80);ln(e,[[-500,220],[500,220]],K.gold,5);card(f,'同じ町、同じ夜',0,285,320,K.paper);}
- else if(v===2){person(b,0,-20,.35,K.paper);card(c,'何教？',-480,130,220,K.red);card(d,'正月は？',-160,130,220,K.gold);card(e,'葬儀は？',160,130,220,K.jade);card(f,'誰に祈る？',480,130,240,K.blue);label(g,'質問が見える宗教を変える',0,275,K.paper,28);}
- else if(v===3){['どこへ行く','誰に手を合わせる','死者をどう扱う','何を選ぶ'].forEach((x,i)=>scroll(b,-450+i*300,60,250,150,x));person(c,0,210,.28,K.paper);card(d,'行動を見る',0,-150,260,K.gold);}
- else if(v===4){person(b,0,10,.4,K.paper);shrineGate(c,-440,140,.26);altar(d,0,130,.28);gravestone(e,440,160,.34);card(f,'関係はある／名前はない',0,285,360,K.gold);label(g,'宗教 without 宗教ラベル',0,-240,K.paper,28);}
- else{timeline(a,10,[{x:-650,label:'習合',col:K.gold},{x:-390,label:'寺請',col:K.jade},{x:-130,label:'分離',col:K.red},{x:130,label:'国家',col:K.blue},{x:390,label:'世俗化',col:K.violet},{x:650,label:'無宗教',col:K.paper}]);card(b,'神道だけでもない',-350,245,300,K.red);card(c,'仏教だけでもない',0,245,300,K.gold);card(d,'無宗教だけでもない',350,245,320,K.blue);label(e,'「日本は何教？」という問いが狭い',0,-245,K.paper,32);}
- addSceneText(h,plan,v);
-}
-function buildScene(root:Node,scene:Scene,plan:Plan):Node[]{worldBase(root,scene);const s=stages8();s.forEach(n=>root.add(n));switch(scene.motif){
-case 'newyear_shrine_queue':prologue(root,s,plan,0);break;case 'chapel_wedding':prologue(root,s,plan,1);break;case 'buddhist_funeral':prologue(root,s,plan,2);break;case 'religion_identity_question':prologue(root,s,plan,3);break;case 'survey_paradox':prologue(root,s,plan,4);break;case 'central_paradox':prologue(root,s,plan,5);break;case 'journey_through_history':prologue(root,s,plan,6);break;
-case 'population_table':chapterA(root,s,plan,0);break;case 'religion_count_exceeds_population':chapterA(root,s,plan,1);break;case 'ujiko_danka_overlap':chapterA(root,s,plan,2);break;case 'one_person_many_rituals':chapterA(root,s,plan,3);break;case 'western_membership_model':chapterA(root,s,plan,4);break;case 'measurement_problem':chapterA(root,s,plan,5);break;
-case 'ancient_sacred_site':chapterB(root,s,plan,0);break;case 'shinbutsu_shugo':chapterB(root,s,plan,1);break;case 'honji_suijaku':chapterB(root,s,plan,2);break;case 'modern_categories_fail':chapterB(root,s,plan,3);break;case 'ritual_ecology':chapterB(root,s,plan,4);break;case 'historian_labels':chapterB(root,s,plan,5);break;
-case 'edo_village_temple':chapterC(root,s,plan,0);break;case 'terauke_certificate':chapterC(root,s,plan,1);break;case 'danka_system':chapterC(root,s,plan,2);break;case 'buddhism_as_social_infrastructure':chapterC(root,s,plan,3);break;case 'belonging_before_belief':chapterC(root,s,plan,4);break;case 'institutional_memory':chapterC(root,s,plan,5);break;
-case 'meiji_order_arrives':chapterD(root,s,plan,0);break;case 'shinbutsu_bunri':chapterD(root,s,plan,1);break;case 'haibutsu_kishaku':chapterD(root,s,plan,2);break;case 'before_after_sacred_space':chapterD(root,s,plan,3);break;case 'modern_naturalness':chapterD(root,s,plan,4);break;case 'question_transformed':chapterD(root,s,plan,5);break;
-case 'religion_word_import':chapterE(root,s,plan,0);break;case 'freedom_of_religion_problem':chapterE(root,s,plan,1);break;case 'classification_desk':chapterE(root,s,plan,2);break;case 'religion_nonreligion_boundary':chapterE(root,s,plan,3);break;case 'modern_category_creation':chapterE(root,s,plan,4);break;case 'category_shapes_identity':chapterE(root,s,plan,5);break;
-case 'shrine_bureaucracy':chapterF(root,s,plan,0);break;case 'not_religion_claim':chapterF(root,s,plan,1);break;case 'freedom_and_compulsion':chapterF(root,s,plan,2);break;case 'state_shinto_structure':chapterF(root,s,plan,3);break;case 'habit_not_religion_memory':chapterF(root,s,plan,4);break;case 'classification_is_power':chapterF(root,s,plan,5);break;
-case 'wedding_planning_room':chapterG(root,s,plan,0);break;case 'christian_style_without_conversion':chapterG(root,s,plan,1);break;case 'mushukyo_self_description':chapterG(root,s,plan,2);break;case 'distance_from_religious_intensity':chapterG(root,s,plan,3);break;case 'ritual_as_service':chapterG(root,s,plan,4);break;case 'belonging_and_practice_split':chapterG(root,s,plan,5);break;
-case 'salaryman_shrine':chapterH(root,s,plan,0);break;case 'prayer_without_identity':chapterH(root,s,plan,1);break;case 'home_altar':chapterH(root,s,plan,2);break;case 'ancestor_as_near_transcendence':chapterH(root,s,plan,3);break;case 'ritual_without_religion_label':chapterH(root,s,plan,4);break;case 'identity_behavior_gap':chapterH(root,s,plan,5);break;
-case 'day_of_many_religions':chapterI(root,s,plan,0);break;case 'situation_over_membership':chapterI(root,s,plan,1);break;case 'functional_specialization':chapterI(root,s,plan,2);break;case 'not_national_character':chapterI(root,s,plan,3);break;case 'historical_layers':chapterI(root,s,plan,4);break;case 'question_does_not_fit':chapterI(root,s,plan,5);break;
-case 'secular_city':chapterJ(root,s,plan,0);break;case 'leaving_religion':chapterJ(root,s,plan,1);break;case 'temple_without_danka':chapterJ(root,s,plan,2);break;case 'secularization_not_disappearance':chapterJ(root,s,plan,3);break;case 'religion_dissolves_into_life':chapterJ(root,s,plan,4);break;case 'secular_but_ritual':chapterJ(root,s,plan,5);break;
-case 'return_to_man':chapterK(root,s,plan,0);break;case 'what_mushukyo_denies':chapterK(root,s,plan,1);break;case 'mushukyo_as_common_language':chapterK(root,s,plan,2);break;case 'not_largest_religion_literal':chapterK(root,s,plan,3);break;case 'mushukyo_paradox_resolved':chapterK(root,s,plan,4);break;case 'question_reframed':chapterK(root,s,plan,5);break;
-case 'night_shrine':epilogue(root,s,plan,0);break;case 'three_spaces_same_city':epilogue(root,s,plan,1);break;case 'ask_three_questions':epilogue(root,s,plan,2);break;case 'look_at_actions':epilogue(root,s,plan,3);break;case 'religion_without_name':epilogue(root,s,plan,4);break;case 'final_answer':epilogue(root,s,plan,5);break;
-default:throw new Error('V129 missing dedicated scene '+scene.motif);}return s;}
-type MotionMode='procession'|'ceremony'|'memorial'|'evidence'|'classification'|'timeline'|'converge'|'ledger'|'split'|'taxonomy'|'service'|'dissolve'|'tableau';
-const ORDER_BANK:number[][]=[
- [0,1,2,3,4,5,6,7],[0,2,1,3,5,4,6,7],[0,1,3,2,4,6,5,7],[0,3,1,4,2,5,6,7],
- [0,2,4,1,3,6,5,7],[0,1,4,2,5,3,6,7],[0,3,2,1,5,4,6,7],[0,2,1,5,3,4,6,7],
- [0,1,2,4,3,6,5,7],[0,4,2,1,3,5,6,7],[0,2,3,1,4,5,6,7],[0,1,3,4,2,6,5,7]
-];
-function motionMode(scene:Scene,plan:Plan):MotionMode{
- const m=scene.motif;
- if(/queue|day_of_many|salaryman/.test(m))return'procession';
- if(/wedding|chapel/.test(m))return'ceremony';
- if(/funeral|ancestor|altar|grave/.test(m))return'memorial';
- if(/survey|population|count|measurement|overlap|split$|gap/.test(m))return'evidence';
- if(/question|identity|mushukyo|category|classification|boundary/.test(m))return'classification';
- if(/history|before_after|layers|secularization|return_to_man/.test(m))return'timeline';
- if(/shugo|honji|sacred|ritual_ecology/.test(m))return'converge';
- if(/terauke|danka|institutional|social_infrastructure/.test(m))return'ledger';
- if(/bunri|haibutsu|order_arrives|bureaucracy|state_shinto|power/.test(m))return'split';
- if(/religion_word|freedom|not_religion|modern_category/.test(m))return'taxonomy';
- if(/service|planning|style|situation|specialization|one_person_many/.test(m))return'service';
- if(/secular|leaving|dissolves|city|temple_without/.test(m))return'dissolve';
- const i=planIndex(plan)%13;return ['tableau','evidence','classification','timeline','converge','ledger','split','taxonomy','service','dissolve','procession','ceremony','memorial'][i] as MotionMode;
-}
-function entranceFor(mode:MotionMode,slot:number,idx:number):[number,number,number]{
- const side=((slot+idx)%2?1:-1),wide=120+((idx+slot)%4)*26,high=74+((idx+slot)%3)*24;
- switch(mode){
-  case'procession':return[side*wide,0,.98];
-  case'ceremony':return[0,slot%2?-high:high,.94];
-  case'memorial':return[0,-high,.92];
-  case'evidence':return[0,high,.9];
-  case'classification':return[side*wide,0,.9];
-  case'timeline':return[side*(90+slot*9),0,.96];
-  case'converge':return[side*wide,0,.9];
-  case'ledger':return[0,slot%2?high:-high,.95];
-  case'split':return[side*(wide+35),0,.95];
-  case'taxonomy':return[0,slot%2?-high:high,.9];
-  case'service':return[side*(80+slot*11),0,.96];
-  case'dissolve':return[0,slot%2?high:-high,.92];
-  default:return[0,0,.84+((slot+idx)%3)*.04];
+function draw(root:Node,scene:Scene,plan:Plan):Node[]{
+ backdrop(root,scene,plan);const s=stages();s.forEach(n=>root.add(n));const[a,b,c,d,e,f,g,h]=s,L=plan.labels,v=plan.variant;
+ switch(plan.kind){
+ case'rankingFloor':monitor(a,0,-70,760,390);for(let i=0;i<5;i++){bar(b,0,-190+i*78,570,[.96,.71,.62,.48,.41][i],[K.gold,K.blue,K.jade,K.muted,K.steel][i],i===0?'佐藤 140%':'社員 '+(i+1));}cc(c,405,-215,34,K.gold);tx(c,'★',405,-215,35,K.ink);person(d,-610,90,.48,K.paper);pill(e,'月曜 9:03',590,230,240,K.muted);tx(f,'売上ランキング',0,-315,34,K.paper);arrow(g,[-470,120],[-270,40],K.gold);pill(h,L[2],-520,250,290,K.gold);break;
+ case'promotionDoor':rr(a,330,5,360,570,'#111A20',6,K.gold);rr(b,330,20,250,450,'#0B1115',4);cc(b,420,20,10,K.gold);person(c,-390,80,.62,K.paper);person(d,-70,60,.52,K.gold);folder(e,-230,-150,'昇進通知',K.gold);arrow(f,[-180,60],[180,60],K.gold,8);pill(g,L[1],400,-260,320,K.gold);pill(h,L[3],-470,260,330,K.jade);break;
+ case'lossSplit':rr(a,-430,0,760,560,K.deep,18,K.blue);rr(b,430,0,760,560,K.deep,18,K.red);monitor(c,-430,-70,520,300);bar(c,-430,-120,360,.88,K.blue,'旧担当');bar(c,-430,5,360,.52,K.red,'後任');for(let i=0;i<5;i++)person(d,160+i*135,70,.28,i===0?K.red:K.paper);ln(e,[[0,-275],[0,275]],K.gold,5);arrow(f,[-430,150],[-430,250],K.red);arrow(g,[430,-70],[430,190],K.red);pill(h,'二つの損失',0,-300,300,K.gold);break;
+ case'micromanageDesk':desk(a,0,150,1180);person(b,-520,20,.48,K.gold);for(let i=0;i<4;i++)folder(c,-180+i*210,60,['提案','見積','メール','報告'][i],i%2?K.red:K.blue);ln(d,[[-330,0],[-250,-40],[-170,20],[-90,-15]],K.red,7);tx(e,'修正',50,-140,60,K.red);arrow(f,[-440,20],[-160,20],K.red);pill(g,L[2],460,-220,320,K.red);pill(h,L[3],420,250,350,K.muted);break;
+ case'handoffTable':desk(a,0,140,1050);person(b,-420,15,.5,K.blue);person(c,420,15,.5,K.gold);rr(d,-350,-150,460,150,K.deep,18,K.blue);tx(d,'顧客への説明…',-350,-150,22,K.paper);arrow(e,[-120,-120],[190,-120],K.gold,9);rr(f,360,-150,440,150,K.deep,18,K.gold);tx(f,'ここから私が',360,-150,22,K.paper);pill(g,'主導権が移る',0,260,320,K.red);cc(h,-420,-70,22,K.blue);break;
+ case'bottleneck':tx(a,'1時間',-430,-180,62,K.jade);tx(b,'3時間',430,-180,62,K.red);for(let i=0;i<3;i++)rr(c,-540+i*110,20,78,220-i*45,K.jade,8);for(let i=0;i<7;i++)rr(d,120+i*95,20,62,70+(i%3)*55,K.red,8);ln(e,[[-40,-280],[-40,280]],K.gold,5);cc(f,0,180,55,K.gold);tx(f,'待',0,180,28,K.ink);pill(g,'自分でやる誘惑',0,-290,350,K.gold);pill(h,L[3],0,280,280,K.muted);break;
+ case'nightOffice':rr(a,0,-70,1500,570,'#091219',12);for(let i=0;i<6;i++)rr(a,-600+i*240,-185,150,210,'#101D26',3);desk(b,0,155,760);person(c,-80,25,.5,K.paper);monitor(d,210,-70,370,220);folder(e,-310,30,'部下の資料',K.red);cc(f,520,-210,70,K.deep,K.gold);tx(f,'23:00',520,-210,26,K.gold);rr(g,-30,-95,300,24,K.gold,4);pill(h,L[1],-510,250,310,K.muted);break;
+ case'dualLoss':cc(a,0,-130,62,K.gold);ln(a,[[0,-70],[0,165]],K.gold,9);ln(b,[[-500,-30],[500,-30]],K.gold,9);rr(c,-500,110,560,220,K.deep,18,K.blue);rr(d,500,110,560,220,K.deep,18,K.red);tx(c,'エースを失う',-500,110,28,K.blue);tx(d,'管理で波及',500,110,28,K.red);person(e,-500,-105,.34,K.blue);for(let i=0;i<4;i++)person(f,300+i*130,-80,.24,K.paper);arrow(g,[-500,-40],[-500,170],K.red);arrow(h,[500,-40],[500,170],K.red);break;
+ case'playerCoach':rr(a,0,0,1550,590,'#13231B',22,K.green);ln(a,[[-760,0],[760,0]],'#9DB6A0',4);person(b,-420,80,.55,K.paper);cc(c,-330,195,30,K.paper);rr(d,460,90,400,210,'#26231F',10);person(e,460,0,.5,K.gold);folder(f,460,-170,'作戦',K.gold);arrow(g,[-250,70],[240,70],K.red);pill(h,'選手 ≠ 監督',0,-285,340,K.gold);break;
+ case'questionDesk':desk(a,0,185,1150);folder(b,-360,20,L[1],K.blue);folder(c,0,20,L[2],K.red);folder(d,360,20,L[3],K.gold);cc(e,0,-170,120,K.deep,K.gold);tx(e,'？',0,-170,120,K.gold);ln(f,[[-360,110],[0,-60],[360,110]],K.muted,4);pill(g,L[0],0,-310,620,K.paper);cc(h,0,260,13,K.gold);break;
+ case'factoryShift':for(let i=0;i<5;i++)rr(a,-650+i*325,20,240,330,'#26333A',10,K.steel);for(let i=0;i<12;i++)person(b,-720+i*130,185,.18,K.paper);for(let i=0;i<5;i++)cc(c,-650+i*325,-70,44,K.orange);ln(d,[[-800,260],[800,260]],K.gold,8);tx(e,'数十人 → 数千人',0,-275,42,K.gold);person(f,0,-10,.38,K.red);arrow(g,[0,-60],[0,-200],K.red);pill(h,L[3],520,255,320,K.muted);break;
+ case'hierarchyTower':for(let i=0;i<5;i++){const w=1050-i*145;rr(a,0,190-i*105,w,78,[K.steel,K.blue,K.jade,K.gold,K.red][i],8);tx(b,['社員','主任','課長','部長','役員'][i],0,190-i*105,20,K.ink);}arrow(c,[620,200],[620,-230],K.gold,9);person(d,-650,210,.3,K.paper);person(e,-650,-210,.3,K.red);pill(f,'階層化',510,-270,250,K.gold);ln(g,[[-520,120],[-520,-180]],K.muted,4);cc(h,620,-230,18,K.gold);break;
+ case'archiveBook':rr(a,-220,0,620,520,'#D8CBAE',16,K.gold);rr(a,120,0,8,520,K.gold,2);tx(b,L[1],-250,-150,30,K.ink);tx(c,L[2],-250,-30,26,K.red);tx(d,L[3],-250,90,24,K.blue);folder(e,480,-90,'ARCHIVE',K.gold);ln(f,[[155,-140],[360,-90]],K.gold,5);pill(g,'制度の歴史',455,180,320,K.paper);cc(h,-510,220,16,K.red);break;
+ case'tournamentLadder':for(let i=0;i<5;i++){rr(a,-500+i*250,180-i*90,180,60,K.floor,6,[K.blue,K.jade,K.gold,K.orange,K.red][i]);}person(b,-500,90,.3,K.paper);person(c,500,-260,.3,K.gold);arrow(d,[-420,120],[430,-220],K.gold,8);pill(e,'努力',-420,-220,210,K.blue);pill(f,'昇進',0,-220,210,K.jade);pill(g,'高い報酬',420,-220,250,K.gold);tx(h,'賞品が競争を作る',0,285,28,K.paper);break;
+ case'peterStairs':for(let i=0;i<6;i++)rr(a,-600+i*210,210-i*78,190,64,i===5?K.red:K.floor,5);for(let i=0;i<5;i++)person(b,-600+i*210,115-i*78,.22,K.paper);person(c,450,-270,.28,K.red);arrow(d,[-520,160],[410,-245],K.gold,8);pill(e,'成功',-480,-250,200,K.jade);pill(f,'昇進',0,-250,200,K.gold);pill(g,'不適合',470,-250,230,K.red);cc(h,450,-200,18,K.red);break;
+ case'collapseRebuild':for(let i=0;i<5;i++)rr(a,0,210-i*95,780-i*90,70,i===4?K.red:K.steel,6);person(b,0,-245,.3,K.paper);ln(c,[[-250,-140],[250,-140]],K.red,7);arrow(d,[0,-80],[0,180],K.red,9);pill(e,L[1],-420,255,300,K.blue);pill(f,L[2],0,255,300,K.gold);pill(g,L[3],420,255,300,K.red);cc(h,0,-140,24,K.red);break;
+ case'datasetCloud':graphAxes(a,0,20,1200,520);for(let i=0;i<36;i++){const x=-530+(i%12)*95,y=180-Math.floor(i/12)*140-((hash(scene.id+i.toString())%65));cc(b,x,y,9,i%7===0?K.gold:K.blue);}tx(c,'38,843',520,-230,48,K.gold);tx(d,'131社',520,-155,28,K.paper);folder(e,-480,-235,'2005–2011',K.jade);arrow(f,[-350,-190],[-120,-80],K.gold);pill(g,L[1],0,285,350,K.paper);cc(h,540,215,18,K.red);break;
+ case'promotionSlope':graphAxes(a,0,20,1050,500);for(let i=0;i<14;i++){const x=-430+i*68,y=170-i*24+(i%3)*28;cc(b,x,y,10,K.blue);}ln(c,[[-430,165],[450,-180]],K.gold,7);tx(d,'営業成績',0,275,22,K.paper);tx(e,'昇進確率',-610,-40,22,K.paper);arrow(f,[280,20],[450,-180],K.gold);pill(g,'正の関係',430,-260,240,K.jade);cc(h,-430,165,18,K.blue);break;
+ case'spotlightMetric':rr(a,-350,0,640,520,K.deep,18,K.gold);tx(b,'140%',-350,-70,110,K.gold);tx(c,'売上',-350,65,32,K.paper);for(let i=0;i<4;i++)pill(d,['育成','調整','傾聴','任せる'][i],250+(i%2)*300,-100+Math.floor(i/2)*150,240,K.muted);cc(e,-350,-70,180,'#00000000',K.gold);ln(f,[[-20,-250],[-20,250]],K.floor,4);pill(g,'見える',-350,220,220,K.gold);pill(h,'見えにくい',400,220,260,K.muted);break;
+ case'managerScatter':graphAxes(a,0,20,1150,520);for(let i=0;i<22;i++){const x=-470+i*43,y=-160+i*13+((i%4)-2)*38;cc(b,x,y,10,i%5===0?K.red:K.blue);}ln(c,[[-470,160],[450,-120]],K.red,7);tx(d,'本人の売上 →',150,285,22,K.paper);tx(e,'部下の成果',-620,-70,22,K.paper);pill(f,'逆方向',420,-260,240,K.red);arrow(g,[340,-40],[440,-115],K.red);cc(h,-470,160,17,K.gold);break;
+ case'evidenceBoard':rr(a,0,0,1250,520,K.deep,22,K.gold);tx(b,L[1],-350,-120,28,K.blue);tx(c,L[2],0,-120,28,K.paper);tx(d,L[3],350,-120,28,K.red);tx(e,plan.variant%2===0?'6.1%':'0.22SD',0,55,100,K.gold);ln(f,[[-420,150],[420,150]],K.floor,5);pill(g,'論文で確認',0,235,280,K.jade);cc(h,0,55,145,'#00000000',K.gold);break;
+ case'teamRipple':person(a,0,-70,.55,K.gold);for(let i=0;i<5;i++){const x=-520+i*260;person(b,x,150,.28,K.paper);ln(c,[[0,10],[x,105]],i%2?K.blue:K.jade,4);}for(let i=0;i<5;i++)cc(d,-520+i*260,260,18,i%2?K.blue:K.jade);pill(e,'一人の判断',-360,-250,280,K.gold);arrow(f,[-190,-210],[0,-130],K.gold);pill(g,'五人へ波及',370,-250,280,K.red);tx(h,L[0],0,300,24,K.paper);break;
+ case'counterfactualSwitch':ln(a,[[-700,-120],[700,-120]],K.blue,10);ln(b,[[-700,120],[700,120]],K.gold,10);cc(c,-420,-120,30,K.blue);cc(c,420,120,30,K.gold);arrow(d,[-100,-120],[120,120],K.red,8);pill(e,'現行：売上',-420,-220,280,K.blue);pill(f,'別案：管理適性',420,220,330,K.gold);rr(g,0,0,180,220,K.deep,14,K.red);tx(g,'SWITCH',0,0,22,K.red);cc(h,0,0,20,K.red);break;
+ case'hrCards':rr(a,-420,0,650,530,K.deep,20,K.blue);rr(b,420,0,650,530,K.deep,20,K.gold);tx(c,'A',-420,-180,58,K.blue);tx(d,'B',420,-180,58,K.gold);tx(c,'売上トップ',-420,-80,28,K.paper);tx(d,'協働・育成',420,-80,28,K.paper);bar(e,-420,70,420,.95,K.blue,'売上');bar(f,420,70,420,.64,K.gold,'売上');pill(g,'どちらを課長に？',0,260,420,K.red);cc(h,0,-260,18,K.gold);break;
+ case'skillShadow':rr(a,-450,0,620,500,K.deep,18,K.gold);tx(b,'見える',-450,-190,30,K.gold);['売上','件数','達成率'].forEach((x,i)=>pill(c,x,-450,-80+i*105,260,K.blue));rr(d,450,0,620,500,'#0A0F13',18,K.steel);tx(e,'見えにくい',450,-190,30,K.muted);['傾聴','調整','育成'].forEach((x,i)=>tx(f,x,450,-80+i*105,25,K.muted));ln(g,[[0,-240],[0,240]],K.floor,4);pill(h,'重要 ≠ 測りやすい',0,290,390,K.red);break;
+ case'allocationBoard':for(let i=0;i<4;i++)person(a,-570+i*190,-120,.24,[K.blue,K.jade,K.gold,K.red][i]);for(let i=0;i<4;i++)rr(b,-570+i*380,125,250,120,K.deep,12,[K.blue,K.jade,K.gold,K.red][i%4]);for(let i=0;i<4;i++)arrow(c,[-570+i*190,-40],[-570+i*380,65],[K.blue,K.jade,K.gold,K.red][i]);pill(d,'誰に',-430,-270,210,K.blue);pill(e,'何を',0,-270,210,K.gold);pill(f,'いつ任せる',430,-270,280,K.jade);tx(g,'配置が成果を変える',0,285,27,K.paper);cc(h,0,120,20,K.gold);break;
+ case'delegation':person(a,-430,30,.48,K.gold);person(b,430,30,.48,K.blue);folder(c,-180,20,'TASK',K.gold);arrow(d,[-60,20],[250,20],K.gold,9);rr(e,430,-170,300,90,K.deep,12,K.blue);tx(e,'自分でやる',430,-170,20,K.paper);ln(f,[[300,-170],[560,-170]],K.red,6);pill(g,'任せて待つ',0,260,300,K.jade);cc(h,250,20,20,K.gold);break;
+ case'filterGate':pill(a,'現在の成果',-560,-40,350,K.blue);arrow(b,[-350,-40],[-120,-40],K.gold,8);rr(c,0,-40,220,260,K.deep,16,K.gold);tx(c,'評価',0,-40,40,K.gold);arrow(d,[120,-40],[350,-40],K.red,8);pill(e,'次の適性',560,-40,330,K.red);tx(f,'代用品にしていないか',0,220,29,K.paper);cc(g,0,-40,135,'#00000000',K.gold);pill(h,L[0],0,-280,460,K.muted);break;
+ case'leverDual':ln(a,[[0,-160],[0,175]],K.gold,12);ln(b,[[-520,-80],[520,-80]],K.gold,12);cc(c,0,-80,38,K.gold);rr(d,-500,120,600,220,K.deep,18,K.blue);rr(e,500,120,600,220,K.deep,18,K.red);tx(d,'報酬',-500,120,38,K.blue);tx(e,'配置',500,120,38,K.red);pill(f,'昇進',0,-250,260,K.gold);arrow(g,[0,-40],[-390,60],K.blue);arrow(h,[0,-40],[390,60],K.red);break;
+ case'splitTrack':ln(a,[[-700,150],[-180,40],[0,-20]],K.gold,10);ln(b,[[0,-20],[330,-180],[700,-180]],K.blue,10);ln(c,[[0,-20],[330,180],[700,180]],K.jade,10);cc(d,0,-20,30,K.gold);pill(e,'管理職',520,-250,270,K.blue);pill(f,'専門職',520,250,270,K.jade);pill(g,'同じ成功',-470,-220,300,K.gold);tx(h,'道を分ける',0,295,27,K.paper);break;
+ case'coderCalendar':monitor(a,-430,-60,520,300);for(let i=0;i<5;i++)ln(b,[[-620,-140+i*55],[-300+(i%2)*80,-140+i*55]],i%2?K.cyan:K.jade,5);rr(c,390,-30,650,440,K.deep,18,K.red);for(let i=0;i<4;i++){rr(d,180+(i%2)*280,-140+Math.floor(i/2)*160,240,100,K.panel2,9,K.red);tx(d,['1on1','採用','会議','評価'][i],180+(i%2)*280,-140+Math.floor(i/2)*160,20,K.paper);}arrow(e,[-100,-20],[60,-20],K.gold);person(f,-650,170,.3,K.paper);person(g,660,170,.3,K.gold);pill(h,'職種が変わる',0,280,320,K.red);break;
+ case'incentiveFork':person(a,-650,50,.35,K.paper);arrow(b,[-520,20],[-90,-120],K.blue,8);arrow(c,[-520,80],[-90,150],K.gold,8);rr(d,300,-140,600,190,K.deep,16,K.blue);rr(e,300,150,600,190,K.deep,16,K.gold);tx(d,'良い管理職を選ぶ',300,-140,26,K.blue);tx(e,'今の努力を促す',300,150,26,K.gold);pill(f,'両方欲しい',-270,-260,300,K.red);ln(g,[[0,-35],[0,45]],K.red,6);cc(h,-90,15,28,K.red);break;
+ case'selfSelect':for(let i=0;i<6;i++)person(a,-620+i*240,120,.28,i===v?K.gold:K.paper);for(let i=0;i<6;i++)if(i===v)arrow(b,[-620+i*240,35],[-620+i*240,-125],K.gold,7);pill(c,'管理職をやりたい',-350,-250,360,K.gold);pill(d,'希望の強さ',350,-250,300,K.blue);for(let i=0;i<6;i++)rr(e,-620+i*240,245,150,20,i===v?K.gold:K.floor,3);cc(f,-620+v*240,-170,28,K.gold);tx(g,'自己推薦',0,300,25,K.paper);pill(h,L[3],430,250,300,K.red);break;
+ case'experimentTeams':for(let t=0;t<3;t++){const x=-520+t*520;rr(a,x,40,430,420,K.deep,18,[K.blue,K.gold,K.jade][t]);person(b,x,-60,.3,K.gold);person(c,x-100,120,.23,K.paper);person(c,x+100,120,.23,K.paper);tx(d,'TEAM '+(t+1),x,-175,22,K.muted);}arrow(e,[-520,-10],[0,-10],K.gold);arrow(f,[0,-10],[520,-10],K.gold);pill(g,'555人',-520,275,220,K.blue);pill(h,'管理職を比較',420,275,320,K.gold);break;
+ case'teamRotation':for(let t=0;t<4;t++){const x=-600+t*400;rr(a,x,80,330,320,K.deep,15,[K.blue,K.jade,K.gold,K.red][t]);for(let j=0;j<2;j++)person(b,x-55+j*110,125,.2,K.paper);}person(c,-600,-70,.3,K.gold);arrow(d,[-500,-80],[-210,-80],K.gold);arrow(e,[-100,-80],[190,-80],K.gold);arrow(f,[300,-80],[590,-80],K.gold);pill(g,'同じ管理職',0,-250,320,K.gold);pill(h,'複数チーム',0,285,300,K.paper);break;
+ case'dualCareer':ln(a,[[-650,160],[-150,20]],K.gold,9);ln(b,[[-150,20],[370,-170],[700,-170]],K.blue,9);ln(c,[[-150,20],[370,190],[700,190]],K.jade,9);person(d,-650,90,.3,K.paper);pill(e,'MANAGER',520,-245,300,K.blue);pill(f,'EXPERT',520,260,300,K.jade);tx(g,'報酬も地位も両方上がる',0,-290,29,K.paper);cc(h,-150,20,28,K.gold);break;
+ case'pilotProject':rr(a,0,30,1150,500,K.deep,20,K.gold);for(let i=0;i<4;i++)person(b,-360+i*240,80,.27,i===0?K.gold:K.paper);folder(c,-360,-120,'小規模PJ',K.gold);for(let i=0;i<3;i++)bar(d,220,-120+i*100,420,[.4,.62,.78][i],[K.blue,K.jade,K.gold][i],['開始','中間','終了'][i]);arrow(e,[-240,-80],[50,-80],K.gold);pill(f,'まず試す',-390,245,250,K.blue);pill(g,'周囲の成果を見る',300,245,360,K.jade);cc(h,470,-120,18,K.gold);break;
+ case'branchingCareer':ln(a,[[-720,180],[-220,30],[0,-20]],K.gold,10);const ys=[-230,-75,80,235];const cs=[K.blue,K.gold,K.jade,K.red];for(let i=0;i<4;i++){ln(b,[[0,-20],[360,ys[i]],[700,ys[i]]],cs[i],7);pill(c,['管理','専門','企画','教育'][i],540,ys[i],240,cs[i]);}person(d,-720,105,.3,K.paper);cc(e,0,-20,32,K.gold);pill(f,'一本ではない',-420,-260,300,K.gold);tx(g,'複数の成功経路',0,300,27,K.paper);cc(h,700,ys[v%4],18,cs[v%4]);break;
+ default:throw new Error('V131 missing layout '+plan.kind);
  }
+ return s;
 }
-function emphasisTarget(mode:MotionMode,slot:number,idx:number){const side=((slot+idx)%2?1:-1);
- switch(mode){
-  case'procession':return{x:side*10,y:0,s:1.012,o:1};
-  case'ceremony':return{x:0,y:slot%2?-7:7,s:1.018,o:1};
-  case'memorial':return{x:0,y:-6,s:1.01,o:1};
-  case'evidence':return{x:0,y:0,s:1.026,o:1};
-  case'classification':return{x:side*8,y:0,s:1.016,o:1};
-  case'timeline':return{x:side*12,y:0,s:1.006,o:1};
-  case'converge':return{x:-side*8,y:0,s:1.02,o:1};
-  case'ledger':return{x:0,y:slot%2?6:-6,s:1.008,o:1};
-  case'split':return{x:side*13,y:0,s:1.012,o:1};
-  case'taxonomy':return{x:0,y:slot%2?-8:8,s:1.014,o:1};
-  case'service':return{x:side*7,y:0,s:1.02,o:1};
-  case'dissolve':return{x:0,y:slot%2?5:-5,s:.996,o:.94};
-  default:return{x:0,y:0,s:1.018,o:1};
+function initStage(n:Node,i:number,p:number,v:number){const side=(i+v)%2?1:-1;const amt=55+((i*17+p*11)%95);n.opacity(0);n.scale(.9+((i+p)%4)*.02);if(p%4===0){n.x(side*amt);n.y(0)}else if(p%4===1){n.x(0);n.y(side*amt)}else if(p%4===2){n.x(side*amt);n.y(side*(20+(i%3)*15))}else{n.x(side*(30+(i%4)*18));n.y(-side*(35+(i%2)*25))}}
+function* show(n:Node,d:number,o=1):ThreadGenerator{yield* all(n.opacity(o,d),n.x(0,d),n.y(0,d),n.scale(1,d))}
+function* pulse(n:Node,d:number):ThreadGenerator{yield* n.scale(1.04,d);yield* n.scale(1,d)}
+function* programFlow(s:Node[],scene:Scene,plan:Plan):ThreadGenerator{
+ const p=plan.program%18,d=scene.duration,u=d/12,m=Math.min(.36,Math.max(.11,u*.5)),hold=Math.max(.03,u-m);
+ s.forEach((n,i)=>initStage(n,i,p,plan.variant));let spent=0;
+ const one=function*(i:number,o=1){yield* show(s[i],m,o);spent+=m;if(hold>0){yield* waitFor(hold);spent+=hold;}};
+ const many=function*(ids:number[],o=1){yield* all(...ids.map(i=>show(s[i],m,o)));spent+=m;if(hold>0){yield* waitFor(hold);spent+=hold;}};
+ if(p===0){for(let i=0;i<8;i++)yield* one(i)}
+ else if(p===1){for(const q of [[0,7],[1,6],[2,5],[3,4]])yield* many(q)}
+ else if(p===2){for(const i of [3,4,2,5,1,6,0,7])yield* one(i)}
+ else if(p===3){yield* many([0,1,2,3,4,5,6,7],.42);for(const i of [1,4,6]){yield* show(s[i],m,1);spent+=m;yield* pulse(s[i],m*.7);spent+=m*.7}}
+ else if(p===4){yield* one(0);yield* many([1,2]);yield* many([3,4,5]);yield* one(6);yield* one(7)}
+ else if(p===5){yield* many([0,2,4,6]);yield* many([1,3,5,7]);yield* many([2,3,4,5])}
+ else if(p===6){yield* one(0);yield* many([1,2,3,4,5,6]);yield* one(7);yield* all(...s.slice(1,7).map(n=>pulse(n,m)));spent+=m*2}
+ else if(p===7){yield* many([0,7]);yield* many([1,6]);yield* many([2,5]);yield* many([3,4]);yield* all(s[3].x(-16,m),s[4].x(16,m));spent+=m;yield* all(s[3].x(0,m),s[4].x(0,m));spent+=m}
+ else if(p===8){yield* many([0,1,2]);yield* one(3);yield* many([4,5]);yield* one(6);yield* one(7)}
+ else if(p===9){for(const i of [0,2,4,6,1,3,5,7])yield* one(i)}
+ else if(p===10){yield* many([0,1,2,3]);yield* many([4,5,6,7]);yield* all(...s.slice(0,4).map(n=>n.x(14,m)),...s.slice(4).map(n=>n.x(-14,m)));spent+=m;yield* all(...s.map(n=>n.x(0,m)));spent+=m}
+ else if(p===11){yield* many([0,1,2,3,4,5,6,7],.65);for(const i of [0,2,4,6,7]){yield* pulse(s[i],m);spent+=m*2}}
+ else if(p===12){for(const i of [0,1,2,3])yield* one(i);yield* waitFor(u);spent+=u;for(const i of [4,5,6,7])yield* one(i)}
+ else if(p===13){for(const i of [0,7,1,6,2,5,3,4])yield* one(i)}
+ else if(p===14){yield* many([0,1,2,3,4,5,6,7]);yield* all(...s.slice(1,7).map(n=>n.opacity(.28,m)));spent+=m;yield* all(...s.map(n=>n.opacity(1,m)));spent+=m}
+ else if(p===15){yield* many([0,1,2,3,4,5,6,7],.38);for(const i of [1,3,5,7]){yield* s[i].opacity(1,m);spent+=m;yield* pulse(s[i],m*.65);spent+=m*1.3}}
+ else if(p===16){for(const i of [7,6,5,4,3,2,1,0])yield* one(i)}
+ else{yield* many([0,3,6]);yield* many([1,4,7]);yield* many([2,5]);yield* all(...s.map(n=>n.opacity(1,m)));spent+=m;yield* pulse(s[7],m);spent+=m*2}
+ if(spent<d)yield* waitFor(d-spent);
+}
+function* cameraFlow(n:Node,d:number,plan:Plan):ThreadGenerator{const q=d/4;n.x(0);n.y(0);n.scale(1);switch(plan.camera%10){
+ case 0:yield* waitFor(d);break;
+ case 1:yield* n.scale(1.022,d);break;
+ case 2:yield* n.scale(.99,q);yield* n.scale(1.018,q*2);yield* n.scale(1,q);break;
+ case 3:yield* n.x(-18,q);yield* n.x(9,q);yield* n.x(0,q*2);break;
+ case 4:yield* n.x(18,q);yield* n.x(-8,q);yield* n.x(0,q*2);break;
+ case 5:yield* n.y(-12,q);yield* n.y(6,q);yield* n.y(0,q*2);break;
+ case 6:yield* n.y(12,q);yield* n.y(-6,q);yield* n.y(0,q*2);break;
+ case 7:yield* n.scale(1.015,q);yield* waitFor(q);yield* n.scale(1.035,q);yield* n.scale(1,q);break;
+ case 8:yield* n.scale(.992,q);yield* n.scale(1.026,q);yield* n.scale(1.01,q);yield* n.scale(1,q);break;
+ default:yield* n.x(-12,q);yield* n.x(12,q);yield* n.x(-6,q);yield* n.x(0,q);break;
  }}
-function* directedSceneFlow(stages:Node[],scene:Scene,plan:Plan):ThreadGenerator{
- const idx=planIndex(plan),mode=motionMode(scene,plan),order=ORDER_BANK[(idx-1)%ORDER_BANK.length];
- const base=[.015,.105,.205,.315,.43,.55,.675,.79];let cursor=0;
- stages.forEach((stage,i)=>{const [x,y,s]=entranceFor(mode,i,idx);stage.opacity(0);stage.x(x);stage.y(y);stage.scale(s);});
- for(let step=0;step<order.length;step++){
-  const i=order[step],stage=stages[i],at=scene.duration*Math.min(.82,base[step]+((idx+step)%4)*.004);
-  if(at>cursor){yield* waitFor(at-cursor);cursor=at;}
-  const reveal=Math.min(.34,Math.max(.14,scene.duration*.009));
-  yield* all(stage.opacity(1,reveal),stage.x(0,reveal),stage.y(0,reveal),stage.scale(1,reveal));cursor+=reveal;
-  const e=emphasisTarget(mode,i,idx),accent=Math.min(.22,Math.max(.08,scene.duration*.0055));
-  yield* all(stage.x(e.x,accent),stage.y(e.y,accent),stage.scale(e.s,accent),stage.opacity(e.o,accent));cursor+=accent;
-  const policy=idx%5;
-  if(step>2&&i!==0){
-   const back=policy===0?1:policy===1?2:3,prev=order[Math.max(0,step-back)];
-   if(prev>0&&prev!==i){const dim=policy===4?.42:policy===3?.58:.72;stages[prev].opacity(dim);}
-  }
- }
- const recomposeAt=scene.duration*.9;if(recomposeAt>cursor){yield* waitFor(recomposeAt-cursor);cursor=recomposeAt;}
- const settle=Math.min(.32,Math.max(.12,scene.duration*.007));
- yield* all(...stages.map((stage,i)=>all(stage.x(0,settle),stage.y(0,settle),stage.scale(1,settle),stage.opacity(i===0?1:(i<7?.9:1),settle))));cursor+=settle;
- if(scene.duration>cursor)yield* waitFor(scene.duration-cursor);
+function* subtitleFlow(cues:Cue[],caption:Txt,duration:number):ThreadGenerator{let t=0;for(const c of cues){if(c.start>t)yield* waitFor(c.start-t);caption.text(c.display);t=c.start;}if(duration>t)yield* waitFor(duration-t);caption.text('')}
+export function* playMeaningScene(view:View2D,scene:Scene):ThreadGenerator{
+ const plan=(visualPlan as Record<string,Plan>)[scene.motif];if(!plan)throw new Error('V131 visual plan missing '+scene.motif);view.fill(K.bg);
+ const contentLayer=new Node({}),headingLayer=new Node({}),subtitleBacking=new Node({}),subtitleTextLayer=new Node({});
+ view.add(contentLayer);view.add(headingLayer);view.add(subtitleBacking);view.add(subtitleTextLayer);
+ const ss=draw(contentLayer,scene,plan);rr(headingLayer,0,-474,1920,132,K.ink,0);tx(headingLayer,'考える夜',-805,-505,24,K.gold);tx(headingLayer,scene.chapter.toUpperCase(),-690,-445,18,K.muted);tx(headingLayer,scene.title,0,-465,scene.title.length>19?31:38,K.paper);tx(headingLayer,scene.id,840,-505,20,K.muted);
+ rr(subtitleBacking,0,458,1920,176,'#020406',0).opacity(.96);const caption=new Txt({text:'',x:0,y:458,fontFamily:F,fontSize:40,fill:K.paper,fontWeight:650,lineHeight:57});subtitleTextLayer.add(caption);
+ yield* all(programFlow(ss,scene,plan),cameraFlow(contentLayer,scene.duration,plan),subtitleFlow(scene.cues,caption,scene.duration));
 }
-function* cameraProgram(node:Node,duration:number,scene:Scene,plan:Plan):ThreadGenerator{
- const idx=planIndex(plan),mode=motionMode(scene,plan),program=(idx+(mode.length%7))%7,q=duration/5;
- node.x(0);node.y(0);node.scale(1);
- if(program===0){yield* node.scale(1.018,q);yield* node.scale(1.006,q);yield* waitFor(q);yield* node.scale(1.014,q);yield* node.scale(1,q);}
- else if(program===1){yield* node.x(14,q);yield* node.x(-8,q);yield* node.x(7,q);yield* node.x(-4,q);yield* node.x(0,q);}
- else if(program===2){yield* node.y(-10,q);yield* node.y(7,q);yield* node.y(-5,q);yield* node.y(3,q);yield* node.y(0,q);}
- else if(program===3){yield* node.scale(1.01,q);yield* node.scale(1.024,q);yield* node.scale(1.016,q);yield* node.scale(1.028,q);yield* node.scale(1,q);}
- else if(program===4){yield* node.x(-12,q);yield* node.x(-5,q);yield* node.x(9,q);yield* node.x(4,q);yield* node.x(0,q);}
- else if(program===5){yield* node.y(9,q);yield* node.y(3,q);yield* node.y(-8,q);yield* node.y(-3,q);yield* node.y(0,q);}
- else{yield* node.scale(.992,q);yield* node.scale(1.012,q);yield* node.scale(1.003,q);yield* node.scale(1.02,q);yield* node.scale(1,q);}
-}
-function* subtitleFlow(cues:Cue[],caption:Txt,duration:number):ThreadGenerator{let t=0;for(const c of cues){if(c.start>t)yield* waitFor(c.start-t);caption.text(c.display);t=c.start;}if(duration>t)yield* waitFor(duration-t);caption.text('');}
-export function* playMeaningScene(view:View2D,scene:Scene):ThreadGenerator{const plan=(visualPlan as Record<string,Plan>)[scene.motif];if(!plan)throw new Error('V129 visual plan missing: '+scene.motif);view.fill(K.bg);const contentLayer=new Node({});const headingLayer=new Node({});const subtitleBacking=new Node({});const subtitleTextLayer=new Node({});view.add(contentLayer);view.add(headingLayer);view.add(subtitleBacking);view.add(subtitleTextLayer);const stages=buildScene(contentLayer,scene,plan);rr(headingLayer,0,-474,1920,132,'#05090D',0);const part=scene.chapter==='prologue'?'PROLOGUE':scene.chapter==='epilogue'?'EPILOGUE':scene.chapter.toUpperCase();headingLayer.add(tx(part,-800,-508,22,K.gold,700));headingLayer.add(tx(scene.id,830,-508,21,K.muted,600));headingLayer.add(tx(scene.title,0,-452,scene.title.length>35?27:scene.title.length>25?31:40,K.paper,700));rr(subtitleBacking,0,460,1920,170,'#020406',0).opacity(.92);const caption=tx('',0,458,40,K.paper,650);caption.lineHeight(57);subtitleTextLayer.add(caption);yield* all(directedSceneFlow(stages,scene,plan),cameraProgram(contentLayer,scene.duration,scene,plan),subtitleFlow(scene.cues,caption,scene.duration));}
