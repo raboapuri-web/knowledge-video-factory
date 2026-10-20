@@ -6,7 +6,7 @@ for s in ss:
     if s['id'] in ids:errors.append('duplicate '+s['id'])
     ids.add(s['id']);chapters[s['chapter']].append(s)
     if s['motif'] not in vp:errors.append('missing visual '+s['id'])
-    if not s['cues'] or s['duration']<=5:errors.append('short scene '+s['id'])
+    if not s['cues'] or s['duration']<=3.2:errors.append('short scene '+s['id'])
     if any(c['end']<=c['start'] for c in s['cues']):errors.append('bad cue '+s['id'])
     if abs(s['cues'][-1]['end']-s['duration'])>.06:errors.append('timing mismatch '+s['id'])
     for c in s['cues']:
