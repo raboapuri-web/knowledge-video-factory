@@ -360,7 +360,7 @@
       },
       {
         "title": "管理職は掛け算",
-        "kind": "teamRipple",
+        "kind": "allocationBoard",
         "labels": [
           "配分",
           "判断",
@@ -559,7 +559,7 @@
       },
       {
         "title": "天才プログラマー",
-        "kind": "coderCalendar",
+        "kind": "skillShadow",
         "labels": [
           "コード",
           "障害対応",
@@ -585,7 +585,7 @@
       },
       {
         "title": "昇進ではなく職種変更",
-        "kind": "playerCoach",
+        "kind": "splitTrack",
         "labels": [
           "コード→管理",
           "営業→課長",
@@ -624,7 +624,7 @@
       },
       {
         "title": "トーナメント理論",
-        "kind": "tournamentLadder",
+        "kind": "archiveBook",
         "labels": [
           "Lazear & Rosen",
           "順位",
@@ -691,7 +691,7 @@
       },
       {
         "title": "三人一組のチーム",
-        "kind": "experimentTeams",
+        "kind": "teamRipple",
         "labels": [
           "管理職1",
           "ワーカー2",
@@ -888,7 +888,7 @@
       },
       {
         "title": "部下の学習機会が消える",
-        "kind": "delegation",
+        "kind": "pilotProject",
         "labels": [
           "失敗",
           "助言",
@@ -968,7 +968,7 @@
       },
       {
         "title": "専門職でも高給",
-        "kind": "dualCareer",
+        "kind": "splitTrack",
         "labels": [
           "エンジニア",
           "研究者",
