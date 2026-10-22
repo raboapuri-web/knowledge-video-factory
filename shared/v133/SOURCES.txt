@@ -1,0 +1,37 @@
+V133 — Reference bibliography / claims audit
+
+Primary play
+- William Shakespeare. Macbeth, Act II, scene 2; Act V, scene 1.
+  Dialogue is Japanese paraphrase, not verbatim reproduction.
+
+Psychology
+- Zhong, C.-B. & Liljenquist, K. (2006).
+  Washing Away Your Sins: Threatened Morality and Physical Cleansing.
+  Science 313(5792):1451-1452. DOI: 10.1126/science.1130726.
+  Original experiments; 74% and 41% are reported within the original study ONLY, not population probabilities.
+- Siev, J. et al. (2018). The relationship between immorality and cleansing:
+  A meta-analysis of the Macbeth effect.
+  Covers 15 studies. Independent laboratory evidence not clearly supportive.
+- Lee, S. W. S. et al. (2024). Wipe It Off:
+  A Meta-Analytic Review of the Psychological Consequences and Antecedents of Physical Cleansing.
+  Psychological Bulletin. Aggregated 230 experiments. Broad cleansing-psychology result;
+  not direct proof of original Macbeth-effect claims.
+- Schnall, S. et al. (2008).
+  Disgust as Embodied Moral Judgment. Personality and Social Psychology Bulletin.
+  Reported disgust/moral-judgment relationship; replication and heterogeneity caveats apply.
+- Johnson, D. J. et al. (2014). Replication failure relating cleanliness to moral judgment.
+  Direct replication of cleanliness-and-judgment effect; not a direct replication of every Macbeth effect claim.
+
+Anthropology / religious background
+- Mary Douglas. Purity and Danger: An Analysis of Concepts of Pollution and Taboo (1966).
+- Kojiki: Izanagi's purification after return from Yomi.
+  Shinto kegare must NOT be equated simplistically with personal moral guilt.
+- Catholic Church. Catechism of the Catholic Church, sections regarding Baptism.
+  Baptism is a religious sacrament in Catholic doctrine, not a laboratory cleansing treatment.
+
+Visual disclaimers
+- Every symbol and graphic is an original geometric illustration, never purported primary footage.
+- The office and two-men moral-comparison stories are explicitly hypothetical.
+- One experimental contrast is 74% vs 41% and is labelled as a single original study.
+- A 2024 broad meta-analysis does not erase the earlier reproducibility concerns.
+- No statement that handwashing physically or reliably absolves guilt is supported or depicted.
