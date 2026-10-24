@@ -1530,7 +1530,7 @@
     "chapter6": [
       {
         "title": "どんな条件なら認めるか",
-        "space": "assessmentDesk",
+        "space": "ministry",
         "diagram": "sieve",
         "labels": [
           "どんな条件なら認めるか",
@@ -1540,7 +1540,7 @@
         ],
         "action": "v134_085_どんな条件なら認めるか",
         "motionSignature": "v134-motion-085",
-        "backgroundSignature": "v134-bg-085",
+        "backgroundSignature": "v134-bg-085-policy-room",
         "actionProgram": 84,
         "camera": 3,
         "tempo": 4,
