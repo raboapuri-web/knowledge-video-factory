@@ -3,9 +3,10 @@ from pathlib import Path
 from collections import defaultdict
 import json,re
 ROOT=Path(__file__).resolve().parents[1];CONTENT=ROOT/'content'
-PLAN=json.loads((CONTENT/'v132-shot-plan.json').read_text(encoding='utf-8'))['chapters']
+PLAN=json.loads((CONTENT/'v134-shot-plan.json').read_text(encoding='utf-8'))['chapters']
 SCENES=ROOT/'src/scenes';PROJECTS=ROOT/'src/projects';SCENES.mkdir(parents=True,exist_ok=True);PROJECTS.mkdir(parents=True,exist_ok=True)
-CHAPTERS=['prologue','chapter1','chapter2','chapter3','chapter4','epilogue'];PREFIX={'prologue':'P','chapter1':'A','chapter2':'B','chapter3':'C','chapter4':'D','epilogue':'Z'}
+CHAPTERS=['prologue','chapter1','chapter2','chapter3','chapter4','chapter5','chapter6','epilogue']
+PREFIX={'prologue':'P','chapter1':'A','chapter2':'B','chapter3':'C','chapter4':'D','chapter5':'E','chapter6':'F','epilogue':'Z'}
 
 def units(text):
     return [re.sub(r'\s+','',s) for s in re.findall(r'[^。！？!?]+[。！？!?]?',text) if s.strip()]
@@ -40,20 +41,22 @@ def cue_break(narration):
 
 rows=[];visual={};tsv=[]
 for chap in CHAPTERS:
-    raw=(CONTENT/f'v132-{chap}.txt').read_text(encoding='utf-8').strip();plans=PLAN[chap]
+    raw=(CONTENT/f'v134-{chap}.txt').read_text(encoding='utf-8').strip();plans=PLAN[chap]
     groups=divide(units(raw),len(plans))
     for idx,(group,p) in enumerate(zip(groups,plans)):
-        sid=PREFIX[chap]+f'{idx:02d}';narration=''.join(group);cues,duration=cue_break(narration);motif=f'v132_{chap}_{idx:02d}'
+        sid=PREFIX[chap]+f'{idx:02d}';narration=''.join(group);cues,duration=cue_break(narration);motif=f'v134_{chap}_{idx:02d}'
         rows.append({'id':sid,'chapter':chap,'motif':motif,'title':p['title'],'narration':narration,'cues':cues,'duration':duration,'durationSource':'ESTIMATED_NOT_FOR_FINAL'})
-        visual[motif]={k:p[k] for k in ['space','diagram','labels','action','motionSignature','actionProgram','camera','tempo','variant']}
+        visual[motif]={k:p[k] for k in ['space','diagram','labels','action','motionSignature','backgroundSignature','actionProgram','camera','tempo','variant']}
         tsv.append('|'.join([sid,motif,p['title'],narration]))
         (SCENES/f'{sid}.tsx').write_text("import {makeScene2D} from '@motion-canvas/2d';\nimport {playMeaningScene} from '../lib/meaningScene';\nimport sceneData from '../../content/scenes.json';\n"+f"const scene=sceneData.find(s=>s.id==='{sid}')!;\n"+"export default makeScene2D(function* (view){yield* playMeaningScene(view,scene);});\n")
-(CONTENT/'scenes.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n');(CONTENT/'visual_plan.json').write_text(json.dumps(visual,ensure_ascii=False,indent=2)+'\n');(CONTENT/'scene_narration.tsv').write_text('\n'.join(tsv)+'\n')
+(CONTENT/'scenes.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
+(CONTENT/'visual_plan.json').write_text(json.dumps(visual,ensure_ascii=False,indent=2)+'\n')
+(CONTENT/'scene_narration.tsv').write_text('\n'.join(tsv)+'\n')
 META={"version":1,"shared":{"background":"rgb(7,14,20)","range":[0,None],"size":{"x":1920,"y":1080},"audioOffset":0},"preview":{"fps":30,"resolutionScale":0.5},"rendering":{"fps":30,"resolutionScale":1,"colorSpace":"srgb","exporter":{"name":"@motion-canvas/ffmpeg","options":{"fastStart":True,"includeAudio":True}},"fileType":"image/png","quality":1}}
 for chap in CHAPTERS:
     ids=[r['id'] for r in rows if r['chapter']==chap];imports='\n'.join(f"import s{i} from '../scenes/{sid}?scene';" for i,sid in enumerate(ids))
-    (PROJECTS/f'{chap}.ts').write_text("import {makeProject} from '@motion-canvas/core';\n"+imports+'\n'+f"export default makeProject({{name:'v132-{chap}',scenes:[{','.join(f's{i}' for i in range(len(ids)))}],audio:'/media/{chap}/narration.wav'}});\n")
+    (PROJECTS/f'{chap}.ts').write_text("import {makeProject} from '@motion-canvas/core';\n"+imports+'\n'+f"export default makeProject({{name:'v134-{chap}',scenes:[{','.join(f's{i}' for i in range(len(ids)))}],audio:'/media/{chap}/narration.wav'}});\n")
     (PROJECTS/f'{chap}.meta').write_text(json.dumps(META,ensure_ascii=False,separators=(',',':')))
 dur=defaultdict(float)
 for r in rows:dur[r['chapter']]+=r['duration']
-print(json.dumps({'video':'V132','scene_count':len(rows),'estimated_duration_sec':round(sum(dur.values()),2),'chapters':dur,'cue_count':sum(len(r['cues']) for r in rows)},ensure_ascii=False))
+print(json.dumps({'video':'V134','scene_count':len(rows),'estimated_duration_sec':round(sum(dur.values()),2),'chapters':dur,'cue_count':sum(len(r['cues']) for r in rows)},ensure_ascii=False))

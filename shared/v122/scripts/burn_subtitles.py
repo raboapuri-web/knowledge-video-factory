@@ -4,7 +4,7 @@ import json,subprocess,sys,wave,html
 
 R=Path(__file__).resolve().parents[1]
 slug=sys.argv[1]
-mp4=R/'output'/f'v132-{slug}.mp4'
+mp4=R/'output'/f'v134-{slug}.mp4'
 wavp=R/'media'/slug/'narration.wav'
 measured=R/'content'/f'measured-{slug}.json'
 if not (mp4.is_file() and wavp.is_file() and measured.is_file()):raise SystemExit('missing burn inputs')
@@ -27,7 +27,7 @@ def ass_time(t):
     h,rem=divmod(cs,360000);m,rem=divmod(rem,6000);sec,cs=divmod(rem,100)
     return f"{h}:{m:02d}:{sec:02d}.{cs:02d}"
 
-ass=R/'output'/f'v132-{slug}.ass'
+ass=R/'output'/f'v134-{slug}.ass'
 header="""[Script Info]
 ScriptType: v4.00+
 PlayResX: 1920
@@ -47,7 +47,7 @@ for st,en,txt in events:
     lines.append(f"Dialogue: 0,{ass_time(st)},{ass_time(en)},Default,,0,0,0,,{txt}\n")
 ass.write_text(''.join(lines),encoding='utf-8')
 
-raw=R/'output'/f'v132-{slug}-raw.mp4'
+raw=R/'output'/f'v134-{slug}-raw.mp4'
 if raw.exists():raw.unlink()
 mp4.rename(raw)
 cmd=[

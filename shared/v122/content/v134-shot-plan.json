@@ -1,0 +1,2039 @@
+{
+  "video": "V134",
+  "title": "生活保護で「車」を持つのは贅沢なのか？――自立・治安・公平性",
+  "sceneCount": 112,
+  "chapters": {
+    "prologue": [
+      {
+        "title": "朝7時10分の軽自動車",
+        "space": "apartmentParking",
+        "diagram": "timeline",
+        "labels": [
+          "朝7時10分の軽自動車",
+          "7:10",
+          "軽自動車",
+          "地方都市"
+        ],
+        "action": "v134_001_朝7時10分の軽自動車",
+        "motionSignature": "v134-motion-001",
+        "backgroundSignature": "v134-bg-001",
+        "actionProgram": 0,
+        "camera": 3,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "眠そうな四歳児",
+        "space": "carInterior",
+        "diagram": "route",
+        "labels": [
+          "眠そうな四歳児",
+          "四歳児",
+          "保育園バッグ",
+          "母子"
+        ],
+        "action": "v134_002_眠そうな四歳児",
+        "motionSignature": "v134-motion-002",
+        "backgroundSignature": "v134-bg-002",
+        "actionProgram": 1,
+        "camera": 8,
+        "tempo": 8,
+        "variant": 4
+      },
+      {
+        "title": "6kmと9kmの生活圏",
+        "space": "suburbRoad",
+        "diagram": "scale",
+        "labels": [
+          "6kmと9kmの生活圏",
+          "6km",
+          "9km",
+          "移動"
+        ],
+        "action": "v134_003_6kmと9kmの生活圏",
+        "motionSignature": "v134-motion-003",
+        "backgroundSignature": "v134-bg-003",
+        "actionProgram": 2,
+        "camera": 13,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "車なら40分",
+        "space": "childcareRoute",
+        "diagram": "clock",
+        "labels": [
+          "車なら40分",
+          "40分",
+          "車",
+          "成立"
+        ],
+        "action": "v134_004_車なら40分",
+        "motionSignature": "v134-motion-004",
+        "backgroundSignature": "v134-bg-004",
+        "actionProgram": 3,
+        "camera": 4,
+        "tempo": 4,
+        "variant": 8
+      },
+      {
+        "title": "バスなら乗換え",
+        "space": "busStop",
+        "diagram": "fork",
+        "labels": [
+          "バスなら乗換え",
+          "徒歩",
+          "バス",
+          "乗換え"
+        ],
+        "action": "v134_005_バスなら乗換え",
+        "motionSignature": "v134-motion-005",
+        "backgroundSignature": "v134-bg-005",
+        "actionProgram": 4,
+        "camera": 9,
+        "tempo": 2,
+        "variant": 1
+      },
+      {
+        "title": "一本逃す20分",
+        "space": "busTransfer",
+        "diagram": "flow",
+        "labels": [
+          "一本逃す20分",
+          "20分待ち",
+          "雨",
+          "遅延"
+        ],
+        "action": "v134_006_一本逃す20分",
+        "motionSignature": "v134-motion-006",
+        "backgroundSignature": "v134-bg-006",
+        "actionProgram": 5,
+        "camera": 0,
+        "tempo": 0,
+        "variant": 3
+      },
+      {
+        "title": "閉園時刻という壁",
+        "space": "daycare",
+        "diagram": "barrier",
+        "labels": [
+          "閉園時刻という壁",
+          "退勤",
+          "閉園",
+          "時刻表"
+        ],
+        "action": "v134_007_閉園時刻という壁",
+        "motionSignature": "v134-motion-007",
+        "backgroundSignature": "v134-bg-007",
+        "actionProgram": 6,
+        "camera": 5,
+        "tempo": 7,
+        "variant": 5
+      },
+      {
+        "title": "福祉事務所へ",
+        "space": "welfareOffice",
+        "diagram": "ledger",
+        "labels": [
+          "福祉事務所へ",
+          "収入",
+          "家賃",
+          "預金"
+        ],
+        "action": "v134_008_福祉事務所へ",
+        "motionSignature": "v134-motion-008",
+        "backgroundSignature": "v134-bg-008",
+        "actionProgram": 7,
+        "camera": 10,
+        "tempo": 5,
+        "variant": 7
+      },
+      {
+        "title": "軽自動車を問われる",
+        "space": "counter",
+        "diagram": "target",
+        "labels": [
+          "軽自動車を問われる",
+          "資産",
+          "軽自動車",
+          "確認"
+        ],
+        "action": "v134_009_軽自動車を問われる",
+        "motionSignature": "v134-motion-009",
+        "backgroundSignature": "v134-bg-009",
+        "actionProgram": 8,
+        "camera": 1,
+        "tempo": 3,
+        "variant": 0
+      },
+      {
+        "title": "車がないと働けない",
+        "space": "workplace",
+        "diagram": "paradox",
+        "labels": [
+          "車がないと働けない",
+          "送迎",
+          "通勤",
+          "必要"
+        ],
+        "action": "v134_010_車がないと働けない",
+        "motionSignature": "v134-motion-010",
+        "backgroundSignature": "v134-bg-010",
+        "actionProgram": 9,
+        "camera": 6,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "原則処分というルール",
+        "space": "recordsRoom",
+        "diagram": "comparison",
+        "labels": [
+          "原則処分というルール",
+          "生活保護",
+          "原則",
+          "処分"
+        ],
+        "action": "v134_011_原則処分というルール",
+        "motionSignature": "v134-motion-011",
+        "backgroundSignature": "v134-bg-011",
+        "actionProgram": 10,
+        "camera": 11,
+        "tempo": 8,
+        "variant": 4
+      },
+      {
+        "title": "自立支援の逆転",
+        "space": "mapRoom",
+        "diagram": "swap",
+        "labels": [
+          "自立支援の逆転",
+          "自立支援",
+          "道具",
+          "矛盾"
+        ],
+        "action": "v134_012_自立支援の逆転",
+        "motionSignature": "v134-motion-012",
+        "backgroundSignature": "v134-bg-012",
+        "actionProgram": 11,
+        "camera": 2,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "2026年10月23日",
+        "space": "ministry",
+        "diagram": "question",
+        "labels": [
+          "2026年10月23日",
+          "緩和検討",
+          "ひとり親",
+          "未就学児"
+        ],
+        "action": "v134_013_2026年10月23日",
+        "motionSignature": "v134-motion-013",
+        "backgroundSignature": "v134-bg-013",
+        "actionProgram": 12,
+        "camera": 7,
+        "tempo": 4,
+        "variant": 8
+      },
+      {
+        "title": "今夜の問い",
+        "space": "nightOffice",
+        "diagram": "reveal",
+        "labels": [
+          "今夜の問い",
+          "治安",
+          "公平",
+          "合理性"
+        ],
+        "action": "v134_014_今夜の問い",
+        "motionSignature": "v134-motion-014",
+        "backgroundSignature": "v134-bg-014",
+        "actionProgram": 13,
+        "camera": 12,
+        "tempo": 2,
+        "variant": 1
+      }
+    ],
+    "chapter1": [
+      {
+        "title": "なぜ車は原則処分か",
+        "space": "welfareOffice",
+        "diagram": "container",
+        "labels": [
+          "なぜ車は原則処分か",
+          "資産",
+          "最低生活",
+          "処分"
+        ],
+        "action": "v134_015_なぜ車は原則処分か",
+        "motionSignature": "v134-motion-015",
+        "backgroundSignature": "v134-bg-015",
+        "actionProgram": 14,
+        "camera": 3,
+        "tempo": 0,
+        "variant": 3
+      },
+      {
+        "title": "資産活用という原則",
+        "space": "archive",
+        "diagram": "ledger",
+        "labels": [
+          "資産活用という原則",
+          "預金",
+          "資産活用",
+          "生活保護"
+        ],
+        "action": "v134_016_資産活用という原則",
+        "motionSignature": "v134-motion-016",
+        "backgroundSignature": "v134-bg-016",
+        "actionProgram": 15,
+        "camera": 8,
+        "tempo": 7,
+        "variant": 5
+      },
+      {
+        "title": "自動車は売れる資産",
+        "space": "usedCarLot",
+        "diagram": "costStack",
+        "labels": [
+          "自動車は売れる資産",
+          "売却価値",
+          "自動車",
+          "資産"
+        ],
+        "action": "v134_017_自動車は売れる資産",
+        "motionSignature": "v134-motion-017",
+        "backgroundSignature": "v134-bg-017",
+        "actionProgram": 16,
+        "camera": 13,
+        "tempo": 5,
+        "variant": 7
+      },
+      {
+        "title": "維持費の連鎖",
+        "space": "repairGarage",
+        "diagram": "layers",
+        "labels": [
+          "維持費の連鎖",
+          "保険",
+          "車検",
+          "修理"
+        ],
+        "action": "v134_018_維持費の連鎖",
+        "motionSignature": "v134-motion-018",
+        "backgroundSignature": "v134-bg-018",
+        "actionProgram": 17,
+        "camera": 4,
+        "tempo": 3,
+        "variant": 0
+      },
+      {
+        "title": "原則には合理性がある",
+        "space": "office",
+        "diagram": "balance",
+        "labels": [
+          "原則には合理性がある",
+          "制度",
+          "合理性",
+          "原則"
+        ],
+        "action": "v134_019_原則には合理性がある",
+        "motionSignature": "v134-motion-019",
+        "backgroundSignature": "v134-bg-019",
+        "actionProgram": 18,
+        "camera": 9,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "例外は昔から存在する",
+        "space": "hospital",
+        "diagram": "gateway",
+        "labels": [
+          "例外は昔から存在する",
+          "障害",
+          "通勤",
+          "通院"
+        ],
+        "action": "v134_020_例外は昔から存在する",
+        "motionSignature": "v134-motion-020",
+        "backgroundSignature": "v134-bg-020",
+        "actionProgram": 19,
+        "camera": 0,
+        "tempo": 8,
+        "variant": 4
+      },
+      {
+        "title": "通勤通院の例外",
+        "space": "suburbRoad",
+        "diagram": "route",
+        "labels": [
+          "通勤通院の例外",
+          "公共交通困難",
+          "必要性",
+          "例外"
+        ],
+        "action": "v134_021_通勤通院の例外",
+        "motionSignature": "v134-motion-021",
+        "backgroundSignature": "v134-bg-021",
+        "actionProgram": 20,
+        "camera": 5,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "1963年の通知",
+        "space": "registry",
+        "diagram": "timeline",
+        "labels": [
+          "1963年の通知",
+          "昭和38年",
+          "通知",
+          "運用"
+        ],
+        "action": "v134_022_1963年の通知",
+        "motionSignature": "v134-motion-022",
+        "backgroundSignature": "v134-bg-022",
+        "actionProgram": 21,
+        "camera": 10,
+        "tempo": 4,
+        "variant": 8
+      },
+      {
+        "title": "新幹線開業前の日本",
+        "space": "retro1963",
+        "diagram": "comparison",
+        "labels": [
+          "新幹線開業前の日本",
+          "1963",
+          "新幹線前",
+          "日本"
+        ],
+        "action": "v134_023_新幹線開業前の日本",
+        "motionSignature": "v134-motion-023",
+        "backgroundSignature": "v134-bg-023",
+        "actionProgram": 22,
+        "camera": 1,
+        "tempo": 2,
+        "variant": 1
+      },
+      {
+        "title": "自家用車が特別だった時代",
+        "space": "retroStreet",
+        "diagram": "scale",
+        "labels": [
+          "自家用車が特別だった時代",
+          "自転車",
+          "バス",
+          "自家用車"
+        ],
+        "action": "v134_024_自家用車が特別だった時代",
+        "motionSignature": "v134-motion-024",
+        "backgroundSignature": "v134-bg-024",
+        "actionProgram": 23,
+        "camera": 6,
+        "tempo": 0,
+        "variant": 3
+      },
+      {
+        "title": "当時の合理性",
+        "space": "archive",
+        "diagram": "checksum",
+        "labels": [
+          "当時の合理性",
+          "財産",
+          "社会通念",
+          "当時"
+        ],
+        "action": "v134_025_当時の合理性",
+        "motionSignature": "v134-motion-025",
+        "backgroundSignature": "v134-bg-025",
+        "actionProgram": 24,
+        "camera": 11,
+        "tempo": 7,
+        "variant": 5
+      },
+      {
+        "title": "六十年後の地方",
+        "space": "suburbRoad",
+        "diagram": "flow",
+        "labels": [
+          "六十年後の地方",
+          "六十年",
+          "変化",
+          "地方"
+        ],
+        "action": "v134_026_六十年後の地方",
+        "motionSignature": "v134-motion-026",
+        "backgroundSignature": "v134-bg-026",
+        "actionProgram": 25,
+        "camera": 2,
+        "tempo": 5,
+        "variant": 7
+      },
+      {
+        "title": "施設の郊外化",
+        "space": "regionalTown",
+        "diagram": "map",
+        "labels": [
+          "施設の郊外化",
+          "病院",
+          "学校",
+          "商店"
+        ],
+        "action": "v134_027_施設の郊外化",
+        "motionSignature": "v134-motion-027",
+        "backgroundSignature": "v134-bg-027",
+        "actionProgram": 26,
+        "camera": 7,
+        "tempo": 3,
+        "variant": 0
+      },
+      {
+        "title": "約3000の交通空白",
+        "space": "railNetwork",
+        "diagram": "grid",
+        "labels": [
+          "約3000の交通空白",
+          "約3000",
+          "交通空白",
+          "見えない壁"
+        ],
+        "action": "v134_028_約3000の交通空白",
+        "motionSignature": "v134-motion-028",
+        "backgroundSignature": "v134-bg-028",
+        "actionProgram": 27,
+        "camera": 12,
+        "tempo": 1,
+        "variant": 2
+      }
+    ],
+    "chapter2": [
+      {
+        "title": "車は時間を生む",
+        "space": "carInterior",
+        "diagram": "clock",
+        "labels": [
+          "車は時間を生む",
+          "時間",
+          "移動",
+          "車"
+        ],
+        "action": "v134_029_車は時間を生む",
+        "motionSignature": "v134-motion-029",
+        "backgroundSignature": "v134-bg-029",
+        "actionProgram": 28,
+        "camera": 3,
+        "tempo": 8,
+        "variant": 4
+      },
+      {
+        "title": "15分と45分",
+        "space": "busStop",
+        "diagram": "comparison",
+        "labels": [
+          "15分と45分",
+          "15分",
+          "45分",
+          "保育園"
+        ],
+        "action": "v134_030_15分と45分",
+        "motionSignature": "v134-motion-030",
+        "backgroundSignature": "v134-bg-030",
+        "actionProgram": 29,
+        "camera": 8,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "職場まで20分と60分",
+        "space": "busTransfer",
+        "diagram": "route",
+        "labels": [
+          "職場まで20分と60分",
+          "20分",
+          "60分",
+          "職場"
+        ],
+        "action": "v134_031_職場まで20分と60分",
+        "motionSignature": "v134-motion-031",
+        "backgroundSignature": "v134-bg-031",
+        "actionProgram": 30,
+        "camera": 13,
+        "tempo": 4,
+        "variant": 8
+      },
+      {
+        "title": "月20時間が生まれる",
+        "space": "clockRoom",
+        "diagram": "timeline",
+        "labels": [
+          "月20時間が生まれる",
+          "20時間",
+          "月",
+          "勤務"
+        ],
+        "action": "v134_032_月20時間が生まれる",
+        "motionSignature": "v134-motion-032",
+        "backgroundSignature": "v134-bg-032",
+        "actionProgram": 31,
+        "camera": 4,
+        "tempo": 2,
+        "variant": 1
+      },
+      {
+        "title": "求人の半径が広がる",
+        "space": "jobMap",
+        "diagram": "radius",
+        "labels": [
+          "求人の半径が広がる",
+          "3km",
+          "20km",
+          "求人"
+        ],
+        "action": "v134_033_求人の半径が広がる",
+        "motionSignature": "v134-motion-033",
+        "backgroundSignature": "v134-bg-033",
+        "actionProgram": 32,
+        "camera": 9,
+        "tempo": 0,
+        "variant": 3
+      },
+      {
+        "title": "地図上の仕事が増える",
+        "space": "regionalTown",
+        "diagram": "map",
+        "labels": [
+          "地図上の仕事が増える",
+          "応募可能",
+          "半径",
+          "仕事"
+        ],
+        "action": "v134_034_地図上の仕事が増える",
+        "motionSignature": "v134-motion-034",
+        "backgroundSignature": "v134-bg-034",
+        "actionProgram": 33,
+        "camera": 0,
+        "tempo": 7,
+        "variant": 5
+      },
+      {
+        "title": "オング2002",
+        "space": "university",
+        "diagram": "scatter",
+        "labels": [
+          "オング2002",
+          "Ong 2002",
+          "TANF",
+          "9pt"
+        ],
+        "action": "v134_035_オング2002",
+        "motionSignature": "v134-motion-035",
+        "backgroundSignature": "v134-bg-035",
+        "actionProgram": 34,
+        "camera": 5,
+        "tempo": 5,
+        "variant": 7
+      },
+      {
+        "title": "日本へ単純移植しない",
+        "space": "dataLab",
+        "diagram": "balance",
+        "labels": [
+          "日本へ単純移植しない",
+          "米国",
+          "日本",
+          "制度差"
+        ],
+        "action": "v134_036_日本へ単純移植しない",
+        "motionSignature": "v134-motion-036",
+        "backgroundSignature": "v134-bg-036",
+        "actionProgram": 35,
+        "camera": 10,
+        "tempo": 3,
+        "variant": 0
+      },
+      {
+        "title": "クラインの自動車支援研究",
+        "space": "usedCarLot",
+        "diagram": "handoff",
+        "labels": [
+          "クラインの自動車支援研究",
+          "Klein",
+          "低所得",
+          "車支援"
+        ],
+        "action": "v134_037_クラインの自動車支援研究",
+        "motionSignature": "v134-motion-037",
+        "backgroundSignature": "v134-bg-037",
+        "actionProgram": 36,
+        "camera": 1,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "保育と医療へのアクセス",
+        "space": "hospital",
+        "diagram": "network",
+        "labels": [
+          "保育と医療へのアクセス",
+          "医療",
+          "買物",
+          "保育"
+        ],
+        "action": "v134_038_保育と医療へのアクセス",
+        "motionSignature": "v134-motion-038",
+        "backgroundSignature": "v134-bg-038",
+        "actionProgram": 37,
+        "camera": 6,
+        "tempo": 8,
+        "variant": 4
+      },
+      {
+        "title": "2026年日本の研究",
+        "space": "university",
+        "diagram": "ledger",
+        "labels": [
+          "2026年日本の研究",
+          "加藤穂高",
+          "2026",
+          "日本"
+        ],
+        "action": "v134_039_2026年日本の研究",
+        "motionSignature": "v134-motion-039",
+        "backgroundSignature": "v134-bg-039",
+        "actionProgram": 38,
+        "camera": 11,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "自動車保有率と生活保護率",
+        "space": "dataLab",
+        "diagram": "scatter",
+        "labels": [
+          "自動車保有率と生活保護率",
+          "保有率",
+          "保護率",
+          "関係"
+        ],
+        "action": "v134_040_自動車保有率と生活保護率",
+        "motionSignature": "v134-motion-040",
+        "backgroundSignature": "v134-bg-040",
+        "actionProgram": 39,
+        "camera": 2,
+        "tempo": 4,
+        "variant": 8
+      },
+      {
+        "title": "全国一律制限への問い",
+        "space": "mapRoom",
+        "diagram": "question",
+        "labels": [
+          "全国一律制限への問い",
+          "地域差",
+          "一律制限",
+          "障壁"
+        ],
+        "action": "v134_041_全国一律制限への問い",
+        "motionSignature": "v134-motion-041",
+        "backgroundSignature": "v134-bg-041",
+        "actionProgram": 40,
+        "camera": 7,
+        "tempo": 2,
+        "variant": 1
+      },
+      {
+        "title": "スマホを売る矛盾",
+        "space": "smartphoneDesk",
+        "diagram": "paradox",
+        "labels": [
+          "スマホを売る矛盾",
+          "スマホ",
+          "資産",
+          "再就職"
+        ],
+        "action": "v134_042_スマホを売る矛盾",
+        "motionSignature": "v134-motion-042",
+        "backgroundSignature": "v134-bg-042",
+        "actionProgram": 41,
+        "camera": 12,
+        "tempo": 0,
+        "variant": 3
+      }
+    ],
+    "chapter3": [
+      {
+        "title": "なぜ腹が立つのか",
+        "space": "commuterTrain",
+        "diagram": "balance",
+        "labels": [
+          "なぜ腹が立つのか",
+          "感情",
+          "公平",
+          "生活保護"
+        ],
+        "action": "v134_043_なぜ腹が立つのか",
+        "motionSignature": "v134-motion-043",
+        "backgroundSignature": "v134-bg-043",
+        "actionProgram": 42,
+        "camera": 3,
+        "tempo": 7,
+        "variant": 5
+      },
+      {
+        "title": "自分は我慢している",
+        "space": "lowIncomeHome",
+        "diagram": "twoWallets",
+        "labels": [
+          "自分は我慢している",
+          "満員電車",
+          "節約",
+          "我慢"
+        ],
+        "action": "v134_044_自分は我慢している",
+        "motionSignature": "v134-motion-044",
+        "backgroundSignature": "v134-bg-044",
+        "actionProgram": 43,
+        "camera": 8,
+        "tempo": 5,
+        "variant": 7
+      },
+      {
+        "title": "不公平感の正体",
+        "space": "newsScreen",
+        "diagram": "paradox",
+        "labels": [
+          "不公平感の正体",
+          "納税者",
+          "受給者",
+          "比較"
+        ],
+        "action": "v134_045_不公平感の正体",
+        "motionSignature": "v134-motion-045",
+        "backgroundSignature": "v134-bg-045",
+        "actionProgram": 44,
+        "camera": 13,
+        "tempo": 3,
+        "variant": 0
+      },
+      {
+        "title": "弱者いじめで片づけない",
+        "space": "university",
+        "diagram": "question",
+        "labels": [
+          "弱者いじめで片づけない",
+          "正統性",
+          "制度",
+          "感情"
+        ],
+        "action": "v134_046_弱者いじめで片づけない",
+        "motionSignature": "v134-motion-046",
+        "backgroundSignature": "v134-bg-046",
+        "actionProgram": 45,
+        "camera": 4,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "deservingness研究",
+        "space": "library",
+        "diagram": "timeline",
+        "labels": [
+          "deservingness研究",
+          "支援に値する",
+          "判断",
+          "研究"
+        ],
+        "action": "v134_047_deservingness研究",
+        "motionSignature": "v134-motion-047",
+        "backgroundSignature": "v134-bg-047",
+        "actionProgram": 46,
+        "camera": 9,
+        "tempo": 8,
+        "variant": 4
+      },
+      {
+        "title": "CARINという枠組み",
+        "space": "dataLab",
+        "diagram": "carin",
+        "labels": [
+          "CARINという枠組み",
+          "CARIN",
+          "5基準",
+          "福祉"
+        ],
+        "action": "v134_048_CARINという枠組み",
+        "motionSignature": "v134-motion-048",
+        "backgroundSignature": "v134-bg-048",
+        "actionProgram": 47,
+        "camera": 0,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "Control",
+        "space": "courtroom",
+        "diagram": "target",
+        "labels": [
+          "Control",
+          "責任",
+          "Control",
+          "困窮"
+        ],
+        "action": "v134_049_Control",
+        "motionSignature": "v134-motion-049",
+        "backgroundSignature": "v134-bg-049",
+        "actionProgram": 48,
+        "camera": 5,
+        "tempo": 4,
+        "variant": 8
+      },
+      {
+        "title": "Attitude",
+        "space": "welfareOffice",
+        "diagram": "scale",
+        "labels": [
+          "Attitude",
+          "態度",
+          "Attitude",
+          "支援"
+        ],
+        "action": "v134_050_Attitude",
+        "motionSignature": "v134-motion-050",
+        "backgroundSignature": "v134-bg-050",
+        "actionProgram": 49,
+        "camera": 10,
+        "tempo": 2,
+        "variant": 1
+      },
+      {
+        "title": "Reciprocity",
+        "space": "workplace",
+        "diagram": "handoff",
+        "labels": [
+          "Reciprocity",
+          "貢献",
+          "Reciprocity",
+          "社会"
+        ],
+        "action": "v134_051_Reciprocity",
+        "motionSignature": "v134-motion-051",
+        "backgroundSignature": "v134-bg-051",
+        "actionProgram": 50,
+        "camera": 1,
+        "tempo": 0,
+        "variant": 3
+      },
+      {
+        "title": "Identity",
+        "space": "communityHall",
+        "diagram": "network",
+        "labels": [
+          "Identity",
+          "近さ",
+          "Identity",
+          "われわれ"
+        ],
+        "action": "v134_052_Identity",
+        "motionSignature": "v134-motion-052",
+        "backgroundSignature": "v134-bg-052",
+        "actionProgram": 51,
+        "camera": 6,
+        "tempo": 7,
+        "variant": 5
+      },
+      {
+        "title": "Need",
+        "space": "hospital",
+        "diagram": "threshold",
+        "labels": [
+          "Need",
+          "必要",
+          "Need",
+          "困窮"
+        ],
+        "action": "v134_053_Need",
+        "motionSignature": "v134-motion-053",
+        "backgroundSignature": "v134-bg-053",
+        "actionProgram": 52,
+        "camera": 11,
+        "tempo": 5,
+        "variant": 7
+      },
+      {
+        "title": "車が象徴になる",
+        "space": "carShowroom",
+        "diagram": "symbol",
+        "labels": [
+          "車が象徴になる",
+          "自由",
+          "豊かさ",
+          "車"
+        ],
+        "action": "v134_054_車が象徴になる",
+        "motionSignature": "v134-motion-054",
+        "backgroundSignature": "v134-bg-054",
+        "actionProgram": 53,
+        "camera": 2,
+        "tempo": 3,
+        "variant": 0
+      },
+      {
+        "title": "古い軽でも贅沢に見える",
+        "space": "apartmentParking",
+        "diagram": "swap",
+        "labels": [
+          "古い軽でも贅沢に見える",
+          "中古軽",
+          "象徴",
+          "贅沢"
+        ],
+        "action": "v134_055_古い軽でも贅沢に見える",
+        "motionSignature": "v134-motion-055",
+        "backgroundSignature": "v134-bg-055",
+        "actionProgram": 54,
+        "camera": 7,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "現実的コストもある",
+        "space": "repairGarage",
+        "diagram": "costStack",
+        "labels": [
+          "現実的コストもある",
+          "保険",
+          "事故",
+          "維持費"
+        ],
+        "action": "v134_056_現実的コストもある",
+        "motionSignature": "v134-motion-056",
+        "backgroundSignature": "v134-bg-056",
+        "actionProgram": 55,
+        "camera": 12,
+        "tempo": 8,
+        "variant": 4
+      }
+    ],
+    "chapter4": [
+      {
+        "title": "生活保護と治安",
+        "space": "nightCity",
+        "diagram": "reveal",
+        "labels": [
+          "生活保護と治安",
+          "生活保護",
+          "治安",
+          "社会"
+        ],
+        "action": "v134_057_生活保護と治安",
+        "motionSignature": "v134-motion-057",
+        "backgroundSignature": "v134-bg-057",
+        "actionProgram": 56,
+        "camera": 3,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "貧困者を犯罪者扱いしない",
+        "space": "policeStation",
+        "diagram": "choiceSet",
+        "labels": [
+          "貧困者を犯罪者扱いしない",
+          "貧困",
+          "犯罪",
+          "短絡しない"
+        ],
+        "action": "v134_058_貧困者を犯罪者扱いしない",
+        "motionSignature": "v134-motion-058",
+        "backgroundSignature": "v134-bg-058",
+        "actionProgram": 57,
+        "camera": 8,
+        "tempo": 4,
+        "variant": 8
+      },
+      {
+        "title": "選択肢が減るとき",
+        "space": "crossroads",
+        "diagram": "fork",
+        "labels": [
+          "選択肢が減るとき",
+          "合法選択肢",
+          "インセンティブ",
+          "変化"
+        ],
+        "action": "v134_059_選択肢が減るとき",
+        "motionSignature": "v134-motion-059",
+        "backgroundSignature": "v134-bg-059",
+        "actionProgram": 58,
+        "camera": 13,
+        "tempo": 2,
+        "variant": 1
+      },
+      {
+        "title": "財布に300円",
+        "space": "lowIncomeHome",
+        "diagram": "threshold",
+        "labels": [
+          "財布に300円",
+          "300円",
+          "家賃",
+          "食事"
+        ],
+        "action": "v134_060_財布に300円",
+        "motionSignature": "v134-motion-060",
+        "backgroundSignature": "v134-bg-060",
+        "actionProgram": 59,
+        "camera": 4,
+        "tempo": 0,
+        "variant": 3
+      },
+      {
+        "title": "SSI自然実験",
+        "space": "university",
+        "diagram": "timeline",
+        "labels": [
+          "SSI自然実験",
+          "SSI",
+          "自然実験",
+          "20年"
+        ],
+        "action": "v134_061_SSI自然実験",
+        "motionSignature": "v134-motion-061",
+        "backgroundSignature": "v134-bg-061",
+        "actionProgram": 60,
+        "camera": 9,
+        "tempo": 7,
+        "variant": 5
+      },
+      {
+        "title": "1996年制度改革",
+        "space": "archive",
+        "diagram": "flow",
+        "labels": [
+          "1996年制度改革",
+          "1996",
+          "18歳",
+          "資格"
+        ],
+        "action": "v134_062_1996年制度改革",
+        "motionSignature": "v134-motion-062",
+        "backgroundSignature": "v134-bg-062",
+        "actionProgram": 61,
+        "camera": 0,
+        "tempo": 5,
+        "variant": 7
+      },
+      {
+        "title": "刑事訴追20%増",
+        "space": "courtroom",
+        "diagram": "bar",
+        "labels": [
+          "刑事訴追20%増",
+          "20%",
+          "刑事訴追",
+          "増加"
+        ],
+        "action": "v134_063_刑事訴追20_増",
+        "motionSignature": "v134-motion-063",
+        "backgroundSignature": "v134-bg-063",
+        "actionProgram": 62,
+        "camera": 5,
+        "tempo": 3,
+        "variant": 0
+      },
+      {
+        "title": "所得獲得型犯罪60%増",
+        "space": "policeStation",
+        "diagram": "scatter",
+        "labels": [
+          "所得獲得型犯罪60%増",
+          "60%",
+          "窃盗等",
+          "所得獲得"
+        ],
+        "action": "v134_064_所得獲得型犯罪60_増",
+        "motionSignature": "v134-motion-064",
+        "backgroundSignature": "v134-bg-064",
+        "actionProgram": 63,
+        "camera": 10,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "収監確率60%増",
+        "space": "prison",
+        "diagram": "scale",
+        "labels": [
+          "収監確率60%増",
+          "60%",
+          "収監",
+          "年間確率"
+        ],
+        "action": "v134_065_収監確率60_増",
+        "motionSignature": "v134-motion-065",
+        "backgroundSignature": "v134-bg-065",
+        "actionProgram": 64,
+        "camera": 1,
+        "tempo": 8,
+        "variant": 4
+      },
+      {
+        "title": "節約は司法費へ",
+        "space": "budgetOffice",
+        "diagram": "budgetShift",
+        "labels": [
+          "節約は司法費へ",
+          "給付削減",
+          "警察",
+          "裁判"
+        ],
+        "action": "v134_066_節約は司法費へ",
+        "motionSignature": "v134-motion-066",
+        "backgroundSignature": "v134-bg-066",
+        "actionProgram": 65,
+        "camera": 6,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "日本へ直接適用しない",
+        "space": "mapRoom",
+        "diagram": "comparison",
+        "labels": [
+          "日本へ直接適用しない",
+          "米国SSI",
+          "日本",
+          "限界"
+        ],
+        "action": "v134_067_日本へ直接適用しない",
+        "motionSignature": "v134-motion-067",
+        "backgroundSignature": "v134-bg-067",
+        "actionProgram": 66,
+        "camera": 11,
+        "tempo": 4,
+        "variant": 8
+      },
+      {
+        "title": "支出は別制度へ移る",
+        "space": "emergencyCenter",
+        "diagram": "externality",
+        "labels": [
+          "支出は別制度へ移る",
+          "福祉費",
+          "司法費",
+          "移転"
+        ],
+        "action": "v134_068_支出は別制度へ移る",
+        "motionSignature": "v134-motion-068",
+        "backgroundSignature": "v134-bg-068",
+        "actionProgram": 67,
+        "camera": 2,
+        "tempo": 2,
+        "variant": 1
+      },
+      {
+        "title": "社会の床",
+        "space": "apartmentParking",
+        "diagram": "container",
+        "labels": [
+          "社会の床",
+          "床",
+          "転落",
+          "最低所得"
+        ],
+        "action": "v134_069_社会の床",
+        "motionSignature": "v134-motion-069",
+        "backgroundSignature": "v134-bg-069",
+        "actionProgram": 68,
+        "camera": 7,
+        "tempo": 0,
+        "variant": 3
+      },
+      {
+        "title": "治安は警察だけで作られない",
+        "space": "cityNetwork",
+        "diagram": "network",
+        "labels": [
+          "治安は警察だけで作られない",
+          "住宅",
+          "教育",
+          "医療"
+        ],
+        "action": "v134_070_治安は警察だけで作られない",
+        "motionSignature": "v134-motion-070",
+        "backgroundSignature": "v134-bg-070",
+        "actionProgram": 69,
+        "camera": 12,
+        "tempo": 7,
+        "variant": 5
+      }
+    ],
+    "chapter5": [
+      {
+        "title": "制度支持と個別緩和は別",
+        "space": "debateRoom",
+        "diagram": "split",
+        "labels": [
+          "制度支持と個別緩和は別",
+          "制度",
+          "個別政策",
+          "分ける"
+        ],
+        "action": "v134_071_制度支持と個別緩和は別",
+        "motionSignature": "v134-motion-071",
+        "backgroundSignature": "v134-bg-071",
+        "actionProgram": 70,
+        "camera": 3,
+        "tempo": 5,
+        "variant": 7
+      },
+      {
+        "title": "今回の対象を限定する",
+        "space": "ministry",
+        "diagram": "sieve",
+        "labels": [
+          "今回の対象を限定する",
+          "未就学児",
+          "ひとり親",
+          "地域"
+        ],
+        "action": "v134_072_今回の対象を限定する",
+        "motionSignature": "v134-motion-072",
+        "backgroundSignature": "v134-bg-072",
+        "actionProgram": 71,
+        "camera": 8,
+        "tempo": 3,
+        "variant": 0
+      },
+      {
+        "title": "目的は豪華さではない",
+        "space": "daycare",
+        "diagram": "target",
+        "labels": [
+          "目的は豪華さではない",
+          "送迎",
+          "就労時間",
+          "自立"
+        ],
+        "action": "v134_073_目的は豪華さではない",
+        "motionSignature": "v134-motion-073",
+        "backgroundSignature": "v134-bg-073",
+        "actionProgram": 72,
+        "camera": 13,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "車で成立する一日",
+        "space": "childcareRoute",
+        "diagram": "timeline",
+        "labels": [
+          "車で成立する一日",
+          "7:40",
+          "18:20",
+          "一日"
+        ],
+        "action": "v134_074_車で成立する一日",
+        "motionSignature": "v134-motion-074",
+        "backgroundSignature": "v134-bg-074",
+        "actionProgram": 73,
+        "camera": 4,
+        "tempo": 8,
+        "variant": 4
+      },
+      {
+        "title": "バス一本で崩れる",
+        "space": "busStop",
+        "diagram": "collapse",
+        "labels": [
+          "バス一本で崩れる",
+          "一本逃す",
+          "崩壊",
+          "交通"
+        ],
+        "action": "v134_075_バス一本で崩れる",
+        "motionSignature": "v134-motion-075",
+        "backgroundSignature": "v134-bg-075",
+        "actionProgram": 74,
+        "camera": 9,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "残業できない",
+        "space": "workplace",
+        "diagram": "barrier",
+        "labels": [
+          "残業できない",
+          "閉園",
+          "残業",
+          "制約"
+        ],
+        "action": "v134_076_残業できない",
+        "motionSignature": "v134-motion-076",
+        "backgroundSignature": "v134-bg-076",
+        "actionProgram": 75,
+        "camera": 0,
+        "tempo": 4,
+        "variant": 8
+      },
+      {
+        "title": "仕事が時刻表から消える",
+        "space": "jobMap",
+        "diagram": "map",
+        "labels": [
+          "仕事が時刻表から消える",
+          "求人",
+          "時刻表",
+          "不存在"
+        ],
+        "action": "v134_077_仕事が時刻表から消える",
+        "motionSignature": "v134-motion-077",
+        "backgroundSignature": "v134-bg-077",
+        "actionProgram": 76,
+        "camera": 5,
+        "tempo": 2,
+        "variant": 1
+      },
+      {
+        "title": "厳しさが自立を遅らせる",
+        "space": "welfareOffice",
+        "diagram": "reverse",
+        "labels": [
+          "厳しさが自立を遅らせる",
+          "厳格化",
+          "自立",
+          "逆説"
+        ],
+        "action": "v134_078_厳しさが自立を遅らせる",
+        "motionSignature": "v134-motion-078",
+        "backgroundSignature": "v134-bg-078",
+        "actionProgram": 77,
+        "camera": 10,
+        "tempo": 0,
+        "variant": 3
+      },
+      {
+        "title": "資産処分の逆効果",
+        "space": "usedCarLot",
+        "diagram": "paradox",
+        "labels": [
+          "資産処分の逆効果",
+          "資産処分",
+          "移動",
+          "損失"
+        ],
+        "action": "v134_079_資産処分の逆効果",
+        "motionSignature": "v134-motion-079",
+        "backgroundSignature": "v134-bg-079",
+        "actionProgram": 78,
+        "camera": 1,
+        "tempo": 7,
+        "variant": 5
+      },
+      {
+        "title": "貧困の罠",
+        "space": "mazeRoom",
+        "diagram": "loop",
+        "labels": [
+          "貧困の罠",
+          "依存",
+          "長期化",
+          "罠"
+        ],
+        "action": "v134_080_貧困の罠",
+        "motionSignature": "v134-motion-080",
+        "backgroundSignature": "v134-bg-080",
+        "actionProgram": 79,
+        "camera": 6,
+        "tempo": 5,
+        "variant": 7
+      },
+      {
+        "title": "10万円を売る仮説",
+        "space": "budgetOffice",
+        "diagram": "twoWallets",
+        "labels": [
+          "10万円を売る仮説",
+          "10万円",
+          "月5万円",
+          "仮説"
+        ],
+        "action": "v134_081_10万円を売る仮説",
+        "motionSignature": "v134-motion-081",
+        "backgroundSignature": "v134-bg-081",
+        "actionProgram": 80,
+        "camera": 11,
+        "tempo": 3,
+        "variant": 0
+      },
+      {
+        "title": "処分価格だけ見ない",
+        "space": "dataLab",
+        "diagram": "ledger",
+        "labels": [
+          "処分価格だけ見ない",
+          "将来所得",
+          "機能",
+          "評価"
+        ],
+        "action": "v134_082_処分価格だけ見ない",
+        "motionSignature": "v134-motion-082",
+        "backgroundSignature": "v134-bg-082",
+        "actionProgram": 81,
+        "camera": 2,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "売れるが持つ意味がある",
+        "space": "toolBench",
+        "diagram": "assembly",
+        "labels": [
+          "売れるが持つ意味がある",
+          "スマホ",
+          "工具",
+          "設備"
+        ],
+        "action": "v134_083_売れるが持つ意味がある",
+        "motionSignature": "v134-motion-083",
+        "backgroundSignature": "v134-bg-083",
+        "actionProgram": 82,
+        "camera": 7,
+        "tempo": 8,
+        "variant": 4
+      },
+      {
+        "title": "緩和の成否は選別",
+        "space": "assessmentDesk",
+        "diagram": "threshold",
+        "labels": [
+          "緩和の成否は選別",
+          "必要性",
+          "自立可能性",
+          "審査"
+        ],
+        "action": "v134_084_緩和の成否は選別",
+        "motionSignature": "v134-motion-084",
+        "backgroundSignature": "v134-bg-084",
+        "actionProgram": 83,
+        "camera": 12,
+        "tempo": 6,
+        "variant": 6
+      }
+    ],
+    "chapter6": [
+      {
+        "title": "どんな条件なら認めるか",
+        "space": "assessmentDesk",
+        "diagram": "sieve",
+        "labels": [
+          "どんな条件なら認めるか",
+          "条件",
+          "地域",
+          "必要性"
+        ],
+        "action": "v134_085_どんな条件なら認めるか",
+        "motionSignature": "v134-motion-085",
+        "backgroundSignature": "v134-bg-085",
+        "actionProgram": 84,
+        "camera": 3,
+        "tempo": 4,
+        "variant": 8
+      },
+      {
+        "title": "全国一律でなくてよい",
+        "space": "cityNetwork",
+        "diagram": "comparison",
+        "labels": [
+          "全国一律でなくてよい",
+          "都市",
+          "地方",
+          "差"
+        ],
+        "action": "v134_086_全国一律でなくてよい",
+        "motionSignature": "v134-motion-086",
+        "backgroundSignature": "v134-bg-086",
+        "actionProgram": 85,
+        "camera": 8,
+        "tempo": 2,
+        "variant": 1
+      },
+      {
+        "title": "駅前と山間部",
+        "space": "regionalTown",
+        "diagram": "map",
+        "labels": [
+          "駅前と山間部",
+          "徒歩5分",
+          "15km",
+          "立地"
+        ],
+        "action": "v134_087_駅前と山間部",
+        "motionSignature": "v134-motion-087",
+        "backgroundSignature": "v134-bg-087",
+        "actionProgram": 86,
+        "camera": 13,
+        "tempo": 0,
+        "variant": 3
+      },
+      {
+        "title": "SUVと古い軽",
+        "space": "usedCarLot",
+        "diagram": "balance",
+        "labels": [
+          "SUVと古い軽",
+          "SUV",
+          "軽自動車",
+          "価値"
+        ],
+        "action": "v134_088_SUVと古い軽",
+        "motionSignature": "v134-motion-088",
+        "backgroundSignature": "v134-bg-088",
+        "actionProgram": 87,
+        "camera": 4,
+        "tempo": 7,
+        "variant": 5
+      },
+      {
+        "title": "通勤時間を測る",
+        "space": "clockRoom",
+        "diagram": "clock",
+        "labels": [
+          "通勤時間を測る",
+          "保育園",
+          "職場",
+          "時間"
+        ],
+        "action": "v134_089_通勤時間を測る",
+        "motionSignature": "v134-motion-089",
+        "backgroundSignature": "v134-bg-089",
+        "actionProgram": 88,
+        "camera": 9,
+        "tempo": 5,
+        "variant": 7
+      },
+      {
+        "title": "処分価値を見る",
+        "space": "carAuction",
+        "diagram": "ledger",
+        "labels": [
+          "処分価値を見る",
+          "処分価値",
+          "低額",
+          "資産"
+        ],
+        "action": "v134_090_処分価値を見る",
+        "motionSignature": "v134-motion-090",
+        "backgroundSignature": "v134-bg-090",
+        "actionProgram": 89,
+        "camera": 0,
+        "tempo": 3,
+        "variant": 0
+      },
+      {
+        "title": "保険を条件にする",
+        "space": "insuranceDesk",
+        "diagram": "checksum",
+        "labels": [
+          "保険を条件にする",
+          "任意保険",
+          "事故",
+          "責任"
+        ],
+        "action": "v134_091_保険を条件にする",
+        "motionSignature": "v134-motion-091",
+        "backgroundSignature": "v134-bg-091",
+        "actionProgram": 90,
+        "camera": 5,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "維持費を確認する",
+        "space": "repairGarage",
+        "diagram": "costStack",
+        "labels": [
+          "維持費を確認する",
+          "維持費",
+          "家計",
+          "圧迫"
+        ],
+        "action": "v134_092_維持費を確認する",
+        "motionSignature": "v134-motion-092",
+        "backgroundSignature": "v134-bg-092",
+        "actionProgram": 91,
+        "camera": 10,
+        "tempo": 8,
+        "variant": 4
+      },
+      {
+        "title": "求人増加を確認する",
+        "space": "jobMap",
+        "diagram": "radius",
+        "labels": [
+          "求人増加を確認する",
+          "求人",
+          "勤務時間",
+          "機能"
+        ],
+        "action": "v134_093_求人増加を確認する",
+        "motionSignature": "v134-motion-093",
+        "backgroundSignature": "v134-bg-093",
+        "actionProgram": 92,
+        "camera": 1,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "必要性を再審査する",
+        "space": "welfareOffice",
+        "diagram": "loop",
+        "labels": [
+          "必要性を再審査する",
+          "再確認",
+          "期間",
+          "必要性"
+        ],
+        "action": "v134_094_必要性を再審査する",
+        "motionSignature": "v134-motion-094",
+        "backgroundSignature": "v134-bg-094",
+        "actionProgram": 93,
+        "camera": 6,
+        "tempo": 4,
+        "variant": 8
+      },
+      {
+        "title": "車の機能を見る",
+        "space": "carInterior",
+        "diagram": "reveal",
+        "labels": [
+          "車の機能を見る",
+          "所有",
+          "機能",
+          "評価"
+        ],
+        "action": "v134_095_車の機能を見る",
+        "motionSignature": "v134-motion-095",
+        "backgroundSignature": "v134-bg-095",
+        "actionProgram": 94,
+        "camera": 11,
+        "tempo": 2,
+        "variant": 1
+      },
+      {
+        "title": "低所得世帯との公平",
+        "space": "lowIncomeHome",
+        "diagram": "twoWallets",
+        "labels": [
+          "低所得世帯との公平",
+          "基準直上",
+          "自費",
+          "不公平"
+        ],
+        "action": "v134_096_低所得世帯との公平",
+        "motionSignature": "v134-motion-096",
+        "backgroundSignature": "v134-bg-096",
+        "actionProgram": 95,
+        "camera": 2,
+        "tempo": 0,
+        "variant": 3
+      },
+      {
+        "title": "支援の崖",
+        "space": "staircase",
+        "diagram": "threshold",
+        "labels": [
+          "支援の崖",
+          "生活保護基準",
+          "境界",
+          "崖"
+        ],
+        "action": "v134_097_支援の崖",
+        "motionSignature": "v134-motion-097",
+        "backgroundSignature": "v134-bg-097",
+        "actionProgram": 96,
+        "camera": 7,
+        "tempo": 7,
+        "variant": 5
+      },
+      {
+        "title": "貧しい人同士を競わせない",
+        "space": "communityHall",
+        "diagram": "network",
+        "labels": [
+          "貧しい人同士を競わせない",
+          "低所得",
+          "対立",
+          "構造"
+        ],
+        "action": "v134_098_貧しい人同士を競わせない",
+        "motionSignature": "v134-motion-098",
+        "backgroundSignature": "v134-bg-098",
+        "actionProgram": 97,
+        "camera": 12,
+        "tempo": 5,
+        "variant": 7
+      }
+    ],
+    "epilogue": [
+      {
+        "title": "朝7時10分へ戻る",
+        "space": "apartmentParking",
+        "diagram": "continuity",
+        "labels": [
+          "朝7時10分へ戻る",
+          "7:10",
+          "同じ車",
+          "戻る"
+        ],
+        "action": "v134_099_朝7時10分へ戻る",
+        "motionSignature": "v134-motion-099",
+        "backgroundSignature": "v134-bg-099",
+        "actionProgram": 98,
+        "camera": 3,
+        "tempo": 3,
+        "variant": 0
+      },
+      {
+        "title": "夜露のフロントガラス",
+        "space": "carInterior",
+        "diagram": "spotlight",
+        "labels": [
+          "夜露のフロントガラス",
+          "夜露",
+          "四歳児",
+          "朝"
+        ],
+        "action": "v134_100_夜露のフロントガラス",
+        "motionSignature": "v134-motion-100",
+        "backgroundSignature": "v134-bg-100",
+        "actionProgram": 99,
+        "camera": 8,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "走行12万km",
+        "space": "usedCarLot",
+        "diagram": "ledger",
+        "labels": [
+          "走行12万km",
+          "12万km",
+          "傷",
+          "低価値"
+        ],
+        "action": "v134_101_走行12万km",
+        "motionSignature": "v134-motion-101",
+        "backgroundSignature": "v134-bg-101",
+        "actionProgram": 100,
+        "camera": 13,
+        "tempo": 8,
+        "variant": 4
+      },
+      {
+        "title": "保育園へ行ける",
+        "space": "daycare",
+        "diagram": "route",
+        "labels": [
+          "保育園へ行ける",
+          "送迎",
+          "保育園",
+          "可能"
+        ],
+        "action": "v134_102_保育園へ行ける",
+        "motionSignature": "v134-motion-102",
+        "backgroundSignature": "v134-bg-102",
+        "actionProgram": 101,
+        "camera": 4,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "仕事へ行ける",
+        "space": "workplace",
+        "diagram": "target",
+        "labels": [
+          "仕事へ行ける",
+          "通勤",
+          "就労",
+          "可能"
+        ],
+        "action": "v134_103_仕事へ行ける",
+        "motionSignature": "v134-motion-103",
+        "backgroundSignature": "v134-bg-103",
+        "actionProgram": 102,
+        "camera": 9,
+        "tempo": 4,
+        "variant": 8
+      },
+      {
+        "title": "病院へ行ける",
+        "space": "hospital",
+        "diagram": "network",
+        "labels": [
+          "病院へ行ける",
+          "発熱",
+          "病院",
+          "可能"
+        ],
+        "action": "v134_104_病院へ行ける",
+        "motionSignature": "v134-motion-104",
+        "backgroundSignature": "v134-bg-104",
+        "actionProgram": 103,
+        "camera": 0,
+        "tempo": 2,
+        "variant": 1
+      },
+      {
+        "title": "資産かインフラか",
+        "space": "assessmentDesk",
+        "diagram": "question",
+        "labels": [
+          "資産かインフラか",
+          "資産",
+          "贅沢",
+          "道具"
+        ],
+        "action": "v134_105_資産かインフラか",
+        "motionSignature": "v134-motion-105",
+        "backgroundSignature": "v134-bg-105",
+        "actionProgram": 104,
+        "camera": 5,
+        "tempo": 0,
+        "variant": 3
+      },
+      {
+        "title": "税金で車を認めるのか",
+        "space": "taxOffice",
+        "diagram": "twoWallets",
+        "labels": [
+          "税金で車を認めるのか",
+          "納税者",
+          "負担",
+          "疑問"
+        ],
+        "action": "v134_106_税金で車を認めるのか",
+        "motionSignature": "v134-motion-106",
+        "backgroundSignature": "v134-bg-106",
+        "actionProgram": 105,
+        "camera": 10,
+        "tempo": 7,
+        "variant": 5
+      },
+      {
+        "title": "取り上げても税金は残る",
+        "space": "budgetOffice",
+        "diagram": "budgetShift",
+        "labels": [
+          "取り上げても税金は残る",
+          "就労減",
+          "保護長期化",
+          "税"
+        ],
+        "action": "v134_107_取り上げても税金は残る",
+        "motionSignature": "v134-motion-107",
+        "backgroundSignature": "v134-bg-107",
+        "actionProgram": 106,
+        "camera": 1,
+        "tempo": 5,
+        "variant": 7
+      },
+      {
+        "title": "別の請求書",
+        "space": "policeStation",
+        "diagram": "externality",
+        "labels": [
+          "別の請求書",
+          "警察",
+          "司法",
+          "医療"
+        ],
+        "action": "v134_108_別の請求書",
+        "motionSignature": "v134-motion-108",
+        "backgroundSignature": "v134-bg-108",
+        "actionProgram": 107,
+        "camera": 6,
+        "tempo": 3,
+        "variant": 0
+      },
+      {
+        "title": "社会の床",
+        "space": "nightCity",
+        "diagram": "container",
+        "labels": [
+          "社会の床",
+          "最低所得",
+          "床",
+          "治安"
+        ],
+        "action": "v134_109_社会の床",
+        "motionSignature": "v134-motion-109",
+        "backgroundSignature": "v134-bg-109",
+        "actionProgram": 108,
+        "camera": 11,
+        "tempo": 1,
+        "variant": 2
+      },
+      {
+        "title": "1963から2026へ",
+        "space": "retroStreet",
+        "diagram": "timeline",
+        "labels": [
+          "1963から2026へ",
+          "昭和38年",
+          "2026",
+          "境界"
+        ],
+        "action": "v134_110_1963から2026へ",
+        "motionSignature": "v134-motion-110",
+        "backgroundSignature": "v134-bg-110",
+        "actionProgram": 109,
+        "camera": 2,
+        "tempo": 8,
+        "variant": 4
+      },
+      {
+        "title": "あなたはどう考える",
+        "space": "debateRoom",
+        "diagram": "balance",
+        "labels": [
+          "あなたはどう考える",
+          "地方",
+          "都市",
+          "緩和"
+        ],
+        "action": "v134_111_あなたはどう考える",
+        "motionSignature": "v134-motion-111",
+        "backgroundSignature": "v134-bg-111",
+        "actionProgram": 110,
+        "camera": 7,
+        "tempo": 6,
+        "variant": 6
+      },
+      {
+        "title": "車と一緒に道まで奪うか",
+        "space": "suburbRoad",
+        "diagram": "reveal",
+        "labels": [
+          "車と一緒に道まで奪うか",
+          "仕事への道",
+          "取り上げる",
+          "問い"
+        ],
+        "action": "v134_112_車と一緒に道まで奪うか",
+        "motionSignature": "v134-motion-112",
+        "backgroundSignature": "v134-bg-112",
+        "actionProgram": 111,
+        "camera": 12,
+        "tempo": 4,
+        "variant": 8
+      }
+    ]
+  }
+}

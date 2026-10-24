@@ -2,10 +2,10 @@
 from pathlib import Path
 import concurrent.futures,io,json,os,sys,urllib.parse,urllib.request,wave
 R=Path(__file__).resolve().parents[1];chapter=sys.argv[1] if len(sys.argv)>1 else None
-VALID=['prologue','chapter1','chapter2','chapter3','chapter4','epilogue']
+VALID=['prologue','chapter1','chapter2','chapter3','chapter4','chapter5','chapter6','epilogue']
 if chapter not in VALID:raise SystemExit('Invalid chapter')
 BASE=os.getenv('VOICEVOX_URL','http://127.0.0.1:50021');SP=int(os.getenv('VOICEVOX_SPEAKER_ID','13'));SPEED=float(os.getenv('VOICEVOX_SPEED','1.15'));FPS=30;PRE=.055;POST=.085
-PRONUNCIATION_MAP={'Seeing Like a State':'シーイング・ライク・ア・ステート','マックス・ウェーバー':'マックス・ウェーバー','エヴァンス':'エヴァンス','ラウシュ':'ラウシュ'}
+PRONUNCIATION_MAP={'TANF':'タンフ','SSI':'エスエスアイ','deservingness':'ディザービングネス','CARIN':'カリン','Control':'コントロール','Attitude':'アティチュード','Reciprocity':'レシプロシティ','Identity':'アイデンティティ','Need':'ニード','ポール・オング':'ポール・オング','ニコラス・クライン':'ニコラス・クライン','加藤穂高':'かとうほだか','デシュパンデ':'デシュパンデ','ミューラー＝スミス':'ミューラー・スミス'}
 def spoken_text(text):
     for a,b in PRONUNCIATION_MAP.items():text=text.replace(a,b)
     return text

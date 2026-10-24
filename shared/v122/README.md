@@ -1,24 +1,28 @@
-# V132 — なぜ「官僚制」は人類が発明した完璧な管理システムなのか？
+# V134 — 生活保護で「車」を持つのは贅沢なのか？
 
-「考える夜」本番 Motion Canvas 版。古代・宋代の官僚登用、ウェーバー、アメリカ猟官制とペンドルトン法、国家能力、マートン、ジェームズ・C・スコットを一つの物語へ統合する。
+「考える夜」本番 Motion Canvas 版。2026年10月23日に報じられた、未就学児を育てるひとり親世帯への生活保護自動車保有要件緩和検討を入口に、自立・地方交通・福祉への公平感・治安・国家コストを扱う。
 
-## Visual system
-- 90 meaning scenes / 6 render units / 15 scenes per unit.
-- 27 concrete spatial worlds: municipal counter, village, registry, examination hall, ministry, kitchen, chain store, campaign office, rail network, civil-service exam room, data lab, emergency center, disaster desk, land map, forest grid, appeals room, etc.
-- 37 information grammars: handoff, checksum, barrier, dissolve, fork, network, memory, pipeline, hierarchy, sieve, scatter, map, goal swap, exception gateway, continuity, assembly, final reveal, etc.
-- 90 unique semantic actions and 90 unique motion signatures. No narration shares the same action ID.
-- 12 semantic stages per scene, giving at least 1,080 deliberate state changes before camera movement and internal object accents.
-- Scene-level rotation is prohibited. Diagrams stay frontal; camera movement is horizontal, vertical, or frontal-scale only.
-- Adjacent scenes may not reuse the same space, diagram grammar, camera program, or semantic action. Structural QA blocks the render if they do.
-- Background architecture is generated per scene and then transformed by a space-specific environment, preventing one generic background from being recycled throughout the video.
+## Visual design
+- 112 meaning scenes / 8 render units / 14 scenes per unit.
+- 51 concrete spatial grammars.
+- 42 information/diagram grammars.
+- 112 unique semantic actions.
+- 112 unique motion signatures.
+- 112 unique background signatures.
+- 12 semantic stages per scene = minimum 1,344 deliberate state changes before internal camera/prop movement.
+- Adjacent scenes may not reuse the same space, diagram grammar, camera program or action.
+- Any referenced space or diagram without a concrete renderer implementation blocks the build.
+- Scene-level rotation prohibited; diagrams remain frontal.
+- Subtitles are not timed by Motion Canvas. VOICEVOX measured speech timestamps generate ASS captions, then FFmpeg burns them into the rendered chapter.
+- Every final chapter compares MP4 duration to the original narration WAV and fails if the difference exceeds 0.12 seconds.
+
+## Story spaces
+Morning apartment parking / car interior / rural road / bus stop / transfer terminal / daycare / welfare office / 1963 Japan / used-car lot / garage / job-access map / commuter train / low-income home / research lab / police station / courtroom / prison / government budget room / policy assessment desk / final return to the same old kei car.
 
 ## Production
-VOICEVOX: 青山龍星 / speaker 13 / speed 1.15. Prepare runs structural QA and TypeScript/Vite build once. Six VOICEVOX jobs synthesize measured cues, followed by six chapter renders. Every chapter performs measured-timing merge, rebuild, smoke render, pixel subtitle QA, full render with retry, and packaging. Finalize performs concat, BGM mix, 1920×1080/30fps/audio validation, black/freeze scan, contact-sheet generation, and GitHub Release publication.
+VOICEVOX: 青山龍星 / speaker 13 / speed 1.15.
+8-way parallel voice generation and rendering.
+Smoke QA → full render → measured ASS subtitle burn → burned subtitle raster QA → narration/video sync QA → chapter packaging → stream-copy concat → BGM → final black/freeze scan → contact sheet → GitHub Release.
 
-## Core editorial thesis
-Bureaucracy is powerful not because humans are perfect, but because it assumes they are replaceable, forgetful, biased, and temporary—and moves authority, memory, and procedure outside the individual.
-
-## Pipeline retry
-GitHub runner checkout stall was isolated from content/render code; this commit retriggers the validated V132 pipeline.
-
-<!-- retry runner for subtitle-sync rebuild -->
+## Thesis
+生活保護は困窮者への善意だけではなく、社会の底が抜けることで発生する治安・医療・司法コストを抑える公共インフラでもある。その立場を維持したうえで、車が「売却できる資産」なのか「制度から退出するための労働装置」なのかを地域と世帯の機能から判断する。

@@ -1,0 +1,235 @@
+name: V134 Motion Canvas Welfare Car Public Safety
+on:
+  workflow_dispatch:
+    inputs:
+      only_chapter:
+        description: 'all or one chapter'
+        required: true
+        default: all
+        type: choice
+        options: [all, prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, epilogue]
+  push:
+    branches: [v134-welfare-car-public-safety-production]
+    paths:
+      - '.github/workflows/v134-motion-canvas-welfare-car-public-safety.yml'
+      - 'shared/v122/**'
+permissions:
+  contents: write
+concurrency:
+  group: v134-welfare-car-public-safety
+  cancel-in-progress: true
+env:
+  PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v122/.puppeteer
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22}
+      - name: Compile 112 scenes and structural QA
+        working-directory: shared/v122
+        run: |
+          python3 scripts/build_data.py
+          python3 scripts/qa.py
+      - name: Install and typecheck V134
+        working-directory: shared/v122
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+      - name: Package prepared renderer
+        run: |
+          tar --exclude='shared/v122/media' --exclude='shared/v122/output' --exclude='shared/v122/render' --exclude='shared/v122/qa' -czf v134-motion-base.tar.gz shared/v122
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v134-motion-base
+          path: v134-motion-base.tar.gz
+          retention-days: 3
+          compression-level: 0
+
+  voice:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        slug: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, epilogue]
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+      - name: Start VOICEVOX
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..100}; do if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi; sleep 2; done
+          exit 1
+      - name: Generate measured VOICEVOX cues
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v122
+        env:
+          VOICEVOX_SPEAKER_ID: '13'
+          VOICEVOX_SPEED: '1.15'
+          VOICEVOX_PARALLEL: '4'
+        run: |
+          python3 scripts/build_data.py
+          python3 scripts/synth_chapter.py "${{ matrix.slug }}"
+      - name: Package measured voice
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: |
+          tar -czf "v134-voice-${{ matrix.slug }}.tar.gz" "shared/v122/media/${{ matrix.slug }}" "shared/v122/content/measured-${{ matrix.slug }}.json" "shared/v122/voice-report-${{ matrix.slug }}.json"
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        with:
+          name: v134-voice-${{ matrix.slug }}
+          path: v134-voice-${{ matrix.slug }}.tar.gz
+          retention-days: 3
+          compression-level: 0
+
+  render:
+    needs: [prepare, voice]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        slug: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, epilogue]
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+      - uses: actions/setup-node@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        with: {node-version: 22}
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        with: {name: v134-motion-base}
+      - name: Unpack prepared renderer
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: tar -xzf v134-motion-base.tar.gz
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        with: {name: 'v134-voice-${{ matrix.slug }}'}
+      - name: Merge measured timings and rebuild
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v122
+        run: |
+          tar -xzf "../../v134-voice-${{ matrix.slug }}.tar.gz" -C ../..
+          python3 scripts/merge_timing.py "${{ matrix.slug }}"
+          python3 scripts/qa.py
+          npm run build
+      - name: Ensure FFmpeg and Noto fonts
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then sudo apt-get install -y -qq ffmpeg; fi
+          if ! fc-match "Noto Sans CJK JP" | grep -qi "Noto"; then sudo apt-get install -y -qq fonts-noto-cjk fontconfig; fi
+          fc-match "Noto Sans CJK JP" | head -1
+      - name: Smoke render
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v122
+        run: |
+          node scripts/render.mjs "${{ matrix.slug }}" --smoke
+          test -s "output/v134-${{ matrix.slug }}-smoke.mp4"
+          python3 scripts/check_smoke.py "output/v134-${{ matrix.slug }}-smoke.mp4"
+          rm -f "output/v134-${{ matrix.slug }}-smoke.mp4"
+      - name: Render full chapter with retry
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v122
+        run: |
+          chmod +x ../motion-canvas-standard/render-with-retry.sh
+          MAX_ATTEMPTS=2 ../motion-canvas-standard/render-with-retry.sh 48m node scripts/render.mjs "${{ matrix.slug }}"
+      - name: Burn measured subtitles
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v122
+        run: |
+          python3 scripts/burn_subtitles.py "${{ matrix.slug }}"
+          python3 scripts/check_burned_subtitles.py "output/v134-${{ matrix.slug }}.mp4" "content/measured-${{ matrix.slug }}.json" "subtitle-raster-report-${{ matrix.slug }}.json"
+      - name: Verify narration sync
+        if: ${{ inputs.only_chapter == '' || inputs.only_chapter == 'all' || inputs.only_chapter == matrix.slug }}
+        working-directory: shared/v122
+        run: |
+          python3 scripts/check_sync.py "output/v134-${{ matrix.slug }}.mp4" "media/${{ matrix.slug }}/narration.wav" "sync-report-${{ matrix.slug }}.json"
+      - name: Package finished chapter
+        if: success()
+        run: |
+          tar -czf "v134-render-${{ matrix.slug }}.tar.gz" "shared/v122/output/v134-${{ matrix.slug }}.mp4" "shared/v122/render-report-${{ matrix.slug }}.json" "shared/v122/voice-report-${{ matrix.slug }}.json" "shared/v122/sync-report-${{ matrix.slug }}.json" "shared/v122/subtitle-burn-report-${{ matrix.slug }}.json" "shared/v122/subtitle-raster-report-${{ matrix.slug }}.json"
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: v134-render-${{ matrix.slug }}
+          path: v134-render-${{ matrix.slug }}.tar.gz
+          retention-days: 3
+          compression-level: 0
+
+  finalize:
+    needs: render
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v134-render-*
+          path: renders
+          merge-multiple: true
+      - name: Restore rendered chapters
+        run: |
+          shopt -s nullglob
+          files=(renders/v134-render-*.tar.gz)
+          test ${#files[@]} -gt 0
+          for f in "${files[@]}"; do tar -xzf "$f"; done
+      - name: Reuse unchanged chapters from previous V134 release
+        if: ${{ inputs.only_chapter != '' && inputs.only_chapter != 'all' }}
+        working-directory: shared/v122
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          TAG=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 80 --json tagName,publishedAt --jq '[.[] | select(.tagName|startswith("v134-welfare-car-public-safety-"))] | sort_by(.publishedAt) | last | .tagName')
+          test -n "$TAG"
+          mkdir -p output
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do
+            if [ ! -s "output/v134-$c.mp4" ]; then gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "v134-$c.mp4" --dir output; fi
+          done
+      - name: Ensure FFmpeg and FFprobe
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then sudo apt-get install -y -qq ffmpeg; fi
+      - name: Concat BGM final QA and contact sheet
+        working-directory: shared/v122
+        run: |
+          set -euo pipefail
+          mkdir -p output qa
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do
+            test -s "output/v134-$c.mp4"
+            test -s "sync-report-$c.json"
+            python3 -c "import json; assert json.load(open('sync-report-$c.json'))['passed']"
+          done
+          : > output/concat.txt
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do printf "file '%s'\n" "$(realpath "output/v134-$c.mp4")" >> output/concat.txt; done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy output/v134-voice-master.mp4
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v134-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+          ffmpeg -y -loglevel error -i output/v134-voice-master.mp4 -i output/bgm.m4a -filter_complex '[0:a]volume=1[vo];[1:a]volume=.035[bg];[vo][bg]amix=inputs=2:duration=first[a]' -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart output/v134-final.mp4
+          W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 output/v134-final.mp4 | head -1)
+          H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 output/v134-final.mp4 | head -1)
+          FPS=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=nw=1:nk=1 output/v134-final.mp4 | head -1)
+          AUD=$(ffprobe -v error -select_streams a -show_entries stream=index -of default=nw=1:nk=1 output/v134-final.mp4 | wc -l)
+          SIZE=$(stat -c%s output/v134-final.mp4)
+          test "$W" = 1920 && test "$H" = 1080 && test "$FPS" = '30/1' && test "$AUD" -ge 1 && test "$SIZE" -gt 6000000
+          awk "BEGIN {exit !($D>=700)}"
+          printf '{"videoId":"V134","scenes":112,"spaces":51,"diagramGrammars":42,"uniqueBackgrounds":112,"semanticStageMinimum":1344,"renderUnits":8,"resolution":"1920x1080","fps":30,"chapterSyncVerified":true,"subtitleTimingSource":"VOICEVOX_MEASURED_ASS_BURN","durationSeconds":%s,"audioTracks":%s,"bytes":%s,"passed":true}\n' "$D" "$AUD" "$SIZE" > qa/final-validation.json
+          set +e
+          ffmpeg -hide_banner -i output/v134-final.mp4 -vf 'blackdetect=d=2:pix_th=0.02,freezedetect=n=-55dB:d=6' -an -f null - 2> qa/visual-anomaly-scan.txt
+          set -e
+          INTERVAL=$(awk "BEGIN{print $D/56}")
+          ffmpeg -y -loglevel error -i output/v134-final.mp4 -vf "fps=1/$INTERVAL,scale=320:-1,tile=7x8:padding=6:margin=8" -frames:v 1 output/v134-contact-sheet.jpg
+      - name: Publish V134 release
+        working-directory: shared/v122
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -euo pipefail
+          TAG="v134-welfare-car-public-safety-${GITHUB_RUN_ID}"
+          NAME="knowledge-video-v134-welfare-car-public-safety-${GITHUB_RUN_ID}.mp4"
+          cp output/v134-final.mp4 "output/$NAME"
+          gh release create "$TAG" "output/$NAME" output/v134-contact-sheet.jpg qa/final-validation.json qa/visual-anomaly-scan.txt SOURCES.md README.md output/v134-prologue.mp4 output/v134-chapter1.mp4 output/v134-chapter2.mp4 output/v134-chapter3.mp4 output/v134-chapter4.mp4 output/v134-chapter5.mp4 output/v134-chapter6.mp4 output/v134-epilogue.mp4 --repo "$GITHUB_REPOSITORY" --title "V134 生活保護で車を持つのは贅沢なのか？" --notes '考える夜 / 生活保護×自動車×地方交通×治安 / 112 meaning scenes / 51 concrete spaces / 42 diagram grammars / 112 unique semantic actions / 112 unique backgrounds / measured VOICEVOX / ASS subtitle burn / chapter sync QA / final anomaly scan'
