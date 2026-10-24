@@ -1,0 +1,31 @@
+name: V135 Tesca TypeScript Static Preflight
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v135-typecheck.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build all Motion Canvas scenes without voice generation
+        working-directory: shared/v135
+        run: |
+          set -euo pipefail
+          cp ../v124/package.json .
+          cp ../v124/tsconfig.json .
+          cp ../v124/vite.config.ts .
+          cp ../v124/headless.html .
+          cp ../v124/src/headless.ts src/headless.ts
+          cp ../v124/src/types.d.ts src/types.d.ts
+          python3 scripts/compile.py
+          python3 scripts/qa.py
+          npm install --no-audit --no-fund
+          npm run build
