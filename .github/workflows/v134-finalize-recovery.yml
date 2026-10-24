@@ -1,0 +1,124 @@
+name: V134 Herostratus Final MP4 Recovery
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v134-finalize-recovery.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v134-finalize-recovery
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Download all six already-rendered chapters from the finished six-chapter production run
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 40110147451
+          github-token: ${{ github.token }}
+          pattern: v134-segment-*
+          path: segments
+          merge-multiple: true
+      - name: Validate artifact coverage and inventory
+        run: |
+          set -euo pipefail
+          find segments -type f -printf '%p %s bytes\n' | sort
+          for ch in prologue chapter1 chapter2 chapter3 chapter4 epilogue; do
+            match="$(find segments -type f -name "v134-$ch.mp4" -print -quit)"
+            test -n "$match"
+            test -s "$match"
+            echo "$ch: $match"
+          done
+      - name: Select FFmpeg without updating Ubuntu package lists
+        run: |
+          set -euo pipefail
+          if ! command -v ffmpeg >/dev/null 2>&1 || ! command -v ffprobe >/dev/null 2>&1; then
+            echo "FFmpeg not preinstalled; install without apt update"
+            export DEBIAN_FRONTEND=noninteractive
+            timeout 180 sudo apt-get install -y --no-install-recommends ffmpeg
+          fi
+          command -v ffmpeg
+          command -v ffprobe
+          ffmpeg -hide_banner -version | head -1
+      - name: Join six narration-and-video MP4s by stream-copy
+        working-directory: shared/v134
+        run: |
+          set -euo pipefail
+          mkdir -p output qa
+          : > output/concat.txt
+          for ch in prologue chapter1 chapter2 chapter3 chapter4 epilogue; do
+            match="$(find ../../segments -type f -name "v134-$ch.mp4" -print -quit)"
+            test -n "$match"
+            printf "file '%s'\n" "$(realpath "$match")" >> output/concat.txt
+            ffprobe -v error -show_entries format=duration,size \
+              -of default=noprint_wrappers=1 "$match"
+          done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt \
+            -c copy -movflags +faststart output/v134-voice-master.mp4
+          test -s output/v134-voice-master.mp4
+          ffprobe -v error -show_entries format=duration,size \
+            -of default=noprint_wrappers=1 output/v134-voice-master.mp4
+      - name: Add restrained original ambient sound bed
+        working-directory: shared/v134
+        run: |
+          set -euo pipefail
+          cp ../v124/scripts/generate-bgm.mjs scripts/generate-bgm.mjs
+          D="$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v134-voice-master.mp4)"
+          node scripts/generate-bgm.mjs "$D"
+          test -s output/bgm.m4a
+          ffmpeg -y -loglevel error -i output/v134-voice-master.mp4 -i output/bgm.m4a \
+            -filter_complex '[0:a]volume=1[voice];[1:a]volume=.035[music];[voice][music]amix=inputs=2:duration=first[a]' \
+            -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 192k \
+            -shortest -movflags +faststart output/v134-herostratus-final.mp4
+          test -s output/v134-herostratus-final.mp4
+      - name: Validate H264 AAC 1920x1080 30fps runtime and generate contact sheet
+        working-directory: shared/v134
+        run: |
+          set -euo pipefail
+          python3 scripts/qa.py final output/v134-herostratus-final.mp4
+          D="$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v134-herostratus-final.mp4)"
+          I="$(awk "BEGIN { print $D/24 }")"
+          ffmpeg -y -loglevel error -i output/v134-herostratus-final.mp4 \
+            -vf "fps=1/$I,scale=384:-1,tile=6x4:padding=4:margin=4" \
+            -frames:v 1 output/v134-contact-sheet.jpg
+          test -s output/v134-contact-sheet.jpg
+          cat qa/final.json
+      - name: Preserve finished master and audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: v134-herostratus-master
+          path: |
+            shared/v134/output/v134-herostratus-final.mp4
+            shared/v134/output/v134-contact-sheet.jpg
+            shared/v134/qa/final.json
+            shared/v134/SOURCES.txt
+          retention-days: 21
+          compression-level: 0
+      - name: Publish verified MP4 to GitHub Release
+        working-directory: shared/v134
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v134-herostratus-${{ github.run_id }}"
+          gh release create "$TAG" \
+            output/v134-herostratus-final.mp4 \
+            output/v134-contact-sheet.jpg \
+            qa/final.json \
+            SOURCES.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V134 古代の炎上商法｜完成本番動画" \
+            --notes "Recovered six successfully rendered Motion Canvas chapters from run 40110147451 without redoing voice or scene rendering. 1920x1080/30fps, measured VOICEVOX narration and subtitle cues, historical-source caveats, fame and notoriety diagrams, audience amplification graphics; completed QA and contact sheet included."
