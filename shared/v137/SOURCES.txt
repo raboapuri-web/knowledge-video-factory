@@ -1,0 +1,41 @@
+V137 Poverty Premium — verified research & editorial scope (2026-10-25)
+
+[1] University of Bristol, Fair By Design (June 2026).
+"Paying More for Less: The Poverty Premium in 2026"
+https://www.bristol.ac.uk/geography/research/pfrc/themes/financial-exclusion-poverty/poverty-premium-2026/
+Low-income Britain, observed 95%, average £380/year. Not a Japanese estimate.
+
+[2] Fair By Design, data methodology / survey.
+https://fairbydesign.com/the-poverty-premium-in-2026/
+Surveyed 1,040 respondents under 70% median household income, adjusted for size/housing costs.
+Monthly car-insurance penalty amounts describe eligible affected cases, not all households.
+
+[3] E. Mallick Hossain (2019/2020), "Less Is More Expensive: Income Differences in Bulk Buying"
+https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3472425
+Follow-up joint paper: Mallick Hossain & Christoph Bauner (2023),
+"Less is More Expensive: Bulk Buying and Cognitive Costs"
+https://people.umass.edu/cbauner/papers/BulkBuyingCogCosts.pdf
+US grocery/Nielsen analysis; 5% is a modeled saving, not a universal causal effect.
+
+[4] Mani, Mullainathan, Shafir & Zhao (2013), "Poverty Impedes Cognitive Function", Science 341, 976-980
+https://doi.org/10.1126/science.1238041
+Context-specific studies; cognitive-function claims require cautious interpretation.
+
+[5] Giannella, Homonoff, Rino & Somerville (2024),
+"Administrative Burden and Procedural Denials: Experimental Evidence from SNAP",
+American Economic Journal: Economic Policy 16(4), 316-340
+https://www.aeaweb.org/articles?id=10.1257/pol.20220701
+Randomized field experiment: 65,000 LA applicants, approvals +6 percentage points.
+
+[6] Haushofer & Shapiro (2016),
+"The Short-term Impact of Unconditional Cash Transfers to the Poor:
+Experimental Evidence from Kenya", Quarterly Journal of Economics 131(4)
+https://doi.org/10.1093/qje/qjw025
+Kenya RCT; lump-sum payments more likely spent on durables.
+
+EDITORIAL NOTES
+- Price pair 4 rolls / ¥320 and 12 rolls / ¥720: expressly illustrative, NOT a real listing.
+- Refrigerator efficiency, insulating homes, credit interest are mechanisms / hypotheticals; no universal result claimed.
+- Society-wide poverty traps are contested/heterogeneous; script deliberately qualifies.
+- All 2D visual assets are original schematics; not reproductions of brands, people or publications.
+- VOICEVOX voice: 青山龍星 (Aoyama Ryusei), normal speaker 13, speed 1.15. Credit in release description / video description.
