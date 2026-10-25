@@ -172,7 +172,7 @@ jobs:
             test -n "$match"
             test -s "$match"
             echo "$ch: $match"
-            printf "file '%s'\\n" "$(realpath "$match")" >> output/concat.txt
+            printf "file '%s'\n" "$(realpath "$match")" >> output/concat.txt
           done
           ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy -movflags +faststart output/v137-voice-master.mp4
           ffprobe -v error -show_entries format=duration,size -of default=nw=1 output/v137-voice-master.mp4

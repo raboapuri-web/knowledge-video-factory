@@ -311,7 +311,7 @@ function* evolve(d:Drawing,s:Shot,ci:number,secs:number):ThreadGenerator{
    else if(action===1)a.push(n.scale(1.03+.09*phase,t));
    else if(action===2)a.push(n.y(n.y()+8+(ci%2)*7,t));
    else if(action===3)a.push(n.x(n.x()+(ci%2?13:-13),t));
-   else if(action===4)a.push(n.rotation((ci%2?1:-1)*(2+phase*3),t));
+   else if(action===4)a.push(n.opacity(.67+.30*phase,t));
    else if(action===5)a.push(n.scale(1+.10*phase,t));
    else a.push(n.opacity(.66+.30*phase,t));
  }
