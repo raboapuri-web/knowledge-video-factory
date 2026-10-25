@@ -1,0 +1,226 @@
+name: V137 Poverty Premium Motion Canvas Master
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v137-poverty-premium.yml'
+      - 'shared/v137/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v137-poverty-premium-main
+  cancel-in-progress: false
+
+jobs:
+  storyboard:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python source / chapter / subtitle preflight
+        working-directory: shared/v137
+        run: |
+          set -euo pipefail
+          python3 scripts/compile.py
+          python3 scripts/qa.py
+          cat content/audit.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v137-source-audit
+          path: |
+            shared/v137/content/audit.json
+            shared/v137/qa/preflight.json
+            shared/v137/SOURCES.txt
+          retention-days: 21
+
+  chapter:
+    needs: storyboard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, epilogue]
+    env:
+      VOICEVOX_SPEED: '1.15'
+      VOICEVOX_SPEAKER_ID: '13'
+      VOICE_PARALLEL: '3'
+      PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v137/.puppeteer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Japanese text renderer and FFmpeg
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk fontconfig ffmpeg
+      - name: Reuse stable Motion Canvas rendering/VOICEVOX runtime from V124
+        working-directory: shared/v137
+        run: |
+          set -euo pipefail
+          cp ../v124/package.json .
+          cp ../v124/tsconfig.json .
+          cp ../v124/vite.config.ts .
+          cp ../v124/headless.html .
+          cp ../v124/src/headless.ts src/headless.ts
+          cp ../v124/src/types.d.ts src/types.d.ts
+          cp ../v124/scripts/synth_chapter.py scripts/synth_chapter.py
+          cp ../v124/scripts/merge_timing.py scripts/merge_timing.py
+          cp ../v124/scripts/render.mjs scripts/render.mjs
+          cp ../v124/scripts/generate-bgm.mjs scripts/generate-bgm.mjs
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/render.mjs')
+          s=p.read_text().replace('v124','v137')
+          p.write_text(s)
+          PY
+      - name: Compile original paragraphs, meaning states and speaker-safe cues
+        working-directory: shared/v137
+        run: |
+          set -euo pipefail
+          python3 scripts/compile.py
+          python3 scripts/qa.py
+          npm install --no-audit --no-fund
+      - name: Start VOICEVOX 青山龍星 CPU engine
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..150}; do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null; then
+              echo "VOICEVOX_READY"; exit 0
+            fi
+            sleep 2
+          done
+          echo "VOICEVOX_NOT_READY"; exit 1
+      - name: Generate complete measured VOICEVOX narration for this chapter
+        working-directory: shared/v137
+        env:
+          CHAPTER: ${{ matrix.chapter }}
+        run: |
+          set -euo pipefail
+          python3 scripts/synth_chapter.py "$CHAPTER"
+          python3 scripts/merge_timing.py "$CHAPTER"
+          python3 scripts/qa.py
+          test -s "media/$CHAPTER/narration.wav"
+          test -s "content/measured-$CHAPTER.json"
+      - name: TypeScript typecheck and production Vite bundle
+        working-directory: shared/v137
+        run: npm run build
+      - name: Smoke-frame render before expensive full render
+        working-directory: shared/v137
+        env:
+          CHAPTER: ${{ matrix.chapter }}
+        run: |
+          set -euo pipefail
+          node scripts/render.mjs "$CHAPTER" --smoke
+          test -s "output/v137-$CHAPTER-smoke.mp4"
+      - name: Render original stateful 1080p Motion Canvas chapter
+        working-directory: shared/v137
+        env:
+          CHAPTER: ${{ matrix.chapter }}
+        run: |
+          set -euo pipefail
+          node scripts/render.mjs "$CHAPTER"
+          test -s "output/v137-$CHAPTER.mp4"
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 "output/v137-$CHAPTER.mp4"
+      - name: Upload measured chapter output
+        uses: actions/upload-artifact@v4
+        with:
+          name: v137-segment-${{ matrix.chapter }}
+          path: |
+            shared/v137/output/v137-${{ matrix.chapter }}.mp4
+            shared/v137/voice-report-${{ matrix.chapter }}.json
+          retention-days: 7
+          compression-level: 0
+
+  finalize:
+    needs: chapter
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install FFmpeg for final encoding
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get install -y --no-install-recommends ffmpeg
+          fi
+          ffmpeg -version | head -1
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v137-segment-*
+          path: segments
+          merge-multiple: true
+      - name: Assemble six true chapter renders with stream copy
+        working-directory: shared/v137
+        run: |
+          set -euo pipefail
+          mkdir -p output qa
+          : > output/concat.txt
+          for ch in prologue chapter1 chapter2 chapter3 chapter4 epilogue; do
+            match="$(find ../../segments -type f -name "v137-$ch.mp4" -print -quit)"
+            test -n "$match"
+            test -s "$match"
+            echo "$ch: $match"
+            printf "file '%s'\\n" "$(realpath "$match")" >> output/concat.txt
+          done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy -movflags +faststart output/v137-voice-master.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=nw=1 output/v137-voice-master.mp4
+      - name: Sound bed from reusable V124 runtime, without modifying narration
+        working-directory: shared/v137
+        run: |
+          set -euo pipefail
+          cp ../v124/scripts/generate-bgm.mjs scripts/generate-bgm.mjs
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v137-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+          ffmpeg -y -loglevel error -i output/v137-voice-master.mp4 -i output/bgm.m4a \
+            -filter_complex '[0:a]volume=1[voice];[1:a]volume=.035[music];[voice][music]amix=inputs=2:duration=first[a]' \
+            -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 192k -shortest \
+            -movflags +faststart output/v137-poverty-premium-final.mp4
+      - name: Verify real complete video, create review contact sheet
+        working-directory: shared/v137
+        run: |
+          set -euo pipefail
+          python3 scripts/qa.py final output/v137-poverty-premium-final.mp4
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v137-poverty-premium-final.mp4)
+          I=$(awk "BEGIN {print $D/24}")
+          ffmpeg -y -loglevel error -i output/v137-poverty-premium-final.mp4 \
+            -vf "fps=1/$I,scale=384:-1,tile=6x4:padding=4:margin=4" \
+            -frames:v 1 output/v137-contact-sheet.jpg
+          test -s output/v137-contact-sheet.jpg
+      - name: Upload final master and QA evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: v137-poverty-premium-master
+          path: |
+            shared/v137/output/v137-poverty-premium-final.mp4
+            shared/v137/output/v137-contact-sheet.jpg
+            shared/v137/qa/final.json
+            shared/v137/SOURCES.txt
+          retention-days: 21
+          compression-level: 0
+      - name: Publish finished film via GitHub Release
+        working-directory: shared/v137
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v137-poverty-premium-${{ github.run_id }}"
+          gh release create "$TAG" \
+            output/v137-poverty-premium-final.mp4 \
+            output/v137-contact-sheet.jpg \
+            qa/final.json \
+            SOURCES.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V135 貧困のパラドックス 本番動画" \
+            --notes "Original poverty-premium documentary, six full chapters, 96 semantic states and 40 meaning-specific graphic systems, VOICEVOX Aoyama Ryusei 1.15x, measured full subtitles, final contact sheet, QA and citations."
