@@ -100,7 +100,7 @@ def parse():
     assert len(pieces)==7,(len(pieces),'six labeled chapters needed')
     raws=[];all_paras={}
     for i,ch in enumerate(ORDER):
-        paras=[x.strip() for x in re.split(r'\n\\s*\n',pieces[i+1].strip()) if x.strip()]
+        paras=[x.strip() for x in re.split(r'\n\s*\n',pieces[i+1].strip()) if x.strip()]
         all_paras[ch]=''.join(paras)
         for p in paras:
             for fragment in chunk_para(p):raws.append((ch,fragment))
