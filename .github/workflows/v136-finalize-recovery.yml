@@ -47,17 +47,23 @@ jobs:
             test -s "$match"
             echo "$ch: $match"
           done
-      - name: Select FFmpeg without updating Ubuntu package lists
+      - name: Provision standalone FFmpeg and FFprobe from npm (no apt)
         run: |
           set -euo pipefail
-          if ! command -v ffmpeg >/dev/null 2>&1 || ! command -v ffprobe >/dev/null 2>&1; then
-            echo "FFmpeg not preinstalled; install without apt update"
-            export DEBIAN_FRONTEND=noninteractive
-            timeout 180 sudo apt-get install -y --no-install-recommends ffmpeg
-          fi
-          command -v ffmpeg
-          command -v ffprobe
-          ffmpeg -hide_banner -version | head -1
+          TOOLROOT="$RUNNER_TEMP/v136-fftools"
+          mkdir -p "$TOOLROOT" "$HOME/.local/bin"
+          timeout 180 npm install --prefix "$TOOLROOT" --no-save --no-audit --no-fund --ignore-scripts \
+            @ffmpeg-installer/linux-x64 @ffprobe-installer/linux-x64
+          FFMPEG="$TOOLROOT/node_modules/@ffmpeg-installer/linux-x64/ffmpeg"
+          FFPROBE="$TOOLROOT/node_modules/@ffprobe-installer/linux-x64/ffprobe"
+          test -s "$FFMPEG"
+          test -s "$FFPROBE"
+          chmod +x "$FFMPEG" "$FFPROBE"
+          ln -sf "$FFMPEG" "$HOME/.local/bin/ffmpeg"
+          ln -sf "$FFPROBE" "$HOME/.local/bin/ffprobe"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          "$HOME/.local/bin/ffmpeg" -hide_banner -version | head -1
+          "$HOME/.local/bin/ffprobe" -hide_banner -version | head -1
       - name: Join six narration-and-video MP4s by stream-copy
         working-directory: shared/v136
         run: |
@@ -125,5 +131,5 @@ jobs:
             qa/final.json \
             SOURCES.txt \
             --repo "$GITHUB_REPOSITORY" \
-            --title "V135 テスカトリポカ｜完成本番動画" \
+            --title "V136 宗教とカルトは何が違うのか｜完成本番動画" \
             --notes "Automatic recovery of the religion-and-cult Motion Canvas chapters after a finalization-path error; reuses the six existing chapter artifacts without rerendering. 1920x1080/30fps, measured VOICEVOX narration and subtitles, 33 visual families, QA and contact sheet."
