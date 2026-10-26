@@ -46,7 +46,7 @@ def sprite(name,z):
     x,y=xy(pivot);obj.location=(x,y,z)
     file=str(root/a["trimmed"])
     img=bpy.data.images.load(file,check_existing=True)
-    img.filepath=bpy.path.relpath(file)
+    img.filepath="//"+a["trimmed"]
     mat=bpy.data.materials.new(name+"_alpha")
     mat.use_nodes=True
     nd=mat.node_tree.nodes;nd.clear()
