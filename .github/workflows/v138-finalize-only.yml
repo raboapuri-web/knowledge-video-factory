@@ -1,0 +1,96 @@
+name: V138 Finalize Only - Complete Six Chapter Film
+on:
+  workflow_dispatch:
+  push:
+    branches: [production/v138-fandom-choice-20261026]
+    paths:
+      - '.github/workflows/v138-finalize-only.yml'
+permissions:
+  contents: write
+concurrency:
+  group: v138-finalize-only
+  cancel-in-progress: false
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install finalizer FFmpeg
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Restore all six existing video chapters by name
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p recovered/original recovered/third shared/v138/output
+          gh run download 40331490407 --repo "$GITHUB_REPOSITORY" --pattern 'v138-segment-*' --dir recovered/original
+          gh run download 40333135485 --repo "$GITHUB_REPOSITORY" --pattern 'v138-segment-chapter3' --dir recovered/third
+          find recovered/original recovered/third -type f -name 'v138-*.mp4' -print -exec cp {} shared/v138/output/ \;
+          for ch in prologue chapter1 chapter2 chapter3 chapter4 epilogue; do
+            test -s "shared/v138/output/v138-$ch.mp4"
+            ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 "shared/v138/output/v138-$ch.mp4"
+          done
+      - name: Assemble original six chapter renders
+        working-directory: shared/v138
+        run: |
+          set -euo pipefail
+          : > output/concat.txt
+          for ch in prologue chapter1 chapter2 chapter3 chapter4 epilogue; do
+            printf "file '%s'\n" "$(realpath "output/v138-$ch.mp4")" >> output/concat.txt
+          done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy -movflags +faststart output/v138-voice-master.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=nw=1 output/v138-voice-master.mp4
+      - name: Mix non-intrusive soundtrack without modifying narration
+        working-directory: shared/v138
+        run: |
+          set -euo pipefail
+          cp ../v124/scripts/generate-bgm.mjs scripts/generate-bgm.mjs
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v138-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+          ffmpeg -y -loglevel error -i output/v138-voice-master.mp4 -i output/bgm.m4a \
+            -filter_complex '[0:a]volume=1[voice];[1:a]volume=.035[music];[voice][music]amix=inputs=2:duration=first[a]' \
+            -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 192k -shortest \
+            -movflags +faststart output/v138-fandom-choice-final.mp4
+      - name: Verify full film and review contact sheet
+        working-directory: shared/v138
+        run: |
+          set -euo pipefail
+          python3 scripts/qa.py final output/v138-fandom-choice-final.mp4
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v138-fandom-choice-final.mp4)
+          I=$(awk "BEGIN {print $D/24}")
+          ffmpeg -y -loglevel error -i output/v138-fandom-choice-final.mp4 \
+            -vf "fps=1/$I,scale=384:-1,tile=6x4:padding=4:margin=4" \
+            -frames:v 1 output/v138-contact-sheet.jpg
+          test -s output/v138-contact-sheet.jpg
+      - name: Upload master film and QA report
+        uses: actions/upload-artifact@v4
+        with:
+          name: v138-fandom-choice-master
+          path: |
+            shared/v138/output/v138-fandom-choice-final.mp4
+            shared/v138/output/v138-contact-sheet.jpg
+            shared/v138/qa/final.json
+            shared/v138/SOURCES.txt
+          retention-days: 21
+          compression-level: 0
+      - name: Publish master in GitHub Releases
+        working-directory: shared/v138
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v138-fandom-choice-${{ github.run_id }}"
+          gh release create "$TAG" \
+            output/v138-fandom-choice-final.mp4 \
+            output/v138-contact-sheet.jpg \
+            qa/final.json SOURCES.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --title 'V138 あなたは「推し」を選んだのか、それとも選ばされたのか？' \
+            --notes 'Six full Motion Canvas chapters, original Japanese VOICEVOX narration at speed 1.15, synced subtitles, 1920x1080, 30fps. Automated technical QA and review contact sheet included.'
