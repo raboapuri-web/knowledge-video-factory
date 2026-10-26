@@ -1,0 +1,61 @@
+name: Yodan Cat 2D Rig
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/yodan-cat-rig.yml'
+      - 'shared/mascots/yodan-cat/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate-cat-rig:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install vector rendering dependencies
+        run: |
+          python -m pip install --disable-pip-version-check pillow==11.3.0 cairosvg==2.8.2
+      - name: Generate transparent layers and nine pose composites
+        run: |
+          python shared/mascots/yodan-cat/generate.py --out out/yodan-cat
+      - name: Validate alpha and mask alignment
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import json
+          p=Path('out/yodan-cat')
+          m=json.loads((p/'rig_manifest.json').read_text())
+          assert len(m['assets']) >= 14, len(m['assets'])
+          assert len(list((p/'poses').glob('*.png'))) == 9
+          for k,v in m['assets'].items():
+              im=Image.open(p/v['file'])
+              assert im.mode=='RGBA' and im.size==(800,960), (k,im.mode,im.size)
+              assert im.getchannel('A').getbbox() is not None,k
+          print('PASS: layers',len(m['assets']),'poses',9)
+          PY
+      - name: Install Blender
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y blender
+          blender --version | head -1
+      - name: Create Blender 2D rig project
+        run: |
+          blender -b -t 2 --python shared/mascots/yodan-cat/build_blend.py -- out/yodan-cat out/yodan-cat/yodan_cat_rig.blend
+          test -s out/yodan-cat/yodan_cat_rig.blend
+      - name: Upload all sprites, contact sheet and Blender scene
+        uses: actions/upload-artifact@v4
+        with:
+          name: yodan-cat-2d-rig
+          path: out/yodan-cat/
+          if-no-files-found: error
+          retention-days: 30
