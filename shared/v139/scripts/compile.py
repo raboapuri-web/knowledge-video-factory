@@ -111,7 +111,7 @@ def pick(ch,txt,last,idx):
     pool=POOLS[ch];scores=[]
     for i,v in enumerate(pool):
         matched=any(k==v and re.search(rx,txt) for k,rx in RULES)
-        score=(-10 if matched else 4)+(9 if last and last[-1]==v else 0)
+        score=(-10 if matched else 4)+(30 if last and last[-1]==v else 0)
         score+=(5 if v in last[-3:] else 0)
         score+=(2 if v in last[-6:] else 0)
         score+=((i-idx)%len(pool))*.04
