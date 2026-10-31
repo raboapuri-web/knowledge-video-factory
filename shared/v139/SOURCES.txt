@@ -1,0 +1,23 @@
+V139 なぜチームの人数を増やすほど、仕事が遅くなるのか？ — 主要出典と表現上の注意
+1. Brooks, F. P. Jr. (1975), The Mythical Man-Month: Essays on Software Engineering. Addison-Wesley.
+   ブルックスの法則はソフトウェア開発の経験則で、すべての増員に普遍的に当てはまる自然法則ではない。
+2. Amdahl, G. M. (1967). Validity of the Single Processor Approach to Achieving Large Scale Computing Capabilities.
+   直列40%・並列60%は説明のための仮定。4人の所要時間0.4+0.6/4=0.55、理論上の速度上限2.5倍。
+3. Staats, B. R., Milkman, K. L., & Fox, C. R. (2012). The team scaling fallacy: Underestimating the declining efficiency of larger teams. Organizational Behavior and Human Decision Processes, 118(2), 132–142.
+   https://doi.org/10.1016/j.obhdp.2012.03.002
+   72対112人・分はチームの総労働投入量。実経過時間については4人チームが短い。「4人のほうが遅い」という表現にしてはならない。
+4. Ingham, A. G. et al. (1974). The Ringelmann effect: Studies of group size and group performance. Journal of Experimental Social Psychology.
+   古典的リンゲルマン研究の原資料へのアクセス制約と、協調損失と努力低下の交絡を説明する。
+5. Latané, B., Williams, K., & Harkins, S. (1979). Many hands make light the work: The causes and consequences of social loafing. Journal of Personality and Social Psychology.
+   疑似集団の声の出力：単独条件に対して82%、74%。「人間は必ず意識的に怠ける」とは言わない。
+6. Mao, A., Mason, W., Suri, S., & Watts, D. J. (2016). An Experimental Study of Team Size and Performance on a Complex Task. PLOS ONE, 11(4), e0153048.
+   https://doi.org/10.1371/journal.pone.0153048
+   47チーム、参加者258人、最大32人、台風被害のSNS報告のクラウドマッピング。実験条件への限定を明示。
+7. Bernerth, J. B., Beus, J. M., Helmuth, C. A., & Boyd, T. L. (2023). The more the merrier or too many cooks spoil the pot? A meta-analytic examination of team size and team effectiveness. Journal of Organizational Behavior, 44(8), 1230–1262.
+   https://doi.org/10.1002/job.2708
+   208 effect sizes, 21,435 teams, mean corrected correlation rho=.00. 数値はチームの遂行成果の相関であり「完了速度の相関がゼロ」ではない。
+8. Sources used for online confirmation:
+   https://www.sciencedirect.com/science/article/pii/S0749597812000374
+   https://pmc.ncbi.nlm.nih.gov/articles/PMC4833429/
+   https://onlinelibrary.wiley.com/doi/10.1002/job.2708
+Voice: VOICEVOX 青山龍星 ノーマル speakerId=13 speed=1.15. 必須クレジットは公開概要欄に表記する。
