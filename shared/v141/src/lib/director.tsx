@@ -248,32 +248,263 @@ function headline(p:Node,c:Design,labels:string[]):Layout{
  L(g,[[-690,-5],[690,-5]],c.hair,3);
  return {parts:[g],accent:[g],mode:'headline'};
 }
+
+/* V141 editorial diversity pass: distinct visual grammars rather than recycled A/B cards. */
+function beforeAfter(p:Node,c:Design,labels:string[]):Layout{
+ const a:Node[]=[];
+ const top=N(p,-9,-134);a.push(top);
+ R(top,0,0,1510,175,c.panel,14);R(top,-739,0,15,145,c.secondary,2);
+ T(top,labels[0]||'以前',0,0,txtSize(labels[0]||'',49),c.ink);
+ const bottom=N(p,9,142);a.push(bottom);
+ R(bottom,0,0,1510,175,c.panel2,14);R(bottom,739,0,15,145,c.key,2);
+ T(bottom,labels[1]||'以後',0,0,txtSize(labels[1]||'',49),c.ink);
+ T(p,'↓',0,3,68,c.key,false);
+ if(labels[2])small(p,labels[2],0,280,c);
+ return {parts:a,accent:a,mode:'before-after'};
+}
+function dilemmaDiagram(p:Node,c:Design,labels:string[]):Layout{
+ const a:Node[]=[];
+ const left=N(p,-440,-14);a.push(left);
+ R(left,0,0,655,320,c.panel,12);
+ T(left,labels[0]||'一方',0,-15,txtSize(labels[0]||'',51),c.ink);
+ const right=N(p,440,-14);a.push(right);
+ R(right,0,0,655,320,c.panel2,12);
+ T(right,labels[1]||'他方',0,-15,txtSize(labels[1]||'',51),c.ink);
+ O(p,0,-16,160,c.paper);
+ T(p,'≠',0,-19,87,c.key);
+ if(labels[2])small(p,labels[2],0,244,c);
+ return {parts:a,accent:a,mode:'logical-separation'};
+}
+function crossing(p:Node,c:Design,labels:string[]):Layout{
+ const a:Node[]=[];
+ L(p,[[-640,-180],[640,180]],c.key,8);
+ L(p,[[-640,180],[640,-180]],c.secondary,8);
+ for(let i=0;i<2;i++){
+  const x=i===0?-535:535;
+  const n=N(p,x,i===0?-115:115);a.push(n);
+  R(n,0,0,420,165,i===0?c.panel:c.panel2,12);
+  T(n,labels[i]||'視点',0,0,txtSize(labels[i]||'',42),c.ink);
+ }
+ if(labels[2])T(p,labels[2],0,282,28,c.muted);
+ return {parts:a,accent:a,mode:'crossing'};
+}
+function analogyVenn(p:Node,c:Design,labels:string[]):Layout{
+ const a:Node[]=[];
+ const left=N(p,-235,-7);a.push(left);
+ O(left,0,0,455,c.secondary);
+ const right=N(p,235,-7);a.push(right);
+ O(right,0,0,455,c.panel2);
+ O(p,0,-7,194,c.key);
+ T(left,labels[0]||'自然',-50,0,txtSize(labels[0]||'',39),c.paper);
+ T(right,labels[1]||'社会',50,0,txtSize(labels[1]||'',39),c.ink);
+ T(p,'たとえ',0,-10,29,c.paper);
+ if(labels[2])small(p,labels[2],0,281,c);
+ return {parts:a,accent:a,mode:'venn-analogy'};
+}
+function scaleAxis(p:Node,c:Design,labels:string[]):Layout{
+ const a:Node[]=[];
+ const top=N(p,0,-95);a.push(top);
+ T(top,labels[0]||'比較',0,0,txtSize(labels[0]||'',103),c.key);
+ const lineY=88;
+ L(p,[[-715,lineY],[715,lineY]],c.hair,5);
+ for(let i=0;i<9;i++)L(p,[[-700+i*175,lineY-18],[-700+i*175,lineY+20]],c.secondary,3);
+ T(p,labels[1]||'尺度',0,182,39,c.ink);
+ if(labels[2])small(p,labels[2],0,262,c);
+ return {parts:a,accent:a,mode:'scale-axis'};
+}
+function citeHeadline(p:Node,c:Design,labels:string[]):Layout{
+ const a:Node[]=[];
+ const big=N(p,0,-70);a.push(big);
+ T(big,labels[0]||'報道',0,0,txtSize(labels[0]||'',125),c.key);
+ L(p,[[-700,24],[700,24]],c.hair,3);
+ if(labels[1])T(p,labels[1],0,132,txtSize(labels[1],51),c.ink);
+ if(labels[2])T(p,labels[2],0,222,30,c.muted);
+ return {parts:a,accent:a,mode:'news-headline'};
+}
+function framedTerms(p:Node,c:Design,labels:string[]):Layout{
+ const a:Node[]=[];
+ labels.slice(0,4).forEach((v,i)=>{
+  const x=(i-(Math.min(labels.length,4)-1)/2)*390;
+  const n=N(p,x,-15);a.push(n);
+  T(n,'0'+(i+1),0,-137,34,c.key,false);
+  T(n,v,0,5,txtSize(v,54),c.ink);
+  L(n,[[-115,79],[115,79]],i%2?c.secondary:c.key,6);
+ });
+ return {parts:a,accent:a,mode:'editorial-terms'};
+}
+function causalTree(p:Node,c:Design,labels:string[]):Layout{
+ const a:Node[]=[];
+ const top=labels.slice(0,2);
+ top.forEach((v,i)=>{
+  const n=panel(p,i===0?-395:395,-150,660,158,c,v,i);a.push(n);
+  L(p,[[(i===0?-395:395),-65],[0,28]],c.hair,4);
+ });
+ const middle=panel(p,0,142,900,185,c,labels[2]||'結果',1);a.push(middle);
+ if(labels[3])small(p,labels[3],0,280,c);
+ return {parts:a,accent:a,mode:'convergence'};
+}
+function stairMechanism(p:Node,c:Design,labels:string[]):Layout{
+ const a:Node[]=[];const vals=labels.slice(0,4),w=1300/vals.length;
+ vals.forEach((v,i)=>{
+  const x=-650+(i+.5)*w,y=145-i*78;
+  const n=N(p,x,y);a.push(n);
+  R(n,0,0,w-25,175,i%2?c.panel2:c.panel,10);
+  T(n,String(i+1).padStart(2,'0'),0,-110,32,c.key,false);
+  T(n,v,0,0,txtSize(v,34),c.ink);
+  if(i<vals.length-1)L(p,[[x+w/2,y-15],[x+w/2+15,y-65]],c.secondary,3);
+ });
+ scope(p,c,'条件から結果へ、段階的に変化する仕組み');
+ return {parts:a,accent:a,mode:'stair-steps'};
+}
+function cascadeDiagram(p:Node,c:Design,labels:string[]):Layout{
+ const a:Node[]=[];const vals=labels.slice(0,4);
+ vals.forEach((v,i)=>{
+  const x=-260+i*140,y=-205+i*125;
+  const n=N(p,x,y);a.push(n);
+  R(n,0,0,900,102,i===vals.length-1?c.key:c.panel,8);
+  T(n,v,0,0,txtSize(v,40),i===vals.length-1?c.paper:c.ink);
+  if(i<vals.length-1)L(p,[[x+430,y+58],[x+430,y+70]],c.secondary,4);
+ });
+ return {parts:a,accent:a,mode:'cascade'};
+}
+function gradientSteps(p:Node,c:Design,labels:string[]):Layout{
+ const vals=labels.slice(0,3);const a:Node[]=[];
+ for(let i=0;i<5;i++){
+  const n=N(p,-600+i*300,0);a.push(n);
+  R(n,0,0,268,140+i*60,[c.panel,c.panel2,c.secondary,c.key,RED][i],9);
+  T(n,String(i+1),0,-90,40,c.ink,false);
+ }
+ T(p,vals[0]||'弱い',-605,252,31,c.ink);
+ T(p,vals[2]||'強い',600,252,31,c.key);
+ if(vals[1])T(p,vals[1],0,-263,39,c.muted);
+ return {parts:a,accent:a,mode:'gradient'};
+}
+function studyMethod(p:Node,c:Design,labels:string[]):Layout{
+ const a:Node[]=[];
+ labels.slice(0,4).forEach((v,i)=>{
+  const y=-180+i*128;
+  const g=N(p,0,y);a.push(g);
+  O(g,-615,0,76,i===0?c.key:c.secondary);
+  T(g,String(i+1),-615,0,35,c.paper,false);
+  R(g,65,0,1220,104,c.panel,9);
+  T(g,v,65,0,txtSize(v,37),c.ink);
+ });
+ return {parts:a,accent:a,mode:'research-procedure'};
+}
+function xrayDiagram(p:Node,c:Design,labels:string[]):Layout{
+ const a:Node[]=[];
+ const g=N(p,0,-122);a.push(g);
+ R(g,0,0,1450,170,c.panel,10);
+ T(g,labels[0]||'見える',0,0,47,c.ink);
+ L(p,[[-730,0],[730,0]],c.key,7);
+ const lower=N(p,0,141);a.push(lower);
+ R(lower,0,0,1450,208,c.panel2,10);
+ T(lower,(labels[1]||'内部')+'　／　'+(labels[2]||'条件'),0,0,40,c.ink);
+ if(labels[3])small(p,labels[3],0,284,c);
+ return {parts:a,accent:a,mode:'xray-layers'};
+}
+function lifecycle(p:Node,c:Design,labels:string[]):Layout{
+ const vals=labels.slice(0,4),a:Node[]=[];const rad=288;
+ vals.forEach((v,i)=>{
+  const theta=(i/vals.length)*2*Math.PI-Math.PI/2;
+  const x=Math.cos(theta)*rad,y=Math.sin(theta)*rad;
+  const n=N(p,x,y);a.push(n);
+  O(n,0,0,225,i===0?c.secondary:i===vals.length-1?c.key:c.panel);
+  T(n,v,0,0,txtSize(v,32),i===vals.length-1?c.paper:c.ink);
+ });
+ O(p,0,0,116,c.paper);T(p,'循環',0,0,40,c.key);
+ scope(p,c,'時間と状態の移り変わり');
+ return {parts:a,accent:a,mode:'lifecycle'};
+}
+function pathDiagram(p:Node,c:Design,labels:string[]):Layout{
+ const vals=labels.slice(0,3),a:Node[]=[];
+ L(p,[[-645,-80],[650,-80]],c.secondary,7);
+ L(p,[[-645,145],[650,145]],c.hair,4);
+ vals.forEach((v,i)=>{
+  const x=-610+i*610,y=-80;
+  const n=N(p,x,y);a.push(n);
+  O(n,0,0,77,i===2?c.key:c.secondary);
+  T(p,v,x,28,txtSize(v,37),c.ink);
+ });
+ T(p,'移動／選択の経路',0,239,30,c.muted,false);
+ return {parts:a,accent:a,mode:'route-logic'};
+}
+function typographicQuote(p:Node,c:Design,s:Spec):Layout{
+ const a:Node[]=[];
+ const quote=N(p,0,-67);a.push(quote);
+ T(quote,'「',-724,-45,147,c.key);
+ T(quote,s.labels[0]||s.headline,0,0,txtSize(s.labels[0]||s.headline,96),c.ink);
+ T(quote,'」',730,28,147,c.key);
+ L(p,[[-650,116],[650,116]],c.hair,2);
+ if(s.labels[1])T(p,s.labels[1],0,202,37,c.muted);
+ return {parts:a,accent:a,mode:'quotation'};
+}
+function dividerSlide(p:Node,c:Design,s:Spec):Layout{
+ const a:Node[]=[];
+ const n=N(p,0,-47);a.push(n);
+ T(n,s.headline,0,0,txtSize(s.headline,88),c.ink);
+ L(p,[[-760,92],[760,92]],c.key,6);
+ if(s.labels[0])T(p,s.labels[0],0,200,36,c.muted);
+ return {parts:a,accent:a,mode:'chapter-bridge'};
+}
+function questionSlide(p:Node,c:Design,s:Spec):Layout{
+ const n=N(p,0,2);T(n,'？',-550,13,285,c.key);
+ T(n,s.labels[0]||'もし',170,-80,75,c.ink);
+ T(n,s.labels[1]||s.headline,170,86,txtSize(s.labels[1]||'',52),c.ink);
+ return {parts:[n],accent:[n],mode:'hypothesis'};
+}
+function concludingSlide(p:Node,c:Design,s:Spec):Layout{
+ const n=N(p,0,-23);
+ T(n,'考える夜',0,-165,48,c.key);
+ T(n,s.headline,0,-5,txtSize(s.headline,80),c.ink);
+ L(n,[[-710,92],[710,92]],c.hair,3);
+ T(n,'FIRE ECOLOGY   ×   SOCIAL PSYCHOLOGY',0,174,24,c.muted,false);
+ return {parts:[n],accent:[n],mode:'finale'};
+}
+
 function show(p:Node,c:Design,s:Spec):Layout{
  const v=s.labels;
  if(s.layout==='ratio')return ratio(p,c,v);
  if(s.layout==='bar2')return bar2(p,c,v);
  if(s.layout==='metric2')return metric(p,c,v);
  if(s.layout==='timeline')return timeline(p,c,v);
- if(s.layout==='layer'||s.layout==='xray')return layering(p,c,v);
- if(s.layout==='study'||s.layout==='method')return study(p,c,v);
+ if(s.layout==='layer')return layering(p,c,v);
+ if(s.layout==='study')return study(p,c,v);
  if(s.layout==='locator')return locator(p,c,v);
  if(s.layout==='cycle')return loop(p,c,v);
  if(s.layout==='network')return network(p,c,v);
  if(s.layout==='filter')return filter(p,c,v);
- if(s.layout==='duel'||s.layout==='contrast'||s.layout==='dilemma'||s.layout==='difference'||s.layout==='inversion'||s.layout==='analogy') {
+ if(s.layout==='duel'){
   const n=two(p,c,v);return {parts:n,accent:n,mode:'opposition'};
  }
- if(s.layout==='matrix'||s.layout==='cards'||s.layout==='competition'||s.layout==='framing') {
+ if(s.layout==='contrast')return beforeAfter(p,c,v);
+ if(s.layout==='dilemma')return dilemmaDiagram(p,c,v);
+ if(s.layout==='difference')return dilemmaDiagram(p,c,v);
+ if(s.layout==='inversion')return crossing(p,c,v);
+ if(s.layout==='analogy')return analogyVenn(p,c,v);
+ if(s.layout==='matrix'||s.layout==='cards'){
   const n=cards(p,c,v);return {parts:n,accent:n,mode:'matrix'};
  }
- if(s.layout==='mechanism'||s.layout==='lifecycle'||s.layout==='path'||s.layout==='cascade'||s.layout==='causal'||s.layout==='gradient') {
-  const n=chain(p,c,v);return {parts:n,accent:n,mode:'sequential'};
+ if(s.layout==='competition'||s.layout==='framing') {
+  const n=framedTerms(p,c,v);return {parts:n,accent:n,mode:'editorial-terms'};
  }
- if(s.layout==='thesis'||s.layout==='outro'||s.layout==='hypothesis'||s.layout==='divider'||s.layout==='quote') {
-  const n=analyticalText(p,c,v,s.layout==='quote'?(v[0]||s.headline):s.headline);
-  return {parts:n,accent:n,mode:'typographic'};
+ if(s.layout==='mechanism')return stairMechanism(p,c,v);
+ if(s.layout==='causal')return causalTree(p,c,v);
+ if(s.layout==='cascade')return cascadeDiagram(p,c,v);
+ if(s.layout==='gradient')return gradientSteps(p,c,v);
+ if(s.layout==='method')return studyMethod(p,c,v);
+ if(s.layout==='xray')return xrayDiagram(p,c,v);
+ if(s.layout==='lifecycle')return lifecycle(p,c,v);
+ if(s.layout==='path')return pathDiagram(p,c,v);
+ if(s.layout==='quote')return typographicQuote(p,c,s);
+ if(s.layout==='divider')return dividerSlide(p,c,s);
+ if(s.layout==='hypothesis')return questionSlide(p,c,s);
+ if(s.layout==='outro')return concludingSlide(p,c,s);
+ if(s.layout==='thesis'){
+   const n=analyticalText(p,c,v,s.headline);return {parts:n,accent:n,mode:'typographic'};
  }
- if(s.layout==='scale'||s.layout==='headline')return headline(p,c,v);
+ if(s.layout==='scale')return scaleAxis(p,c,v);
+ if(s.layout==='headline')return citeHeadline(p,c,v);
  // No generic scenic fallback. Any unhandled layout fails fast during production QA.
  throw new Error('Unplanned editorial slide type '+s.id+' '+s.layout);
 }
@@ -304,6 +535,14 @@ function* entrance(layout:Layout,effect:number,seconds:number):ThreadGenerator{
   const to=n.x();n.x(to+80);yield* n.x(to,seconds);
  }else if(layout.mode==='network'){
   n.scale(.76);yield* n.scale(1,seconds);
+ }else if(['before-after','logical-separation','crossing','venn-analogy'].includes(layout.mode)){
+  const x=n.x();n.x(x+(effect%2?115:-115));yield* n.x(x,seconds);
+ }else if(['research-procedure','stair-steps','cascade','xray-layers','route-logic'].includes(layout.mode)){
+  const y=n.y();n.y(y+(effect%2?74:-74));yield* n.y(y,seconds);
+ }else if(['scale-axis','news-headline','quotation','chapter-bridge','finale','hypothesis','editorial-terms'].includes(layout.mode)){
+  n.scale(.90);yield* n.scale(1,seconds);
+ }else if(['convergence','gradient','lifecycle'].includes(layout.mode)){
+  const x=n.x();n.x(x+45);yield* n.x(x,seconds);
  }else if(layout.mode==='typographic'){
   if(style<5){const to=n.y();n.y(to-45);yield* n.y(to,seconds);}
   else {n.scale(.90);yield* n.scale(1,seconds);}
