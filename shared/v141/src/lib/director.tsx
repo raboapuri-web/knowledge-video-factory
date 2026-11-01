@@ -486,7 +486,7 @@ function show(p:Node,c:Design,s:Spec):Layout{
   const n=cards(p,c,v);return {parts:n,accent:n,mode:'matrix'};
  }
  if(s.layout==='competition'||s.layout==='framing') {
-  const n=framedTerms(p,c,v);return {parts:n,accent:n,mode:'editorial-terms'};
+  return framedTerms(p,c,v);
  }
  if(s.layout==='mechanism')return stairMechanism(p,c,v);
  if(s.layout==='causal')return causalTree(p,c,v);
