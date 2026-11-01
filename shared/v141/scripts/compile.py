@@ -42,12 +42,23 @@ def captions(txt):
                 cut=max([i+1 for i,c in enumerate(p[:29]) if c in '、，」』' and i>=11] or [25])
                 part,p=p[:cut],p[cut:]
             if not part:continue
-            display=part if len(part)<=16 else part[:16]+'\n'+part[16:]
-            # ensure 2 lines, never 3
-            if len(display.split('\n')[-1])>16:
-                # preserve exact source with smaller on-screen chunk
-                cut=29 if len(part)>29 else 28
-                p=part[cut:]+p;part=part[:cut];display=part[:15]+'\n'+part[15:]
+            # Balance two-line captions instead of leaving a dangling comma
+            # or a single isolated Japanese character on the lower line.
+            if len(part)<=16:
+                display=part
+            else:
+                low=max(8,len(part)-16)
+                high=min(16,len(part)-6)
+                target=(len(part)+1)//2
+                punctuation=[j+1 for j,ch in enumerate(part[:high]) if ch in '、，。！？」』' and low<=j+1<=high]
+                pivot=min(punctuation,key=lambda q:abs(q-target)) if punctuation else max(low,min(high,target))
+                while pivot>low and part[pivot] in '、，。！？':
+                    pivot-=1
+                display=part[:pivot]+'\n'+part[pivot:]
+            assert len(display.split('\n'))<=2
+            assert max(map(len,display.split('\n')))<=16
+            if '\n' in display:
+                assert min(map(len,display.split('\n')))>=6
             dt=max(.48,len(part)/7.0+.08)
             out.append({'text':part,'speech':voice_reading(part),'display':display,'start':0,'end':round(dt,3)})
     if ''.join(c['text'] for c in out)!=txt: raise AssertionError('subtitle lost narration')
