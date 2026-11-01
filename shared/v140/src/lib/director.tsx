@@ -239,7 +239,7 @@ export function* playScene(view:View2D,s:Shot):ThreadGenerator{
  tx(background,'火災生態学　×　社会心理学',-656,382,24,K.gold);
  // All visual content ends before subtitles. Subtitle layer is last and always on top.
  const sub=tx(subtitle,'',0,454,45,K.paper,600);sub.width(1790);sub.lineHeight(63);sub.fontFamily(SANS);
- const t=Math.max(.12,Math.min(.6,s.duration*.06));
+ const t=Math.max(.06,Math.min(.40,s.cues[0].end*.30));
  const variant=n%5;
  if(variant===0){visual.y(27);yield* visual.y(0,t);}
  else if(variant===1){visual.x(-40);yield* visual.x(0,t);}
@@ -248,7 +248,7 @@ export function* playScene(view:View2D,s:Shot):ThreadGenerator{
  else{visual.x(42);yield* visual.x(0,t);}
  // The timing of each cue comes from the synthesized narration, not guessed word rates.
  for(let j=0;j<s.cues.length;j++){
-   const cue=s.cues[j],d=cue.end-cue.start;
+   const cue=s.cues[j],d=cue.end-cue.start-(j===0?t:0);
    sub.text(cue.display);
    if(!(d>0))throw new Error('Nonpositive audio cue '+s.id);
    const motion=Math.min(.35,d*.18);
