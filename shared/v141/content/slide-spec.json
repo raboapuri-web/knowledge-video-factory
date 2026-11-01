@@ -1,0 +1,1119 @@
+{
+  "version": "v141",
+  "style": "scientific editorial presentation",
+  "specs": [
+    {
+      "id": "S001",
+      "layout": "thesis",
+      "headline": "地球の森林は、どれほど広いのか",
+      "labels": [
+        "陸地の約32％",
+        "森林面積4,140万km²",
+        "日本列島 約110個分"
+      ],
+      "effect": 0
+    },
+    {
+      "id": "S002",
+      "layout": "ratio",
+      "headline": "陸地の約3分の1は森林",
+      "labels": [
+        "森林 32",
+        "その他 68",
+        "単位：％"
+      ],
+      "effect": 11
+    },
+    {
+      "id": "S003",
+      "layout": "hypothesis",
+      "headline": "もし、すべて燃えたら",
+      "labels": [
+        "森林の消失",
+        "世界規模の火災",
+        "思考実験"
+      ],
+      "effect": 22
+    },
+    {
+      "id": "S004",
+      "layout": "cascade",
+      "headline": "森の喪失が連鎖する",
+      "labels": [
+        "森林",
+        "雨と川",
+        "土壌",
+        "農業"
+      ],
+      "effect": 4
+    },
+    {
+      "id": "S005",
+      "layout": "cards",
+      "headline": "都市の生活も無関係ではない",
+      "labels": [
+        "水道",
+        "食料",
+        "夏の気温",
+        "森林に支えられた暮らし"
+      ],
+      "effect": 15
+    },
+    {
+      "id": "S006",
+      "layout": "divider",
+      "headline": "想像から、実際の災害へ",
+      "labels": [
+        "思考実験",
+        "実際の記録",
+        "2002年"
+      ],
+      "effect": 26
+    },
+    {
+      "id": "S007",
+      "layout": "locator",
+      "headline": "2002年 コロラド州",
+      "labels": [
+        "アメリカ西部",
+        "ヘイマン火災",
+        "大規模森林火災"
+      ],
+      "effect": 8
+    },
+    {
+      "id": "S008",
+      "layout": "scale",
+      "headline": "たった1日で、大阪市を超えた",
+      "labels": [
+        "約2万4千 ha",
+        "大阪市を超える面積",
+        "1日の延焼"
+      ],
+      "effect": 22
+    },
+    {
+      "id": "S009",
+      "layout": "ratio",
+      "headline": "東京23区の、ほぼ9割",
+      "labels": [
+        "火災影響 89",
+        "比較の残り 11",
+        "約560km²／住宅132軒"
+      ],
+      "effect": 4
+    },
+    {
+      "id": "S010",
+      "layout": "causal",
+      "headline": "森を守る消火が、一因に",
+      "labels": [
+        "小さな火災を消す",
+        "燃料が残る",
+        "大きな火災の条件"
+      ],
+      "effect": 15
+    },
+    {
+      "id": "S011",
+      "layout": "layer",
+      "headline": "静かな森に積み重なるもの",
+      "labels": [
+        "落ち葉",
+        "枯れ枝",
+        "倒木",
+        "若い木"
+      ],
+      "effect": 26
+    },
+    {
+      "id": "S012",
+      "layout": "quote",
+      "headline": "「その火、消さないで」",
+      "labels": [
+        "火を消すべきか",
+        "火災生態学の逆説"
+      ],
+      "effect": 8
+    },
+    {
+      "id": "S013",
+      "layout": "analogy",
+      "headline": "森林の燃料、人間の期待",
+      "labels": [
+        "枯れ枝の蓄積",
+        "期待の蓄積",
+        "表面に見えない"
+      ],
+      "effect": 19
+    },
+    {
+      "id": "S014",
+      "layout": "duel",
+      "headline": "炎上は、火種だけでは決まらない",
+      "labels": [
+        "迷惑系：またか",
+        "清廉な人物：驚き",
+        "事前の期待の違い"
+      ],
+      "effect": 1
+    },
+    {
+      "id": "S015",
+      "layout": "thesis",
+      "headline": "火を消すことは、森を守ることか",
+      "labels": [
+        "自然保護",
+        "火災生態学",
+        "世界の見方を変える"
+      ],
+      "effect": 15
+    },
+    {
+      "id": "S016",
+      "layout": "framing",
+      "headline": "私たちが「健全」と呼ぶ森",
+      "labels": [
+        "木がある",
+        "鳥がいる",
+        "燃えていない"
+      ],
+      "effect": 26
+    },
+    {
+      "id": "S017",
+      "layout": "contrast",
+      "headline": "燃える＝失われる？",
+      "labels": [
+        "燃える前の森",
+        "燃えた直後",
+        "変化の途中"
+      ],
+      "effect": 8
+    },
+    {
+      "id": "S018",
+      "layout": "timeline",
+      "headline": "森は、完成しない",
+      "labels": [
+        "成長",
+        "倒木",
+        "更新",
+        "次の世代"
+      ],
+      "effect": 19
+    },
+    {
+      "id": "S019",
+      "layout": "matrix",
+      "headline": "環境を変える3つの攪乱",
+      "labels": [
+        "洪水",
+        "台風",
+        "火災"
+      ],
+      "effect": 1
+    },
+    {
+      "id": "S020",
+      "layout": "duel",
+      "headline": "喪失と、機会",
+      "labels": [
+        "暮らしを失う生物",
+        "新しい場所を得る生物",
+        "同じ変化の二面"
+      ],
+      "effect": 12
+    },
+    {
+      "id": "S021",
+      "layout": "dilemma",
+      "headline": "「守る」と「止める」は違う",
+      "labels": [
+        "自然を守る",
+        "変化を止める",
+        "同じではない"
+      ],
+      "effect": 23
+    },
+    {
+      "id": "S022",
+      "layout": "locator",
+      "headline": "ロッジポールパイン",
+      "labels": [
+        "イエローストーン",
+        "針葉樹",
+        "火災を利用する植物"
+      ],
+      "effect": 8
+    },
+    {
+      "id": "S023",
+      "layout": "mechanism",
+      "headline": "普通の松ぼっくり",
+      "labels": [
+        "成熟",
+        "鱗片が開く",
+        "種子が出る"
+      ],
+      "effect": 19
+    },
+    {
+      "id": "S024",
+      "layout": "duel",
+      "headline": "閉じたままの球果",
+      "labels": [
+        "通常の球果",
+        "樹脂で閉じた球果",
+        "条件の違い"
+      ],
+      "effect": 1
+    },
+    {
+      "id": "S025",
+      "layout": "mechanism",
+      "headline": "熱が、種子を放出する",
+      "labels": [
+        "高温",
+        "樹脂が軟化",
+        "球果が開く",
+        "種子を放出"
+      ],
+      "effect": 12
+    },
+    {
+      "id": "S026",
+      "layout": "competition",
+      "headline": "森の地表は競争が激しい",
+      "labels": [
+        "高木が光を遮る",
+        "水と養分の競争",
+        "幼木は不利"
+      ],
+      "effect": 23
+    },
+    {
+      "id": "S027",
+      "layout": "duel",
+      "headline": "火災後、光が届く",
+      "labels": [
+        "火災前：暗い地表",
+        "火災後：光が届く",
+        "競争環境の変化"
+      ],
+      "effect": 5
+    },
+    {
+      "id": "S028",
+      "layout": "inversion",
+      "headline": "ある木の死、次世代の始まり",
+      "labels": [
+        "親木の死",
+        "種子の発芽",
+        "時間で意味が変わる"
+      ],
+      "effect": 16
+    },
+    {
+      "id": "S029",
+      "layout": "study",
+      "headline": "火災を探す甲虫",
+      "labels": [
+        "メラノフィラ属",
+        "焼けた木で繁殖",
+        "感覚器の適応"
+      ],
+      "effect": 1
+    },
+    {
+      "id": "S030",
+      "layout": "lifecycle",
+      "headline": "焼けた木は資源になる",
+      "labels": [
+        "焼けた樹木",
+        "卵",
+        "幼虫",
+        "成長"
+      ],
+      "effect": 12
+    },
+    {
+      "id": "S031",
+      "layout": "mechanism",
+      "headline": "熱と煙を手がかりに",
+      "labels": [
+        "赤外線受容器",
+        "煙の化学物質",
+        "火災場所を検知"
+      ],
+      "effect": 23
+    },
+    {
+      "id": "S032",
+      "layout": "path",
+      "headline": "火事へ向かう昆虫",
+      "labels": [
+        "通常の樹林",
+        "火災の痕跡",
+        "繁殖に適した木"
+      ],
+      "effect": 5
+    },
+    {
+      "id": "S033",
+      "layout": "matrix",
+      "headline": "環境は、生物によって違う",
+      "labels": [
+        "砂漠",
+        "深海",
+        "火災跡地"
+      ],
+      "effect": 16
+    },
+    {
+      "id": "S034",
+      "layout": "divider",
+      "headline": "火を消した森に残るもの",
+      "labels": [
+        "火災の排除",
+        "森林の変化",
+        "次の問題へ"
+      ],
+      "effect": 27
+    },
+    {
+      "id": "S035",
+      "layout": "timeline",
+      "headline": "20世紀 消火政策の時代",
+      "labels": [
+        "早期発見",
+        "速やかな消火",
+        "資源・人命の保護"
+      ],
+      "effect": 9
+    },
+    {
+      "id": "S036",
+      "layout": "layer",
+      "headline": "消火の成功と、地表の変化",
+      "labels": [
+        "見える静けさ",
+        "落ち葉",
+        "枯れ枝",
+        "倒木"
+      ],
+      "effect": 23
+    },
+    {
+      "id": "S037",
+      "layout": "layer",
+      "headline": "年を追って、燃料が増える",
+      "labels": [
+        "1年目",
+        "10年目",
+        "50年目",
+        "火災を抑えた森"
+      ],
+      "effect": 5
+    },
+    {
+      "id": "S038",
+      "layout": "duel",
+      "headline": "小さな火の有無",
+      "labels": [
+        "定期的に火が通る",
+        "すべて早期消火",
+        "燃料量の違い"
+      ],
+      "effect": 16
+    },
+    {
+      "id": "S039",
+      "layout": "xray",
+      "headline": "平和に見える森の足元",
+      "labels": [
+        "地表：静かな森",
+        "地中・地表：蓄積",
+        "可燃物の量"
+      ],
+      "effect": 27
+    },
+    {
+      "id": "S040",
+      "layout": "locator",
+      "headline": "年輪が語る火災の歴史",
+      "labels": [
+        "アリゾナ",
+        "ニューメキシコ",
+        "乾燥針葉樹林"
+      ],
+      "effect": 9
+    },
+    {
+      "id": "S041",
+      "layout": "method",
+      "headline": "木が残す火災の記録",
+      "labels": [
+        "年輪",
+        "火災痕",
+        "発生年を復元"
+      ],
+      "effect": 20
+    },
+    {
+      "id": "S042",
+      "layout": "study",
+      "headline": "過去と現代、406地点",
+      "labels": [
+        "406地点",
+        "1700–1880年",
+        "現代の衛星・現地調査"
+      ],
+      "effect": 2
+    },
+    {
+      "id": "S043",
+      "layout": "bar2",
+      "headline": "火災の間隔が、約5倍に",
+      "labels": [
+        "過去 11.4",
+        "現代 58.8",
+        "単位：年"
+      ],
+      "effect": 16
+    },
+    {
+      "id": "S044",
+      "layout": "timeline",
+      "headline": "火災の「頻度」を比べる",
+      "labels": [
+        "過去：頻繁",
+        "現代：まれ",
+        "模式的な比較"
+      ],
+      "effect": 27
+    },
+    {
+      "id": "S045",
+      "layout": "duel",
+      "headline": "火に耐える木、枯死する木",
+      "labels": [
+        "過去：何度も生存",
+        "近年：大量の枯死",
+        "火災の厳しさ"
+      ],
+      "effect": 9
+    },
+    {
+      "id": "S046",
+      "layout": "ratio",
+      "headline": "樹木死亡率が高かった火災",
+      "labels": [
+        "高い樹木死亡率 42",
+        "その他 58",
+        "調査対象の近年の火災"
+      ],
+      "effect": 20
+    },
+    {
+      "id": "S047",
+      "layout": "study",
+      "headline": "もう一つの研究",
+      "labels": [
+        "Nature Communications",
+        "2024年",
+        "消火の選択効果"
+      ],
+      "effect": 2
+    },
+    {
+      "id": "S048",
+      "layout": "duel",
+      "headline": "弱い火と強い火",
+      "labels": [
+        "地表火：消しやすい",
+        "樹冠火：消しにくい",
+        "消火難易度の違い"
+      ],
+      "effect": 13
+    },
+    {
+      "id": "S049",
+      "layout": "gradient",
+      "headline": "乾燥と風で難しくなる",
+      "labels": [
+        "弱い火",
+        "強風・乾燥",
+        "激しい火"
+      ],
+      "effect": 24
+    },
+    {
+      "id": "S050",
+      "layout": "filter",
+      "headline": "消せる火だけが消えていく",
+      "labels": [
+        "小さな火：消えやすい",
+        "激しい火：残りやすい",
+        "観測の偏り"
+      ],
+      "effect": 9
+    },
+    {
+      "id": "S051",
+      "layout": "causal",
+      "headline": "抑制バイアス",
+      "labels": [
+        "弱い火を消す",
+        "強い火が残る",
+        "火災の構成が変わる"
+      ],
+      "effect": 20
+    },
+    {
+      "id": "S052",
+      "layout": "duel",
+      "headline": "火災を激化させる二経路",
+      "labels": [
+        "燃料の蓄積",
+        "火災の選別",
+        "異なる仕組み"
+      ],
+      "effect": 2
+    },
+    {
+      "id": "S053",
+      "layout": "cycle",
+      "headline": "不安が消火を強める循環",
+      "labels": [
+        "強い火災を恐れる",
+        "消火強化",
+        "小さな火が減る",
+        "燃料が蓄積"
+      ],
+      "effect": 13
+    },
+    {
+      "id": "S054",
+      "layout": "locator",
+      "headline": "ヘイマン火災に戻ろう",
+      "labels": [
+        "コロラド州",
+        "干ばつと強風",
+        "燃料の蓄積"
+      ],
+      "effect": 24
+    },
+    {
+      "id": "S055",
+      "layout": "timeline",
+      "headline": "2002年6月8日、発火",
+      "labels": [
+        "6月8日 発火",
+        "6月9日 拡大",
+        "最終的に大災害"
+      ],
+      "effect": 6
+    },
+    {
+      "id": "S056",
+      "layout": "scale",
+      "headline": "大阪市を超える1日の延焼",
+      "labels": [
+        "約24,000ha",
+        "大阪市を超える面積",
+        "1日"
+      ],
+      "effect": 17
+    },
+    {
+      "id": "S057",
+      "layout": "study",
+      "headline": "60人以上による調査",
+      "labels": [
+        "米国森林局",
+        "専門家60人以上",
+        "原因と影響を分析"
+      ],
+      "effect": 2
+    },
+    {
+      "id": "S058",
+      "layout": "matrix",
+      "headline": "災害は一因だけではない",
+      "labels": [
+        "干ばつ",
+        "強風",
+        "地形",
+        "燃料蓄積"
+      ],
+      "effect": 13
+    },
+    {
+      "id": "S059",
+      "layout": "causal",
+      "headline": "出火原因と拡大条件は別",
+      "labels": [
+        "人間による出火",
+        "気象・地形・燃料",
+        "火災規模の拡大"
+      ],
+      "effect": 24
+    },
+    {
+      "id": "S060",
+      "layout": "mechanism",
+      "headline": "燃え方を変えるには",
+      "labels": [
+        "燃料量",
+        "燃料のつながり",
+        "火の広がり"
+      ],
+      "effect": 6
+    },
+    {
+      "id": "S061",
+      "layout": "method",
+      "headline": "人間が意図的に燃やす",
+      "labels": [
+        "区域を定める",
+        "条件を調べる",
+        "計画火入れ"
+      ],
+      "effect": 17
+    },
+    {
+      "id": "S062",
+      "layout": "matrix",
+      "headline": "火入れを管理する4条件",
+      "labels": [
+        "風向き",
+        "湿度",
+        "気温",
+        "燃料の状態"
+      ],
+      "effect": 28
+    },
+    {
+      "id": "S063",
+      "layout": "inversion",
+      "headline": "森を守るために、森を燃やす",
+      "labels": [
+        "地表の燃料を減らす",
+        "大木を守る",
+        "未来の火災に備える"
+      ],
+      "effect": 10
+    },
+    {
+      "id": "S064",
+      "layout": "study",
+      "headline": "森林管理の効果を比較",
+      "labels": [
+        "複数研究のメタ分析",
+        "処理あり／なし",
+        "将来の火災を比較"
+      ],
+      "effect": 24
+    },
+    {
+      "id": "S065",
+      "layout": "bar2",
+      "headline": "火災の深刻度が62〜72％低下",
+      "labels": [
+        "未処理 100",
+        "処理後 28〜38",
+        "比較の指標：未処理を100"
+      ],
+      "effect": 6
+    },
+    {
+      "id": "S066",
+      "layout": "matrix",
+      "headline": "計画火入れにも危険はある",
+      "labels": [
+        "風向き",
+        "管理範囲",
+        "煙と健康",
+        "気象の変化"
+      ],
+      "effect": 17
+    },
+    {
+      "id": "S067",
+      "layout": "locator",
+      "headline": "1988年 イエローストーン",
+      "labels": [
+        "国立公園",
+        "大規模火災",
+        "森林の変化"
+      ],
+      "effect": 28
+    },
+    {
+      "id": "S068",
+      "layout": "ratio",
+      "headline": "公園の約36％に影響",
+      "labels": [
+        "火災影響 36",
+        "その他 64",
+        "公園面積の割合"
+      ],
+      "effect": 10
+    },
+    {
+      "id": "S069",
+      "layout": "contrast",
+      "headline": "焼け跡は「終わり」なのか",
+      "labels": [
+        "火災直後",
+        "生命が失われる",
+        "風景が変わる"
+      ],
+      "effect": 21
+    },
+    {
+      "id": "S070",
+      "layout": "timeline",
+      "headline": "火災後の再生",
+      "labels": [
+        "焼けた直後",
+        "根から再生",
+        "若い松の成長"
+      ],
+      "effect": 3
+    },
+    {
+      "id": "S071",
+      "layout": "matrix",
+      "headline": "森林は一様には燃えない",
+      "labels": [
+        "燃え残り",
+        "低強度",
+        "高強度"
+      ],
+      "effect": 17
+    },
+    {
+      "id": "S072",
+      "layout": "matrix",
+      "headline": "異なる場所、異なる生命",
+      "labels": [
+        "焼け残った場所",
+        "弱く燃えた場所",
+        "激しく燃えた場所"
+      ],
+      "effect": 28
+    },
+    {
+      "id": "S073",
+      "layout": "duel",
+      "headline": "必ず回復するわけではない",
+      "labels": [
+        "再生した森林",
+        "回復が遅い場所",
+        "環境条件による"
+      ],
+      "effect": 10
+    },
+    {
+      "id": "S074",
+      "layout": "divider",
+      "headline": "「問題がない」とは何か",
+      "labels": [
+        "火災が見えない",
+        "燃料は存在する",
+        "目に見えない条件"
+      ],
+      "effect": 21
+    },
+    {
+      "id": "S075",
+      "layout": "dilemma",
+      "headline": "二種類の「静けさ」",
+      "labels": [
+        "問題が見えない",
+        "問題の原因がない",
+        "同じではない"
+      ],
+      "effect": 3
+    },
+    {
+      "id": "S076",
+      "layout": "analogy",
+      "headline": "森からSNSへ",
+      "labels": [
+        "森林に積もる燃料",
+        "社会に積もる期待",
+        "抽象化"
+      ],
+      "effect": 14
+    },
+    {
+      "id": "S077",
+      "layout": "network",
+      "headline": "SNSという別の森",
+      "labels": [
+        "人物",
+        "評判",
+        "投稿",
+        "注目"
+      ],
+      "effect": 25
+    },
+    {
+      "id": "S078",
+      "layout": "duel",
+      "headline": "同じ行為、違う期待",
+      "labels": [
+        "迷惑系：予想どおり",
+        "清廉な人物：予想外",
+        "事前のイメージ"
+      ],
+      "effect": 10
+    },
+    {
+      "id": "S079",
+      "layout": "quote",
+      "headline": "「またあいつか」",
+      "labels": [
+        "見慣れた出来事",
+        "驚きが少ない"
+      ],
+      "effect": 21
+    },
+    {
+      "id": "S080",
+      "layout": "cards",
+      "headline": "清廉なイメージ",
+      "labels": [
+        "知的",
+        "誠実",
+        "家庭的",
+        "期待の積み重なり"
+      ],
+      "effect": 3
+    },
+    {
+      "id": "S081",
+      "layout": "headline",
+      "headline": "たった一度の不倫報道",
+      "labels": [
+        "報道",
+        "過去の発言",
+        "周囲の評価"
+      ],
+      "effect": 14
+    },
+    {
+      "id": "S082",
+      "layout": "duel",
+      "headline": "なぜ、反応が違うのか",
+      "labels": [
+        "「またか」",
+        "「あんな人だと思わなかった」",
+        "期待の違い"
+      ],
+      "effect": 25
+    },
+    {
+      "id": "S083",
+      "layout": "causal",
+      "headline": "行為は同じでも、反応は違う",
+      "labels": [
+        "火種としての行為",
+        "期待という燃料",
+        "受け止め方が変わる"
+      ],
+      "effect": 7
+    },
+    {
+      "id": "S084",
+      "layout": "study",
+      "headline": "道徳的反復効果",
+      "labels": [
+        "心理学研究",
+        "2022年",
+        "反復と道徳判断"
+      ],
+      "effect": 18
+    },
+    {
+      "id": "S085",
+      "layout": "metric2",
+      "headline": "7つの実験、3,301人",
+      "labels": [
+        "3,301人",
+        "7実験",
+        "問題行動を評価"
+      ],
+      "effect": 3
+    },
+    {
+      "id": "S086",
+      "layout": "duel",
+      "headline": "実験条件：初見と反復",
+      "labels": [
+        "初めて見る",
+        "繰り返し見る",
+        "同じ問題行動の説明"
+      ],
+      "effect": 14
+    },
+    {
+      "id": "S087",
+      "layout": "duel",
+      "headline": "反復後、厳しさが弱まる",
+      "labels": [
+        "初見：厳しい評価",
+        "反復：相対的に弱い評価",
+        "定性的な結果"
+      ],
+      "effect": 25
+    },
+    {
+      "id": "S088",
+      "layout": "timeline",
+      "headline": "同じ悪事を見続けると",
+      "labels": [
+        "初見",
+        "反復",
+        "慣れ",
+        "評価に影響"
+      ],
+      "effect": 7
+    },
+    {
+      "id": "S089",
+      "layout": "dilemma",
+      "headline": "行為は変わっていない",
+      "labels": [
+        "行為そのもの",
+        "感情・評価",
+        "変化したのは後者"
+      ],
+      "effect": 18
+    },
+    {
+      "id": "S090",
+      "layout": "inversion",
+      "headline": "我々の道徳判断は一定か",
+      "labels": [
+        "出来事の内容",
+        "どれほど慣れたか",
+        "評価が揺れる"
+      ],
+      "effect": 0
+    },
+    {
+      "id": "S091",
+      "layout": "locator",
+      "headline": "最初の山に戻ろう",
+      "labels": [
+        "2002年",
+        "コロラド州",
+        "ヘイマン火災"
+      ],
+      "effect": 11
+    },
+    {
+      "id": "S092",
+      "layout": "timeline",
+      "headline": "善意の消火、長い時間",
+      "labels": [
+        "小さな火を消す",
+        "数十年",
+        "燃料が残る"
+      ],
+      "effect": 25
+    },
+    {
+      "id": "S093",
+      "layout": "layer",
+      "headline": "積み重なる時間",
+      "labels": [
+        "10年",
+        "50年",
+        "100年",
+        "枯れ枝と落ち葉"
+      ],
+      "effect": 7
+    },
+    {
+      "id": "S094",
+      "layout": "contrast",
+      "headline": "目先の成功と、未来の危険",
+      "labels": [
+        "今：火が消えた",
+        "将来：燃料が残る",
+        "時間軸の違い"
+      ],
+      "effect": 18
+    },
+    {
+      "id": "S095",
+      "layout": "analogy",
+      "headline": "評判にも、積み重なりがある",
+      "labels": [
+        "信頼",
+        "期待",
+        "失望への転換"
+      ],
+      "effect": 0
+    },
+    {
+      "id": "S096",
+      "layout": "duel",
+      "headline": "燃料と期待の共通点",
+      "labels": [
+        "森：可燃物",
+        "SNS：評判・期待",
+        "見えない蓄積"
+      ],
+      "effect": 11
+    },
+    {
+      "id": "S097",
+      "layout": "difference",
+      "headline": "炎の有無だけでは足りない",
+      "labels": [
+        "今の現象",
+        "背後の条件",
+        "何を見落とすか"
+      ],
+      "effect": 22
+    },
+    {
+      "id": "S098",
+      "layout": "dilemma",
+      "headline": "我々は、何を裁いているのか",
+      "labels": [
+        "行為の重大さ",
+        "自分の期待",
+        "判断を問い直す"
+      ],
+      "effect": 4
+    },
+    {
+      "id": "S099",
+      "layout": "quote",
+      "headline": "恐れるのは何か",
+      "labels": [
+        "問題が起きること",
+        "問題が見えてしまうこと"
+      ],
+      "effect": 18
+    },
+    {
+      "id": "S100",
+      "layout": "outro",
+      "headline": "今夜も当たり前がひとつ減った",
+      "labels": [
+        "火災生態学",
+        "社会心理学",
+        "考える夜"
+      ],
+      "effect": 0
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+V141 — その山火事、消さないでもらえますか？ / 出典メモ
+USER-APPROVED NARRATION: shared/v140/content/manuscript.md. Do not paraphrase, shorten or fill.
+STORYBOARD: shared/v140/content/storyboard.csv — all 100 anchors.
+Forest area: FAO Global Forest Resources Assessment 2025, https://www.fao.org/forest-resources-assessment/
+Hayman Fire (2002): USDA Forest Service, Hayman Fire Case Study (2003), https://www.fs.usda.gov/rm/pubs/rmrs_gtr114.pdf
+Yellowstone 1988: NPS, https://www.nps.gov/yell/learn/nature/1988-fires.htm
+Fire suppression bias: Nature Communications (2024), https://www.nature.com/articles/s41467-024-46702-0
+Fire return interval (11.4 vs 58.8): McClure et al. (2024), Communications Earth & Environment.
+Fire treatment meta-analysis: Davis et al. (2024), Forest Ecology and Management.
+Moral repetition effect (2022): seven experiments involving 3,301 participants.
+Why do we hate hypocrites? Jordan et al. (2017), Psychological Science.
+INTERPRETATION WARNING: Wildfire suppression mechanisms and moral expectation effects are distinct mechanisms. Video explicitly treats the analogy as a metaphor.
+SCENE QA: actual geographic burn outlines are not used where only area estimates are available. Symbolic pictograms and charts are labeled as conceptual.
+VOICE CREDIT: VOICEVOX 青山龍星 (ノーマル), speedScale 1.15.
+
+V141 VISUAL POLICY: Presentation graphics only. No scenic trees, flame illustrations, landscape vistas or portrait silhouettes. Chapter-specific slide color systems.
