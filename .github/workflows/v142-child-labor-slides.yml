@@ -1,0 +1,234 @@
+name: V142 Child Labor Editorial Slide Documentary Motion Canvas
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v142-child-labor-slides.yml'
+      - 'shared/v142/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v142-child-labor-slides-main
+  cancel-in-progress: false
+
+jobs:
+  storyboard:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python source / chapter / subtitle preflight
+        working-directory: shared/v142
+        run: |
+          set -euo pipefail
+          python3 scripts/compile.py
+          python3 -c "import json; a=json.load(open('content/audit.json')); assert a['sceneCount']>=75; print('PREFLIGHT_OK',a)"
+          cat content/audit.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v142-source-audit
+          path: |
+            shared/v142/content/audit.json
+          retention-days: 21
+
+  chapter:
+    needs: storyboard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, epilogue]
+    env:
+      VOICEVOX_SPEED: '1.15'
+      VOICEVOX_SPEAKER_ID: '13'
+      VOICE_PARALLEL: '3'
+      PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v142/.puppeteer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Japanese text renderer and FFmpeg
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk fontconfig ffmpeg
+      - name: Reuse stable Motion Canvas rendering/VOICEVOX runtime from V124
+        working-directory: shared/v142
+        run: |
+          set -euo pipefail
+          mkdir -p src/lib
+          cp ../v141/src/lib/director.tsx src/lib/director.tsx
+          cp ../v124/package.json .
+          cp ../v124/tsconfig.json .
+          cp ../v124/vite.config.ts .
+          cp ../v124/headless.html .
+          cp ../v124/src/headless.ts src/headless.ts
+          cp ../v124/src/types.d.ts src/types.d.ts
+          cp ../v124/scripts/synth_chapter.py scripts/synth_chapter.py
+          cp ../v124/scripts/merge_timing.py scripts/merge_timing.py
+          cp ../v124/scripts/render.mjs scripts/render.mjs
+          cp ../v124/scripts/generate-bgm.mjs scripts/generate-bgm.mjs
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/render.mjs')
+          s=p.read_text().replace('v124','v142')
+          p.write_text(s)
+          p=Path('scripts/synth_chapter.py')
+          p.write_text(p.read_text().replace("'chapter4','epilogue'","'chapter4','chapter5','epilogue'"))
+          p=Path('src/lib/director.tsx')
+          s=p.read_text().replace("'chapter4','epilogue'","'chapter4','chapter5','epilogue'")
+          s=s.replace('FIRE ECOLOGY   /   SOCIAL PSYCHOLOGY','CHILD RIGHTS   /   MEDIA ETHICS')
+          s=s.replace('FIRE ECOLOGY   ×   SOCIAL PSYCHOLOGY','CHILD RIGHTS   ×   LABOR ECONOMICS')
+          s=s.replace('研究・比較・思考実験を区別する','事実・制度・解釈を区別する')
+          s=s.replace("+' / 100'","+' / '+String(table.length).padStart(3,'0')")
+          p.write_text(s)
+          PY
+      - name: Compile original paragraphs, meaning states and speaker-safe cues
+        working-directory: shared/v142
+        run: |
+          set -euo pipefail
+          python3 scripts/compile.py
+          python3 -c "import json; a=json.load(open('content/audit.json')); assert a['sceneCount']>=75; print('PREFLIGHT_OK',a)"
+          npm install --no-audit --no-fund
+      - name: Start VOICEVOX 青山龍星 CPU engine
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..150}; do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null; then
+              echo "VOICEVOX_READY"; exit 0
+            fi
+            sleep 2
+          done
+          echo "VOICEVOX_NOT_READY"; exit 1
+      - name: Generate complete measured VOICEVOX narration for this chapter
+        working-directory: shared/v142
+        env:
+          CHAPTER: ${{ matrix.chapter }}
+        run: |
+          set -euo pipefail
+          python3 scripts/synth_chapter.py "$CHAPTER"
+          python3 scripts/merge_timing.py "$CHAPTER"
+          python3 -c "import json; a=json.load(open('content/audit.json')); assert a['sceneCount']>=75; print('PREFLIGHT_OK',a)"
+          test -s "media/$CHAPTER/narration.wav"
+          test -s "content/measured-$CHAPTER.json"
+      - name: TypeScript typecheck and production Vite bundle
+        working-directory: shared/v142
+        run: npm run build
+      - name: Smoke-frame render before expensive full render
+        working-directory: shared/v142
+        env:
+          CHAPTER: ${{ matrix.chapter }}
+        run: |
+          set -euo pipefail
+          node scripts/render.mjs "$CHAPTER" --smoke
+          test -s "output/v142-$CHAPTER-smoke.mp4"
+      - name: Render editorial 1080p Motion Canvas chapter
+        working-directory: shared/v142
+        env:
+          CHAPTER: ${{ matrix.chapter }}
+        run: |
+          set -euo pipefail
+          node scripts/render.mjs "$CHAPTER"
+          test -s "output/v142-$CHAPTER.mp4"
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 "output/v142-$CHAPTER.mp4"
+      - name: Upload measured chapter output
+        uses: actions/upload-artifact@v4
+        with:
+          name: v142-segment-${{ matrix.chapter }}
+          path: |
+            shared/v142/output/v142-${{ matrix.chapter }}.mp4
+            shared/v142/voice-report-${{ matrix.chapter }}.json
+          retention-days: 14
+          compression-level: 0
+
+  finalize:
+    needs: chapter
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install FFmpeg for final encoding
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get install -y --no-install-recommends ffmpeg
+          fi
+          ffmpeg -version | head -1
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v142-segment-*
+          path: segments
+          merge-multiple: true
+      - name: Assemble six true chapter renders with stream copy
+        working-directory: shared/v142
+        run: |
+          set -euo pipefail
+          mkdir -p output qa
+          : > output/concat.txt
+          for ch in prologue chapter1 chapter2 chapter3 chapter4 chapter5 epilogue; do
+            match="$(find ../../segments -type f -name "v142-$ch.mp4" -print -quit)"
+            test -n "$match"
+            test -s "$match"
+            echo "$ch: $match"
+            printf "file '%s'\n" "$(realpath "$match")" >> output/concat.txt
+          done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat.txt -c copy -movflags +faststart output/v142-voice-master.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=nw=1 output/v142-voice-master.mp4
+      - name: Sound bed from reusable V124 runtime, without modifying narration
+        working-directory: shared/v142
+        run: |
+          set -euo pipefail
+          cp ../v124/scripts/generate-bgm.mjs scripts/generate-bgm.mjs
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v142-voice-master.mp4)
+          node scripts/generate-bgm.mjs "$D"
+          ffmpeg -y -loglevel error -i output/v142-voice-master.mp4 -i output/bgm.m4a \
+            -filter_complex '[0:a]volume=1[voice];[1:a]volume=.035[music];[voice][music]amix=inputs=2:duration=first[a]' \
+            -map 0:v -map '[a]' -c:v copy -c:a aac -b:a 192k -shortest \
+            -movflags +faststart output/v142-child-labor-slides-final.mp4
+      - name: Verify real complete video, create review contact sheet
+        working-directory: shared/v142
+        run: |
+          set -euo pipefail
+          cp ../v141/scripts/qa.py scripts/qa.py
+          python3 scripts/qa.py final output/v142-child-labor-slides-final.mp4
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v142-child-labor-slides-final.mp4)
+          I=$(awk "BEGIN {print $D/24}")
+          ffmpeg -y -loglevel error -i output/v142-child-labor-slides-final.mp4 \
+            -vf "fps=1/$I,scale=384:-1,tile=6x4:padding=4:margin=4" \
+            -frames:v 1 output/v142-contact-sheet.jpg
+          test -s output/v142-contact-sheet.jpg
+      - name: Upload final master and QA evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: v142-child-labor-slides-master
+          path: |
+            shared/v142/output/v142-child-labor-slides-final.mp4
+            shared/v142/output/v142-contact-sheet.jpg
+            shared/v142/qa/final.json
+          retention-days: 21
+          compression-level: 0
+      - name: Publish finished film via GitHub Release
+        working-directory: shared/v142
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v142-child-labor-slides-${{ github.run_id }}"
+          gh release create "$TAG" \
+            output/v142-child-labor-slides-final.mp4 \
+            output/v142-contact-sheet.jpg \
+            qa/final.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "V142 児童労働と家族系YouTuber 本番動画" \
+            --notes "Presentation-slide child-labor documentary, seven full chapters, 80 individually art-directed analytical slides with 35 diagram layouts and 29 motion variants and a complete waveform-measured subtitle pass, VOICEVOX Aoyama Ryusei 1.15x, measured full subtitles, final contact sheet, QA and citations."
