@@ -130,7 +130,7 @@ def partition(text,n):
     for step in range(n):
         slots=n-step;limit=len(parts)-(slots-1);want=sum(len(x) for x in parts[i:])/slots
         acc=''
-        while i<limit and (len(acc)<want*.84 or not acc):
+        while i<limit and (len(acc)<want*.84 or not acc or step==n-1):
             acc+=parts[i];i+=1
         out.append(acc)
     assert i==len(parts) and ''.join(out)==text
