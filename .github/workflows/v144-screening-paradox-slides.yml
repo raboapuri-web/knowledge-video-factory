@@ -81,13 +81,23 @@ jobs:
           s=p.read_text().replace('v124','v144')
           p.write_text(s)
           p=Path('scripts/synth_chapter.py')
-          p.write_text(p.read_text().replace("'chapter4','epilogue'","'chapter4','chapter5','epilogue'"))
+          p.write_text(p.read_text())
           p=Path('src/lib/director.tsx')
-          s=p.read_text().replace("'chapter4','epilogue'","'chapter4','chapter5','epilogue'")
-          s=s.replace('MEDICINE   /   STATISTICS','CHILD RIGHTS   /   MEDIA ETHICS')
-          s=s.replace('MEDICINE   ×   ECONOMICS','CHILD RIGHTS   ×   LABOR ECONOMICS')
-          s=s.replace('検診の数字と救命の結果は別物','事実・制度・解釈を区別する')
+          s=p.read_text()
+          s=s.replace('FIRE ECOLOGY   /   SOCIAL PSYCHOLOGY','MEDICINE   /   STATISTICS')
+          s=s.replace('FIRE ECOLOGY   ×   SOCIAL PSYCHOLOGY','MEDICINE   ×   ECONOMICS')
+          s=s.replace('研究・比較・思考実験を区別する','検診の数字と救命の結果は別物')
           s=s.replace("+' / 100'","+' / '+String(table.length).padStart(3,'0')")
+          s=s.replace("T(header,sp.headline,0,-352,txtSize(sp.headline,66),c.ink);", "const movingHeadline=T(header,sp.headline,0,-352,txtSize(sp.headline,66),c.ink);movingHeadline.opacity(0);movingHeadline.y(-373);")
+          s=s.replace("yield* entrance(lay,sp.effect,intro);", "yield* all(entrance(lay,sp.effect,intro),movingHeadline.opacity(1,intro),movingHeadline.y(-352,intro));")
+          start=s.index('function* entrance(')
+          end=s.index('function* emphasize(',start)
+          introBlock=s[start:end]
+          introBlock=introBlock.replace('const n=a[effect%a.length],style=effect%10;', 'const n=a[effect%a.length],style=effect%10;n.opacity(0);')
+          for expr in ('n.scale(1,seconds)','n.y(to,seconds)','n.x(to,seconds)','n.rotation(to,seconds)'):
+            introBlock=introBlock.replace('yield* '+expr+';', 'yield* all(n.opacity(1,seconds),'+expr+');')
+          introBlock=introBlock.replace("}else{\n  yield* waitFor(seconds);\n }", "}else{\n  yield* n.opacity(1,seconds);\n }")
+          s=s[:start]+introBlock+s[end:]
           p.write_text(s)
           PY
       - name: Compile original paragraphs, meaning states and speaker-safe cues
