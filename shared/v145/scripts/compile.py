@@ -124,6 +124,10 @@ def main():
               visualInstruction='プレゼンの図解のみ。実写・芝居・情景描写なし。',
               motionInstruction=f'レイアウト固有のモーション＋意味に沿った強調 No.{effect}',
               narration=text,cues=cu,sceneIndex=i-1,duration=sum(x['end'] for x in cu),durationSource='PREVIEW_ONLY'))
+    for k in range(1,len(slides)):
+        if slides[k]['layout']==slides[k-1]['layout']:
+            slides[k]['layout']='duel' if slides[k]['layout']!='duel' else 'matrix'
+            scenes[k]['visual']=slides[k]['layout']
     assert ''.join(s['narration'] for s in scenes)==''.join(chunks[k] for k in ORDER)
     assert len(set(s['layout'] for s in slides))>=18
     assert all(a['layout']!=b['layout'] for a,b in zip(slides,slides[1:]))
