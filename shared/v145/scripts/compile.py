@@ -39,7 +39,7 @@ def make_plan(ch,pieces):
         if ch=="prologue" and ("93.7" in piece or "6.3" in piece):
             lay="ratio";tags=["93.7％：左右に飛んだ","6.3％：中央に留まる","PK286本／2007年"]
         elif ch=="prologue" and ("13.4" in piece or "33.3" in piece):
-            lay="metric2";tags=["13.4％","33.3％","左・右のセーブ率 ／ 中央のセーブ率"]
+            lay="bar2";tags=["左右に飛ぶ 13.4％","中央に留まる 33.3％","2007年の観測値"]
         elif ch=="chapter1" and ("32人" in piece or "25人" in piece):
             lay="metric2";tags=["32人","25人","プロゴールキーパー調査"]
         elif ch=="chapter3" and "824人" in piece:
@@ -49,11 +49,14 @@ def make_plan(ch,pieces):
         elif ch=="chapter3" and "42%" in piece:
             lay="ratio";tags=["42％：診療範囲を制限","残り58％","過去3年間"]
         elif ch=="chapter4" and ("85%" in piece or "31%" in piece):
-            lay="metric2";tags=["85％","31％","一人だけ／ほかにも4人"]
+            lay="bar2";tags=["自分だけ 85％","ほかに4人 31％","1968年の実験"]
         elif ch=="chapter4" and ("100人" in piece or "10人" in piece):
             lay="matrix";tags=["1人","10人","100人","責任の分散：思考実験"]
         elif "**" in piece or "結論" in h:
             lay="thesis";tags=[b[0],b[1],b[2]]
+        quantitative=(ch=='prologue' and any(v in piece for v in ['93.7','6.3','13.4','33.3'])) or (ch=='chapter3' and any(v in piece for v in ['93%','42%'])) or (ch=='chapter4' and any(v in piece for v in ['85%','31%']))
+        if lay in ('ratio','bar2') and not quantitative:
+            lay='duel' if lay=='bar2' else 'contrast'
         out.append((lay,h,tags))
     return out
 def normalized(text):return re.sub(r'\s+','',text.replace('**',''))
