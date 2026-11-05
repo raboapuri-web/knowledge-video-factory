@@ -80,7 +80,7 @@ def main():
  for n in core.ICON_NAMES:core.icon_image(n).save(iconfolder/(n+".png"))
  description="なぜ植物は緑なのか？\n\n葉の色から、当たり前を問い直す短い映像試作。\n\n"
  description+="写真素材（CC0／出典）\n"
- for x in materials:description+="- "+x["subject"]+" / "+x["author"]+": "+x["source_page"]+"\n"
+ for x in materials.values():description+="- "+x["subject"]+" / "+x["author"]+": "+x["source_page"]+"\n"
  description+="\nナレーション: espeak-ng (開発用仮音声。公開音声としての使用を推奨しません)\n"
  (out/"description.md").write_text(description,encoding="utf8")
  if args.no_render:return
