@@ -161,3 +161,18 @@ def icon_image(name,size=152):
   circle(80,80,57)
   L([(80,31),(80,128)]);L([(35,80),(125,80)])
  return im
+
+
+def font(size=44,serif=True):
+ """System-installed Japanese fonts for the headless CI renderer."""
+ from PIL import ImageFont
+ from pathlib import Path
+ suffix="NotoSerifCJK-Bold.ttc" if serif else "NotoSansCJK-Regular.ttc"
+ candidates=[Path("/usr/share/fonts/opentype/noto")/suffix,
+             Path("/usr/share/fonts/truetype/noto")/suffix]
+ for c in candidates:
+  if c.is_file():return ImageFont.truetype(str(c),size)
+ for root in (Path("/usr/share/fonts/opentype/noto"),Path("/usr/share/fonts/truetype/noto")):
+  for file in root.glob("Noto*CJK*.ttc"):
+   return ImageFont.truetype(str(file),size)
+ raise RuntimeError("Install fonts-noto-cjk to render Japanese text")
