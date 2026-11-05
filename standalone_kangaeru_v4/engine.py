@@ -84,8 +84,8 @@ def main():
  description+="\nナレーション: espeak-ng (開発用仮音声。公開音声としての使用を推奨しません)\n"
  (out/"description.md").write_text(description,encoding="utf8")
  if args.no_render:return
- final=render.render(board,timeline,{m["id"]:m for m in materials},out)
- report=qa(board,timeline,materials,final,out)
+ final=render.render(board,timeline,materials,out)
+ report=qa(board,timeline,list(materials.values()),final,out)
  print(json.dumps({"passed":report["passed"],"file":str(final),
      "duration":report["duration_seconds"],"checks":report["checks"]},ensure_ascii=False,indent=2))
  if not report["passed"]:raise SystemExit("QA FAILED")
