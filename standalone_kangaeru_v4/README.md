@@ -21,3 +21,12 @@ Artifact: final.mp4, qa.json, storyboard.json, materials.json, timeline.json, ca
 
 ## 完了条件
 final.mp4 が存在し、QA passed=true と自動テストが合格すること。美的品質には別途人間の確認を要する。
+
+## 2026-11-05 本番音声への切り替え
+
+- 無料・認証不要の公式 VOICEVOX Engine (voicevox/voicevox_engine:cpu-latest) をローカルHTTP APIで起動して日本語TTSを生成する。
+- 使用音声: 四国めたん「ノーマル」。クレジットは VOICEVOX:四国めたん。各音声ライブラリ利用規約を順守する。
+- 同じ plant.json で voicevox_preview.py を実行し、voice_qa.json と voicevox_japanese_sample.mp3 を保存する。
+- 元アイコン画像の必須条件: ユーザー提供の8015.png（1536×864、140555バイト）を standalone_kangaeru_v4/brand/8015.png に追加してからMP4を生成する。代替線画は使用しない。
+- 画像未配置の場合は音声テストだけ行い、動画を完成扱いしない。
+- GitHub Actionsの実ログとアーティファクトを完成報告の根拠とする。
