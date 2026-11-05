@@ -1,0 +1,90 @@
+{
+  "title": "なぜ植物は緑なのか？",
+  "scenes": [
+    {
+      "id": "s01",
+      "subtitle": "なぜ、植物の葉は緑なのか。",
+      "speech": "なぜ、しょくぶつの葉は、みどりなのか。",
+      "visual_strategy": "title",
+      "claim": "なぜ、葉は緑なのか。",
+      "visual_intent": "一つのありふれた色に知的な疑問を置く",
+      "icon": "eye"
+    },
+    {
+      "id": "s02",
+      "subtitle": "森を見渡せば、緑があふれている。",
+      "speech": "森を見わたせば、みどりがあふれている。",
+      "visual_strategy": "photo",
+      "photo": "forest",
+      "claim": "森を満たす色。",
+      "visual_intent": "実際の森林写真を主役にする",
+      "icon": "tree"
+    },
+    {
+      "id": "s03",
+      "subtitle": "私たちは、その色を当たり前だと思っている。",
+      "speech": "わたしたちは、その色を、当たり前だと思っている。",
+      "visual_strategy": "statement",
+      "claim": "当たり前の色。",
+      "icon": "eye"
+    },
+    {
+      "id": "s04",
+      "subtitle": "だが葉は、太陽の光をすべて吸収するわけではない。",
+      "speech": "だが葉は、たいようのひかりを、すべて吸収するわけではない。",
+      "visual_strategy": "diagram",
+      "claim": "すべてを吸収するわけではない。",
+      "icon": "sprout"
+    },
+    {
+      "id": "s05",
+      "subtitle": "葉緑素は、赤や青の光を比較的よく吸収する。",
+      "speech": "ようりょくそは、あかやあおのひかりを、ひかくてきよくきゅうしゅうする。",
+      "visual_strategy": "spectrum",
+      "claim": "吸収と反射",
+      "icon": "sprout"
+    },
+    {
+      "id": "s06",
+      "subtitle": "一方、緑の光の一部は反射される。だから葉は緑に見える。",
+      "speech": "いっぽう、みどりのひかりのいちぶは、はんしゃされる。だから葉は、みどりに見える。",
+      "visual_strategy": "contrast",
+      "claim": "吸収される光。反射される光。",
+      "icon": "eye"
+    },
+    {
+      "id": "s07",
+      "subtitle": "ただし、緑の光も葉の内部で利用される。",
+      "speech": "ただし、みどりのひかりも、葉の内部でりようされる。",
+      "visual_strategy": "icon",
+      "icon": "sprout",
+      "claim": "緑の光も、無駄ではない。"
+    },
+    {
+      "id": "s08",
+      "subtitle": "さらに、黒っぽく見えるコケも存在する。",
+      "speech": "さらに、くろっぽく見えるコケもそんざいする。",
+      "visual_strategy": "evidence",
+      "photo": "moss",
+      "claim": "黒いコケの存在。",
+      "icon": "microscope",
+      "visual_intent": "実在するAndreaea rupestrisのCC0写真"
+    },
+    {
+      "id": "s09",
+      "subtitle": "生物の色を理解するには、光と色素、そして環境も考えなければならない。",
+      "speech": "せいぶつの色を理解するには、ひかりとしきそ、そしてかんきょうも考えなければならない。",
+      "visual_strategy": "question",
+      "claim": "色は何を物語るのか。",
+      "icon": "mind"
+    },
+    {
+      "id": "s10",
+      "subtitle": "当たり前の風景には、まだ知らない理由が隠れている。",
+      "speech": "あたりまえのふうけいには、まだ知らないりゆうが、かくれている。",
+      "visual_strategy": "outro",
+      "claim": "当たり前を、もう一度問う。",
+      "icon": "book"
+    }
+  ]
+}
