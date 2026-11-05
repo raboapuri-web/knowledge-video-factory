@@ -1,43 +1,83 @@
-name: Kangaeru Yoru standalone v4 E2E
+name: Kangaeru Yoru v5 genuine icons + free VOICEVOX
 on:
   push:
     branches:
       - kangaeru-yoru-standalone-v4-20261105
     paths:
-      - standalone_kangaeru_v4/**
-      - .github/workflows/kangaeru-v4-test.yml
+      - 'standalone_kangaeru_v4/**'
+      - '.github/workflows/kangaeru-v4-test.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  e2e:
-    name: script to rendered MP4 and QA
+  voicevox_and_e2e:
+    name: free Japanese VOICEVOX TTS, then genuine-icon video if available
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 55
+    env:
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_NAME: 四国めたん
+      VOICEVOX_STYLE: ノーマル
+      VOICEVOX_SPEED: '1.06'
     steps:
       - uses: actions/checkout@v4
-      - name: Install offline TTS, fonts and renderer
+      - name: Install rendering dependencies
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y ffmpeg espeak-ng fonts-noto-cjk
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
           python3 -m pip install -r standalone_kangaeru_v4/requirements.txt
-      - name: Run unit tests
-        run: python3 -m unittest discover -s standalone_kangaeru_v4/tests -v
-      - name: Produce a real Japanese TTS test MP4 and QA report
+      - name: Start official free VOICEVOX Engine CPU container
         run: |
-          python3 standalone_kangaeru_v4/engine.py \
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run --rm -d --name kangaeru-voicevox -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:cpu-latest
+          python3 - <<'PY'
+          import time,requests
+          base="http://127.0.0.1:50021"
+          for i in range(150):
+              try:
+                  r=requests.get(base+"/speakers",timeout=4)
+                  if r.ok and len(r.json())>0:
+                      print("VOICEVOX Engine READY:",len(r.json()),"speakers")
+                      break
+              except Exception: pass
+              time.sleep(4)
+          else: raise RuntimeError("Voicevox container not healthy after 10 minutes")
+          PY
+      - name: Unit tests, including forbidding fallback icons and espeak-ng
+        run: python3 -m unittest discover -s standalone_kangaeru_v4/tests -v
+      - name: Generate real Japanese narration and audio QA from original plant script
+        run: |
+          python3 standalone_kangaeru_v4/voicevox_preview.py \
             --script standalone_kangaeru_v4/plant.json \
-            --output standalone_kangaeru_v4/output/plant
-      - name: Upload outputs (and diagnostic files on failure)
+            --output standalone_kangaeru_v4/output/plant \
+            --voicevox-url http://127.0.0.1:50021
+      - name: Build full E2E MP4 ONLY when the original uploaded 24-icon atlas exists
+        run: |
+          if [ -f standalone_kangaeru_v4/brand/8015.png ]; then
+            echo 'Found genuine user-uploaded original icon atlas; running full E2E.'
+            python3 standalone_kangaeru_v4/engine.py \
+              --script standalone_kangaeru_v4/plant.json \
+              --output standalone_kangaeru_v4/output/plant \
+              --voicevox-url http://127.0.0.1:50021
+          else
+            echo 'NOT FINISHED: source image 8015.png not in repository. NO SUBSTITUTE ICONS OR VIDEO.'
+            printf '%s\n' '{"status":"blocked","reason":"original icon atlas 8015.png missing from standalone_kangaeru_v4/brand/; audio-only proof is available"}' > standalone_kangaeru_v4/output/plant/blocked.json
+          fi
+      - name: Upload real results and diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: kangaeru-yoru-v4-e2e
+          name: kangaeru-yoru-v5-free-voicevox-and-genuine-icons
           path: |
+            standalone_kangaeru_v4/output/plant/voicevox_japanese_sample.mp3
+            standalone_kangaeru_v4/output/plant/voice_qa.json
+            standalone_kangaeru_v4/output/plant/blocked.json
             standalone_kangaeru_v4/output/plant/final.mp4
             standalone_kangaeru_v4/output/plant/qa.json
+            standalone_kangaeru_v4/output/plant/icon_origin.json
+            standalone_kangaeru_v4/output/plant/icons/*.png
             standalone_kangaeru_v4/output/plant/materials.json
             standalone_kangaeru_v4/output/plant/storyboard.json
             standalone_kangaeru_v4/output/plant/timeline.json
@@ -45,6 +85,5 @@ jobs:
             standalone_kangaeru_v4/output/plant/thumbnail.jpg
             standalone_kangaeru_v4/output/plant/contact_sheet.jpg
             standalone_kangaeru_v4/output/plant/description.md
-            standalone_kangaeru_v4/output/plant/icon_registry.json
           if-no-files-found: warn
           retention-days: 14
