@@ -15,7 +15,13 @@ class TestFactory(unittest.TestCase):
   self.assertEqual(self.story["art_direction"]["subtitle_alignment"],"center")
  def test_icons_registered(self):
   self.assertEqual(len(core.ICON_NAMES),24)
-  self.assertEqual(core.icon_image("sprout").mode,"RGBA")
+  if core.ORIGINAL_ATLAS.exists():
+   self.assertEqual(core.icon_image("sprout").mode,"RGBA")
+  else:
+   with self.assertRaises(FileNotFoundError):core.icon_image("sprout")
+ def test_no_espeak_fallback(self):
+  with self.assertRaisesRegex(RuntimeError,"VOICEVOX_URL"):
+   core.tts_chunk("テスト",ROOT/"not-generated.wav",voicevox_url="")
  def test_cc0_only(self):
   self.assertTrue(core.is_cc0({"LicenseShortName":"CC0"}))
   self.assertFalse(core.is_cc0({"LicenseShortName":"CC BY-SA 4.0"}))
