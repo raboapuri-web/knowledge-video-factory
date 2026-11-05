@@ -1,0 +1,50 @@
+name: Kangaeru Yoru standalone v4 E2E
+on:
+  push:
+    branches:
+      - kangaeru-yoru-standalone-v4-20261105
+    paths:
+      - standalone_kangaeru_v4/**
+      - .github/workflows/kangaeru-v4-test.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    name: script to rendered MP4 and QA
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install offline TTS, fonts and renderer
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg espeak-ng fonts-noto-cjk
+          python3 -m pip install -r standalone_kangaeru_v4/requirements.txt
+      - name: Run unit tests
+        run: python3 -m unittest discover -s standalone_kangaeru_v4/tests -v
+      - name: Produce a real Japanese TTS test MP4 and QA report
+        run: |
+          python3 standalone_kangaeru_v4/engine.py \
+            --script standalone_kangaeru_v4/plant.json \
+            --output standalone_kangaeru_v4/output/plant
+      - name: Upload outputs (and diagnostic files on failure)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v4-e2e
+          path: |
+            standalone_kangaeru_v4/output/plant/final.mp4
+            standalone_kangaeru_v4/output/plant/qa.json
+            standalone_kangaeru_v4/output/plant/materials.json
+            standalone_kangaeru_v4/output/plant/storyboard.json
+            standalone_kangaeru_v4/output/plant/timeline.json
+            standalone_kangaeru_v4/output/plant/captions.srt
+            standalone_kangaeru_v4/output/plant/thumbnail.jpg
+            standalone_kangaeru_v4/output/plant/contact_sheet.jpg
+            standalone_kangaeru_v4/output/plant/description.md
+            standalone_kangaeru_v4/output/plant/icon_registry.json
+          if-no-files-found: warn
+          retention-days: 14
