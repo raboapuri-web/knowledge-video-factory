@@ -18,7 +18,7 @@ def preview(board,plan,ledger,out):
  proof=out/"cues";proof.mkdir(exist_ok=True)
  studio.add_motion(board)
  choices={p["scene_id"]:p["cue_visuals"] for p in plan["scenes"]}
- allframes=[];changes=0;holds=0;total=0;counts={}
+ allframes=[];changes=0;holds=0;total=0;counts={};visible_photo_scenes=set()
  for scene_i,s in enumerate(board["scenes"]):
   state=cue_visual.static_state(s);last=None
   directives=choices[s["id"]]
@@ -31,6 +31,8 @@ def preview(board,plan,ledger,out):
    state=next_state
    sp=cue_visual.full_motion(s,scene_i,short=.85)
    raw=cue_visual.cue_svg(s,cue["text"],state,10.0,sp,ledger)
+   if s.get("primary_visual")=="photo" and "<image " in raw:
+    visible_photo_scenes.add(s["id"])
    png=proof/(f"{s['id']}_cue{j:02d}.jpg")
    temp=out/"cue_tmp.png"
    cairosvg.svg2png(bytestring=raw.encode("utf8"),write_to=str(temp),output_width=640,output_height=360)
@@ -45,7 +47,10 @@ def preview(board,plan,ledger,out):
   for i,file in enumerate(allframes[k:k+12]):
    with Image.open(file) as im:page.paste(im,((i%2)*640,(i//2)*180))
   page.save(out/(f"cue_contact_sheet_{k//12+1:02d}.jpg"),quality=83)
- result={"passed":total==224 and changes>71,"scenes":len(board["scenes"]),"cues":total,
+ result={"passed":total==224 and changes>71 and len(visible_photo_scenes)==len(ledger["photos"])==7,
+   "visible_photo_scene_count":len(visible_photo_scenes),
+   "licensed_photo_scene_count":len(ledger["photos"]),
+   "scenes":len(board["scenes"]),"cues":total,
    "visual_switches_including_scene_boundaries":changes,"v8_baseline_scene_changes":71,
    "additional_cue_visual_switches":changes-71,"hold_none_cues":holds,
    "kinds":counts,"contact_sheets":math.ceil(total/12),
