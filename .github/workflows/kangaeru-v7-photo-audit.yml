@@ -17,17 +17,26 @@ jobs:
           run-id: 42169022442
           github-token: ${{ github.token }}
           path: audited/
-      - name: Print actual photograph counts and source suitability only
+      - uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v6-gk-aoyama-full-e2e
+          run-id: 42149952048
+          github-token: ${{ github.token }}
+          path: old_v6/
+      - name: Inspect rejected v7 image candidates and older correctly matched GK photo
         run: |
           python3 - <<'PY'
-          import pathlib,json
+          import json,pathlib
           root=pathlib.Path('audited')
-          p=next(root.rglob('qa_photos.json'))
-          q=json.loads(p.read_text(encoding='utf8'))
+          q=json.loads(next(root.rglob('qa_photos.json')).read_text(encoding='utf8'))
           m=json.loads(next(root.rglob('photo_ledger.json')).read_text(encoding='utf8'))
           print('PHOTO_QA',json.dumps(q,ensure_ascii=False))
-          for x in m['photos']:
-            print('ACCEPTED_IMAGE',json.dumps({'scene':x['scene'],'title':x['title'],'license':x['license'],'confidence':x['visual_verification']['confidence'],'source_page':x['source_page']},ensure_ascii=False))
-          print('PHOTO_FALLBACK_COUNT',len(m['fallbacks']))
+          for x in m.get('rejected',[])[:30]:
+            print('REJECT',json.dumps(x,ensure_ascii=False))
           print('VISION_API_USAGE',json.dumps(m['vision_usage'],ensure_ascii=False))
+          old=list(pathlib.Path('old_v6').rglob('materials.json'))
+          for item in old[:2]:
+            z=json.loads(item.read_text(encoding='utf8'))
+            for a in z.get('photos',[]):
+              print('OLDER_V6_PHOTO',json.dumps({'title':a.get('title'),'license':a.get('license'),'source_page':a.get('source_page'),'description':a.get('description')},ensure_ascii=False))
           PY
