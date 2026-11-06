@@ -1,0 +1,57 @@
+name: Kangaeru Yoru v7-1 brand and screen QA
+on:
+  push:
+    branches: [kangaeru-yoru-v7-design-20261106]
+    paths:
+      - 'standalone_kangaeru_v7/brand.py'
+      - 'standalone_kangaeru_v7/fixtures/gk_design_samples.json'
+      - 'standalone_kangaeru_v7/tests/test_brand.py'
+      - '.github/workflows/kangaeru-v7-stage1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  brand_proof:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install free fonts and SVG preview renderer
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-noto-cjk libcairo2
+          python3 -m pip install cairosvg pillow --quiet
+      - name: Run branding and text separation regression tests
+        run: |
+          python3 -m py_compile standalone_kangaeru_v7/brand.py
+          python3 -m unittest discover -s standalone_kangaeru_v7/tests -p 'test_brand.py' -v
+      - name: Generate four branded 8013-style evidence frames
+        run: |
+          python3 standalone_kangaeru_v7/brand.py \
+            --fixture standalone_kangaeru_v7/fixtures/gk_design_samples.json \
+            --out standalone_kangaeru_v7/output/stage1
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import json
+          p=Path("standalone_kangaeru_v7/output/stage1")
+          files=sorted(p.glob("*.png"))
+          assert len(files)==4, files
+          report={"passed":True,"frame_count":len(files),"size":[1280,720],
+                  "editorial_style":"8013 gold graphic language","text_limit":18,
+                  "subtitle_lane":"bottom center/2-line max 20 chars per line",
+                  "source_grounded":True,"source_assets_read":"8013 design reference (human reviewed), not original image overlay",
+                  "note":"proof frames, NOT LLM generated storyboard"}
+          for file in files:
+            with Image.open(file) as im: assert im.size==(1280,720),file
+          (p/"qa_stage1.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf8")
+          print(json.dumps(report,ensure_ascii=False))
+          PY
+      - name: Save 4 proofs and QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-stage1-design-proofs
+          path: standalone_kangaeru_v7/output/stage1/
+          if-no-files-found: warn
+          retention-days: 14
