@@ -97,6 +97,31 @@ def render_animated(board,ledger,timeline,out,frame_rate=12):
                   "caption_cues":cue_num,
                   "scene_motion":[{"id":s["scene"],"intro_keyframes":s["intro_keyframes"]} for s in scene_summary]}
 
+def pictogram_gallery(board,out):
+ """Archive what is ACTUALLY rendered: distinctive filled pictograms for every GPT icon."""
+ out=Path(out);dir=out/"pictograms";dir.mkdir(parents=True,exist_ok=True)
+ specs=[(s["id"],s["icon_spec"]) for s in board["scenes"]
+        if s.get("icon_spec") and s["icon_spec"].get("origin","generated")=="generated"]
+ records=[];thumbs=[]
+ for sid,spec in specs:
+  svg=['<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">',
+       '<rect width="512" height="512" fill="#0e0d0c"/>',
+       *pictograms.quality_svg(spec,256,228,scale=1.9),'</svg>']
+  file=dir/(sid+".svg");file.write_text("\n".join(svg),encoding="utf8")
+  png=dir/(sid+".png")
+  cairosvg.svg2png(bytestring=file.read_bytes(),write_to=str(png))
+  with Image.open(png) as img:thumbs.append(img.convert("RGB").resize((320,320),Image.Resampling.LANCZOS))
+  records.append({"scene":sid,"concept":spec["concept"],"meaning":spec["meaning"],
+                  "motif":pictograms.kind(spec),"file":str(file)})
+ if not specs:raise RuntimeError("Full GPT storyboard has no generated icon assets")
+ sheet=Image.new("RGB",(1280,math.ceil(len(thumbs)/4)*320),(14,13,12))
+ for i,im in enumerate(thumbs):sheet.paste(im,((i%4)*320,(i//4)*320))
+ sheet.save(out/"pictogram_contact_sheet.jpg",quality=90)
+ (out/"pictogram_registry.json").write_text(json.dumps(records,ensure_ascii=False,indent=2),encoding="utf8")
+ if any(x["motif"]=="abstract" for x in records):
+  raise ValueError("Unrecognized generated pictogram; semantic source review required")
+ return records
+
 def qa_v8(board,ledger,timeline,manifest,video,out,voice_id,motion_report):
  # Retain v7 safety checks for source, subtitles, rights, speaker and MP4.
  report=old.qa(board,ledger,timeline,manifest,video,out,voice_id)
@@ -130,6 +155,8 @@ def main():
  add_motion(board)
  (out/"v8_storyboard.json").write_text(json.dumps(board,ensure_ascii=False,indent=2),encoding="utf8")
  (out/"motion_catalogue.json").write_text(json.dumps(motion.metadata(),ensure_ascii=False,indent=2),encoding="utf8")
+ pictogram_records=pictogram_gallery(board,out)
+ print(json.dumps({"semantic_pictograms":len(pictogram_records),"pictogram_motifs":[r["motif"] for r in pictogram_records]},ensure_ascii=False),flush=True)
  if args.preview_only:
   # Render a contact sheet of new SVG/pictogram layouts without TTS or API.
   preview=out/"previews";preview.mkdir(exist_ok=True)
