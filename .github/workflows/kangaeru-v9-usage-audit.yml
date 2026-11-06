@@ -1,0 +1,33 @@
+name: Kangaeru Yoru v9 API usage audit keyless
+on:
+  push:
+    branches: [kangaeru-yoru-v9-cue-sync-20261106]
+    paths: ['.github/workflows/kangaeru-v9-usage-audit.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v9-cue-storyboard-and-usage
+          run-id: 42195090845
+          github-token: ${{ github.token }}
+          path: v9_artifact/
+      - name: Read actual model response and token metering, no key
+        run: |
+          python3 - <<'PY'
+          import json,pathlib
+          a=json.loads(pathlib.Path('v9_artifact/api_usage_v9.json').read_text(encoding='utf8'))
+          q=json.loads(pathlib.Path('v9_artifact/cue_qa.json').read_text(encoding='utf8'))
+          print('V9_USAGE',json.dumps(a['totals'],ensure_ascii=False))
+          print('MODEL_RETURNED',sorted(set(x['model_returned'] for x in a['requests'])))
+          print('V9_CUE_QA',json.dumps(q,ensure_ascii=False))
+          print('COST_DIFF_FROM_V7_USD',round(a['totals']['estimated_cost_usd']-.2793,6))
+          assert a['totals']['requests']==12
+          assert q['source_cue_count']==224
+          PY
