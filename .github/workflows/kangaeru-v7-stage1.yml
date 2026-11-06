@@ -21,9 +21,17 @@ jobs:
           python-version: '3.11'
       - name: Install fast keyless SVG preview renderer
         run: python -m pip install cairosvg pillow --quiet
-      - name: Install required Japanese editorial fonts
+      - name: Install required Japanese editorial fonts from official Noto source
         run: |
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends fonts-noto-cjk
+          mkdir -p "$HOME/.local/share/fonts"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 \
+            https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTF/Japanese/NotoSerifCJKjp-Regular.otf \
+            --output "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 \
+            https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf \
+            --output "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf"
+          test "$(stat -c%s "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf")" -gt 1000000
+          test "$(stat -c%s "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf")" -gt 1000000
           fc-cache -f
           serif="$(fc-match -f '%{family}' 'Noto Serif CJK JP')"
           sans="$(fc-match -f '%{family}' 'Noto Sans CJK JP')"
