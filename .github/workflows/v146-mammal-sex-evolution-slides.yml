@@ -146,7 +146,7 @@ jobs:
         run: |
           mkdir -p output
           for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do
-            echo "file 'segments/v146-$c.mp4'" >> output/concat.txt
+            echo "file '$GITHUB_WORKSPACE/shared/v146/segments/v146-$c.mp4'" >> output/concat.txt
           done
           cat output/concat.txt
           ffmpeg -y -f concat -safe 0 -i output/concat.txt -c copy -movflags +faststart output/v146-voice-master.mp4
