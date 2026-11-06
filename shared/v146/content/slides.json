@@ -1,11 +1,11 @@
 {
 "meta": {"slug": "v146-mammal-sex-evolution-slides", "title": "なぜ哺乳類は進化の過程を、非効率なセックスを残し続けたのか？", "width": 1920, "height": 1080, "fps": 30, "colors": {"bg": "#111317", "paper": "#F2EBDD", "red": "#A7353A", "teal": "#4F9297", "gray": "#A9A6A0"}, "chapters": ["prologue", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "chapter6", "epilogue"], "renderUnits": 52, "specSlides": 48, "notes": "47A-47Eはスライド47の5サブシーン。スライド44の画面表示は仕様書通り2008年、ナレーションは二〇〇〇年と読み上げる。見出しは仕様書の明朝指定をNoto Sans JPで代用。"},
 "slides": [
-{"id": "01", "ch": "prologue", "heading": "プロローグ", "start": "目の前に、好きな人がいる。", "end": "視線が合う。少し距離が縮まる。相手の体温が伝わってくる。心臓が速くなり、普段なら気にも留めない呼吸の音が、妙にはっきり聞こえる。", "viz": "diagram", "effect": "fade", "display": ["視線", "距離", "体温"]},
+{"id": "01", "ch": "prologue", "heading": "プロローグ", "start": "目の前に、好きな人がいる。", "end": "心臓が速くなり、普段なら気にも留めない呼吸の音が、妙にはっきり聞こえる。", "viz": "diagram", "effect": "fade", "display": ["視線", "距離", "体温"]},
 {"id": "02", "ch": "prologue", "heading": "プロローグ", "start": "人間は、この行為に驚くほどの時間と労力を費やしている。", "end": "そもそも、人間のセックスの大半は、子どもを作ることを直接の目的としていない。", "viz": "flow", "effect": "slide-left", "display": ["好きになる", "気持ちを探る", "食事に誘う", "振られる", "傷つく", "また好きになる", "繁殖成功は保証されない"]},
-{"id": "03", "ch": "prologue", "heading": "プロローグ", "start": "それでも私たちの身体には、性的な欲望が備わっている。", "end": "愛のためか。快楽のためか。それとも、子孫を残すためか。", "viz": "diagram", "effect": "zoom", "display": ["愛", "快楽", "繁殖", "なぜ？"]},
+{"id": "03", "ch": "prologue", "heading": "プロローグ", "start": "それでも私たちの身体には、性的な欲望が備わっている。", "end": "それとも、子孫を残すためか。", "viz": "diagram", "effect": "zoom", "display": ["愛", "快楽", "繁殖", "なぜ？"]},
 {"id": "04", "ch": "prologue", "heading": "プロローグ", "start": "進化生物学の立場から見ると、さらに厄介な問題が現れる。", "end": "しかも、これだけ苦労しても、自分の遺伝子を子どもに伝えられる割合は、通常、半分程度に過ぎない。", "viz": "table", "effect": "stagger", "display": ["探索", "選択", "時間", "感染症", "遺伝子の伝達：約1/2"]},
-{"id": "05", "ch": "prologue", "heading": "プロローグ", "start": "もし自分自身のコピーを作れるなら、どうだろう。", "end": "相手を探す必要もない。交尾も必要ない。自分の遺伝情報を受け継ぐ子孫を、単独で増やしていける。", "viz": "diagram", "effect": "zoom", "display": ["有性：2個体", "無性：1個体 → 2 → 4 → 8"]},
+{"id": "05", "ch": "prologue", "heading": "プロローグ", "start": "もし自分自身のコピーを作れるなら、どうだろう。", "end": "自分の遺伝情報を受け継ぐ子孫を、単独で増やしていける。", "viz": "diagram", "effect": "zoom", "display": ["有性：2個体", "無性：1個体 → 2 → 4 → 8"]},
 {"id": "06", "ch": "prologue", "heading": "プロローグ", "start": "実際、自然界には、そんな繁殖を行う生物が存在する。", "end": "進化の損益計算から始めよう。", "viz": "title", "effect": "zoom", "display": ["なぜ進化は非効率なセックスを残したのか", "寄生虫", "ハッカー", "古いシステム"]},
 {"id": "07", "ch": "chapter1", "heading": "1. 繁殖の損益", "start": "生物の繁殖方法は、大きく分けて二つある。", "end": "これを繰り返せば、同じ遺伝的特徴を持つ集団が増えていく。", "viz": "twocol", "effect": "fade", "display": ["有性生殖", "DNAの混合", "無性生殖", "DNAのコピー"]},
 {"id": "08", "ch": "chapter1", "heading": "1. 繁殖の損益", "start": "ここで、簡単な思考実験をしてみよう。", "end": "どちらも雌一匹が二匹の子どもを産むことができ、子どもの生存率も同じだと仮定しよう。", "viz": "table", "effect": "stagger", "display": ["雌1匹 → 子2匹", "生存率は同じ", "性比 1:1（有性）"]},
