@@ -1,0 +1,58 @@
+name: Kangaeru Yoru v9 cue storyboard 224-frame preview, keyless
+on:
+  push:
+    branches: [kangaeru-yoru-v9-cue-sync-20261106]
+    paths: ['standalone_kangaeru_v9/launch/cue_preview.txt']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  cue_visual_proof:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-gk-7-context-vetted-photos-5-fallbacks
+          run-id: 42170721259
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v7/output/full_gk_render
+      - uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v9-cue-storyboard-and-usage
+          run-id: 42195090845
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v9/output/cue_api
+      - name: Install keyless renderer and real Japanese typography
+        run: |
+          python -m pip install --quiet Pillow requests cairosvg
+          mkdir -p "$HOME/.local/share/fonts"
+          curl --fail --location --silent --show-error --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTF/Japanese/NotoSerifCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf"
+          fc-cache -f
+          case "$(fc-match -f '%{family}' 'Noto Serif CJK JP')" in *Noto*) ;; *) exit 1;; esac
+      - name: No-API regression of full cue validation, voice-mora math and 24 v8 templates
+        run: |
+          python -m py_compile standalone_kangaeru_v9/*.py
+          python -m unittest discover -s standalone_kangaeru_v9/tests -v
+      - name: Render ALL 224 AI cue visual decisions with their own subtitle, verify >71 changes
+        run: |
+          python standalone_kangaeru_v9/cue_proof.py \
+            --board standalone_kangaeru_v7/output/full_gk_render/storyboard_with_photos.json \
+            --plan standalone_kangaeru_v9/output/cue_api/cue_storyboard.json \
+            --ledger standalone_kangaeru_v7/output/full_gk_render/photo_ledger.json \
+            --out standalone_kangaeru_v9/output/cue_proofs
+      - name: Save 224 cue previews, contact sheets and counts for QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v9-224cue-visual-preflight
+          path: |
+            standalone_kangaeru_v9/output/cue_proofs/qa_cue_preview.json
+            standalone_kangaeru_v9/output/cue_proofs/cue_contact_sheet_*.jpg
+          if-no-files-found: warn
+          retention-days: 14
