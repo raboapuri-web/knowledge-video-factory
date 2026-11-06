@@ -67,7 +67,7 @@ def wav_seconds(filename):
 from functools import lru_cache
 
 @lru_cache(maxsize=8)
-def resolve_voicevox_speaker(voicevox_url, speaker_name="四国めたん", style_name="ノーマル"):
+def resolve_voicevox_speaker(voicevox_url, speaker_name="青山龍星", style_name="ノーマル"):
  """Resolve by actual name rather than guessing an ID; fail when model is absent."""
  base=voicevox_url.rstrip("/")
  r=requests.get(base+"/speakers",timeout=45)
@@ -75,8 +75,11 @@ def resolve_voicevox_speaker(voicevox_url, speaker_name="四国めたん", style
  for speaker in r.json():
   if speaker.get("name")==speaker_name:
    for style in speaker.get("styles",[]):
-    if style.get("name")==style_name:
-     return int(style["id"])
+    if style.get("name")==style_name and style.get("type","talk")=="talk":
+     resolved=int(style["id"])
+     if speaker_name=="青山龍星" and style_name=="ノーマル" and resolved!=13:
+      raise RuntimeError("青山龍星 ノーマル Talk ID expected 13, got "+str(resolved))
+     return resolved
  raise RuntimeError("VOICEVOX speaker or style unavailable: "+speaker_name+"/"+style_name)
 
 def tts_chunk(text,path,voicevox_url=""):
@@ -84,7 +87,7 @@ def tts_chunk(text,path,voicevox_url=""):
  if not voicevox_url:
   raise RuntimeError("VOICEVOX_URL is required; no espeak-ng fallback is permitted")
  base=voicevox_url.rstrip("/")
- speaker_name=os.getenv("VOICEVOX_SPEAKER_NAME","四国めたん")
+ speaker_name=os.getenv("VOICEVOX_SPEAKER_NAME","青山龍星")
  style=os.getenv("VOICEVOX_STYLE","ノーマル")
  speaker=resolve_voicevox_speaker(base,speaker_name,style)
  q=requests.post(base+"/audio_query",params={"text":text,"speaker":speaker},timeout=90)
