@@ -81,6 +81,25 @@ class MotionCatalogueTests(unittest.TestCase):
    self.assertIn("fill=",text)
    self.assertTrue(pictograms.validate_visual_quality(spec))
    self.assertIn("stroke",text)
+ def test_all_11_real_gk_source_icon_concepts_have_semantic_motifs(self):
+  concepts=[
+   "PKゴール前で横へ飛ぶゴールキーパー",
+   "PKで左へ跳ぶGKと右へ飛ぶボール",
+   "サッカーゴール前のキーパー",
+   "PKで飛ぶゴールキーパー",
+   "医師と防御の盾",
+   "ダイビングするゴールキーパー",
+   "倒れた人と通行人",
+   "苦痛を訴える学生の声",
+   "PKゴールを守るゴールキーパー",
+   "PKで飛ぶゴールキーパー",
+   "PKで中央に留まるゴールキーパー"
+  ]
+  for item in concepts:
+   motif=pictograms.kind(icon_spec(item))
+   self.assertNotEqual(motif,"abstract",item)
+   svg="".join(pictograms.quality_svg(icon_spec(item),250,250))
+   self.assertIn("<g",svg)
  def test_motion_spec_can_be_recorded_in_storyboard(self):
   b={"scenes":[base_scene("hero_question"),base_scene("split_choice")]}
   b["scenes"][1]["id"]="s002"
