@@ -1,0 +1,134 @@
+name: Kangaeru Yoru v8 GK 1080p30 animated full video
+on:
+  push:
+    branches:
+      - kangaeru-yoru-v8-motion-20261106
+    paths:
+      - '.github/workflows/kangaeru-v8-full.yml'
+      - 'standalone_kangaeru_v8/launch/replay.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  v8_full_gk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    env:
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_NAME: 青山龍星
+      VOICEVOX_STYLE: ノーマル
+      VOICEVOX_SPEED: '1.06'
+      VOICEVOX_INTONATION: '1.02'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download verified v7 full GPT storyboard, no API re-execution
+        uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-full-gk-gpt-storyboard-and-usage
+          run-id: 42168254310
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v7/output/full_gk_plan
+      - name: Download reviewed 7 CC0/PD photos, 5 diagrams, and rights ledger
+        uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-gk-7-context-vetted-photos-5-fallbacks
+          run-id: 42170721259
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v7/output/full_gk_render
+      - name: Verify input identities and ensure original narration is unchanged
+        run: |
+          python - <<'PY'
+          import pathlib,json
+          plan=pathlib.Path('standalone_kangaeru_v7/output/full_gk_plan/storyboard.json')
+          root=pathlib.Path('standalone_kangaeru_v7/output/full_gk_render')
+          board=json.loads((root/'storyboard_with_photos.json').read_text(encoding='utf8'))
+          original=json.loads(plan.read_text(encoding='utf8'))
+          ledger=json.loads((root/'photo_ledger.json').read_text(encoding='utf8'))
+          assert len(board['scenes'])==len(original['scenes'])==71
+          assert len(ledger['photos'])==7 and len(ledger['fallbacks'])==5
+          for x,y in zip(board['scenes'],original['scenes']):
+            assert x['id']==y['id'] and x['narration_text']==y['narration_text']
+          for photo in ledger['photos']:assert pathlib.Path(photo['file']).is_file(),photo['file']
+          print('v8: 71 immutable narration scenes, 7 real photos, 5 context-safe fallback diagrams')
+          PY
+      - name: Install FFmpeg, Japanese editorial fonts, and free SVG tools
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ffmpeg
+          python -m pip install --quiet Pillow requests cairosvg
+          command -v ffmpeg
+          command -v ffprobe
+          mkdir -p "$HOME/.local/share/fonts"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTF/Japanese/NotoSerifCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf"
+          test "$(stat -c%s "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf")" -gt 1000000
+          test "$(stat -c%s "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf")" -gt 1000000
+          fc-cache -f
+          case "$(fc-match -f '%{family}' 'Noto Serif CJK JP')" in *Noto*) ;; *) exit 1;; esac
+          case "$(fc-match -f '%{family}' 'Noto Sans CJK JP')" in *Noto*) ;; *) exit 1;; esac
+      - name: Run 24-template motion and pictogram unit QA
+        run: |
+          python -m py_compile standalone_kangaeru_v8/*.py
+          python -m unittest discover -s standalone_kangaeru_v8/tests -v
+      - name: Start free official CPU VOICEVOX, verify Aoyama normal Talk ID 13
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name ryusei-v8 -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          python - <<'PY'
+          import requests,sys,time
+          url='http://127.0.0.1:50021'
+          for i in range(130):
+            try:
+              r=requests.get(url+'/speakers',timeout=4);r.raise_for_status()
+              if r.json():break
+            except Exception:pass
+            time.sleep(3)
+          else:raise RuntimeError('VOICEVOX Engine did not start')
+          sys.path.insert(0,'standalone_kangaeru_v4')
+          import core
+          assert core.resolve_voicevox_speaker(url,'青山龍星','ノーマル')==13
+          print('VOICEVOX:青山龍星 ノーマル Talk ID 13 verified')
+          PY
+      - name: Produce full GK animation, subtitle cues, original voice, HD MP4 and 24-motion QA
+        run: |
+          python standalone_kangaeru_v8/studio.py \
+            --board standalone_kangaeru_v7/output/full_gk_render/storyboard_with_photos.json \
+            --ledger standalone_kangaeru_v7/output/full_gk_render/photo_ledger.json \
+            --out standalone_kangaeru_v8/output/GK \
+            --voicevox-url http://127.0.0.1:50021
+      - name: Record zero newly billed AI requests
+        if: always()
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          root=pathlib.Path('standalone_kangaeru_v8/output/GK');root.mkdir(parents=True,exist_ok=True)
+          usage={'new_openai_requests':0,'new_api_cost_usd':0.0,'source_data':'Original v7 full-plan and reviewed Commons photo artifacts; free VOICEVOX re-synthesis.'}
+          (root/'api_usage_v8.json').write_text(json.dumps(usage,ensure_ascii=False,indent=2),encoding='utf8')
+          print(json.dumps(usage,ensure_ascii=False))
+          PY
+      - name: Upload full animated video, 71-scene motion timeline, pictogram proofs and QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v8-GK-FULL-MOTION-1080p30-aoyama
+          path: |
+            standalone_kangaeru_v8/output/GK/final.mp4
+            standalone_kangaeru_v8/output/GK/qa_final.json
+            standalone_kangaeru_v8/output/GK/api_usage_v8.json
+            standalone_kangaeru_v8/output/GK/motion_catalogue.json
+            standalone_kangaeru_v8/output/GK/motion_scene_manifest.json
+            standalone_kangaeru_v8/output/GK/v8_storyboard.json
+            standalone_kangaeru_v8/output/GK/captions.srt
+            standalone_kangaeru_v8/output/GK/timeline.json
+            standalone_kangaeru_v8/output/GK/photo_ledger.json
+            standalone_kangaeru_v8/output/GK/description.md
+            standalone_kangaeru_v8/output/GK/pictogram_contact_sheet.jpg
+            standalone_kangaeru_v8/output/GK/pictogram_registry.json
+            standalone_kangaeru_v8/output/GK/pictograms/*.svg
+            standalone_kangaeru_v8/output/GK/contact_sheet_*.jpg
+            standalone_kangaeru_v8/output/GK/thumbnail.jpg
+          if-no-files-found: warn
+          retention-days: 14
