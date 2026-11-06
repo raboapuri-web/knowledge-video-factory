@@ -11,6 +11,7 @@ ROOT=Path(__file__).resolve().parent
 V7=ROOT.parent/"standalone_kangaeru_v7"
 sys.path.insert(0,str(V7))
 import icons as original
+ORIGINAL_V7_GEOMETRY=original.geometry  # capture before v8 swaps drawing backend
 
 G="#c6a56e"; W="#f2eadb"; D="#0e0d0c"; H="#7c684b"
 def strokepath(d,width=4,fill="none",stroke=G):
@@ -129,7 +130,7 @@ def fallback_abstract(spec):
 def quality_svg(spec,cx,cy,scale=1.0):
  if not spec:return []
  if spec.get("origin")=="original_8015":
-  return original.geometry(spec,cx,cy,scale)
+  return ORIGINAL_V7_GEOMETRY(spec,cx,cy,scale)
  # Keep same source validation: no arbitrary model SVG or scripts.
  original.validate(spec)
  motif=kind(spec);parts=MOTIFS[motif]() if motif in MOTIFS else fallback_abstract(spec)
