@@ -24,7 +24,7 @@ def main():
  wav=render.audio_mix(timeline,out)
  audio=out/"voicevox_japanese_sample.mp3"
  subprocess.run(["ffmpeg","-y","-loglevel","error","-i",str(wav),"-codec:a","libmp3lame","-qscale:a","3",str(audio)],check=True)
- speaker=core.resolve_voicevox_speaker(args.voicevox_url.rstrip("/"),os.getenv("VOICEVOX_SPEAKER_NAME","四国めたん"),os.getenv("VOICEVOX_STYLE","ノーマル"))
+ speaker=core.resolve_voicevox_speaker(args.voicevox_url.rstrip("/"),os.getenv("VOICEVOX_SPEAKER_NAME","青山龍星"),os.getenv("VOICEVOX_STYLE","ノーマル"))
  with wave.open(str(wav),"rb") as w:
   audio_duration=w.getnframes()/w.getframerate()
  checks={
@@ -39,8 +39,8 @@ def main():
    "passed":all(checks.values()),"checks":checks,
    "audio_only":True,"full_video_complete":False,
    "provider":"VOICEVOX Engine (local, unauthenticated)",
-   "speaker":"四国めたん","style":"ノーマル","speaker_style_id":speaker,
-   "required_credit":"VOICEVOX:四国めたん",
+   "speaker":os.getenv("VOICEVOX_SPEAKER_NAME","青山龍星"),"style":os.getenv("VOICEVOX_STYLE","ノーマル"),"speaker_style_id":speaker,
+   "required_credit":"VOICEVOX:"+os.getenv("VOICEVOX_SPEAKER_NAME","青山龍星"),
    "audio_duration":audio_duration,
    "voice_file":str(audio),
    "source_script_sha256":hashlib.sha256(args.script.read_bytes()).hexdigest(),
