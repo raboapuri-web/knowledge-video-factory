@@ -85,7 +85,7 @@ const targetChapters = ONLY ? [ONLY] : CHAPTERS;
 for (const ch of targetChapters) {
   const sceneTsx = [
     "import {slidesData} from '../../content/slides.json';",
-    "import timing from '../../content/measured-' + ch + '.json';",
+    "import timing from '../../content/measured-" + ch + ".json';",
     "import {createChapterScene} from '../lib/chapter';",
     "export default createChapterScene('" + ch + "', slidesData, timing);",
   ].join('\n');
