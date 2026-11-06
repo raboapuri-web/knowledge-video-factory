@@ -5,7 +5,7 @@ but the subtitle is re-rendered with the NEW cue text in the fixed y>=586 lane.
 Scene transitions occur only at scene boundaries.
 """
 from __future__ import annotations
-import copy,json,math,re,sys
+import base64,copy,hashlib,json,math,re,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 V7=ROOT.parent/"standalone_kangaeru_v7";V8=ROOT.parent/"standalone_kangaeru_v8"
@@ -40,7 +40,24 @@ def header(parts,text,local,spec):
 def custom_svg(scene,subtitle,state,local,spec):
  s=copy.deepcopy(scene);s["subtitle_preview"]=subtitle
  group=state["kind"]
- out=['<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">',*brand.top()]
+ out=['<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">']
+ top=brand.top()
+ out.append(top[0])
+ # A cue-level keyword/number/diagram may not silently hide its verified parent
+ # photograph. Keep photo as subdued background context while changing ONE
+ # foreground cue element. This also avoids reclassifying model decisions.
+ if s.get("primary_visual")=="photo" and s.get("photo_status")=="visually_verified":
+  photo=next((x for x in ledger["photos"] if x["scene"]==s["id"]),None)
+  file=Path(s.get("photo_file",""))
+  if not photo or not file.is_file() or photo["license"] not in ("CC0","Public Domain"):
+   raise RuntimeError("Missing rights-verified contextual photograph for "+s["id"])
+  data=file.read_bytes()
+  if hashlib.sha256(data).hexdigest()!=photo["sha256"] or photo["visual_verification"]["is_match"] is not True:
+   raise RuntimeError("Corrupt or unverified context photograph for "+s["id"])
+  image=base64.b64encode(data).decode("ascii")
+  out.append(f'<image data-role="verified-context-photo" x="0" y="98" width="1280" height="478" opacity=".64" preserveAspectRatio="xMidYMid slice" href="data:image/jpeg;base64,{image}"/>')
+  out.append('<rect x="0" y="98" width="1280" height="478" fill="#080706" opacity=".32"/>')
+ out+=top[1:]
  if group=="keyword":
   keyword=brand.reject(state["text"])
   out.append(brand.tag_text(100,205,"KEY IDEA",20,brand.GOLD,family="sans",spacing=4))
