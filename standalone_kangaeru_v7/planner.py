@@ -166,14 +166,26 @@ def call_model(rows,model=MODEL):
   raise RuntimeError("Explicit run approval not set; no API call attempted.")
  # SDK import and request occur only after both preflight checks, not during CI dry-run.
  from openai import OpenAI
- client=OpenAI(api_key=key,timeout=90,max_retries=1)
+ client=OpenAI(api_key=key,timeout=180,max_retries=0)
  payload=[{"role":"system","content":SYSTEM},
           {"role":"user","content":json.dumps({"scenes":rows},ensure_ascii=False)}]
  response=client.responses.create(model=model,input=payload,
       text={"format":{"type":"json_schema","name":"kangaeru_v7_visual_plan","strict":True,"schema":SCHEMA}},
       max_output_tokens=6500,store=False)
- if not response.output_text:raise RuntimeError("Planner returned no structured output")
- return json.loads(response.output_text)
+ # Report token consumption without printing secrets or raw HTTP request headers.
+ usage=response.usage.model_dump() if response.usage is not None else {}
+ input_tokens=int(usage.get("input_tokens",0))
+ output_tokens=int(usage.get("output_tokens",0))
+ cached=int((usage.get("input_tokens_details") or {}).get("cached_tokens",0))
+ estimate=(max(0,input_tokens-cached)*2.0+cached*0.2+output_tokens*12.0)/1000000
+ usage_report={"model_requested":model,"model_returned":response.model,
+               "response_id":response.id,"response_status":response.status,
+               "input_tokens":input_tokens,"cached_input_tokens":cached,
+               "output_tokens":output_tokens,"total_tokens":usage.get("total_tokens"),
+               "estimated_cost_usd":round(estimate,7),
+               "pricing_usd_per_million":{"input":2.0,"cached_input":0.2,"output":12.0},
+               "billing_note":"Estimate based on reported tokens, not an invoice."}
+ return {"raw_json":response.output_text,"usage":usage_report}
 
 def main():
  p=argparse.ArgumentParser()
@@ -188,7 +200,11 @@ def main():
  if not a.execute:
   print(json.dumps({"passed":True,"phase":"prepared_only","scene_count":len(result["scenes"]),"api_executed":False},ensure_ascii=False));return
  # No unapproved network, secrets remain exclusively in the process environment.
- plan=call_model(result["scenes"],os.environ.get("OPENAI_MODEL",MODEL))
+ api=call_model(result["scenes"],os.environ.get("OPENAI_MODEL",MODEL))
+ # Persist meter and raw response even if subsequent editorial QA rejects the plan.
+ (out.parent/"api_usage.json").write_text(json.dumps(api["usage"],ensure_ascii=False,indent=2),encoding="utf8")
+ (out.parent/"raw_visual_plan.json").write_text(api["raw_json"],encoding="utf8")
+ plan=json.loads(api["raw_json"])
  merged=merge_plan(result,plan)
  icon_dir=out.parent/"icons"/"generated"
  registry=[]
@@ -201,6 +217,8 @@ def main():
  (out.parent/"icon_registry.json").write_text(json.dumps(registry,ensure_ascii=False,indent=2),encoding="utf8")
  merged["qa"]["icon_files"]=len(registry)
  merged["qa"]["api_executed"]=True
+ merged["qa"]["model_returned"]=api["usage"]["model_returned"]
+ merged["qa"]["estimated_cost_usd"]=api["usage"]["estimated_cost_usd"]
  out.write_text(json.dumps(merged,ensure_ascii=False,indent=2),encoding="utf8")
  print(json.dumps(merged["qa"],ensure_ascii=False))
 if __name__=="__main__":main()
