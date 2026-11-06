@@ -30,11 +30,11 @@ jobs:
           run-id: 42168254310
           github-token: ${{ github.token }}
           path: standalone_kangaeru_v7/output/full_gk_plan
-      - name: Download 10 content-verified CC0/PD photos, 2 diagram fallbacks and rights ledger
+      - name: Download 7 context-vetted CC0/PD photos, 5 diagram fallbacks and audit ledger
         uses: actions/download-artifact@v4
         with:
-          name: kangaeru-yoru-v7-full-gk-photo-rights-and-visual-match
-          run-id: 42169742050
+          name: kangaeru-yoru-v7-gk-7-context-vetted-photos-5-fallbacks
+          run-id: 42170721259
           github-token: ${{ github.token }}
           path: standalone_kangaeru_v7/output/full_gk_render
       - name: Verify saved plans and photographs exist, NO API Secret passed
@@ -46,11 +46,11 @@ jobs:
           import json,pathlib
           r=pathlib.Path('standalone_kangaeru_v7/output/full_gk_render')
           a=json.loads((r/'photo_ledger.json').read_text())
-          assert len(a['photos'])==10,len(a['photos'])
-          assert len(a['fallbacks'])==2,len(a['fallbacks'])
+          assert len(a['photos'])==7,len(a['photos'])
+          assert len(a['fallbacks'])==5,len(a['fallbacks'])
           for entry in a['photos']:
             assert pathlib.Path(entry['file']).is_file(),entry['file']
-          print('Verified photos 10; diagram fallbacks 2; no photos downloaded twice.')
+          print('Verified photos 7; diagram fallbacks 5; semantic editorial rejections 3.')
           PY
       - name: Install FFmpeg and FFprobe, Noto Japanese fonts, and SVG rasterizer
         run: |
@@ -115,12 +115,14 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: kangaeru-yoru-v7-GK-FULL-1080p30-VOICEVOX-aoyama
+          name: kangaeru-yoru-v7-GK-FULL-1080p30-VOICEVOX-aoyama-reviewed
           path: |
             standalone_kangaeru_v7/output/full_gk_render/final.mp4
             standalone_kangaeru_v7/output/full_gk_render/qa_final.json
             standalone_kangaeru_v7/output/full_gk_render/combined_api_usage.json
             standalone_kangaeru_v7/output/full_gk_render/photo_ledger.json
+            standalone_kangaeru_v7/output/full_gk_render/photo_editorial_overrides.json
+            standalone_kangaeru_v7/output/full_gk_render/qa_photo_editorial.json
             standalone_kangaeru_v7/output/full_gk_render/qa_photos.json
             standalone_kangaeru_v7/output/full_gk_render/storyboard.json
             standalone_kangaeru_v7/output/full_gk_render/timeline.json
