@@ -87,11 +87,11 @@ for (const ch of CHAPTERS) {
       "import {makeProject} from '@motion-canvas/core';",
       "import scene from '../scenes/" + ch + "?scene';",
       '',
-      'export default makeProject({name: \'v146-' + ch + '\', scenes: [scene], background: \'#111317\'});',
+      'export default makeProject({name: \'v146-' + ch + '\', scenes: [scene]});',
       '',
     ].join('\n');
     mkdirSync(join(ROOT, 'src', 'projects'), {recursive: true});
-    writeFileSync(join(ROOT, 'src', 'projects', ch + '.ts'), projectTs);
+    writeFileSync(join(ROOT, 'src', 'projects', ch + '.ts'), p
   }
 }
 
