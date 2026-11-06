@@ -35,15 +35,30 @@ def person(x=50,y=50,scale=1):
  ]
  return f'<g transform="translate({x} {y}) scale({scale})">'+''.join(elements)+'</g>'
 
-def goalkeeper():
+def goalkeeper(variant='dive'):
  return [
   strokepath("M8 88 V16 H92 V88",4,stroke=G),
   strokepath("M8 16 L23 27 H77 L92 16",2,stroke=H),
   strokepath("M23 27 V85 M38 27 V85 M53 27 V85 M68 27 V85 M77 27 V85",1.7,stroke=H),
   strokepath("M8 46 H92 M8 66 H92",1.7,stroke=H),
-  person(47,60,.70),
+  ('<g transform="rotate(-38 47 60)">'+person(47,60,.70)+'</g>') if variant=='dive' else person(47,60,.70),
   disc(80,49,7,W),strokepath("M76 44 L83 52 M77 53 L84 45",1.7,stroke=D)
  ]
+def medic_shield():
+ return [strokepath("M50 11 L83 24 V53 Q82 73 50 91 Q18 73 17 53 V24 Z",3,G,G),
+         strokepath("M50 19 L74 29 V51 Q74 67 50 81 Q26 68 26 51 V29 Z",2,fill=D,stroke=D),
+         rect(45,34,10,34,W,1),rect(33,46,34,10,W,1)]
+def bystander():
+ return [disc(22,74,8,W),ellipse(49,76,22,8,G),
+         '<g transform="translate(-8 -5) scale(.65)">'+person(50,50,1)+'</g>',
+         '<g transform="translate(34 -5) scale(.65)">'+person(50,50,1)+'</g>',
+         strokepath("M12 91 H89",2,stroke=H)]
+def voice():
+ return [ellipse(40,48,24,31,G),disc(35,43,9,D),
+         strokepath("M52 44 Q58 53 52 62",5,stroke=D),
+         strokepath("M70 33 Q86 48 70 64",4,stroke=W),
+         strokepath("M79 23 Q99 48 79 73",3,stroke=W),
+         rect(30,79,25,8,G,3)]
 def ball():
  return [disc(50,50,29,W),strokepath("M50 35 L64 42 L61 58 L45 65 L36 52 Z",2.5,fill=D,stroke=D),
          strokepath("M50 35 L45 24 M64 42 L76 33 M61 58 L72 70 M45 65 L33 77 M36 52 L24 47",2.4,stroke=D)]
@@ -85,13 +100,16 @@ def people():
  return crowd()
 
 MOTIFS={
- "goalkeeper":goalkeeper,"ball":ball,"decision":decision,"brain":brain,"medical":medical,
+ "goalkeeper":goalkeeper,"bystander":bystander,"voice":voice,"medic_shield":medic_shield,"ball":ball,"decision":decision,"brain":brain,"medical":medical,
  "crowd":crowd,"scales":scales,"chart":chart,"office":office,"eye":eye,
  "rescue":rescue,"clock":clock,"people":people
 }
 PATTERNS=[
  ("goalkeeper",r"ゴールキーパー|キーパー|GK|キック|PK|ゴール|セーブ"),
  ("ball",r"ボール|サッカー|シュート|フットボール"),
+ ("medic_shield",r"医師.*盾|防衛医療"),
+ ("bystander",r"倒れた人|通行人|誰かが助け"),
+ ("voice",r"学生の声|苦痛を訴える|音波|発作を起こしたような声"),
  ("medical",r"病院|患者|医師|診察|医療|治療|医者|検査"),
  ("rescue",r"救急|救命|救助|事故|消防"),
  ("crowd",r"観衆|観客|集団|群衆|傍観者|大勢|人混み"),
@@ -133,7 +151,11 @@ def quality_svg(spec,cx,cy,scale=1.0):
   return ORIGINAL_V7_GEOMETRY(spec,cx,cy,scale)
  # Keep same source validation: no arbitrary model SVG or scripts.
  original.validate(spec)
- motif=kind(spec);parts=MOTIFS[motif]() if motif in MOTIFS else fallback_abstract(spec)
+ motif=kind(spec)
+ if motif=="goalkeeper":
+  subject=str(spec.get("concept",""))+" "+str(spec.get("meaning",""))
+  parts=goalkeeper("stay" if ("中央" in subject and "留" in subject) else "dive")
+ else:parts=MOTIFS[motif]() if motif in MOTIFS else fallback_abstract(spec)
  sz=1.65*scale
  x=cx-50*sz;y=cy-50*sz
  return [f'<g transform="translate({x:.2f} {y:.2f}) scale({sz:.4f})">' + "".join(parts) + "</g>"]
