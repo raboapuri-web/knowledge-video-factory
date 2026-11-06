@@ -27,24 +27,27 @@ ICON_SCHEMA={
  },
  "required":["concept","meaning","paths","circles"]
 }
+DISPLAY_SCHEMA={
+ "type":"object","additionalProperties":False,
+ "properties":{"headline":{"type":"string"},"labels":{"type":"array","items":{"type":"string"}}},
+ "required":["headline","labels"]
+}
+SCENE_PROPERTIES={
+ "id":{"type":"string"},
+ "visual_intent":{"type":"string"},
+ "evidence_anchor":{"type":"string"},
+ "composition":{"type":"string","enum":COMPS},
+ "display_text":DISPLAY_SCHEMA,
+ "values":{"type":"array","items":{"type":"number"}},
+ "primary_visual":{"type":"string","enum":TYPES},
+ "photo_subject":{"type":"string"},
+ "photo_query":{"type":"string"},
+ "icon_spec":{"anyOf":[ICON_SCHEMA,{"type":"null"}]}
+}
+SCENE_SCHEMA={"type":"object","additionalProperties":False,
+ "properties":SCENE_PROPERTIES,"required":list(SCENE_PROPERTIES)}
 SCHEMA={"type":"object","additionalProperties":False,
- "properties":{
-  "concept":{"type":"string"},"meaning":{"type":"string"},
-  "paths":{"type":"array","items":{"type":"array","items":{"type":"array","items":{"type":"number"}}}},
-  "circles":{"type":"array","items":{"type":"array","items":{"type":"number"}}}}},
- "required":["concept","meaning","paths","circles"]}
-SCHEMA={"type":"object","additionalProperties":False,"properties":{"scenes":{"type":"array","items":{
- "type":"object","additionalProperties":False,"properties":{
-  "id":{"type":"string"},"visual_intent":{"type":"string"},"evidence_anchor":{"type":"string"},
-  "composition":{"type":"string","enum":COMPS},
-  "display_text":{"type":"object","additionalProperties":False,
-   "properties":{"headline":{"type":"string"},"labels":{"type":"array","items":{"type":"string"}}},
-   "required":["headline","labels"]},
-  "values":{"type":"array","items":{"type":"number"}},
-  "primary_visual":{"type":"string","enum":TYPES},
-  "photo_subject":{"type":"string"},"photo_query":{"type":"string"},
-  "icon_spec":{"anyOf":[ICON_SCHEMA,{"type":"null"}]}},
- "required":["id","visual_intent","evidence_anchor","composition","display_text","values","primary_visual","photo_subject","photo_query","icon_spec"]}}},
+ "properties":{"scenes":{"type":"array","items":SCENE_SCHEMA}},
  "required":["scenes"]}
 
 SYSTEM="""You are the meaning-first editor for a premium Japanese scholarly documentary called 考える夜.
