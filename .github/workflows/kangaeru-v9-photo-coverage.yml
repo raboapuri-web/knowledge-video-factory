@@ -1,0 +1,41 @@
+name: Kangaeru Yoru v9 photo on-screen coverage audit
+on:
+  push:
+    branches: [kangaeru-yoru-v9-cue-sync-20261106]
+    paths: ['.github/workflows/kangaeru-v9-photo-coverage.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v9-cue-storyboard-and-usage
+          run-id: 42195090845
+          github-token: ${{ github.token }}
+          path: visual/
+      - uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-gk-7-context-vetted-photos-5-fallbacks
+          run-id: 42170721259
+          github-token: ${{ github.token }}
+          path: material/
+      - name: Check which of seven photo scenes actually display an image
+        run: |
+          python3 - <<'PY'
+          import pathlib,json
+          b=json.loads(pathlib.Path('material/storyboard_with_photos.json').read_text())
+          v=json.loads(pathlib.Path('visual/cue_storyboard.json').read_text())
+          visual={p['scene_id']:p['cue_visuals'] for p in v['scenes']}
+          shown=0
+          for scene in b['scenes']:
+            if scene.get('primary_visual')!='photo':continue
+            directives=visual[scene['id']]
+            visible=(directives[0]['kind']=='none' or any(x['kind']=='photo' for x in directives))
+            shown+=visible
+            print('PHOTO_ACTUAL_SCREEN',json.dumps({'scene':scene['id'],'first_kind':directives[0]['kind'],'all_kinds':[x['kind'] for x in directives],'image_visible_under_current_renderer':visible},ensure_ascii=False))
+          print('PHOTO_VISIBLE_COUNT',shown,'PHOTO_RIGHTS_LEDGER_COUNT',7)
+          PY
