@@ -14,7 +14,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: kangaeru-yoru-v7-full-gk-photo-rights-and-visual-match
-          run-id: 42169022442
+          run-id: 42169742050
           github-token: ${{ github.token }}
           path: audited/
       - uses: actions/download-artifact@v4
