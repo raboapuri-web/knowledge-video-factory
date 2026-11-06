@@ -1,0 +1,61 @@
+{
+  "version": "v7-design-fixture",
+  "source": "standalone_kangaeru_v6/gk_source.json",
+  "note": "Four selected source sentences; no narration/TTS editing; sample frames only, not a completed episode.",
+  "scenes": [
+    {
+      "id": "v7_q",
+      "composition": "hero_question",
+      "narration_text": "ゴールキーパーとは、飛んでボールを止める仕事だからだ。",
+      "display_text": {
+        "headline": "動かないという選択",
+        "labels": []
+      },
+      "subtitle_preview": "飛んでボールを止める仕事だからだ。"
+    },
+    {
+      "id": "v7_split",
+      "composition": "split_choice",
+      "narration_text": "ところが、研究者たちがセーブ率を比較すると、奇妙な結果が現れた。",
+      "display_text": {
+        "headline": "二つの選択",
+        "labels": [
+          "飛ぶ",
+          "残る"
+        ]
+      },
+      "subtitle_preview": "セーブ率を比較すると、奇妙な結果が現れた。"
+    },
+    {
+      "id": "v7_bars",
+      "composition": "data_bars",
+      "narration_text": "左右に飛んだ場合のセーブ率は、約13.4%。",
+      "display_text": {
+        "headline": "セーブ率の逆転",
+        "labels": [
+          "左右に飛ぶ",
+          "中央に残る"
+        ]
+      },
+      "values": [
+        13.4,
+        33.3
+      ],
+      "subtitle_preview": "左右に飛んだ場合のセーブ率は、約13.4%。"
+    },
+    {
+      "id": "v7_flow",
+      "composition": "causal_flow",
+      "narration_text": "なんと、このデータでは、動かない方が2倍以上もボールを止められていたのである。",
+      "display_text": {
+        "headline": "選択の逆説",
+        "labels": [
+          "判断",
+          "行動",
+          "結果"
+        ]
+      },
+      "subtitle_preview": "動かない方が2倍以上もボールを止められていた。"
+    }
+  ]
+}
