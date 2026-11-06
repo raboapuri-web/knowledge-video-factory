@@ -1,0 +1,57 @@
+name: Kangaeru Yoru v9 224-cue GPT visual storyboard
+on:
+  push:
+    branches: [kangaeru-yoru-v9-cue-sync-20261106]
+    paths:
+      - 'standalone_kangaeru_v9/approval/authorize.txt'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  authorized_cue_planning:
+    if: github.event.head_commit.message == 'AUTHORIZE_V9_API_FULL_CUES'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate exact user-authorized 224-cue scope
+        run: |
+          test "${{ github.ref_name }}" = 'kangaeru-yoru-v9-cue-sync-20261106'
+          test "$(cat standalone_kangaeru_v9/approval/authorize.txt)" = 'I_APPROVE_OPENAI_V9_FULL_CUES'
+      - uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-gk-7-context-vetted-photos-5-fallbacks
+          run-id: 42170721259
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v7/output/full_gk_render
+      - name: Install SDK without exposing any secret
+        run: python -m pip install --quiet openai
+      - name: Hard stop if Repository Secret missing
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo 'Missing OPENAI_API_KEY. Stopping before paid request.'
+            exit 1
+          fi
+          echo 'OpenAI Secret present. The value is not logged.'
+      - name: Run GPT-5.6 Terra Structured Outputs for all 224 cues, <=6 scenes per request
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          KANGAERU_V9_CUE_API_APPROVED: 'YES'
+        run: |
+          python standalone_kangaeru_v9/cue_plan.py \
+            --board standalone_kangaeru_v7/output/full_gk_render/storyboard_with_photos.json \
+            --out standalone_kangaeru_v9/output/cue_api \
+            --batch-size 6
+      - name: Save raw requests, the full cue storyboard, actual usage and corrections
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v9-cue-storyboard-and-usage
+          path: standalone_kangaeru_v9/output/cue_api/
+          if-no-files-found: warn
+          retention-days: 14
