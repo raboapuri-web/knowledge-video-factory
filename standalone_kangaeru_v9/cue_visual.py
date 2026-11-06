@@ -37,7 +37,7 @@ def header(parts,text,local,spec):
  display=brand.tag_text(99,160,text,43,brand.IVORY,spacing=.6)
  parts.append(motion.tag_header_transition(display,text,local,spec["text"]))
 
-def custom_svg(scene,subtitle,state,local,spec):
+def custom_svg(scene,subtitle,state,local,spec,ledger):
  s=copy.deepcopy(scene);s["subtitle_preview"]=subtitle
  group=state["kind"]
  out=['<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">']
@@ -111,7 +111,7 @@ def custom_svg(scene,subtitle,state,local,spec):
 def cue_svg(scene,subtitle,state,local,spec,ledger):
  kind=state["kind"]
  if kind in ("keyword","numeric","diagram_element"):
-  return custom_svg(scene,subtitle,state,local,spec)
+  return custom_svg(scene,subtitle,state,local,spec,ledger)
  s=copy.deepcopy(scene)
  if kind=="photo":
   if s.get("photo_status")!="visually_verified" or s.get("primary_visual")!="photo":
