@@ -16,10 +16,31 @@ def replay(path):
  assert len(prepared["scenes"])==4
  if len(generated.get("scenes",[]))!=4:raise ValueError("Response must contain 4 scenes")
  fixes=[]
+ print(json.dumps({"original_model":usage.get("model_returned"),
+       "original_token_usage":{k:usage.get(k) for k in ("input_tokens","cached_input_tokens","output_tokens","estimated_cost_usd")},
+       "ai_scene_outlines":[{"id":s.get("id"),"composition":s.get("composition"),
+                             "headline":(s.get("display_text") or {}).get("headline"),
+                             "labels":(s.get("display_text") or {}).get("labels"),
+                             "primary_visual":s.get("primary_visual"),
+                             "icon_concept":(s.get("icon_spec") or {}).get("concept")}
+                           for s in generated["scenes"]]},ensure_ascii=False))
  for s in generated["scenes"]:
   if s.get("composition")!="data_bars" and s.get("values"):
    fixes.append({"id":s["id"],"nonrendered_numeric_values_removed":s["values"]})
    s["values"]=[]
+  # Never invent labels; if the AI created an incomplete comparison/flow,
+  # downgrade only the presentation, preserve the exact original AI response.
+  labels=(s.get("display_text") or {}).get("labels") or []
+  required={"split_choice":2,"causal_flow":3}.get(s.get("composition"))
+  if required and len(labels)!=required:
+   original=s["composition"]
+   replacement="single_symbol" if s.get("icon_spec") else "hero_question"
+   s["composition"]=replacement
+   s["display_text"]["labels"]=[]
+   fixes.append({"id":s["id"],"layout_downgrade":original+" => "+replacement,
+                 "reason":"AI omitted a mandatory semantic label; nothing fabricated"})
+   print(json.dumps({"scene":s["id"],"layout_change":original+" => "+replacement,
+                     "reason":"insufficient labels for diagram"},ensure_ascii=False))
  (root/"replay_normalization_audit.json").write_text(json.dumps(fixes,ensure_ascii=False,indent=2),encoding="utf-8")
  (root/"replayed_visual_plan.json").write_text(json.dumps(generated,ensure_ascii=False,indent=2),encoding="utf-8")
  plan=planner.merge_plan(prepared,generated)
