@@ -1,93 +1,63 @@
-name: Kangaeru Yoru v7-2 MANUAL OpenAI visual planning
+name: Kangaeru Yoru v7 GPT-5.6 Terra four-scene review
 on:
-  workflow_dispatch:
-    inputs:
-      approve_api_use:
-        type: boolean
-        description: 'I approve billable OpenAI API use for up to 4 scenes'
-        required: true
-        default: false
   push:
-    branches: [kangaeru-yoru-v7-design-20261106]
+    branches:
+      - kangaeru-yoru-v7-design-20261106
     paths:
       - 'standalone_kangaeru_v7/approval/authorize.txt'
 permissions:
   contents: read
 jobs:
-  plan_four_scenes:
-    if: ${{ (github.event_name == 'workflow_dispatch' && inputs.approve_api_use == true) || (github.event_name == 'push' && github.event.head_commit.message == 'AUTHORIZE_V7_API_4_SCENES') }}
+  four_scene_plan:
+    if: github.event.head_commit.message == 'AUTHORIZE_V7_API_4_SCENES'
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install SDK, SVG renderer and local original-asset dependencies
-        run: python -m pip install openai Pillow requests cairosvg --quiet
-      - name: Load verified Japanese editorial fonts (no paid service)
+      - name: Verify explicit one-time authorization
+        run: |
+          test "${{ github.ref_name }}" = "kangaeru-yoru-v7-design-20261106"
+          test -f standalone_kangaeru_v7/approval/authorize.txt
+          test "$(cat standalone_kangaeru_v7/approval/authorize.txt)" = "I_APPROVE_OPENAI_4_SCENES"
+      - name: Install renderer and OpenAI SDK
+        run: python -m pip install --quiet openai Pillow requests cairosvg
+      - name: Install Japanese display fonts and verify
         run: |
           mkdir -p "$HOME/.local/share/fonts"
-          curl --fail --location --silent --show-error --retry 2 --max-time 120 \
-            https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTF/Japanese/NotoSerifCJKjp-Regular.otf \
-            --output "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf"
-          curl --fail --location --silent --show-error --retry 2 --max-time 120 \
-            https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf \
-            --output "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTF/Japanese/NotoSerifCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf"
           test "$(stat -c%s "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf")" -gt 1000000
           test "$(stat -c%s "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf")" -gt 1000000
           fc-cache -f
           case "$(fc-match -f '%{family}' 'Noto Serif CJK JP')" in *Noto*) ;; *) exit 1;; esac
           case "$(fc-match -f '%{family}' 'Noto Sans CJK JP')" in *Noto*) ;; *) exit 1;; esac
-      - name: Confirm branch-only push authorization before any API request
-        env:
-          GIT_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-        run: |
-          if [ "${{ github.event_name }}" = "push" ]; then
-            test "$GIT_COMMIT_MESSAGE" = "AUTHORIZE_V7_API_4_SCENES" || exit 1
-            test -f standalone_kangaeru_v7/approval/authorize.txt || exit 1
-            test "$(cat standalone_kangaeru_v7/approval/authorize.txt)" = "I_APPROVE_OPENAI_4_SCENES" || exit 1
-          fi
-      - name: Hard stop if repository secret is missing
+      - name: Stop before API if repository secret missing
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           if [ -z "$OPENAI_API_KEY" ]; then
-            echo 'Repository Secret OPENAI_API_KEY not configured. No request made.'
+            echo 'Missing OPENAI_API_KEY; zero API calls made.'
             exit 1
           fi
-          echo 'Secret presence verified (value never printed).'
-      - name: BILLABLE visual planning, four scenes maximum
+          echo 'Secret present. Value not shown.'
+      - name: Exactly one authorized GPT-5.6 Terra request for 4 scenes
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-5.6-terra
           KANGAERU_V7_API_APPROVED: 'YES'
         run: |
-          python standalone_kangaeru_v7/planner.py \
-            --source standalone_kangaeru_v6/gk_source.json \
-            --out standalone_kangaeru_v7/output/ai_gk_4/plan.json \
-            --max-scenes 4 --execute
-      - name: Produce Gate 2 static frames and 2x2 contact sheet
-        if: success()
+          python standalone_kangaeru_v7/planner.py --source standalone_kangaeru_v6/gk_source.json --out standalone_kangaeru_v7/output/ai_gk_4/plan.json --max-scenes 4 --execute
+      - name: Render 4 review images and contact sheet
         run: |
-          python standalone_kangaeru_v7/render_gate2.py \
-            --plan standalone_kangaeru_v7/output/ai_gk_4/plan.json \
-            --out standalone_kangaeru_v7/output/ai_gk_4/gate2
-      - name: Upload AI plan, actual model usage, SVG icons and Gate 2 previews
-        if: always()
+          python standalone_kangaeru_v7/render_gate2.py --plan standalone_kangaeru_v7/output/ai_gk_4/plan.json --out standalone_kangaeru_v7/output/ai_gk_4/gate2
+      - name: Preserve plan, actual usage, new icons, images and QA
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: kangaeru-yoru-v7-ai-four-scene-plan
-          path: |
-            standalone_kangaeru_v7/output/ai_gk_4/plan.json
-            standalone_kangaeru_v7/output/ai_gk_4/prepared_narration.json
-            standalone_kangaeru_v7/output/ai_gk_4/raw_visual_plan.json
-            standalone_kangaeru_v7/output/ai_gk_4/api_usage.json
-            standalone_kangaeru_v7/output/ai_gk_4/icon_registry.json
-            standalone_kangaeru_v7/output/ai_gk_4/icons/generated/*.svg
-            standalone_kangaeru_v7/output/ai_gk_4/gate2/*.svg
-            standalone_kangaeru_v7/output/ai_gk_4/gate2/*.png
-            standalone_kangaeru_v7/output/ai_gk_4/gate2/gate2_qa.json
+          name: kangaeru-yoru-v7-gpt56-terra-gk-four-scene-gate2
+          path: standalone_kangaeru_v7/output/ai_gk_4/
           if-no-files-found: warn
           retention-days: 14
