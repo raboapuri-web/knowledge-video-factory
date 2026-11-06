@@ -1,0 +1,55 @@
+name: Kangaeru Yoru v7-2 storyboard offline preflight
+on:
+  push:
+    branches: [kangaeru-yoru-v7-design-20261106]
+    paths:
+      - 'standalone_kangaeru_v7/planner.py'
+      - 'standalone_kangaeru_v7/icons.py'
+      - 'standalone_kangaeru_v7/tests/test_planner.py'
+      - '.github/workflows/kangaeru-v7-stage2.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  schema_and_safety:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install keyless geometry dependencies
+        run: python -m pip install Pillow --quiet
+      - name: Verify storyboard contract, source grounding, icon safety and API guard
+        run: |
+          python -m py_compile standalone_kangaeru_v7/planner.py standalone_kangaeru_v7/icons.py
+          python -m unittest discover -s standalone_kangaeru_v7/tests -v
+      - name: Build four narration-only test inputs without an API key
+        run: |
+          python standalone_kangaeru_v7/planner.py \
+            --source standalone_kangaeru_v6/gk_source.json \
+            --out standalone_kangaeru_v7/output/stage2/plan.json \
+            --max-scenes 4
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("standalone_kangaeru_v7/output/stage2")
+          d=json.loads((p/"prepared_narration.json").read_text(encoding="utf8"))
+          assert len(d["scenes"])==4
+          assert all("narration_text" in s and "subtitle_cues" in s for s in d["scenes"])
+          qa={"passed":True,"scenes_prepared":4,"api_executed":False,
+              "schema":"meaning-first strict OpenAI structured output",
+              "meaningful_storyboard_produced":False,
+              "reason":"Explicit stop before billable API call; requires OPENAI_API_KEY and manual approval."}
+          (p/"qa_stage2_preflight.json").write_text(json.dumps(qa,ensure_ascii=False,indent=2),encoding="utf8")
+          print(json.dumps(qa,ensure_ascii=False))
+          PY
+      - name: Publish prepared inputs and keyless test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-stage2-schema-and-offline-qa
+          path: standalone_kangaeru_v7/output/stage2/
+          if-no-files-found: warn
+          retention-days: 14
