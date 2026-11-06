@@ -2,7 +2,9 @@ name: Kangaeru Yoru v8 full storyboard visual preflight
 on:
   push:
     branches: [kangaeru-yoru-v8-motion-20261106]
-    paths: ['.github/workflows/kangaeru-v8-preview-qa.yml']
+    paths:
+      - '.github/workflows/kangaeru-v8-preview-qa.yml'
+      - 'standalone_kangaeru_v8/motion.py'
 permissions:
   contents: read
   actions: read
