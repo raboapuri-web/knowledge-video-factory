@@ -1,0 +1,108 @@
+name: Kangaeru Yoru v9 FULL GK cue-sync 1080p30 Aoyama
+on:
+  push:
+    branches: [kangaeru-yoru-v9-cue-sync-20261106]
+    paths: ['standalone_kangaeru_v9/launch/render_full.txt']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  full_cue_synced_episode:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    env:
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_NAME: 青山龍星
+      VOICEVOX_STYLE: ノーマル
+      VOICEVOX_SPEED: '1.06'
+      VOICEVOX_INTONATION: '1.02'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reuse verified 7 CC0/PD photos, 5 diagram fallbacks and 71-scene GK storyboard
+        uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-gk-7-context-vetted-photos-5-fallbacks
+          run-id: 42170721259
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v7/output/full_gk_render
+      - name: Reuse approved 224 GPT cue visual decisions and exact API token use
+        uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v9-cue-storyboard-and-usage
+          run-id: 42195090845
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v9/output/cue_api
+      - name: Install FFmpeg, SVG tooling and Noto Japanese fonts
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ffmpeg
+          python -m pip install --quiet Pillow requests cairosvg
+          command -v ffmpeg && command -v ffprobe
+          mkdir -p "$HOME/.local/share/fonts"
+          curl --fail --location --silent --show-error --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTF/Japanese/NotoSerifCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf"
+          test "$(stat -c%s "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf")" -gt 1000000
+          fc-cache -f
+          case "$(fc-match -f '%{family}' 'Noto Serif CJK JP')" in *Noto*) ;; *) exit 1;; esac
+      - name: Hard no-secret v9 cue and voice alignment unit tests
+        run: |
+          test -f standalone_kangaeru_v9/output/cue_api/cue_storyboard.json
+          python -m py_compile standalone_kangaeru_v9/*.py
+          python -m unittest discover -s standalone_kangaeru_v9/tests -v
+      - name: Boot official CPU VOICEVOX and verify Aoyama Normal style ID 13
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name ryusei-v9 -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          python - <<'PY'
+          import requests,sys,time
+          url='http://127.0.0.1:50021'
+          for n in range(130):
+            try:
+              r=requests.get(url+'/speakers',timeout=4);r.raise_for_status()
+              if r.json():break
+            except Exception:pass
+            time.sleep(3)
+          else:raise RuntimeError('VOICEVOX engine unavailable')
+          sys.path.insert(0,'standalone_kangaeru_v4')
+          import core
+          assert core.resolve_voicevox_speaker(url,'青山龍星','ノーマル')==13
+          print('Confirmed VOICEVOX:青山龍星/ノーマル/13')
+          PY
+      - name: Synthesize original narration, extract accent-phrase mora timings, render 224 cue changes into 1080p30 MP4
+        run: |
+          python standalone_kangaeru_v9/render_v9.py \
+            --board standalone_kangaeru_v7/output/full_gk_render/storyboard_with_photos.json \
+            --cue-plan standalone_kangaeru_v9/output/cue_api/cue_storyboard.json \
+            --ledger standalone_kangaeru_v7/output/full_gk_render/photo_ledger.json \
+            --out standalone_kangaeru_v9/output/GK \
+            --voicevox-url http://127.0.0.1:50021
+      - name: Save exact v9 request metering alongside final output
+        if: always()
+        run: |
+          mkdir -p standalone_kangaeru_v9/output/GK
+          cp -f standalone_kangaeru_v9/output/cue_api/api_usage_v9.json standalone_kangaeru_v9/output/GK/api_usage_v9.json
+      - name: Upload MP4, 224-cue synced timeline, source verification, usage and contact sheets
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v9-GK-FULL-CUE-SYNC-1080p30-aoyama
+          path: |
+            standalone_kangaeru_v9/output/GK/final.mp4
+            standalone_kangaeru_v9/output/GK/qa_final.json
+            standalone_kangaeru_v9/output/GK/api_usage_v9.json
+            standalone_kangaeru_v9/output/GK/cue_timeline.json
+            standalone_kangaeru_v9/output/GK/voicevox_mora_timeline.json
+            standalone_kangaeru_v9/output/GK/cue_visual_timeline.json
+            standalone_kangaeru_v9/output/GK/cue_storyboard.json
+            standalone_kangaeru_v9/output/GK/v9_storyboard.json
+            standalone_kangaeru_v9/output/GK/photo_ledger.json
+            standalone_kangaeru_v9/output/GK/captions.srt
+            standalone_kangaeru_v9/output/GK/timeline.json
+            standalone_kangaeru_v9/output/GK/description.md
+            standalone_kangaeru_v9/output/GK/contact_sheet_*.jpg
+            standalone_kangaeru_v9/output/GK/thumbnail.jpg
+          if-no-files-found: warn
+          retention-days: 14
