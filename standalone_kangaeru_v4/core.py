@@ -80,7 +80,7 @@ def resolve_voicevox_speaker(voicevox_url, speaker_name="青山龍星", style_na
      if speaker_name=="青山龍星" and style_name=="ノーマル" and resolved!=13:
       raise RuntimeError("青山龍星 ノーマル Talk ID expected 13, got "+str(resolved))
      return resolved
- raise RuntimeError("VOICEVOX speaker or style unavailable: "+speaker_name+"/"+style_name)
+ raise RuntimeError("VOICEVOX speaker/style unavailable: "+speaker_name+"/"+style_name+"; matching speakers/styles: "+repr([{"name":sp.get("name"),"styles":sp.get("styles")} for sp in r.json() if "青山" in sp.get("name","") or "龍星" in sp.get("name","")]))
 
 def tts_chunk(text,path,voicevox_url=""):
  """Mandatory original VOICEVOX synthesis. Never silently use espeak-ng."""
