@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install keyless geometry dependencies
-        run: python -m pip install Pillow --quiet
+        run: python -m pip install Pillow requests --quiet
       - name: Verify storyboard contract, source grounding, icon safety and API guard
         run: |
           python -m py_compile standalone_kangaeru_v7/planner.py standalone_kangaeru_v7/icons.py
