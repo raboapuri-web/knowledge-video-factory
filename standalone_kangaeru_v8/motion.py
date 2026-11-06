@@ -173,6 +173,35 @@ def body_enter(items,setting,local,scene):
   return [f'<g opacity="{p:.4f}" transform="translate({(1-p)*12:.2f} {(1-p)*35:.2f})">{body}</g>']
  return items
 
+def semantic_split(scene):
+ """Replace v7's thin stick people and meaningless arrows with solid pictograms.
+ This works for arbitrary paired labels; no subject-specific text is invented.
+ """
+ d=scene["display_text"];h=brand.reject(d["headline"]);labels=d.get("labels",[])
+ if len(labels)!=2:raise ValueError("Split comparison needs exactly two labels")
+ out=[
+  brand.tag_text(96,152,h,44),
+  brand.line(640,186,640,545,brand.HAIR,1.4),
+  brand.tag_text(130,226,"CHOICE  /  01",22,brand.GOLD,family="sans"),
+  brand.tag_text(713,226,"CHOICE  /  02",22,brand.GOLD,family="sans"),
+  brand.tag_text(334,323,labels[0],44,brand.IVORY,"middle"),
+  brand.tag_text(932,323,labels[1],44,brand.IVORY,"middle"),
+  brand.line(125,353,534,353,brand.HAIR,2.1),
+  brand.line(745,353,1153,353,brand.HAIR,2.1)]
+ for x,label in ((334,labels[0]),(932,labels[1])):
+  # All shapes are solid gold-and-ivory, never stick-figure strokes.
+  if any(v in label for v in ("飛","跳","ダイブ","GK","キーパー")):
+   pieces=pictograms.goalkeeper("dive")
+  elif any(v in label for v in ("残","留","立","待","停止","中央")):
+   pieces=pictograms.goalkeeper("stay")
+  else:
+   pieces=[pictograms.disc(50,50,32,pictograms.G),
+     pictograms.strokepath("M33 51 L45 64 L68 35",5,stroke=pictograms.D)]
+  scale=1.62
+  transform=f'<g transform="translate({x-50*scale:.2f} {442-50*scale:.2f}) scale({scale:.3f})">'
+  out.append(transform+"".join(pieces)+"</g>")
+ return out
+
 def animated_svg(scene,subtitle,ledger,local,spec=None):
  spec=spec or spec_for(scene,int(scene.get("id","s001")[1:])-1)
  local_scene=copy.deepcopy(scene)
@@ -196,7 +225,7 @@ def animated_svg(scene,subtitle,ledger,local,spec=None):
  if local_scene.get("composition")=="causal_flow" and len(local_scene.get("display_text",{}).get("labels",[]))!=3:
   local_scene["composition"]="hero_question"
  brand.validate(local_scene)
- bits=brand.diagram(local_scene)
+ bits=semantic_split(local_scene) if local_scene["composition"]=="split_choice" else brand.diagram(local_scene)
  title=local_scene["display_text"]["headline"]
  header=[];body=[]
  for fragment in bits:
