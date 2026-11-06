@@ -90,7 +90,19 @@ def split_subtitles(narration,limit=20):
 def prepare(source_path,max_scenes=4):
  src=json.loads(Path(source_path).read_text(encoding="utf8"))
  board=v6.split_source(src)
- selected=board["scenes"][:max_scenes]
+ # Four representative passages from the 71-scene GK narration, chosen for visual QA:
+ # opening PK context; actual paired save rates; an explicit dive scene;
+ # and the crowd's social judgment. Input content remains verbatim.
+ selectors=("ゴールキーパーが左右どちらか","13.4","君は左へ飛んだ","観客からは")
+ if max_scenes==4:
+  picked=[];used=set()
+  for needle in selectors:
+   found=next((t for t in board["scenes"] if needle in t["speech"] and t["id"] not in used),None)
+   if found is None:raise ValueError("Representative source passage missing: "+needle)
+   picked.append(found);used.add(found["id"])
+  selected=sorted(picked,key=lambda t:int(t["id"][1:]))
+ else:
+  selected=board["scenes"][:max_scenes]
  rows=[{"id":s["id"],"chapter":s["chapter_title"],"narration_text":s["speech"],
          "subtitle_cues":split_subtitles(s["speech"])} for s in selected]
  return {"title":board["title"],"source_id":board["source_document_id"],"method":"narration immutable, OpenAI only plans visuals",
