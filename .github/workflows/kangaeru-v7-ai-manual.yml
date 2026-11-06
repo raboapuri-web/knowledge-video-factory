@@ -23,8 +23,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install SDK, image extraction and JSON support
-        run: python -m pip install openai Pillow --quiet
+      - name: Install SDK, SVG renderer and local original-asset dependencies
+        run: python -m pip install openai Pillow requests cairosvg --quiet
+      - name: Load verified Japanese editorial fonts (no paid service)
+        run: |
+          mkdir -p "$HOME/.local/share/fonts"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 \
+            https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTF/Japanese/NotoSerifCJKjp-Regular.otf \
+            --output "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 \
+            https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf \
+            --output "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf"
+          test "$(stat -c%s "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf")" -gt 1000000
+          test "$(stat -c%s "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf")" -gt 1000000
+          fc-cache -f
+          case "$(fc-match -f '%{family}' 'Noto Serif CJK JP')" in *Noto*) ;; *) exit 1;; esac
+          case "$(fc-match -f '%{family}' 'Noto Sans CJK JP')" in *Noto*) ;; *) exit 1;; esac
       - name: Confirm branch-only push authorization before any API request
         env:
           GIT_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
@@ -53,7 +67,14 @@ jobs:
             --source standalone_kangaeru_v6/gk_source.json \
             --out standalone_kangaeru_v7/output/ai_gk_4/plan.json \
             --max-scenes 4 --execute
-      - name: Upload AI plans and generated original icon SVGs for review
+      - name: Produce Gate 2 static frames and 2x2 contact sheet
+        if: success()
+        run: |
+          python standalone_kangaeru_v7/render_gate2.py \
+            --plan standalone_kangaeru_v7/output/ai_gk_4/plan.json \
+            --out standalone_kangaeru_v7/output/ai_gk_4/gate2
+      - name: Upload AI plan, actual model usage, SVG icons and Gate 2 previews
+        if: always()
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -61,7 +82,12 @@ jobs:
           path: |
             standalone_kangaeru_v7/output/ai_gk_4/plan.json
             standalone_kangaeru_v7/output/ai_gk_4/prepared_narration.json
+            standalone_kangaeru_v7/output/ai_gk_4/raw_visual_plan.json
+            standalone_kangaeru_v7/output/ai_gk_4/api_usage.json
             standalone_kangaeru_v7/output/ai_gk_4/icon_registry.json
             standalone_kangaeru_v7/output/ai_gk_4/icons/generated/*.svg
+            standalone_kangaeru_v7/output/ai_gk_4/gate2/*.svg
+            standalone_kangaeru_v7/output/ai_gk_4/gate2/*.png
+            standalone_kangaeru_v7/output/ai_gk_4/gate2/gate2_qa.json
           if-no-files-found: warn
           retention-days: 14
