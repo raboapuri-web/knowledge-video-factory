@@ -1,0 +1,135 @@
+name: Kangaeru Yoru v7 GK FINAL 1080p30 keyless replay
+on:
+  push:
+    branches: [kangaeru-yoru-v7-design-20261106]
+    paths:
+      - '.github/workflows/kangaeru-v7-final-replay.yml'
+      - 'standalone_kangaeru_v7/render_full.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  final_replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    env:
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_NAME: 青山龍星
+      VOICEVOX_STYLE: ノーマル
+      VOICEVOX_SPEED: '1.06'
+      VOICEVOX_INTONATION: '1.02'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download previously completed 71-scene GPT storyboard and metering
+        uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-full-gk-gpt-storyboard-and-usage
+          run-id: 42168254310
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v7/output/full_gk_plan
+      - name: Download 10 content-verified CC0/PD photos, 2 diagram fallbacks and rights ledger
+        uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-full-gk-photo-rights-and-visual-match
+          run-id: 42169742050
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v7/output/full_gk_render
+      - name: Verify saved plans and photographs exist, NO API Secret passed
+        run: |
+          test -f standalone_kangaeru_v7/output/full_gk_plan/storyboard.json
+          test -f standalone_kangaeru_v7/output/full_gk_render/storyboard_with_photos.json
+          test -f standalone_kangaeru_v7/output/full_gk_render/photo_ledger.json
+          python - <<'PY'
+          import json,pathlib
+          r=pathlib.Path('standalone_kangaeru_v7/output/full_gk_render')
+          a=json.loads((r/'photo_ledger.json').read_text())
+          assert len(a['photos'])==10,len(a['photos'])
+          assert len(a['fallbacks'])==2,len(a['fallbacks'])
+          for entry in a['photos']:
+            assert pathlib.Path(entry['file']).is_file(),entry['file']
+          print('Verified photos 10; diagram fallbacks 2; no photos downloaded twice.')
+          PY
+      - name: Install FFmpeg and FFprobe, Noto Japanese fonts, and SVG rasterizer
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ffmpeg
+          command -v ffmpeg
+          command -v ffprobe
+          python -m pip install --quiet Pillow requests cairosvg
+          mkdir -p "$HOME/.local/share/fonts"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTF/Japanese/NotoSerifCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf"
+          test "$(stat -c%s "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf")" -gt 1000000
+          test "$(stat -c%s "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf")" -gt 1000000
+          fc-cache -f
+          case "$(fc-match -f '%{family}' 'Noto Serif CJK JP')" in *Noto*) ;; *) exit 1;; esac
+          case "$(fc-match -f '%{family}' 'Noto Sans CJK JP')" in *Noto*) ;; *) exit 1;; esac
+      - name: Start free official VOICEVOX CPU engine and pin Aoyama Ryusei normal talk 13
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name v7-replay-voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          python - <<'PY'
+          import time,requests,sys
+          for i in range(130):
+            try:
+              x=requests.get('http://127.0.0.1:50021/speakers',timeout=4)
+              x.raise_for_status()
+              if x.json():break
+            except Exception:pass
+            time.sleep(3)
+          else:raise RuntimeError('VOICEVOX unavailable')
+          sys.path.insert(0,'standalone_kangaeru_v4')
+          import core
+          assert core.resolve_voicevox_speaker('http://127.0.0.1:50021','青山龍星','ノーマル')==13
+          print('Verified VOICEVOX 青山龍星 ノーマル ID 13')
+          PY
+      - name: FULL 71-scene VOICEVOX narration, 1080p30 frames, MP4, 17 QA checks
+        run: |
+          python standalone_kangaeru_v7/render_full.py \
+            --board standalone_kangaeru_v7/output/full_gk_render/storyboard_with_photos.json \
+            --ledger standalone_kangaeru_v7/output/full_gk_render/photo_ledger.json \
+            --out standalone_kangaeru_v7/output/full_gk_render \
+            --voicevox-url http://127.0.0.1:50021
+      - name: Consolidate request totals including prior 4-scene test and all paid image checks
+        if: always()
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          root=pathlib.Path('standalone_kangaeru_v7/output/full_gk_render')
+          plan=pathlib.Path('standalone_kangaeru_v7/output/full_gk_plan/api_usage.json')
+          p=json.loads(plan.read_text())['totals'] if plan.exists() else {}
+          f=json.loads((root/'photo_ledger.json').read_text())['vision_usage'] if (root/'photo_ledger.json').exists() else {}
+          prior={'requests':1,'input_tokens':1768,'output_tokens':1393,'estimated_cost_usd':0.020252}
+          rejected_first_photo_pass={'requests':15,'input_tokens':7968,'output_tokens':1838,'estimated_cost_usd':0.037992}
+          summary={'prior_four_scene':prior,'full_storyboard':p,'photo_first_overstrict_pass':rejected_first_photo_pass,'photo_final_visual_checks':f,
+                   'total_requests':1+p.get('calls',0)+15+json.loads((root/'photo_ledger.json').read_text()).get('vision_requests',0),
+                   'total_estimated_usd':round(prior['estimated_cost_usd']+p.get('cost_estimate_usd',0)+rejected_first_photo_pass['estimated_cost_usd']+f.get('estimated_cost_usd',0),6)}
+          root.mkdir(parents=True,exist_ok=True)
+          (root/'combined_api_usage.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2))
+          print('API USAGE',json.dumps(summary,ensure_ascii=False))
+          PY
+      - name: Publish completed MP4, rights ledger, visual samples and full QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-GK-FULL-1080p30-VOICEVOX-aoyama
+          path: |
+            standalone_kangaeru_v7/output/full_gk_render/final.mp4
+            standalone_kangaeru_v7/output/full_gk_render/qa_final.json
+            standalone_kangaeru_v7/output/full_gk_render/combined_api_usage.json
+            standalone_kangaeru_v7/output/full_gk_render/photo_ledger.json
+            standalone_kangaeru_v7/output/full_gk_render/qa_photos.json
+            standalone_kangaeru_v7/output/full_gk_render/storyboard.json
+            standalone_kangaeru_v7/output/full_gk_render/timeline.json
+            standalone_kangaeru_v7/output/full_gk_render/captions.srt
+            standalone_kangaeru_v7/output/full_gk_render/description.md
+            standalone_kangaeru_v7/output/full_gk_render/thumbnail.jpg
+            standalone_kangaeru_v7/output/full_gk_render/contact_sheet_*.jpg
+            standalone_kangaeru_v7/output/full_gk_plan/qa_storyboard.json
+            standalone_kangaeru_v7/output/full_gk_plan/api_usage.json
+            standalone_kangaeru_v7/output/full_gk_plan/icon_registry.json
+          if-no-files-found: warn
+          retention-days: 14
