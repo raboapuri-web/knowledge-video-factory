@@ -7,11 +7,15 @@ on:
         description: 'I approve billable OpenAI API use for up to 4 scenes'
         required: true
         default: false
+  push:
+    branches: [kangaeru-yoru-v7-design-20261106]
+    paths:
+      - 'standalone_kangaeru_v7/approval/authorize.txt'
 permissions:
   contents: read
 jobs:
   plan_four_scenes:
-    if: ${{ inputs.approve_api_use == true }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && inputs.approve_api_use == true) || (github.event_name == 'push' && github.event.head_commit.message == 'AUTHORIZE_V7_API_4_SCENES') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
@@ -21,6 +25,15 @@ jobs:
           python-version: '3.11'
       - name: Install SDK, image extraction and JSON support
         run: python -m pip install openai Pillow --quiet
+      - name: Confirm branch-only push authorization before any API request
+        env:
+          GIT_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            test "$GIT_COMMIT_MESSAGE" = "AUTHORIZE_V7_API_4_SCENES" || exit 1
+            test -f standalone_kangaeru_v7/approval/authorize.txt || exit 1
+            test "$(cat standalone_kangaeru_v7/approval/authorize.txt)" = "I_APPROVE_OPENAI_4_SCENES" || exit 1
+          fi
       - name: Hard stop if repository secret is missing
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
