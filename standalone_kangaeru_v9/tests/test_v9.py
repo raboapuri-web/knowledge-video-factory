@@ -74,6 +74,14 @@ class VisualUnit(unittest.TestCase):
    self.assertIn('y="586"',doc)
    self.assertIn("説明字幕",doc)
    self.assertIn('<svg ',doc)
+ def test_progressive_elements_keep_fixed_slots_across_cues(self):
+  s=sample_scene("data_bars")
+  sp=cue_visual.full_motion(s,0)
+  first=cue_visual.cue_svg(s,"飛ぶ",{"kind":"diagram_element","text":"飛ぶ","element_index":0},10,sp,{"photos":[]})
+  second=cue_visual.cue_svg(s,"残る",{"kind":"diagram_element","text":"残る","element_index":1},10,sp,{"photos":[]})
+  self.assertIn('x="112.0" y="268" width="464.0"',first)
+  self.assertIn('x="112.0" y="268" width="464.0"',second)
+  self.assertIn('x="592.0" y="268" width="464.0"',second)
  def test_visual_switches_more_than_scene_count(self):
   s=sample_scene();board={"scenes":[s]}
   storyboard={"scenes":[{"scene_id":"s001","cue_visuals":[
