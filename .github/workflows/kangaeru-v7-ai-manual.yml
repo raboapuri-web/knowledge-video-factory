@@ -1,0 +1,54 @@
+name: Kangaeru Yoru v7-2 MANUAL OpenAI visual planning
+on:
+  workflow_dispatch:
+    inputs:
+      approve_api_use:
+        type: boolean
+        description: 'I approve billable OpenAI API use for up to 4 scenes'
+        required: true
+        default: false
+permissions:
+  contents: read
+jobs:
+  plan_four_scenes:
+    if: ${{ inputs.approve_api_use == true }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install SDK, image extraction and JSON support
+        run: python -m pip install openai Pillow --quiet
+      - name: Hard stop if repository secret is missing
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo 'Repository Secret OPENAI_API_KEY not configured. No request made.'
+            exit 1
+          fi
+          echo 'Secret presence verified (value never printed).'
+      - name: BILLABLE visual planning, four scenes maximum
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: gpt-5.6-terra
+          KANGAERU_V7_API_APPROVED: 'YES'
+        run: |
+          python standalone_kangaeru_v7/planner.py \
+            --source standalone_kangaeru_v6/gk_source.json \
+            --out standalone_kangaeru_v7/output/ai_gk_4/plan.json \
+            --max-scenes 4 --execute
+      - name: Upload AI plans and generated original icon SVGs for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-ai-four-scene-plan
+          path: |
+            standalone_kangaeru_v7/output/ai_gk_4/plan.json
+            standalone_kangaeru_v7/output/ai_gk_4/prepared_narration.json
+            standalone_kangaeru_v7/output/ai_gk_4/icon_registry.json
+            standalone_kangaeru_v7/output/ai_gk_4/icons/generated/*.svg
+          if-no-files-found: warn
+          retention-days: 14
