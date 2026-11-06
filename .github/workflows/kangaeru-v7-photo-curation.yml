@@ -1,0 +1,38 @@
+name: Kangaeru Yoru v7 final source-vs-photo context curation
+on:
+  push:
+    branches: [kangaeru-yoru-v7-design-20261106]
+    paths:
+      - 'standalone_kangaeru_v7/curate_photos.py'
+      - '.github/workflows/kangaeru-v7-photo-curation.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  curate_without_api:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-full-gk-photo-rights-and-visual-match
+          run-id: 42169742050
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v7/output/full_gk_render
+      - name: Exact-source editorial photo curation; no model or secret used
+        run: |
+          python3 standalone_kangaeru_v7/curate_photos.py --folder standalone_kangaeru_v7/output/full_gk_render
+      - name: Save 7 contextual photo scenes, 5 diagram fallbacks and original references
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-gk-7-context-vetted-photos-5-fallbacks
+          path: |
+            standalone_kangaeru_v7/output/full_gk_render/photo_ledger.json
+            standalone_kangaeru_v7/output/full_gk_render/storyboard_with_photos.json
+            standalone_kangaeru_v7/output/full_gk_render/photo_editorial_overrides.json
+            standalone_kangaeru_v7/output/full_gk_render/qa_photo_editorial.json
+            standalone_kangaeru_v7/output/full_gk_render/qa_photos.json
+            standalone_kangaeru_v7/output/full_gk_render/photos/*.jpg
+          if-no-files-found: error
+          retention-days: 14
