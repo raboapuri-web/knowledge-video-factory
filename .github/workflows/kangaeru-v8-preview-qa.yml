@@ -1,0 +1,62 @@
+name: Kangaeru Yoru v8 full storyboard visual preflight
+on:
+  push:
+    branches: [kangaeru-yoru-v8-motion-20261106]
+    paths: ['.github/workflows/kangaeru-v8-preview-qa.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  preview_all_scenes:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-gk-7-context-vetted-photos-5-fallbacks
+          run-id: 42170721259
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v7/output/full_gk_render
+      - name: Install keyless SVG renderer and Japanese fonts
+        run: |
+          python -m pip install --quiet Pillow requests cairosvg
+          mkdir -p "$HOME/.local/share/fonts"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTF/Japanese/NotoSerifCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf"
+          fc-cache -f
+      - name: Render all 71 final-layout scene preview frames and all 11 pictograms
+        run: |
+          python standalone_kangaeru_v8/studio.py \
+            --board standalone_kangaeru_v7/output/full_gk_render/storyboard_with_photos.json \
+            --ledger standalone_kangaeru_v7/output/full_gk_render/photo_ledger.json \
+            --out standalone_kangaeru_v8/output/preflight \
+            --preview-only
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          root=Path('standalone_kangaeru_v8/output/preflight')
+          pics=list((root/'previews').glob('s*.jpg'))
+          icons=list((root/'pictograms').glob('s*.svg'))
+          assert len(pics)==71,len(pics)
+          assert len(icons)==11,len(icons)
+          assert (root/'pictogram_contact_sheet.jpg').exists()
+          assert len(list(root.glob('contact_sheet_*.jpg')))==6
+          qa={'passed':True,'scenes':len(pics),'icon_svg_count':len(icons),'photos_reused':7,'new_api_calls':0,'motion_review':'separate full run'}
+          (root/'qa_preview.json').write_text(json.dumps(qa,ensure_ascii=False,indent=2))
+          print(json.dumps(qa,ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kangaeru-yoru-v8-71-layouts-11-pictograms-preview-QA
+          path: |
+            standalone_kangaeru_v8/output/preflight/contact_sheet_*.jpg
+            standalone_kangaeru_v8/output/preflight/pictogram_contact_sheet.jpg
+            standalone_kangaeru_v8/output/preflight/pictogram_registry.json
+            standalone_kangaeru_v8/output/preflight/pictograms/*.svg
+            standalone_kangaeru_v8/output/preflight/qa_preview.json
+          if-no-files-found: warn
