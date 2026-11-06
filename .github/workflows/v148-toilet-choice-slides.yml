@@ -180,3 +180,5 @@ jobs:
           TAG="v148-toilet-choice-slides-${{ github.run_id }}"
           TITLE="V148 考える夜｜無料の汚いトイレと有料の綺麗なトイレ、どっちが使いたいですか？ 完成動画"
           gh release create "$TAG" --title "$TITLE" --notes "V148 完成動画（1920x1080・30fps）。スライド78枚（レンダリング単位78）。ナレーションはVOICEVOX（青山龍星、速度1.15）で合成。" output/v148-toilet-choice-slides-final.mp4 output/v148-contact-sheet.jpg
+
+# Note: chapter render steps use npm run render / render:smoke; shared/v124/package.json must pass $CHAPTER to scripts/render.mjs.
