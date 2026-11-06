@@ -4,6 +4,7 @@ on:
     branches: [kangaeru-yoru-standalone-v4-20261105]
     paths:
       - 'standalone_kangaeru_v6/render_video.py'
+      - 'standalone_kangaeru_v4/core.py'
       - 'standalone_kangaeru_v6/tests/test_render_video.py'
       - '.github/workflows/kangaeru-v6-full.yml'
   workflow_dispatch:
