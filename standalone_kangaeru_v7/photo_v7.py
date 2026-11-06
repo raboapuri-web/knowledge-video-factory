@@ -39,6 +39,44 @@ def topic(scene):
  win=max(scores,key=scores.get)
  return win if scores[win]>0 else None
 
+ILLUSTRATIVE_SUBJECTS={
+ "goalkeeper":"A real soccer goalkeeper in or in front of a football goal, in sport action or preparation",
+ "hospital":"A real doctor visibly interacting with a patient or clinician in a treatment or consultation setting",
+ "office":"Real employees collaborating, planning or making decisions in an ordinary workplace, not a political meeting",
+ "crowd":"Real soccer spectators reacting or watching a football match at a stadium",
+ "rescue":"Real firefighters, paramedics or emergency responders in professional rescue action"
+}
+def promote_relevant_photo_scenes(scenes,limit=16):
+ """Add at most a few contextual photos per chapter; never replace charts or icons.
+ All promoted photos must still pass the independent model image-contents check.
+ """
+ count=sum(s.get("primary_visual")=="photo" for s in scenes)
+ per_chapter=Counter()
+ per_topic=Counter()
+ last=-10
+ promoted=[]
+ for index,scene in enumerate(scenes):
+  ch=scene.get("chapter","")
+  if scene.get("primary_visual")=="photo":
+   per_chapter[ch]+=1;per_topic[topic(scene)]+=1;last=index
+  if count>=limit:break
+  if scene.get("primary_visual")=="photo":continue
+  if index-last<3:continue
+  if scene.get("composition") in ("data_bars","causal_flow","split_choice"):continue
+  if scene.get("icon_spec") is not None:continue
+  t=topic(scene)
+  if t not in ILLUSTRATIVE_SUBJECTS or per_chapter[ch]>=3 or per_topic[t]>=4:continue
+  # A physical subject in the actual narration is required; no metaphor only.
+  terms=KEYWORDS[t]
+  if not any(w in scene.get("narration_text","") for w in terms):continue
+  scene["primary_visual"]="photo"
+  scene["photo_subject"]=ILLUSTRATIVE_SUBJECTS[t]
+  scene["photo_query"]=SEARCH[t][0]
+  scene["photo_role"]="illustrative_footage"
+  per_chapter[ch]+=1;per_topic[t]+=1;last=index;count+=1
+  promoted.append(scene["id"])
+ return promoted
+
 def small_image(raw):
  with Image.open(io.BytesIO(raw)) as im:
   im=ImageOps.exif_transpose(im).convert("RGB");im.thumbnail((1024,768),Image.Resampling.LANCZOS)
@@ -70,17 +108,27 @@ def vision_check(image,scene,candidate):
  if os.getenv("KANGAERU_V7_FULL_APPROVED")!="YES":raise RuntimeError("Full-story approval missing")
  from openai import OpenAI
  client=OpenAI(api_key=key,timeout=90,max_retries=0)
- prompt=("Evaluate whether this REAL photograph depicts the concrete observable subject "
-         "needed for a scholarly Japanese video. Be strict; reject unrelated office/political "
-         "meetings, hospital buildings without clinical actions, irrelevant generic stock, "
-         "illustrations, and situations unlike the narration. "
-         "Do NOT infer people, actions or events not visible. "
-         "Original narration: "+scene["narration_text"][:380]+
-         "\nRequested visible subject: "+scene["photo_subject"]+
-         "\nPhoto file title: "+candidate["title"]+
-         "\nCommons description: "+candidate.get("description","")[:240]+
-         "\nReturn is_match true ONLY when the physical subject actually fits; "
-         "confidence >=0.85 only for obvious visible matches.")
+ t=topic(scene)
+ reference=ILLUSTRATIVE_SUBJECTS.get(t,scene.get("photo_subject",""))
+ prompt=("Select photos for a documentary as VISUAL ILLUSTRATIONS, not photographs "
+         "purporting to record the exact historical study or narrated decision. "
+         "Judge what is visibly in the image, not whether every incidental detail "
+         "in a scene-specific wish list is present. "
+         "A clear soccer goalkeeper near a soccer goal is relevant for a GK/PK scene "
+         "even if spectators, penalty spot, and exact dive direction are not simultaneously visible. "
+         "A real medical consultation is relevant for the doctor decision chapter; "
+         "a hospital building by itself is not. A political Oval Office meeting is NOT a "
+         "generic workplace decision scene. Reject schematic diagrams, watermarks, "
+         "irrelevant stock photos, unrelated entities and ambiguous subjects. "
+         "Reject photos that would mislead the audience when labeled 'illustrative photograph'. "
+         "Do not assert the photo documents the cited experiment. "
+         "Narration: "+scene["narration_text"][:250]+
+         "\nCORE VISUAL SUBJECT (must be visibly present): "+reference+
+         "\nOriginal detailed request (optional props, not mandatory): "+scene.get("photo_subject","")+
+         "\nPhoto filename: "+candidate["title"]+
+         "\nFile description: "+candidate.get("description","")[:190]+
+         "\nReturn is_match true only for clear visible core-subject matches "
+         "with confidence >=0.85. Provide a grounded actual_visible_subject and brief reason.")
  response=client.responses.create(model=MODEL,input=[{"role":"user","content":[
    {"type":"input_text","text":prompt},
    {"type":"input_image","image_url":"data:image/jpeg;base64,"+base64.b64encode(image).decode("ascii"),"detail":"low"}
@@ -100,6 +148,7 @@ def select(board,out,max_photos=18,max_vision_calls=30):
  out=Path(out);out.mkdir(parents=True,exist_ok=True)
  (out/"photos").mkdir(exist_ok=True)
  scenes=board["scenes"]
+ promoted=promote_relevant_photo_scenes(scenes,limit=16)
  scene_stats=[];accepted=[];usage=[];rejections=[];fallbacks=[]
  uses=Counter();call_count=0
  for s in scenes:
@@ -128,7 +177,7 @@ def select(board,out,max_photos=18,max_vision_calls=30):
     found={"scene":s["id"],"file":str(fname),"sha256":hashlib.sha256(raw).hexdigest(),
      "source_page":c["source_page"],"title":c["title"],"author":c.get("author",""),
      "license":c["license"],"license_url":c.get("license_url",""),
-     "visual_verification":verdict,"model":meter["model_returned"]}
+     "visual_verification":verdict,"model":meter["model_returned"],"photo_role":"illustrative_footage"}
     uses[c["source_page"]]+=1
     break
    except Exception as e:
@@ -153,7 +202,7 @@ def select(board,out,max_photos=18,max_vision_calls=30):
          "vision_usage":{"input_tokens":sum(x["usage"]["input_tokens"] for x in usage),
             "output_tokens":sum(x["usage"]["output_tokens"] for x in usage),
             "estimated_cost_usd":round(sum(x["usage"]["estimated_cost_usd"] for x in usage),6)},
-         "vision_log":usage,
+         "vision_log":usage,"promoted_photo_scenes":promoted,
          "limitations":["Vision matching is model judgment and must be visually checked by the user.",
            "Only Commons per-file CC0/Public Domain metadata is accepted.",
            "Unverified or mismatched images are excluded; diagrams are displayed instead."]}
@@ -162,7 +211,7 @@ def select(board,out,max_photos=18,max_vision_calls=30):
  qa={"passed":True,"photographs_accepted":len(accepted),
      "photo_scene_count":len(accepted),"photo_fallback_scene_count":len(fallbacks),
      "license_failures":0,"unverified_photographs_used":0,
-     "vision_requests":call_count,"requests_capped":call_count<=max_vision_calls}
+     "vision_requests":call_count,"requests_capped":call_count<=max_vision_calls,"promoted_photo_scenes":len(promoted)}
  (out/"qa_photos.json").write_text(json.dumps(qa,ensure_ascii=False,indent=2),encoding="utf8")
  print(json.dumps(qa,ensure_ascii=False),flush=True)
  return board,ledger,qa
