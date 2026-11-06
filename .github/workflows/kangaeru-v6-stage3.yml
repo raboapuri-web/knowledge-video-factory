@@ -1,0 +1,46 @@
+name: Kangaeru Yoru v6 stage 3 CC0 materials
+on:
+  push:
+    branches: [kangaeru-yoru-standalone-v4-20261105]
+    paths:
+      - 'standalone_kangaeru_v6/materials.py'
+      - 'standalone_kangaeru_v6/tests/test_materials.py'
+      - '.github/workflows/kangaeru-v6-stage3.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  keyless_materials:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install free dependencies
+        run: |
+          python3 -m pip install -r standalone_kangaeru_v4/requirements.txt
+      - name: Material selection and CC0/PD enforcement tests
+        run: |
+          python3 -m py_compile standalone_kangaeru_v6/materials.py
+          python3 -m unittest discover -s standalone_kangaeru_v6/tests -p test_materials.py -v
+      - name: Generate scenes and search Wikimedia Commons without keys
+        run: |
+          python3 standalone_kangaeru_v6/storyboard.py \
+            --input standalone_kangaeru_v6/gk_source.json \
+            --output standalone_kangaeru_v6/output/gk/storyboard.json
+          python3 standalone_kangaeru_v6/materials.py \
+            --board standalone_kangaeru_v6/output/gk/storyboard.json \
+            --output-dir standalone_kangaeru_v6/output/gk
+      - name: Save photos, license ledger and fallback decisions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v6-stage3-gk-licensed-materials
+          path: |
+            standalone_kangaeru_v6/output/gk/storyboard.json
+            standalone_kangaeru_v6/output/gk/storyboard_with_assets.json
+            standalone_kangaeru_v6/output/gk/qa_materials.json
+            standalone_kangaeru_v6/output/gk/qa_storyboard.json
+            standalone_kangaeru_v6/output/gk/materials.json
+            standalone_kangaeru_v6/output/gk/photos/*.jpg
+          if-no-files-found: warn
+          retention-days: 14
