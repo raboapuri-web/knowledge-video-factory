@@ -145,7 +145,7 @@ jobs:
         with:
           node-version: '22'
       - name: Install ffmpeg
-        run: sudo apt-get install -y -qq ffmpeg
+        run: timeout 300 sudo apt-get install -y -qq ffmpeg
       - name: Download chapter segments
         uses: actions/download-artifact@v4
         with:
