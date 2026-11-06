@@ -1,0 +1,49 @@
+name: Kangaeru Yoru v7 replay saved GPT output NO API
+on:
+  push:
+    branches:
+      - kangaeru-yoru-v7-design-20261106
+    paths:
+      - 'standalone_kangaeru_v7/replay_api.py'
+      - '.github/workflows/kangaeru-v7-replay.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  replay_saved_four_scenes:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download previous paid-model output, never request again
+        uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-gpt56-terra-gk-four-scene-gate2
+          run-id: 42164840742
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v7/output/ai_gk_4/
+      - name: Install keyless local SVG renderer
+        run: python -m pip install --quiet Pillow cairosvg requests
+      - name: Install Noto Japanese serif and sans fonts
+        run: |
+          mkdir -p "$HOME/.local/share/fonts"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTF/Japanese/NotoSerifCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf"
+          test "$(stat -c%s "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf")" -gt 1000000
+          test "$(stat -c%s "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf")" -gt 1000000
+          fc-cache -f
+          case "$(fc-match -f '%{family}' 'Noto Serif CJK JP')" in *Noto*) ;; *) exit 1;; esac
+      - name: Strictly reuse model output and render Gate 2 four images
+        run: |
+          python standalone_kangaeru_v7/replay_api.py --artifact-dir standalone_kangaeru_v7/output/ai_gk_4/
+      - name: Upload model usage, four frames and review packet
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-offline-replay-gate2-4scenes
+          path: standalone_kangaeru_v7/output/ai_gk_4/
+          if-no-files-found: warn
+          retention-days: 14
