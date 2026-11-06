@@ -31,6 +31,8 @@ jobs:
           q=json.loads(next(root.rglob('qa_photos.json')).read_text(encoding='utf8'))
           m=json.loads(next(root.rglob('photo_ledger.json')).read_text(encoding='utf8'))
           print('PHOTO_QA',json.dumps(q,ensure_ascii=False))
+          for x in m.get('photos',[]):
+            print('ACCEPTED',json.dumps({'scene':x.get('scene'),'title':x.get('title'),'license':x.get('license'),'confidence':x['visual_verification'].get('confidence'),'visible_subject':x['visual_verification'].get('actual_visible_subject')},ensure_ascii=False))
           for x in m.get('rejected',[])[:30]:
             print('REJECT',json.dumps(x,ensure_ascii=False))
           print('VISION_API_USAGE',json.dumps(m['vision_usage'],ensure_ascii=False))
