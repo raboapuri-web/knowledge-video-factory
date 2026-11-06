@@ -18,9 +18,10 @@ jobs:
     timeout-minutes: 55
     env:
       VOICEVOX_URL: http://127.0.0.1:50021
-      VOICEVOX_SPEAKER_NAME: 四国めたん
+      VOICEVOX_SPEAKER_NAME: 青山龍星
       VOICEVOX_STYLE: ノーマル
       VOICEVOX_SPEED: '1.06'
+      VOICEVOX_INTONATION: '1.02'
     steps:
       - uses: actions/checkout@v4
       - name: Install rendering dependencies
