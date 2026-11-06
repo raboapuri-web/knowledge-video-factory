@@ -58,7 +58,7 @@ jobs:
         with:
           node-version: '22'
       - name: Install system packages
-        run: sudo apt-get install -y -qq fonts-noto-cjk fontconfig ffmpeg
+        run: timeout 300 sudo apt-get install -y -qq fonts-noto-cjk fontconfig ffmpeg
       - name: Reuse stable Motion Canvas rendering runtime from V124 and chapter renderer from V146
         run: |
           mkdir -p src src/lib scripts
