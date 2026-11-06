@@ -91,7 +91,7 @@ for (const ch of CHAPTERS) {
       '',
     ].join('\n');
     mkdirSync(join(ROOT, 'src', 'projects'), {recursive: true});
-    writeFileSync(join(ROOT, 'src', 'projects', ch + '.ts'), p
+    writeFileSync(join(ROOT, 'src', 'projects', ch + '.ts'), projectTs.join('\n'));
   }
 }
 
