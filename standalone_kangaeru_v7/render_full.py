@@ -43,7 +43,7 @@ def picture_svg(scene,ledger,subtitle):
     f'<image x="0" y="100" width="1280" height="480" preserveAspectRatio="xMidYMid slice" href="data:image/jpeg;base64,{photo}"/>',
     '<rect x="0" y="100" width="1280" height="480" fill="url(#overlay)"/>']
  s+=brand.top()[1:]
- s+=[brand.tag_text(93,172,"COMMONS / VERIFIED PD–CC0",21,brand.GOLD,family="sans"),
+ s+=[brand.tag_text(93,172,"イメージ写真 / COMMONS VERIFIED CC0–PD",21,brand.GOLD,family="sans"),
      brand.tag_text(94,283,title,52,brand.IVORY),
      brand.line(94,329,442,329,brand.GOLD,3),
      brand.tag_text(96,550,"SOURCE: WIKIMEDIA COMMONS",17,brand.MUTED,family="sans")]
