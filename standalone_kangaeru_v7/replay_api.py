@@ -28,9 +28,30 @@ def replay(path):
   if s.get("composition")!="data_bars" and s.get("values"):
    fixes.append({"id":s["id"],"nonrendered_numeric_values_removed":s["values"]})
    s["values"]=[]
-  # Never invent labels; if the AI created an incomplete comparison/flow,
-  # downgrade only the presentation, preserve the exact original AI response.
+  # Display percentages only once: the bars carry the source-grounded values,
+  # so duplicated percentages in chart label text are unnecessary.
+  if s.get("composition")=="data_bars":
+   labels=(s.get("display_text") or {}).get("labels") or []
+   values=s.get("values") or []
+   if len(labels)==len(values):
+    cleaned=[]
+    for label,v in zip(labels,values):
+     suffixes=(f"{v}％",f"{v}%")
+     current=label
+     for ending in suffixes:
+      if current.endswith(ending):
+       current=current[:-len(ending)].rstrip()
+     cleaned.append(current)
+    if cleaned!=labels and all(cleaned):
+     fixes.append({"id":s["id"],"duplicate_percentages_removed_from_bar_labels":labels})
+     s["display_text"]["labels"]=cleaned
+  # Two distinct choices were already returned. If a third annotation is supplied,
+  # retain the two explicit choices, but do not invent a missing choice.
   labels=(s.get("display_text") or {}).get("labels") or []
+  if s.get("composition")=="split_choice" and len(labels)>2:
+   fixes.append({"id":s["id"],"extra_label_omitted_from_split":labels[2:]})
+   s["display_text"]["labels"]=labels[:2]
+   labels=labels[:2]
   required={"split_choice":2,"causal_flow":3}.get(s.get("composition"))
   if required and len(labels)!=required:
    original=s["composition"]
@@ -38,9 +59,9 @@ def replay(path):
    s["composition"]=replacement
    s["display_text"]["labels"]=[]
    fixes.append({"id":s["id"],"layout_downgrade":original+" => "+replacement,
-                 "reason":"AI omitted a mandatory semantic label; nothing fabricated"})
+                 "reason":"AI returned insufficient labels; none were invented"})
    print(json.dumps({"scene":s["id"],"layout_change":original+" => "+replacement,
-                     "reason":"insufficient labels for diagram"},ensure_ascii=False))
+                     "reason":"insufficient labels"},ensure_ascii=False))
  (root/"replay_normalization_audit.json").write_text(json.dumps(fixes,ensure_ascii=False,indent=2),encoding="utf-8")
  (root/"replayed_visual_plan.json").write_text(json.dumps(generated,ensure_ascii=False,indent=2),encoding="utf-8")
  plan=planner.merge_plan(prepared,generated)
