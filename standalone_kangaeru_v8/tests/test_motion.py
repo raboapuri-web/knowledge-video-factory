@@ -54,7 +54,7 @@ class MotionCatalogueTests(unittest.TestCase):
   self.assertIn("CHOICE  /  01",rendered)
   self.assertIn("fill=",rendered)
   self.assertNotIn('cx="924" cy="444"',rendered)
-  self.assertNotIn("L-17 34 L-7 37",rendered)
+  self.assertIn('fill="#c6a56e"',rendered)  # solid-filled limbs, not disjoint 1px strokes
  def test_every_graph_template(self):
   s=base_scene("data_bars")
   for name in motion.CATALOGUE["data"]:
