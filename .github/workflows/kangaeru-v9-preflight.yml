@@ -1,0 +1,67 @@
+name: Kangaeru Yoru v9 keyless cue design preflight
+on:
+  push:
+    branches: [kangaeru-yoru-v9-cue-sync-20261106]
+    paths:
+      - 'standalone_kangaeru_v9/cue_plan.py'
+      - 'standalone_kangaeru_v9/voice_mora.py'
+      - 'standalone_kangaeru_v9/cue_visual.py'
+      - 'standalone_kangaeru_v9/tests/test_v9.py'
+      - 'standalone_kangaeru_v9/preflight.py'
+      - '.github/workflows/kangaeru-v9-preflight.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  offline_qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-gk-7-context-vetted-photos-5-fallbacks
+          run-id: 42170721259
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v7/output/full_gk_render
+      - name: Install no-API preview and Japanese typography
+        run: |
+          python -m pip install --quiet Pillow requests cairosvg
+          mkdir -p "$HOME/.local/share/fonts"
+          curl --fail --location --silent --show-error --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTF/Japanese/NotoSerifCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf"
+          fc-cache -f
+      - name: Validate all cue contracts, approximate mora mapping, and 24 v8 motions
+        run: |
+          python -m py_compile standalone_kangaeru_v9/*.py
+          python -m unittest discover -s standalone_kangaeru_v9/tests -v
+          python - <<'PY'
+          import sys,json,pathlib
+          sys.path.insert(0,'standalone_kangaeru_v9')
+          import cue_plan
+          p=pathlib.Path('standalone_kangaeru_v7/output/full_gk_render/storyboard_with_photos.json')
+          board=json.loads(p.read_text(encoding='utf8'))
+          r=cue_plan.prepare(board)
+          print(json.dumps(r,ensure_ascii=False))
+          assert r['source_scene_count']==71
+          assert r['source_cue_count']==224
+          PY
+      - name: Render full 71-scene first-frame contact sheets without AI/VOICEVOX
+        run: |
+          python standalone_kangaeru_v9/preflight.py \
+            --board standalone_kangaeru_v7/output/full_gk_render/storyboard_with_photos.json \
+            --ledger standalone_kangaeru_v7/output/full_gk_render/photo_ledger.json \
+            --out standalone_kangaeru_v9/output/offline_preflight
+      - name: Upload source-safe preflight 71 screens, sheets and QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v9-offline-71scene-preflight
+          path: |
+            standalone_kangaeru_v9/output/offline_preflight/contact_sheet_*.jpg
+            standalone_kangaeru_v9/output/offline_preflight/qa_preflight.json
+          if-no-files-found: warn
+          retention-days: 14
