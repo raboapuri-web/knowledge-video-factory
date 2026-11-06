@@ -92,6 +92,9 @@ def diagram(scene):
     tag_text(635,403,scene.get("photo_subject","")[:24],18,MUTED,"middle",family="sans")])
   else:out+=icon(scene,635,338)
  else:raise ValueError("Unknown editorial composition")
+ if scene.get("primary_visual")=="photo" and family!="single_symbol":
+  # A photo query is NOT a photographed scene; never imply unverified retrieval.
+  out.append(tag_text(1168,544,"写真候補・未取得",20,GOLD,"end",family="sans",spacing=0))
  return out
 def validate(scene):
  assert scene.get("composition") in FAMILIES
