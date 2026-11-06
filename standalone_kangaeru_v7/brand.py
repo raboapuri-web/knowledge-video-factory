@@ -60,27 +60,50 @@ def diagram(scene):
   out+=icon(scene,950,283)
  elif family=="split_choice":
   if len(labels)!=2:raise ValueError("Split requires two semantic labels")
-  out+=[tag_text(98,150,h,46),line(640,197,640,520,GOLD,1.6),
-       tag_text(346,279,labels[0],55,IVORY,"middle"),tag_text(932,279,labels[1],55,IVORY,"middle"),
-       circle(346,381,76,GOLD,2),circle(932,381,76,GOLD,2),line(230,495,465,495),line(810,495,1050,495)]
+  # No empty circles: a meaningful A/B typographic/route comparison is visible.
+  out += [tag_text(94,152,h,45),line(640,191,640,529,HAIR,1.4),
+          tag_text(120,248,"01  /  ACTION",22,GOLD,family="sans"),
+          tag_text(710,248,"02  /  ALTERNATIVE",22,GOLD,family="sans"),
+          tag_text(335,356,labels[0],47,IVORY,"middle"),
+          tag_text(925,356,labels[1],47,IVORY,"middle"),
+          line(140,406,522,406,GOLD,3),line(751,406,1135,406,GOLD,3)]
+  if "飛" in labels[0] or "左" in labels[0] or "右" in labels[0]:
+   # Diving keeper and flying ball; deliberate, not abstract decorative circle.
+   out += ['<circle cx="330" cy="460" r="10" fill="none" stroke="'+GOLD+'" stroke-width="3"/>',
+           line(344,452,393,430,GOLD,5),line(369,442,404,410,GOLD,4),
+           line(369,442,400,474,GOLD,4),circle(431,417,9,IVORY,2)]
+  else:
+   out += [line(205,459,448,459,GOLD,4),
+           '<path d="M431 446 L448 459 L431 472" fill="none" stroke="'+GOLD+'" stroke-width="4"/>']
+  if "留" in labels[1] or "残" in labels[1] or "立" in labels[1]:
+   out += [circle(924,444,10,GOLD,2),line(924,454,924,494,GOLD,4),
+           line(924,462,903,480,GOLD,4),line(924,462,945,480,GOLD,4),
+           line(924,494,907,517,GOLD,4),line(924,494,941,517,GOLD,4)]
+  else:
+   out += [line(832,459,1051,459,GOLD,4),line(1051,459,1051,490,GOLD,4)]
  elif family=="data_bars":
   if len(labels)<2:raise ValueError("Bars require >=2 labels")
   out.append(tag_text(100,150,h,45))
   values=scene.get("values",[])
   if len(values)!=len(labels) or not all(isinstance(v,(int,float)) and 0<=v<=100 for v in values):raise ValueError("Bars need grounded 0-100 values")
   for i,(label,v) in enumerate(zip(labels,values)):
-   y=259+i*112
-   out.extend([tag_text(105,y,label,27,IVORY,family="sans"),f'<rect x="325" y="{y-25}" width="625" height="24" fill="#27231d"/>',
-               f'<rect x="325" y="{y-25}" width="{625*v/100:.2f}" height="24" fill="{GOLD}"/>',
-               tag_text(976,y,str(v)+"%",32,GOLD,family="sans")])
+   y=252+i*112
+   out.extend([tag_text(295,y,label,24,IVORY,"end",family="sans",spacing=0),
+               f'<rect x="342" y="{y-25}" width="602" height="24" fill="#27231d"/>',
+               f'<rect x="342" y="{y-25}" width="{602*v/100:.2f}" height="24" fill="{GOLD}"/>',
+               tag_text(998,y,str(v)+"%",32,GOLD,family="sans")])
  elif family=="causal_flow":
   if len(labels)!=3:raise ValueError("Causal flow needs 3 nodes")
   out.append(tag_text(105,153,h,44))
-  for i,(x,lbl) in enumerate(zip((235,640,1045),labels)):
-   out.extend([circle(x,328,75,GOLD,1.8),tag_text(x,345,lbl,30,IVORY,"middle",family="sans",spacing=0)])
+  # Large nodes contain ONLY step numerals; captions are far below circles and arrows.
+  xs=(235,640,1045)
+  for i,(x,lbl) in enumerate(zip(xs,labels)):
+   out.extend([circle(x,303,64,GOLD,1.8),
+               tag_text(x,321,f"{i+1:02d}",48,GOLD,"middle",family="sans",spacing=1),
+               tag_text(x,449,lbl,28,IVORY,"middle",family="sans",spacing=.1)])
    if i<2:
-    x2=x+150
-    out+=[line(x2,328,x+325,328,GOLD,2),f'<path d="M{x+309} 316 L{x+325} 328 L{x+309} 340" fill="none" stroke="{GOLD}" stroke-width="2"/>']
+    out += [line(x+81,303,x+313,303,GOLD,2),
+            f'<path d="M{x+299} 294 L{x+313} 303 L{x+299} 312" fill="none" stroke="{GOLD}" stroke-width="2"/>']
  elif family=="single_symbol":
   out.append(tag_text(99,162,h,49))
   out.extend([circle(634,350,178,HAIR,1.5),circle(634,350,139,GOLD,2),line(634,172,634,528,HAIR,1)])
