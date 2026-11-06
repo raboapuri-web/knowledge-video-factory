@@ -131,7 +131,7 @@ def dynamic_chart(fragment,setting,local,values):
   if '<rect x="342"' in fragment and 'fill="'+brand.GOLD+'"' in fragment:
    def width_replace(match):
     full=float(match.group(1))
-    scale=p if name!="pulse_focus" else .985+.015*math.sin(min(1,local/max(.001,setting["duration"]))*math.pi)
+    scale=p if name!="pulse_focus" else .92+.08*p+.022*math.sin(min(1,local/max(.001,setting["duration"]))*math.pi)
     return 'width="'+f"{full*scale:.2f}"+'"'
    fragment=re.sub(r'width="(\d+(?:\.\d+)?)"',width_replace,fragment,count=1)
  if name in ("count_up","bar_and_count"):
