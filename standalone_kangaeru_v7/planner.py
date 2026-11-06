@@ -111,7 +111,8 @@ def merge_plan(prepared,response,full_reference=""):
    except ValueError:
     replacement=icons.fallback(p["icon_spec"])
     if replacement is None:
-     # Do not pretend there is a semantically justified default.
+     # No arbitrary replacement: reject an icon-primary scene, otherwise omit it.
+     if p["primary_visual"]=="icon":raise ValueError("No usable semantically matched icon for "+raw["id"])
      scene["icon_spec"]=None
     else:scene["icon_spec"]=replacement
   brand.validate(scene)
@@ -161,6 +162,16 @@ def main():
  # No unapproved network, secrets remain exclusively in the process environment.
  plan=call_model(result["scenes"],os.environ.get("OPENAI_MODEL",MODEL))
  merged=merge_plan(result,plan)
+ icon_dir=out.parent/"icons"/"generated"
+ registry=[]
+ for scene in merged["scenes"]:
+  spec=scene.get("icon_spec")
+  if spec:
+   target=icons.export_icon(spec,icon_dir/(scene["id"]+".svg"))
+   registry.append({"scene_id":scene["id"],"source":spec.get("origin","generated"),"concept":spec["concept"],
+                    "meaning":spec["meaning"],"svg_file":str(target)})
+ (out.parent/"icon_registry.json").write_text(json.dumps(registry,ensure_ascii=False,indent=2),encoding="utf8")
+ merged["qa"]["icon_files"]=len(registry)
  merged["qa"]["api_executed"]=True
  out.write_text(json.dumps(merged,ensure_ascii=False,indent=2),encoding="utf8")
  print(json.dumps(merged["qa"],ensure_ascii=False))
