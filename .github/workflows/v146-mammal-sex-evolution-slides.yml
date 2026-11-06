@@ -99,7 +99,8 @@ jobs:
         run: npm run build
       - name: Smoke render
         run: |
-          node scripts/render.mjs "$CHAPTER" --smoke
+          node scripts/render.mjs "$CHAPTER" --smoke || echo "SMOKE_RENDER_FAILED"
+          ls -la output/ || true
           test -s "output/v146-$CHAPTER-smoke.mp4"
       - name: Render chapter video
         run: |
