@@ -83,7 +83,7 @@ def main():
  description="なぜ植物は緑なのか？\n\n葉の色から、当たり前を問い直す短い映像試作。\n\n"
  description+="写真素材（CC0／出典）\n"
  for x in materials.values():description+="- "+x["subject"]+" / "+x["author"]+": "+x["source_page"]+"\n"
- description+="\nナレーション: VOICEVOX:四国めたん（ノーマル）。音声ライブラリ規約に従ったクレジットです。\n"
+ description+="\nナレーション: VOICEVOX:"+os.getenv("VOICEVOX_SPEAKER_NAME","青山龍星")+"（"+os.getenv("VOICEVOX_STYLE","ノーマル")+"）。\n"
  (out/"description.md").write_text(description,encoding="utf8")
  if args.no_render:return
  final=render.render(board,timeline,materials,out)
