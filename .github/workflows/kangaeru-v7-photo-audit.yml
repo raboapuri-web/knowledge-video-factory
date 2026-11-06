@@ -1,0 +1,33 @@
+name: Kangaeru Yoru v7 PHOTO-only result audit
+on:
+  push:
+    branches: [kangaeru-yoru-v7-design-20261106]
+    paths: ['.github/workflows/kangaeru-v7-photo-audit.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  photo_audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-full-gk-photo-rights-and-visual-match
+          run-id: 42169022442
+          github-token: ${{ github.token }}
+          path: audited/
+      - name: Print actual photograph counts and source suitability only
+        run: |
+          python3 - <<'PY'
+          import pathlib,json
+          root=pathlib.Path('audited')
+          p=next(root.rglob('qa_photos.json'))
+          q=json.loads(p.read_text(encoding='utf8'))
+          m=json.loads(next(root.rglob('photo_ledger.json')).read_text(encoding='utf8'))
+          print('PHOTO_QA',json.dumps(q,ensure_ascii=False))
+          for x in m['photos']:
+            print('ACCEPTED_IMAGE',json.dumps({'scene':x['scene'],'title':x['title'],'license':x['license'],'confidence':x['visual_verification']['confidence'],'source_page':x['source_page']},ensure_ascii=False))
+          print('PHOTO_FALLBACK_COUNT',len(m['fallbacks']))
+          print('VISION_API_USAGE',json.dumps(m['vision_usage'],ensure_ascii=False))
+          PY
