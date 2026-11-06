@@ -46,7 +46,9 @@
 - Python: `standalone_kangaeru_v7/planner.py::call_model()` が環境変数の存在と`KANGAERU_V7_API_APPROVED=YES`を検査した後でのみ `OpenAI(api_key=...)` を生成する。
 - API: `POST /v1/responses`、モデル **`gpt-5.6-terra`**、Structured Outputsの `json_schema`。画像生成APIを別途呼び出さない。
 - 使用料はテキストトークンに基づく**従量課金**。GitHub Actions、Pythonソースでは設定したSecretをログに出さないがAPI使用料は発生し得る。
-- ワークフローは**手動 `workflow_dispatch` 限定**、`approve_api_use`は既定false。ユーザーが明示的にtrueを選んだ場合に4シーンだけを対象にする。
+- APIワークフローは自動では起動しない。GitHub仕様上、新規branchだけにある `workflow_dispatch` はUIでRun workflowボタンが表示されない場合がある。mainには追加しない。
+- **branch-only手動承認の確実な方法**: Secret登録を終え、API利用を明示的に承認する段階で、GitHub UIの `kangaeru-yoru-v7-design-20261106` ブランチへ `standalone_kangaeru_v7/approval/authorize.txt` を新規作成する。本文を一行だけ `I_APPROVE_OPENAI_4_SCENES` として、コミットメッセージを**正確に `AUTHORIZE_V7_API_4_SCENES`** とする。ファイルのpushによって、最大4シーンのAPIジョブだけが起動する。**今回の作業ではその承認ファイルは作らない**。
+- 既存のdefaultブランチに同名のワークフローがある等の条件でUIの `workflow_dispatch` が使える場合でも、`approve_api_use=true` の明示承認が必要。既定false。
 - キー未設定ならAPI呼び出しより前の段階で停止する。
 
 ローカル実行でも環境変数 `OPENAI_API_KEY` をプロセスへ渡す。GitHubへアップロードする`.env`を作成しない。ローカルではOSのシークレット保管庫などから安全に注入する。
