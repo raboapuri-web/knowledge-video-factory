@@ -1,0 +1,142 @@
+name: Kangaeru Yoru v7 FULL goalkeeper MP4 1080p30
+on:
+  push:
+    branches: [kangaeru-yoru-v7-design-20261106]
+    paths:
+      - '.github/workflows/kangaeru-v7-full-video.yml'
+      - 'standalone_kangaeru_v7/render_full.py'
+      - 'standalone_kangaeru_v7/photo_v7.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  full_episode:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 130
+    env:
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_NAME: 青山龍星
+      VOICEVOX_STYLE: ノーマル
+      VOICEVOX_SPEED: '1.06'
+      VOICEVOX_INTONATION: '1.02'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download finalized full AI storyboard and usage from successful Run 42168254310
+        uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-full-gk-gpt-storyboard-and-usage
+          run-id: 42168254310
+          github-token: ${{ github.token }}
+          path: standalone_kangaeru_v7/output/full_gk_plan
+      - name: Install keyless render dependencies and check encoder
+        run: |
+          python -m pip install --quiet requests Pillow cairosvg openai
+          ffmpeg -version | head -1
+          ffprobe -version | head -1
+      - name: Install actual Japanese Noto Mincho and Gothic fonts
+        run: |
+          mkdir -p "$HOME/.local/share/fonts"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTF/Japanese/NotoSerifCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --retry 2 --max-time 120 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf --output "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf"
+          test "$(stat -c%s "$HOME/.local/share/fonts/NotoSerifCJKjp-Regular.otf")" -gt 1000000
+          test "$(stat -c%s "$HOME/.local/share/fonts/NotoSansCJKjp-Regular.otf")" -gt 1000000
+          fc-cache -f
+          case "$(fc-match -f '%{family}' 'Noto Serif CJK JP')" in *Noto*) ;; *) exit 1;; esac
+          case "$(fc-match -f '%{family}' 'Noto Sans CJK JP')" in *Noto*) ;; *) exit 1;; esac
+      - name: Verify OpenAI Secret presence before charged image matching
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          test -n "$OPENAI_API_KEY" || { echo 'OpenAI Secret absent. No image requests made.'; exit 1; }
+      - name: Collect CC0/PD photographs with image-content relevance verification
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          KANGAERU_V7_FULL_APPROVED: 'YES'
+        run: |
+          python standalone_kangaeru_v7/photo_v7.py \
+            --plan standalone_kangaeru_v7/output/full_gk_plan/storyboard.json \
+            --out standalone_kangaeru_v7/output/full_gk_render
+      - name: Save exact photo choices and usage, even if later video fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-full-gk-photo-rights-and-visual-match
+          path: |
+            standalone_kangaeru_v7/output/full_gk_render/photo_ledger.json
+            standalone_kangaeru_v7/output/full_gk_render/qa_photos.json
+            standalone_kangaeru_v7/output/full_gk_render/storyboard_with_photos.json
+            standalone_kangaeru_v7/output/full_gk_render/photos/*.jpg
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Start official CPU VOICEVOX and verify Aoyama normal Talk ID 13
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name ryusei-v7 -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          python - <<'PY'
+          import time,requests,sys
+          base='http://127.0.0.1:50021'
+          for i in range(130):
+              try:
+                  r=requests.get(base+'/speakers',timeout=4)
+                  r.raise_for_status()
+                  if r.json():break
+              except Exception:pass
+              time.sleep(3)
+          else:raise RuntimeError('VOICEVOX Engine failed to become ready')
+          sys.path.insert(0,'standalone_kangaeru_v4')
+          import core
+          actual=core.resolve_voicevox_speaker(base,'青山龍星','ノーマル')
+          assert actual==13
+          print('VOICEVOX verified Aoyama Ryusei / Normal / Talk ID 13')
+          PY
+      - name: Generate full 1080p30 documentary MP4 with captions, music-free audio and QA
+        run: |
+          python standalone_kangaeru_v7/render_full.py \
+            --board standalone_kangaeru_v7/output/full_gk_render/storyboard_with_photos.json \
+            --ledger standalone_kangaeru_v7/output/full_gk_render/photo_ledger.json \
+            --out standalone_kangaeru_v7/output/full_gk_render \
+            --voicevox-url http://127.0.0.1:50021
+      - name: Consolidate 4-scene + full-plan + photo vision token and cost totals
+        if: always()
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('standalone_kangaeru_v7/output/full_gk_plan/api_usage.json')
+          out=pathlib.Path('standalone_kangaeru_v7/output/full_gk_render')
+          d=json.loads(p.read_text()) if p.exists() else {'totals':{}}
+          photo=out/'photo_ledger.json'
+          meter=json.loads(photo.read_text()).get('vision_usage',{}) if photo.exists() else {}
+          pre={'calls':1,'input_tokens':1768,'output_tokens':1393,'estimated_cost_usd':0.020252}
+          plan=d.get('totals',{})
+          totals={'prior_four_scene':pre,'full_storyboard':plan,'photo_visual_checks':meter,
+           'total_estimated_usd':round(pre['estimated_cost_usd']+plan.get('cost_estimate_usd',0)+meter.get('estimated_cost_usd',0),6),
+           'total_text_plan_calls':pre['calls']+plan.get('calls',0)}
+          out.mkdir(parents=True,exist_ok=True)
+          (out/'combined_api_usage.json').write_text(json.dumps(totals,ensure_ascii=False,indent=2))
+          print(json.dumps(totals,ensure_ascii=False))
+          PY
+      - name: Upload completed documentary, visual sheets, srt, rights and final QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-gk-full-1080p30-aoyama-final
+          path: |
+            standalone_kangaeru_v7/output/full_gk_render/final.mp4
+            standalone_kangaeru_v7/output/full_gk_render/qa_final.json
+            standalone_kangaeru_v7/output/full_gk_render/combined_api_usage.json
+            standalone_kangaeru_v7/output/full_gk_render/qa_photos.json
+            standalone_kangaeru_v7/output/full_gk_render/photo_ledger.json
+            standalone_kangaeru_v7/output/full_gk_render/storyboard.json
+            standalone_kangaeru_v7/output/full_gk_render/timeline.json
+            standalone_kangaeru_v7/output/full_gk_render/captions.srt
+            standalone_kangaeru_v7/output/full_gk_render/description.md
+            standalone_kangaeru_v7/output/full_gk_render/thumbnail.jpg
+            standalone_kangaeru_v7/output/full_gk_render/contact_sheet_*.jpg
+            standalone_kangaeru_v7/output/full_gk_plan/qa_storyboard.json
+            standalone_kangaeru_v7/output/full_gk_plan/icon_registry.json
+            standalone_kangaeru_v7/output/full_gk_plan/api_usage.json
+          if-no-files-found: warn
+          retention-days: 14
