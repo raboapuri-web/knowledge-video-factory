@@ -67,7 +67,16 @@ Use a meaningful mix of hero_question / split_choice / data_bars / causal_flow /
 Split choice only if there are TWO explicit different choices in the content.
 For primary_visual=photo, propose an exact observable concrete subject and search phrase,
 never vague office meetings or unrelated institutional buildings. No automatic image adoption here.
-No forcing icons or photos. No other channel's mascots, banners or colors.
+For this four-scene goalkeeper review, include at least ONE newly generated, accurate
+icon_spec depicting a concrete subject truly mentioned (e.g. a goal, football, or diving
+goalkeeper), ideally in hero_question or single_symbol where the SVG will be legible.
+Use data_bars to visualize percentages only for a scene containing BOTH exact rates
+13.4 and 33.3; do not apply it to the 93.7 statistic alone.
+If the spectators' judgment scene calls for real photograph, specify precise visible
+GK/stadium/audience subject and photo_query. That image is ONLY a search request;
+the frame renderer must show an explicit unverified placeholder rather than pretending
+a real internet photograph was retrieved.
+No forcing other icons or photos. No other channel's mascots, banners or colors.
 Return each input id exactly once in original order."""
 def split_subtitles(narration,limit=20):
  # Narrative text preserved: only line breaks inserted. Real timestamp alignment is deferred to TTS.
@@ -216,6 +225,8 @@ def main():
                     "meaning":spec["meaning"],"svg_file":str(target)})
  (out.parent/"icon_registry.json").write_text(json.dumps(registry,ensure_ascii=False,indent=2),encoding="utf8")
  merged["qa"]["icon_files"]=len(registry)
+ if len(merged["scenes"])==4 and sum(x.get("source")=="generated" for x in registry)<1:
+  raise ValueError("No original semantic SVG icon was generated for four-scene review")
  merged["qa"]["api_executed"]=True
  merged["qa"]["model_returned"]=api["usage"]["model_returned"]
  merged["qa"]["estimated_cost_usd"]=api["usage"]["estimated_cost_usd"]
