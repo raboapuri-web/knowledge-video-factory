@@ -21,10 +21,15 @@ jobs:
           python-version: '3.11'
       - name: Install fast keyless SVG preview renderer
         run: python -m pip install cairosvg pillow --quiet
-      - name: Record available Japanese font family
+      - name: Install required Japanese editorial fonts
         run: |
-          fc-match 'Noto Serif CJK JP' | head -1
-          fc-match 'Noto Sans CJK JP' | head -1
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends fonts-noto-cjk
+          fc-cache -f
+          serif="$(fc-match -f '%{family}' 'Noto Serif CJK JP')"
+          sans="$(fc-match -f '%{family}' 'Noto Sans CJK JP')"
+          echo "Selected Japanese fonts: $serif | $sans"
+          case "$serif" in *Noto*) ;; *) echo 'Missing Noto Serif Japanese font'; exit 1;; esac
+          case "$sans" in *Noto*) ;; *) echo 'Missing Noto Sans Japanese font'; exit 1;; esac
       - name: Run branding and text separation regression tests
         run: |
           python3 -m py_compile standalone_kangaeru_v7/brand.py
