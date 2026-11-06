@@ -9,7 +9,7 @@ import {readFileSync, writeFileSync, mkdirSync} from 'node:fs';
 import {join, dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTERS = ['prologue', 'chapter1', 'chapter2', 'chapter3', 'epilogue'];
 const ONLY = process.argv[2] || null;
 if (ONLY && !CHAPTERS.includes(ONLY)) throw new Error('unknown chapter: ' + ONLY);
