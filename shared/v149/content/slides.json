@@ -1,7 +1,7 @@
 {"meta": {"slug": "v149-embryo-human-slides", "title": "え？僕ってまだ法律上、人間じゃないんですか？ by受精卵", "width": 1920, "height": 1080, "fps": 30, "colors": {"bg": "#111114", "paper": "#EDE8DD", "red": "#9D303B", "teal": "#397A78", "gray": "#A8A5A0"}, "chapters": ["prologue", "chapter1", "chapter2", "chapter3", "chapter4", "epilogue"], "renderUnits": 33, "specSlides": 33, "notes": "全33スライド。章題は読み上げない。10行目の台本はH列ドキュメントの完成台本。制作・出典メモは読み上げ対象外。見出しは仕様書の明朝指定をNoto Sans JPで代用。スライド33は生成り背景。"},
 "slides": [
 {"id": "01", "ch": "prologue", "heading": "プロローグ", "start": "2024年、アメリカのアラバマ州最高裁判所は、冷凍保存されていた胚について、ある法律では「子ども」に当たると判断した。", "end": "ずいぶん不思議な響きだ。", "viz": "title", "effect": "fade", "display": ["冷凍庫の中の「子ども」", "2024 ALABAMA"]},
-{"id": "02", "ch": "prologue", "heading": "プロローグ", "start": "一方、日本の民法はこう言う。「私権の享有は、出生に始まる」。簡単に言えば、権利を持つ人としてのスタートラインは、原則として生まれた瞬間だ。", "end": "では、その前はどうなのか。", "viz": "quote", "effect": "slide-right", "display": ["私権の享有は、出生に始まる"]},
+{"id": "02", "ch": "prologue", "heading": "プロローグ", "start": "一方、日本の民法はこう言う。", "end": "では、その前はどうなのか。", "viz": "quote", "effect": "slide-right", "display": ["私権の享有は、出生に始まる"]},
 {"id": "03", "ch": "prologue", "heading": "プロローグ", "start": "まだ生まれていない子が、父親を失ったことで鉄道会社に損害賠償を求めた裁判がある。", "end": "同じ生命の始まりをめぐって、裁判所はまるで違う答えを出しているように見える。", "viz": "cards", "effect": "stagger", "display": ["胎児", "七つの胚", "冷凍胚"]},
 {"id": "04", "ch": "prologue", "heading": "プロローグ", "start": "常識はこう言う。", "end": "だが、話はそんなに簡単じゃない。", "viz": "title", "effect": "fade", "display": ["「人間」の境界はどこか？"]},
 {"id": "05", "ch": "chapter1", "heading": "1. 生まれる前に父を失った子", "start": "時代は1926年。", "end": "父親を一度も見ることなく生まれてくる子だ。", "viz": "diagram", "effect": "slide-left", "display": ["1926年", "阪神電鉄踏切事故"]},
