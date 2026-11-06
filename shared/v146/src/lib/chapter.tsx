@@ -341,6 +341,7 @@ export function createChapterScene(chapter: string, data: any, timing: any) {
   const slides: any[] = (data.slides || []).filter((s: any) => s.ch === chapter);
   const timed: any[] = (timing && timing.slides) || [];
   return makeScene2D(function* (view) {
+    view.add(new Rect({width: 1920, height: 1080, fill: C_BG}));
     const layers = slides.map((s) => {
       const layer = createRef<Node>();
       view.add(
