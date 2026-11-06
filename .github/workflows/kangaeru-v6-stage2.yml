@@ -1,0 +1,38 @@
+name: Kangaeru Yoru v6 stage 2 storyboard
+on:
+  push:
+    branches: [kangaeru-yoru-standalone-v4-20261105]
+    paths:
+      - 'standalone_kangaeru_v6/storyboard.py'
+      - 'standalone_kangaeru_v6/gk_source.json'
+      - 'standalone_kangaeru_v6/tests/test_storyboard.py'
+      - '.github/workflows/kangaeru-v6-stage2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  storyboard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Syntax and unit tests
+        run: |
+          python3 -m py_compile standalone_kangaeru_v6/storyboard.py
+          python3 -m unittest discover -s standalone_kangaeru_v6/tests -p test_storyboard.py -v
+      - name: Convert complete document into script-derived scenes
+        run: |
+          python3 standalone_kangaeru_v6/storyboard.py \
+            --input standalone_kangaeru_v6/gk_source.json \
+            --output standalone_kangaeru_v6/output/gk/storyboard.json
+      - name: Upload E2E input and QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: v6-stage2-gk-storyboard
+          path: |
+            standalone_kangaeru_v6/output/gk/storyboard.json
+            standalone_kangaeru_v6/output/gk/qa_storyboard.json
+          if-no-files-found: error
+          retention-days: 14
