@@ -47,6 +47,14 @@ class MotionCatalogueTests(unittest.TestCase):
     self.assertIn("動きのある図解",b)
     self.assertIn("<g ",b)
     if name!="none":self.assertNotEqual(a,b)
+ def test_split_choice_contains_filled_semantic_figures_not_v7_stick_people(self):
+  s=base_scene("split_choice")
+  sp=motion.spec_for(s,1)
+  rendered=motion.animated_svg(s,"二つの判断",{"photos":[]},2,sp)
+  self.assertIn("CHOICE  /  01",rendered)
+  self.assertIn("fill=",rendered)
+  self.assertNotIn('cx="924" cy="444"',rendered)
+  self.assertNotIn("L-17 34 L-7 37",rendered)
  def test_every_graph_template(self):
   s=base_scene("data_bars")
   for name in motion.CATALOGUE["data"]:
