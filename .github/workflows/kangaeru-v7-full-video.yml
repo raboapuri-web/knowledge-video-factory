@@ -4,13 +4,12 @@ on:
     branches: [kangaeru-yoru-v7-design-20261106]
     paths:
       - '.github/workflows/kangaeru-v7-full-video.yml'
-      - 'standalone_kangaeru_v7/render_full.py'
-      - 'standalone_kangaeru_v7/photo_v7.py'
 permissions:
   contents: read
   actions: read
 jobs:
   full_episode:
+    if: false # Deprecated single-run pipeline; use staged photo and keyless render replay workflows.
     runs-on: ubuntu-24.04
     timeout-minutes: 130
     env:
