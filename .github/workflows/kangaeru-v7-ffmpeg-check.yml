@@ -1,0 +1,20 @@
+name: Kangaeru Yoru v7 ffmpeg dependency check NO API
+on:
+  push:
+    branches: [kangaeru-yoru-v7-design-20261106]
+    paths: ['.github/workflows/kangaeru-v7-ffmpeg-check.yml']
+permissions:
+  contents: read
+jobs:
+  codec:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Install FFmpeg plus ffprobe on clean runner
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ffmpeg
+          command -v ffmpeg
+          command -v ffprobe
+          ffmpeg -version | head -1
+          ffprobe -version | head -1
