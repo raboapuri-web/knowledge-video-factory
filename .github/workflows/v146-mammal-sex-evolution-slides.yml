@@ -101,10 +101,14 @@ jobs:
         run: |
           node scripts/render.mjs "$CHAPTER" --smoke || echo "SMOKE_RENDER_FAILED"
           ls -la output/ || true
+          ls "output/v146-$CHAPTER-smoke/" | head -3 || true
+          if [ -d "output/v146-$CHAPTER-smoke" ]; then ffmpeg -y -framerate 30 -pattern_type glob -i "output/v146-$CHAPTER-smoke/*.png" -c:v libx264 -pix_fmt yuv420p -movflags +faststart "output/v146-$CHAPTER-smoke.mp4"; fi
           test -s "output/v146-$CHAPTER-smoke.mp4"
       - name: Render chapter video
         run: |
-          node scripts/render.mjs "$CHAPTER"
+          node scripts/render.mjs "$CHAPTER" || echo "RENDER_FAILED"
+          ls -la output/ || true
+          if [ -d "output/v146-$CHAPTER" ]; then ffmpeg -y -framerate 30 -pattern_type glob -i "output/v146-$CHAPTER/*.png" -c:v libx264 -pix_fmt yuv420p -movflags +faststart "output/v146-$CHAPTER.mp4"; fi
           test -s "output/v146-$CHAPTER.mp4"
           ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 "output/v146-$CHAPTER.mp4"
       - name: Mix narration audio
