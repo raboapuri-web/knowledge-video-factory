@@ -76,7 +76,7 @@ jobs:
         run: |
           node --check scripts/compile.mjs
           node --check scripts/synth.mjs
-          node scripts/compile.mjs
+          node scripts/compile.mjs "$CHAPTER"
       - name: Install dependencies
         run: npm install --no-audit --no-fund
       - name: Start VOICEVOX engine
