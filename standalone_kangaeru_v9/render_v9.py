@@ -124,8 +124,21 @@ def qa(board,planned,ledger,timeline,cues,manifest,render_report,mora_report,fin
  checks["all_photo_cues_verified"]=all(s.get("photo_status")=="visually_verified" and s.get("photo_file")
       for s,p in zip(board["scenes"],planned["scenes"]) for d in p["cue_visuals"] if d["kind"]=="photo")
  checks["no_api_keys_in_renderer"]=not bool(os.getenv("OPENAI_API_KEY"))
+ # A photo in the rights ledger is not enough; verify an image element will be
+ # rendered on screen even when the model chose a foreground text/diagram cue.
+ on_screen=0
+ for scene,planned_scene in zip(board["scenes"],planned["scenes"]):
+  if scene.get("primary_visual")!="photo":continue
+  first=planned_scene["cue_visuals"][0]
+  state,_=cue_visual.change_state(scene,first,cue_visual.static_state(scene))
+  spec=cue_visual.full_motion(scene,int(scene["id"][1:])-1)
+  html=cue_visual.cue_svg(scene,scene["subtitle_cues"][0]["text"],state,10.0,spec,ledger)
+  if "<image " in html:on_screen+=1
+ checks["seven_verified_photos_actually_on_screen"]=on_screen==len(ledger["photos"])==7
  report.update({"checks":checks,"passed":all(checks.values()),
-  "cue_sync_v9":{"method":"VOICEVOX audio_query accent_phrases mora durations → approximate normalized char index → mora index → WAV rescale",
+  "cue_sync_v9":{"onscreen_photo_scene_count":on_screen,
+   "none_cue_ratio":round(render_report["none_cues"]/len(cues),4),
+   "method":"VOICEVOX audio_query accent_phrases mora durations → approximate normalized char index → mora index → WAV rescale",
    "limitations":"Not exact word/kanji forced alignment; approximate source character-position mapping; normalizes to WAV including trailing silence",
    **mora_report,**render_report},"new_openai_calls_in_renderer":0,
   "human_visual_review_required":True})
