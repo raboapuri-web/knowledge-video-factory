@@ -42,7 +42,7 @@ function titleBody(s: any) {
       <Txt text={wrapJa(d[0] || '', 16)} fontFamily={FONT} fontSize={92} fontWeight={700} fill={C_PAPER} y={-170} />
       <Rect width={240} height={6} y={-10} fill={C_RED} />
       {chips.map((t: string, i: number) => (
-        <Rect key={i} width={480} height={120} x={(i - 1) * 560} y={150} fill={C_PANEL} stroke={C_TEAL} lineWidth={3} radius={16}>
+        <Rect key={'k' + i} width={480} height={120} x={(i - 1) * 560} y={150} fill={C_PANEL} stroke={C_TEAL} lineWidth={3} radius={16}>
           <Txt text={t} fontFamily={FONT} fontSize={44} fill={C_PAPER} />
         </Rect>
       ))}
@@ -70,7 +70,7 @@ function barsBody(s: any) {
         const y = -150 + i * 130;
         const bw = 1080 * (i + 1) / n;
         return (
-          <Node key={i}>
+          <Node key={'k' + i}>
             <Txt text={wrapJa(t, 15)} fontFamily={FONT} fontSize={42} fill={C_PAPER} textAlign={'left'} width={640} x={-530} y={y} />
             <Rect width={bw} height={56} x={-180 + bw / 2} y={y} fill={i === n - 1 ? C_RED : C_TEAL} radius={10} />
           </Node>
@@ -91,7 +91,7 @@ function counterBody(s: any) {
         {parts.map((p: string, i: number) => {
           const cx = -total / 2 + w / 2 + i * (w + 90);
           return (
-            <Node key={i}>
+            <Node key={'k' + i}>
               <Rect width={w} height={220} x={cx} y={0} fill={C_PANEL} stroke={C_RED} lineWidth={4} radius={16}>
                 <Txt text={p} fontFamily={FONT} fontSize={110} fontWeight={700} fill={C_PAPER} />
               </Rect>
@@ -155,7 +155,7 @@ function flowBody(s: any) {
         const cx = -total / 2 + w / 2 + col * (w + 90);
         const y = (row - (rows - 1) / 2) * 260 - 20;
         return (
-          <Node key={i}>
+          <Node key={'k' + i}>
             <Rect width={w} height={150} x={cx} y={y} fill={C_PANEL} stroke={C_TEAL} lineWidth={3} radius={14}>
               <Txt text={wrapJa(t, Math.max(4, Math.floor((w - 36) / 40)))} fontFamily={FONT} fontSize={40} fill={C_PAPER} />
             </Rect>
@@ -176,7 +176,7 @@ function tableBody(s: any) {
         const y = -230 + i * 96;
         const last = i === n - 1;
         return (
-          <Node key={i}>
+          <Node key={'k' + i}>
             <Rect width={1240} height={74} x={0} y={y} fill={last && s.id === '04' ? C_RED : C_PANEL} radius={10} />
             <Txt text={t} fontFamily={FONT} fontSize={42} fontWeight={last && s.id === '04' ? 700 : 400} fill={C_PAPER} textAlign={'left'} width={1160} x={0} y={y} />
           </Node>
@@ -195,7 +195,7 @@ function twoColBody(s: any) {
     <Node>
       <Rect width={820} height={540} x={cx} y={0} fill={C_PANEL} radius={16} />
       {items.map((t: string, i: number) => (
-        <Txt key={i} text={wrapJa(t, 17)} fontFamily={FONT} fontSize={42} fill={C_PAPER} x={cx} y={(i - (items.length - 1) / 2) * 110} />
+        <Txt key={'k' + i} text={wrapJa(t, 17)} fontFamily={FONT} fontSize={42} fill={C_PAPER} x={cx} y={(i - (items.length - 1) / 2) * 110} />
       ))}
     </Node>
   );
@@ -215,7 +215,7 @@ function cardsBody(s: any) {
     return (
       <>
         {cards.map((t: string, i: number) => (
-          <Rect key={i} width={w} height={200} x={(i - 1) * (w + 36)} y={-80} fill={C_PANEL} radius={16}>
+          <Rect key={'k' + i} width={w} height={200} x={(i - 1) * (w + 36)} y={-80} fill={C_PANEL} radius={16}>
             <Txt text={wrapJa(t, 10)} fontFamily={FONT} fontSize={38} fill={C_PAPER} />
           </Rect>
         ))}
@@ -237,7 +237,7 @@ function cardsBody(s: any) {
         const x = (col - (rowItems.length - 1) / 2) * (w + gap);
         const y = (row - (rows - 1) / 2) * (h + gap);
         return (
-          <Rect key={i} width={w} height={h} x={x} y={y} fill={C_PANEL} radius={16}>
+          <Rect key={'k' + i} width={w} height={h} x={x} y={y} fill={C_PANEL} radius={16}>
             <Txt text={wrapJa(t, Math.floor((w - 40) / 38))} fontFamily={FONT} fontSize={38} fill={C_PAPER} />
           </Rect>
         );
@@ -263,7 +263,7 @@ function diagramBody(s: any) {
     <>
       <Line points={centers.map((x) => [x, 0])} stroke={C_AXIS} lineWidth={4} />
       {d.map((t: string, i: number) => (
-        <Node key={i}>
+        <Node key={'k' + i}>
           <Circle width={210} height={210} x={centers[i]} y={0} fill={C_PANEL} stroke={C_TEAL} lineWidth={4} />
           <Txt text={wrapJa(t, 6, 3)} fontFamily={FONT} fontSize={34} fill={C_PAPER} x={centers[i]} y={0} />
         </Node>
