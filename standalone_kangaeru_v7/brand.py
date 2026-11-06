@@ -45,7 +45,7 @@ def footer(scene):
  return out
 def icon(scene,x,y):
  # Generated icons are rendered as trusted geometry only. Never embed raw SVG from a model.
- if "icon_spec" not in scene:return []
+ if not scene.get("icon_spec"):return []
  from icons import geometry
  return geometry(scene["icon_spec"],x,y,scale=1.0)
 def diagram(scene):
@@ -84,7 +84,13 @@ def diagram(scene):
  elif family=="single_symbol":
   out.append(tag_text(99,162,h,49))
   out.extend([circle(634,350,178,HAIR,1.5),circle(634,350,139,GOLD,2),line(634,172,634,528,HAIR,1)])
-  out+=icon(scene,635,338)
+  if scene.get("primary_visual")=="photo":
+   out.extend([
+    '<rect x="408" y="212" width="454" height="262" rx="8" fill="#1d1a17" stroke="#685439" stroke-width="2"/>',
+    tag_text(635,304,"写真の被写体指定",23,GOLD,"middle",family="sans"),
+    tag_text(635,356,"実画像は未取得",27,IVORY,"middle",family="sans"),
+    tag_text(635,403,scene.get("photo_subject","")[:24],18,MUTED,"middle",family="sans")])
+  else:out+=icon(scene,635,338)
  else:raise ValueError("Unknown editorial composition")
  return out
 def validate(scene):
