@@ -75,7 +75,7 @@ def resolve_voicevox_speaker(voicevox_url, speaker_name="青山龍星", style_na
  for speaker in r.json():
   if speaker.get("name")==speaker_name:
    for style in speaker.get("styles",[]):
-    if style.get("name")==style_name and style.get("type","talk")=="talk":
+    if style.get("name")==style_name and style.get("type","talk") in ("talk","streaming_talk"):
      resolved=int(style["id"])
      if speaker_name=="青山龍星" and style_name=="ノーマル" and resolved!=13:
       raise RuntimeError("青山龍星 ノーマル Talk ID expected 13, got "+str(resolved))
