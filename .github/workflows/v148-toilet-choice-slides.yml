@@ -1,0 +1,182 @@
+# V148 考える夜｜無料の汚いトイレと有料の綺麗なトイレ、どっちが使いたいですか？ (78 slides)
+# - storyboard: 台本・スライド整合性監査 + audit.json をアーティファクト化
+# - chapter: 7章並列(最大3)で VOICEVOX 合成→ Motion Canvas レンダ→音声ミックス
+# - finalize: 章 MP4 を連結→ BGM ミックス→コンタクトシート→リリース作成
+name: V148 Toilet Choice Presentation Motion Canvas
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v148-toilet-choice-slides.yml'
+      - 'shared/v148/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v148-toilet-choice-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  storyboard:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: shared/v148
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile slides and check audit
+        run: node scripts/compile.mjs
+      - name: Check audit
+        run: node -e "const a=require('./content/audit.json'); if(a.totalSlides!==78||a.errors.length){console.error(a);process.exit(1)} console.log('PREFLIGHT_OK', a.totalSlides, 'render units /', a.specSlides, 'spec slides')"
+      - name: Upload audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: v148-source-audit
+          path: shared/v148/content/audit.json
+          retention-days: 21
+
+  chapter:
+    needs: storyboard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, epilogue]
+    env:
+      CHAPTER: ${{ matrix.chapter }}
+      VOICEVOX_SPEED: '1.15'
+      VOICEVOX_SPEAKER_ID: '13'
+      VOICE_PARALLEL: '3'
+      PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v148/.puppeteer
+    defaults:
+      run:
+        working-directory: shared/v148
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install system packages
+        run: timeout 300 sudo apt-get install -y -qq fonts-noto-cjk fontconfig ffmpeg
+      - name: Reuse v124 harness and v146 chapter renderer
+        run: |
+          mkdir -p src src/lib scripts
+          cp ../v124/package.json package.json
+          cp ../v124/tsconfig.json tsconfig.json
+          cp ../v124/vite.config.ts vite.config.ts
+          cp ../v124/headless.html headless.html
+          cp ../v124/src/headless.ts src/headless.ts
+          cp ../v124/src/types.d.ts src/types.d.ts
+          cp ../v124/scripts/render.mjs scripts/render.mjs
+          sed -i 's/v124/v148/g; s/!smoke/false/g' scripts/render.mjs
+          grep -n "v148" scripts/render.mjs
+          cp ../v146/src/lib/chapter.tsx src/lib/chapter.tsx
+          sed -i "s/#111317/#101115/g; s/#F2EBDD/#F0E9DC/g; s/#A7353A/#9D3340/g; s/#4F9297/#397A78/g; s/#A9A6A0/#777A80/g; s/s.id === '48'/false/g" src/lib/chapter.tsx
+          grep -n "#101115" src/lib/chapter.tsx | head -3
+          if grep -q "s.id === '48'" src/lib/chapter.tsx; then echo "DARK48 STILL PRESENT"; exit 1; fi
+          echo "CHAPTER_TSX_READY"
+      - name: Compile slides and generate project
+        run: node scripts/compile.mjs "$CHAPTER"
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Start VOICEVOX engine
+        run: |
+          docker run -d --rm -p 50021:50021 --name voicevox voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null 2>&1; then echo "VOICEVOX READY"; break; fi
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:50021/version
+      - name: Synthesize narration
+        run: node scripts/synth.mjs "$CHAPTER"
+      - name: Build
+        run: npm run build
+      - name: Smoke render
+        run: |
+          timeout 600 npm run render:smoke || true
+          ls -la output/ || true
+          if [ -d "output/v148-$CHAPTER" ]; then echo "SMOKE PNG FRAMES FOUND"; ffmpeg -y -framerate 60 -pattern_type glob -i "output/v148-$CHAPTER/*.png" -vf fps=30 -c:v libx264 -pix_fmt yuv420p -movflags +faststart "output/v148-$CHAPTER.mp4"; fi
+          ls -la output/ || true
+      - name: Render chapter video
+        run: |
+          timeout 2400 npm run render || true
+          ls -la output/ || true
+          if [ -d "output/v148-$CHAPTER" ]; then echo "PNG FRAMES FOUND"; ffmpeg -y -framerate 60 -pattern_type glob -i "output/v148-$CHAPTER/*.png" -vf fps=30 -c:v libx264 -pix_fmt yuv420p -movflags +faststart "output/v148-$CHAPTER.mp4"; fi
+          ls -lh "output/v148-$CHAPTER.mp4"
+      - name: Mix narration audio
+        run: |
+          ls -lh media/$CHAPTER/narration.wav "output/v148-$CHAPTER.mp4"
+          ffmpeg -y -i "output/v148-$CHAPTER.mp4" -i media/$CHAPTER/narration.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest "output/v148-$CHAPTER-with-audio.mp4"
+          mv "output/v148-$CHAPTER-with-audio.mp4" "output/v148-$CHAPTER.mp4"
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 "output/v148-$CHAPTER.mp4"
+      - name: Upload chapter segment
+        uses: actions/upload-artifact@v4
+        with:
+          name: v148-segment-${{ matrix.chapter }}
+          path: shared/v148/output/v148-${{ matrix.chapter }}.mp4
+          retention-days: 14
+          compression-level: 0
+
+  finalize:
+    needs: chapter
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    defaults:
+      run:
+        working-directory: shared/v148
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install ffmpeg
+        run: sudo apt-get install -y -qq ffmpeg
+      - name: Download chapter segments
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v148-segment-*
+          path: ${{ github.workspace }}/shared/v148/segments
+          merge-multiple: true
+      - name: Concatenate chapters
+        run: |
+          mkdir -p output
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 epilogue; do echo "file '$GITHUB_WORKSPACE/shared/v148/segments/v148-$c.mp4'" >> output/concat.txt; done
+          cat output/concat.txt
+          ffmpeg -y -f concat -safe 0 -i output/concat.txt -c copy -movflags +faststart output/v148-voice-master.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 output/v148-voice-master.mp4
+      - name: Mix BGM if available
+        run: |
+          cp ../v124/scripts/generate-bgm.mjs scripts/generate-bgm.mjs
+          BGM_FILE=""
+          for p in ../../common/BGM/Amazon-river-ambience.mp3 ../common/BGM/Amazon-river-ambience.mp3 common/BGM/Amazon-river-ambience.mp3; do if [ -f "$p" ]; then BGM_FILE="$p"; break; fi; done
+          if [ -n "$BGM_FILE" ]; then echo "BGM found: $BGM_FILE"; node scripts/generate-bgm.mjs output/v148-voice-master.mp4 output/v148-toilet-choice-slides-final.mp4 "$BGM_FILE" 0.035; else echo "BGM not found, finishing without BGM"; cp output/v148-voice-master.mp4 output/v148-toilet-choice-slides-final.mp4; fi
+          ffprobe -v error -show_entries stream=width,height,r_frame_rate,codec_name -of default=noprint_wrappers=1 output/v148-toilet-choice-slides-final.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 output/v148-toilet-choice-slides-final.mp4
+      - name: Create contact sheet
+        run: |
+          D=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 output/v148-toilet-choice-slides-final.mp4)
+          I=$(python3 -c "print(max(1.0, float('$D')/24))")
+          ffmpeg -y -i output/v148-toilet-choice-slides-final.mp4 -vf "fps=1/$I,scale=384:-1,tile=6x4:padding=4:margin=4" -frames:v 1 output/v148-contact-sheet.jpg
+      - name: Upload final video
+        uses: actions/upload-artifact@v4
+        with:
+          name: v148-toilet-choice-slides-master
+          path: |
+            shared/v148/output/v148-toilet-choice-slides-final.mp4
+            shared/v148/output/v148-contact-sheet.jpg
+          retention-days: 21
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="v148-toilet-choice-slides-${{ github.run_id }}"
+          TITLE="V148 考える夜｜無料の汚いトイレと有料の綺麗なトイレ、どっちが使いたいですか？ 完成動画"
+          gh release create "$TAG" --title "$TITLE" --notes "V148 完成動画（1920x1080・30fps）。スライド78枚（レンダリング単位78）。ナレーションはVOICEVOX（青山龍星、速度1.15）で合成。" output/v148-toilet-choice-slides-final.mp4 output/v148-contact-sheet.jpg
