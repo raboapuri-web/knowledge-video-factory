@@ -82,6 +82,24 @@ class VisualUnit(unittest.TestCase):
   self.assertIn('x="112.0" y="268" width="464.0"',first)
   self.assertIn('x="112.0" y="268" width="464.0"',second)
   self.assertIn('x="592.0" y="268" width="464.0"',second)
+ def test_verifiable_photo_remains_visible_behind_keyword_or_diagram(self):
+  import tempfile,hashlib
+  from PIL import Image
+  with tempfile.TemporaryDirectory() as root:
+   path=Path(root)/"verified.jpg"
+   Image.new("RGB",(900,600),(80,89,70)).save(path,format="JPEG")
+   data=path.read_bytes()
+   s=sample_scene("data_bars")
+   s["primary_visual"]="photo"
+   s["photo_status"]="visually_verified"
+   s["photo_file"]=str(path)
+   ledger={"photos":[{"scene":s["id"],"license":"CC0",
+       "visual_verification":{"is_match":True},"sha256":hashlib.sha256(data).hexdigest()}]}
+   sp=cue_visual.full_motion(s,0)
+   for kind,txt,idx in (("keyword","ゴールキーパー",-1),("numeric","13.4",-1),("diagram_element","飛ぶ",0)):
+    raw=cue_visual.cue_svg(s,"証拠の字幕",{"kind":kind,"text":txt,"element_index":idx},10,sp,ledger)
+    self.assertIn('data-role="verified-context-photo"',raw,kind)
+    self.assertIn("証拠の字幕",raw,kind)
  def test_visual_switches_more_than_scene_count(self):
   s=sample_scene();board={"scenes":[s]}
   storyboard={"scenes":[{"scene_id":"s001","cue_visuals":[
