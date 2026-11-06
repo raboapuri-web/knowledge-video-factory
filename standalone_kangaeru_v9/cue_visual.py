@@ -73,7 +73,8 @@ def custom_svg(scene,subtitle,state,local,spec):
    elements.append((label,value))
   out.append(brand.tag_text(100,164,s["display_text"]["headline"],43,brand.IVORY))
   out.append(brand.tag_text(103,214,"STEP-BY-STEP / VERIFIED ELEMENTS",18,brand.GOLD,family="sans",spacing=2))
-  width=960/max(1,len(elements))
+  # Fixed grid slots across ALL cues: revealing item N must not move item 0.
+  width=960/max(1,max(len(labs),len(values)))
   pp=min(1,max(0,motion.progress(local,spec["diagram"])))
   for i,(lab,val) in enumerate(elements):
    x=112+i*width; left=x+9
