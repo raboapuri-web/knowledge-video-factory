@@ -14,7 +14,20 @@ import brand,icons
 MODEL="gpt-5.6-terra"
 COMPS=sorted(brand.FAMILIES)
 TYPES=["photo","diagram","icon","none"]
-ICON_SCHEMA={"type":"object","additionalProperties":False,
+NUMERIC={"type":"number"}
+ICON_POINT={"type":"array","items":NUMERIC}
+ICON_PATH={"type":"array","items":ICON_POINT}
+ICON_SCHEMA={
+ "type":"object","additionalProperties":False,
+ "properties":{
+  "concept":{"type":"string"},
+  "meaning":{"type":"string"},
+  "paths":{"type":"array","items":ICON_PATH},
+  "circles":{"type":"array","items":ICON_POINT}
+ },
+ "required":["concept","meaning","paths","circles"]
+}
+SCHEMA={"type":"object","additionalProperties":False,
  "properties":{
   "concept":{"type":"string"},"meaning":{"type":"string"},
   "paths":{"type":"array","items":{"type":"array","items":{"type":"array","items":{"type":"number"}}}},
