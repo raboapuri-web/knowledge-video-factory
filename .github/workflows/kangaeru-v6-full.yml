@@ -1,0 +1,81 @@
+name: Kangaeru Yoru v6 full-script GK E2E
+on:
+  push:
+    branches: [kangaeru-yoru-standalone-v4-20261105]
+    paths:
+      - 'standalone_kangaeru_v6/render_video.py'
+      - 'standalone_kangaeru_v6/tests/test_render_video.py'
+      - '.github/workflows/kangaeru-v6-full.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  full_gk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    env:
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_NAME: 青山龍星
+      VOICEVOX_STYLE: ノーマル
+      VOICEVOX_SPEED: '1.06'
+      VOICEVOX_INTONATION: '1.02'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install renderer and Japanese fonts (no API keys)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          python3 -m pip install -r standalone_kangaeru_v4/requirements.txt
+      - name: Run deterministic v6 unit tests
+        run: |
+          python3 -m py_compile standalone_kangaeru_v6/*.py
+          python3 -m unittest discover -s standalone_kangaeru_v6/tests -v
+      - name: Start official VOICEVOX Engine, inspect real speaker info
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name ryusei-voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          python3 - <<'PY'
+          import time,requests,json
+          url="http://127.0.0.1:50021"
+          for i in range(125):
+              try:
+                  r=requests.get(url+"/speakers",timeout=4)
+                  r.raise_for_status()
+                  data=r.json()
+                  if data:break
+              except Exception:pass
+              time.sleep(3)
+          else:raise RuntimeError("VOICEVOX Engine unavailable after 375 seconds")
+          matches=[{"name":s.get("name"),"styles":s.get("styles")} for s in data if "青山" in s.get("name","") or "龍星" in s.get("name","")]
+          print("VOICEVOX SPEAKERS:",len(data))
+          print("AOYAMA MATCH:",json.dumps(matches,ensure_ascii=False))
+          if not matches:raise RuntimeError("青山龍星 not installed in this VOICEVOX Engine image")
+          PY
+      - name: Generate 71-scene full-document GK video, licensed sources and QA
+        run: |
+          python3 standalone_kangaeru_v6/render_video.py \
+            --source standalone_kangaeru_v6/gk_source.json \
+            --output-dir standalone_kangaeru_v6/output/gk \
+            --voicevox-url http://127.0.0.1:50021
+      - name: Upload video and reproducible QA assets
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangaeru-yoru-v6-gk-aoyama-full-e2e
+          path: |
+            standalone_kangaeru_v6/output/gk/final.mp4
+            standalone_kangaeru_v6/output/gk/qa_final.json
+            standalone_kangaeru_v6/output/gk/qa_storyboard.json
+            standalone_kangaeru_v6/output/gk/qa_materials.json
+            standalone_kangaeru_v6/output/gk/storyboard.json
+            standalone_kangaeru_v6/output/gk/storyboard_with_assets.json
+            standalone_kangaeru_v6/output/gk/materials.json
+            standalone_kangaeru_v6/output/gk/timeline.json
+            standalone_kangaeru_v6/output/gk/captions.srt
+            standalone_kangaeru_v6/output/gk/description.md
+            standalone_kangaeru_v6/output/gk/contact_sheet.jpg
+            standalone_kangaeru_v6/output/gk/thumbnail.jpg
+            standalone_kangaeru_v6/output/gk/icon_origin.json
+            standalone_kangaeru_v6/output/gk/photos/*.jpg
+          if-no-files-found: warn
+          retention-days: 14
