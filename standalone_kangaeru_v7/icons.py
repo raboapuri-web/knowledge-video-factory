@@ -66,6 +66,19 @@ def geometry(spec,center_x,center_y,scale=1.0):
   size=160*scale
   return [f'<image x="{center_x-size/2}" y="{center_y-size/2}" width="{size}" height="{size}" href="data:image/png;base64,{img}"/>']
  validate(spec)
+ # A distinct 7-element semantic goalkeeper silhouette is drawn for GK concepts:
+ # goalposts + goal net + head/body/arms/legs + football. The raw model geometry is
+ # retained in the icon registry for provenance, but an unreadable model sketch
+ # must never silently become the approved on-screen symbol.
+ concept=spec.get("concept","")
+ if ("GK" in concept or "ゴールキーパー" in concept) and ("ゴール" in concept or "PK" in concept):
+  spec={**spec,"paths":[
+      [[8,87],[8,13],[92,13],[92,87]],[[8,26],[92,26]],
+      [[21,13],[21,87]],[[36,13],[36,87]],[[64,13],[64,87]],[[79,13],[79,87]],
+      [[8,43],[92,43]],[[8,62],[92,62]],
+      [[45,51],[50,65]],[[45,52],[25,44]],[[45,52],[65,37]],
+      [[50,65],[34,80]],[[50,65],[70,77]]],
+      "circles":[[43,42,7],[82,42,6]]}
  size=1.45*scale
  parts=[f'<g transform="translate({center_x-size*50:.3f} {center_y-size*50:.3f}) scale({size:.4f})" fill="none" stroke="{GOLD}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">']
  for path in spec["paths"]:
