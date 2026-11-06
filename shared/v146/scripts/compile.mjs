@@ -1,12 +1,16 @@
 // V146 考える夜「なぜ哺乳類は進化の過程を、非効率なセックスを残し続けたのか？」
 // 台本とスライドの整合性監査 + 章プロジェクト生成
-// 使い方: node scripts/compile.mjs   (working directory: shared/v146)
+// 使い方: node scripts/compile.mjs [chapter]   (working directory: shared/v146)
+// 章を指定すると、その章のシーンファイルとプロジェクトだけを生成する。
+// （章ジョブでは、未合成の他章の measured-*.json が存在しないため）
 import {readFileSync, writeFileSync, mkdirSync} from 'node:fs';
 import {join, dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTERS = ['prologue', 'chapter1', 'chapter2', 'chapter3', 'chapter4', 'chapter5', 'chapter6', 'epilogue'];
+const ONLY = process.argv[2] || null;
+if (ONLY && !CHAPTERS.includes(ONLY)) throw new Error('unknown chapter: ' + ONLY);
 
 // 台本を文単位に分割する。文末の 。？！ で区切り、終端記号を文に残す。
 function splitSentences(text) {
@@ -65,25 +69,30 @@ for (const ch of CHAPTERS) {
   }
   audit.chapters[ch] = {slides: chSlides.length, sentences: sents.length, spans};
 
-  // 章ごとの Motion Canvas プロジェクトを生成する（CI でのみ生成し、コミットしない）。
+  // 章のシーンファイルと Motion Canvas プロジェクトを生成する（CI でのみ生成し、コミットしない）。
   // measured-<ch>.json は VOICEVOX 合成後にできるため、ここではまだ存在しなくてよい。
-  const projectTs = [
-    "import {makeProject} from '@motion-canvas/core';",
-    "import slidesData from '../../content/slides.json';",
-    "import timing from '../../content/measured-" + ch + ".json';",
-    "import {createChapterScene} from '../lib/chapter';",
-    '',
-    'export default makeProject({',
-    "  name: 'v146-" + ch + "',",
-    "  scenes: [createChapterScene('" + ch + "', slidesData, timing)],",
-    "  background: '#111317',",
-    '  size: {x: 1920, y: 1080},',
-    '  fps: 30,',
-    '});',
-    '',
-  ].join('\n');
-  mkdirSync(join(ROOT, 'src', 'projects'), {recursive: true});
-  writeFileSync(join(ROOT, 'src', 'projects', ch + '.ts'), projectTs);
+  // プロジェクトは V145 と同じく ?scene 付きでシーンを読み込む（型宣言は src/types.d.ts 参照）。
+  if (!ONLY || ONLY === ch) {
+    const sceneTsx = [
+      "import slidesData from '../../content/slides.json';",
+      "import timing from '../../content/measured-" + ch + ".json';",
+      "import {createChapterScene} from '../lib/chapter';",
+      '',
+      "export default createChapterScene('" + ch + "', slidesData, timing);",
+      '',
+    ].join('\n');
+    mkdirSync(join(ROOT, 'src', 'scenes'), {recursive: true});
+    writeFileSync(join(ROOT, 'src', 'scenes', ch + '.tsx'), sceneTsx);
+    const projectTs = [
+      "import {makeProject} from '@motion-canvas/core';",
+      "import scene from '../scenes/" + ch + "?scene';",
+      '',
+      'export default makeProject({name: \'v146-' + ch + '\', scenes: [scene], background: \'#111317\'});',
+      '',
+    ].join('\n');
+    mkdirSync(join(ROOT, 'src', 'projects'), {recursive: true});
+    writeFileSync(join(ROOT, 'src', 'projects', ch + '.ts'), projectTs);
+  }
 }
 
 mkdirSync(join(ROOT, 'content'), {recursive: true});
