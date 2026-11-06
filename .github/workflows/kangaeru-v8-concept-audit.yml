@@ -1,0 +1,31 @@
+name: Kangaeru Yoru v8 source icon concept audit
+on:
+  push:
+    branches: [kangaeru-yoru-v8-motion-20261106]
+    paths: ['.github/workflows/kangaeru-v8-concept-audit.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source_concepts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: kangaeru-yoru-v7-full-gk-gpt-storyboard-and-usage
+          run-id: 42168254310
+          github-token: ${{ github.token }}
+          path: input_plan
+      - name: Inspect all v7 generated source icon concepts without billing
+        run: |
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('input_plan/storyboard.json')
+          data=json.loads(p.read_text(encoding='utf8'))
+          print('SCENE_COUNT',len(data['scenes']))
+          for s in data['scenes']:
+            icon=s.get('icon_spec')
+            if icon:print('ICON_CONCEPT',json.dumps({'scene':s['id'],'concept':icon.get('concept'),'meaning':icon.get('meaning'),'origin':icon.get('origin','generated')},ensure_ascii=False))
+          PY
