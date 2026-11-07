@@ -30,13 +30,14 @@ for(const ch of CHAPTERS){
  mkdirSync(join(ROOT,'content'),{recursive:true});
  writeFileSync(join(ROOT,'content','narration-'+ch+'.txt'),raw);
  const sents=split(raw);let cursor=0;
- for(const x of obj.slides||[]){
+ const SCENARIO_CUTOFF={chapter1:4,chapter2:5,chapter3:5,chapter4:3,chapter5:4,chapter6:3};
+ for(const [index,x] of (obj.slides||[]).entries()){
    const lines=(x.lines||[]).map(t=>t.trim()).filter(Boolean);
    if(!lines.length||!x.display?.length)audit.errors.push(ch+': empty line or display');
    const chunk=split(lines.join('\n'));
    if(JSON.stringify(sents.slice(cursor,cursor+chunk.length))!==JSON.stringify(chunk)) audit.errors.push(ch+': sentence segmentation mismatch '+cursor);
    const id=String(slides.length+1).padStart(3,'0');
-   slides.push({id,ch,heading:obj.heading,start:chunk[0],end:chunk.at(-1),viz:x.viz||'cards',effect:x.effect||'fade',display:x.display,scenario:obj.scenario??false,source:x.source||''});
+   slides.push({id,ch,heading:obj.heading,start:chunk[0],end:chunk.at(-1),viz:x.viz||'cards',effect:x.effect||'fade',display:x.display,scenario: x.scenario ?? (SCENARIO_CUTOFF[ch]!==undefined && index>=SCENARIO_CUTOFF[ch]),source:x.source||''});
    cursor+=chunk.length;
  }
  if(cursor!==sents.length)audit.errors.push(ch+': gap '+cursor+'/'+sents.length);
