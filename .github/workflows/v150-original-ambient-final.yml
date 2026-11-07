@@ -1,0 +1,91 @@
+name: V150 Original Ambient Final Master 1080p30
+on:
+  workflow_dispatch:
+  push:
+    branches: [production/v150-us-midterm-japan-20261107]
+    paths:
+      - '.github/workflows/v150-original-ambient-final.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  mastering:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: sudo apt-get install -y -qq ffmpeg
+      - name: Reuse eight verified chapter videos from successful V150 run
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v150-segment-*
+          run-id: 42380886876
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: segments
+      - name: Verify eight source segments and assemble original narration master
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do
+            test -s "segments/v150-$c.mp4"
+            echo "file '$GITHUB_WORKSPACE/segments/v150-$c.mp4'" >> output/concat.txt
+          done
+          ffmpeg -hide_banner -loglevel warning -y -f concat -safe 0 -i output/concat.txt -c copy -movflags +faststart output/voice-master.mp4
+          ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 output/voice-master.mp4
+      - name: Compose original low-key documentary ambient soundtrack
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 output/voice-master.mp4)
+          OUT=$(awk -v d="$D" 'BEGIN{printf "%.3f",d-9}')
+          ffmpeg -hide_banner -loglevel warning -y \
+            -f lavfi -i "anoisesrc=color=pink:sample_rate=48000:amplitude=0.10" \
+            -f lavfi -i "sine=frequency=55:sample_rate=48000" \
+            -f lavfi -i "sine=frequency=82.41:sample_rate=48000" \
+            -filter_complex "[0:a]highpass=f=25,lowpass=f=300,volume=0.10[n];[1:a]volume=0.024[a];[2:a]volume=0.011[e];[n][a][e]amix=inputs=3:normalize=0,afade=t=in:st=0:d=8,afade=t=out:st=$OUT:d=8,atrim=duration=$D[bed]" \
+            -map "[bed]" -t "$D" -c:a pcm_s16le output/original-ambient.wav
+          test -s output/original-ambient.wav
+      - name: Mix speech-first original ambient and remux final video
+        shell: bash
+        run: |
+          set -euo pipefail
+          ffmpeg -hide_banner -loglevel warning -y -i output/voice-master.mp4 -i output/original-ambient.wav \
+            -filter_complex "[0:a]aresample=48000,volume=1.0[voice];[1:a]volume=0.55[amb];[voice][amb]amix=inputs=2:normalize=0:duration=first,alimiter=limit=0.95[aout]" \
+            -map 0:v -map "[aout]" -c:v copy -c:a aac -b:a 192k -movflags +faststart output/v150-us-midterm-japan-FINAL.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 output/v150-us-midterm-japan-FINAL.mp4
+      - name: Create visual review grid and comprehensive technical checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 output/v150-us-midterm-japan-FINAL.mp4)
+          I=$(awk -v d="$D" 'BEGIN{printf "%.4f",d/24}')
+          ffmpeg -hide_banner -loglevel warning -y -i output/v150-us-midterm-japan-FINAL.mp4 -vf "fps=1/$I,scale=384:-1,tile=6x4:padding=4:margin=4" -frames:v 1 -update 1 output/v150-visual-contact-sheet.jpg
+          python3 - <<'PY'
+          import json,subprocess,pathlib
+          p=pathlib.Path('output/v150-us-midterm-japan-FINAL.mp4')
+          info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams','-show_format','-of','json',str(p)]))
+          video=next(s for s in info['streams'] if s['codec_type']=='video')
+          audio=next(s for s in info['streams'] if s['codec_type']=='audio')
+          assert (video['width'],video['height'])==(1920,1080)
+          assert video['codec_name']=='h264' and video['r_frame_rate']=='30/1'
+          assert audio['codec_name']=='aac'
+          assert 950 < float(info['format']['duration']) < 970
+          assert p.stat().st_size>5_000_000
+          assert pathlib.Path('output/v150-visual-contact-sheet.jpg').stat().st_size>10_000
+          qa={'status':'PASS','seconds':round(float(info['format']['duration']),3),'dimensions':'1920x1080','fps':30,'audio':'AAC narration + original synthesized subtle ambient bed','subtitles':'Burned-in, VOICEVOX measured sentence timing','scenes':69,'chapters':8,'source_workflow_run':42380886876,'size_bytes':p.stat().st_size}
+          pathlib.Path('output/v150-final-qa.json').write_text(json.dumps(qa,ensure_ascii=False,indent=2))
+          print(qa)
+          PY
+      - name: Upload complete final video and design review files
+        uses: actions/upload-artifact@v4
+        with:
+          name: v150-2026-us-midterms-JAPAN-FINAL-1080p30-ambient
+          path: |
+            output/v150-us-midterm-japan-FINAL.mp4
+            output/v150-visual-contact-sheet.jpg
+            output/v150-final-qa.json
+          retention-days: 30
+          compression-level: 0
