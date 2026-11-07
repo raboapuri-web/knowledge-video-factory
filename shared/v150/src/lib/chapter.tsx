@@ -393,8 +393,8 @@ export function createChapterScene(chapter: string, data: any, timing: any) {
     const subTxt = createRef<Txt>();
     view.add(
       <Node ref={subLayer} opacity={0}>
-        <Rect width={1560} height={116} y={438} fill={'#000000'} opacity={0.62} radius={18} />
-        <Txt ref={subTxt} fontFamily={FONT} fontSize={36} fill={C_PAPER} width={1480} x={0} y={438} textAlign={'center'} />
+        <Rect width={1660} height={132} y={431} fill={'#000000'} opacity={0.62} radius={18} />
+        <Txt ref={subTxt} fontFamily={FONT} fontSize={31} fill={C_PAPER} width={1550} x={0} y={430} textAlign={'center'} />
       </Node>,
     );
 
@@ -413,7 +413,7 @@ export function createChapterScene(chapter: string, data: any, timing: any) {
             const start = sub.start ?? 0;
             const w = start - cursor;
             if (w > 0) yield* waitFor(w);
-            subTxt().text(wrapJa(sub.text || '', 34));
+            subTxt().text(wrapJa(sub.text || '', 29, 3));
             subLayer().opacity(1);
             cursor = start;
             const d = sub.duration ?? 1;
