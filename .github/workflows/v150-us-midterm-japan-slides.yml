@@ -1,7 +1,7 @@
-# V150 考える夜｜え？僕ってまだ法律上、人間じゃないんですか？ by受精卵 (33 slides)
+# V150 考える夜｜2026米中間選挙から見る日本の最悪シナリオ（69 slides）
 # - storyboard: 台本・スライド整合性監査 + audit.json をアーティファクト化
-# - chapter: 8章並列(最大3)で VOICEVOX 合成→ Motion Canvas レンダ→音声ミックス
-# - finalize: 章 MP4 を連結→ BGM ミックス→コンタクトシート→リリース作成
+# - chapter: 8章並列(最大4)で VOICEVOX 合成→ Motion Canvas レンダ→音声ミックス
+# - finalize: 章 MP4 を連結→ BGM ミックス→全画面QA→Artifact納品（main・YouTubeは不変更）
 name: V150 US Midterm Japan Worst Case Presentation Motion Canvas
 
 
@@ -10,7 +10,7 @@ on:
   push:
     branches: [production/v150-us-midterm-japan-20261107]
     paths:
-      - '.github/workflows/v150-midterm-japan-worst-cases.yml'
+      - '.github/workflows/v150-us-midterm-japan-slides.yml'
       - 'shared/v150/**'
 
 
@@ -35,7 +35,7 @@ jobs:
       - name: Compile slides and check audit
         run: node scripts/compile.mjs
       - name: Check audit
-        run: node -e "const a=require('./content/audit.json'); if(a.totalSlides!==69||a.errors.length){console.error(a);process.exit(1)} console.log('PREFLIGHT_OK', a.totalSlides, 'render units /', a.specSlides, 'spec slides')"
+        run: node -e "const a=require('./content/audit.json'); if(a.totalSlides!==69||a.errors.length){console.error(a);process.exit(1)} console.log('PREFLIGHT_OK', a.totalSlides, 'render units /', a.totalSlides, 'spec slides')"
       - name: Upload audit
         uses: actions/upload-artifact@v4
         with:
