@@ -78,7 +78,8 @@ jobs:
           cp ../v124/vite.config.ts vite.config.ts
           cp ../v124/headless.html headless.html
           cp ../v124/src/headless.ts src/headless.ts
-          cp ../v124/src/types.d.ts src/types.d.ts
+          cp ../v124/src/types.d.ts src/types.d.ts && { echo; echo 'declare module "*.json" {'; echo '  const value: any;'; echo '  export default value;'; echo '}'; } >> src/types.d.ts
+          
           cp ../v124/scripts/render.mjs scripts/render.mjs
           sed -i 's/v124/v150/g; s/!smoke/false/g' scripts/render.mjs
           grep -n "v150" scripts/render.mjs
@@ -103,7 +104,7 @@ jobs:
       - name: Synthesize narration
         run: node scripts/synth.mjs "$CHAPTER"
       - name: Build
-        run: npm run build
+        run: node -e "console.log(require('./node_modules/typescript/package.json').version)"; ls content src/scenes src/projects; cat tsconfig.json; npm run build
       - name: Smoke render
         run: |
           timeout 600 npm run render:smoke || true
