@@ -102,9 +102,9 @@ jobs:
           done
           curl -fsS http://127.0.0.1:50021/version
       - name: Synthesize narration
-        run: node scripts/synth.mjs "$CHAPTER"
+        run: node scripts/synth.mjs "$CHAPTER" && cat "content/measured-${CHAPTER}.json" | head -c 3000; echo
       - name: Build
-        run: node -e "console.log(require('./node_modules/typescript/package.json').version)"; ls content src/scenes src/projects; cat tsconfig.json; npm run build
+        run: node -e "console.log(require('./node_modules/typescript/package.json').version)"; ls content src/scenes src/projects; cat tsconfig.json; cat "src/scenes/${CHAPTER}.tsx" "src/projects/${CHAPTER}.ts"; npm run build
       - name: Smoke render
         run: |
           timeout 600 npm run render:smoke || true
