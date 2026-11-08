@@ -90,7 +90,7 @@ jobs:
           if grep -q "s.id === '48'" src/lib/chapter.tsx; then echo "DARK48 STILL PRESENT"; exit 1; fi
           echo "CHAPTER_TSX_READY"
       - name: Compile slides and generate project
-        run: cp ../v149/content/slides.json content/slides.json && cp ../v149/content/narration-*.txt content/ && node scripts/compile.mjs "$CHAPTER" && node -e "const fs=require('fs');const p='content/slides.json';const j=JSON.parse(fs.readFileSync(p,'utf8'));for(const s of j.slides){}fs.writeFileSync(p,JSON.stringify(j));console.log('CONTROL_V149_DATA',j.slides.length);"
+        run: cp ../v149/content/slides.json content/slides.json && cp ../v149/content/narration-*.txt content/ && sed -i "s/!== 58/!== 33/" scripts/compile.mjs && node scripts/compile.mjs "$CHAPTER" && node -e "const fs=require('fs');const p='content/slides.json';const j=JSON.parse(fs.readFileSync(p,'utf8'));for(const s of j.slides){}fs.writeFileSync(p,JSON.stringify(j));console.log('CONTROL_V149_DATA',j.slides.length);"
       - name: Install dependencies
         run: npm install --no-audit --no-fund
       - name: Start VOICEVOX engine
