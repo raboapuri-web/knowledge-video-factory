@@ -90,7 +90,7 @@ for (const ch of targetChapters) {
   ].join('\n');
   const projectTs = [
     "import {makeProject} from '@motion-canvas/core';",
-    "import scene from '../scenes/" + ch + "';",
+    "import scene from '../scenes/" + ch + "?scene';",
     "export default makeProject({name: 'v150-" + ch + "', scenes: [scene]});",
   ].join('\n');
   mkdirSync(join(ROOT, 'src', 'scenes'), {recursive: true});
