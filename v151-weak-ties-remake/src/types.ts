@@ -8,6 +8,25 @@ export interface SlidePlanItem {
   timing: string;
 }
 
+export interface ParagraphTiming {
+  id: number;
+  text: string;
+  start: number;
+  end: number;
+  duration: number;
+  cueIds: number[];
+}
+
+export interface CueTiming {
+  id: number;
+  paragraph: number;
+  text: string;
+  file: string;
+  duration: number;
+  start: number;
+  end: number;
+}
+
 export interface MeasuredSlideTiming {
   id: number;
   start: number;
@@ -15,6 +34,10 @@ export interface MeasuredSlideTiming {
   duration: number;
 }
 
+/**
+ * Exact runtime schema emitted by scripts/synthesize.mjs.
+ * Slide copy/layout lives in slide-plan.json; this file stores measured timing only.
+ */
 export interface MeasuredTiming {
   speaker: number;
   speed: number;
@@ -22,22 +45,7 @@ export interface MeasuredTiming {
   cueCount: number;
   slideCount: number;
   duration: number;
-  paragraphs: Array<{
-    id: number;
-    text: string;
-    start: number;
-    end: number;
-    duration: number;
-    cueIds: number[];
-  }>;
-  cues: Array<{
-    id: number;
-    paragraph: number;
-    text: string;
-    file: string;
-    duration: number;
-    start: number;
-    end: number;
-  }>;
+  paragraphs: ParagraphTiming[];
+  cues: CueTiming[];
   slides: MeasuredSlideTiming[];
 }
