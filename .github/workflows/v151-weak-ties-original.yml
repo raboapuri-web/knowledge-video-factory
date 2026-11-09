@@ -58,7 +58,10 @@ jobs:
       - name: Synthesize every narration cue and measure WAV durations
         run: npm run voice
 
-      - name: TypeScript and Motion Canvas build
+      - name: TypeScript type check
+        run: npm run typecheck
+
+      - name: Motion Canvas production build
         run: npm run build
 
       - name: Five-second smoke render
