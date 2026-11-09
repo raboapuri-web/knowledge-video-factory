@@ -71,6 +71,7 @@ jobs:
           ffprobe -v error -show_entries stream=width,height,r_frame_rate -of default=noprint_wrappers=1 output/v151-smoke.mp4
 
       - name: Full Motion Canvas render
+        timeout-minutes: 40
         run: npm run render
 
       - name: Mix narration and generate original ambient BGM

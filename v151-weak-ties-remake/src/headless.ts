@@ -51,15 +51,23 @@ window.renderV151 = async (projectUrl, outputName, endFrame) => {
     exporter: settings.exporter.name
   }));
 
+  // Keep the short smoke test bounded, but give the complete 25k+ frame
+  // production render 20 minutes. The previous hard-coded 300s timer aborted
+  // at 18,625/25,948 frames even though Puppeteer CDP timeout had been fixed.
+  const renderTimeoutMs = endFrame <= 150 ? 300_000 : 1_200_000;
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
   try {
     const timeout = new Promise<never>((_, reject) => {
       timeoutId = setTimeout(() => {
+        console.error('[V151] Render watchdog expired:', JSON.stringify({
+          timeoutMs: renderTimeoutMs,
+          frames: endFrame,
+          elapsedSeconds: Math.round((Date.now() - startedAt) / 1000)
+        }));
         renderer.abort();
-        reject(new Error('V151_RENDER_TIMEOUT after 300 seconds'));
-      }, 300_000);
+        reject(new Error('V151_RENDER_TIMEOUT after ' + Math.round(renderTimeoutMs / 1000) + ' seconds'));
+      }, renderTimeoutMs);
     });
-    // Start render without awaiting it so onFrameChanged and onFinished remain observable.
     const renderTask = renderer.render(settings);
     renderTask.catch(error => console.error('[V151] Renderer task rejected:', error));
     const result = await Promise.race([finished, timeout]);
