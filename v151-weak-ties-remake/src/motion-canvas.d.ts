@@ -1,8 +1,8 @@
 /// <reference types="@motion-canvas/core/project" />
 
-// Motion Canvas' Vite plugin transforms scene modules imported with ?scene.
-// This declaration makes the same virtual module visible to TypeScript.
+// The Motion Canvas Vite plugin transforms every module imported with ?scene.
+// The ambient declaration mirrors that virtual module boundary for tsc.
 declare module '*?scene' {
-  const scene: import('@motion-canvas/core').FullSceneDescription;
+  const scene: any;
   export default scene;
 }
