@@ -24,7 +24,7 @@ jobs:
         working-directory: v151-weak-ties-remake
     steps:
       - name: Checkout dedicated branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: v151-weak-ties-remake
 
@@ -34,7 +34,7 @@ jobs:
           sudo apt-get install -y fonts-noto-cjk fonts-noto-core fontconfig ffmpeg imagemagick tesseract-ocr tesseract-ocr-jpn
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '22'
           cache: npm
@@ -79,7 +79,7 @@ jobs:
         run: npm run qa
 
       - name: Upload final production package
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: v151-weak-ties-final-package
           path: |
