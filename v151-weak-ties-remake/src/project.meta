@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "name": "V151 Weak Ties Original Motion Canvas",
+  "shared": {
+    "size": {"x": 1920, "y": 1080},
+    "background": "#111114",
+    "range": [0, 30000],
+    "audioOffset": 0
+  },
+  "preview": {"fps": 30, "resolutionScale": 0.5},
+  "rendering": {
+    "fps": 30,
+    "resolutionScale": 1,
+    "exporter": {"name": "@motion-canvas/ffmpeg", "options": {"includeAudio": false, "fastStart": true}}
+  }
+}
