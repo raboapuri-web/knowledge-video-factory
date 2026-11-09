@@ -60,12 +60,14 @@ try{
   log('Render bridge ready; starting Motion Canvas',{frames:endFrame,seconds:endFrame/30,smoke});
 
   const renderPromise=page.evaluate((name,frames)=>window.renderV151('/src/project.ts?project',name,frames),outputName,endFrame);
+  let rejectRenderTimeout;
+  const timeoutPromise=new Promise((_,reject)=>{rejectRenderTimeout=reject;});
   hardTimeout=setTimeout(async()=>{
     log('NODE_RENDER_TIMEOUT',{timeoutMs:renderTimeoutMs});
+    rejectRenderTimeout(new Error('NODE_RENDER_TIMEOUT after '+renderTimeoutMs+'ms'));
     try{await page?.evaluate(()=>window.close());}catch{}
     try{await browser?.close();}catch{}
   },renderTimeoutMs);
-  const timeoutPromise=new Promise((_,reject)=>setTimeout(()=>reject(new Error('NODE_RENDER_TIMEOUT after '+renderTimeoutMs+'ms')),renderTimeoutMs+5_000));
   const result=await Promise.race([renderPromise,timeoutPromise]);
   if(result!=='Success') throw new Error('Motion Canvas renderer returned '+result);
   log('Motion Canvas render completed');
