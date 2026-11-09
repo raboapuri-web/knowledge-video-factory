@@ -1,4 +1,4 @@
-import {readFile,readdir,stat} from 'node:fs/promises';
+import {readFile,readdir} from 'node:fs/promises';
 import {spawnSync} from 'node:child_process';
 import {join,extname} from 'node:path';
 const root=process.cwd(),out=join(root,'output');
@@ -45,13 +45,32 @@ for(const f of frameFiles){
     for(const b of bad) if((r.stdout||'').includes(b)) throw new Error('Forbidden phrase detected by OCR in '+f);
   }
 }
-const probe=spawnSync('ffprobe',['-v','error','-show_entries','stream=codec_name,width,height,r_frame_rate','-of','json',join(out,'final.mp4')],{encoding:'utf8'});
-if(probe.status!==0) throw new Error('Final MP4 ffprobe failed');
-const streams=JSON.parse(probe.stdout).streams;
-const video=streams.find(s=>s.width);
-if(!video||video.width!==1920||video.height!==1080||video.r_frame_rate!=='30/1'||video.codec_name!=='h264') throw new Error('Video format mismatch: '+JSON.stringify(video));
+const probe=spawnSync('ffprobe',[
+  '-v','error',
+  '-show_entries','stream=codec_type,codec_name,width,height,r_frame_rate,duration',
+  '-show_entries','format=duration,size',
+  '-of','json',join(out,'final.mp4')
+],{encoding:'utf8'});
+if(probe.error||probe.status!==0) throw new Error('Final MP4 ffprobe failed: '+(probe.stderr||probe.error));
+const data=JSON.parse(probe.stdout);
+const streams=data.streams||[];
+const video=streams.find(s=>s.codec_type==='video');
 const audio=streams.find(s=>s.codec_type==='audio');
-if(!audio||audio.codec_name!=='aac') throw new Error('AAC audio track missing');
-const report={status:'PASS',paragraphs:paragraphs.length,voiceCues:timing.cueCount,slides:plan.length,slideFramesInspected:frameFiles.length,ocrFrames,forbiddenPhraseMatches:0,video:{width:video.width,height:video.height,fps:video.r_frame_rate,codec:video.codec_name},audioCodec:audio.codec_name,sourceCoverage:'exact paragraph-by-paragraph concatenation'};
+if(!video||video.width!==1920||video.height!==1080||video.r_frame_rate!=='30/1'||video.codec_name!=='h264') throw new Error('Video format mismatch: '+JSON.stringify(video));
+if(!audio||audio.codec_name!=='aac') throw new Error('AAC audio track missing: '+JSON.stringify(audio));
+if(!(Number(audio.duration||data.format?.duration)>0)) throw new Error('AAC audio track has no measurable duration');
+const report={
+  status:'PASS',
+  paragraphs:paragraphs.length,
+  voiceCues:timing.cueCount,
+  slides:plan.length,
+  slideFramesInspected:frameFiles.length,
+  ocrFrames,
+  forbiddenPhraseMatches:0,
+  video:{width:video.width,height:video.height,fps:video.r_frame_rate,codec:video.codec_name},
+  audioCodec:audio.codec_name,
+  audioDurationSeconds:Number(audio.duration||data.format?.duration),
+  sourceCoverage:'exact paragraph-by-paragraph concatenation'
+};
 await (await import('node:fs/promises')).writeFile(join(out,'qa-report.json'),JSON.stringify(report,null,2));
 console.log(JSON.stringify(report,null,2));
