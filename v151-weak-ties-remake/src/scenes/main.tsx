@@ -1,8 +1,12 @@
 import '@fontsource/noto-serif-jp/700.css';
 import {makeScene2D, Rect, Circle, Txt} from '@motion-canvas/2d';
 import {all, createRef, waitFor} from '@motion-canvas/core';
-import slides from '../../content/slide-plan.json';
-import timing from '../../content/measured-timing.json';
+import slidePlanJson from '../../content/slide-plan.json';
+import measuredTimingJson from '../../content/measured-timing.json';
+import type {SlidePlanItem, MeasuredTiming} from '../types';
+
+const slides: SlidePlanItem[] = slidePlanJson;
+const timing: MeasuredTiming = measuredTimingJson;
 
 const cream = '#F2EBDD';
 const red = '#A7353A';
@@ -46,17 +50,25 @@ export default makeScene2D(function* (view) {
     </>
   );
 
-  const rows = timing.slides as Array<{id:number;start:number;end:number;duration:number}>;
+  const rows = timing.slides;
+  if (rows.length !== slides.length) {
+    throw new Error(`Slide timing count mismatch: plan=${slides.length}, timing=${rows.length}`);
+  }
+
   for (let i = 0; i < slides.length; i++) {
-    const s = slides[i] as {id:number;headline:string;visual:string;effect:string};
-    const t = rows[i];
-    const duration = Math.max(0.45, t.end - t.start);
-    const network = /network|cluster|bridge|link|nodes|job|connections|cross|loop|expand|support|venn|groups|repair|transfer|observer|cultivate/i.test(s.visual);
-    const number = /56|17|1973|percent|numeric/i.test(s.headline + ' ' + s.visual);
-    title().text(s.headline);
-    title().fontSize(s.headline.length > 24 ? 64 : 78);
-    subtitle().text(s.visual.replace(/-/g, '　') + '　／　' + s.effect.replace(/-/g, ' '));
-    index().text(String(s.id).padStart(2, '0') + '　/　' + String(slides.length).padStart(2, '0'));
+    const slide = slides[i];
+    const measured = rows[i];
+    if (slide.id !== measured.id || measured.end <= measured.start) {
+      throw new Error(`Invalid measured timing for slide ${slide.id}`);
+    }
+    const duration = measured.duration;
+    const network = /network|cluster|bridge|link|nodes|job|connections|cross|loop|expand|support|venn|groups|repair|transfer|observer|cultivate/i.test(slide.visual);
+    const number = /56|17|1973|percent|numeric/i.test(slide.headline + ' ' + slide.visual);
+
+    title().text(slide.headline);
+    title().fontSize(slide.headline.length > 24 ? 64 : 78);
+    subtitle().text(slide.visual + '　／　' + slide.effect);
+    index().text(String(slide.id).padStart(2, '0') + '　/　' + String(slides.length).padStart(2, '0'));
     accent().fill(i % 3 === 0 ? red : i % 3 === 1 ? teal : cream);
     glow().opacity(number ? 0.10 : 0);
     node1().opacity(network ? 0.95 : 0.12);
@@ -67,6 +79,7 @@ export default makeScene2D(function* (view) {
     edge2().opacity(network ? 0.55 : 0.08);
     edge3().opacity(network ? 0.55 : 0.08);
     edge4().opacity(network ? 0.75 : 0.08);
+
     yield* all(
       title().opacity(1, 0.18),
       subtitle().opacity(1, 0.18),
