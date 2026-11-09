@@ -1,4 +1,4 @@
-import {mkdir,readFile} from 'node:fs/promises';
+import {mkdir,readFile,readdir} from 'node:fs/promises';
 import {spawnSync} from 'node:child_process';
 import {join} from 'node:path';
 const out=join(process.cwd(),'output');
@@ -10,6 +10,6 @@ for(const s of timing.slides){
   const r=spawnSync('ffmpeg',['-y','-ss',String(at),'-i',join(out,'final.mp4'),'-frames:v','1','-vf','scale=480:270','-update','1',file],{stdio:'ignore'});
   if(r.status!==0) throw new Error('Could not extract slide frame '+s.id);
 }
-const montage=spawnSync('montage',[join(frames,'slide-*.png'),'-tile','6x','-geometry','480x270+8+8','-background','#111114',join(out,'contact-sheet.jpg')],{stdio:'inherit'});
+const frameFiles=(await readdir(frames)).filter(x=>x.endsWith('.png')).sort().map(x=>join(frames,x));\nconst montage=spawnSync('montage',[...frameFiles,'-tile','6x','-geometry','480x270+8+8','-background','#111114',join(out,'contact-sheet.jpg')],{stdio:'inherit'});
 if(montage.status!==0) throw new Error('ImageMagick montage failed');
 console.log('CONTACT_SHEET_CREATED',timing.slides.length);
