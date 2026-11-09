@@ -1,0 +1,103 @@
+name: V151 Weak Ties Original Motion Canvas
+
+on:
+  push:
+    branches: [v151-weak-ties-remake]
+    paths:
+      - '.github/workflows/v151-weak-ties-original.yml'
+      - 'v151-weak-ties-remake/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v151-weak-ties-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    defaults:
+      run:
+        working-directory: v151-weak-ties-remake
+    steps:
+      - name: Checkout dedicated branch
+        uses: actions/checkout@v4
+        with:
+          ref: v151-weak-ties-remake
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk fonts-noto-core fontconfig ffmpeg imagemagick tesseract-ocr tesseract-ocr-jpn
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: v151-weak-ties-remake/package.json
+
+      - name: Install isolated project dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Start VOICEVOX engine
+        run: |
+          docker run -d --rm --name v151-voicevox -p 50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 90); do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null 2>&1; then
+              echo "VOICEVOX_READY"
+              break
+            fi
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:50021/version
+
+      - name: Synthesize every narration cue and measure WAV durations
+        run: npm run voice
+
+      - name: TypeScript and Motion Canvas build
+        run: npm run build
+
+      - name: Five-second smoke render
+        run: |
+          npm run render -- --smoke
+          ffprobe -v error -show_entries stream=width,height,r_frame_rate -of default=noprint_wrappers=1 output/v151-smoke.mp4
+
+      - name: Full Motion Canvas render
+        run: npm run render
+
+      - name: Mix narration and generate original ambient BGM
+        run: npm run finalize
+
+      - name: Render one representative frame for every slide and create contact sheet
+        run: npm run contact-sheet
+
+      - name: Exhaustive source, subtitle, coverage, OCR and MP4 quality gates
+        run: npm run qa
+
+      - name: Upload final production package
+        uses: actions/upload-artifact@v4
+        with:
+          name: v151-weak-ties-final-package
+          path: |
+            v151-weak-ties-remake/output/final.mp4
+            v151-weak-ties-remake/output/contact-sheet.jpg
+            v151-weak-ties-remake/output/qa-report.json
+            v151-weak-ties-remake/output/production-report.json
+            v151-weak-ties-remake/output/subtitles.srt
+            v151-weak-ties-remake/content/measured-timing.json
+          retention-days: 30
+          compression-level: 0
+
+      - name: Publish requested GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v151-weak-ties-remake \
+            --target "${{ github.sha }}" \
+            --title "考える夜｜なぜ親友より、たまに会う知人の方が人生を変えるのか？" \
+            --notes "V151 final video. 1920x1080 / 30fps / H.264 + AAC. 71 original vector slides. VOICEVOX 青山龍星 speaker 13, speedScale 1.15. Narration source coverage and prohibited-label QA passed." \
+            output/final.mp4 output/contact-sheet.jpg output/qa-report.json output/production-report.json output/subtitles.srt
