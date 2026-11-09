@@ -9,24 +9,72 @@ const smoke=process.argv.includes('--smoke');
 const timing=JSON.parse(await readFile(join(ROOT,'content/measured-timing.json'),'utf8'));
 const outputName=smoke?'v151-smoke':'v151-weak-ties-video';
 const endFrame=smoke?150:Math.ceil(timing.duration*30);
+const renderTimeoutMs=smoke?360_000:Math.max(3_600_000,Math.ceil(timing.duration*30_000));
+const startedAt=Date.now();
+const log=(message,details={})=>console.log(new Date().toISOString(),'[V151 render]',message,JSON.stringify(details));
 await mkdir(join(ROOT,'output'),{recursive:true});
-const server=await createServer({root:ROOT,configFile:join(ROOT,'vite.config.ts'),server:{port:0,host:'127.0.0.1'},logLevel:'warn'});
-await server.listen();
-const addr=server.httpServer?.address();
-if(!addr||typeof addr==='string') throw new Error('Vite did not expose a TCP port');
-const browser=await puppeteer.launch({headless:true,protocolTimeout:900000,args:['--no-sandbox','--disable-dev-shm-usage','--use-gl=swiftshader','--enable-unsafe-swiftshader']});
-const page=await browser.newPage({viewport:{width:1920,height:1080}});
-page.on('pageerror',e=>console.error('PAGE_ERROR',e.message));
-page.on('requestfailed',r=>console.error('REQUEST_FAILED',r.url(),r.failure()?.errorText||''));
+
+let server;
+let browser;
+let page;
+let hardTimeout;
 try{
+  log('Starting Vite server');
+  server=await createServer({
+    root:ROOT,
+    configFile:join(ROOT,'vite.config.ts'),
+    server:{port:0,host:'127.0.0.1',strictPort:false},
+    logLevel:'info'
+  });
+  await server.listen();
+  const addr=server.httpServer?.address();
+  if(!addr||typeof addr==='string') throw new Error('Vite did not expose a TCP port');
   const url='http://127.0.0.1:'+addr.port+'/headless.html';
-  await page.goto(url,{waitUntil:'networkidle0',timeout:120000});
-  await page.waitForFunction(()=>typeof window.renderV151==='function',{timeout:120000});
-  const result=await page.evaluate((name,frames)=>window.renderV151('/src/project.ts?project',name,frames),outputName,endFrame);
+  log('Vite server ready',{url});
+
+  log('Launching Puppeteer Chromium',{executablePath:puppeteer.executablePath()});
+  browser=await puppeteer.launch({
+    headless:true,
+    protocolTimeout:120_000,
+    args:[
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+      '--use-gl=swiftshader',
+      '--enable-unsafe-swiftshader'
+    ]
+  });
+  page=await browser.newPage({viewport:{width:1920,height:1080},deviceScaleFactor:1});
+  page.on('console',message=>log('BROWSER '+message.type(),{text:message.text()}));
+  page.on('pageerror',error=>log('PAGE_ERROR',{message:error.message,stack:error.stack}));
+  page.on('requestfailed',request=>log('REQUEST_FAILED',{url:request.url(),error:request.failure()?.errorText||''}));
+  await page.exposeFunction('reportV151Progress',payload=>{
+    log('FRAME_PROGRESS',payload);
+  });
+
+  log('Opening headless entrypoint');
+  await page.goto(url,{waitUntil:'networkidle0',timeout:60_000});
+  log('Headless page loaded; waiting for render bridge');
+  await page.waitForFunction(()=>typeof window.renderV151==='function',{timeout:60_000});
+  log('Render bridge ready; starting Motion Canvas',{frames:endFrame,seconds:endFrame/30,smoke});
+
+  const renderPromise=page.evaluate((name,frames)=>window.renderV151('/src/project.ts?project',name,frames),outputName,endFrame);
+  hardTimeout=setTimeout(async()=>{
+    log('NODE_RENDER_TIMEOUT',{timeoutMs:renderTimeoutMs});
+    try{await page?.evaluate(()=>window.close());}catch{}
+    try{await browser?.close();}catch{}
+  },renderTimeoutMs);
+  const timeoutPromise=new Promise((_,reject)=>setTimeout(()=>reject(new Error('NODE_RENDER_TIMEOUT after '+renderTimeoutMs+'ms')),renderTimeoutMs+5_000));
+  const result=await Promise.race([renderPromise,timeoutPromise]);
   if(result!=='Success') throw new Error('Motion Canvas renderer returned '+result);
+  log('Motion Canvas render completed');
 }finally{
-  await page.close(); await browser.close(); await server.close();
+  if(hardTimeout) clearTimeout(hardTimeout);
+  try{if(page&&!page.isClosed()) await page.close();}catch{}
+  try{if(browser) await browser.close();}catch{}
+  try{if(server) await server.close();}catch{}
 }
 const file=join(ROOT,'output',outputName+'.mp4');
 const info=await stat(file);
-console.log(JSON.stringify({output:file,bytes:info.size,frames:endFrame,seconds:endFrame/30,smoke},null,2));
+log('Render output verified',{output:file,bytes:info.size,frames:endFrame,seconds:endFrame/30,smoke,elapsedSeconds:Math.round((Date.now()-startedAt)/1000)});
