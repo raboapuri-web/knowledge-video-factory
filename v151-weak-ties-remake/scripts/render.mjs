@@ -40,8 +40,14 @@ try {
   log('Project module optimizer stability check',{status:confirm.status});
   if(!confirm.ok) throw new Error('Project module stability check failed: HTTP '+confirm.status);
   await confirm.arrayBuffer();
-  log('Launching Puppeteer Chromium',{executablePath:puppeteer.executablePath()});
-  browser=await puppeteer.launch({headless:true,protocolTimeout:120_000,args:['--no-sandbox','--disable-setuid-sandbox','--disable-dev-shm-usage','--disable-gpu','--use-gl=swiftshader','--enable-unsafe-swiftshader']});
+  // The full Motion Canvas render is one long page.evaluate() call. At the
+  // observed ~43 fps, 25,948 frames take about 10 minutes; the old 120s CDP
+  // timeout therefore killed a healthy render at frame ~5,232. Keep CDP
+  // commands alive for 15 minutes while the independent render watchdog
+  // remains responsible for terminating a genuinely stuck render.
+  const protocolTimeoutMs=900_000;
+  log('Launching Puppeteer Chromium',{executablePath:puppeteer.executablePath(),protocolTimeoutMs});
+  browser=await puppeteer.launch({headless:true,protocolTimeout:protocolTimeoutMs,args:['--no-sandbox','--disable-setuid-sandbox','--disable-dev-shm-usage','--disable-gpu','--use-gl=swiftshader','--enable-unsafe-swiftshader']});
   page=await browser.newPage({viewport:{width:1920,height:1080},deviceScaleFactor:1});
   page.on('console',message=>log('BROWSER '+message.type(),{text:message.text()}));
   page.on('pageerror',error=>log('PAGE_ERROR',{message:error.message,stack:error.stack}));
