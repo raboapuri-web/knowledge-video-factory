@@ -4,12 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc --noEmit && vite build",
+    "build": "vite build",
     "voice": "node scripts/synthesize.mjs",
     "render": "node scripts/render.mjs",
     "finalize": "node scripts/finalize.mjs",
     "qa": "node scripts/quality-gate.mjs",
-    "contact-sheet": "node scripts/contact-sheet.mjs"
+    "contact-sheet": "node scripts/contact-sheet.mjs",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@fontsource/noto-serif-jp": "^5.2.6",
