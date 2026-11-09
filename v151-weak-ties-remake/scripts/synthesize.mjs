@@ -76,6 +76,7 @@ const slideRows=slides.map(s=>{
   }
   return {id:s.id,start,end,duration:end-start};
 });
-const measured={speaker,speed,paragraphCount:paragraphRows.length,cueCount:cues.length,slideCount:slides.length,duration:cursor,paragraphs:paragraphRows,cues,slides};
+if(slideRows.length!==slides.length) throw new Error('Slide timing generation mismatch: '+slideRows.length+' vs '+slides.length);
+const measured={speaker,speed,paragraphCount:paragraphRows.length,cueCount:cues.length,slideCount:slideRows.length,duration:cursor,paragraphs:paragraphRows,cues,slides:slideRows};
 await writeFile(join(ROOT,'content/measured-timing.json'),JSON.stringify(measured,null,2));
 console.log(JSON.stringify({paragraphs:paragraphRows.length,cues:cues.length,slides:slides.length,durationSeconds:Number(cursor.toFixed(2)),narration:'output/narration.wav'},null,2));
