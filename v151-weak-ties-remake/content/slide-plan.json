@@ -1,0 +1,641 @@
+[
+  {
+    "id": 1,
+    "paragraphStart": 1,
+    "paragraphEnd": 1,
+    "headline": "人生を変えたのは、誰ですか",
+    "visual": "問い・親友と知人の二分割",
+    "effect": "split-screen",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 2,
+    "paragraphStart": 1,
+    "paragraphEnd": 1,
+    "headline": "親友の名前を思い浮かべる",
+    "visual": "密集ノードが中央へ集まる",
+    "effect": "cluster-pull",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 3,
+    "paragraphStart": 1,
+    "paragraphEnd": 1,
+    "headline": "本当に親友だったのか",
+    "visual": "親友ノードに疑問符",
+    "effect": "question-mark",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 4,
+    "paragraphStart": 2,
+    "paragraphEnd": 2,
+    "headline": "知人の一言が人生を変える",
+    "visual": "離れたノードから線が伸びる",
+    "effect": "bridge-line",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 5,
+    "paragraphStart": 2,
+    "paragraphEnd": 2,
+    "headline": "今の仕事、向いていないんじゃない？",
+    "visual": "吹き出しを大きく出す",
+    "effect": "quote-reveal",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 6,
+    "paragraphStart": 2,
+    "paragraphEnd": 2,
+    "headline": "親しい人は、あなたをよく知っている",
+    "visual": "過去の情報カードが積層",
+    "effect": "memory-stack",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 7,
+    "paragraphStart": 3,
+    "paragraphEnd": 3,
+    "headline": "知人は、あなたの日常を知らない",
+    "visual": "情報の少ない視点を描く",
+    "effect": "empty-frame",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 8,
+    "paragraphStart": 3,
+    "paragraphEnd": 3,
+    "headline": "知人は、あなたの変化を見つける",
+    "visual": "輪郭がずれて新しい形へ",
+    "effect": "outline-shift",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 9,
+    "paragraphStart": 4,
+    "paragraphEnd": 4,
+    "headline": "なぜ親友より、たまに会う知人なのか",
+    "visual": "タイトルと1973年",
+    "effect": "title-card",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 10,
+    "paragraphStart": 5,
+    "paragraphEnd": 5,
+    "headline": "親友とは、どんな人か",
+    "visual": "自分と親友のノード",
+    "effect": "two-nodes",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 11,
+    "paragraphStart": 5,
+    "paragraphEnd": 5,
+    "headline": "親友は、あなたと似た人",
+    "visual": "同じ形のノードを並べる",
+    "effect": "matched-nodes",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 12,
+    "paragraphStart": 5,
+    "paragraphEnd": 5,
+    "headline": "同じ学校、会社、趣味",
+    "visual": "3つの共通領域",
+    "effect": "three-domains",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 13,
+    "paragraphStart": 5,
+    "paragraphEnd": 5,
+    "headline": "同じ世界を共有している",
+    "visual": "重なる二つの円",
+    "effect": "venn",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 14,
+    "paragraphStart": 6,
+    "paragraphEnd": 6,
+    "headline": "同じ情報を持っている",
+    "visual": "情報カードが複製される",
+    "effect": "duplicate-cards",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 15,
+    "paragraphStart": 6,
+    "paragraphEnd": 6,
+    "headline": "親友は、世界を広げにくい",
+    "visual": "重複カードが積み上がる",
+    "effect": "stacked-cards",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 16,
+    "paragraphStart": 7,
+    "paragraphEnd": 7,
+    "headline": "親友は、あなたを支える存在",
+    "visual": "太い線で二つのノードを接続",
+    "effect": "support-link",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 17,
+    "paragraphStart": 7,
+    "paragraphEnd": 7,
+    "headline": "情報を運ぶ力は別の話",
+    "visual": "支える線と情報矢印を対比",
+    "effect": "support-vs-info",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 18,
+    "paragraphStart": 8,
+    "paragraphEnd": 8,
+    "headline": "1973年、グラノヴェッターの調査",
+    "visual": "年号と研究者名",
+    "effect": "research-title",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 19,
+    "paragraphStart": 8,
+    "paragraphEnd": 8,
+    "headline": "どうやって、その仕事を見つけましたか？",
+    "visual": "質問文を中央に表示",
+    "effect": "question-card",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 20,
+    "paragraphStart": 9,
+    "paragraphEnd": 9,
+    "headline": "転職情報を運んだのは知人だった",
+    "visual": "知人から求人情報が流入",
+    "effect": "job-info",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 21,
+    "paragraphStart": 9,
+    "paragraphEnd": 9,
+    "headline": "56％ 対 17％",
+    "visual": "巨大な数字の左右比較",
+    "effect": "numeric-contrast",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 22,
+    "paragraphStart": 10,
+    "paragraphEnd": 10,
+    "headline": "常識とは逆の結果",
+    "visual": "矢印が反転",
+    "effect": "reversal",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 23,
+    "paragraphStart": 11,
+    "paragraphEnd": 11,
+    "headline": "弱い紐帯の強さ",
+    "visual": "英語と日本語のタイトル",
+    "effect": "concept-title",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 24,
+    "paragraphStart": 12,
+    "paragraphEnd": 12,
+    "headline": "知人は違う世界にいる",
+    "visual": "異なる円の間を情報が移動",
+    "effect": "cross-cluster",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 25,
+    "paragraphStart": 13,
+    "paragraphEnd": 13,
+    "headline": "人間関係の構造を見る",
+    "visual": "ネットワーク全体が展開",
+    "effect": "network-overview",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 26,
+    "paragraphStart": 14,
+    "paragraphEnd": 14,
+    "headline": "あなたの周りには、たくさんの人がいる",
+    "visual": "家族・親友・同僚・大学・趣味",
+    "effect": "network-groups",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 27,
+    "paragraphStart": 15,
+    "paragraphEnd": 15,
+    "headline": "人々は互いにつながっている",
+    "visual": "ノード間に線が伸びる",
+    "effect": "connections",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 28,
+    "paragraphStart": 16,
+    "paragraphEnd": 16,
+    "headline": "密につながった集団＝クラスター",
+    "visual": "ノードが複数の塊に集合",
+    "effect": "cluster-formation",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 29,
+    "paragraphStart": 17,
+    "paragraphEnd": 17,
+    "headline": "情報はクラスター内を循環する",
+    "visual": "光のパルスが周回",
+    "effect": "information-loop",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 30,
+    "paragraphStart": 18,
+    "paragraphEnd": 18,
+    "headline": "クラスター同士は、つながっていない",
+    "visual": "二つの集団を左右に分離",
+    "effect": "separated-clusters",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 31,
+    "paragraphStart": 18,
+    "paragraphEnd": 18,
+    "headline": "情報が集団の中に閉じ込められる",
+    "visual": "集団内で情報が循環し続ける",
+    "effect": "closed-loop",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 32,
+    "paragraphStart": 19,
+    "paragraphEnd": 19,
+    "headline": "弱い紐帯は、集団をつなぐ橋",
+    "visual": "離れた集団間に細い線",
+    "effect": "weak-bridge",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 33,
+    "paragraphStart": 19,
+    "paragraphEnd": 19,
+    "headline": "異なる集団から情報が届く",
+    "visual": "橋を通じて新情報が流入",
+    "effect": "bridge-transfer",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 34,
+    "paragraphStart": 20,
+    "paragraphEnd": 20,
+    "headline": "親友は同じ業界、同じ求人情報",
+    "visual": "同じ求人カードを二人に表示",
+    "effect": "same-job",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 35,
+    "paragraphStart": 21,
+    "paragraphEnd": 21,
+    "headline": "知人は違う業界、違う求人情報",
+    "visual": "別業界から求人カードが到着",
+    "effect": "new-job",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 36,
+    "paragraphStart": 22,
+    "paragraphEnd": 22,
+    "headline": "強い紐帯は共有する。弱い紐帯は運ぶ",
+    "visual": "共有と移動を二分割",
+    "effect": "share-vs-carry",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 37,
+    "paragraphStart": 23,
+    "paragraphEnd": 23,
+    "headline": "強い紐帯は支える。弱い紐帯は広げる",
+    "visual": "太線と広がる細線",
+    "effect": "support-expand",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 38,
+    "paragraphStart": 24,
+    "paragraphEnd": 25,
+    "headline": "あなたの周りの橋はどこにあるか",
+    "visual": "ネットワークから橋を一本強調",
+    "effect": "find-bridge",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 39,
+    "paragraphStart": 26,
+    "paragraphEnd": 26,
+    "headline": "弱い紐帯は、情報だけではない",
+    "visual": "情報カードから人物像へ",
+    "effect": "info-to-person",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 40,
+    "paragraphStart": 27,
+    "paragraphEnd": 27,
+    "headline": "親しい人は、あなたを決めつける",
+    "visual": "人物に固定ラベル",
+    "effect": "fixed-labels",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 41,
+    "paragraphStart": 27,
+    "paragraphEnd": 27,
+    "headline": "過去のイメージが固定される",
+    "visual": "過去のフレームが現在を覆う",
+    "effect": "past-frames",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 42,
+    "paragraphStart": 28,
+    "paragraphEnd": 28,
+    "headline": "悪意ではなく、親しさゆえ",
+    "visual": "太い関係線と固定ラベル",
+    "effect": "familiarity",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 43,
+    "paragraphStart": 29,
+    "paragraphEnd": 29,
+    "headline": "あなたには向いていない",
+    "visual": "否定の言葉が前に立つ",
+    "effect": "negative-quote",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 44,
+    "paragraphStart": 30,
+    "paragraphEnd": 30,
+    "headline": "心配が、ブレーキになることもある",
+    "visual": "前進する矢印が停止",
+    "effect": "brake",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 45,
+    "paragraphStart": 31,
+    "paragraphEnd": 31,
+    "headline": "知人は、あなたの過去を知らない",
+    "visual": "過去のフレームを持たない視点",
+    "effect": "fresh-view",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 46,
+    "paragraphStart": 32,
+    "paragraphEnd": 32,
+    "headline": "最近、なんか変わったね",
+    "visual": "言葉を中央に表示",
+    "effect": "change-quote",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 47,
+    "paragraphStart": 33,
+    "paragraphEnd": 33,
+    "headline": "他者の期待が、行動を変える",
+    "visual": "言葉→認識→行動の3段階",
+    "effect": "expectation-flow",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 48,
+    "paragraphStart": 33,
+    "paragraphEnd": 33,
+    "headline": "知人の一言が可能性を開く",
+    "visual": "閉じた円から線が伸びる",
+    "effect": "open-possibility",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 49,
+    "paragraphStart": 34,
+    "paragraphEnd": 34,
+    "headline": "あなたの知らない姿を映し出す",
+    "visual": "鏡面のような二重輪郭",
+    "effect": "mirror-view",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 50,
+    "paragraphStart": 35,
+    "paragraphEnd": 35,
+    "headline": "親しい人は、変化に気づきにくい",
+    "visual": "固定像と現在像を対比",
+    "effect": "self-change",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 51,
+    "paragraphStart": 36,
+    "paragraphEnd": 36,
+    "headline": "人は、自分の変化に気づきにくい",
+    "visual": "自己認識と外部視点の比較",
+    "effect": "blind-spot",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 52,
+    "paragraphStart": 37,
+    "paragraphEnd": 38,
+    "headline": "変化に気づくのは、たまに会う知人",
+    "visual": "遠くのノードから現在を照らす",
+    "effect": "outside-observer",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 53,
+    "paragraphStart": 39,
+    "paragraphEnd": 39,
+    "headline": "弱い紐帯を、どう育てるか",
+    "visual": "離れたノード間に線が生まれる",
+    "effect": "cultivate",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 54,
+    "paragraphStart": 40,
+    "paragraphEnd": 41,
+    "headline": "久しぶりの知人に話しかける",
+    "visual": "「最近、どう？」の文字",
+    "effect": "reconnect-question",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 55,
+    "paragraphStart": 42,
+    "paragraphEnd": 42,
+    "headline": "新しい場所に出かける",
+    "visual": "新しい集団へノードが移動",
+    "effect": "new-place",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 56,
+    "paragraphStart": 43,
+    "paragraphEnd": 43,
+    "headline": "地域イベント・趣味・勉強会・ボランティア",
+    "visual": "4つの独自アイコン",
+    "effect": "four-venues",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 57,
+    "paragraphStart": 44,
+    "paragraphEnd": 44,
+    "headline": "人を利用するためではない",
+    "visual": "一方通行の矢印を双方向に変える",
+    "effect": "not-transaction",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 58,
+    "paragraphStart": 45,
+    "paragraphEnd": 46,
+    "headline": "相手の世界を知ろうとする",
+    "visual": "双方向の情報交換",
+    "effect": "mutual-interest",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 59,
+    "paragraphStart": 47,
+    "paragraphEnd": 49,
+    "headline": "切れた紐帯は、再びつなげられる",
+    "visual": "転職・引っ越し・卒業で切れた線を再接続",
+    "effect": "repair-links",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 60,
+    "paragraphStart": 50,
+    "paragraphEnd": 50,
+    "headline": "人生を変えるのは、誰ですか",
+    "visual": "冒頭の問いを再提示",
+    "effect": "return-question",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 61,
+    "paragraphStart": 51,
+    "paragraphEnd": 51,
+    "headline": "親友は支える。知人は可能性を開く",
+    "visual": "二つの紐帯を対比",
+    "effect": "support-vs-open",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 62,
+    "paragraphStart": 52,
+    "paragraphEnd": 52,
+    "headline": "知人は、違う世界から情報を運ぶ",
+    "visual": "ネットワークの橋が広がる",
+    "effect": "network-expand",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 63,
+    "paragraphStart": 53,
+    "paragraphEnd": 53,
+    "headline": "半世紀以上前の研究",
+    "visual": "1973年から現在への時間軸",
+    "effect": "timeline",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 64,
+    "paragraphStart": 54,
+    "paragraphEnd": 54,
+    "headline": "SNSは、同じ考えの人を集める",
+    "visual": "同質的なノードが集まる",
+    "effect": "echo-cluster",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 65,
+    "paragraphStart": 54,
+    "paragraphEnd": 54,
+    "headline": "アルゴリズムは、好きなものを見せる",
+    "visual": "同じ情報カードの反復",
+    "effect": "algorithm-loop",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 66,
+    "paragraphStart": 55,
+    "paragraphEnd": 55,
+    "headline": "だからこそ、弱い紐帯が大切だ",
+    "visual": "外側へ新しい線が伸びる",
+    "effect": "break-bubble",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 67,
+    "paragraphStart": 56,
+    "paragraphEnd": 56,
+    "headline": "あなたの周りには、誰がいるか",
+    "visual": "ネットワーク全体を俯瞰",
+    "effect": "network-question",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 68,
+    "paragraphStart": 57,
+    "paragraphEnd": 57,
+    "headline": "弱い紐帯を育ててみる",
+    "visual": "再接続と新しい出会い",
+    "effect": "small-action",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 69,
+    "paragraphStart": 57,
+    "paragraphEnd": 57,
+    "headline": "新しい一歩が、人生を変える",
+    "visual": "一本の線が画面全体へ広がる",
+    "effect": "life-change",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 70,
+    "paragraphStart": 58,
+    "paragraphEnd": 58,
+    "headline": "知人の一言が人生を変える",
+    "visual": "知人ノードから波紋が広がる",
+    "effect": "final-insight",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  },
+  {
+    "id": 71,
+    "paragraphStart": 59,
+    "paragraphEnd": 59,
+    "headline": "今日も世界が少しわからなくなった。",
+    "visual": "暗転し文字だけを残す",
+    "effect": "end-card",
+    "timing": "VOICEVOX WAV実測後に自動算出"
+  }
+]
