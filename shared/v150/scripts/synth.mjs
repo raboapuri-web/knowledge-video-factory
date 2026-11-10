@@ -79,6 +79,16 @@ function writeWav(samples, sampleRate) {
   return Buffer.concat([header, samples]);
 }
 
+// 字幕は原稿どおり、読み上げのみ固有名詞の発音を指定する。
+function speechForVoicevox(text) {
+  return text
+    .replaceAll('LinkedIn', 'リンクトイン')
+    .replaceAll('IT業界', 'アイティー業界')
+    .replaceAll('SNS', 'エスエヌエス')
+    .replaceAll('83.4％', 'はちじゅうさんてんよんパーセント')
+    .replaceAll('83.4%', 'はちじゅうさんてんよんパーセント');
+}
+
 // 文を1つ VOICEVOX で合成する (失敗時は最大3回まで再試行する)。
 async function synthOne(text) {
   for (let attempt = 0; attempt < 3; attempt++) {
@@ -129,7 +139,7 @@ async function main() {
   async function worker() {
     while (next < sents.length) {
       const i = next++;
-      wavs[i] = await synthOne(sents[i]);
+      wavs[i] = await synthOne(speechForVoicevox(sents[i]));
     }
   }
   await Promise.all(Array.from({length: Math.min(PARALLEL, sents.length)}, () => worker()));
