@@ -1,0 +1,211 @@
+name: V153 Deep-Sea Gigantism Photo Documentary
+
+on:
+  push:
+    branches: [v153-deep-sea-gigantism-photo-slides-20261111]
+    paths:
+      - 'shared/v153/launch/assets.txt'
+      - 'shared/v153/launch/render.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v153-deep-sea-gigantism-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  assets:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install media tools and Japanese fonts
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg fonts-noto-cjk fontconfig
+          python -m pip install --upgrade pip
+          python -m pip install requests beautifulsoup4 Pillow cairosvg
+          ffmpeg -version | head -1
+          fc-cache -f
+      - name: Verify the exact 88-screen source and generate the ten specified diagrams
+        working-directory: shared/v153
+        run: |
+          set -euo pipefail
+          python scripts/preflight.py
+          python scripts/generate_diagrams.py
+      - name: Acquire 78 source stills from NOAA, Wikimedia Commons, NASA and other listed sources
+        working-directory: shared/v153
+        run: |
+          set -euo pipefail
+          python scripts/collect_assets.py
+      - name: Upload source assets and acquisition evidence even if the rights/coverage gate stops production
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v153-assets-and-source-audit
+          path: |
+            shared/v153/assets/
+            shared/v153/content/audit.json
+            shared/v153/content/narration_source.txt
+            shared/v153/SOURCES.txt
+          retention-days: 21
+          compression-level: 0
+      - name: Require all 78 collection scenes and all 10 specified diagrams; no generated animal-photo substitutions
+        working-directory: shared/v153
+        run: python scripts/check_assets.py
+
+  chapter:
+    if: contains(github.event.head_commit.message, '[render-approved]')
+    needs: assets
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, epilogue]
+    env:
+      CHAPTER: ${{ matrix.chapter }}
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_ID: '13'
+      VOICEVOX_SPEED: '1.10'
+      VOICEVOX_INTONATION: '1.0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FFmpeg and Japanese fonts
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg fonts-noto-cjk fontconfig
+          python -m pip install requests Pillow
+          fc-cache -f
+      - name: Download the verified 88-screen asset package
+        uses: actions/download-artifact@v4
+        with:
+          name: v153-assets-and-source-audit
+          path: shared/v153
+      - name: Start local VOICEVOX CPU engine
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 --name voicevox voicevox/voicevox_engine:cpu-latest
+          for i in {1..150}; do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null; then
+              echo "VOICEVOX_READY"
+              break
+            fi
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:50021/version
+      - name: Synthesize exact scene narration and bottom-centre subtitle cues
+        working-directory: shared/v153
+        run: |
+          set -euo pipefail
+          python scripts/synth.py "$CHAPTER"
+          test -s "media/voice-report-$CHAPTER.json"
+      - name: Render 1920x1080 still-image chapter with gentle 100-to-106 percent zoom/pan
+        working-directory: shared/v153
+        run: |
+          set -euo pipefail
+          python scripts/render_chapter.py "$CHAPTER"
+          test -s "output/v153-$CHAPTER.mp4"
+          ffprobe -v error -show_entries stream=width,height,r_frame_rate,codec_name -show_entries format=duration,size -of default=noprint_wrappers=1 "output/v153-$CHAPTER.mp4"
+      - name: Prepare flat chapter artifact paths
+        working-directory: shared/v153
+        run: |
+          mkdir -p artifact
+          cp "output/v153-$CHAPTER.mp4" "artifact/v153-$CHAPTER.mp4"
+          cp "media/voice-report-$CHAPTER.json" "artifact/voice-report-$CHAPTER.json"
+      - name: Upload chapter MP4 and voice timing report
+        uses: actions/upload-artifact@v4
+        with:
+          name: v153-segment-${{ matrix.chapter }}
+          path: shared/v153/artifact/*
+          retention-days: 14
+          compression-level: 0
+
+  finalize:
+    needs: chapter
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg
+      - name: Download the verified source asset package for final QA and credits
+        uses: actions/download-artifact@v4
+        with:
+          name: v153-assets-and-source-audit
+          path: shared/v153
+      - name: Download six rendered chapter segments
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v153-segment-*
+          path: shared/v153/segments
+          merge-multiple: true
+      - name: Assemble complete documentary
+        working-directory: shared/v153
+        run: |
+          set -euo pipefail
+          mkdir -p output qa
+          : > output/concat-final.txt
+          for chapter in prologue chapter1 chapter2 chapter3 chapter4 epilogue; do
+            f="segments/v153-${chapter}.mp4"
+            test -s "$f"
+            printf "file '%s'\n" "$(realpath "$f")" >> output/concat-final.txt
+          done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat-final.txt -c copy -movflags +faststart output/v153-deep-sea-gigantism-final.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 output/v153-deep-sea-gigantism-final.mp4
+      - name: Create contact sheet and verify the final master
+        working-directory: shared/v153
+        run: |
+          set -euo pipefail
+          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v153-deep-sea-gigantism-final.mp4)
+          I=$(python3 -c "print(max(1.0, float('$D')/48))")
+          ffmpeg -y -loglevel error -i output/v153-deep-sea-gigantism-final.mp4 -vf "fps=1/$I,scale=320:-1,tile=8x6:padding=4:margin=4" -frames:v 1 output/v153-contact-sheet.jpg
+          python scripts/qa.py output/v153-deep-sea-gigantism-final.mp4
+          test -s qa/final.json
+          test -s production_report.json
+      - name: Upload final MP4, contact sheet, source credits and QA report
+        uses: actions/upload-artifact@v4
+        with:
+          name: v153-deep-sea-gigantism-master
+          path: |
+            shared/v153/output/v153-deep-sea-gigantism-final.mp4
+            shared/v153/output/v153-contact-sheet.jpg
+            shared/v153/production_report.json
+            shared/v153/qa/final.json
+            shared/v153/SOURCES.txt
+          retention-days: 21
+          compression-level: 0
+      - name: Publish downloadable GitHub Release
+        working-directory: shared/v153
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v153-deep-sea-gigantism-${{ github.run_id }}"
+          gh release create "$TAG" \
+            output/v153-deep-sea-gigantism-final.mp4 \
+            output/v153-contact-sheet.jpg \
+            production_report.json \
+            qa/final.json \
+            SOURCES.txt \
+            --repo "${{ github.repository }}" \
+            --title "考える夜｜なぜ深海の生き物は巨大化するのか？ 完成動画" \
+            --notes "88-screen still-image documentary, 78 collected source screens and 10 specified conceptual diagrams, 1920x1080 30fps, VOICEVOX:青山龍星, bottom-centre subtitles, gentle still-image zoom/pan. Asset sources, credits and QA report included."

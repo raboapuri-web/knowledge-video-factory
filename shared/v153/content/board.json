@@ -1,0 +1,1841 @@
+{
+  "title": "なぜ深海の生き物は巨大化するのか？",
+  "source_file": "なぜ深海の生き物は巨大化するのか_全編画面設計.md",
+  "spec": {
+    "scene_count": 88,
+    "collect_scenes": 78,
+    "generated_scenes": 10,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "voice": "VOICEVOX 青山龍星",
+    "voicevox_speaker_id": 13,
+    "subtitle_position": "bottom-center",
+    "motion": "slow zoom 100%-106% or pan",
+    "visual_policy": "source image plus subtitle only; no character or extra panels"
+  },
+  "chapters": [
+    {
+      "id": "prologue",
+      "start": 1,
+      "end": 6
+    },
+    {
+      "id": "chapter1",
+      "start": 7,
+      "end": 18
+    },
+    {
+      "id": "chapter2",
+      "start": 19,
+      "end": 35
+    },
+    {
+      "id": "chapter3",
+      "start": 36,
+      "end": 58
+    },
+    {
+      "id": "chapter4",
+      "start": 59,
+      "end": 78
+    },
+    {
+      "id": "epilogue",
+      "start": 79,
+      "end": 88
+    }
+  ],
+  "scenes": [
+    {
+      "id": "S001",
+      "chapter": "prologue",
+      "mode": "収集",
+      "script": "## プロローグ｜海の底には、サイズの常識が通用しない\n\n地球上には、奇妙な生き物がいる。\n\n体長2メートルを超える巨大な等脚類。\n\n脚を広げると3メートルを超えるタカアシガニ。\n\nそして、全長10メートルを超えることもあるダイオウイカ。",
+      "image_description": "ダイオウグソクムシ、タカアシガニ、ダイオウイカの実写を横長の3分割コラージュにする。各生物は全身が分かるカットを選び、中央に文字は置かない。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ タカアシガニ ダイオウイカ 実物 写真",
+      "search_en": "giant isopod Japanese spider crab giant squid real photograph",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-VIDEO｜NOAA Ocean Exploration｜Giant Isopod（Gulf of Mexico 2017）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/video-playlist-ex1711-giant-isopod/"
+        },
+        {
+          "label": "COMMONS-SPIDERCRAB｜Wikimedia Commons｜Macrocheira kaempferi",
+          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi"
+        },
+        {
+          "label": "NOAA-SQUID｜NOAA Ocean Exploration｜Giant Squid",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/edu-themes-bioluminescence-media-multimedia-giant-squid/"
+        },
+        {
+          "label": "COMMONS-SQUID｜Wikimedia Commons｜Architeuthis dux（国立科学博物館標本）",
+          "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)"
+        }
+      ]
+    },
+    {
+      "id": "S002",
+      "chapter": "prologue",
+      "mode": "収集",
+      "script": "彼らに共通するものがある。\n\nそれは、深海という環境で生きていることだ。\n\nもちろん、深海の生物がすべて巨大というわけではない。\n\n顕微鏡でなければ見えないような微生物もいれば、数センチしかない魚もいる。",
+      "image_description": "深海の暗い水中を背景に、小型のクラゲ・魚・節足動物を複数見せる。巨大生物だけの世界ではないことが伝わるカット。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "深海 小型生物 クラゲ 小魚 ROV 映像",
+      "search_en": "small deep sea animals jellyfish tiny fish ROV footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-MARINELIFE｜NOAA Ocean Exploration｜Wild and Bizarre Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/explainers/marine-life/"
+        },
+        {
+          "label": "NOAA-TINY｜NOAA Ocean Exploration｜Tiny Arthropod",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/"
+        },
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S003",
+      "chapter": "prologue",
+      "mode": "収集",
+      "script": "しかし、ある種類の生物については、浅い海に暮らす仲間と比べて、驚くほど巨大な姿に進化した例が存在する。\n\nこの現象は「深海巨大症」と呼ばれている。\n\nでは、なぜ彼らは巨大になったのか。\n\n普通に考えれば、深海は生物にとって過酷な場所だ。",
+      "image_description": "浅海の小型ヨコエビと深海のAlicella giganteaを、同じ向き・近い倍率で並べた比較写真。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "ヨコエビ 小型 深海 巨大ヨコエビ 比較",
+      "search_en": "small shallow water amphipod Alicella gigantea size comparison",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-ALICELLA｜Wikimedia Commons｜Alicella gigantea",
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+        },
+        {
+          "label": "NOAA-EXPEDITION-MEDIA｜NOAA Ocean Exploration｜Multimedia",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/"
+        }
+      ]
+    },
+    {
+      "id": "S004",
+      "chapter": "prologue",
+      "mode": "収集",
+      "script": "太陽の光は届かない。\n\n水温は低い。\n\n水圧は恐ろしいほど高い。\n\nそして、食べ物もほとんど降ってこない。",
+      "image_description": "光の届かない深海の海底。ROVのライトが泥底と浮遊粒子を照らす、暗く広い実写映像。",
+      "motion": "広い画から主役またはROVライトへゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "深海 海底 暗闇 ROV ライト 探査",
+      "search_en": "deep sea seafloor darkness ROV lights particles",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-DEEP-OCEAN｜NOAA Ocean Exploration｜What is the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-ocean/"
+        },
+        {
+          "label": "NOAA-ROV-TECH｜NOAA Ocean Exploration｜How Robots Are Uncovering the Mysteries of the Deep",
+          "url": "https://oceanexplorer.noaa.gov/explainers/technology/"
+        },
+        {
+          "label": "NOAA-EXPEDITION-MEDIA｜NOAA Ocean Exploration｜Multimedia",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/"
+        }
+      ]
+    },
+    {
+      "id": "S005",
+      "chapter": "prologue",
+      "mode": "収集",
+      "script": "成長するための条件など、どこにも見当たらない。\n\nそれなのに、なぜ巨大化するのか。\n\n常識はこう言う。\n\n生き物は、厳しい環境では小さくなる。",
+      "image_description": "深海底にいる巨大な等脚類を、周囲の暗闇と海底の広さが分かる引きの画で見せる。",
+      "motion": "広い画から主役またはROVライトへゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ 深海 海底 全身 写真",
+      "search_en": "giant isopod Bathynomus on deep sea floor wide shot",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-STILL｜NOAA Ocean Exploration｜Giant Isopod（Windows to the Deep 2021）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/"
+        },
+        {
+          "label": "NOAA-ISOPOD-VIDEO｜NOAA Ocean Exploration｜Giant Isopod（Gulf of Mexico 2017）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/video-playlist-ex1711-giant-isopod/"
+        }
+      ]
+    },
+    {
+      "id": "S006",
+      "chapter": "prologue",
+      "mode": "収集",
+      "script": "だが、深海には、その常識を裏切る生物がいる。\n\nしかも、彼らが巨大化した理由を考えていくと、意外な事実が見えてくる。\n\n巨大な体は、必ずしも強さの象徴ではない。\n\nむしろ、食べ物が少なく、時間がゆっくり流れる世界で生き残るための戦略なのかもしれない。",
+      "image_description": "深海の海底をゆっくり進むROV、または暗い水柱を降下する探査機の実写。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "深海 ROV 海底 探査機 降下 映像",
+      "search_en": "deep ocean ROV descending seafloor exploration footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ROV-TECH｜NOAA Ocean Exploration｜How Robots Are Uncovering the Mysteries of the Deep",
+          "url": "https://oceanexplorer.noaa.gov/explainers/technology/"
+        },
+        {
+          "label": "NOAA-DEEP-OCEAN｜NOAA Ocean Exploration｜What is the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-ocean/"
+        }
+      ]
+    },
+    {
+      "id": "S007",
+      "chapter": "chapter1",
+      "mode": "収集",
+      "script": "今回は、深海の巨大生物を入り口に、生物の大きさを決めているものの正体を考えていこう。\n\n## 第1章｜深海には、なぜ規格外の生物がいるのか\n\nまず、深海という環境を理解しておこう。\n\n一般的に、水深200メートルより深い海を深海と呼ぶ。",
+      "image_description": "NOAAの水柱イラスト、または同ページの深度帯図版。表層から深海底へ光が減る様子が一枚で分かる構図を選ぶ。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "海洋 水柱 水深帯 図 NOAA 深海 光",
+      "search_en": "NOAA ocean water column depth zones light diagram",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-WATERCOLUMN｜NOAA Ocean Exploration｜The Water Column",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2101-features-water-column-media-water-column/"
+        },
+        {
+          "label": "NOAA-DEEP-OCEAN｜NOAA Ocean Exploration｜What is the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-ocean/"
+        }
+      ]
+    },
+    {
+      "id": "S008",
+      "chapter": "chapter1",
+      "mode": "収集",
+      "script": "このあたりから太陽光は急激に弱まり、さらに深くなると、ほとんど光が届かなくなる。\n\n水深1,000メートルでは、太陽の光による昼夜の区別すらほぼ意味を失う。\n\nそして、水深が深くなるほど水圧は上昇する。",
+      "image_description": "NOAAの水圧解説ページにある深度と圧力の図版、または潜水艇の写真を使用。数値の関係が見える図を優先する。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "水深 水圧 図 10メートル 1気圧 NOAA",
+      "search_en": "NOAA ocean pressure depth diagram one atmosphere every 10 meters",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-PRESSURE｜NOAA Ocean Exploration｜How does pressure impact animals in the ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/animal-pressure/"
+        },
+        {
+          "label": "NOAA-PRESSURE-FACT｜NOAA Ocean Service｜How does pressure change with ocean depth?",
+          "url": "https://oceanservice.noaa.gov/facts/pressure.html"
+        }
+      ]
+    },
+    {
+      "id": "S009",
+      "chapter": "chapter1",
+      "mode": "収集",
+      "script": "水深10メートルごとに、およそ1気圧ずつ水圧が増える。\n\nつまり、水深1,000メートルでは、地上の約100倍の圧力がかかる。\n\n水深4,000メートルなら、およそ400倍だ。\n\n人間なら、とても耐えられない。",
+      "image_description": "深海のROVと、そのライトに照らされた生物を同じ画面に収める。人間の探査装置の小ささも伝わる構図。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "深海 ROV Deep Discoverer 生物 ライト 探査",
+      "search_en": "NOAA Deep Discoverer ROV deep sea animal illuminated",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ROV-TECH｜NOAA Ocean Exploration｜How Robots Are Uncovering the Mysteries of the Deep",
+          "url": "https://oceanexplorer.noaa.gov/explainers/technology/"
+        },
+        {
+          "label": "NOAA-DEEP-OCEAN｜NOAA Ocean Exploration｜What is the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-ocean/"
+        }
+      ]
+    },
+    {
+      "id": "S010",
+      "chapter": "chapter1",
+      "mode": "収集",
+      "script": "ところが、深海の生物たちは、この環境を当たり前のように生きている。\n\nその中でも、特に異様な存在がいる。\n\nまず紹介したいのが、ダイオウグソクムシだ。\n\n**巨大な深海の等脚類**\n\n彼らは、陸上にいるダンゴムシやワラジムシの仲間である。",
+      "image_description": "ダイオウグソクムシの背面からの全身写真。節のある外骨格と脚がはっきり分かるもの。",
+      "motion": "生物の特徴が見える部分へゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ 全身 背面 Bathynomus giganteus",
+      "search_en": "Bathynomus giganteus giant isopod dorsal full body",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-STILL｜NOAA Ocean Exploration｜Giant Isopod（Windows to the Deep 2021）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/"
+        },
+        {
+          "label": "SMITHSONIAN-ISOPOD｜Smithsonian Ocean｜Meet the Giant Isopods",
+          "url": "https://ocean.si.edu/ocean-life/invertebrates/meet-giant-isopods"
+        }
+      ]
+    },
+    {
+      "id": "S011",
+      "chapter": "chapter1",
+      "mode": "収集",
+      "script": "つまり、見た目は巨大なダンゴムシだ。\n\nただし、サイズがまったくかわいくない。\n\n体長は最大で50センチほどにもなる。\n\n普段、私たちが見かけるダンゴムシは数センチ程度だ。",
+      "image_description": "陸上の小さなダンゴムシとダイオウグソクムシを、同じ縮尺の比較ではなくサイズ差が直感的に伝わる並置で見せる。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "ダンゴムシ ダイオウグソクムシ 大きさ 比較",
+      "search_en": "common pillbug Armadillidium vulgare giant isopod comparison",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-PILLBUG｜Wikimedia Commons｜Armadillidium vulgare",
+          "url": "https://commons.wikimedia.org/wiki/Category:Armadillidium_vulgare"
+        },
+        {
+          "label": "NOAA-ISOPOD-STILL｜NOAA Ocean Exploration｜Giant Isopod（Windows to the Deep 2021）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/"
+        },
+        {
+          "label": "SMITHSONIAN-ISOPOD｜Smithsonian Ocean｜Meet the Giant Isopods",
+          "url": "https://ocean.si.edu/ocean-life/invertebrates/meet-giant-isopods"
+        }
+      ]
+    },
+    {
+      "id": "S012",
+      "chapter": "chapter1",
+      "mode": "収集",
+      "script": "同じ仲間なのに、まるで別の生き物である。\n\nしかも、彼らが暮らすのは、水深数百メートルから数千メートルの深海だ。\n\n次は、タカアシガニ。\n\n**世界最大級のカニ**\n\n日本近海にも生息するこのカニは、脚を広げると3メートルを超えることがある。",
+      "image_description": "タカアシガニの脚を広げた全身写真。水族館の水槽内、または標本の脚の長さが分かる広角写真。",
+      "motion": "生物の特徴が見える部分へゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "タカアシガニ 全身 脚を広げた 写真",
+      "search_en": "Japanese spider crab Macrocheira kaempferi full spread legs",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-SPIDERCRAB｜Wikimedia Commons｜Macrocheira kaempferi",
+          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi"
+        }
+      ]
+    },
+    {
+      "id": "S013",
+      "chapter": "chapter1",
+      "mode": "収集",
+      "script": "体そのものが3メートルあるわけではないが、その姿はまるで海底を歩く巨大なクモだ。\n\nさらに、ダイオウイカ。\n\n全長10メートルを超える個体も知られている。\n\n巨大な目を持ち、深海で暮らすこのイカは、海の怪物という言葉がよく似合う。",
+      "image_description": "ダイオウイカの液浸標本または自然環境下の映像。10m級の話では標本写真を優先し、NOAA映像は生きた姿の補助に使う。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "ダイオウイカ 液浸標本 国立科学博物館 自然環境 映像",
+      "search_en": "giant squid Architeuthis specimen National Museum of Nature and Science in situ video",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-SQUID｜Wikimedia Commons｜Architeuthis dux（国立科学博物館標本）",
+          "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)"
+        },
+        {
+          "label": "NOAA-SQUID｜NOAA Ocean Exploration｜Giant Squid",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/edu-themes-bioluminescence-media-multimedia-giant-squid/"
+        }
+      ]
+    },
+    {
+      "id": "S014",
+      "chapter": "chapter1",
+      "mode": "収集",
+      "script": "ここで一つ、重要なことがある。\n\n彼らは、単に体が大きくなっただけではない。\n\nそれぞれの生物が、異なる方法で巨大化しているのだ。\n\nダイオウグソクムシのような甲殻類。",
+      "image_description": "等脚類・大型のカニ・頭足類を、それぞれ別の実写写真で横並びにしたコラージュ。分類の違いが分かるよう形態を見せる。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ タカアシガニ ダイオウイカ 比較 写真",
+      "search_en": "giant isopod Japanese spider crab giant squid three animal comparison",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-STILL｜NOAA Ocean Exploration｜Giant Isopod（Windows to the Deep 2021）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/"
+        },
+        {
+          "label": "COMMONS-SPIDERCRAB｜Wikimedia Commons｜Macrocheira kaempferi",
+          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi"
+        },
+        {
+          "label": "COMMONS-SQUID｜Wikimedia Commons｜Architeuthis dux（国立科学博物館標本）",
+          "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)"
+        }
+      ]
+    },
+    {
+      "id": "S015",
+      "chapter": "chapter1",
+      "mode": "収集",
+      "script": "タカアシガニのような大型の節足動物。\n\nダイオウイカのような大型の頭足類。\n\n進化の系統も、生き方も違う。\n\nそれでも、深海という環境に、巨大な生物が現れている。",
+      "image_description": "タカアシガニとダイオウイカの実写を、節足動物と頭足類の対照として画面左右に配置。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "タカアシガニ ダイオウイカ 実物 写真 比較",
+      "search_en": "Japanese spider crab giant squid animal comparison",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-SPIDERCRAB｜Wikimedia Commons｜Macrocheira kaempferi",
+          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi"
+        },
+        {
+          "label": "NOAA-SQUID｜NOAA Ocean Exploration｜Giant Squid",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/edu-themes-bioluminescence-media-multimedia-giant-squid/"
+        },
+        {
+          "label": "COMMONS-SQUID｜Wikimedia Commons｜Architeuthis dux（国立科学博物館標本）",
+          "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)"
+        }
+      ]
+    },
+    {
+      "id": "S016",
+      "chapter": "chapter1",
+      "mode": "収集",
+      "script": "これは偶然なのだろうか。\n\n実は、生物学には、ある興味深い傾向が知られている。\n\nそれが「深海巨大症」だ。\n\n深海巨大症とは、浅い海や陸上に暮らす近縁種と比べて、深海に暮らす生物が巨大な体を持つ傾向を指す。",
+      "image_description": "深海巨大症の代表例としてAlicella giganteaの全身写真。透明感のある体と長い脚が見えるもの。",
+      "motion": "生物の特徴が見える部分へゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "Alicella gigantea 巨大ヨコエビ 全身 写真",
+      "search_en": "Alicella gigantea supergiant amphipod full body photograph",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-ALICELLA｜Wikimedia Commons｜Alicella gigantea",
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+        }
+      ]
+    },
+    {
+      "id": "S017",
+      "chapter": "chapter1",
+      "mode": "収集",
+      "script": "例えば、深海に暮らすヨコエビの仲間には、浅い海の小型種とは比較にならないほど大きくなるものがいる。\n\n通常のヨコエビは数ミリから数センチ程度だが、深海には数十センチに達する巨大な種類も存在する。",
+      "image_description": "Alicella giganteaを人の手、採集器具、または定規と一緒に写した写真。体長30cm級の大きさが伝わる構図。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "Alicella gigantea 手 比較 30cm 巨大ヨコエビ",
+      "search_en": "Alicella gigantea in hand size comparison supergiant amphipod",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-ALICELLA｜Wikimedia Commons｜Alicella gigantea",
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+        }
+      ]
+    },
+    {
+      "id": "S018",
+      "chapter": "chapter1",
+      "mode": "収集",
+      "script": "ここまでくると、もはや小さなエビという印象は消える。\n\nなぜ、こんなことが起きるのか。\n\n一つの説明だけですべてを説明することはできない。\n\nしかし、その背景には、深海ならではの時間とエネルギーの使い方が関係している。",
+      "image_description": "深海の水柱に浮かぶ生物と、暗い海底を遠景で見せる。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "深海 水柱 暗い 海底 深海生物",
+      "search_en": "deep sea water column dark abyssal environment",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-DEEP-OCEAN｜NOAA Ocean Exploration｜What is the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-ocean/"
+        },
+        {
+          "label": "NOAA-MARINELIFE｜NOAA Ocean Exploration｜Wild and Bizarre Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/explainers/marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S019",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "そして、最初に注目したいのは、深海の寒さだ。\n\n## 第2章｜寒い場所では、生き物は大きくなる？\n\n深海の水温は低い。\n\n深い海では、場所によって異なるものの、水温が数度程度に保たれていることが多い。",
+      "image_description": "深海に暮らす魚や甲殻類の実写。冷たい暗い水中で動く魚の体表やヒレを捉えたカット。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "深海魚 甲殻類 深海 水中 映像",
+      "search_en": "deep sea fish crustacean underwater ROV footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-MARINELIFE｜NOAA Ocean Exploration｜Wild and Bizarre Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/explainers/marine-life/"
+        },
+        {
+          "label": "NOAA-FISHDIST｜NOAA Ocean Exploration｜New Research Helps Show How Depth Affects Fish Distribution",
+          "url": "https://oceanexplorer.noaa.gov/news/fish-distribution/"
+        },
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S020",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "人間にとっては寒い環境だ。\n\nしかし、魚や甲殻類など、多くの海洋生物は周囲の温度の影響を強く受ける。\n\n人間のように体温を一定に保つ仕組みを持たないからだ。\n\n周囲の水温が低くなると、体の中で起きる化学反応も遅くなり、活動や成長のペースが変化する。",
+      "image_description": "深海魚がゆっくり泳ぐ実写映像。背景は暗く、動きの少ない画を選ぶ。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "深海魚 ゆっくり 泳ぐ ROV 映像",
+      "search_en": "deep sea fish slow swimming ROV footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-MARINELIFE｜NOAA Ocean Exploration｜Wild and Bizarre Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/explainers/marine-life/"
+        },
+        {
+          "label": "NOAA-EXPEDITION-MEDIA｜NOAA Ocean Exploration｜Multimedia",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/"
+        }
+      ]
+    },
+    {
+      "id": "S021",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "つまり、寒い環境では、生き物の時間の進み方そのものが変わる。\n\nここで、ある有名な生物学の考え方を紹介しよう。\n\n「ベルクマンの法則」だ。\n\nこの法則は、近縁な恒温動物では、寒冷な地域に暮らす種類ほど体が大きくなる傾向がある、というものだ。",
+      "image_description": "ホッキョクグマの全身写真。寒冷地に暮らす大型の恒温動物であることが分かる自然写真。",
+      "motion": "生物の特徴が見える部分へゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "ホッキョクグマ 全身 北極 写真",
+      "search_en": "polar bear full body Arctic wildlife photograph",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "WIKIMEDIA-GENERAL｜Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/"
+        }
+      ]
+    },
+    {
+      "id": "S022",
+      "chapter": "chapter2",
+      "mode": "生成",
+      "script": "例えば、同じクマでも、寒い地域に暮らすホッキョクグマは非常に大きい。\n\n体が大きくなると、体重に対する表面積の割合が小さくなる。\n\nこれが何を意味するのか。\n\n体温を保つために有利になるのだ。",
+      "image_description": "小さな容器と大きな容器の表面積・体積比を比較する図。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "",
+      "search_en": "",
+      "generation_prompt": "A minimal scientific diagram comparing a small cup-shaped container and a much larger container holding the same material volume. Highlight the larger relative exposed surface area of the small container and the smaller surface-area-to-volume ratio of the large container using clean outlines and subtle arrows. No labels, no text, no numbers, flat vector educational style, 16:9.",
+      "sources": []
+    },
+    {
+      "id": "S023",
+      "chapter": "chapter2",
+      "mode": "生成",
+      "script": "少し考えてみよう。\n\n同じ体積の水を入れたコップと、大きな容器があるとする。\n\n小さなコップは、周囲に触れる面積の割合が大きい。\n\nそのため、中の熱が逃げやすい。",
+      "image_description": "同じ原理を生物の体に置き換え、小型と大型の単純な動物シルエットの表面積・体積比を比較する図。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "",
+      "search_en": "",
+      "generation_prompt": "A clean flat-vector biology diagram showing two simplified animal silhouettes, one small and one large, with surface area and internal volume visualized through subtle cross-sections. Illustrate that the larger body has less surface area relative to its volume. No text, no labels, no numbers, restrained scientific editorial design, 16:9.",
+      "sources": []
+    },
+    {
+      "id": "S024",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "一方、大きな容器は、体積に対する表面積の割合が小さくなる。\n\n熱を逃がしにくい。\n\n生物の体も同じような構造を持っている。\n\nだから、寒い地域の恒温動物では、大型化が有利になることがある。",
+      "image_description": "ホッキョクグマと、周囲の水温に体温が左右される深海魚・カニを左右に並べる。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "ホッキョクグマ 深海魚 タカアシガニ 比較 写真",
+      "search_en": "polar bear deep sea fish crab comparison ectotherm endotherm",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "WIKIMEDIA-GENERAL｜Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/"
+        },
+        {
+          "label": "NOAA-FISHDIST｜NOAA Ocean Exploration｜New Research Helps Show How Depth Affects Fish Distribution",
+          "url": "https://oceanexplorer.noaa.gov/news/fish-distribution/"
+        },
+        {
+          "label": "COMMONS-SPIDERCRAB｜Wikimedia Commons｜Macrocheira kaempferi",
+          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi"
+        }
+      ]
+    },
+    {
+      "id": "S025",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "ただし、ここで注意したい。\n\n深海の生物の多くは、ホッキョクグマのような恒温動物ではない。\n\n彼らは周囲の水温に体温が左右される。\n\nしたがって、ベルクマンの法則をそのまま深海の生物に当てはめることはできない。",
+      "image_description": "低温の深海を泳ぐ魚、または海底の甲殻類。青黒い水中で冷たさを感じる静かなカット。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "深海 低温 深海魚 海底 画像",
+      "search_en": "cold deep ocean fish seafloor low temperature",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-DEEP-OCEAN｜NOAA Ocean Exploration｜What is the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-ocean/"
+        },
+        {
+          "label": "NOAA-MARINELIFE｜NOAA Ocean Exploration｜Wild and Bizarre Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/explainers/marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S026",
+      "chapter": "chapter2",
+      "mode": "生成",
+      "script": "では、寒さは無関係なのか。\n\nそうではない。\n\nむしろ、ここからが面白い。\n\n深海の低温は、生物の代謝を遅くする。",
+      "image_description": "低温によって化学反応・活動速度がゆっくりになることを表す模式図。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "",
+      "search_en": "",
+      "generation_prompt": "A clear scientific flat-vector diagram comparing a warm-water organism and a cold-water organism. Show faster versus slower cellular reaction pathways and energy-use arrows, with the cold side having fewer and slower arrows. Avoid implying that all organisms become larger. No text or numbers, clean educational infographic, 16:9.",
+      "sources": []
+    },
+    {
+      "id": "S027",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "代謝とは、食べ物からエネルギーを取り出し、体を動かしたり、成長したり、生命を維持したりするための活動だ。\n\n代謝が低くなれば、エネルギーの消費も抑えられる。\n\nもちろん、寒ければ必ず巨大になるわけではない。",
+      "image_description": "海底に静止するダイオウグソクムシ。脚や触角が見え、周囲の泥底に対して大きさが分かる映像。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ 海底 静止 ROV 映像",
+      "search_en": "giant isopod resting on seafloor NOAA ROV video",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-VIDEO｜NOAA Ocean Exploration｜Giant Isopod（Gulf of Mexico 2017）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/video-playlist-ex1711-giant-isopod/"
+        },
+        {
+          "label": "NOAA-ISOPOD-STILL｜NOAA Ocean Exploration｜Giant Isopod（Windows to the Deep 2021）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/"
+        }
+      ]
+    },
+    {
+      "id": "S028",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "しかし、成長が遅く、エネルギーを節約する生活と、大きな体を長い時間をかけて維持する戦略は、相性がよい場合がある。\n\nここで、ダイオウグソクムシを思い出してほしい。\n\n彼らは、食べ物がいつ手に入るかわからない深海で暮らしている。",
+      "image_description": "海底をゆっくり移動するダイオウグソクムシ。動きが確認できる短い映像を選ぶ。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ 歩く 移動 深海 動画",
+      "search_en": "giant isopod walking crawling deep sea footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-VIDEO｜NOAA Ocean Exploration｜Giant Isopod（Gulf of Mexico 2017）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/video-playlist-ex1711-giant-isopod/"
+        },
+        {
+          "label": "NOAA-ISOPOD-FEED｜NOAA Ocean Exploration｜Winner, Winner, Fish Head Dinner",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1907-dailyupdates-nov18-media-dive11-isopod/"
+        }
+      ]
+    },
+    {
+      "id": "S029",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "毎日決まった時間に食事ができるわけではない。\n\n大きな獲物が海底に沈んでくることもあれば、長い間、十分な食料にありつけないこともある。\n\nそんな環境で、常に活発に動き回るのは効率が悪い。",
+      "image_description": "水族館の飼育水槽にいるダイオウグソクムシの長回し映像。餌を食べずにじっとしている場面を選ぶ。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ 水族館 飼育 水槽 長期絶食",
+      "search_en": "giant isopod aquarium resting captive footage fasting",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "SMITHSONIAN-ISOPOD｜Smithsonian Ocean｜Meet the Giant Isopods",
+          "url": "https://ocean.si.edu/ocean-life/invertebrates/meet-giant-isopods"
+        },
+        {
+          "label": "NOAA-ISOPOD-FACT｜NOAA Ocean Exploration｜What is an isopod?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/isopod/"
+        }
+      ]
+    },
+    {
+      "id": "S030",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "必要以上にエネルギーを使えば、食べ物がないときに困るからだ。\n\nだから、低い代謝で活動を抑え、エネルギーを節約する。\n\nそして、体の大きさは、食べ物が少ない時期を乗り切るうえで役立つ可能性がある。",
+      "image_description": "餌が見当たらない深海底にいるダイオウグソクムシ。周囲に食料がなく、個体がじっとしている引きのカット。",
+      "motion": "広い画から主役またはROVライトへゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ 海底 餌がない 静止",
+      "search_en": "giant isopod resting on barren deep sea floor no food",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-STILL｜NOAA Ocean Exploration｜Giant Isopod（Windows to the Deep 2021）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/"
+        },
+        {
+          "label": "NOAA-ISOPOD-VIDEO｜NOAA Ocean Exploration｜Giant Isopod（Gulf of Mexico 2017）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/video-playlist-ex1711-giant-isopod/"
+        }
+      ]
+    },
+    {
+      "id": "S031",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "実際、ダイオウグソクムシは長期間絶食しても生存できることで知られている。\n\n飼育下では、何年も餌を食べなかった個体が話題になったこともある。\n\nただし、ここで一つの誤解を避けておこう。",
+      "image_description": "水族館のダイオウグソクムシの飼育映像。動きの少ない個体をゆっくり見せ、絶食の話を支える。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ 水族館 長期間 絶食 飼育",
+      "search_en": "giant isopod aquarium long fasting captive footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-FACT｜NOAA Ocean Exploration｜What is an isopod?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/isopod/"
+        },
+        {
+          "label": "SMITHSONIAN-ISOPOD｜Smithsonian Ocean｜Meet the Giant Isopods",
+          "url": "https://ocean.si.edu/ocean-life/invertebrates/meet-giant-isopods"
+        }
+      ]
+    },
+    {
+      "id": "S032",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "ダイオウグソクムシが長期間絶食できることと、深海巨大症の原因が低代謝であることは、同じ話ではない。\n\n低代謝や大型化がどのように結びつくかは、生物ごとに異なる。\n\n重要なのは、深海では、浅い海とは違うエネルギー戦略が成立するということだ。",
+      "image_description": "Bathynomus jamesiの研究論文の個体写真を表示し、論文タイトル・著者年は字幕で紹介する。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "Bathynomus jamesi ゲノム研究 2022 個体写真",
+      "search_en": "Bathynomus jamesi 2022 genome study specimen photograph",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "BMC-GENOME｜Yuan et al. (2022)｜Genome of a giant isopod, Bathynomus jamesi...",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9107163/"
+        }
+      ]
+    },
+    {
+      "id": "S033",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "浅い海では、光があり、植物プランクトンが育ち、多くの生物が活発に活動する。\n\n一方、深海では、光合成による食物生産がほとんど行われない。\n\n海面から沈んでくる有機物や、死んだ生物の遺骸などが、重要な食料になる。",
+      "image_description": "深海と浅い海の環境を、表層の明るい海と暗い海底の実写2枚で対比する。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "浅い海 表層 植物プランクトン 深海 海底 比較",
+      "search_en": "sunlit ocean surface phytoplankton deep sea floor comparison",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NASA-PHYTO｜NASA Ocean Color Image Gallery｜The Ocean Peeks Through",
+          "url": "https://oceandata.sci.gsfc.nasa.gov/gallery/827"
+        },
+        {
+          "label": "NOAA-DEEP-OCEAN｜NOAA Ocean Exploration｜What is the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-ocean/"
+        }
+      ]
+    },
+    {
+      "id": "S034",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "つまり、深海は、食べ物が少なく、いつ届くかもわからない世界なのだ。\n\nそこで必要なのは、毎日勝ち続ける能力ではない。\n\n食べられない日を、どれだけ耐えられるかという能力だ。\n\n巨大な体は、そのための備えになることがある。",
+      "image_description": "海底に降り積もる有機物と、海底でそれを探す小型生物の映像。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "深海 マリンスノー 海底 有機物 小型生物",
+      "search_en": "marine snow deep sea seafloor scavenging organisms",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-MARINESNOW｜NOAA Ocean Exploration｜What is marine snow?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/marinesnow/"
+        },
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S035",
+      "chapter": "chapter2",
+      "mode": "収集",
+      "script": "しかし、これだけでは説明できないことがある。\n\nなぜなら、深海には巨大な生物だけでなく、極端に小さな生物もいるからだ。\n\n寒さと低代謝だけでは、すべてのサイズを説明できない。\n\nでは、もう一つの条件を見てみよう。",
+      "image_description": "小型の深海生物と大型の深海生物を同じ画面に並べ、サイズが一様ではないことを見せる。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "深海 小型生物 大型生物 サイズ比較",
+      "search_en": "deep sea small animals giant deep sea animals size contrast",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-TINY｜NOAA Ocean Exploration｜Tiny Arthropod",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/"
+        },
+        {
+          "label": "NOAA-MARINELIFE｜NOAA Ocean Exploration｜Wild and Bizarre Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/explainers/marine-life/"
+        },
+        {
+          "label": "COMMONS-ALICELLA｜Wikimedia Commons｜Alicella gigantea",
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+        }
+      ]
+    },
+    {
+      "id": "S036",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "それは、食べ物の少なさそのものではなく、食べ物が少ない世界で、どうやって生き残るかという問題だ。\n\n## 第3章｜食べ物が少ない世界で、巨大な体は武器になる\n\n深海では、食べ物が少ない。",
+      "image_description": "海面から海底へ沈む粒子の映像。水中を白い粒子がゆっくり落ちていくNOAAのマリンスノー映像。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "マリンスノー 深海 粒子 沈降 動画",
+      "search_en": "marine snow particles sinking deep ocean NOAA video",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-MARINESNOW｜NOAA Ocean Exploration｜What is marine snow?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/marinesnow/"
+        }
+      ]
+    },
+    {
+      "id": "S037",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "これは単純な話に見えるが、生物の進化を考えるうえでは非常に重要な条件だ。\n\n浅い海では、太陽の光を使って植物プランクトンが成長する。\n\nその植物プランクトンを小さな動物が食べ、小さな魚がそれを食べ、さらに大きな魚が小さな魚を食べる。",
+      "image_description": "海面付近の植物プランクトンブルームを衛星から撮影した画像。青い海に緑やターコイズの模様が広がるもの。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "植物プランクトン ブルーム 衛星画像 海",
+      "search_en": "phytoplankton bloom ocean satellite image NASA",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NASA-PHYTO｜NASA Ocean Color Image Gallery｜The Ocean Peeks Through",
+          "url": "https://oceandata.sci.gsfc.nasa.gov/gallery/827"
+        },
+        {
+          "label": "NASA-BLOOM｜NASA MODIS｜Springtime Bloom off of New Jersey and New York",
+          "url": "https://modis.gsfc.nasa.gov/gallery/individual.php?db_date=2026-05-23"
+        }
+      ]
+    },
+    {
+      "id": "S038",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "こうして、海の中には食物連鎖が生まれる。\n\nしかし、深海では事情が違う。\n\n太陽の光が届かないため、植物プランクトンは基本的に育たない。\n\nでは、深海の生物は何を食べているのか。",
+      "image_description": "植物プランクトンから動物プランクトン、小魚、大型魚へつながる既存の海洋食物網図版。NOAAのAquatic Food Webs図を優先する。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "海洋 食物網 植物プランクトン 動物プランクトン 小魚 大型魚 図",
+      "search_en": "NOAA aquatic food web phytoplankton zooplankton small fish larger fish diagram",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-FOODWEB｜NOAA｜Aquatic Food Webs",
+          "url": "https://www.noaa.gov/education/resource-collections/marine-life/aquatic-food-webs"
+        },
+        {
+          "label": "NOAA-EXPEDITION-MEDIA｜NOAA Ocean Exploration｜Multimedia",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/"
+        }
+      ]
+    },
+    {
+      "id": "S039",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "その答えの一つが、海面から降ってくる死骸や有機物だ。\n\n海の表層で死んだ生物の体。\n\n食べ残された魚の一部。\n\nプランクトンの死骸。",
+      "image_description": "水中に漂う植物プランクトン由来の粒子、死骸、排泄物などを含むマリンスノーの接写映像。",
+      "motion": "生物の特徴が見える部分へゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "マリンスノー 粒子 有機物 深海 接写",
+      "search_en": "marine snow organic particles close up deep ocean",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-MARINESNOW｜NOAA Ocean Exploration｜What is marine snow?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/marinesnow/"
+        }
+      ]
+    },
+    {
+      "id": "S040",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "生物の排泄物。\n\nこうしたものが、雪のように海底へ降り注ぐ。\n\nこれを「マリンスノー」と呼ぶ。\n\nもちろん、本物の雪ではない。",
+      "image_description": "NOAAが公開するマリンスノーの深海映像。粒子が雪のように落ち続ける長めのカット。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "NOAA marine snow Gulf of Alaska video",
+      "search_en": "NOAA marine snow Gulf of Alaska falling particles video",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-MARINESNOW｜NOAA Ocean Exploration｜What is marine snow?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/marinesnow/"
+        }
+      ]
+    },
+    {
+      "id": "S041",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "海の上から降ってくる、生命の残骸だ。\n\n深海にとっては、貴重な食料になる。\n\nそして、ときには巨大な食料が降ってくることもある。\n\nクジラの死骸だ。",
+      "image_description": "深海底に沈んだクジラの骨格をROVのライトが照らす引きの映像。",
+      "motion": "広い画から主役またはROVライトへゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "鯨骨生物群集 クジラ 骨格 深海 ROV",
+      "search_en": "whale fall skeleton deep sea ROV Davidson Seamount",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-WHALEFALL｜NOAA Ocean Service｜What is a whale fall?",
+          "url": "https://oceanservice.noaa.gov/facts/whale-fall.html"
+        },
+        {
+          "label": "NAUTILUS-WHALEFALL-2019｜Nautilus Live｜Whale Fall Actively Devoured by Scavengers",
+          "url": "https://nautiluslive.org/video/2019/10/16/whale-fall-actively-devoured-scavengers-davidson-seamount"
+        },
+        {
+          "label": "NOAA-WHALEFALL-ARTICLE｜NOAA Sanctuaries｜Whale Fall in the Deep Sea",
+          "url": "https://sanctuaries.noaa.gov/magazine/5/whale-fall-in-the-deep-sea/"
+        }
+      ]
+    },
+    {
+      "id": "S042",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "クジラが死ぬと、その巨大な体が海底に沈むことがある。\n\nこれを「鯨骨生物群集」と呼ぶ。\n\n一頭のクジラの死骸は、深海にとって巨大な食料供給源になる。\n\n普段は食べ物がほとんど手に入らない場所に、突然、大量の食料が出現するのだ。",
+      "image_description": "鯨骨の周囲に魚、タコ、カニなどが集まっている実際の映像。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "鯨骨生物群集 魚 タコ カニ クジラ死骸",
+      "search_en": "whale fall scavengers fish octopus crab deep sea footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NAUTILUS-WHALEFALL-2019｜Nautilus Live｜Whale Fall Actively Devoured by Scavengers",
+          "url": "https://nautiluslive.org/video/2019/10/16/whale-fall-actively-devoured-scavengers-davidson-seamount"
+        },
+        {
+          "label": "NOAA-WHALEFALL-ARTICLE｜NOAA Sanctuaries｜Whale Fall in the Deep Sea",
+          "url": "https://sanctuaries.noaa.gov/magazine/5/whale-fall-in-the-deep-sea/"
+        }
+      ]
+    },
+    {
+      "id": "S043",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "周囲に暮らす生物たちにとっては、まさに巨大なレストランの開店である。\n\nこのような食料の供給は、決して安定していない。\n\nいつ来るかわからない。\n\nどこに来るかもわからない。",
+      "image_description": "鯨骨の周囲で複数の生物が餌を食べているカット。可能なら2019年の発見時映像を使う。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "Davidson Seamount whale fall scavengers 2019 video",
+      "search_en": "Davidson Seamount whale fall actively devoured scavengers 2019",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NAUTILUS-WHALEFALL-2019｜Nautilus Live｜Whale Fall Actively Devoured by Scavengers",
+          "url": "https://nautiluslive.org/video/2019/10/16/whale-fall-actively-devoured-scavengers-davidson-seamount"
+        },
+        {
+          "label": "NOAA-WHALEFALL-ARTICLE｜NOAA Sanctuaries｜Whale Fall in the Deep Sea",
+          "url": "https://sanctuaries.noaa.gov/magazine/5/whale-fall-in-the-deep-sea/"
+        }
+      ]
+    },
+    {
+      "id": "S044",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "そして、一度現れた食料は、ほかの生物たちとの奪い合いになる。\n\nここで、巨大な体が有利になる可能性がある。\n\n例えば、ダイオウグソクムシのような腐肉食性の生物を考えてみよう。\n\n腐肉食とは、死んだ動物の肉を食べることだ。",
+      "image_description": "鯨骨の異なる部位に集まる生物や、時間経過で変化した鯨骨の映像。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "鯨骨生物群集 変化 1年後 Davidson Seamount",
+      "search_en": "Davidson Seamount whale fall succession one year later video",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NAUTILUS-WHALEFALL-2019｜Nautilus Live｜Whale Fall Actively Devoured by Scavengers",
+          "url": "https://nautiluslive.org/video/2019/10/16/whale-fall-actively-devoured-scavengers-davidson-seamount"
+        },
+        {
+          "label": "NAUTILUS-WHALEFALL-2020｜Nautilus Live｜Return to the Davidson Seamount Whale Fall",
+          "url": "https://nautiluslive.org/video/2020/10/17/return-davidson-seamount-whale-fall"
+        }
+      ]
+    },
+    {
+      "id": "S045",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "彼らにとって重要なのは、毎日少しずつ食べることではない。\n\n食べ物が現れたときに、どれだけ効率よく食べられるかだ。\n\n巨大な体には、大きな胃や脂肪などのエネルギー貯蔵場所を持てるという利点がある。",
+      "image_description": "魚の頭を食べるダイオウグソクムシの映像。餌に集まる行動を大きくトリミングする。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ 魚頭 摂餌 NOAA 動画",
+      "search_en": "Bathynomus giant isopod scavenging fish head feeding",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-FEED｜NOAA Ocean Exploration｜Winner, Winner, Fish Head Dinner",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1907-dailyupdates-nov18-media-dive11-isopod/"
+        }
+      ]
+    },
+    {
+      "id": "S046",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "一度に多く食べ、体内に蓄えておけば、次の食料が届くまでの時間を乗り切りやすくなる。\n\nつまり、巨大化は、食べ物が豊富だから起きるとは限らない。\n\nむしろ、食べ物が不安定だからこそ、大量に食べて蓄える戦略が有利になる場合があるのだ。",
+      "image_description": "ダイオウグソクムシが餌を食べる接写。口器・前脚・腹部が見えるカット。",
+      "motion": "生物の特徴が見える部分へゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ 摂餌 口器 接写",
+      "search_en": "giant isopod feeding close up mouthparts NOAA",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-FEED｜NOAA Ocean Exploration｜Winner, Winner, Fish Head Dinner",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1907-dailyupdates-nov18-media-dive11-isopod/"
+        },
+        {
+          "label": "NOAA-ISOPOD-VIDEO｜NOAA Ocean Exploration｜Giant Isopod（Gulf of Mexico 2017）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/video-playlist-ex1711-giant-isopod/"
+        }
+      ]
+    },
+    {
+      "id": "S047",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "これは、日常生活に置き換えるとわかりやすい。\n\n毎日コンビニが開いていて、好きなときに食べ物を買える人間と、次に食料が手に入る日がわからない人間では、必要な備えが違う。\n\n前者は、毎日の食事を確保すればいい。",
+      "image_description": "食料が豊富に並ぶコンビニまたはスーパーマーケットの棚。人が自由に商品を選べる視点の写真。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "コンビニ 食料 棚 商品 たくさん 写真",
+      "search_en": "convenience store supermarket food shelves stocked",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "WIKIMEDIA-GENERAL｜Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/"
+        },
+        {
+          "label": "UNSPLASH｜Unsplash",
+          "url": "https://unsplash.com/"
+        }
+      ]
+    },
+    {
+      "id": "S048",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "後者は、食べ物が手に入ったときに、できるだけ多く確保する必要がある。\n\n深海の生物にとって、巨大な体は食料の不安定さに対する備蓄庫になり得る。\n\nただし、巨大化には当然、代償もある。\n\n体が大きくなれば、それだけ多くのエネルギーが必要になる。",
+      "image_description": "食料が少ない備蓄庫や空に近い棚の写真。過剰に悲惨な表現ではなく、在庫が限られた状態を見せる。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "食料 備蓄庫 食料不足 空の棚 写真",
+      "search_en": "sparse pantry food storage limited supplies shelves",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "WIKIMEDIA-GENERAL｜Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/"
+        },
+        {
+          "label": "UNSPLASH｜Unsplash",
+          "url": "https://unsplash.com/"
+        }
+      ]
+    },
+    {
+      "id": "S049",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "いくら食料を蓄えられても、巨大な体を維持するために使うエネルギーが大きすぎれば意味がない。\n\nだからこそ、低い代謝やエネルギーの貯蔵能力が重要になる。",
+      "image_description": "ダイオウグソクムシの腹部・全身の実写。体の大きさが分かる斜め上からの写真。",
+      "motion": "生物の特徴が見える部分へゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ 腹部 全身 Bathynomus 写真",
+      "search_en": "giant isopod Bathynomus body abdomen dorsal photograph",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-STILL｜NOAA Ocean Exploration｜Giant Isopod（Windows to the Deep 2021）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/"
+        },
+        {
+          "label": "SMITHSONIAN-ISOPOD｜Smithsonian Ocean｜Meet the Giant Isopods",
+          "url": "https://ocean.si.edu/ocean-life/invertebrates/meet-giant-isopods"
+        }
+      ]
+    },
+    {
+      "id": "S050",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "実際、2022年に発表されたダイオウグソクムシのゲノム研究では、脂肪の蓄積やエネルギーの利用に関係する特徴が調べられている。\n\n巨大な体を維持するには、ただ大量に食べればいいわけではない。",
+      "image_description": "2022年のBathynomus jamesiゲノム研究の論文ページ、または論文中の個体写真とFig.1を表示。図の権利表記を必ず確認。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "Bathynomus jamesi 2022 genome paper Figure 1 giant isopod",
+      "search_en": "Bathynomus jamesi genome 2022 paper Figure 1 giant isopod",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "BMC-GENOME｜Yuan et al. (2022)｜Genome of a giant isopod, Bathynomus jamesi...",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9107163/"
+        }
+      ]
+    },
+    {
+      "id": "S051",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "食べたものを、どう吸収し、どう蓄え、どう使うか。\n\nその仕組みまで含めて、深海での生存戦略なのだ。\n\nそして、巨大化にはもう一つの利点がある。\n\nそれは、食べられにくくなることだ。",
+      "image_description": "論文Fig.1Bの胃・脂肪体の説明に対応する個体写真、または論文中の消化器官・組織解析図。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "Bathynomus jamesi enlarged stomach fat body 2022 Figure",
+      "search_en": "Bathynomus jamesi enlarged stomach fat body genome paper figure",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "BMC-GENOME｜Yuan et al. (2022)｜Genome of a giant isopod, Bathynomus jamesi...",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9107163/"
+        }
+      ]
+    },
+    {
+      "id": "S052",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "深海にも捕食者はいる。\n\n大きな魚やサメなど、自分より強い生物に食べられる危険は存在する。\n\nしかし、体が大きくなれば、捕食できる相手は限られてくる。\n\n小さな生物にとっては、自分を食べられる相手が数多く存在する。",
+      "image_description": "深海魚やサメなど、深海で捕食者となる大型魚の実写。口や歯が分かるが過度に恐怖演出しないカット。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "深海 捕食者 大型魚 サメ ROV 映像",
+      "search_en": "deep sea predator large fish shark ROV footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-MARINELIFE｜NOAA Ocean Exploration｜Wild and Bizarre Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/explainers/marine-life/"
+        },
+        {
+          "label": "NOAA-FISHDIST｜NOAA Ocean Exploration｜New Research Helps Show How Depth Affects Fish Distribution",
+          "url": "https://oceanexplorer.noaa.gov/news/fish-distribution/"
+        },
+        {
+          "label": "NOAA-EXPEDITION-MEDIA｜NOAA Ocean Exploration｜Multimedia",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/"
+        }
+      ]
+    },
+    {
+      "id": "S053",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "一方、巨大な生物を丸ごと食べられる捕食者は少ない。\n\nつまり、体を大きくすることで、食べられる側から、食べる側へと立場が変わる可能性がある。\n\nもちろん、巨大なら絶対に安全というわけではない。",
+      "image_description": "小型の甲殻類を狙う魚、または大型魚が海底を泳ぐ映像。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "深海魚 捕食 小型甲殻類 海底 ROV",
+      "search_en": "deep sea fish predator small crustacean seafloor footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-MARINELIFE｜NOAA Ocean Exploration｜Wild and Bizarre Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/explainers/marine-life/"
+        },
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S054",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "それでも、体の大きさが捕食されるリスクを変えることは確かだ。\n\nここで、深海の巨大なヨコエビの仲間を見てみよう。\n\nその中には、体長30センチを超える「スーパージャイアント」と呼ばれる種類がいる。",
+      "image_description": "Alicella giganteaの全身を、背景の海底または標本背景とともに見せる。",
+      "motion": "生物の特徴が見える部分へゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "Alicella gigantea 30cm supergiant amphipod",
+      "search_en": "Alicella gigantea 30 cm supergiant amphipod specimen",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-ALICELLA｜Wikimedia Commons｜Alicella gigantea",
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+        }
+      ]
+    },
+    {
+      "id": "S055",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "代表的なのが、Alicella giganteaだ。\n\n一般的なヨコエビの多くが数ミリから数センチ程度なのに対して、彼らはまるで別の生物のようなサイズを持つ。",
+      "image_description": "Alicella giganteaの採集標本または人の手との比較写真。できれば体長が推測できる構図。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "Alicella gigantea in hand 7000m super giant",
+      "search_en": "Alicella gigantea in hand 7000m supergiant amphipod",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-ALICELLA｜Wikimedia Commons｜Alicella gigantea",
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+        }
+      ]
+    },
+    {
+      "id": "S056",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "この巨大化については、食料を一度に大量に摂取できることや、捕食者に食べられにくくなることなど、複数の説明が考えられている。\n\nここで重要なのは、巨大化が単なる贅沢ではないということだ。",
+      "image_description": "Alicella giganteaが餌を食べている写真または動画。食物を抱え込む脚と口器が見えるもの。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "Alicella gigantea feeding photo video",
+      "search_en": "Alicella gigantea feeding amphipod image",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-ALICELLA｜Wikimedia Commons｜Alicella gigantea",
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+        }
+      ]
+    },
+    {
+      "id": "S057",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "巨大な体を持つことで、食料が現れたときに有利になる。\n\n捕食されにくくなる。\n\nそして、長い空腹期間を乗り切るためのエネルギーを蓄えられる。\n\n深海では、こうした利点が組み合わさることで、巨大化が進化の選択肢になる。",
+      "image_description": "Alicella giganteaと一般的な小型ヨコエビを同じ画面に並べる。サイズ差を示すため、片方だけ極端に拡大しない。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "巨大ヨコエビ 小型ヨコエビ 比較 Alicella",
+      "search_en": "Alicella gigantea small amphipod side by side comparison",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-ALICELLA｜Wikimedia Commons｜Alicella gigantea",
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+        },
+        {
+          "label": "NOAA-EXPEDITION-MEDIA｜NOAA Ocean Exploration｜Multimedia",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/"
+        }
+      ]
+    },
+    {
+      "id": "S058",
+      "chapter": "chapter3",
+      "mode": "収集",
+      "script": "しかし、ここで一つ疑問が残る。\n\nもし巨大な体がそれほど有利なら、なぜ深海には巨大生物ばかりがいるわけではないのか。\n\n食べ物が少ないのなら、むしろ小さい方が有利なのではないか。\n\n実際、深海には小型の生物も大量に存在する。",
+      "image_description": "深海にいる小型の魚や節足動物の実写。小ささが分かるよう、海底やROVライトとの対比を残す。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "深海 小型魚 小型節足動物 NOAA 映像",
+      "search_en": "tiny deep sea fish small arthropod NOAA ROV",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-TINY｜NOAA Ocean Exploration｜Tiny Arthropod",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/"
+        },
+        {
+          "label": "NOAA-FISHDIST｜NOAA Ocean Exploration｜New Research Helps Show How Depth Affects Fish Distribution",
+          "url": "https://oceanexplorer.noaa.gov/news/fish-distribution/"
+        },
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S059",
+      "chapter": "chapter4",
+      "mode": "収集",
+      "script": "巨大化には、もう一つの条件が必要なのだ。\n\nそれが、成長するまでの時間と、成長を邪魔する存在の少なさである。\n\n## 第4章｜巨大化できる生物と、巨大化できない生物\n\nここで、深海の生物が成長する仕組みを考えてみよう。",
+      "image_description": "深海の海底地形と、そこに暮らす複数種の生物を映したROV映像。",
+      "motion": "広い画から主役またはROVライトへゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "深海 海底 生物多様性 ROV 探査 映像",
+      "search_en": "deep sea biodiversity seafloor ROV exploration footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        },
+        {
+          "label": "NOAA-EXPEDITION-MEDIA｜NOAA Ocean Exploration｜Multimedia",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/"
+        },
+        {
+          "label": "NOAA-DEEP-HABITAT｜NOAA Ocean Exploration｜What conditions exist for life in the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-habitat/"
+        }
+      ]
+    },
+    {
+      "id": "S060",
+      "chapter": "chapter4",
+      "mode": "生成",
+      "script": "人間は、ある程度まで成長すると、身長がほとんど伸びなくなる。\n\n成人すれば、基本的に体の大きさは固定される。\n\nしかし、生物の中には、成体になった後も成長を続けるものがいる。\n\nこれを「不定成長」と呼ぶ。",
+      "image_description": "人間の成長は成人後にほぼ止まり、魚や甲殻類は成体後も成長を続ける場合があることを示す成長曲線。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "",
+      "search_en": "",
+      "generation_prompt": "A clean educational scientific diagram comparing two body-growth curves over time: a human growth curve that rises and then plateaus after maturity, and a fish/crustacean curve that continues rising more slowly after maturity. Do not use exact numeric scales. No labels or text, flat vector line chart, 16:9.",
+      "sources": []
+    },
+    {
+      "id": "S061",
+      "chapter": "chapter4",
+      "mode": "収集",
+      "script": "例えば、魚や多くの甲殻類では、成体になってからも成長を続ける場合がある。\n\nもちろん、成長速度は年齢とともに変化する。\n\nそれでも、成長が完全に止まるわけではない。\n\nここに、深海巨大症を考えるうえでの重要なポイントがある。",
+      "image_description": "脱皮直後のカニ、または脱皮殻と新しい個体が分かる写真。タカアシガニに限らず甲殻類の脱皮を示す。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "甲殻類 カニ 脱皮 脱皮殻 写真",
+      "search_en": "crustacean crab molting exoskeleton ecdysis photograph",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-SPIDERCRAB｜Wikimedia Commons｜Macrocheira kaempferi",
+          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi"
+        },
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S062",
+      "chapter": "chapter4",
+      "mode": "収集",
+      "script": "もし、成長を続ける生物が、捕食者に食べられず、十分な食料を確保できればどうなるか。\n\n長い時間をかけて、さらに大きくなる可能性がある。\n\nNOAAの海洋探査機関も、深海巨大症の説明として、不定成長と捕食者の少なさを挙げている。",
+      "image_description": "魚と甲殻類の実写を並べ、成体になっても成長が続く生物の例として見せる。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "魚 成体 深海魚 甲殻類 カニ 写真",
+      "search_en": "adult fish crustacean crab deep sea animal photograph",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-FISHDIST｜NOAA Ocean Exploration｜New Research Helps Show How Depth Affects Fish Distribution",
+          "url": "https://oceanexplorer.noaa.gov/news/fish-distribution/"
+        },
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S063",
+      "chapter": "chapter4",
+      "mode": "収集",
+      "script": "深海では、浅い海に比べて捕食者の密度が低い場所もある。\n\nつまり、生まれてから大きくなるまでに、食べられてしまう危険が相対的に小さくなる場合がある。\n\n浅い海では、成長途中の小さな生物を狙う捕食者が多い。",
+      "image_description": "小さな魚を狙う捕食魚の実写。捕食者の口元と小さな獲物が同時に分かる場面を優先。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "魚 捕食 小魚 深海 捕食シーン",
+      "search_en": "predatory fish hunting small fish deep sea footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-MARINELIFE｜NOAA Ocean Exploration｜Wild and Bizarre Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/explainers/marine-life/"
+        },
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S064",
+      "chapter": "chapter4",
+      "mode": "収集",
+      "script": "どれだけ成長する能力があっても、大きくなる前に食べられてしまえば意味がない。\n\n一方、深海の一部の環境では、捕食圧が低く、長い時間をかけて成長する余地がある。\n\nここで、少し考えてみてほしい。",
+      "image_description": "深海底で捕食者と小型生物が同じ画面にいる映像。捕食の瞬間でなくてもよい。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "深海 捕食者 小型生物 海底 ROV",
+      "search_en": "deep sea predator and small prey on seafloor ROV",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        },
+        {
+          "label": "NOAA-FISHDIST｜NOAA Ocean Exploration｜New Research Helps Show How Depth Affects Fish Distribution",
+          "url": "https://oceanexplorer.noaa.gov/news/fish-distribution/"
+        }
+      ]
+    },
+    {
+      "id": "S065",
+      "chapter": "chapter4",
+      "mode": "生成",
+      "script": "生物の大きさは、成長する能力だけで決まるのだろうか。\n\nそうではない。\n\nどれだけ成長できるかと、どこまで成長する前に死んでしまうか。\n\nこの二つの条件が組み合わさって、最終的な体の大きさが決まる。",
+      "image_description": "捕食者が多い環境では小さなうちに食べられ、捕食者が少ない環境では長く成長できるという2つの成長経路の模式図。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "",
+      "search_en": "",
+      "generation_prompt": "A scientific flat-vector diagram split into two parallel ocean habitats. In the left habitat, frequent predator silhouettes interrupt a juvenile animal's growth early. In the right habitat, fewer predators allow the same animal to grow larger over time. Use simple arrows and size progression, no words or numbers, 16:9.",
+      "sources": []
+    },
+    {
+      "id": "S066",
+      "chapter": "chapter4",
+      "mode": "生成",
+      "script": "これは、進化を考えるうえで非常に重要な視点だ。\n\n例えば、同じ成長能力を持つ生物でも、捕食者が多い場所では、十分に大きくなる前に命を落とす可能性が高い。\n\n逆に、捕食者が少ない場所なら、成長を続けられる時間が長くなる。",
+      "image_description": "捕食圧が高い浅海と、場所によって捕食者密度が低い深海を対比した模式図。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "",
+      "search_en": "",
+      "generation_prompt": "A clean scientific illustration comparing a shallow marine habitat with many predator silhouettes and a deep-sea habitat with fewer predator silhouettes. Show the same small organism having different survival chances in each environment. No labels, no text, no numbers, restrained flat-vector style, 16:9.",
+      "sources": []
+    },
+    {
+      "id": "S067",
+      "chapter": "chapter4",
+      "mode": "収集",
+      "script": "つまり、深海では、巨大化するための時間を獲得できる場合があるのだ。\n\nただし、ここでも単純な説明は通用しない。\n\n深海は広大であり、場所によって環境が違う。\n\n餌が豊富な場所もあれば、極端に少ない場所もある。",
+      "image_description": "深海の海底地形と、そこに暮らす複数種の生物を映したROV映像。",
+      "motion": "広い画から主役またはROVライトへゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "深海 海底 生物多様性 ROV 探査 映像",
+      "search_en": "deep sea biodiversity seafloor ROV exploration footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        },
+        {
+          "label": "NOAA-EXPEDITION-MEDIA｜NOAA Ocean Exploration｜Multimedia",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/"
+        },
+        {
+          "label": "NOAA-DEEP-HABITAT｜NOAA Ocean Exploration｜What conditions exist for life in the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-habitat/"
+        }
+      ]
+    },
+    {
+      "id": "S068",
+      "chapter": "chapter4",
+      "mode": "収集",
+      "script": "酸素が十分にある場所もあれば、酸素が少ない場所もある。\n\nそして、深海のすべての生物が不定成長するわけでもない。\n\nでは、巨大化には、ほかにどんな条件が関係するのか。\n\nここで注目したいのが、酸素だ。",
+      "image_description": "異なる深海環境の海底写真や、深海の酸素分布を示す公的な海洋図版。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "深海 酸素分布 海域 酸素極小層 ocean oxygen map",
+      "search_en": "ocean oxygen minimum zones deep sea oxygen distribution map",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-DEEP-HABITAT｜NOAA Ocean Exploration｜What conditions exist for life in the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-habitat/"
+        },
+        {
+          "label": "NOAA-EXPEDITION-MEDIA｜NOAA Ocean Exploration｜Multimedia",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/"
+        }
+      ]
+    },
+    {
+      "id": "S069",
+      "chapter": "chapter4",
+      "mode": "収集",
+      "script": "生物は、体を動かしたり、細胞を維持したりするためにエネルギーを使う。\n\nそのエネルギーを効率よく取り出すためには、多くの動物で酸素が必要になる。\n\n水温が低いと、水には酸素が溶け込みやすくなる。",
+      "image_description": "深海魚のエラや、ROVライトの中を泳ぐ魚の頭部の接写。",
+      "motion": "生物の特徴が見える部分へゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "深海魚 エラ 魚 呼吸 接写",
+      "search_en": "deep sea fish gills close up underwater",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-FISHDIST｜NOAA Ocean Exploration｜New Research Helps Show How Depth Affects Fish Distribution",
+          "url": "https://oceanexplorer.noaa.gov/news/fish-distribution/"
+        },
+        {
+          "label": "NOAA-MARINELIFE｜NOAA Ocean Exploration｜Wild and Bizarre Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/explainers/marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S070",
+      "chapter": "chapter4",
+      "mode": "生成",
+      "script": "さらに、冷たい環境では生物の代謝が低くなり、酸素の消費量も減ることがある。\n\nつまり、低温環境では、酸素を供給する側と消費する側のバランスが変化する。",
+      "image_description": "冷たい水ほど酸素が溶け込みやすい関係を、温水と冷水の容器に酸素分子を描いて比較する模式図。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "",
+      "search_en": "",
+      "generation_prompt": "A minimal scientific flat-vector diagram comparing warm seawater and cold seawater. Show more dissolved oxygen molecules distributed through the cold-water side than the warm-water side, with simple water molecules and oxygen dots. No labels, no text, no numbers, 16:9, clean educational style.",
+      "sources": []
+    },
+    {
+      "id": "S071",
+      "chapter": "chapter4",
+      "mode": "生成",
+      "script": "この関係から、低温で酸素が利用しやすい環境では、より大きな体を維持できる可能性があるという仮説が提唱されている。",
+      "image_description": "酸素の供給と生物の酸素消費が釣り合う関係を示す模式図。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "",
+      "search_en": "",
+      "generation_prompt": "A clean scientific diagram showing two balanced flows: oxygen entering an aquatic organism from surrounding water and oxygen being consumed by its metabolism. Add a subtle cold-water background and show reduced metabolic demand without implying a universal rule. No text or numbers, flat vector, 16:9.",
+      "sources": []
+    },
+    {
+      "id": "S072",
+      "chapter": "chapter4",
+      "mode": "生成",
+      "script": "1999年、研究者のガウティエ・シャペルとロイド・ペックは、世界各地の1,853種のヨコエビを調べ、体の大きさと酸素の利用可能性の関係を分析した。\n\nその結果、彼らは、ヨコエビの最大サイズを制限する重要な要因として、酸素の利用可能性を指摘した。",
+      "image_description": "1,853種のヨコエビを対象にした研究の趣旨を示す概念図。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "",
+      "search_en": "",
+      "generation_prompt": "A scientific editorial illustration of many amphipod silhouettes arranged across a range of body sizes and environmental conditions, suggesting a comparative study of 1,853 species. Include a subtle oxygen motif and a simple size spectrum, but no fabricated data points, no axes with values, no text, no numbers. Flat vector research explainer, 16:9.",
+      "sources": []
+    },
+    {
+      "id": "S073",
+      "chapter": "chapter4",
+      "mode": "収集",
+      "script": "ここで面白いのは、寒さそのものが巨大化を直接引き起こすというより、寒さによって酸素を利用できる条件が変わることが、サイズに関係している可能性があるという点だ。\n\nただし、深海の酸素量はどこでも同じではない。",
+      "image_description": "海洋の酸素分布を示す公的な図版、または深海の異なる海域の実写を選び、酸素量が一様ではないことを視覚化する。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "海洋 酸素分布 酸素極小層 深海 海域 地図",
+      "search_en": "ocean oxygen minimum zone distribution deep sea map",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-DEEP-HABITAT｜NOAA Ocean Exploration｜What conditions exist for life in the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-habitat/"
+        },
+        {
+          "label": "NOAA-EXPEDITION-MEDIA｜NOAA Ocean Exploration｜Multimedia",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/"
+        }
+      ]
+    },
+    {
+      "id": "S074",
+      "chapter": "chapter4",
+      "mode": "生成",
+      "script": "酸素が極端に少ない海域もある。\n\nだから、低温だから巨大化する、という単純な話ではない。\n\n温度、酸素、食料、捕食者、成長速度。\n\nこれらの条件が重なったとき、巨大化が成立する。",
+      "image_description": "低温・酸素利用可能性・食料・捕食者・成長時間の条件が重なり、一部の生物で巨大化が成立するという模式図。",
+      "motion": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
+      "search_ja": "",
+      "search_en": "",
+      "generation_prompt": "A sophisticated but simple scientific editorial infographic. Five environmental factors converge toward a silhouette of a giant deep-sea amphipod: cold temperature, oxygen availability, irregular food supply, lower predation pressure, and long growth time. Use icons and connecting lines only, no words, no numbers, no claims of universal causation, dark navy background with restrained cyan and ivory accents, 16:9.",
+      "sources": []
+    },
+    {
+      "id": "S075",
+      "chapter": "chapter4",
+      "mode": "収集",
+      "script": "そして、ここまでの話を整理すると、一つの結論が見えてくる。\n\n深海の巨大生物は、単に過酷な環境に耐えた結果として巨大になったわけではない。\n\n深海という環境の中で、巨大な体を持つことが有利になる条件を獲得した生物が、巨大化してきたのだ。",
+      "image_description": "ダイオウグソクムシの全身写真。大きさと外骨格が見える静かなカット。",
+      "motion": "生物の特徴が見える部分へゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ Bathynomus 全身 深海 写真",
+      "search_en": "giant isopod Bathynomus full body deep sea photograph",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-STILL｜NOAA Ocean Exploration｜Giant Isopod（Windows to the Deep 2021）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/"
+        },
+        {
+          "label": "SMITHSONIAN-ISOPOD｜Smithsonian Ocean｜Meet the Giant Isopods",
+          "url": "https://ocean.si.edu/ocean-life/invertebrates/meet-giant-isopods"
+        }
+      ]
+    },
+    {
+      "id": "S076",
+      "chapter": "chapter4",
+      "mode": "収集",
+      "script": "では、なぜ深海のすべての生物が巨大にならないのか。\n\nそれは、巨大化にもコストがあるからだ。\n\n大きな体を維持するには、より多くの食料が必要になる。\n\n食料が手に入らなければ、巨大な体はむしろ負担になる。",
+      "image_description": "ダイオウグソクムシの腹部・全身の実写。体の大きさが分かる斜め上からの写真。",
+      "motion": "生物の特徴が見える部分へゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ 腹部 全身 Bathynomus 写真",
+      "search_en": "giant isopod Bathynomus body abdomen dorsal photograph",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-STILL｜NOAA Ocean Exploration｜Giant Isopod（Windows to the Deep 2021）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/"
+        },
+        {
+          "label": "SMITHSONIAN-ISOPOD｜Smithsonian Ocean｜Meet the Giant Isopods",
+          "url": "https://ocean.si.edu/ocean-life/invertebrates/meet-giant-isopods"
+        }
+      ]
+    },
+    {
+      "id": "S077",
+      "chapter": "chapter4",
+      "mode": "収集",
+      "script": "小さな体なら、少ないエネルギーで生きられる。\n\nだから、食料が極端に少ない環境では、小型化が有利になることもある。\n\n実際、深海には小さな生物が数多く存在する。\n\nつまり、深海は巨大化を強制する場所ではない。",
+      "image_description": "小型の深海生物を複数見せる。小魚、クラゲ、微小な節足動物など、巨大ではない生物を優先。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "深海 小型生物 小魚 クラゲ 節足動物",
+      "search_en": "small deep sea animals tiny fish jellyfish arthropod",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-TINY｜NOAA Ocean Exploration｜Tiny Arthropod",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/"
+        },
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        },
+        {
+          "label": "NOAA-FISHDIST｜NOAA Ocean Exploration｜New Research Helps Show How Depth Affects Fish Distribution",
+          "url": "https://oceanexplorer.noaa.gov/news/fish-distribution/"
+        }
+      ]
+    },
+    {
+      "id": "S078",
+      "chapter": "chapter4",
+      "mode": "収集",
+      "script": "巨大化できる条件と、小型化した方が有利な条件が、同じ海の中に存在している。\n\n巨大化とは、深海の生物すべてが目指す進化のゴールではない。\n\n特定の条件がそろったときに成立する、生存戦略の一つなのだ。",
+      "image_description": "Alicella giganteaと小型の深海魚・小型節足動物を並べた実写コラージュ。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "Alicella gigantea 小型深海魚 サイズ比較",
+      "search_en": "Alicella gigantea small deep sea fish size contrast",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-ALICELLA｜Wikimedia Commons｜Alicella gigantea",
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+        },
+        {
+          "label": "NOAA-TINY｜NOAA Ocean Exploration｜Tiny Arthropod",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/"
+        },
+        {
+          "label": "NOAA-FISHDIST｜NOAA Ocean Exploration｜New Research Helps Show How Depth Affects Fish Distribution",
+          "url": "https://oceanexplorer.noaa.gov/news/fish-distribution/"
+        }
+      ]
+    },
+    {
+      "id": "S079",
+      "chapter": "epilogue",
+      "mode": "収集",
+      "script": "## エピローグ｜大きさは、生き残るための答えにすぎない\n\nここまで見てきたように、深海の巨大生物が生まれる理由は、一つではない。\n\n低温によって代謝が抑えられること。\n\n食料が不安定だからこそ、一度に大量に食べて蓄えることが有利になる場合があること。",
+      "image_description": "深海の生物が海底で餌を待つ様子。ナマコ、ウミシダ、等脚類など動きの少ない生物を選ぶ。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "深海 ナマコ ウミシダ 等脚類 海底 静止",
+      "search_en": "deep sea sea cucumber crinoid isopod resting seafloor",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        },
+        {
+          "label": "NOAA-MARINELIFE｜NOAA Ocean Exploration｜Wild and Bizarre Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/explainers/marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S080",
+      "chapter": "epilogue",
+      "mode": "収集",
+      "script": "捕食者が少ない環境では、長い時間をかけて成長できること。\n\nそして、酸素の利用可能性が、大きな体を維持する条件になる場合があること。\n\nこれらが組み合わさった結果、一部の生物は、浅い海では考えられないほど巨大な姿になった。",
+      "image_description": "低温の深海をゆっくり移動するナマコまたは深海魚。画面の余白が大きい映像。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "深海 ナマコ 泳ぐ ゆっくり 深海魚",
+      "search_en": "deep sea swimming sea cucumber slow movement footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-MARINELIFE｜NOAA Ocean Exploration｜Wild and Bizarre Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/explainers/marine-life/"
+        },
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S081",
+      "chapter": "epilogue",
+      "mode": "収集",
+      "script": "ただし、忘れてはいけない。\n\n深海は、巨大生物を生み出すための場所ではない。\n\n小さな生物もいれば、大きな生物もいる。\n\n大きくなることが有利な場所もあれば、小さくなることが有利な場所もある。",
+      "image_description": "Alicella giganteaと小型の深海魚・小型節足動物を並べた実写コラージュ。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "Alicella gigantea 小型深海魚 サイズ比較",
+      "search_en": "Alicella gigantea small deep sea fish size contrast",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "COMMONS-ALICELLA｜Wikimedia Commons｜Alicella gigantea",
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+        },
+        {
+          "label": "NOAA-TINY｜NOAA Ocean Exploration｜Tiny Arthropod",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/"
+        },
+        {
+          "label": "NOAA-FISHDIST｜NOAA Ocean Exploration｜New Research Helps Show How Depth Affects Fish Distribution",
+          "url": "https://oceanexplorer.noaa.gov/news/fish-distribution/"
+        }
+      ]
+    },
+    {
+      "id": "S082",
+      "chapter": "epilogue",
+      "mode": "収集",
+      "script": "進化には、目指すべき理想のサイズなど存在しない。\n\nある環境で生き残るために、そのとき有利だった形が残っていくだけだ。\n\n私たちは普段、大きな生き物を見ると、強い、優れている、進化していると考えがちだ。",
+      "image_description": "明るい表層の海と暗い深海底を縦方向に一枚で見せる、または衛星海面画像から深海映像へつながる2枚の対比。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "海面 植物プランクトン 深海 海底 対比",
+      "search_en": "sunlit ocean surface phytoplankton deep abyss comparison",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NASA-PHYTO｜NASA Ocean Color Image Gallery｜The Ocean Peeks Through",
+          "url": "https://oceandata.sci.gsfc.nasa.gov/gallery/827"
+        },
+        {
+          "label": "NOAA-DEEP-OCEAN｜NOAA Ocean Exploration｜What is the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-ocean/"
+        },
+        {
+          "label": "NOAA-WATERCOLUMN｜NOAA Ocean Exploration｜The Water Column",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2101-features-water-column-media-water-column/"
+        }
+      ]
+    },
+    {
+      "id": "S083",
+      "chapter": "epilogue",
+      "mode": "収集",
+      "script": "しかし、深海の巨大生物を見ていると、その考え方自体が怪しくなってくる。\n\n彼らは、速く泳ぐ必要もなければ、毎日大量の食事をする必要もない。\n\n食べ物が降ってくるまで待ち、少ないエネルギーで生き、何年もかけて成長していく。",
+      "image_description": "海底をゆっくり移動するダイオウグソクムシ。動きが確認できる短い映像を選ぶ。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "ダイオウグソクムシ 歩く 移動 深海 動画",
+      "search_en": "giant isopod walking crawling deep sea footage",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-ISOPOD-VIDEO｜NOAA Ocean Exploration｜Giant Isopod（Gulf of Mexico 2017）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/video-playlist-ex1711-giant-isopod/"
+        },
+        {
+          "label": "NOAA-ISOPOD-FEED｜NOAA Ocean Exploration｜Winner, Winner, Fish Head Dinner",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1907-dailyupdates-nov18-media-dive11-isopod/"
+        }
+      ]
+    },
+    {
+      "id": "S084",
+      "chapter": "epilogue",
+      "mode": "収集",
+      "script": "人間から見れば、あまりにも非効率な生き方だ。\n\nだが、そもそも効率とは何だろうか。\n\n速く成長することか。\n\nたくさん食べることか。",
+      "image_description": "光の届かない広い深海底を、遠くに小さくROVライトが見える引きの映像で締める。",
+      "motion": "広い画から主役またはROVライトへゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "深海 海底 暗闇 ROV 遠景 abyssal plain",
+      "search_en": "abyssal plain deep sea darkness distant ROV lights",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-DEEP-OCEAN｜NOAA Ocean Exploration｜What is the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-ocean/"
+        },
+        {
+          "label": "NOAA-ROV-TECH｜NOAA Ocean Exploration｜How Robots Are Uncovering the Mysteries of the Deep",
+          "url": "https://oceanexplorer.noaa.gov/explainers/technology/"
+        },
+        {
+          "label": "NOAA-EXPEDITION-MEDIA｜NOAA Ocean Exploration｜Multimedia",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/"
+        }
+      ]
+    },
+    {
+      "id": "S085",
+      "chapter": "epilogue",
+      "mode": "収集",
+      "script": "大きな体を持つことか。\n\nそれとも、食べ物がなくなっても生き残り、次の機会を待てることなのか。\n\n私たちは、明るく、食べ物が豊富で、競争の激しい世界を基準に、生物の優劣を考えているのかもしれない。",
+      "image_description": "マリンスノーが落ちる暗い海底と、そこにいる小型生物を引きで見せる。",
+      "motion": "広い画から主役またはROVライトへゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "深海 マリンスノー 小型生物 海底",
+      "search_en": "deep sea marine snow small organisms seafloor",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-MARINESNOW｜NOAA Ocean Exploration｜What is marine snow?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/marinesnow/"
+        },
+        {
+          "label": "NOAA-2026-LIFE｜NOAA Ocean Exploration｜Variety of Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/"
+        }
+      ]
+    },
+    {
+      "id": "S086",
+      "chapter": "epilogue",
+      "mode": "収集",
+      "script": "しかし、光の届かない海底では、その基準は通用しない。\n\n浅い海で小さく生きることが正解だった生物もいる。\n\n深海で巨大になることが正解だった生物もいる。\n\nそして、そのどちらも、何億年という時間の中で生き残ってきた。",
+      "image_description": "海面の明るい世界と深海の暗い世界を、縦方向に大きく対比した実写コラージュ。",
+      "motion": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
+      "search_ja": "海面 深海 暗闇 対比 写真",
+      "search_en": "bright ocean surface dark deep sea contrast photography",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NASA-PHYTO｜NASA Ocean Color Image Gallery｜The Ocean Peeks Through",
+          "url": "https://oceandata.sci.gsfc.nasa.gov/gallery/827"
+        },
+        {
+          "label": "NOAA-DEEP-OCEAN｜NOAA Ocean Exploration｜What is the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-ocean/"
+        }
+      ]
+    },
+    {
+      "id": "S087",
+      "chapter": "epilogue",
+      "mode": "収集",
+      "script": "結局、生物にとって重要なのは、どれだけ大きくなれるかではない。\n\nどんな環境で、どんな体なら生き残れるかだ。\n\n君が当たり前だと思っている「強さ」や「効率」は、場所が変わっても本当に通用するのだろうか。",
+      "image_description": "深海の大型生物と小型生物を同じ海底環境の別カットで交互に見せる。",
+      "motion": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
+      "search_ja": "深海 大型生物 小型生物 ROV 比較",
+      "search_en": "deep sea large and small animals ROV footage comparison",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-MARINELIFE｜NOAA Ocean Exploration｜Wild and Bizarre Marine Life",
+          "url": "https://oceanexplorer.noaa.gov/explainers/marine-life/"
+        },
+        {
+          "label": "NOAA-TINY｜NOAA Ocean Exploration｜Tiny Arthropod",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/"
+        },
+        {
+          "label": "NOAA-ISOPOD-STILL｜NOAA Ocean Exploration｜Giant Isopod（Windows to the Deep 2021）",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/"
+        }
+      ]
+    },
+    {
+      "id": "S088",
+      "chapter": "epilogue",
+      "mode": "収集",
+      "script": "深海では、巨大な体ですら、ただの生存戦略の一つに過ぎない。\n\n今日も世界が少しわからなくなった。",
+      "image_description": "広大な深海底の遠景。海底の地形と遠くのROVライトだけが見える、暗く静かな映像。",
+      "motion": "広い画から主役またはROVライトへゆっくりズームイン（5〜7%程度）。",
+      "search_ja": "深海底 遠景 暗闇 ROV ライト 広大",
+      "search_en": "wide abyssal seafloor distant ROV lights dark ocean",
+      "generation_prompt": "",
+      "sources": [
+        {
+          "label": "NOAA-DEEP-OCEAN｜NOAA Ocean Exploration｜What is the deep ocean?",
+          "url": "https://oceanexplorer.noaa.gov/ocean-fact/deep-ocean/"
+        },
+        {
+          "label": "NOAA-ROV-TECH｜NOAA Ocean Exploration｜How Robots Are Uncovering the Mysteries of the Deep",
+          "url": "https://oceanexplorer.noaa.gov/explainers/technology/"
+        },
+        {
+          "label": "NOAA-EXPEDITION-MEDIA｜NOAA Ocean Exploration｜Multimedia",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/"
+        }
+      ]
+    }
+  ]
+}

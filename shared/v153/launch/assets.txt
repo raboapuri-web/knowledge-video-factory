@@ -1,0 +1,1 @@
+Asset collection and rights/coverage preflight only. Full render requires a separate [render-approved] commit after review of the asset report and the ten generated conceptual diagrams.
