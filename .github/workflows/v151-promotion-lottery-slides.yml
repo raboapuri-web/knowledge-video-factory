@@ -241,22 +241,34 @@ jobs:
               throw new Error(`Could not map VOICEVOX sentence ${sentence.index} to ${chapter} narration.`);
             }
             const sentenceEnd = position + sentenceText.length;
-            const slideIndex = ranges.findIndex(
-              (range) => position >= range.start && position < range.end
-            );
-            if (slideIndex < 0 || sentenceEnd > ranges[slideIndex].end) {
-              throw new Error(`Sentence ${sentence.index} crosses a slide boundary in ${chapter}.`);
-            }
-
-            slideStarts[slideIndex] = Math.min(slideStarts[slideIndex], sentence.startSec);
-            slideEnds[slideIndex] = Math.max(slideEnds[slideIndex], sentence.endSec);
+            // A VOICEVOX utterance can cross a slide boundary. Split subtitle time
+          // by the original character positions while preserving the narration.
+          let assignedCharacters = 0;
+          for (let slideIndex = 0; slideIndex < ranges.length; slideIndex += 1) {
+            const range = ranges[slideIndex];
+            const overlapStart = Math.max(position, range.start);
+            const overlapEnd = Math.min(sentenceEnd, range.end);
+            if (overlapEnd <= overlapStart) continue;
+            const startRatio = (overlapStart - position) / sentenceText.length;
+            const endRatio = (overlapEnd - position) / sentenceText.length;
+            const segmentStartSec = sentence.startSec +
+              (sentence.endSec - sentence.startSec) * startRatio;
+            const segmentEndSec = sentence.startSec +
+              (sentence.endSec - sentence.startSec) * endRatio;
+            slideStarts[slideIndex] = Math.min(slideStarts[slideIndex], segmentStartSec);
+            slideEnds[slideIndex] = Math.max(slideEnds[slideIndex], segmentEndSec);
             slideSubs[slideIndex].push({
-              text: sentence.text,
-              startSec: sentence.startSec,
-              endSec: sentence.endSec,
+              text: sentenceText.slice(overlapStart - position, overlapEnd - position),
+              startSec: segmentStartSec,
+              endSec: segmentEndSec,
             });
-            sentenceCursor = sentenceEnd;
-            mappedSentences += 1;
+            assignedCharacters += overlapEnd - overlapStart;
+          }
+          if (assignedCharacters !== sentenceText.length) {
+            throw new Error(`Unmapped VOICEVOX sentence ${sentence.index} in ${chapter}.`);
+          }
+          sentenceCursor = sentenceEnd;
+          mappedSentences += 1;
           }
 
           const renderSlides = slides.map((slide, index) => {
@@ -333,7 +345,7 @@ jobs:
             `src/projects/${chapter}.ts`,
             `import {makeProject} from '@motion-canvas/core';\n` +
             `import scene from '../scenes/${chapter}?scene';\n` +
-            `export default makeProject({scenes: [scene], settings: {shared: {size: [1920, 1080], fps: 30}}});\n`
+            `export default makeProject({scenes: [scene]});\n`
           );
 
           console.log(`V151 render data ready: ${renderSlides.length} slides, ${mappedSentences} timed sentences.`);
