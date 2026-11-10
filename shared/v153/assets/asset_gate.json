@@ -5,16 +5,118 @@
     "generated": 10
   },
   "actual": {
-    "collected": 77,
+    "collected": 65,
     "generated": 10
   },
   "missing_collection_scenes": [
-    "S032"
+    "S032",
+    "S049",
+    "S050",
+    "S051",
+    "S055",
+    "S056",
+    "S063",
+    "S076",
+    "S078",
+    "S079",
+    "S080",
+    "S081",
+    "S088"
   ],
   "missing_generated_scenes": [],
   "composition_warnings": [
     {
+      "scene": "S009",
+      "required_panels": 2,
+      "available_panels": 1,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
       "scene": "S032",
+      "required_panels": 1,
+      "available_panels": 0,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S049",
+      "required_panels": 1,
+      "available_panels": 0,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S050",
+      "required_panels": 1,
+      "available_panels": 0,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S051",
+      "required_panels": 1,
+      "available_panels": 0,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S055",
+      "required_panels": 2,
+      "available_panels": 0,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S056",
+      "required_panels": 1,
+      "available_panels": 0,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S057",
+      "required_panels": 2,
+      "available_panels": 1,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S063",
+      "required_panels": 1,
+      "available_panels": 0,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S076",
+      "required_panels": 1,
+      "available_panels": 0,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S078",
+      "required_panels": 1,
+      "available_panels": 0,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S079",
+      "required_panels": 1,
+      "available_panels": 0,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S080",
+      "required_panels": 1,
+      "available_panels": 0,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S081",
+      "required_panels": 1,
+      "available_panels": 0,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S082",
+      "required_panels": 2,
+      "available_panels": 1,
+      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
+    },
+    {
+      "scene": "S088",
       "required_panels": 1,
       "available_panels": 0,
       "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
@@ -32,25 +134,31 @@
       "reason": "NOAA page identifies third-party media credit; separate reuse permission is not established."
     },
     {
-      "url": "https://oceanexplorer.noaa.gov/multimedia/edu-themes-bioluminescence-media-multimedia-giant-squid/",
-      "credit": "Edie Widder and Nathan Robinson",
+      "url": "https://nautiluslive.org/video/2019/10/16/whale-fall-actively-devoured-scavengers-davidson-seamount",
+      "reason": "Ocean Exploration Trust page is copyright-protected; no reuse permission supplied."
+    },
+    {
+      "url": "https://sanctuaries.noaa.gov/magazine/5/whale-fall-in-the-deep-sea/",
+      "credit": "",
       "reason": "NOAA page identifies third-party media credit; separate reuse permission is not established."
     },
     {
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9107163/",
-      "reason": "Article-level CC BY reuse could not be verified from page text."
+      "url": "https://nautiluslive.org/video/2019/10/16/whale-fall-actively-devoured-scavengers-davidson-seamount",
+      "reason": "Ocean Exploration Trust page is copyright-protected; no reuse permission supplied."
+    },
+    {
+      "url": "https://sanctuaries.noaa.gov/magazine/5/whale-fall-in-the-deep-sea/",
+      "credit": "",
+      "reason": "NOAA page identifies third-party media credit; separate reuse permission is not established."
     },
     {
       "url": "https://nautiluslive.org/video/2019/10/16/whale-fall-actively-devoured-scavengers-davidson-seamount",
       "reason": "Ocean Exploration Trust page is copyright-protected; no reuse permission supplied."
     },
     {
-      "url": "https://nautiluslive.org/video/2019/10/16/whale-fall-actively-devoured-scavengers-davidson-seamount",
-      "reason": "Ocean Exploration Trust page is copyright-protected; no reuse permission supplied."
-    },
-    {
-      "url": "https://nautiluslive.org/video/2019/10/16/whale-fall-actively-devoured-scavengers-davidson-seamount",
-      "reason": "Ocean Exploration Trust page is copyright-protected; no reuse permission supplied."
+      "url": "https://sanctuaries.noaa.gov/magazine/5/whale-fall-in-the-deep-sea/",
+      "credit": "",
+      "reason": "NOAA page identifies third-party media credit; separate reuse permission is not established."
     },
     {
       "url": "https://nautiluslive.org/video/2019/10/16/whale-fall-actively-devoured-scavengers-davidson-seamount",
