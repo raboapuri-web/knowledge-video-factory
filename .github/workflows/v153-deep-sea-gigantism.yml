@@ -45,6 +45,9 @@ jobs:
         run: |
           set -euo pipefail
           python scripts/collect_assets.py
+      - name: Require all 78 collection scenes and all 10 specified diagrams; no generated animal-photo substitutions
+        working-directory: shared/v153
+        run: python scripts/check_assets.py
       - name: Upload source assets and acquisition evidence even if the rights/coverage gate stops production
         if: always()
         uses: actions/upload-artifact@v4
@@ -57,9 +60,19 @@ jobs:
             shared/v153/SOURCES.txt
           retention-days: 21
           compression-level: 0
-      - name: Require all 78 collection scenes and all 10 specified diagrams; no generated animal-photo substitutions
-        working-directory: shared/v153
-        run: python scripts/check_assets.py
+      - name: Publish the asset manifest, rights audit and contact sheet to the production branch
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for f in shared/v153/assets/asset_manifest.json shared/v153/assets/asset_gate.json shared/v153/assets/collection-contact-sheet.jpg shared/v153/SOURCES.txt; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
+          if ! git diff --cached --quiet; then
+            git commit -m "[asset-report] Publish source asset manifest and rights audit"
+            git push origin HEAD
+          fi
 
   chapter:
     if: contains(github.event.head_commit.message, '[render-approved]')

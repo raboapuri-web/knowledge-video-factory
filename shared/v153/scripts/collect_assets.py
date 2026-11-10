@@ -5,7 +5,7 @@ from pathlib import Path
 from urllib.parse import urlparse, unquote, urljoin
 import requests
 from bs4 import BeautifulSoup
-from PIL import Image, ImageOps, ImageFilter
+from PIL import Image, ImageOps, ImageFilter, ImageDraw, ImageFont
 
 ROOT=Path(__file__).resolve().parents[1]
 BOARD=json.loads((ROOT/"content/board.json").read_text(encoding="utf-8"))
@@ -17,6 +17,8 @@ SESSION=requests.Session(); SESSION.headers.update(HEADERS)
 W,H=1920,1080
 used_media=set()
 media_usage={}
+PAGE_CACHE={}
+COMMONS_CACHE={}
 report={"collected":[],"missing":[],"composition_warnings":[],"rights_skipped":[]}
 def norm(s): return re.sub(r"[^a-z0-9]+"," ",str(s).lower())
 def tokens(s): return {x for x in norm(s).split() if len(x)>2 and x not in {"the","and","for","with","from","photo","video","image","deep","sea","ocean","noaa","commons"}}
@@ -34,6 +36,11 @@ def allowed_commons(meta):
     return ok, lic or "unverified", url
 def commons_candidates(source_url, query):
     parsed=urlparse(source_url)
+    cache_key=("category",source_url) if "Category:" in source_url else ("search",source_url,query)
+    if cache_key in COMMONS_CACHE:
+        cached=[dict(x) for x in COMMONS_CACHE[cache_key]]
+        for item in cached: item["rank"]=score(item.get("title","")+" "+item.get("source_page",""),query)
+        return cached
     cat=None
     if "Category:" in source_url:
         cat=unquote(source_url.split("Category:",1)[1].split("#",1)[0]).replace("_"," ")
@@ -46,6 +53,7 @@ def commons_candidates(source_url, query):
     try:
         data=SESSION.get(API,params=params,timeout=45).json()
     except Exception:
+        COMMONS_CACHE[cache_key]=[]
         return []
     out=[]
     for page in (data.get("query",{}).get("pages",{}) or {}).values():
@@ -62,9 +70,15 @@ def commons_candidates(source_url, query):
                     "title":title,"credit":re.sub("<[^>]+>","",str(author)),"license":lic,
                     "license_url":licurl,"kind":"image","rank":score(title+" "+str(desc),query)})
     out.sort(key=lambda x:x["rank"],reverse=True)
+    COMMONS_CACHE[cache_key]=[dict(x) for x in out]
     return out
 
 def page_candidates(url, query):
+    if url in PAGE_CACHE:
+        items=[dict(x) for x in PAGE_CACHE[url]]
+        for item in items: item["rank"]=score(item.get("title","")+" "+item.get("media_url",""),query)
+        items.sort(key=lambda x:x.get("rank",0),reverse=True)
+        return items
     host=urlparse(url).netloc.lower()
     if "nautiluslive.org" in host:
         report["rights_skipped"].append({"url":url,"reason":"Ocean Exploration Trust page is copyright-protected; no reuse permission supplied."})
@@ -130,6 +144,7 @@ def page_candidates(url, query):
         unique[it["media_url"]]=it
     items=list(unique.values())
     items.sort(key=lambda x:(x["rank"], 1 if "hires" in x["media_url"].lower() else 0),reverse=True)
+    PAGE_CACHE[url]=[dict(x) for x in items]
     return items
 
 def candidates_for(scene, source_url):
@@ -145,7 +160,7 @@ def video_frame(video_path,out_path,scene_index,media_key):
         n=media_usage.get(media_key,0); media_usage[media_key]=n+1
         t=max(0.2,min(d-0.5,d*(0.12+0.16*(n%5))))
         subprocess.run(["ffmpeg","-y","-loglevel","error","-ss",str(t),"-i",str(video_path),"-frames:v","1","-q:v","2",str(out_path)],check=True)
-        return True
+        return out_path.is_file() and out_path.stat().st_size>5000
     except Exception:
         return False
 
@@ -215,6 +230,24 @@ def fallback_commons(scene):
         return commons_candidates("https://commons.wikimedia.org/wiki/Category:Armadillidium_vulgare",q)
     return []
 
+def make_contact_sheet():
+    files=sorted(ASSET_DIR.glob("S[0-9][0-9][0-9].jpg"))
+    if not files: return None
+    cols=6; cw,ch=320,180; label_h=28
+    rows=(len(files)+cols-1)//cols
+    sheet=Image.new("RGB",(cols*cw,rows*(ch+label_h)),(5,15,25))
+    draw=ImageDraw.Draw(sheet); font=ImageFont.load_default()
+    for i,p in enumerate(files):
+        with Image.open(p) as im:
+            thumb=ImageOps.fit(im.convert("RGB"),(cw,ch),method=Image.Resampling.LANCZOS)
+        x=(i%cols)*cw; y=(i//cols)*(ch+label_h)
+        sheet.paste(thumb,(x,y))
+        draw.rectangle((x,y+ch,x+cw,y+ch+label_h),fill=(5,15,25))
+        draw.text((x+8,y+ch+6),p.stem,fill=(240,240,240),font=font)
+    dest=ASSET_DIR/"collection-contact-sheet.jpg"
+    sheet.save(dest,"JPEG",quality=90,optimize=True)
+    return str(dest.relative_to(ROOT))
+
 for idx,scene in enumerate(BOARD["scenes"],1):
     if scene["mode"]!="収集": continue
     candidates=[]
@@ -252,7 +285,13 @@ for idx,scene in enumerate(BOARD["scenes"],1):
             if p:
                 selected.append(c); paths.append(p); selected_pages.add(c["source_page"])
     final=ASSET_DIR/f"{scene['id']}.jpg"
-    ok=compose(paths,scene,final)
+    try:
+        ok=compose(paths,scene,final)
+    except Exception as e:
+        ok=False
+        report["missing"].append({"scene":scene["id"],"search_en":scene.get("search_en"),
+            "sources_attempted":[x["url"] for x in scene.get("sources",[])],
+            "reason":"Image composition failed: "+repr(e)})
     if ok:
         credits=[]
         for c in selected:
@@ -269,8 +308,10 @@ for idx,scene in enumerate(BOARD["scenes"],1):
     if idx%10==0:
         print(json.dumps({"collection_progress":idx,"collected":len(report["collected"]),"missing":len(report["missing"])},ensure_ascii=False),flush=True)
 
+contact_sheet=make_contact_sheet()
+report["contact_sheet"]=contact_sheet
 (ROOT/"assets/asset_manifest.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
-sources=[]
+sources=["NOAA multimedia usage guidance: https://oceanexplorer.noaa.gov/about/kit-specs/"]
 for rec in report["collected"]:
     for a in rec["sources"]:
         line=f"{rec['scene']} | {a['title']} | {a['credit']} | {a['license']} | {a['source_page']} | {a['license_url']}"

@@ -1,1 +1,1 @@
-Retry asset preflight after fixing downloaded-image staging and distinct-source selection for multi-image comparison screens. Full render remains gated by a separate [render-approved] commit.
+Retry asset audit with cached source lookups, contact sheet, and committed rights report. Full render remains separately gated.
