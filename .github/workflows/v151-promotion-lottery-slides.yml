@@ -20,7 +20,7 @@ env:
 
 concurrency:
   group: v151-promotion-lottery-slides
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: write
