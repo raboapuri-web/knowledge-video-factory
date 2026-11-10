@@ -68,8 +68,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install system packages
-        run: timeout 300 sudo apt-get install -y -qq fonts-noto-cjk fontconfig ffmpeg
+      - name: Verify preinstalled FFmpeg (Japanese Noto font bundled by npm)
+        run: |
+          command -v ffmpeg
+          command -v ffprobe
+          command -v fc-list
+          echo 'Runner system dependencies ready; avoiding fragile apt downloads'
       - name: Reuse v124 harness and v146 chapter renderer
         run: |
           mkdir -p src src/lib scripts
@@ -143,8 +147,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install ffmpeg
-        run: timeout 300 sudo apt-get install -y -qq ffmpeg
+      - name: Verify preinstalled FFmpeg
+        run: |
+          command -v ffmpeg
+          command -v ffprobe
       - name: Download chapter segments
         uses: actions/download-artifact@v4
         with:
