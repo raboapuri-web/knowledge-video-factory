@@ -332,7 +332,7 @@ jobs:
           fs.writeFileSync(
             `src/projects/${chapter}.ts`,
             `import {makeProject} from '@motion-canvas/core';\n` +
-            `import scene from '../scenes/${chapter}';\n` +
+            `import scene from '../scenes/${chapter}?scene';\n` +
             `export default makeProject({scenes: [scene], settings: {shared: {size: [1920, 1080], fps: 30}}});\n`
           );
 
