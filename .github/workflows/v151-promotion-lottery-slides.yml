@@ -361,16 +361,55 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/render.mjs "$CHAPTER"
           RENDERED="output/v151-${CHAPTER}.mp4"
+          FRAMES="output/v151-${CHAPTER}"
+
+          # Motion Canvas 3.17 exports PNG image sequences in this headless setup.
+          # Its legacy render helper assumes an MP4 and can exit nonzero even when
+          # the sequence has been exported successfully. Validate the actual frames.
+          if node scripts/render.mjs "$CHAPTER"; then
+            echo "Motion Canvas render helper completed."
+          else
+            echo "Render helper did not find an MP4; inspecting PNG frame output."
+          fi
+
+          if [ ! -s "$RENDERED" ]; then
+            test -d "$FRAMES"
+            FRAME_COUNT="$(find "$FRAMES" -maxdepth 1 -type f -name '*.png' | wc -l)"
+            echo "PNG frames generated: $FRAME_COUNT"
+            if [ "$FRAME_COUNT" -lt 60 ]; then
+              echo "Too few rendered frames; refusing an incomplete video" >&2
+              exit 1
+            fi
+            ffmpeg -y -hide_banner -loglevel warning \
+              -framerate 60 -pattern_type glob -i "$FRAMES/*.png" \
+              -vf "fps=30,format=yuv420p" \
+              -c:v libx264 -preset fast -crf 19 -movflags +faststart \
+              "$RENDERED"
+          fi
+
           test -s "$RENDERED"
-          ffmpeg -y -i "$RENDERED" -i "media/${CHAPTER}/narration.wav" \
+          VIDEO_SIZE="$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 "$RENDERED")"
+          if [ "$VIDEO_SIZE" != "1920x1080" ]; then
+            echo "Invalid chapter dimensions: $VIDEO_SIZE" >&2
+            exit 1
+          fi
+
+          ffmpeg -y -hide_banner -loglevel warning \
+            -i "$RENDERED" -i "media/${CHAPTER}/narration.wav" \
             -map 0:v:0 -map 1:a:0 \
-            -c:v copy -c:a aac -b:a 192k -shortest \
+            -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart \
             "output/v151-${CHAPTER}-with-audio.mp4"
           mv "output/v151-${CHAPTER}-with-audio.mp4" "$RENDERED"
-          ffprobe -v error -show_entries stream=width,height,r_frame_rate -show_entries format=duration,size \
-            -of default=noprint_wrappers=1 "$RENDERED"
+
+          # Both streams must be present. Short or empty exports must fail.
+          ffprobe -v error -show_entries stream=codec_type,width,height,r_frame_rate \
+            -show_entries format=duration,size -of default=noprint_wrappers=1 "$RENDERED"
+          AUDIO_STREAMS="$(ffprobe -v error -select_streams a -show_entries stream=index -of csv=p=0 "$RENDERED" | wc -l)"
+          test "$AUDIO_STREAMS" -ge 1
+          VIDEO_SECONDS="$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$RENDERED")"
+          VOICE_SECONDS="$(ffprobe -v error -show_entries format=duration -of csv=p=0 "media/${CHAPTER}/narration.wav")"
+          python3 -c 'import sys; video, voice=map(float,sys.argv[1:]); print(f"Chapter duration: video={video:.2f}s voice={voice:.2f}s"); assert video >= voice * 0.94, "Truncated video compared with narration"' "$VIDEO_SECONDS" "$VOICE_SECONDS"
 
       - name: Upload chapter segment
         uses: actions/upload-artifact@v4
