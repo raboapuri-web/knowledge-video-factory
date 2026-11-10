@@ -1,0 +1,152 @@
+name: V98 Fish Social Gaze — Full Cinematic Production
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v98-fish-social-gaze-production.yml'
+      - 'v98-fish-social-gaze/**'
+permissions:
+  contents: write
+concurrency:
+  group: v98-fish-social-gaze-production
+  cancel-in-progress: true
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    outputs:
+      matrix: ${{ steps.matrix.outputs.value }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install video and Japanese font packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - name: Install visual engine
+        working-directory: v98-fish-social-gaze
+        run: npm install --no-audit --no-fund
+      - name: Boot VOICEVOX
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --name voicevox98 --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 150); do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then echo 'VOICEVOX ready'; exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox98
+          exit 1
+      - name: Generate complete exact-script narration, subtitles and measured animation timeline
+        working-directory: v98-fish-social-gaze
+        run: node scripts/prepare.mjs
+      - name: Typecheck animation engine
+        working-directory: v98-fish-social-gaze
+        run: npm run check
+      - name: Validate source fidelity and length
+        working-directory: v98-fish-social-gaze
+        run: |
+          node - <<'NODE'
+          const src=require('./source.json'),d=require('./src/data.json'),fs=require('fs');
+          const prose=src.sections.flatMap(s=>s.paragraphs).join('');
+          const subtitles=d.beats.filter(b=>b.kind==='narration').map(b=>b.subtitle).join('');
+          if(prose!==subtitles)throw Error('The script was altered');
+          if(d.beats.length<200||d.durationSeconds<600)throw Error('Missing content or short narration');
+          if(!fs.existsSync('public/audio/narration.m4a'))throw Error('Missing audio');
+          console.log('PASS',d.beats.length,'animated scenes',Math.round(d.durationSeconds),'seconds');
+          NODE
+      - name: Produce episode render matrix
+        id: matrix
+        run: |
+          VALUE=$(node - <<'NODE'
+          const d=require('./v98-fish-social-gaze/src/data.json');
+          const n=8,size=Math.ceil(d.totalFrames/n);
+          const include=Array.from({length:n},(_,id)=>({id,start:id*size,end:Math.min(d.totalFrames-1,(id+1)*size-1)})).filter(x=>x.end>=x.start);
+          console.log(JSON.stringify({include}));
+          NODE
+          )
+          echo "value=$VALUE" >> "$GITHUB_OUTPUT"
+      - name: Archive prepared source, audio and timeline
+        run: tar -czf v98-ready.tar.gz --exclude='node_modules' --exclude='voice' --exclude='out' v98-fish-social-gaze
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v98-ready
+          path: v98-ready.tar.gz
+          retention-days: 2
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Japanese fonts
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - uses: actions/download-artifact@v4
+        with:
+          name: v98-ready
+      - run: tar -xzf v98-ready.tar.gz
+      - name: Install Remotion
+        working-directory: v98-fish-social-gaze
+        run: npm install --no-audit --no-fund
+      - name: Render this film segment in 1080p
+        working-directory: v98-fish-social-gaze
+        run: |
+          mkdir -p out
+          npx remotion render src/index.tsx FishSocialGaze "out/segment-${{ matrix.id }}.mp4" --frames=${{ matrix.start }}-${{ matrix.end }} --codec=h264 --crf=19 --concurrency=2 --log=warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v98-segment-${{ matrix.id }}
+          path: v98-fish-social-gaze/out/segment-${{ matrix.id }}.mp4
+          retention-days: 2
+
+  finalize:
+    needs: [prepare,render]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - uses: actions/download-artifact@v4
+        with:
+          name: v98-ready
+      - run: tar -xzf v98-ready.tar.gz
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v98-segment-*
+          path: v98-fish-social-gaze/parts
+          merge-multiple: true
+      - name: Assemble video and original full narration
+        working-directory: v98-fish-social-gaze
+        run: |
+          mkdir -p out
+          find parts -name 'segment-*.mp4' -print | sort -V | while read f; do printf "file '%s'\n" "$(realpath "$f")"; done > out/concat.txt
+          test "$(wc -l < out/concat.txt)" -eq 8
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/concat.txt -c copy out/video-only.mp4
+          ffmpeg -y -loglevel error -i out/video-only.mp4 -i public/audio/narration.m4a -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest out/fish-social-gaze-final.mp4
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 out/fish-social-gaze-final.mp4 | head -1)" = '1920'
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 out/fish-social-gaze-final.mp4 | head -1)" = '1080'
+          test "$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 out/fish-social-gaze-final.mp4 | cut -d. -f1)" -gt 600
+      - name: Upload release and production assets
+        working-directory: v98-fish-social-gaze
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="v98-fish-social-gaze-${GITHUB_RUN_ID}"
+          gh release create "$TAG" out/fish-social-gaze-final.mp4 preproduction-report.json source.json README.md --repo "$GITHUB_REPOSITORY" --title "考える夜｜なぜ魚まで他人の目を気にするのか？" --notes "Full 1080p intellectual documentary: original approved Japanese narration; VOICEVOX speech; motion-graphics worlds for scientific experiment, fish behavior, reputation, imagined observers and social norms."
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v98-fish-social-gaze-final
+          path: |
+            v98-fish-social-gaze/out/fish-social-gaze-final.mp4
+            v98-fish-social-gaze/preproduction-report.json
+          retention-days: 30
