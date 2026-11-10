@@ -423,7 +423,7 @@ function richBody(s: any) {
   );
 }
 
-const dataTotal = 85;
+const dataTotal = 62;
 function slideContent(s: any) {
   const dark48 = false;
   const headingFill = dark48 ? '#6b6560' : C_GRAY;
@@ -514,8 +514,8 @@ export function createChapterScene(chapter: string, data: any, timing: any) {
     const subTxt = createRef<Txt>();
     view.add(
       <Node ref={subLayer} opacity={0}>
-        <Rect width={1560} height={116} y={438} fill={'#000000'} opacity={0.62} radius={18} />
-        <Txt ref={subTxt} fontFamily={FONT} fontSize={36} fill={C_PAPER} width={1480} x={0} y={438} textAlign={'center'} />
+        <Rect width={1560} height={164} y={416} fill={'#000000'} opacity={0.62} radius={18} />
+        <Txt ref={subTxt} fontFamily={FONT} fontSize={34} fill={C_PAPER} width={1560} x={0} y={416} textAlign={'center'} />
       </Node>,
     );
 
@@ -535,7 +535,7 @@ export function createChapterScene(chapter: string, data: any, timing: any) {
             const start = sub.start ?? 0;
             const w = start - cursor;
             if (w > 0) yield* waitFor(w);
-            subTxt().text(wrapJa(sub.text || '', 34));
+            subTxt().text(wrapJa(sub.text || '', 42, 3));
             subLayer().opacity(1);
             cursor = start;
             const d = sub.duration ?? 1;
