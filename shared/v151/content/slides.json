@@ -1,0 +1,1909 @@
+{
+  "schemaVersion": 1,
+  "project": "v151-promotion-lottery",
+  "title": "会社の昇進をくじ引きで決めるとどうなるのか？",
+  "canvas": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30
+  },
+  "targetDurationSec": 1609,
+  "palette": {
+    "background": "#0B1026",
+    "surface": "#14213D",
+    "text": "#F5F1E6",
+    "accentRed": "#C1272D",
+    "accentYellow": "#F2C230",
+    "accentTeal": "#2E6F73"
+  },
+  "chapters": [
+    {
+      "id": "prologue",
+      "label": "プロローグ",
+      "slideCount": 5
+    },
+    {
+      "id": "chapter1",
+      "label": "第1章",
+      "slideCount": 12
+    },
+    {
+      "id": "chapter2",
+      "label": "第2章",
+      "slideCount": 13
+    },
+    {
+      "id": "chapter3",
+      "label": "第3章",
+      "slideCount": 15
+    },
+    {
+      "id": "chapter4",
+      "label": "第4章",
+      "slideCount": 15
+    },
+    {
+      "id": "epilogue",
+      "label": "エピローグ",
+      "slideCount": 4
+    }
+  ],
+  "slides": [
+    {
+      "id": "01",
+      "chapter": "prologue",
+      "chapterLabel": "プロローグ",
+      "start": 0,
+      "end": 132,
+      "narration": "2010年、イタリアの3人の研究者が、ある奇妙な研究でイグノーベル賞を受賞した。\n研究テーマは、会社の昇進制度。\n彼らが示したのは、なんとも馬鹿げた結論だった。\n会社の昇進は、優秀な社員を選ぶより、くじ引きで決めた方が効率的になる場合がある。\n少し想像してほしい。",
+      "screen": {
+        "heading": "昇進制度を疑う研究",
+        "keywords": [
+          "イグノーベル賞",
+          "昇進制度"
+        ]
+      },
+      "effect": {
+        "type": "fade",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "02",
+      "chapter": "prologue",
+      "chapterLabel": "プロローグ",
+      "start": 133,
+      "end": 259,
+      "narration": "あなたは、ある会社で働いている。\n毎日誰よりも早く出社し、誰よりも多くの契約を獲得し、営業成績は常にトップ。\nそして、ついに昇進の時期がやってきた。\nところが社長は、社員全員を会議室に集めると、突然こう言い出す。\n「今年から昇進は、くじ引きで決めます」",
+      "screen": {
+        "heading": "昇進を運で決める",
+        "keywords": [
+          "くじ引き",
+          "ランダム選抜"
+        ]
+      },
+      "effect": {
+        "type": "slide-up",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "03",
+      "chapter": "prologue",
+      "chapterLabel": "プロローグ",
+      "start": 260,
+      "end": 379,
+      "narration": "目の前に置かれた抽選箱。\n社長が一枚の紙を取り出す。\nそこに書かれていたのは、営業成績が最下位の同僚の名前だった。\nあなたは昇進できず、その同僚が課長になった。\nふざけるな、と思うだろう。\n努力した人間が報われず、運のいい人間が出世する。",
+      "screen": {
+        "heading": "昇進を運で決める",
+        "keywords": [
+          "くじ引き",
+          "ランダム選抜"
+        ]
+      },
+      "effect": {
+        "type": "stagger",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 22,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "04",
+      "chapter": "prologue",
+      "chapterLabel": "プロローグ",
+      "start": 380,
+      "end": 509,
+      "narration": "そんな会社がまともに機能するはずがない。\nところが、少なくともある条件下では、その直感が間違っているかもしれない。\nそもそも、なぜ私たちは、仕事ができる人間を昇進させることが合理的だと信じているのだろうか。\n営業成績が優秀な人間は、優秀な営業部長になるのか。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "zoom-in",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "05",
+      "chapter": "prologue",
+      "chapterLabel": "プロローグ",
+      "start": 510,
+      "end": 625,
+      "narration": "技術力の高いエンジニアは、優秀な開発部長になるのか。\nそして、最も優秀な社員を昇進させることは、本当に会社全体の利益につながるのか。\n今回は、会社の昇進をくじ引きで決めるという奇妙な思考実験から、実力主義に潜む矛盾を考えていこう。",
+      "screen": {
+        "heading": "昇進を運で決める",
+        "keywords": [
+          "くじ引き",
+          "ランダム選抜"
+        ]
+      },
+      "effect": {
+        "type": "pan-right",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 21,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "06",
+      "chapter": "chapter1",
+      "chapterLabel": "第1章",
+      "start": 0,
+      "end": 125,
+      "narration": "会社には、不思議な現象がある。\n平社員だった頃は誰よりも優秀だったのに、管理職になった途端、まったく仕事ができなくなる人間がいる。\n部下に仕事を教えられない。\n問題が起きても判断できない。\n自分でやった方が早いと言って、部下の仕事を全部奪ってしまう。",
+      "screen": {
+        "heading": "役職が変わると能力も変わる",
+        "keywords": [
+          "管理職",
+          "役職"
+        ]
+      },
+      "effect": {
+        "type": "diagram-build",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 23,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "07",
+      "chapter": "chapter1",
+      "chapterLabel": "第1章",
+      "start": 126,
+      "end": 265,
+      "narration": "かつてのエース社員が、今では部下から最も嫌われる上司になっている。\nなぜ、こんなことが起きるのか。\n1969年、教育学者のローレンス・J・ピーターは、ある法則を提唱した。\n「ピーターの法則」である。\nその考え方を簡単に説明しよう。\nある会社に、とても優秀な営業社員がいたとする。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "counter",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 26,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "08",
+      "chapter": "chapter1",
+      "chapterLabel": "第1章",
+      "start": 266,
+      "end": 396,
+      "narration": "彼は同期の誰よりも多くの契約を獲得し、会社から高く評価されていた。\n当然、会社は彼を昇進させる。\n彼は営業主任になった。\n主任になっても優秀だったので、さらに課長に昇進した。\nところが、課長になった途端、状況が変わる。\n彼が得意だったのは、顧客との交渉だった。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "fade",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "09",
+      "chapter": "chapter1",
+      "chapterLabel": "第1章",
+      "start": 397,
+      "end": 529,
+      "narration": "相手の気持ちを読み、商品の魅力を伝え、契約を獲得することについては天才的だった。\nしかし、部下の仕事を管理することは得意ではなかった。\n他人に仕事を任せるのも、部下の悩みを聞くのも苦手だった。\n結果として、彼のチームの成績は低迷する。\n会社は彼をどうするだろうか。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "slide-up",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "10",
+      "chapter": "chapter1",
+      "chapterLabel": "第1章",
+      "start": 530,
+      "end": 665,
+      "narration": "通常、成績の悪い課長をさらに部長へ昇進させることはない。\nこうして彼は、課長のまま会社に残り続ける。\nつまり、能力を発揮できる間は昇進し、能力を発揮できなくなったところで昇進が止まる。\nこれを繰り返すと、組織には、自分の役職で十分な能力を発揮できない人間が蓄積していく。",
+      "screen": {
+        "heading": "役職が変わると能力も変わる",
+        "keywords": [
+          "管理職",
+          "役職"
+        ]
+      },
+      "effect": {
+        "type": "stagger",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "11",
+      "chapter": "chapter1",
+      "chapterLabel": "第1章",
+      "start": 666,
+      "end": 807,
+      "narration": "これがピーターの法則の基本的な考え方である。\nもちろん、実際の企業では異動や降格、教育によって状況が変わることもある。\nしかし、この法則が指摘した矛盾は鋭い。\n会社は、ある仕事が得意な人間に、別の仕事を任せている。\nしかも、それを報酬だと考えている。\n考えてみれば、奇妙な話である。",
+      "screen": {
+        "heading": "ピーターの法則",
+        "keywords": [
+          "昇進",
+          "能力の限界"
+        ]
+      },
+      "effect": {
+        "type": "zoom-in",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 26,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "12",
+      "chapter": "chapter1",
+      "chapterLabel": "第1章",
+      "start": 808,
+      "end": 954,
+      "narration": "世界一足が速い選手がいたとしよう。\n彼は大会で優勝した。\nすると競技団体は、彼にこう告げる。\n「君は素晴らしい選手だ。明日から監督をやってくれ」\nなぜだろうか。\n足が速いことと、他人を速く走らせることは、まったく違う能力ではないか。\nところが会社では、これに似たことが当たり前に行われている。",
+      "screen": {
+        "heading": "優秀な社員が優秀な上司とは限らない",
+        "keywords": [
+          "プレイヤー",
+          "マネージャー"
+        ]
+      },
+      "effect": {
+        "type": "pan-right",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 27,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "13",
+      "chapter": "chapter1",
+      "chapterLabel": "第1章",
+      "start": 955,
+      "end": 1103,
+      "narration": "そして、この問題は、単なる思考実験ではない。\n2019年、経済学者のアラン・ベンソンらは、アメリカの131社に所属する、およそ3万9,000人の営業社員のデータを分析した。\n彼らが調べたのは、会社がどのような社員を管理職に昇進させ、その社員が昇進後にどの程度の成果を出していたかという問題だった。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "diagram-build",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 28,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "14",
+      "chapter": "chapter1",
+      "chapterLabel": "第1章",
+      "start": 1104,
+      "end": 1248,
+      "narration": "結果は、ピーターの法則と整合的だった。\n営業成績の高い社員ほど、管理職に昇進しやすかった。\nしかし、昇進前の営業成績が高いことは、優れた管理職になることを意味しなかった。\n分析では、昇進前の営業成績が高かった人ほど、管理職になってから部下の売上を伸ばす成果が低いという関係まで観察された。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "counter",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 27,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "15",
+      "chapter": "chapter1",
+      "chapterLabel": "第1章",
+      "start": 1249,
+      "end": 1375,
+      "narration": "一方で、他の社員と共同で営業成果を上げた経験など、管理職としての成果をよりよく予測する特徴も存在した。\nそれにもかかわらず、企業は現在の営業成績を強く重視していたのである。\nなぜだろうか。\n会社は、優秀な営業社員と優秀な管理職を区別できないのだろうか。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "fade",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "16",
+      "chapter": "chapter1",
+      "chapterLabel": "第1章",
+      "start": 1376,
+      "end": 1519,
+      "narration": "あるいは、区別できていても、あえて営業成績の高い社員を選んでいるのだろうか。\nこの疑問については、後で考えることにしよう。\nまず重要なのは、会社にとっての損失である。\n優秀な営業社員を管理職に昇進させると、会社は二つの損失を被る可能性がある。\n一つは、優秀な営業社員を現場から失うこと。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "slide-up",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 27,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "17",
+      "chapter": "chapter1",
+      "chapterLabel": "第1章",
+      "start": 1520,
+      "end": 1650,
+      "narration": "もう一つは、管理能力の低い人間を管理職に配置してしまうこと。\n一人の優秀な社員を昇進させたことで、会社は優秀なプレイヤーを失い、能力が不十分なマネージャーを手に入れるかもしれない。\nでは、どうすればこの問題を解決できるのか。\nここで、冒頭のくじ引きが登場する。",
+      "screen": {
+        "heading": "昇進を運で決める",
+        "keywords": [
+          "くじ引き",
+          "ランダム選抜"
+        ]
+      },
+      "effect": {
+        "type": "stagger",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "18",
+      "chapter": "chapter2",
+      "chapterLabel": "第2章",
+      "start": 0,
+      "end": 142,
+      "narration": "2010年、イタリアの研究者たちは、コンピューターの中に仮想の会社を作った。\nその会社には160の役職があり、組織は6段階の階層に分かれていた。\n一番下には大勢の社員がいる。\n上に行くほど役職の数が減り、最上位には一人しかいない。\nつまり、一般的な会社に似たピラミッド型の組織である。",
+      "screen": {
+        "heading": "昇進制度を疑う研究",
+        "keywords": [
+          "イグノーベル賞",
+          "昇進制度"
+        ]
+      },
+      "effect": {
+        "type": "zoom-in",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 27,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "19",
+      "chapter": "chapter2",
+      "chapterLabel": "第2章",
+      "start": 143,
+      "end": 280,
+      "narration": "研究者たちは、この仮想企業に異なる昇進ルールを導入し、組織全体の効率がどう変化するかを調べた。\n例えば、優秀な社員から順番に昇進させる方法。\n反対に、成績の悪い社員を優先的に昇進させる方法。\nそして、ランダムに社員を選んで昇進させる方法。\nただし、ここには重要な条件がある。",
+      "screen": {
+        "heading": "昇進制度を疑う研究",
+        "keywords": [
+          "イグノーベル賞",
+          "昇進制度"
+        ]
+      },
+      "effect": {
+        "type": "pan-right",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 26,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "20",
+      "chapter": "chapter2",
+      "chapterLabel": "第2章",
+      "start": 281,
+      "end": 424,
+      "narration": "研究者たちは、昇進後の能力について、二つの異なる世界を想定していた。\n一つ目は、仕事の能力が次の役職にも引き継がれる世界。\n優秀な営業社員は、課長になっても優秀。\n優秀な課長は、部長になっても優秀。\nこの世界では、能力の高い社員を昇進させることに合理性がある。\n問題は、二つ目の世界だ。",
+      "screen": {
+        "heading": "昇進制度を疑う研究",
+        "keywords": [
+          "イグノーベル賞",
+          "昇進制度"
+        ]
+      },
+      "effect": {
+        "type": "diagram-build",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 27,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "21",
+      "chapter": "chapter2",
+      "chapterLabel": "第2章",
+      "start": 425,
+      "end": 561,
+      "narration": "こちらでは、昇進前の能力と昇進後の能力が無関係だと仮定する。\n営業の天才が、管理職としても天才かどうかはわからない。\n部下として優秀だった人間が、上司としても優秀とは限らない。\nつまり、ピーターの法則が問題にしているような世界である。\nこの条件では、驚くべき結果が現れた。",
+      "screen": {
+        "heading": "役職が変わると能力も変わる",
+        "keywords": [
+          "管理職",
+          "役職"
+        ]
+      },
+      "effect": {
+        "type": "counter",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "22",
+      "chapter": "chapter2",
+      "chapterLabel": "第2章",
+      "start": 562,
+      "end": 690,
+      "narration": "優秀な社員から昇進させる方法よりも、ランダムに社員を昇進させる方法の方が、組織全体の効率を高く保てたのである。\nなぜ、こんなことが起こるのか。\nここで、少し考えてみよう。\nあなたが、10人の営業社員を抱える会社の社長だとする。\nある日、営業課長が退職した。",
+      "screen": {
+        "heading": "昇進を運で決める",
+        "keywords": [
+          "くじ引き",
+          "ランダム選抜"
+        ]
+      },
+      "effect": {
+        "type": "fade",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "23",
+      "chapter": "chapter2",
+      "chapterLabel": "第2章",
+      "start": 691,
+      "end": 828,
+      "narration": "新しい課長を一人選ばなければならない。\nそこで、営業成績トップの社員を昇進させたとしよう。\nすると、会社から最も売上を上げる営業社員が一人消える。\nそのうえ、新しい課長が優秀である保証はない。\nしかし、くじ引きならどうだろうか。\nもちろん、優秀な社員を引き当てることもある。",
+      "screen": {
+        "heading": "昇進を運で決める",
+        "keywords": [
+          "くじ引き",
+          "ランダム選抜"
+        ]
+      },
+      "effect": {
+        "type": "slide-up",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 26,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "24",
+      "chapter": "chapter2",
+      "chapterLabel": "第2章",
+      "start": 829,
+      "end": 951,
+      "narration": "だが、必ずしも営業成績トップの社員を現場から取り除くわけではない。\nそして、管理能力が営業成績と無関係なら、営業成績トップを選んでも、ランダムに選んでも、優秀な課長を引き当てる見込みは変わらない。\nここに、くじ引きが実力主義を上回る理由がある。",
+      "screen": {
+        "heading": "昇進を運で決める",
+        "keywords": [
+          "くじ引き",
+          "ランダム選抜"
+        ]
+      },
+      "effect": {
+        "type": "stagger",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 23,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "25",
+      "chapter": "chapter2",
+      "chapterLabel": "第2章",
+      "start": 952,
+      "end": 1094,
+      "narration": "実力主義は、現在の仕事で最も優秀な人間を優先して現場から取り除いてしまう。\nしかし、その人間が次の役職でも優秀とは限らない。\nつまり、会社は自らの手で、現在の生産性を支えている人材を失っている可能性がある。\nくじ引きが優秀なのではない。実力主義が、間違った能力を評価しているのである。",
+      "screen": {
+        "heading": "昇進を運で決める",
+        "keywords": [
+          "くじ引き",
+          "ランダム選抜"
+        ]
+      },
+      "effect": {
+        "type": "zoom-in",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 27,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "26",
+      "chapter": "chapter2",
+      "chapterLabel": "第2章",
+      "start": 1095,
+      "end": 1228,
+      "narration": "ここで、統計学に話を広げてみよう。\n例えば、ある学校が、優秀な教師を採用しようとしている。\nそこで、応募者全員に数学の試験を受けさせた。\n採点は完全に公平。\n問題に間違いはなく、採点ミスもない。\nそして最も点数の高かった人間を教師に採用する。\n一見、合理的に思える。",
+      "screen": {
+        "heading": "実力主義とランダム選抜",
+        "keywords": [
+          "組織効率",
+          "選抜"
+        ]
+      },
+      "effect": {
+        "type": "pan-right",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "27",
+      "chapter": "chapter2",
+      "chapterLabel": "第2章",
+      "start": 1229,
+      "end": 1357,
+      "narration": "しかし、数学の問題を解く能力と、数学を教える能力は同じではない。\nどれだけ正確に試験を実施しても、そもそも測定する能力を間違えていれば、優れた教師を選べるとは限らない。\n企業の昇進制度も、これと似ている。\n営業成績は数字で測れる。\n売上、契約件数、達成率。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "diagram-build",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "28",
+      "chapter": "chapter2",
+      "chapterLabel": "第2章",
+      "start": 1358,
+      "end": 1489,
+      "narration": "客観的で、比較しやすく、誰もが納得しやすい。\nしかし、部下の育成能力はどうだろうか。\n対立する社員同士をまとめる能力は。\n長期的な戦略を考える能力は。\nこれらは営業成績ほど簡単には測れない。\nだから企業は、測りやすい能力を使って、測りにくい能力を判断してしまう。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "counter",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "29",
+      "chapter": "chapter2",
+      "chapterLabel": "第2章",
+      "start": 1490,
+      "end": 1637,
+      "narration": "その結果、精密な評価制度が、精密に間違った人材を選び出すことになる。\nただし、このシミュレーションは、すべての会社がくじ引きを採用すべきだと証明したわけではない。\n昇進前後の能力がどの程度共通しているかによって、最適な方法は変わる。\nむしろ、この研究が突きつけるのは、もっと根本的な問題である。",
+      "screen": {
+        "heading": "昇進を運で決める",
+        "keywords": [
+          "くじ引き",
+          "ランダム選抜"
+        ]
+      },
+      "effect": {
+        "type": "fade",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 28,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "30",
+      "chapter": "chapter2",
+      "chapterLabel": "第2章",
+      "start": 1638,
+      "end": 1767,
+      "narration": "私たちは、実力主義という言葉を聞くだけで、その評価基準まで正しいと信じてしまう。\nだが、実力主義の合理性は、何を実力と呼ぶかによって決まる。\nでは、なぜ企業は、今の仕事で優秀な人間を昇進させ続けるのだろうか。\n答えは意外にも、企業が合理的だからかもしれない。",
+      "screen": {
+        "heading": "何を実力と呼ぶのか",
+        "keywords": [
+          "評価基準",
+          "測定の限界"
+        ]
+      },
+      "effect": {
+        "type": "slide-up",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "31",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 0,
+      "end": 135,
+      "narration": "ここまでの話を聞くと、会社の人事担当者は、ずいぶん愚かに思えるかもしれない。\n管理職として優秀な人間を選べばいいのに、なぜ営業成績ばかりを見ているのだろうか。\nしかし、少し視点を変えてみよう。\nあなたは、ある会社の営業社員だ。\n入社してから5年間、誰よりも努力してきた。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "stagger",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "32",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 136,
+      "end": 273,
+      "narration": "営業成績は毎年トップ。\n会社の売上に大きく貢献している。\nところが、昇進の時期になると、上司からこう告げられた。\n「君は営業として非常に優秀だ。しかし、管理職としての適性は高くない。だから、今回は別の社員を課長にする」\n課長に昇進したのは、自分より営業成績の低い同僚だった。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "zoom-in",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 26,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "33",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 274,
+      "end": 406,
+      "narration": "あなたは納得できるだろうか。\nもちろん、管理職には別の能力が必要だという理屈は理解できる。\nしかし、それでは何のために努力してきたのだろう。\n売上を伸ばしても昇進できないのなら、これ以上頑張る必要があるのか。\n場合によっては、他の会社へ転職することも考えるだろう。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "pan-right",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "34",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 407,
+      "end": 534,
+      "narration": "会社は、こうした問題も考えなければならない。\nここで、人事経済学の重要な考え方が登場する。\n昇進には、人材を配置する役割と、社員に努力させる役割がある。\nこれまで私たちは、昇進を人材配置の問題として考えてきた。\n誰を課長にすれば、会社の売上が伸びるのか。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "diagram-build",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "35",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 535,
+      "end": 672,
+      "narration": "誰を部長にすれば、組織がうまく機能するのか。\nしかし、会社にとって昇進は、社員への報酬でもある。\n出世すれば給料が上がる。\n権限が増える。\n社会的な地位も高くなる。\nこうした報酬があるからこそ、社員は現在の仕事に努力する。\n経済学には「トーナメント理論」という考え方がある。",
+      "screen": {
+        "heading": "役職が変わると能力も変わる",
+        "keywords": [
+          "管理職",
+          "役職"
+        ]
+      },
+      "effect": {
+        "type": "counter",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 26,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "36",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 673,
+      "end": 822,
+      "narration": "例えば、10人の営業社員が、一つの課長のポストを争っているとしよう。\n課長になれば年収が大きく上がる。\nその場合、社員は課長になるために、今の仕事を頑張る動機を持つ。\n重要なのは、全員が昇進できる必要はないという点だ。\n昇進できるのは一人だけでも、昇進できる可能性がある限り、複数の社員が努力する。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "fade",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 28,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "37",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 823,
+      "end": 944,
+      "narration": "会社にとっては、一つの役職を報酬として用意することで、多くの社員の努力を引き出せるのである。\n2019年のベンソンらの研究も、この問題を指摘している。\n企業が営業成績を重視して昇進を決めるのは、単に管理職の適性を見誤っているからとは限らない。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "slide-up",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 23,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "38",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 945,
+      "end": 1061,
+      "narration": "営業成績の高い人間を昇進させることで、他の社員に努力する動機を与えている可能性がある。\n実際、成果に応じた報酬が強く設定されている企業では、昇進の際に営業成績を重視する度合いが低くなる傾向も確認された。\n考えてみれば、自然なことだ。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "stagger",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 22,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "39",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 1062,
+      "end": 1198,
+      "narration": "売上を上げれば十分なボーナスをもらえるなら、会社は昇進まで報酬として使う必要が小さくなる。\n反対に、現在の仕事の成果を十分に給与へ反映できないなら、昇進は社員を動かす大きな報酬になる。\nつまり企業は、昇進を使って社員に努力させているのである。\nここで一つの矛盾が生まれる。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "zoom-in",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "40",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 1199,
+      "end": 1328,
+      "narration": "会社が最も優秀な管理職を選ぼうとすると、現在の仕事で最も努力している社員を報いることができないかもしれない。\n一方で、現在の仕事で優秀な社員を報いようとすると、管理職としては不適切な人間を配置してしまうかもしれない。\n企業は、この二つの目的の間で揺れている。",
+      "screen": {
+        "heading": "役職が変わると能力も変わる",
+        "keywords": [
+          "管理職",
+          "役職"
+        ]
+      },
+      "effect": {
+        "type": "pan-right",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "41",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 1329,
+      "end": 1464,
+      "narration": "そして、さらに厄介な問題がある。\n社員の努力を引き出すために昇進を使うと、社員は必ずしも会社全体にとって望ましい行動を取るとは限らない。\n例えば、営業社員が二人いたとしよう。\n二人は、協力すれば大きな契約を獲得できる。\nしかし、昇進できるのは営業成績トップの一人だけだ。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "diagram-build",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "42",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 1465,
+      "end": 1609,
+      "narration": "自分のノウハウを相手に教えれば、相手の営業成績も上がってしまう。\n相手が自分を追い抜けば、自分の昇進は遠のく。\nだとすれば、ノウハウを隠す方が個人にとっては合理的かもしれない。\n本来、会社にとって望ましいのは協力することだ。\nしかし、昇進競争の中では、協力しない方が有利になる場合がある。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "counter",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 27,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "43",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 1610,
+      "end": 1764,
+      "narration": "これは、ゲーム理論で扱われる社会的ジレンマに似た構造である。\n個人にとって合理的な行動が、集団全体にとっては望ましくない結果を生む。\nもちろん、すべての昇進競争が協力を妨げるわけではない。\nチームへの貢献を評価する制度なら、逆の行動も促せる。\n問題は、会社が何を評価するかによって、社員の行動が変わることだ。",
+      "screen": {
+        "heading": "競争が協力を壊す",
+        "keywords": [
+          "個人の合理性",
+          "組織の損失"
+        ]
+      },
+      "effect": {
+        "type": "fade",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 29,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "44",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 1765,
+      "end": 1909,
+      "narration": "会社は、社員に協力してほしいと願う。\nしかし、昇進の基準が個人の売上だけなら、社員は個人の売上を優先する。\nこれは社員の性格の問題ではない。\n制度が、そのような行動を合理的にしているのである。\nここに、実力主義のもう一つの顔がある。\n実力主義は、誰が優秀かを判断するだけの仕組みではない。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "slide-up",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 27,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "45",
+      "chapter": "chapter3",
+      "chapterLabel": "第3章",
+      "start": 1910,
+      "end": 2058,
+      "narration": "社員に、何を目指して努力すればいいかを教える仕組みでもある。\nそして、評価基準を間違えれば、優秀な社員ほど、会社が本当に必要としているものとは違う方向へ努力するかもしれない。\n人は、評価されるものを追いかける。たとえ、それが本来の目的と違っていても。\nでは、昇進制度をどう変えればいいのだろうか。",
+      "screen": {
+        "heading": "何を実力と呼ぶのか",
+        "keywords": [
+          "評価基準",
+          "測定の限界"
+        ]
+      },
+      "effect": {
+        "type": "stagger",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 28,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "46",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 0,
+      "end": 119,
+      "narration": "ここで、最初の問いに戻ろう。\n会社の昇進をくじ引きで決めたら、どうなるのか。\nここまでの研究から考えれば、くじ引きによって組織の効率が改善する場合はある。\nしかし、明日からすべての会社がくじ引きで昇進を決めればいい、という話にはならない。",
+      "screen": {
+        "heading": "昇進を運で決める",
+        "keywords": [
+          "くじ引き",
+          "ランダム選抜"
+        ]
+      },
+      "effect": {
+        "type": "zoom-in",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 22,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "47",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 120,
+      "end": 253,
+      "narration": "そもそも、管理職には一定の能力が必要だ。\n何の適性も確認せず、完全に運任せで管理職を選んでしまえば、当然問題が起きる。\nさらに、社員がどの程度努力するかという問題も残る。\n頑張っても頑張らなくても昇進の確率が同じなら、昇進を目標に努力する動機は弱くなるかもしれない。",
+      "screen": {
+        "heading": "役職が変わると能力も変わる",
+        "keywords": [
+          "管理職",
+          "役職"
+        ]
+      },
+      "effect": {
+        "type": "pan-right",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "48",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 254,
+      "end": 378,
+      "narration": "また、仕事で優れた成果を出した人間が、運の悪さだけで何度も昇進を逃せば、不公平だと感じるだろう。\n組織が機能するためには、生産性だけでなく、制度に対する納得感も必要になる。\nだからこそ、私たちは、くじ引きか実力主義かという二択から離れる必要がある。",
+      "screen": {
+        "heading": "昇進を運で決める",
+        "keywords": [
+          "くじ引き",
+          "ランダム選抜"
+        ]
+      },
+      "effect": {
+        "type": "diagram-build",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 23,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "49",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 379,
+      "end": 524,
+      "narration": "そもそも、なぜ優秀な社員への報酬は、昇進でなければならないのだろうか。\n例えば、ある会社に、極めて優秀なエンジニアがいたとする。\n彼は技術的な問題を解決することに長けている。\n誰も思いつかない方法でシステムを改善し、会社に大きな利益をもたらしている。\nしかし、彼は人を管理することが苦手だ。",
+      "screen": {
+        "heading": "昇進は報酬でもある",
+        "keywords": [
+          "トーナメント理論",
+          "努力の誘因"
+        ]
+      },
+      "effect": {
+        "type": "counter",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 27,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "50",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 525,
+      "end": 664,
+      "narration": "会議も嫌いで、人事評価にも興味がない。\nそれでも、会社が給料を上げるためには管理職になるしかない仕組みだったら、どうなるだろうか。\n彼は、より高い報酬を得るために管理職を目指すかもしれない。\nその結果、会社は優秀なエンジニアを失い、本人も望んでいない管理職を生み出すことになる。",
+      "screen": {
+        "heading": "役職が変わると能力も変わる",
+        "keywords": [
+          "管理職",
+          "役職"
+        ]
+      },
+      "effect": {
+        "type": "fade",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 26,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "51",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 665,
+      "end": 793,
+      "narration": "まるで、優秀な料理人への最高の報酬が、厨房から追い出して店長にすることになっているようなものだ。\nしかし、料理が得意な人間に、必ずしも店舗経営まで任せる必要はない。\n料理人として働き続けながら、高い報酬を得られるようにすればいい。\nエンジニアも同じである。",
+      "screen": {
+        "heading": "昇進は報酬でもある",
+        "keywords": [
+          "トーナメント理論",
+          "努力の誘因"
+        ]
+      },
+      "effect": {
+        "type": "slide-up",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "52",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 794,
+      "end": 941,
+      "narration": "高度な専門職として働きながら、管理職と同等、あるいはそれ以上の待遇を得られるようにすればいい。\n実際、専門職と管理職で別々のキャリアを用意する企業もある。\nこれは、昇進を二つの役割に分解するという発想だ。\n優秀な社員への報酬は、給与や待遇で与える。\n管理職の選抜は、管理職としての能力で決める。",
+      "screen": {
+        "heading": "役職が変わると能力も変わる",
+        "keywords": [
+          "管理職",
+          "役職"
+        ]
+      },
+      "effect": {
+        "type": "stagger",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 28,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "53",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 942,
+      "end": 1090,
+      "narration": "そうすれば、営業成績トップの社員を必ずしも営業部長にする必要はない。\n技術力の高いエンジニアを、無理に管理職へ移す必要もない。\nさらに、管理職に必要な能力を見極める仕組みを作ることもできる。\n例えば、管理職候補に小規模なプロジェクトを任せてみる。\n部下への指導能力や、チーム全体の成果を評価する。",
+      "screen": {
+        "heading": "営業成績と昇進",
+        "keywords": [
+          "営業成績",
+          "売上"
+        ]
+      },
+      "effect": {
+        "type": "zoom-in",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 28,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "54",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 1091,
+      "end": 1218,
+      "narration": "一定期間、実際に管理職の仕事を経験してもらう。\n現在の仕事の成績だけでなく、次の役職で求められる能力を直接確認するのである。\nあるいは、必要な適性を満たす候補者が複数いる場合、最終的な選抜に一部くじ引きを取り入れることも、一つの制度設計として考えられる。",
+      "screen": {
+        "heading": "昇進を運で決める",
+        "keywords": [
+          "くじ引き",
+          "ランダム選抜"
+        ]
+      },
+      "effect": {
+        "type": "pan-right",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "55",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 1219,
+      "end": 1366,
+      "narration": "すべてを運任せにするのではない。\nしかし、測りにくい能力を無理に点数化して、わずかな差で優劣を決める必要もない。\nこの発想は、昇進制度だけの問題ではない。\n例えば、大学の入学試験。\n就職活動。\n奨学金の選考。\n私たちは、さまざまな場面で人間の能力を測り、順位をつけ、限られた機会を配分している。",
+      "screen": {
+        "heading": "選考の物差しを疑う",
+        "keywords": [
+          "選抜制度",
+          "能力評価"
+        ]
+      },
+      "effect": {
+        "type": "diagram-build",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 28,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "56",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 1367,
+      "end": 1486,
+      "narration": "もちろん、能力を評価すること自体が悪いわけではない。\nしかし、選考基準が精密だからといって、その基準が本当に選ぶべき能力を測っているとは限らない。\nむしろ、測りやすい能力だけを重視することで、本当に必要な能力を見落としている可能性がある。",
+      "screen": {
+        "heading": "何を実力と呼ぶのか",
+        "keywords": [
+          "評価基準",
+          "測定の限界"
+        ]
+      },
+      "effect": {
+        "type": "counter",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 22,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "57",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 1487,
+      "end": 1618,
+      "narration": "私たちは、評価の公平性についてはよく議論する。\nしかし、その前に考えるべき問いがある。\nそもそも、その物差しで測ることは正しいのか。\nどれだけ公平な競争であっても、競争する種目を間違えていれば、目的に合った勝者を選ぶことはできない。\n会社の昇進制度も同じである。",
+      "screen": {
+        "heading": "何を実力と呼ぶのか",
+        "keywords": [
+          "評価基準",
+          "測定の限界"
+        ]
+      },
+      "effect": {
+        "type": "fade",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "58",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 1619,
+      "end": 1749,
+      "narration": "社員を公平に評価することと、会社にとって最適な人材を配置することは、必ずしも一致しない。\nそして、最も重要なのは、私たちが昇進という制度に、あまりにも多くの意味を与えていることかもしれない。\n出世することは、能力がある証拠。\n出世しないことは、能力がない証拠。",
+      "screen": {
+        "heading": "何を実力と呼ぶのか",
+        "keywords": [
+          "評価基準",
+          "測定の限界"
+        ]
+      },
+      "effect": {
+        "type": "slide-up",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "59",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 1750,
+      "end": 1885,
+      "narration": "上司は部下より優秀な人間。\n部長は課長より価値の高い人間。\nだが、よく考えてみれば、これは奇妙な発想だ。\n会社の役職は、人間の価値を示す階級ではない。\n異なる仕事を分担するための仕組みである。\n管理職になることは、本来、偉くなることではない。\n別の仕事をすることである。",
+      "screen": {
+        "heading": "役職が変わると能力も変わる",
+        "keywords": [
+          "管理職",
+          "役職"
+        ]
+      },
+      "effect": {
+        "type": "stagger",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "60",
+      "chapter": "chapter4",
+      "chapterLabel": "第4章",
+      "start": 1886,
+      "end": 2041,
+      "narration": "もし私たちが、この当たり前の違いを理解できれば、昇進制度の見え方は大きく変わるはずだ。\nそして、くじ引きという奇妙な研究が示した本当の意味も見えてくる。\n研究者たちは、運にすべてを委ねろと言っているのではない。\n私たちが当然のように信じている「実力」という物差しが、そもそも正しいのかと問いかけているのである。",
+      "screen": {
+        "heading": "昇進制度を疑う研究",
+        "keywords": [
+          "イグノーベル賞",
+          "昇進制度"
+        ]
+      },
+      "effect": {
+        "type": "zoom-in",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 29,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "61",
+      "chapter": "epilogue",
+      "chapterLabel": "エピローグ",
+      "start": 0,
+      "end": 130,
+      "narration": "私たちは、会社という階段を上っていく。\n上に行くほど、優秀な人間になったような気がする。\nしかし、その階段には奇妙な仕組みがある。\n一段上るたびに、求められる能力が変わっていくのだ。\nそして私たちは、下の段で優秀だったという理由で、次の段へ進むことを許される。",
+      "screen": {
+        "heading": "出世は能力の証明か",
+        "keywords": [
+          "昇進",
+          "能力"
+        ]
+      },
+      "effect": {
+        "type": "pan-right",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 24,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "62",
+      "chapter": "epilogue",
+      "chapterLabel": "エピローグ",
+      "start": 131,
+      "end": 251,
+      "narration": "そこに、本当に自分の能力を発揮できる仕事があるかどうかもわからないまま。\n研究者たちは、そんな階段をくじ引きで上らせるという奇妙な実験を行った。\nその結果、条件によっては、実力主義よりも優れた組織が生まれた。\n考えてみれば、皮肉な話である。",
+      "screen": {
+        "heading": "昇進制度を疑う研究",
+        "keywords": [
+          "イグノーベル賞",
+          "昇進制度"
+        ]
+      },
+      "effect": {
+        "type": "diagram-build",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 22,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "63",
+      "chapter": "epilogue",
+      "chapterLabel": "エピローグ",
+      "start": 252,
+      "end": 363,
+      "narration": "人間の能力を正しく評価しようとして作られた制度が、かえって人間を不適切な場所へ送り込んでしまう。\nそして、何も評価しないくじ引きが、その失敗を避けることがある。\n私たちは、出世した人間を見て、優秀だから出世したのだと思う。",
+      "screen": {
+        "heading": "昇進を運で決める",
+        "keywords": [
+          "くじ引き",
+          "ランダム選抜"
+        ]
+      },
+      "effect": {
+        "type": "counter",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 21,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    },
+    {
+      "id": "64",
+      "chapter": "epilogue",
+      "chapterLabel": "エピローグ",
+      "start": 364,
+      "end": 497,
+      "narration": "だが、その人が本当に優秀だったのは、今の仕事だろうか。\nそれとも、一つ前の仕事だったのだろうか。\n出世は、能力の証明ではない。能力が試される場所の変更である。\nその当たり前を忘れたとき、会社は優秀な人間を、最も能力を発揮できない場所へ送り込んでしまうのかもしれない。",
+      "screen": {
+        "heading": "ピーターの法則",
+        "keywords": [
+          "昇進",
+          "能力の限界"
+        ]
+      },
+      "effect": {
+        "type": "fade",
+        "enter": "0.8s",
+        "motion": "緩やかな移動と拡大縮小。情報の読み取りを妨げない"
+      },
+      "durationSec": 25,
+      "palette": {
+        "background": "#0B1026",
+        "surface": "#14213D",
+        "text": "#F5F1E6",
+        "accentRed": "#C1272D",
+        "accentYellow": "#F2C230",
+        "accentTeal": "#2E6F73"
+      }
+    }
+  ]
+}
