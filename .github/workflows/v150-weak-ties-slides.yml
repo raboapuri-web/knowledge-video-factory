@@ -2,7 +2,7 @@
 # - storyboard: 台本・スライド整合性監査 + audit.json をアーティファクト化
 # - chapter: 6章並列(最大3)で VOICEVOX 合成→ Motion Canvas レンダ→音声ミックス
 # - finalize: 章 MP4 を連結→ BGM ミックス→コンタクトシート→リリース作成
-name: V150 Weak Ties Presentation Motion Canvas
+name: V150 Weak Ties Cinematic Motion Canvas
 
 
 on:
@@ -55,7 +55,7 @@ jobs:
         chapter: [prologue, chapter1, chapter2, chapter3, chapter4, epilogue]
     env:
       CHAPTER: ${{ matrix.chapter }}
-      VOICEVOX_SPEED: '1.15'
+      VOICEVOX_SPEED: '1.10'
       VOICEVOX_SPEAKER_ID: '13'
       VOICE_PARALLEL: '3'
       PUPPETEER_CACHE_DIR: ${{ github.workspace }}/shared/v150/.puppeteer
@@ -70,25 +70,20 @@ jobs:
           node-version: '22'
       - name: Install system packages
         run: timeout 300 sudo apt-get install -y -qq fonts-noto-cjk fontconfig ffmpeg
-      - name: Reuse v124 harness and v146 chapter renderer
+      - name: Setup Motion Canvas with original V150 cinematic renderer
         run: |
-          mkdir -p src src/lib scripts
+          mkdir -p src/scenes src/projects src/lib scripts
           cp ../v124/package.json package.json
           cp ../v124/tsconfig.json tsconfig.json
           cp ../v124/vite.config.ts vite.config.ts
           cp ../v124/headless.html headless.html
           cp ../v124/src/headless.ts src/headless.ts
-          cp ../v124/src/types.d.ts src/types.d.ts # { echo; echo 'declare module "*.json" {'; echo '  const value: any;'; echo '  export default value;'; echo '}'; } >> src/types.d.ts
-          
+          cp ../v124/src/types.d.ts src/types.d.ts
           cp ../v124/scripts/render.mjs scripts/render.mjs
-          sed -i 's/v124/v150/g; s/!smoke/false/g' scripts/render.mjs # "s|page.on('pageerror',err=>console.error('PAGE_ERROR',err.message));|& page.on('console',msg=>console.log('PAGE_CONSOLE',msg.type(),msg.text())); page.on('response',res=>{if(res.status()>=400)console.log('PAGE_RESPONSE',res.status(),res.url());});|" scripts/render.mjs
-          grep -n "v150" scripts/render.mjs
-          cp ../v146/src/lib/chapter.tsx src/lib/chapter.tsx
-          sed -i "s/#111317/#111114/g; s/#F2EBDD/#EDE8DD/g; s/#A7353A/#9D303B/g; s/#4F9297/#397A78/g; s/#A9A6A0/#A8A5A0/g; s/s.id === '48'/s.id === '58'/g" src/lib/chapter.tsx
-          grep -n "#111114" src/lib/chapter.tsx | head -3
-          grep -n "s.id === '58'" src/lib/chapter.tsx
-          if grep -q "s.id === '48'" src/lib/chapter.tsx; then echo "DARK48 STILL PRESENT"; exit 1; fi
-          echo "CHAPTER_TSX_READY"
+          sed -i 's/v124/v150/g; s/!smoke/false/g' scripts/render.mjs
+          test -s src/lib/chapter.tsx
+          echo "V150 CINEMATIC RENDERER READY"
+
       - name: Compile slides and generate project
         run: node scripts/compile.mjs "$CHAPTER" # content/slides.json && cp ../v149/content/narration-*.txt content/ && sed -i "s/!== 58/!== 33/" scripts/compile.mjs && node scripts/compile.mjs "$CHAPTER" && node -e "const fs=require('fs');const p='content/slides.json';const j=JSON.parse(fs.readFileSync(p,'utf8'));for(const s of j.slides){}fs.writeFileSync(p,JSON.stringify(j));console.log('CONTROL_V149_DATA',j.slides.length);"
       - name: Install dependencies
@@ -165,29 +160,29 @@ jobs:
           cp ../v124/scripts/generate-bgm.mjs scripts/generate-bgm.mjs
           BGM_FILE=""
           for p in ../../common/BGM/Amazon-river-ambience.mp3 ../common/BGM/Amazon-river-ambience.mp3 common/BGM/Amazon-river-ambience.mp3; do if [ -f "$p" ]; then BGM_FILE="$p"; break; fi; done
-          if [ -n "$BGM_FILE" ]; then echo "BGM found: $BGM_FILE"; node scripts/generate-bgm.mjs output/v150-voice-master.mp4 output/v150-weak-ties-slides-final.mp4 "$BGM_FILE" 0.035; else echo "BGM not found, finishing without BGM"; cp output/v150-voice-master.mp4 output/v150-weak-ties-slides-final.mp4; fi
-          ffprobe -v error -show_entries stream=width,height,r_frame_rate,codec_name -of default=noprint_wrappers=1 output/v150-weak-ties-slides-final.mp4
-          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 output/v150-weak-ties-slides-final.mp4
+          if [ -n "$BGM_FILE" ]; then echo "BGM found: $BGM_FILE"; node scripts/generate-bgm.mjs output/v150-voice-master.mp4 output/v150-weak-ties-cinematic-final.mp4 "$BGM_FILE" 0.035; else echo "BGM not found, finishing without BGM"; cp output/v150-voice-master.mp4 output/v150-weak-ties-cinematic-final.mp4; fi
+          ffprobe -v error -show_entries stream=width,height,r_frame_rate,codec_name -of default=noprint_wrappers=1 output/v150-weak-ties-cinematic-final.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 output/v150-weak-ties-cinematic-final.mp4
       - name: Create contact sheet
         run: |
-          D=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 output/v150-weak-ties-slides-final.mp4)
+          D=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 output/v150-weak-ties-cinematic-final.mp4)
           I=$(python3 -c "print(max(1.0, float('$D')/24))")
-          ffmpeg -y -i output/v150-weak-ties-slides-final.mp4 -vf "fps=1/$I,scale=384:-1,tile=6x4:padding=4:margin=4" -frames:v 1 output/v150-contact-sheet.jpg
+          ffmpeg -y -i output/v150-weak-ties-cinematic-final.mp4 -vf "fps=1/$I,scale=384:-1,tile=6x4:padding=4:margin=4" -frames:v 1 output/v150-contact-sheet.jpg
       - name: Upload final video
         uses: actions/upload-artifact@v4
         with:
-          name: v150-weak-ties-slides-master
+          name: v150-weak-ties-cinematic-master
           path: |
-            shared/v150/output/v150-weak-ties-slides-final.mp4
+            shared/v150/output/v150-weak-ties-cinematic-final.mp4
             shared/v150/output/v150-contact-sheet.jpg
           retention-days: 21
       - name: Create release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          TAG="v150-weak-ties-slides-${{ github.run_id }}"
+          TAG="v150-weak-ties-cinematic-${{ github.run_id }}"
           TITLE="V150 考える夜｜なぜ親友より、たまに会う知人の方が人生を変えるのか？ 完成動画"
-          gh release create "$TAG" --title "$TITLE" --notes "V150 完成動画（1920x1080・30fps）。スライド58枚（レンダリング単位58）。ナレーションはVOICEVOX（青山龍星、速度1.15）で合成。" output/v150-weak-ties-slides-final.mp4 output/v150-contact-sheet.jpg
+          gh release create "$TAG" --title "$TITLE" --notes "V150 完成動画（1920x1080・30fps）。ネットワークの橋と数字を専用モーショングラフィックスで可視化する58シーン。Google Docs現行原稿と字幕を照合済み。VOICEVOX青山龍星、速度1.10。" output/v150-weak-ties-cinematic-final.mp4 output/v150-contact-sheet.jpg
 
 
 # Note: chapter render steps use npm run render / render:smoke; shared/v124/package.json must pass $CHAPTER to scripts/render.mjs.
