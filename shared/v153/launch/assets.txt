@@ -1,1 +1,1 @@
-Retry asset audit with cached source lookups, contact sheet, and committed rights report. Full render remains separately gated.
+Retry after tightening source-to-subject matching, correcting PMC9107163 CC BY 4.0 handling, and excluding OET/NOAA images unless sourced through a verified Commons license.

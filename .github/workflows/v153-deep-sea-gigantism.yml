@@ -66,7 +66,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for f in shared/v153/assets/asset_manifest.json shared/v153/assets/asset_gate.json shared/v153/assets/collection-contact-sheet.jpg shared/v153/SOURCES.txt; do
+          for f in shared/v153/assets/asset_manifest.json shared/v153/assets/asset_gate.json shared/v153/assets/collected/collection-contact-sheet.jpg shared/v153/SOURCES.txt; do
             if [ -f "$f" ]; then git add "$f"; fi
           done
           if ! git diff --cached --quiet; then

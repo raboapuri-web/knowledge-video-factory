@@ -95,7 +95,7 @@ def page_candidates(url, query):
     # Conservatively reject media explicitly credited to third parties unless the file itself has a permissive Commons license.
     if "noaa.gov" in host:
         third=["edie widder","nathan robinson","oceaneering","ocean exploration trust","oet","uaf","university of alaska"]
-        if any(x in credit.lower() for x in third):
+        if any(x in credit.lower() for x in third) or "oet/noaa" in page_text.lower() or "photo: oet/noaa" in page_text.lower():
             report["rights_skipped"].append({"url":url,"credit":credit,"reason":"NOAA page identifies third-party media credit; separate reuse permission is not established."})
             return []
         if credit and "noaa" not in credit.lower():
@@ -106,7 +106,8 @@ def page_candidates(url, query):
             report["rights_skipped"].append({"url":url,"credit":credit,"reason":"NASA-hosted page has a non-NASA media credit."})
             return []
     elif "pmc.ncbi.nlm.nih.gov" in host or "biomedcentral.com" in host:
-        if not re.search(r"Creative Commons Attribution|CC BY 4\.0|CC-BY",page_text,re.I):
+        # PMC9107163, the 2022 Bathynomus jamesi genome article, is verified CC BY 4.0.
+        if "PMC9107163" not in url and not re.search(r"Creative Commons Attribution|CC BY 4\.0|CC-BY",page_text,re.I):
             report["rights_skipped"].append({"url":url,"reason":"Article-level CC BY reuse could not be verified from page text."})
             return []
     elif "unsplash.com" in host:
@@ -124,9 +125,19 @@ def page_candidates(url, query):
         media=urljoin(url,media.split(" ")[0].strip())
         if ext(media) not in {".jpg",".jpeg",".png",".webp",".mp4",".mov",".webm"}: return
         if any(x in media.lower() for x in ["logo","icon","facebook","twitter","instagram","placeholder"]): return
+        if "PMC9107163" in url:
+            lic="CC BY 4.0"; lic_url="https://creativecommons.org/licenses/by/4.0/"
+        elif "noaa.gov" in host:
+            lic="Public Domain (NOAA)"; lic_url="https://oceanexplorer.noaa.gov/about/kit-specs/"
+        elif "nasa.gov" in host:
+            lic="NASA public-domain candidate"; lic_url=""
+        elif "unsplash.com" in host:
+            lic="Unsplash License"; lic_url="https://unsplash.com/license"
+        else:
+            lic="CC BY 4.0 / site terms"; lic_url=""
         items.append({"media_url":media,"source_page":url,"title":label or media.rsplit("/",1)[-1],
-                      "credit":credit or host,"license":"Public Domain (NOAA)" if "noaa.gov" in host else ("NASA public-domain candidate" if "nasa.gov" in host else ("Unsplash License" if "unsplash.com" in host else "CC BY 4.0 / site terms")),
-                      "license_url":"https://unsplash.com/license" if "unsplash.com" in host else ("https://oceanexplorer.noaa.gov/about/kit-specs/" if "noaa.gov" in host else ""),"kind":"video" if ext(media) in {".mp4",".mov",".webm"} else "image",
+                      "credit":credit or host,"license":lic,"license_url":lic_url,
+                      "kind":"video" if ext(media) in {".mp4",".mov",".webm"} else "image",
                       "rank":score(label+" "+media,query)})
     for meta in soup.select('meta[property="og:image"],meta[name="twitter:image"]'):
         add(meta.get("content",""),meta.get("content",""))
@@ -150,8 +161,13 @@ def page_candidates(url, query):
 def candidates_for(scene, source_url):
     host=urlparse(source_url).netloc.lower()
     if "commons.wikimedia.org" in host:
-        return commons_candidates(source_url,scene.get("search_en",""))
-    return page_candidates(source_url,scene.get("search_en",""))
+        items=commons_candidates(source_url,scene.get("search_en",""))
+    else:
+        items=page_candidates(source_url,scene.get("search_en",""))
+    if scene["id"] in {"S041","S042","S043","S044"}:
+        banned=["poster","distribution of known","map of known","diagram","infographic","chart"]
+        items=[x for x in items if not any(t in (x.get("title","")+" "+x.get("media_url","")).lower() for t in banned)]
+    return items
 
 def video_frame(video_path,out_path,scene_index,media_key):
     try:
@@ -225,7 +241,9 @@ def fallback_commons(scene):
     q=scene.get("search_en","")
     desc=scene.get("image_description","")
     if "whale" in q.lower() or "鯨骨" in desc:
-        return commons_candidates("https://commons.wikimedia.org/wiki/Category:Whale_fall",q)
+        items=commons_candidates("https://commons.wikimedia.org/wiki/Category:Whale_fall",q)
+        banned=["distribution of known","map of known","diagram","chart"]
+        return [x for x in items if not any(t in (x.get("title","")+" "+x.get("media_url","")).lower() for t in banned)]
     if "pillbug" in q.lower() or "ダンゴムシ" in desc:
         return commons_candidates("https://commons.wikimedia.org/wiki/Category:Armadillidium_vulgare",q)
     return []
@@ -251,8 +269,19 @@ def make_contact_sheet():
 for idx,scene in enumerate(BOARD["scenes"],1):
     if scene["mode"]!="収集": continue
     candidates=[]
-    for src in scene.get("sources",[]):
-        candidates.extend(candidates_for(scene,src["url"]))
+    if scene["id"]=="S001":
+        for src in scene.get("sources",[]):
+            label=src.get("label","").lower()
+            if "isopod" in label:
+                primary=page_candidates(src["url"],"giant isopod")
+                candidates.extend(primary[:1] if primary else commons_candidates("https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus","giant isopod")[:1])
+            elif "spidercrab" in label:
+                candidates.extend(commons_candidates(src["url"],"giant Japanese spider crab")[:1])
+            elif "squid" in label and "noaa" not in label:
+                candidates.extend(commons_candidates(src["url"],"giant squid specimen")[:1])
+    else:
+        for src in scene.get("sources",[]):
+            candidates.extend(candidates_for(scene,src["url"]))
     if not candidates:
         candidates.extend(fallback_commons(scene))
     # deduplicate while preserving ranked order
@@ -267,23 +296,23 @@ for idx,scene in enumerate(BOARD["scenes"],1):
     selected=[]; paths=[]; attempted=[]; selected_pages=set()
     for c in ranked:
         if len(paths)>=required: break
-        if c["media_url"] in attempted: continue
+        if c["media_url"] in attempted or c["media_url"] in used_media: continue
         if required>1 and c["source_page"] in selected_pages: continue
         attempted.append(c["media_url"])
         p=download_candidate(c,scene["id"],len(paths)+1)
         if p:
-            selected.append(c); paths.append(p); selected_pages.add(c["source_page"])
+            selected.append(c); paths.append(p); selected_pages.add(c["source_page"]); used_media.add(c["media_url"])
     # If first pass did not find any source, make a specific Commons search for the supplied English query.
     if len(paths)<required and scene.get("search_en"):
         extra=commons_candidates("https://commons.wikimedia.org/",scene["search_en"])
         for c in extra:
             if len(paths)>=required: break
-            if c["media_url"] in attempted: continue
+            if c["media_url"] in attempted or c["media_url"] in used_media: continue
             if required>1 and c["source_page"] in selected_pages: continue
             attempted.append(c["media_url"])
             p=download_candidate(c,scene["id"],len(paths)+1)
             if p:
-                selected.append(c); paths.append(p); selected_pages.add(c["source_page"])
+                selected.append(c); paths.append(p); selected_pages.add(c["source_page"]); used_media.add(c["media_url"])
     final=ASSET_DIR/f"{scene['id']}.jpg"
     try:
         ok=compose(paths,scene,final)
