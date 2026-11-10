@@ -55,7 +55,7 @@ diagrams={}
 # S022: same volume, different surface/volume ratio.
 diagrams["S022"]=svg(f'''
   {container(280,300,360,500,GOLD,.42)}
-  {container(1040,180,600,690,CYAN,.42)}
+  {container(1040,180,600,690,CYAN,.75)}
   {arrow(250,520,145,520,GOLD,14)}{arrow(650,520,760,520,GOLD,14)}
   {arrow(1050,520,970,520,CYAN,14)}{arrow(1640,520,1740,520,CYAN,14)}
   <g fill="{GOLD}" opacity=".85"><path d="M460 190 l-22 -55 l44 0 Z"/><path d="M460 900 l-22 55 l44 0 Z"/></g>

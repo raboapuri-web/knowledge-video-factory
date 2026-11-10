@@ -151,7 +151,7 @@ def video_frame(video_path,out_path,scene_index,media_key):
 
 def download_candidate(c,scene_id,slot):
     url=c["media_url"]; suffix=ext(url) or ".jpg"
-    temp=RAW/f"{scene_id}_{slot}{suffix}"
+    temp=RAW/f"{scene_id}_{slot}.source{suffix}"
     try:
         r=SESSION.get(url,timeout=90,stream=True); r.raise_for_status()
         with open(temp,"wb") as f:
@@ -231,24 +231,26 @@ for idx,scene in enumerate(BOARD["scenes"],1):
     # Collect up to three different images only when the screen design explicitly asks for a collage/comparison.
     desc=scene["image_description"]
     required=3 if "3分割" in desc else (2 if any(k in desc for k in ["比較","並べる","対比","左右","同じ画面"]) else 1)
-    selected=[]; paths=[]; attempted=[]
+    selected=[]; paths=[]; attempted=[]; selected_pages=set()
     for c in ranked:
         if len(paths)>=required: break
         if c["media_url"] in attempted: continue
+        if required>1 and c["source_page"] in selected_pages: continue
         attempted.append(c["media_url"])
         p=download_candidate(c,scene["id"],len(paths)+1)
         if p:
-            selected.append(c); paths.append(p)
+            selected.append(c); paths.append(p); selected_pages.add(c["source_page"])
     # If first pass did not find any source, make a specific Commons search for the supplied English query.
     if len(paths)<required and scene.get("search_en"):
         extra=commons_candidates("https://commons.wikimedia.org/",scene["search_en"])
         for c in extra:
             if len(paths)>=required: break
             if c["media_url"] in attempted: continue
+            if required>1 and c["source_page"] in selected_pages: continue
             attempted.append(c["media_url"])
             p=download_candidate(c,scene["id"],len(paths)+1)
             if p:
-                selected.append(c); paths.append(p)
+                selected.append(c); paths.append(p); selected_pages.add(c["source_page"])
     final=ASSET_DIR/f"{scene['id']}.jpg"
     ok=compose(paths,scene,final)
     if ok:
