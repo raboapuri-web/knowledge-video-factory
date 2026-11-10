@@ -68,12 +68,24 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify preinstalled FFmpeg (Japanese Noto font bundled by npm)
+      - name: Install FFmpeg with package-manager fallback
         run: |
+          set -e
+          if ! command -v ffmpeg >/dev/null 2>&1 || ! command -v ffprobe >/dev/null 2>&1; then
+            timeout 300 sudo apt-get update -qq || true
+            timeout 480 sudo apt-get install -y --no-install-recommends ffmpeg || true
+          fi
+          if ! command -v ffmpeg >/dev/null 2>&1 || ! command -v ffprobe >/dev/null 2>&1; then
+            mkdir -p /tmp/v152-ffmpeg "$HOME/.local/bin"
+            npm install --prefix /tmp/v152-ffmpeg --no-save --no-audit --no-fund ffmpeg-static @ffprobe-installer/ffprobe
+            ln -sf /tmp/v152-ffmpeg/node_modules/ffmpeg-static/ffmpeg "$HOME/.local/bin/ffmpeg"
+            ln -sf "$(node -p "require('/tmp/v152-ffmpeg/node_modules/@ffprobe-installer/ffprobe').path")" "$HOME/.local/bin/ffprobe"
+            echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+            export PATH="$HOME/.local/bin:$PATH"
+          fi
           command -v ffmpeg
           command -v ffprobe
-          command -v fc-list
-          echo 'Runner system dependencies ready; avoiding fragile apt downloads'
+          ffmpeg -version | head -1
       - name: Reuse v124 harness and v146 chapter renderer
         run: |
           mkdir -p src src/lib scripts
@@ -147,10 +159,24 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify preinstalled FFmpeg
+      - name: Install FFmpeg for final assembly
         run: |
+          set -e
+          if ! command -v ffmpeg >/dev/null 2>&1 || ! command -v ffprobe >/dev/null 2>&1; then
+            timeout 300 sudo apt-get update -qq || true
+            timeout 480 sudo apt-get install -y --no-install-recommends ffmpeg || true
+          fi
+          if ! command -v ffmpeg >/dev/null 2>&1 || ! command -v ffprobe >/dev/null 2>&1; then
+            mkdir -p /tmp/v152-ffmpeg "$HOME/.local/bin"
+            npm install --prefix /tmp/v152-ffmpeg --no-save --no-audit --no-fund ffmpeg-static @ffprobe-installer/ffprobe
+            ln -sf /tmp/v152-ffmpeg/node_modules/ffmpeg-static/ffmpeg "$HOME/.local/bin/ffmpeg"
+            ln -sf "$(node -p "require('/tmp/v152-ffmpeg/node_modules/@ffprobe-installer/ffprobe').path")" "$HOME/.local/bin/ffprobe"
+            echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+            export PATH="$HOME/.local/bin:$PATH"
+          fi
           command -v ffmpeg
           command -v ffprobe
+          ffmpeg -version | head -1
       - name: Download chapter segments
         uses: actions/download-artifact@v4
         with:
