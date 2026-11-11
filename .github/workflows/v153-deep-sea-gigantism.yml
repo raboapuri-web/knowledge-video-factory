@@ -29,15 +29,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install media tools and Japanese fonts
-        run: |
-          set -euo pipefail
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends ffmpeg fonts-noto-cjk fontconfig
-          python -m pip install --upgrade pip
-          python -m pip install requests beautifulsoup4 Pillow cairosvg
-          ffmpeg -version | head -1
-          fc-cache -f
       - name: Detect the manually registered V153 asset handoff
         id: handoff
         working-directory: shared/v153
@@ -62,6 +53,19 @@ jobs:
               f.write("registered="+("true" if valid else "false")+"\\n")
           print("REGISTERED_HANDOFF="+str(valid))
           PY
+      - name: Install media tools and Japanese fonts only when acquisition is needed
+        if: steps.handoff.outputs.registered != 'true'
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg fonts-noto-cjk fontconfig
+          python -m pip install --upgrade pip
+          python -m pip install requests beautifulsoup4 Pillow cairosvg
+          ffmpeg -version | head -1
+          fc-cache -f
+      - name: Install Pillow for registered asset verification
+        if: steps.handoff.outputs.registered == 'true'
+        run: python -m pip install Pillow
       - name: Verify the exact 88-screen source
         working-directory: shared/v153
         run: |
