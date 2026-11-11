@@ -134,21 +134,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Ensure FFmpeg and Japanese fonts
+      - name: Install FFmpeg and Japanese fonts from the reachable Ubuntu mirror
         run: |
           set -euo pipefail
           export DEBIAN_FRONTEND=noninteractive
-          if ! command -v ffmpeg >/dev/null 2>&1; then
-            timeout 180s sudo -E apt-get install -y --no-install-recommends ffmpeg
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            sudo sed -i 's|azure.archive.ubuntu.com|archive.ubuntu.com|g' /etc/apt/apt-mirrors.txt
           fi
-          if ! command -v fc-match >/dev/null 2>&1; then
-            timeout 180s sudo -E apt-get install -y --no-install-recommends fontconfig
-          fi
-          FONT_MATCH="$(fc-match -f '%{family}' 'Noto Sans CJK JP' || true)"
-          echo "Japanese font match: $FONT_MATCH"
-          if ! printf '%s' "$FONT_MATCH" | grep -qi "Noto Sans CJK"; then
-            timeout 180s sudo -E apt-get install -y --no-install-recommends fonts-noto-cjk
-          fi
+          timeout 300s sudo -E apt-get update -qq -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20
+          timeout 300s sudo -E apt-get install -y --no-install-recommends ffmpeg fonts-noto-cjk fontconfig
           python -m pip install --no-input --timeout 30 --retries 2 requests Pillow
           ffmpeg -version | head -1
           fc-match "Noto Sans CJK JP"
