@@ -52,11 +52,11 @@ export function createChapterScene(chapter:string,data:any,timing:any){
     }
     const cc=createRef<Node>(),sub=createRef<Txt>(),rule=createRef<Rect>();
     view.add(<Node ref={cc} opacity={0}>
-      <Rect y={432} height={185} width={1810} fill={'#090D12'} opacity={.90} radius={10}/>
-      <Rect y={339} height={4} width={1810} fill={C.line}/>
-      <Rect ref={rule} x={-905} y={339} height={4} width={0} fill={C.gold}/>
-      <Txt ref={sub} y={432} width={1665} textAlign={'center'} fontFamily={SF}
-        fontSize={39} fontWeight={700} fill={C.paper}/>
+      <Rect y={452} height={151} width={1810} fill={'#090D12'} opacity={.90} radius={10}/>
+      <Rect y={375} height={4} width={1810} fill={C.line}/>
+      <Rect ref={rule} x={-905} y={375} height={4} width={0} fill={C.gold}/>
+      <Txt ref={sub} y={452} width={1665} textAlign={'center'} fontFamily={SF}
+        fontSize={37} fontWeight={700} fill={C.paper}/>
     </Node>);
     // Small bespoke chapter changes are timed to the first narrated scene only.
     const chapLayer=createRef<Node>(),chapTitle=createRef<Txt>();
