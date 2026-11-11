@@ -1,584 +1,621 @@
 {
- "S016": {
-  "file": "handoff_package/images/S016.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S016.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (suitability replacement 2026-11-11)",
-  "reason": "Alicella giganteaの実写はCommonsでは全てCC BY-SA 4.0のみ（継承条件のため不採用）。PD/CC BY範囲は分布図とイラストのみのため生成で補充",
-  "sha256_12": "2f61b548b821"
- },
- "S017": {
-  "file": "handoff_package/images/S017.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S017.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (suitability replacement 2026-11-11)",
-  "reason": "同上。手に乗せたスケール写真もCC BY-SAのみのため生成で補充",
-  "sha256_12": "6f0fe7150f66"
- },
- "S028": {
-  "file": "local_run1/images/S028.jpg",
-  "license": "CC BY 4.0",
-  "author": "Chan T. Y. & Lin C.W.",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_(MNHN-IU-2013-887).jpeg",
-  "credit": "File:Bathynomus (MNHN-IU-2013-887).jpeg by Chan T. Y. & Lin C.W., CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_(MNHN-IU-2013-887).jpeg",
-  "origin": "collected (record restored by hash match)"
- },
- "S035": {
-  "file": "handoff_package/images/S035.jpg",
-  "license": "Public domain",
-  "author": "NOAA Office of Ocean Exploration and Research",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Cyclothone-hires.jpg",
-  "credit": "Cyclothone-hires.jpg by NOAA Office of Ocean Exploration and Research, Public domain, via https://commons.wikimedia.org/wiki/File:Cyclothone-hires.jpg",
-  "origin": "collected (suitability replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "7841731d08b3",
-  "size": "1920x1080"
- },
- "S036": {
-  "file": "handoff_package/images/S036.jpg",
-  "license": "Public domain",
-  "author": "NOAA National Ocean Service",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Marinesnow-splash.jpg",
-  "credit": "Marinesnow-splash.jpg by NOAA National Ocean Service, Public domain, via https://commons.wikimedia.org/wiki/File:Marinesnow-splash.jpg",
-  "origin": "collected (suitability replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "f9739b3bfdfb",
-  "size": "1280x720"
- },
- "S038": {
-  "file": "fix3/S038.jpg",
-  "license": "CC BY 4.0",
-  "author": "Zingone A, D’Alelio D, Mazzocchi MG, Montresor M, Sarno D, LTER-MC team (2019)",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Food_web_in_the_Gulf_of_Naples_in_eutrophic_and_oligotrophic_summer_conditions_-_oo_297117.jpg",
-  "credit": "Food web in the Gulf of Naples in eutrophic and oligotrophic summer conditions - oo 297117.jpg by Zingone A, D’Alelio D, Mazzocchi MG, Montresor M, Sarno D, LTER-MC team (2019), CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Food_web_in_the_Gulf_of_Naples_in_eutrophic_and_oligotrophic_summer_conditions_-_oo_297117.jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "8b3bdc07e90c",
-  "size": "1512x1329"
- },
- "S042": {
-  "file": "handoff_package/images/S042.jpg",
-  "license": "CC BY 2.0",
-  "author": "National Marine Sanctuaries",
-  "source_page": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_Octopuses_(49050941487).jpg",
-  "credit": "MBNMS Whale Fall Octopuses (49050941487).jpg by National Marine Sanctuaries, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_Octopuses_(49050941487).jpg",
-  "origin": "collected (suitability replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "8bd7499e4b54",
-  "size": "1851x1093"
- },
- "S043": {
-  "file": "fix3/S043.jpg",
-  "license": "CC BY 2.0",
-  "author": "National Marine Sanctuaries",
-  "source_page": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
-  "credit": "MBNMS Whale Fall at Davidson Seamount (49639154888).jpg by National Marine Sanctuaries, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "37334469a53b",
-  "size": "1920x1080"
- },
- "S046": {
-  "file": "fix3/S046.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S046.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (fit replacement 2026-11-11)",
-  "reason": "同上。摂食中の口器・脚の接写がPD/CC BY候補にないため生成",
-  "sha256_12": "b7001aad2b55"
- },
- "S050": {
-  "file": "local_run1/images/S050.jpg",
-  "license": "CC BY 4.0",
-  "author": "Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_dorsal_views_(Fig._2).jpg",
-  "credit": "File:Bathynomus jamesi dorsal views (Fig. 2).jpg by Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_dorsal_views_(Fig._2).jpg",
-  "origin": "collected (record restored by hash match)"
- },
- "S053": {
-  "file": "fix3/S053.jpg",
-  "license": "Public domain",
-  "author": "NOAA Photo Library",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Expn0031_(14318884118).jpg",
-  "credit": "Expn0031 (14318884118).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expn0031_(14318884118).jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "3eb665bb0ca9",
-  "size": "1920x1080"
- },
- "S054": {
-  "file": "fix3/S054.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S054.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (fit replacement 2026-11-11)",
-  "reason": "Alicellaの海底での実写はCC BY-SAのみ。CC BY図版内写真はS081-PAに充当したため生成",
-  "sha256_12": "4afb09895514"
- },
- "S057": {
-  "file": "handoff_package/images/S057.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S057.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (suitability replacement 2026-11-11)",
-  "reason": "同上。Alicellaパネルを生成で補充（もう一方のパネルは収集済みの小型ヨコエビ）",
-  "sha256_12": "cd63b1b827cc"
- },
- "S064": {
-  "file": "fix3/S064.jpg",
-  "license": "Public domain",
-  "author": "NOAA Photo Library",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Expl9749_(14318998877).jpg",
-  "credit": "Expl9749 (14318998877).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expl9749_(14318998877).jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "f8182e9850f0",
-  "size": "1920x1080"
- },
- "S073": {
-  "file": "fix3/S073.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S073.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (fit replacement 2026-11-11)",
-  "reason": "海洋の酸素分布図がPD/CC BY候補にない（窒素循環図のみ）のため、文字なし模式図を生成",
-  "sha256_12": "9c842f13f86c"
- },
- "S078": {
-  "file": "local_run1/images/S078.png",
-  "license": "Public Domain",
-  "author": "Édouard Chevreux (1846–1931)",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea.png",
-  "credit": "File:Alicella gigantea.png by Édouard Chevreux (1846–1931), Public Domain, via https://commons.wikimedia.org/wiki/File:Alicella_gigantea.png",
-  "origin": "collected (record restored by hash match)"
- },
- "S081": {
-  "file": "local_run1/images/S081.jpg",
-  "license": "Public Domain",
-  "author": "Jules Richard",
-  "source_page": "https://commons.wikimedia.org/wiki/File:FMIB_53338_Alucella_gigantea_Chevreux.jpeg",
-  "credit": "File:FMIB 53338 Alucella gigantea Chevreux.jpeg by Jules Richard, Public Domain, via https://commons.wikimedia.org/wiki/File:FMIB_53338_Alucella_gigantea_Chevreux.jpeg",
-  "origin": "collected (record restored by hash match)"
- },
- "S083": {
-  "file": "fix3/S083.jpg",
-  "license": "Public domain",
-  "author": "NOAA",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_hi-res.jpg",
-  "credit": "Bathynomus giganteus hi-res.jpg by NOAA, Public domain, via https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_hi-res.jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "20ab48de6bde",
-  "size": "1920x1080"
- },
- "S034-PA": {
-  "file": "handoff_package/images/S034-PA.jpg",
-  "license": "Public domain",
-  "author": "NOAA National Ocean Service",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Marine_snow.jpg",
-  "credit": "Marine snow.jpg by NOAA National Ocean Service, Public domain, via https://commons.wikimedia.org/wiki/File:Marine_snow.jpg",
-  "origin": "collected (suitability replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "0c433949d58c",
-  "size": "720x720"
- },
- "S055": {
-  "file": "fix3/S055.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S055.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (fit replacement 2026-11-11)",
-  "reason": "Alicellaのスケール比較実写はCC BY-SAのみのため生成",
-  "sha256_12": "226341a60343"
- },
- "S056": {
-  "file": "fix3/S056.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S056.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (fit replacement 2026-11-11)",
-  "reason": "Alicellaの摂食実写はCC BY-SAのみのため生成",
-  "sha256_12": "b97cf0c70c7f"
- },
- "S057-PB": {
-  "file": "fix3/S057-PB.jpg",
-  "license": "Public domain",
-  "author": "Russ Hopcroft. Credit: Hidden Ocean 2005 Expedition: NOAA Office of Ocean Exploration.",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Expl0397_-_Flickr_-_NOAA_Photo_Library.jpg",
-  "credit": "Expl0397 - Flickr - NOAA Photo Library.jpg by Russ Hopcroft. Credit: Hidden Ocean 2005 Expedition: NOAA Office of Ocean Exploration., Public domain, via https://commons.wikimedia.org/wiki/File:Expl0397_-_Flickr_-_NOAA_Photo_Library.jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "7703b1616214",
-  "size": "2264x3236"
- },
- "S077-PC": {
-  "file": "fix3/S077-PC.jpg",
-  "license": "Public domain",
-  "author": "NOAA Photo Library",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Expl2412_(9737304152).jpg",
-  "credit": "Expl2412 (9737304152).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expl2412_(9737304152).jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "e60452ea43cb",
-  "size": "1920x1080"
- },
- "S081-PB": {
-  "file": "fix3/S081-PB.jpg",
-  "license": "CC BY 2.5",
-  "author": "Bienhold C, Pop Ristova P, Wenzhöfer F, Dittmar T, Boetius A",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-k.png",
-  "credit": "Unidentified amphipod - journal.pone.0053590.g003-k.png by Bienhold C, Pop Ristova P, Wenzhöfer F, Dittmar T, Boetius A, CC BY 2.5, via https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-k.png",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "04ee3ed35a95",
-  "size": "302x225"
- },
- "S082-PA": {
-  "file": "local_run2/images/S082-PA.jpg",
-  "license": "Public Domain",
-  "author": "NASA Goddard Space Flight Center",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Ocean_phytoplankton_bloom_feed_by_the_Amazon_River.jpg",
-  "credit": "File:Ocean phytoplankton bloom feed by the Amazon River.jpg by NASA Goddard Space Flight Center, Public Domain, via https://commons.wikimedia.org/wiki/File:Ocean_phytoplankton_bloom_feed_by_the_Amazon_River.jpg",
-  "origin": "collected (record restored by hash match)"
- },
- "S051": {
-  "file": "verify_run2/images/S051.jpg",
-  "license": "CC BY 4.0",
-  "author": "Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen",
-  "source_page": "https://commons.wikimedia.org/w/index.php?curid=159664702",
-  "credit": "Bathynomus vaderi holotype and Bathynomus jamesi closeups (Fig. 9) by Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen, CC BY 4.0, via https://commons.wikimedia.org/w/index.php?curid=159664702",
-  "origin": "collected (replacement with full record)"
- },
- "S052": {
-  "file": "fix3/S052.jpg",
-  "license": "CC BY 2.0",
-  "author": "Ryan Somma",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Melanocetus_johnsonii1.jpg",
-  "credit": "Melanocetus johnsonii1.jpg by Ryan Somma, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Melanocetus_johnsonii1.jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "cee0b3696d06",
-  "size": "1024x683"
- },
- "S076": {
-  "file": "verify_run2/images/S076.jpg",
-  "license": "CC BY 4.0",
-  "author": "Corbari L.",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2920)_002.jpeg",
-  "credit": "File:Bathynomus giganteus (MNHN-IU-2013-2920) 002.jpeg by Corbari L., CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2920)_002.jpeg",
-  "origin": "collected (replacement with full record)"
- },
- "S035-PB": {
-  "file": "verify_run2/images/S035-PB.jpg",
-  "license": "CC BY 4.0",
-  "author": "Corbari L.",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2922)_001.jpeg",
-  "credit": "File:Bathynomus giganteus (MNHN-IU-2013-2922) 001.jpeg by Corbari L., CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2922)_001.jpeg",
-  "origin": "collected (replacement with full record)"
- },
- "S039": {
-  "file": "fix3/S039.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S039.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (fit replacement 2026-11-11)",
-  "reason": "マリンスノー接写の distinct な実写がPD/CC BY候補にないため生成",
-  "sha256_12": "52cf50b225c1"
- },
- "S040": {
-  "file": "handoff_package/images/S040.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S040.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (suitability replacement 2026-11-11)",
-  "reason": "マリンスノーのPD/CC BY候補は実質2点のみでS034-PA/S036に充当済み。3点目の distinct な実写がないため生成で補充",
-  "sha256_12": "6bbe372ff6ed"
- },
- "S041": {
-  "file": "handoff_package/images/S041.jpg",
-  "license": "Public domain",
-  "author": "Craig Smith NOAA",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Whalefall_hires.jpg",
-  "credit": "Whalefall hires.jpg by Craig Smith NOAA, Public domain, via https://commons.wikimedia.org/wiki/File:Whalefall_hires.jpg",
-  "origin": "collected (suitability replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "b942a6360389",
-  "size": "2048x1536"
- },
- "S045": {
-  "file": "fix3/S045.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S045.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (fit replacement 2026-11-11)",
-  "reason": "ダイオウグソクムシの摂食行動の実写がPD/CC BY候補にない（標本写真のみ）ため生成",
-  "sha256_12": "77ec6e1c571a"
- },
- "S047": {
-  "file": "verify_run/images/S047.jpg",
-  "license": "CC BY 2.0",
-  "author": "vauvau",
-  "source_page": "https://www.flickr.com/photos/98193606@N00/3989766534",
-  "credit": "Hong Kong Supermarket in Chinatown by vauvau, CC BY 2.0, via https://www.flickr.com/photos/98193606@N00/3989766534",
-  "origin": "collected (replacement with full record)"
- },
- "S067": {
-  "file": "verify_run/images/S067.jpg",
-  "license": "CC BY 4.0",
-  "author": "ROV KIEL 6000, GEOMAR",
-  "source_page": "https://commons.wikimedia.org/wiki/File:2019-03-03_20-06-50_Sonne_SO268-1_020ROV02_nurLogo_klein_original(1).jpg",
-  "credit": "File:2019-03-03 20-06-50 Sonne SO268-1 020ROV02 nurLogo klein original(1).jpg by ROV KIEL 6000, GEOMAR, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:2019-03-03_20-06-50_Sonne_SO268-1_020ROV02_nurLogo_klein_original(1).jpg",
-  "origin": "collected (replacement with full record)"
- },
- "S069": {
-  "file": "fix3/S069.jpg",
-  "license": "Public domain",
-  "author": "NOAA Okeanos Explorer",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Bathysaurus_mollis_NOAA.jpg",
-  "credit": "Bathysaurus mollis NOAA.jpg by NOAA Okeanos Explorer, Public domain, via https://commons.wikimedia.org/wiki/File:Bathysaurus_mollis_NOAA.jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "cc2fa81ad9c2",
-  "size": "1920x1080"
- },
- "S079": {
-  "file": "verify_run/images/S079.jpg",
-  "license": "CC BY 4.0",
-  "author": "ROV KIEL 6000, GEOMAR",
-  "source_page": "https://commons.wikimedia.org/wiki/File:2019-04-10_17-28-09_Sonne_SO268-2_118ROV17_OnlyLogo_klein_original(1).jpg",
-  "credit": "File:2019-04-10 17-28-09 Sonne SO268-2 118ROV17 OnlyLogo klein original(1).jpg by ROV KIEL 6000, GEOMAR, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:2019-04-10_17-28-09_Sonne_SO268-2_118ROV17_OnlyLogo_klein_original(1).jpg",
-  "origin": "collected (replacement with full record)"
- },
- "S009-PA": {
-  "file": "verify_run/images/S009-PA.png",
-  "license": "Public Domain",
-  "author": "NOAA Office of Ocean Exploration and Research, Exploring Puerto Rico’s Seamounts, Trenches, and Troughs",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Deep_Discoverer_manipulator_arm_NOAAS_Okeanos_Explorer_(R_337)_25_April_2015.png",
-  "credit": "File:Deep Discoverer manipulator arm NOAAS Okeanos Explorer (R 337) 25 April 2015.png by NOAA Office of Ocean Exploration and Research, Exploring Puerto Rico’s Seamounts, Trenches, and Troughs, Public Domain, via https://commons.wikimedia.org/wiki/File:Deep_Discoverer_manipulator_arm_NOAAS_Okeanos_Explorer_(R_337)_25_April_2015.png",
-  "origin": "collected (replacement with full record)"
- },
- "S034-PB": {
-  "file": "fix3/S034-PB.jpg",
-  "license": "Public domain",
-  "author": "NOAA Photo Library",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Expn0686_(14526221693).jpg",
-  "credit": "Expn0686 (14526221693).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expn0686_(14526221693).jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "b8c652b91b3f",
-  "size": "1920x1080"
- },
- "S077-PB": {
-  "file": "verify_run/images/S077-PB.jpg",
-  "license": "CC BY 4.0",
-  "author": "HulloThere",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Example_of_mesopelagic_catch.jpg",
-  "credit": "File:Example of mesopelagic catch.jpg by HulloThere, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Example_of_mesopelagic_catch.jpg",
-  "origin": "collected (replacement with full record)"
- },
- "S061": {
-  "file": "fix3/S061.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S061.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (fit replacement 2026-11-11)",
-  "reason": "深海カニの脱皮の実写がPD/CC BY候補にない（浜辺のカブトガニの殻と料理写真のみ）ため生成",
-  "sha256_12": "95fbd46baecb"
- },
- "S080": {
-  "file": "fix3/S080.jpg",
-  "license": "Public domain",
-  "author": "NOAA Okeanos Explorer",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Unidentified_holothurian.jpg",
-  "credit": "Unidentified holothurian.jpg by NOAA Okeanos Explorer, Public domain, via https://commons.wikimedia.org/wiki/File:Unidentified_holothurian.jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "2c7c4fb1fbce",
-  "size": "960x588"
- },
- "S087": {
-  "file": "fix3/S087.jpg",
-  "license": "Public domain",
-  "author": "Dr. Aleksey Zuyev",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Paralithodes_camtschaticus_running_on_Kola_Bay_seafloor.jpg",
-  "credit": "Paralithodes camtschaticus running on Kola Bay seafloor.jpg by Dr. Aleksey Zuyev, Public domain, via https://commons.wikimedia.org/wiki/File:Paralithodes_camtschaticus_running_on_Kola_Bay_seafloor.jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "8ed6c4086c09",
-  "size": "2065x1350"
- },
- "S088": {
-  "file": "handoff_package/images/S088.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S088.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (suitability replacement 2026-11-11)",
-  "reason": "同上。深海平原の遠景実写がないため生成で補充",
-  "sha256_12": "7f3418f2962c"
- },
- "S044-R": {
-  "file": "local_run3/images/S044-R.jpg",
-  "license": "CC BY 2.0",
-  "author": "National Marine Sanctuaries",
-  "source_page": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
-  "credit": "File:MBNMS Whale Fall at Davidson Seamount (49639154888).jpg by National Marine Sanctuaries, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
-  "origin": "collected"
- },
- "S048-R": {
-  "file": "local_run3/images/S048-R.jpg",
-  "license": "CC BY 2.0",
-  "author": "Rubbermaid Products",
-  "source_page": "https://www.flickr.com/photos/28040596@N08/3040275901",
-  "credit": "Empty Pantry by Rubbermaid Products, CC BY 2.0, via https://www.flickr.com/photos/28040596@N08/3040275901",
-  "origin": "collected"
- },
- "S058-PA": {
-  "file": "fix3/S058-PA.jpg",
-  "license": "Public domain",
-  "author": "NOAA Photo Library",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Expl6382_(9734088377).jpg",
-  "credit": "Expl6382 (9734088377).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expl6382_(9734088377).jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "a578d71672bd",
-  "size": "1920x1080"
- },
- "S058-PB": {
-  "file": "local_run3/images/S058-PB.jpg",
-  "license": "CC BY 4.0",
-  "author": "Paresh Poriya (Saurashtra University)",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Zoanthids_and_barnacles.jpeg",
-  "credit": "File:Zoanthids and barnacles.jpeg by Paresh Poriya (Saurashtra University), CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Zoanthids_and_barnacles.jpeg",
-  "origin": "collected"
- },
- "S084-R": {
-  "file": "handoff_package/images/S084-R.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S084-R.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (suitability replacement 2026-11-11)",
-  "reason": "広い暗い深海底の実写がPD/CC BY候補にない（地図・夕景・陸上岩のみ）ため生成で補充",
-  "sha256_12": "076efcc2d57c"
- },
- "S085-PA": {
-  "file": "fix3/S085-PA.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S085-PA.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (fit replacement 2026-11-11)",
-  "reason": "海底へ落ちるマリンスノーの distinct な実写が候補枯渇のため生成",
-  "sha256_12": "500e0ade22d4"
- },
- "S085-PB": {
-  "file": "fix3/S085-PB.jpg",
-  "license": "Public domain",
-  "author": "NOAA Photo Library",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Expl5622_(9734254059).jpg",
-  "credit": "Expl5622 (9734254059).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expl5622_(9734254059).jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "3445171e8a39",
-  "size": "1920x1080"
- },
- "S024-PA": {
-  "file": "local_run4/images/S024-PA.jpg",
-  "license": "CC BY 2.0",
-  "author": "Christopher Michel",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Polar_Bear_(19630655471).jpg",
-  "credit": "File:Polar Bear (19630655471).jpg by Christopher Michel, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Polar_Bear_(19630655471).jpg",
-  "origin": "collected"
- },
- "S032": {
-  "file": "local_run4/images/S032.jpg",
-  "license": "CC BY 4.0",
-  "author": "Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_colour_in_life_(Fig._1).jpg",
-  "credit": "File:Bathynomus jamesi colour in life (Fig. 1).jpg by Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_colour_in_life_(Fig._1).jpg",
-  "origin": "collected"
- },
- "S062-PA": {
-  "file": "local_run4/images/S062-PA.jpg",
-  "license": "CC BY 4.0",
-  "author": "Marc Taquet",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Argyrops_filamentosus_(Ifremer_00537-64869_-_9187).jpg",
-  "credit": "File:Argyrops filamentosus (Ifremer 00537-64869 - 9187).jpg by Marc Taquet, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Argyrops_filamentosus_(Ifremer_00537-64869_-_9187).jpg",
-  "origin": "collected"
- },
- "S062-PB": {
-  "file": "fix3/S062-PB.jpg",
-  "license": "CC BY 4.0",
-  "author": "null",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Crabe_rouge_des_profondeurs_(Chaceon_affinis)_(Ifremer_00575-68701).jpg",
-  "credit": "Crabe rouge des profondeurs (Chaceon affinis) (Ifremer 00575-68701).jpg by null, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Crabe_rouge_des_profondeurs_(Chaceon_affinis)_(Ifremer_00575-68701).jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "5989428c3174",
-  "size": "3072x2304"
- },
- "S086-PB": {
-  "file": "fix3/S086-PB.jpg",
-  "license": "Public domain",
-  "author": "NOAA Okeanos Explorer Program, Mid-Cayman Rise Expedition 2011",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Expl690144489x800x800.jpg",
-  "credit": "Expl690144489x800x800.jpg by NOAA Okeanos Explorer Program, Mid-Cayman Rise Expedition 2011, Public domain, via https://commons.wikimedia.org/wiki/File:Expl690144489x800x800.jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "1b47ea6af094",
-  "size": "800x450"
- },
- "S087-PB": {
-  "file": "handoff_package/images/S087-PB.jpg",
-  "license": "CC BY 4.0",
-  "author": "[Photo: NOAA] Wicksten M, De Grave S, France S, Kelley C (2017) Presumed filter-feeding in a deep-sea benthic shrimp (Decapoda, Caridea, Stylodactylidae), with records of the deepest occurrence of carideans. ZooKeys 646: 17-23. https://doi.org/10.3897/zookeys.646.10969",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Bathystylodactylus_cf._bathyalis_(10.3897-zookeys.646.10969)_Figure_1.jpg",
-  "credit": "Bathystylodactylus cf. bathyalis (10.3897-zookeys.646.10969) Figure 1.jpg by [Photo: NOAA] Wicksten M, De Grave S, France S, Kelley C (2017) Presumed filter-feeding in a deep-sea benthic shrimp (Decapoda, Caridea, Stylodactylidae), with records of the deepest occurrence of carideans. ZooKeys 646: 17-23. https://doi.org/10.3897/zookeys.646.10969, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathystylodactylus_cf._bathyalis_(10.3897-zookeys.646.10969)_Figure_1.jpg",
-  "origin": "collected (suitability replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "53da3418851c",
-  "size": "1512x851"
- },
- "S082-PB": {
-  "file": "handoff_package/images/S082-PB.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S082-PB.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (suitability replacement 2026-11-11)",
-  "reason": "従来パネルが海面の衛星画像でPAと重複し、海底側の対比になっていなかった。深海底の distinct な実写候補がないため生成で補充",
-  "sha256_12": "94ab92d0e5e0"
- },
- "S009-PB": {
-  "file": "fix3/S009-PB.jpg",
-  "license": "CC BY 2.0",
-  "author": "NOAA Photo Library",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Expn1670_(28287731865).jpg",
-  "credit": "Expn1670 (28287731865).jpg by NOAA Photo Library, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Expn1670_(28287731865).jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "6406077fb6d6",
-  "size": "1920x1080"
- },
- "S078-PA": {
-  "file": "fix3/S078-PA.jpg",
-  "license": "AI-generated",
-  "author": "Muse (image generation)",
-  "source_page": "",
-  "credit": "S078-PA.jpg - AI生成画像（収集不可のため補充）",
-  "origin": "generated (fit replacement 2026-11-11)",
-  "reason": "Alicella実写はCC BY-SAのみ。CC BY図版内写真はS081-PAに充当したため生成",
-  "sha256_12": "f783a3e967f6"
- },
- "S078-PB": {
-  "file": "fix3/S078-PB.jpg",
-  "license": "CC BY 2.5",
-  "author": "Bienhold C, Pop Ristova P, Wenzhöfer F, Dittmar T, Boetius A",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-i.png",
-  "credit": "Unidentified amphipod - journal.pone.0053590.g003-i.png by Bienhold C, Pop Ristova P, Wenzhöfer F, Dittmar T, Boetius A, CC BY 2.5, via https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-i.png",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "b584035d2a4f",
-  "size": "307x222"
- },
- "S081-PA": {
-  "file": "fix3/S081-PA.jpg",
-  "license": "CC BY 4.0",
-  "author": "Paige J. Maroni, Yakufu Niyazi, and Alan Jamieson",
-  "source_page": "https://commons.wikimedia.org/wiki/File:Alicella_Sampling_sites.jpg",
-  "credit": "Alicella Sampling sites.jpg (specimen photo crop) by Paige J. Maroni, Yakufu Niyazi, and Alan Jamieson, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Alicella_Sampling_sites.jpg",
-  "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
-  "sha256_12": "a53c4798dd61",
-  "size": "480x277"
- }
+  "S016": {
+    "file": "handoff_package/images/S016.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S016.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (suitability replacement 2026-11-11)",
+    "reason": "Alicella giganteaの実写はCommonsでは全てCC BY-SA 4.0のみ（継承条件のため不採用）。PD/CC BY範囲は分布図とイラストのみのため生成で補充",
+    "sha256_12": "2f61b548b821",
+    "storage_path": "assets/panels/ai-generated/S016.jpg"
+  },
+  "S017": {
+    "file": "handoff_package/images/S017.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S017.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (suitability replacement 2026-11-11)",
+    "reason": "同上。手に乗せたスケール写真もCC BY-SAのみのため生成で補充",
+    "sha256_12": "6f0fe7150f66",
+    "storage_path": "assets/panels/ai-generated/S017.jpg"
+  },
+  "S028": {
+    "file": "local_run1/images/S028.jpg",
+    "license": "CC BY 4.0",
+    "author": "Chan T. Y. & Lin C.W.",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_(MNHN-IU-2013-887).jpeg",
+    "credit": "File:Bathynomus (MNHN-IU-2013-887).jpeg by Chan T. Y. & Lin C.W., CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_(MNHN-IU-2013-887).jpeg",
+    "origin": "collected (record restored by hash match)"
+  },
+  "S035": {
+    "file": "handoff_package/images/S035.jpg",
+    "license": "Public domain",
+    "author": "NOAA Office of Ocean Exploration and Research",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Cyclothone-hires.jpg",
+    "credit": "Cyclothone-hires.jpg by NOAA Office of Ocean Exploration and Research, Public domain, via https://commons.wikimedia.org/wiki/File:Cyclothone-hires.jpg",
+    "origin": "collected (suitability replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "7841731d08b3",
+    "size": "1920x1080"
+  },
+  "S036": {
+    "file": "handoff_package/images/S036.jpg",
+    "license": "Public domain",
+    "author": "NOAA National Ocean Service",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Marinesnow-splash.jpg",
+    "credit": "Marinesnow-splash.jpg by NOAA National Ocean Service, Public domain, via https://commons.wikimedia.org/wiki/File:Marinesnow-splash.jpg",
+    "origin": "collected (suitability replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "f9739b3bfdfb",
+    "size": "1280x720"
+  },
+  "S038": {
+    "file": "fix3/S038.jpg",
+    "license": "CC BY 4.0",
+    "author": "Zingone A, D’Alelio D, Mazzocchi MG, Montresor M, Sarno D, LTER-MC team (2019)",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Food_web_in_the_Gulf_of_Naples_in_eutrophic_and_oligotrophic_summer_conditions_-_oo_297117.jpg",
+    "credit": "Food web in the Gulf of Naples in eutrophic and oligotrophic summer conditions - oo 297117.jpg by Zingone A, D’Alelio D, Mazzocchi MG, Montresor M, Sarno D, LTER-MC team (2019), CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Food_web_in_the_Gulf_of_Naples_in_eutrophic_and_oligotrophic_summer_conditions_-_oo_297117.jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "8b3bdc07e90c",
+    "size": "1512x1329"
+  },
+  "S042": {
+    "file": "handoff_package/images/S042.jpg",
+    "license": "CC BY 2.0",
+    "author": "National Marine Sanctuaries",
+    "source_page": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_Octopuses_(49050941487).jpg",
+    "credit": "MBNMS Whale Fall Octopuses (49050941487).jpg by National Marine Sanctuaries, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_Octopuses_(49050941487).jpg",
+    "origin": "collected (suitability replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "8bd7499e4b54",
+    "size": "1851x1093"
+  },
+  "S043": {
+    "file": "fix3/S043.jpg",
+    "license": "CC BY 2.0",
+    "author": "National Marine Sanctuaries",
+    "source_page": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
+    "credit": "MBNMS Whale Fall at Davidson Seamount (49639154888).jpg by National Marine Sanctuaries, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "37334469a53b",
+    "size": "1920x1080"
+  },
+  "S046": {
+    "file": "fix3/S046.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S046.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (fit replacement 2026-11-11)",
+    "reason": "同上。摂食中の口器・脚の接写がPD/CC BY候補にないため生成",
+    "sha256_12": "b7001aad2b55",
+    "storage_path": "assets/panels/ai-generated/S046.jpg"
+  },
+  "S050": {
+    "file": "local_run1/images/S050.jpg",
+    "license": "CC BY 4.0",
+    "author": "Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_dorsal_views_(Fig._2).jpg",
+    "credit": "File:Bathynomus jamesi dorsal views (Fig. 2).jpg by Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_dorsal_views_(Fig._2).jpg",
+    "origin": "collected (record restored by hash match)"
+  },
+  "S053": {
+    "file": "fix3/S053.jpg",
+    "license": "Public domain",
+    "author": "NOAA Photo Library",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Expn0031_(14318884118).jpg",
+    "credit": "Expn0031 (14318884118).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expn0031_(14318884118).jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "3eb665bb0ca9",
+    "size": "1920x1080"
+  },
+  "S054": {
+    "file": "fix3/S054.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S054.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (fit replacement 2026-11-11)",
+    "reason": "Alicellaの海底での実写はCC BY-SAのみ。CC BY図版内写真はS081-PAに充当したため生成",
+    "sha256_12": "4afb09895514",
+    "storage_path": "assets/panels/ai-generated/S054.jpg"
+  },
+  "S057": {
+    "file": "handoff_package/images/S057.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S057.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (suitability replacement 2026-11-11)",
+    "reason": "同上。Alicellaパネルを生成で補充（もう一方のパネルは収集済みの小型ヨコエビ）",
+    "sha256_12": "cd63b1b827cc",
+    "storage_path": "assets/panels/ai-generated/S057.jpg"
+  },
+  "S064": {
+    "file": "fix3/S064.jpg",
+    "license": "Public domain",
+    "author": "NOAA Photo Library",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Expl9749_(14318998877).jpg",
+    "credit": "Expl9749 (14318998877).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expl9749_(14318998877).jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "f8182e9850f0",
+    "size": "1920x1080"
+  },
+  "S073": {
+    "file": "fix3/S073.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S073.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (fit replacement 2026-11-11)",
+    "reason": "海洋の酸素分布図がPD/CC BY候補にない（窒素循環図のみ）のため、文字なし模式図を生成",
+    "sha256_12": "9c842f13f86c",
+    "storage_path": "assets/panels/ai-generated/S073.jpg"
+  },
+  "S078": {
+    "file": "local_run1/images/S078.png",
+    "license": "Public Domain",
+    "author": "Édouard Chevreux (1846–1931)",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea.png",
+    "credit": "File:Alicella gigantea.png by Édouard Chevreux (1846–1931), Public Domain, via https://commons.wikimedia.org/wiki/File:Alicella_gigantea.png",
+    "origin": "collected (record restored by hash match)"
+  },
+  "S081": {
+    "file": "local_run1/images/S081.jpg",
+    "license": "Public Domain",
+    "author": "Jules Richard",
+    "source_page": "https://commons.wikimedia.org/wiki/File:FMIB_53338_Alucella_gigantea_Chevreux.jpeg",
+    "credit": "File:FMIB 53338 Alucella gigantea Chevreux.jpeg by Jules Richard, Public Domain, via https://commons.wikimedia.org/wiki/File:FMIB_53338_Alucella_gigantea_Chevreux.jpeg",
+    "origin": "collected (record restored by hash match)"
+  },
+  "S083": {
+    "file": "fix3/S083.jpg",
+    "license": "Public domain",
+    "author": "NOAA",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_hi-res.jpg",
+    "credit": "Bathynomus giganteus hi-res.jpg by NOAA, Public domain, via https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_hi-res.jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "20ab48de6bde",
+    "size": "1920x1080"
+  },
+  "S034-PA": {
+    "file": "handoff_package/images/S034-PA.jpg",
+    "license": "Public domain",
+    "author": "NOAA National Ocean Service",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Marine_snow.jpg",
+    "credit": "Marine snow.jpg by NOAA National Ocean Service, Public domain, via https://commons.wikimedia.org/wiki/File:Marine_snow.jpg",
+    "origin": "collected (suitability replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "0c433949d58c",
+    "size": "720x720"
+  },
+  "S055": {
+    "file": "fix3/S055.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S055.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (fit replacement 2026-11-11)",
+    "reason": "Alicellaのスケール比較実写はCC BY-SAのみのため生成",
+    "sha256_12": "226341a60343",
+    "storage_path": "assets/panels/ai-generated/S055.jpg"
+  },
+  "S056": {
+    "file": "fix3/S056.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S056.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (fit replacement 2026-11-11)",
+    "reason": "Alicellaの摂食実写はCC BY-SAのみのため生成",
+    "sha256_12": "b97cf0c70c7f",
+    "storage_path": "assets/panels/ai-generated/S056.jpg"
+  },
+  "S057-PB": {
+    "file": "fix3/S057-PB.jpg",
+    "license": "Public domain",
+    "author": "Russ Hopcroft. Credit: Hidden Ocean 2005 Expedition: NOAA Office of Ocean Exploration.",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Expl0397_-_Flickr_-_NOAA_Photo_Library.jpg",
+    "credit": "Expl0397 - Flickr - NOAA Photo Library.jpg by Russ Hopcroft. Credit: Hidden Ocean 2005 Expedition: NOAA Office of Ocean Exploration., Public domain, via https://commons.wikimedia.org/wiki/File:Expl0397_-_Flickr_-_NOAA_Photo_Library.jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "7703b1616214",
+    "size": "2264x3236"
+  },
+  "S077-PC": {
+    "file": "fix3/S077-PC.jpg",
+    "license": "Public domain",
+    "author": "NOAA Photo Library",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Expl2412_(9737304152).jpg",
+    "credit": "Expl2412 (9737304152).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expl2412_(9737304152).jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "e60452ea43cb",
+    "size": "1920x1080"
+  },
+  "S081-PB": {
+    "file": "fix3/S081-PB.jpg",
+    "license": "CC BY 2.5",
+    "author": "Bienhold C, Pop Ristova P, Wenzhöfer F, Dittmar T, Boetius A",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-k.png",
+    "credit": "Unidentified amphipod - journal.pone.0053590.g003-k.png by Bienhold C, Pop Ristova P, Wenzhöfer F, Dittmar T, Boetius A, CC BY 2.5, via https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-k.png",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "04ee3ed35a95",
+    "size": "302x225"
+  },
+  "S082-PA": {
+    "file": "local_run2/images/S082-PA.jpg",
+    "license": "Public Domain",
+    "author": "NASA Goddard Space Flight Center",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Ocean_phytoplankton_bloom_feed_by_the_Amazon_River.jpg",
+    "credit": "File:Ocean phytoplankton bloom feed by the Amazon River.jpg by NASA Goddard Space Flight Center, Public Domain, via https://commons.wikimedia.org/wiki/File:Ocean_phytoplankton_bloom_feed_by_the_Amazon_River.jpg",
+    "origin": "collected (record restored by hash match)"
+  },
+  "S051": {
+    "file": "verify_run2/images/S051.jpg",
+    "license": "CC BY 4.0",
+    "author": "Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen",
+    "source_page": "https://commons.wikimedia.org/w/index.php?curid=159664702",
+    "credit": "Bathynomus vaderi holotype and Bathynomus jamesi closeups (Fig. 9) by Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen, CC BY 4.0, via https://commons.wikimedia.org/w/index.php?curid=159664702",
+    "origin": "collected (replacement with full record)"
+  },
+  "S052": {
+    "file": "fix3/S052.jpg",
+    "license": "CC BY 2.0",
+    "author": "Ryan Somma",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Melanocetus_johnsonii1.jpg",
+    "credit": "Melanocetus johnsonii1.jpg by Ryan Somma, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Melanocetus_johnsonii1.jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "cee0b3696d06",
+    "size": "1024x683"
+  },
+  "S076": {
+    "file": "verify_run2/images/S076.jpg",
+    "license": "CC BY 4.0",
+    "author": "Corbari L.",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2920)_002.jpeg",
+    "credit": "File:Bathynomus giganteus (MNHN-IU-2013-2920) 002.jpeg by Corbari L., CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2920)_002.jpeg",
+    "origin": "collected (replacement with full record)"
+  },
+  "S035-PB": {
+    "file": "verify_run2/images/S035-PB.jpg",
+    "license": "CC BY 4.0",
+    "author": "Corbari L.",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2922)_001.jpeg",
+    "credit": "File:Bathynomus giganteus (MNHN-IU-2013-2922) 001.jpeg by Corbari L., CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2922)_001.jpeg",
+    "origin": "collected (replacement with full record)"
+  },
+  "S039": {
+    "file": "fix3/S039.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S039.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (fit replacement 2026-11-11)",
+    "reason": "マリンスノー接写の distinct な実写がPD/CC BY候補にないため生成",
+    "sha256_12": "52cf50b225c1",
+    "storage_path": "assets/panels/ai-generated/S039.jpg"
+  },
+  "S040": {
+    "file": "handoff_package/images/S040.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S040.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (suitability replacement 2026-11-11)",
+    "reason": "マリンスノーのPD/CC BY候補は実質2点のみでS034-PA/S036に充当済み。3点目の distinct な実写がないため生成で補充",
+    "sha256_12": "6bbe372ff6ed",
+    "storage_path": "assets/panels/ai-generated/S040.jpg"
+  },
+  "S041": {
+    "file": "handoff_package/images/S041.jpg",
+    "license": "Public domain",
+    "author": "Craig Smith NOAA",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Whalefall_hires.jpg",
+    "credit": "Whalefall hires.jpg by Craig Smith NOAA, Public domain, via https://commons.wikimedia.org/wiki/File:Whalefall_hires.jpg",
+    "origin": "collected (suitability replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "b942a6360389",
+    "size": "2048x1536"
+  },
+  "S045": {
+    "file": "fix3/S045.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S045.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (fit replacement 2026-11-11)",
+    "reason": "ダイオウグソクムシの摂食行動の実写がPD/CC BY候補にない（標本写真のみ）ため生成",
+    "sha256_12": "77ec6e1c571a",
+    "storage_path": "assets/panels/ai-generated/S045.jpg"
+  },
+  "S047": {
+    "file": "verify_run/images/S047.jpg",
+    "license": "CC BY 2.0",
+    "author": "vauvau",
+    "source_page": "https://www.flickr.com/photos/98193606@N00/3989766534",
+    "credit": "Hong Kong Supermarket in Chinatown by vauvau, CC BY 2.0, via https://www.flickr.com/photos/98193606@N00/3989766534",
+    "origin": "collected (replacement with full record)"
+  },
+  "S067": {
+    "file": "verify_run/images/S067.jpg",
+    "license": "CC BY 4.0",
+    "author": "ROV KIEL 6000, GEOMAR",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2019-03-03_20-06-50_Sonne_SO268-1_020ROV02_nurLogo_klein_original(1).jpg",
+    "credit": "File:2019-03-03 20-06-50 Sonne SO268-1 020ROV02 nurLogo klein original(1).jpg by ROV KIEL 6000, GEOMAR, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:2019-03-03_20-06-50_Sonne_SO268-1_020ROV02_nurLogo_klein_original(1).jpg",
+    "origin": "collected (replacement with full record)"
+  },
+  "S069": {
+    "file": "fix3/S069.jpg",
+    "license": "Public domain",
+    "author": "NOAA Okeanos Explorer",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Bathysaurus_mollis_NOAA.jpg",
+    "credit": "Bathysaurus mollis NOAA.jpg by NOAA Okeanos Explorer, Public domain, via https://commons.wikimedia.org/wiki/File:Bathysaurus_mollis_NOAA.jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "cc2fa81ad9c2",
+    "size": "1920x1080"
+  },
+  "S079": {
+    "file": "verify_run/images/S079.jpg",
+    "license": "CC BY 4.0",
+    "author": "ROV KIEL 6000, GEOMAR",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2019-04-10_17-28-09_Sonne_SO268-2_118ROV17_OnlyLogo_klein_original(1).jpg",
+    "credit": "File:2019-04-10 17-28-09 Sonne SO268-2 118ROV17 OnlyLogo klein original(1).jpg by ROV KIEL 6000, GEOMAR, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:2019-04-10_17-28-09_Sonne_SO268-2_118ROV17_OnlyLogo_klein_original(1).jpg",
+    "origin": "collected (replacement with full record)"
+  },
+  "S009-PA": {
+    "file": "verify_run/images/S009-PA.png",
+    "license": "Public Domain",
+    "author": "NOAA Office of Ocean Exploration and Research, Exploring Puerto Rico’s Seamounts, Trenches, and Troughs",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Deep_Discoverer_manipulator_arm_NOAAS_Okeanos_Explorer_(R_337)_25_April_2015.png",
+    "credit": "File:Deep Discoverer manipulator arm NOAAS Okeanos Explorer (R 337) 25 April 2015.png by NOAA Office of Ocean Exploration and Research, Exploring Puerto Rico’s Seamounts, Trenches, and Troughs, Public Domain, via https://commons.wikimedia.org/wiki/File:Deep_Discoverer_manipulator_arm_NOAAS_Okeanos_Explorer_(R_337)_25_April_2015.png",
+    "origin": "collected (replacement with full record)"
+  },
+  "S034-PB": {
+    "file": "fix3/S034-PB.jpg",
+    "license": "Public domain",
+    "author": "NOAA Photo Library",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Expn0686_(14526221693).jpg",
+    "credit": "Expn0686 (14526221693).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expn0686_(14526221693).jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "b8c652b91b3f",
+    "size": "1920x1080"
+  },
+  "S077-PB": {
+    "file": "verify_run/images/S077-PB.jpg",
+    "license": "CC BY 4.0",
+    "author": "HulloThere",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Example_of_mesopelagic_catch.jpg",
+    "credit": "File:Example of mesopelagic catch.jpg by HulloThere, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Example_of_mesopelagic_catch.jpg",
+    "origin": "collected (replacement with full record)"
+  },
+  "S061": {
+    "file": "fix3/S061.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S061.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (fit replacement 2026-11-11)",
+    "reason": "深海カニの脱皮の実写がPD/CC BY候補にない（浜辺のカブトガニの殻と料理写真のみ）ため生成",
+    "sha256_12": "95fbd46baecb",
+    "storage_path": "assets/panels/ai-generated/S061.jpg"
+  },
+  "S080": {
+    "file": "fix3/S080.jpg",
+    "license": "Public domain",
+    "author": "NOAA Okeanos Explorer",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Unidentified_holothurian.jpg",
+    "credit": "Unidentified holothurian.jpg by NOAA Okeanos Explorer, Public domain, via https://commons.wikimedia.org/wiki/File:Unidentified_holothurian.jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "2c7c4fb1fbce",
+    "size": "960x588"
+  },
+  "S087": {
+    "file": "fix3/S087.jpg",
+    "license": "Public domain",
+    "author": "Dr. Aleksey Zuyev",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Paralithodes_camtschaticus_running_on_Kola_Bay_seafloor.jpg",
+    "credit": "Paralithodes camtschaticus running on Kola Bay seafloor.jpg by Dr. Aleksey Zuyev, Public domain, via https://commons.wikimedia.org/wiki/File:Paralithodes_camtschaticus_running_on_Kola_Bay_seafloor.jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "8ed6c4086c09",
+    "size": "2065x1350"
+  },
+  "S088": {
+    "file": "handoff_package/images/S088.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S088.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (suitability replacement 2026-11-11)",
+    "reason": "同上。深海平原の遠景実写がないため生成で補充",
+    "sha256_12": "7f3418f2962c",
+    "storage_path": "assets/panels/ai-generated/S088.jpg"
+  },
+  "S044-R": {
+    "file": "local_run3/images/S044-R.jpg",
+    "license": "CC BY 2.0",
+    "author": "National Marine Sanctuaries",
+    "source_page": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
+    "credit": "File:MBNMS Whale Fall at Davidson Seamount (49639154888).jpg by National Marine Sanctuaries, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
+    "origin": "collected"
+  },
+  "S048-R": {
+    "file": "local_run3/images/S048-R.jpg",
+    "license": "CC BY 2.0",
+    "author": "Rubbermaid Products",
+    "source_page": "https://www.flickr.com/photos/28040596@N08/3040275901",
+    "credit": "Empty Pantry by Rubbermaid Products, CC BY 2.0, via https://www.flickr.com/photos/28040596@N08/3040275901",
+    "origin": "collected"
+  },
+  "S058-PA": {
+    "file": "fix3/S058-PA.jpg",
+    "license": "Public domain",
+    "author": "NOAA Photo Library",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Expl6382_(9734088377).jpg",
+    "credit": "Expl6382 (9734088377).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expl6382_(9734088377).jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "a578d71672bd",
+    "size": "1920x1080"
+  },
+  "S058-PB": {
+    "file": "local_run3/images/S058-PB.jpg",
+    "license": "CC BY 4.0",
+    "author": "Paresh Poriya (Saurashtra University)",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Zoanthids_and_barnacles.jpeg",
+    "credit": "File:Zoanthids and barnacles.jpeg by Paresh Poriya (Saurashtra University), CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Zoanthids_and_barnacles.jpeg",
+    "origin": "collected"
+  },
+  "S084-R": {
+    "file": "handoff_package/images/S084-R.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S084-R.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (suitability replacement 2026-11-11)",
+    "reason": "広い暗い深海底の実写がPD/CC BY候補にない（地図・夕景・陸上岩のみ）ため生成で補充",
+    "sha256_12": "076efcc2d57c",
+    "storage_path": "assets/panels/ai-generated/S084-R.jpg"
+  },
+  "S085-PA": {
+    "file": "fix3/S085-PA.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S085-PA.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (fit replacement 2026-11-11)",
+    "reason": "海底へ落ちるマリンスノーの distinct な実写が候補枯渇のため生成",
+    "sha256_12": "500e0ade22d4",
+    "storage_path": "assets/panels/ai-generated/S085-PA.jpg"
+  },
+  "S085-PB": {
+    "file": "fix3/S085-PB.jpg",
+    "license": "Public domain",
+    "author": "NOAA Photo Library",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Expl5622_(9734254059).jpg",
+    "credit": "Expl5622 (9734254059).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expl5622_(9734254059).jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "3445171e8a39",
+    "size": "1920x1080"
+  },
+  "S024-PA": {
+    "file": "local_run4/images/S024-PA.jpg",
+    "license": "CC BY 2.0",
+    "author": "Christopher Michel",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Polar_Bear_(19630655471).jpg",
+    "credit": "File:Polar Bear (19630655471).jpg by Christopher Michel, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Polar_Bear_(19630655471).jpg",
+    "origin": "collected"
+  },
+  "S032": {
+    "file": "local_run4/images/S032.jpg",
+    "license": "CC BY 4.0",
+    "author": "Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_colour_in_life_(Fig._1).jpg",
+    "credit": "File:Bathynomus jamesi colour in life (Fig. 1).jpg by Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_colour_in_life_(Fig._1).jpg",
+    "origin": "collected"
+  },
+  "S062-PA": {
+    "file": "local_run4/images/S062-PA.jpg",
+    "license": "CC BY 4.0",
+    "author": "Marc Taquet",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Argyrops_filamentosus_(Ifremer_00537-64869_-_9187).jpg",
+    "credit": "File:Argyrops filamentosus (Ifremer 00537-64869 - 9187).jpg by Marc Taquet, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Argyrops_filamentosus_(Ifremer_00537-64869_-_9187).jpg",
+    "origin": "collected"
+  },
+  "S062-PB": {
+    "file": "fix3/S062-PB.jpg",
+    "license": "CC BY 4.0",
+    "author": "null",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Crabe_rouge_des_profondeurs_(Chaceon_affinis)_(Ifremer_00575-68701).jpg",
+    "credit": "Crabe rouge des profondeurs (Chaceon affinis) (Ifremer 00575-68701).jpg by null, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Crabe_rouge_des_profondeurs_(Chaceon_affinis)_(Ifremer_00575-68701).jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "5989428c3174",
+    "size": "3072x2304"
+  },
+  "S086-PB": {
+    "file": "fix3/S086-PB.jpg",
+    "license": "Public domain",
+    "author": "NOAA Okeanos Explorer Program, Mid-Cayman Rise Expedition 2011",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Expl690144489x800x800.jpg",
+    "credit": "Expl690144489x800x800.jpg by NOAA Okeanos Explorer Program, Mid-Cayman Rise Expedition 2011, Public domain, via https://commons.wikimedia.org/wiki/File:Expl690144489x800x800.jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "1b47ea6af094",
+    "size": "800x450"
+  },
+  "S087-PB": {
+    "file": "handoff_package/images/S087-PB.jpg",
+    "license": "CC BY 4.0",
+    "author": "[Photo: NOAA] Wicksten M, De Grave S, France S, Kelley C (2017) Presumed filter-feeding in a deep-sea benthic shrimp (Decapoda, Caridea, Stylodactylidae), with records of the deepest occurrence of carideans. ZooKeys 646: 17-23. https://doi.org/10.3897/zookeys.646.10969",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Bathystylodactylus_cf._bathyalis_(10.3897-zookeys.646.10969)_Figure_1.jpg",
+    "credit": "Bathystylodactylus cf. bathyalis (10.3897-zookeys.646.10969) Figure 1.jpg by [Photo: NOAA] Wicksten M, De Grave S, France S, Kelley C (2017) Presumed filter-feeding in a deep-sea benthic shrimp (Decapoda, Caridea, Stylodactylidae), with records of the deepest occurrence of carideans. ZooKeys 646: 17-23. https://doi.org/10.3897/zookeys.646.10969, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathystylodactylus_cf._bathyalis_(10.3897-zookeys.646.10969)_Figure_1.jpg",
+    "origin": "collected (suitability replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "53da3418851c",
+    "size": "1512x851"
+  },
+  "S082-PB": {
+    "file": "handoff_package/images/S082-PB.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S082-PB.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (suitability replacement 2026-11-11)",
+    "reason": "従来パネルが海面の衛星画像でPAと重複し、海底側の対比になっていなかった。深海底の distinct な実写候補がないため生成で補充",
+    "sha256_12": "94ab92d0e5e0",
+    "storage_path": "assets/panels/ai-generated/S082-PB.jpg"
+  },
+  "S009-PB": {
+    "file": "fix3/S009-PB.jpg",
+    "license": "CC BY 2.0",
+    "author": "NOAA Photo Library",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Expn1670_(28287731865).jpg",
+    "credit": "Expn1670 (28287731865).jpg by NOAA Photo Library, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Expn1670_(28287731865).jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "6406077fb6d6",
+    "size": "1920x1080"
+  },
+  "S078-PA": {
+    "file": "fix3/S078-PA.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S078-PA.jpg - AI生成画像（収集不可のため補充）",
+    "origin": "generated (fit replacement 2026-11-11)",
+    "reason": "Alicella実写はCC BY-SAのみ。CC BY図版内写真はS081-PAに充当したため生成",
+    "sha256_12": "f783a3e967f6",
+    "storage_path": "assets/panels/ai-generated/S078-PA.jpg"
+  },
+  "S078-PB": {
+    "file": "fix3/S078-PB.jpg",
+    "license": "CC BY 2.5",
+    "author": "Bienhold C, Pop Ristova P, Wenzhöfer F, Dittmar T, Boetius A",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-i.png",
+    "credit": "Unidentified amphipod - journal.pone.0053590.g003-i.png by Bienhold C, Pop Ristova P, Wenzhöfer F, Dittmar T, Boetius A, CC BY 2.5, via https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-i.png",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "b584035d2a4f",
+    "size": "307x222"
+  },
+  "S081-PA": {
+    "file": "fix3/S081-PA.jpg",
+    "license": "CC BY 4.0",
+    "author": "Paige J. Maroni, Yakufu Niyazi, and Alan Jamieson",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Alicella_Sampling_sites.jpg",
+    "credit": "Alicella Sampling sites.jpg (specimen photo crop) by Paige J. Maroni, Yakufu Niyazi, and Alan Jamieson, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Alicella_Sampling_sites.jpg",
+    "origin": "collected (fit replacement 2026-11-11, visually verified by Muse)",
+    "sha256_12": "a53c4798dd61",
+    "size": "480x277"
+  },
+  "S059": {
+    "file": "assets/panels/ai-generated/S059.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S059.jpg - AI生成画像（収集候補枯渇・権利/被写体条件により補充）",
+    "origin": "generated (v153 v2/v3 handoff)",
+    "reason": "Generated: collection attempts exhausted (429 throttling, only 7-10 candidates) for the deep-sea biodiversity seafloor screen.",
+    "storage_path": "assets/panels/ai-generated/S059.jpg"
+  },
+  "S068": {
+    "file": "assets/panels/ai-generated/S068.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S068.jpg - AI生成画像（収集候補枯渇・権利/被写体条件により補充）",
+    "origin": "generated (v153 v2/v3 handoff)",
+    "reason": "Generated: a collected Public Domain image existed but its source record could not be identified after two recovery passes, so it was dropped and generated instead.",
+    "storage_path": "assets/panels/ai-generated/S068.jpg"
+  }
 }
