@@ -6,6 +6,10 @@ on:
     paths:
       - 'shared/v153/launch/assets.txt'
       - 'shared/v153/launch/render.txt'
+      - 'shared/v153/scripts/collect_assets.py'
+      - 'shared/v153/scripts/check_assets.py'
+      - 'shared/v153/assets/asset_overrides.json'
+      - 'shared/v153/assets/replacement_log.json'
   workflow_dispatch:
 
 permissions:
@@ -66,9 +70,10 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for f in shared/v153/assets/asset_manifest.json shared/v153/assets/asset_gate.json shared/v153/assets/collected/collection-contact-sheet.jpg shared/v153/SOURCES.txt; do
+          for f in shared/v153/assets/asset_manifest.json shared/v153/assets/asset_gate.json shared/v153/assets/replacement_log.json shared/v153/SOURCES.txt; do
             if [ -f "$f" ]; then git add "$f"; fi
           done
+          if [ -d shared/v153/assets/contact-sheets ]; then git add shared/v153/assets/contact-sheets/; fi
           if ! git diff --cached --quiet; then
             git commit -m "[asset-report] Publish source asset manifest and rights audit"
             git push origin HEAD
@@ -148,6 +153,7 @@ jobs:
           compression-level: 0
 
   finalize:
+    if: contains(github.event.head_commit.message, '[render-approved]') && needs.chapter.result == 'success'
     needs: chapter
     runs-on: ubuntu-24.04
     timeout-minutes: 45
