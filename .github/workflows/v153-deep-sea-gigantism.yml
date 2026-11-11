@@ -38,13 +38,43 @@ jobs:
           python -m pip install requests beautifulsoup4 Pillow cairosvg
           ffmpeg -version | head -1
           fc-cache -f
-      - name: Verify the exact 88-screen source and generate the ten specified diagrams
+      - name: Detect the manually registered V153 asset handoff
+        id: handoff
+        working-directory: shared/v153
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          root=Path(".")
+          manifest=json.loads((root/"assets/asset_manifest.json").read_text(encoding="utf-8"))
+          gate=json.loads((root/"assets/asset_gate.json").read_text(encoding="utf-8"))
+          collected=manifest.get("collected",[])
+          generated=manifest.get("generated",[])
+          sheets=manifest.get("contact_sheets",[])
+          valid=(gate.get("passed") is True and len(collected)==78 and len(generated)==10 and len(sheets)==4
+                 and not manifest.get("missing") and not manifest.get("composition_warnings"))
+          valid=valid and all((root/x.get("file","")).is_file() for x in collected)
+          valid=valid and all((root/x.get("file","")).is_file() for x in generated)
+          valid=valid and all((root/x).is_file() for x in sheets)
+          valid=valid and len(list((root/"assets/panels/collected").glob("*.*")))==43
+          valid=valid and len(list((root/"assets/panels/ai-generated").glob("*.*")))==19
+          with open(os.environ["GITHUB_OUTPUT"],"a",encoding="utf-8") as f:
+              f.write("registered="+("true" if valid else "false")+"\\n")
+          print("REGISTERED_HANDOFF="+str(valid))
+          PY
+      - name: Verify the exact 88-screen source
         working-directory: shared/v153
         run: |
           set -euo pipefail
           python scripts/preflight.py
+      - name: Generate the ten specified diagrams when no registered handoff exists
+        if: steps.handoff.outputs.registered != 'true'
+        working-directory: shared/v153
+        run: |
+          set -euo pipefail
           python scripts/generate_diagrams.py
-      - name: Acquire 78 source stills from NOAA, Wikimedia Commons, NASA and other listed sources
+      - name: Acquire 78 source stills only when no registered handoff exists
+        if: steps.handoff.outputs.registered != 'true'
         working-directory: shared/v153
         run: |
           set -euo pipefail
