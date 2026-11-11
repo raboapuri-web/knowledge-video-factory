@@ -7,13 +7,16 @@
       "panels": 3,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus"
+          "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus",
+          "query": "giant isopod Bathynomus giganteus"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi"
+          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi",
+          "query": "Japanese spider crab Macrocheira kaempferi"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)"
+          "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)",
+          "query": "giant squid Architeuthis specimen"
         }
       ]
     },
@@ -24,17 +27,20 @@
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "deep sea jellyfish"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive13-bristlemouth/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "deep sea fish small species"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/crinoid-and-coral/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "deep sea amphipod tiny crustacean"
         }
       ]
     },
@@ -43,10 +49,12 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Ceradocus_sellickensis,_Amphipod_no._J_18004.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Ceradocus_sellickensis,_Amphipod_no._J_18004.jpg",
+          "query": "small shallow water amphipod"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
+          "query": "Alicella gigantea giant amphipod"
         }
       ]
     },
@@ -100,7 +108,8 @@
         {
           "url": "https://commons.wikimedia.org/wiki/File:Schematic_representation_of_pelagic_and_benthic_zones.jpg"
         }
-      ]
+      ],
+      "allow_diagram": true
     },
     "S008": {
       "query": "hydrostatic pressure under water depth pressure diagram",
@@ -109,7 +118,8 @@
         {
           "url": "https://commons.wikimedia.org/wiki/File:Pressure-under-water.svg"
         }
-      ]
+      ],
+      "allow_diagram": true
     },
     "S009": {
       "query": "deep sea ROV illuminated animal giant isopod",
@@ -118,12 +128,14 @@
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-at-work/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "deep sea ROV underwater lights"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "giant isopod deep sea animal"
         }
       ]
     },
@@ -146,10 +158,12 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Armadillidium_vulgare"
+          "url": "https://commons.wikimedia.org/wiki/Category:Armadillidium_vulgare",
+          "query": "Armadillidium vulgare pillbug"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus"
+          "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus",
+          "query": "Bathynomus giganteus giant isopod"
         }
       ]
     },
@@ -179,13 +193,16 @@
       "panels": 3,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus"
+          "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus",
+          "query": "Bathynomus giganteus giant isopod"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi"
+          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi",
+          "query": "Macrocheira kaempferi Japanese spider crab"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)"
+          "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)",
+          "query": "Architeuthis giant squid specimen"
         }
       ]
     },
@@ -194,10 +211,12 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi"
+          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi",
+          "query": "Macrocheira kaempferi Japanese spider crab"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)"
+          "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)",
+          "query": "Architeuthis giant squid specimen"
         }
       ]
     },
@@ -268,12 +287,14 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Polar_bear_aka_Ursus_maritimus.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Polar_bear_aka_Ursus_maritimus.jpg",
+          "query": "polar bear full body Arctic"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/deep-sea-shark/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "deep sea fish crab underwater"
         }
       ]
     },
@@ -380,12 +401,14 @@
           "url": "https://svs.gsfc.nasa.gov/13021/",
           "credit_override": "NASA's Earth Observatory",
           "rights_basis": "NASA SVS image caption credits NASA's Earth Observatory; selected bloom image has no third-party credit.",
-          "license_url_override": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+          "license_url_override": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "query": "NASA phytoplankton bloom satellite ocean surface"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/seafloor/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "deep sea seafloor ROV"
         }
       ]
     },
@@ -394,12 +417,14 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_(Ifremer_00401-51200).jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_(Ifremer_00401-51200).jpg",
+          "query": "marine snow organic particles underwater"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "tiny deep sea arthropod"
         }
       ]
     },
@@ -408,12 +433,14 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg",
+          "query": "bristlemouth deep sea fish"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/",
           "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "Bathynomus giganteus giant isopod"
         }
       ]
     },
@@ -450,7 +477,8 @@
         {
           "url": "https://commons.wikimedia.org/wiki/File:Arctic_marine_food_web.jpg"
         }
-      ]
+      ],
+      "allow_diagram": true
     },
     "S039": {
       "query": "close up marine snow particles falling underwater",
@@ -609,9 +637,12 @@
       "panels": 1,
       "sources": [
         {
+          "url": "https://commons.wikimedia.org/wiki/Category:Deep-sea_sharks",
+          "query": "deep sea shark fish"
+        },
+        {
           "url": "https://oceanexplorer.noaa.gov/multimedia/deep-sea-shark/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "query": "deep sea shark"
         }
       ]
     },
@@ -620,12 +651,16 @@
       "panels": 1,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-seascape-alaska-ex2304-gallery-media-dive07-crab-eating/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "url": "https://commons.wikimedia.org/wiki/File:Ophidiid_fish.jpg",
+          "query": "ophidiid deep sea fish"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Ophidiid_fish.jpg"
+          "url": "https://commons.wikimedia.org/wiki/Category:Deep-sea_fish",
+          "query": "deep sea predator fish"
+        },
+        {
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-seascape-alaska-ex2304-gallery-media-dive07-crab-eating/",
+          "query": "deep sea fish eating crab"
         }
       ]
     },
@@ -664,10 +699,12 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
+          "query": "Alicella gigantea giant amphipod"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Ceradocus_sellickensis,_Amphipod_no._J_18004.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Ceradocus_sellickensis,_Amphipod_no._J_18004.jpg",
+          "query": "small amphipod shallow water"
         }
       ]
     },
@@ -678,10 +715,12 @@
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive08-tripod-fish/",
           "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "bristlemouth deep sea fish"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg",
+          "query": "deep sea amphipod crustacean"
         }
       ]
     },
@@ -722,12 +761,14 @@
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-express-ex2301-gallery-media-ex2301-dive06-fish/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "deep sea fish swimming"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-seascape-alaska-ex2304-gallery-media-dive07-crab-eating/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "deep sea crab crustacean"
         }
       ]
     },
@@ -795,13 +836,11 @@
       "sources": [
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/seafloor/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "query": "deep sea seafloor ROV habitat"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/crinoid-and-coral/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "query": "deep sea coral crinoid seafloor"
         }
       ]
     },
@@ -810,14 +849,12 @@
       "panels": 1,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-express-ex2301-gallery-media-ex2301-dive06-fish/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "url": "https://commons.wikimedia.org/wiki/Category:Deep-sea_fish",
+          "query": "deep sea fish head closeup gills"
         },
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/deep-sea-shark/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-express-ex2301-gallery-media-ex2301-dive06-fish/",
+          "query": "deep sea fish close up"
         }
       ]
     },
@@ -843,7 +880,9 @@
         {
           "url": "https://commons.wikimedia.org/wiki/File:Oxygen_Minimum_Zone_(OMZ).pdf"
         }
-      ]
+      ],
+      "allow_pdf": true,
+      "allow_diagram": true
     },
     "S074": {
       "query": "conditions converging on giant amphipod conceptual diagram",
@@ -881,17 +920,20 @@
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/",
           "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "bristlemouth small deep sea fish"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-22voyage-to-the-ridge-gallery-media-dive10-seacuke/",
           "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "tiny deep sea arthropod"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/crinoid-and-coral/",
           "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "deep sea crinoid coral small marine animal"
         }
       ]
     },
@@ -900,12 +942,14 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
+          "query": "Alicella gigantea giant amphipod"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive08-tripod-fish/",
           "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "bristlemouth small deep sea fish"
         }
       ]
     },
@@ -941,10 +985,12 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
+          "query": "Alicella gigantea giant amphipod"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg",
+          "query": "small amphipod crustacean"
         }
       ]
     },
@@ -956,14 +1002,17 @@
           "url": "https://earthobservatory.nasa.gov/images/149384/coloring-the-south-atlantic",
           "credit_override": "NASA Earth Observatory / Lauren Dauphin",
           "rights_basis": "NASA source page identifies this image as NASA-produced; no third-party copyright notice.",
-          "license_url_override": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+          "license_url_override": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "query": "NASA phytoplankton bloom satellite ocean surface"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/seafloor/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "deep sea abyssal seafloor"
         }
-      ]
+      ],
+      "allow_diagram": true
     },
     "S083": {
       "query": "giant isopod crawling walking seafloor video Bathynomus",
@@ -1002,12 +1051,14 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_(Ifremer_00401-51200).jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_(Ifremer_00401-51200).jpg",
+          "query": "marine snow particles falling underwater"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive13-bristlemouth/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "small deep sea organism bristlemouth"
         }
       ]
     },
@@ -1019,12 +1070,14 @@
           "url": "https://svs.gsfc.nasa.gov/11835/",
           "credit_override": "NASA/GSFC/Norman Kuring",
           "rights_basis": "NASA source page identifies this image as NASA-produced; no third-party copyright notice.",
-          "license_url_override": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+          "license_url_override": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "query": "NASA phytoplankton bloom bright ocean surface"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/seafloor/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
+          "query": "dark deep sea floor ROV"
         }
       ]
     },
@@ -1033,10 +1086,12 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Giant_Isopod_(18443864634).jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Giant_Isopod_(18443864634).jpg",
+          "query": "Bathynomus giganteus giant isopod"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Ophidiid_fish.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Ophidiid_fish.jpg",
+          "query": "bristlemouth small deep sea fish"
         }
       ]
     },
