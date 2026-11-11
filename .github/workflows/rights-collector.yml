@@ -2,6 +2,9 @@ name: Rights Collector
 
 on:
   workflow_dispatch:
+  push:
+    branches: [v153-deep-sea-gigantism-photo-slides-20261111]
+    paths: ['shared/v153/launch/collector_run.txt']
 
 permissions:
   contents: read
