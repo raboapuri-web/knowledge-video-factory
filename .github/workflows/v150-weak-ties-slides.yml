@@ -2,7 +2,7 @@
 # - storyboard: 台本・スライド整合性監査 + audit.json をアーティファクト化
 # - chapter: 6章並列(最大3)で VOICEVOX 合成→ Motion Canvas レンダ→音声ミックス
 # - finalize: 章 MP4 を連結→ BGM ミックス→コンタクトシート→リリース作成
-name: V150 Weak Ties Cinematic Motion Canvas
+name: V150 Weak Ties V2 Director's Cut
 
 
 on:
@@ -94,7 +94,9 @@ jobs:
       - name: Compile slides and generate project
         run: node scripts/compile.mjs "$CHAPTER" # content/slides.json && cp ../v149/content/narration-*.txt content/ && sed -i "s/!== 58/!== 33/" scripts/compile.mjs && node scripts/compile.mjs "$CHAPTER" && node -e "const fs=require('fs');const p='content/slides.json';const j=JSON.parse(fs.readFileSync(p,'utf8'));for(const s of j.slides){}fs.writeFileSync(p,JSON.stringify(j));console.log('CONTROL_V149_DATA',j.slides.length);"
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: |
+          npm install --no-audit --no-fund
+          npm install --no-audit --no-fund @fontsource/noto-serif-jp@5.2.7
       - name: Start VOICEVOX engine
         run: |
           docker run -d --rm -p 50021:50021 --name voicevox voicevox/voicevox_engine:cpu-latest
@@ -111,13 +113,13 @@ jobs:
         run: |
           timeout 600 npm run render:smoke || true
           ls -la output/ || true
-          if [ -d "output/v150-$CHAPTER" ]; then echo "SMOKE PNG FRAMES FOUND"; ffmpeg -y -framerate 60 -pattern_type glob -i "output/v150-$CHAPTER/*.png" -vf fps=30 -c:v libx264 -pix_fmt yuv420p -movflags +faststart "output/v150-$CHAPTER.mp4"; fi
+          if [ -d "output/v150-$CHAPTER" ]; then echo "SMOKE PNG FRAMES FOUND"; ffmpeg -y -framerate 60 -pattern_type glob -i "output/v150-$CHAPTER/*.png" -vf fps=30 -c:v libx264 -crf 17 -preset medium -profile:v high -pix_fmt yuv420p -movflags +faststart "output/v150-$CHAPTER.mp4"; fi
           ls -la output/ || true
       - name: Render chapter video
         run: |
           timeout 2400 npm run render || true
           ls -la output/ || true
-          if [ -d "output/v150-$CHAPTER" ]; then echo "PNG FRAMES FOUND"; ffmpeg -y -framerate 60 -pattern_type glob -i "output/v150-$CHAPTER/*.png" -vf fps=30 -c:v libx264 -pix_fmt yuv420p -movflags +faststart "output/v150-$CHAPTER.mp4"; fi
+          if [ -d "output/v150-$CHAPTER" ]; then echo "PNG FRAMES FOUND"; ffmpeg -y -framerate 60 -pattern_type glob -i "output/v150-$CHAPTER/*.png" -vf fps=30 -c:v libx264 -crf 17 -preset medium -profile:v high -pix_fmt yuv420p -movflags +faststart "output/v150-$CHAPTER.mp4"; fi
           ls -lh "output/v150-$CHAPTER.mp4"
       - name: Mix narration audio
         run: |
@@ -174,29 +176,47 @@ jobs:
           cp ../v124/scripts/generate-bgm.mjs scripts/generate-bgm.mjs
           BGM_FILE=""
           for p in ../../common/BGM/Amazon-river-ambience.mp3 ../common/BGM/Amazon-river-ambience.mp3 common/BGM/Amazon-river-ambience.mp3; do if [ -f "$p" ]; then BGM_FILE="$p"; break; fi; done
-          if [ -n "$BGM_FILE" ]; then echo "BGM found: $BGM_FILE"; node scripts/generate-bgm.mjs output/v150-voice-master.mp4 output/v150-weak-ties-cinematic-final.mp4 "$BGM_FILE" 0.035; else echo "BGM not found, finishing without BGM"; cp output/v150-voice-master.mp4 output/v150-weak-ties-cinematic-final.mp4; fi
-          ffprobe -v error -show_entries stream=width,height,r_frame_rate,codec_name -of default=noprint_wrappers=1 output/v150-weak-ties-cinematic-final.mp4
-          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 output/v150-weak-ties-cinematic-final.mp4
+          if [ -n "$BGM_FILE" ]; then echo "BGM found: $BGM_FILE"; node scripts/generate-bgm.mjs output/v150-voice-master.mp4 output/v150-weak-ties-directorscut-v2-final.mp4 "$BGM_FILE" 0.035; else echo "BGM not found, finishing without BGM"; cp output/v150-voice-master.mp4 output/v150-weak-ties-directorscut-v2-final.mp4; fi
+          ffprobe -v error -show_entries stream=width,height,r_frame_rate,codec_name -of default=noprint_wrappers=1 output/v150-weak-ties-directorscut-v2-final.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 output/v150-weak-ties-directorscut-v2-final.mp4
+      - name: Strict final media quality audit
+        run: |
+          FILE="output/v150-weak-ties-directorscut-v2-final.mp4"
+          test -s "$FILE"
+          python3 - <<'PY'
+          import json, subprocess,os,sys
+          p="output/v150-weak-ties-directorscut-v2-final.mp4"
+          j=json.loads(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration,size:stream=codec_type,width,height,r_frame_rate","-of","json",p]))
+          tracks=j["streams"]
+          video=next((s for s in tracks if s["codec_type"]=="video"),None)
+          audio=next((s for s in tracks if s["codec_type"]=="audio"),None)
+          duration=float(j["format"]["duration"]);size=int(j["format"]["size"])
+          assert video and audio, "Missing video or audio track"
+          assert video.get("width")==1920 and video.get("height")==1080, "Unexpected video dimensions"
+          assert duration>600, "Suspiciously short film duration"
+          assert size>12000000, "Suspiciously small video file"
+          print("V2_FINAL_QA_PASS",{"duration":round(duration,2),"bytes":size,"video":video.get("r_frame_rate"),"audio":audio.get("codec_type")})
+          PY
       - name: Create contact sheet
         run: |
-          D=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 output/v150-weak-ties-cinematic-final.mp4)
+          D=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 output/v150-weak-ties-directorscut-v2-final.mp4)
           I=$(python3 -c "print(max(1.0, float('$D')/24))")
-          ffmpeg -y -i output/v150-weak-ties-cinematic-final.mp4 -vf "fps=1/$I,scale=384:-1,tile=6x4:padding=4:margin=4" -frames:v 1 output/v150-contact-sheet.jpg
+          ffmpeg -y -i output/v150-weak-ties-directorscut-v2-final.mp4 -vf "fps=1/$I,scale=384:-1,tile=6x4:padding=4:margin=4" -frames:v 1 output/v150-contact-sheet.jpg
       - name: Upload final video
         uses: actions/upload-artifact@v4
         with:
-          name: v150-weak-ties-cinematic-master
+          name: v150-weak-ties-directorscut-v2-master
           path: |
-            shared/v150/output/v150-weak-ties-cinematic-final.mp4
+            shared/v150/output/v150-weak-ties-directorscut-v2-final.mp4
             shared/v150/output/v150-contact-sheet.jpg
           retention-days: 21
       - name: Create release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          TAG="v150-weak-ties-cinematic-${{ github.run_id }}"
-          TITLE="V150 考える夜｜なぜ親友より、たまに会う知人の方が人生を変えるのか？ 完成動画"
-          gh release create "$TAG" --title "$TITLE" --notes "V150 完成動画（1920x1080・30fps）。ネットワークの橋と数字を専用モーショングラフィックスで可視化する58シーン。Google Docs現行原稿と字幕を照合済み。VOICEVOX青山龍星、速度1.10。" output/v150-weak-ties-cinematic-final.mp4 output/v150-contact-sheet.jpg
+          TAG="v150-weak-ties-directorscut-v2-${{ github.run_id }}"
+          TITLE="V150 考える夜｜弱い紐帯 Director’s Cut V2"
+          gh release create "$TAG" --title "$TITLE" --notes "Director’s Cut V2 完成動画（1920x1080・30fps・H.264 CRF17）。研究資料・データ視覚化・人物関係・情報の橋・選択肢を画面ごとに描き分けた58シーン。日本語明朝＆ゴシックの2書体。Google Docs現行原稿のナレーションと字幕を保持。VOICEVOX青山龍星、速度1.10。" output/v150-weak-ties-directorscut-v2-final.mp4 output/v150-contact-sheet.jpg
 
 
 # Note: chapter render steps use npm run render / render:smoke; shared/v124/package.json must pass $CHAPTER to scripts/render.mjs.
