@@ -1,0 +1,44 @@
+name: Rights Collector
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    name: Collect and audit licensed images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the production branch
+        uses: actions/checkout@v4
+        with:
+          ref: v153-deep-sea-gigantism-photo-slides-20261111
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install collector dependencies
+        run: pip install requests pillow
+
+      - name: Run rights-gated collector
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: >-
+          python shared/v153/scripts/rights_collector.py
+          --screens shared/v153/assets/collector_screens.json
+          --out shared/v153/collector_out
+          --vision
+          --min-width 1920
+          --min-height 1080
+
+      - name: Upload collector results
+        uses: actions/upload-artifact@v4
+        with:
+          name: rights-collector-${{ github.run_id }}
+          path: shared/v153/collector_out/
+          if-no-files-found: error
+          retention-days: 14
