@@ -4,6 +4,8 @@ import json, os, re, subprocess, hashlib, tempfile, time
 from pathlib import Path
 from urllib.parse import urlparse, unquote, urljoin
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
 from PIL import Image, ImageOps, ImageFilter, ImageDraw, ImageFont
 
@@ -15,8 +17,12 @@ OVERRIDES=OVERRIDE_DATA.get("scenes",OVERRIDE_DATA)
 ASSET_DIR=ROOT/"assets/collected"; RAW=ROOT/"assets/raw"
 ASSET_DIR.mkdir(parents=True,exist_ok=True); RAW.mkdir(parents=True,exist_ok=True)
 API="https://commons.wikimedia.org/w/api.php"
-HEADERS={"User-Agent":"KnowledgeVideoFactory/1.0 (educational documentary production; contact: production team)"}
+HEADERS={"User-Agent":"KnowledgeVideoFactory/1.0 (https://github.com/raboapuri-web/knowledge-video-factory; educational documentary asset acquisition)"}
 SESSION=requests.Session(); SESSION.headers.update(HEADERS)
+RETRY=Retry(total=5,connect=5,read=5,backoff_factor=1.5,status_forcelist=[429,500,502,503,504],
+            allowed_methods=["GET"],respect_retry_after_header=True)
+SESSION.mount("https://",HTTPAdapter(max_retries=RETRY))
+SESSION.mount("http://",HTTPAdapter(max_retries=RETRY))
 W,H=1920,1080
 used_media=set()
 media_usage={}
@@ -50,7 +56,7 @@ def commons_candidates(source_url, query):
         for item in cached:
             item["rank"]=score(item.get("title","")+" "+item.get("description",""),query)
         return sorted(cached,key=lambda x:(x.get("rank",0),x.get("width",0)*x.get("height",0)),reverse=True)
-    params={"action":"query","format":"json","prop":"imageinfo","iiprop":"url|extmetadata","iiurlwidth":3000}
+    params={"action":"query","format":"json","prop":"imageinfo","iiprop":"url|extmetadata","iiurlwidth":1920}
     if is_file:
         title=path.split("/wiki/",1)[1].replace("_"," ")
         params["titles"]=title
@@ -100,7 +106,7 @@ def commons_candidates(source_url, query):
     COMMONS_CACHE[cache_key]=[dict(x) for x in out]
     return out
 
-def page_candidates(url, query):
+def page_candidates(url, query, rights_override=None):
     if url in PAGE_CACHE:
         items=[dict(x) for x in PAGE_CACHE[url]]
         for item in items:
@@ -139,14 +145,15 @@ def page_candidates(url, query):
         license_name="Public Domain (NASA; reproduction guidelines)"
         license_url="https://www.nasa.gov/nasa-brand-center/images-and-media/"
     elif "pmc.ncbi.nlm.nih.gov" in host or "biomedcentral.com" in host:
-        if "PMC9107163" not in url and not re.search(r"Creative Commons Attribution|CC BY 4\.0|CC-BY",page_text,re.I):
-            report["rights_skipped"].append({"url":url,"reason":"Article-level CC BY reuse could not be verified from page text."})
-            return []
-        if not re.search(r"Creative Commons Attribution 4\.0|CC BY 4\.0",page_text,re.I):
-            report["rights_skipped"].append({"url":url,"reason":"CC BY 4.0 license statement not found on article page."})
-            return []
-        license_name="CC BY 4.0"
-        license_url="https://creativecommons.org/licenses/by/4.0/"
+        if rights_override and rights_override.get("license")=="CC BY 4.0":
+            license_name="CC BY 4.0"
+            license_url=rights_override.get("license_url","https://creativecommons.org/licenses/by/4.0/")
+        else:
+            if not re.search(r"Creative Commons Attribution 4\.0|CC BY 4\.0",page_text,re.I):
+                report["rights_skipped"].append({"url":url,"reason":"CC BY 4.0 license statement not found on article page."})
+                return []
+            license_name="CC BY 4.0"
+            license_url="https://creativecommons.org/licenses/by/4.0/"
     elif "unsplash.com" in host:
         if not re.search(r"Unsplash License|free to use under the Unsplash",page_text,re.I):
             report["rights_skipped"].append({"url":url,"reason":"Unsplash reuse terms could not be verified on the source page."})
@@ -214,13 +221,13 @@ def page_candidates(url, query):
     PAGE_CACHE[url]=[dict(x) for x in items]
     return items
 
-def candidates_for(scene, source_url, query=None):
+def candidates_for(scene, source_url, query=None, rights_override=None):
     host=urlparse(source_url).netloc.lower()
     q=query or scene.get("search_en","")
     if "commons.wikimedia.org" in host:
         items=commons_candidates(source_url,q)
     else:
-        items=page_candidates(source_url,q)
+        items=page_candidates(source_url,q,rights_override)
     if scene["id"] in {"S041","S042","S043","S044"}:
         banned=["poster","distribution of known","map of known","diagram","infographic","chart"]
         items=[x for x in items if not any(t in (x.get("title","")+" "+x.get("media_url","")).lower() for t in banned)]
@@ -249,7 +256,8 @@ def download_candidate(c,scene_id,slot,min_width=1920,min_height=1080):
     url=c["media_url"]; suffix=ext(url) or ".jpg"
     temp=RAW/f"{scene_id}_{slot}.source{suffix}"
     try:
-        r=SESSION.get(url,timeout=120,stream=True); r.raise_for_status()
+        time.sleep(0.65)
+        r=SESSION.get(url,timeout=150,stream=True); r.raise_for_status()
         with open(temp,"wb") as f:
             for chunk in r.iter_content(1024*256):
                 if chunk: f.write(chunk)
@@ -393,12 +401,13 @@ for idx,scene in enumerate(BOARD["scenes"],1):
         if isinstance(spec,str):
             spec={"url":spec}
         if not spec.get("url"): continue
-        items=candidates_for(scene,spec["url"],spec.get("query",query))
+        rights_override={"license":spec.get("license_override"),"license_url":spec.get("license_url_override")} if spec.get("license_override") else None
+        items=candidates_for(scene,spec["url"],spec.get("query",query),rights_override)
         for item in items:
             title_text=(str(item.get("title",""))+" "+str(item.get("description",""))).lower()
             if item.get("kind")=="pdf" and not override.get("allow_pdf",False):
                 continue
-            if not override.get("allow_diagram",False) and any(t in title_text for t in ["poster","book cover","book page","title page","research paper","journal article","article page","report cover","document cover","guide to aqua"]):
+            if not override.get("allow_diagram",False) and any(t in title_text for t in ["poster","book","djvu","title page","research paper","journal article","article page","report cover","document cover","guide to aqua","figure","stl","3d model"]):
                 report["rejected_candidates"].append({"scene":scene["id"],"title":item.get("title",""),"reason":"Document/poster/title-page candidate is not a usable photographic still."})
                 continue
             if spec.get("credit_override"): item["credit"]=spec["credit_override"]
@@ -424,7 +433,7 @@ for idx,scene in enumerate(BOARD["scenes"],1):
     for c in ranked:
         if len(paths)>=required: break
         is_video=c.get("kind")=="video"
-        if c["media_url"] in attempted or (c["media_url"] in used_media and not is_video): continue
+        if c["media_url"] in attempted or (c["media_url"] in used_media and not is_video and not override.get("allow_reuse",False)): continue
         if required>1 and c["source_page"] in selected_pages: continue
         attempted.append(c["media_url"])
         p=download_candidate(c,scene["id"],len(paths)+1,1920,1080)
@@ -436,7 +445,12 @@ for idx,scene in enumerate(BOARD["scenes"],1):
         extra=commons_candidates("https://commons.wikimedia.org/",query)
         for c in extra:
             if len(paths)>=required: break
-            if c["media_url"] in attempted or (c["media_url"] in used_media and c.get("kind")!="video"): continue
+            title_text=(str(c.get("title",""))+" "+str(c.get("description",""))).lower()
+            if c.get("kind")=="pdf" and not override.get("allow_pdf",False): continue
+            if not override.get("allow_diagram",False) and any(t in title_text for t in ["poster","book","djvu","title page","research paper","journal article","article page","report cover","document cover","figure","stl","3d model"]):
+                report["rejected_candidates"].append({"scene":scene["id"],"title":c.get("title",""),"reason":"Document/figure/model candidate rejected for photographic screen."})
+                continue
+            if c["media_url"] in attempted or (c["media_url"] in used_media and c.get("kind")!="video" and not override.get("allow_reuse",False)): continue
             if required>1 and c["source_page"] in selected_pages: continue
             attempted.append(c["media_url"])
             p=download_candidate(c,scene["id"],len(paths)+1,1920,1080)
