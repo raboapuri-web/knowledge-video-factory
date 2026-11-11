@@ -1,1 +1,1 @@
-approved-v7
+approved-static-ffmpeg-v1
