@@ -391,72 +391,119 @@ def make_contact_sheet():
         outputs.append(str(dest.relative_to(ROOT)))
     return outputs
 
+def clean_candidates(items,override,scene_id):
+    cleaned=[]
+    for item in items:
+        title_text=(str(item.get("title",""))+" "+str(item.get("description",""))).lower()
+        if item.get("kind")=="pdf" and not override.get("allow_pdf",False):
+            continue
+        blocked=["poster","book","djvu","title page","research paper","journal article","article page","report cover","document cover","guide to aqua","stl","3d model"]
+        if not override.get("allow_diagram",False):
+            blocked += ["figure","diagram","chart","infographic"]
+        if any(t in title_text for t in blocked):
+            report["rejected_candidates"].append({"scene":scene_id,"title":item.get("title",""),
+                "reason":"Document, poster, model, or non-photographic graphic rejected for this screen."})
+            continue
+        cleaned.append(item)
+    return cleaned
+
 for idx,scene in enumerate(BOARD["scenes"],1):
     if scene["mode"]!="収集": continue
     override=OVERRIDES.get(scene["id"],{})
     query=override.get("query",scene.get("search_en",""))
     source_specs=override.get("sources",scene.get("sources",[]))
-    candidates=[]
-    for spec in source_specs:
-        if isinstance(spec,str):
-            spec={"url":spec}
-        if not spec.get("url"): continue
-        rights_override={"license":spec.get("license_override"),"license_url":spec.get("license_url_override")} if spec.get("license_override") else None
-        items=candidates_for(scene,spec["url"],spec.get("query",query),rights_override)
-        for item in items:
-            title_text=(str(item.get("title",""))+" "+str(item.get("description",""))).lower()
-            if item.get("kind")=="pdf" and not override.get("allow_pdf",False):
-                continue
-            if not override.get("allow_diagram",False) and any(t in title_text for t in ["poster","book","djvu","title page","research paper","journal article","article page","report cover","document cover","guide to aqua","figure","stl","3d model"]):
-                report["rejected_candidates"].append({"scene":scene["id"],"title":item.get("title",""),"reason":"Document/poster/title-page candidate is not a usable photographic still."})
-                continue
-            if spec.get("credit_override"): item["credit"]=spec["credit_override"]
-            if spec.get("license_override"): item["license"]=spec["license_override"]
-            if spec.get("license_url_override"): item["license_url"]=spec["license_url_override"]
-            if spec.get("rights_basis"): item["rights_basis"]=spec["rights_basis"]
-            if spec.get("title_override"): item["title"]=spec["title_override"]
-            candidates.append(item)
-    if not candidates:
-        candidates.extend(fallback_commons(scene))
-    # Deduplicate while preserving the most relevant/high-resolution candidate.
-    ranked_by_url={}
-    for c in candidates:
-        old=ranked_by_url.get(c["media_url"])
-        if old is None or (c.get("rank",0),c.get("width",0)*c.get("height",0))>(old.get("rank",0),old.get("width",0)*old.get("height",0)):
-            ranked_by_url[c["media_url"]]=c
-    ranked=list(ranked_by_url.values())
-    ranked.sort(key=lambda x:(x.get("rank",0),x.get("width",0)*x.get("height",0)),reverse=True)
     desc=scene["image_description"]
     inferred=3 if "3分割" in desc else (2 if any(k in desc for k in ["比較","並べる","並置","対比","左右","同じ画面","横並び"]) else 1)
     required=int(override.get("panels",inferred))
     selected=[]; paths=[]; attempted=[]; selected_pages=set()
-    for c in ranked:
-        if len(paths)>=required: break
-        is_video=c.get("kind")=="video"
-        if c["media_url"] in attempted or (c["media_url"] in used_media and not is_video and not override.get("allow_reuse",False)): continue
-        if required>1 and c["source_page"] in selected_pages: continue
-        attempted.append(c["media_url"])
-        p=download_candidate(c,scene["id"],len(paths)+1,1920,1080)
-        if p:
-            selected.append(c); paths.append(p); selected_pages.add(c["source_page"])
-            if not is_video: used_media.add(c["media_url"])
-    # If curated source pages did not yield enough licensed, high-resolution images, try a focused Commons search.
-    if len(paths)<required and query:
-        extra=commons_candidates("https://commons.wikimedia.org/",query)
-        for c in extra:
+
+    # For explicit comparisons, bind one independently searched source to each intended panel.
+    if override.get("panel_sources",False):
+        panel_specs=source_specs[:required]
+        for panel_no,spec in enumerate(panel_specs,1):
+            if isinstance(spec,str): spec={"url":spec}
+            if not spec.get("url"): continue
+            panel_query=spec.get("query",query)
+            rights_override={"license":spec.get("license_override"),"license_url":spec.get("license_url_override")} if spec.get("license_override") else None
+            items=clean_candidates(candidates_for(scene,spec["url"],panel_query,rights_override),override,scene["id"])
+            items.sort(key=lambda x:(x.get("rank",0),x.get("width",0)*x.get("height",0)),reverse=True)
+            chosen=False
+            for candidate in items:
+                is_video=candidate.get("kind")=="video"
+                if candidate["media_url"] in attempted or (candidate["media_url"] in used_media and not is_video and not override.get("allow_reuse",False)): continue
+                if candidate["source_page"] in selected_pages: continue
+                if spec.get("credit_override"): candidate["credit"]=spec["credit_override"]
+                if spec.get("license_override"): candidate["license"]=spec["license_override"]
+                if spec.get("license_url_override"): candidate["license_url"]=spec["license_url_override"]
+                if spec.get("rights_basis"): candidate["rights_basis"]=spec["rights_basis"]
+                if spec.get("title_override"): candidate["title"]=spec["title_override"]
+                attempted.append(candidate["media_url"])
+                p=download_candidate(candidate,scene["id"],panel_no,1920,1080)
+                if p:
+                    selected.append(candidate); paths.append(p); selected_pages.add(candidate["source_page"])
+                    if not is_video: used_media.add(candidate["media_url"])
+                    chosen=True
+                    break
+            # Targeted Commons search is only for this panel's subject, never the whole collage.
+            if not chosen and panel_query:
+                extra=clean_candidates(commons_candidates("https://commons.wikimedia.org/",panel_query),override,scene["id"])
+                extra.sort(key=lambda x:(x.get("rank",0),x.get("width",0)*x.get("height",0)),reverse=True)
+                for candidate in extra:
+                    is_video=candidate.get("kind")=="video"
+                    if candidate["media_url"] in attempted or (candidate["media_url"] in used_media and not is_video and not override.get("allow_reuse",False)): continue
+                    if candidate["source_page"] in selected_pages: continue
+                    attempted.append(candidate["media_url"])
+                    p=download_candidate(candidate,scene["id"],panel_no,1920,1080)
+                    if p:
+                        selected.append(candidate); paths.append(p); selected_pages.add(candidate["source_page"])
+                        if not is_video: used_media.add(candidate["media_url"])
+                        chosen=True
+                        break
+    else:
+        candidates=[]
+        for spec in source_specs:
+            if isinstance(spec,str): spec={"url":spec}
+            if not spec.get("url"): continue
+            rights_override={"license":spec.get("license_override"),"license_url":spec.get("license_url_override")} if spec.get("license_override") else None
+            items=clean_candidates(candidates_for(scene,spec["url"],spec.get("query",query),rights_override),override,scene["id"])
+            for item in items:
+                if spec.get("credit_override"): item["credit"]=spec["credit_override"]
+                if spec.get("license_override"): item["license"]=spec["license_override"]
+                if spec.get("license_url_override"): item["license_url"]=spec["license_url_override"]
+                if spec.get("rights_basis"): item["rights_basis"]=spec["rights_basis"]
+                if spec.get("title_override"): item["title"]=spec["title_override"]
+                candidates.append(item)
+        if not candidates:
+            candidates.extend(clean_candidates(fallback_commons(scene),override,scene["id"]))
+        ranked_by_url={}
+        for candidate in candidates:
+            old=ranked_by_url.get(candidate["media_url"])
+            if old is None or (candidate.get("rank",0),candidate.get("width",0)*candidate.get("height",0))>(old.get("rank",0),old.get("width",0)*old.get("height",0)):
+                ranked_by_url[candidate["media_url"]]=candidate
+        ranked=sorted(ranked_by_url.values(),key=lambda x:(x.get("rank",0),x.get("width",0)*x.get("height",0)),reverse=True)
+        for candidate in ranked:
             if len(paths)>=required: break
-            title_text=(str(c.get("title",""))+" "+str(c.get("description",""))).lower()
-            if c.get("kind")=="pdf" and not override.get("allow_pdf",False): continue
-            if not override.get("allow_diagram",False) and any(t in title_text for t in ["poster","book","djvu","title page","research paper","journal article","article page","report cover","document cover","figure","stl","3d model"]):
-                report["rejected_candidates"].append({"scene":scene["id"],"title":c.get("title",""),"reason":"Document/figure/model candidate rejected for photographic screen."})
-                continue
-            if c["media_url"] in attempted or (c["media_url"] in used_media and c.get("kind")!="video" and not override.get("allow_reuse",False)): continue
-            if required>1 and c["source_page"] in selected_pages: continue
-            attempted.append(c["media_url"])
-            p=download_candidate(c,scene["id"],len(paths)+1,1920,1080)
+            is_video=candidate.get("kind")=="video"
+            if candidate["media_url"] in attempted or (candidate["media_url"] in used_media and not is_video and not override.get("allow_reuse",False)): continue
+            if required>1 and candidate["source_page"] in selected_pages: continue
+            attempted.append(candidate["media_url"])
+            p=download_candidate(candidate,scene["id"],len(paths)+1,1920,1080)
             if p:
-                selected.append(c); paths.append(p); selected_pages.add(c["source_page"])
-                if c.get("kind")!="video": used_media.add(c["media_url"])
+                selected.append(candidate); paths.append(p); selected_pages.add(candidate["source_page"])
+                if not is_video: used_media.add(candidate["media_url"])
+        if len(paths)<required and query:
+            extra=clean_candidates(commons_candidates("https://commons.wikimedia.org/",query),override,scene["id"])
+            extra.sort(key=lambda x:(x.get("rank",0),x.get("width",0)*x.get("height",0)),reverse=True)
+            for candidate in extra:
+                if len(paths)>=required: break
+                is_video=candidate.get("kind")=="video"
+                if candidate["media_url"] in attempted or (candidate["media_url"] in used_media and not is_video and not override.get("allow_reuse",False)): continue
+                if required>1 and candidate["source_page"] in selected_pages: continue
+                attempted.append(candidate["media_url"])
+                p=download_candidate(candidate,scene["id"],len(paths)+1,1920,1080)
+                if p:
+                    selected.append(candidate); paths.append(p); selected_pages.add(candidate["source_page"])
+                    if not is_video: used_media.add(candidate["media_url"])
     final=ASSET_DIR/f"{scene['id']}.jpg"
     try:
         ok=compose(paths,scene,final,required)
