@@ -2,10 +2,10 @@
 set -euo pipefail
 
 # Pinned, prebuilt static FFmpeg. This avoids apt mirrors and their dependency downloads.
-TOOLS_TMP="\${RUNNER_TEMP:-/tmp}/v153-media-tools"
-BIN_DIR="\${HOME}/.local/bin"
-FONT_DIR="\${HOME}/.local/share/fonts"
-ARCHIVE="\${TOOLS_TMP}/ffmpeg-linux64-gpl.tar.xz"
+TOOLS_TMP="${RUNNER_TEMP:-/tmp}/v153-media-tools"
+BIN_DIR="${HOME}/.local/bin"
+FONT_DIR="${HOME}/.local/share/fonts"
+ARCHIVE="${TOOLS_TMP}/ffmpeg-linux64-gpl.tar.xz"
 FFMPEG_URL="https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz"
 FFMPEG_SHA256="f6f8a35568815b7a99e0c513d7c6593262422986047068db190980c4bc186865"
 FONT_URL="https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf"
@@ -17,7 +17,7 @@ curl --fail --location --silent --show-error \
   --retry 5 --retry-all-errors --retry-delay 3 \
   --connect-timeout 30 --max-time 900 \
   "$FFMPEG_URL" -o "$ARCHIVE"
-echo "\${FFMPEG_SHA256}  \${ARCHIVE}" | sha256sum --check --status
+echo "${FFMPEG_SHA256}  ${ARCHIVE}" | sha256sum --check --status
 echo "FFmpeg archive SHA-256 verified."
 
 tar -xJf "$ARCHIVE" -C "$TOOLS_TMP/extract"
