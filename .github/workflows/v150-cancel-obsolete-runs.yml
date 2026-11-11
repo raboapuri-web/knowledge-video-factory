@@ -1,0 +1,31 @@
+name: V150 keep only newest production render
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v150-cancel-obsolete-runs.yml'
+      - '.github/workflows/v150-weak-ties-slides.yml'
+      - 'shared/v150/**'
+permissions:
+  actions: write
+  contents: read
+jobs:
+  cancel-outdated:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Preserve newest V150 run and cancel obsolete variants
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          runs="$(gh run list -R "$GH_REPO" --workflow v150-weak-ties-slides.yml --limit 35 --json databaseId,status,createdAt | jq -c 'sort_by(.createdAt) | reverse')"
+          newest="$(echo "$runs" | jq -r '.[0].databaseId')"
+          echo "Keeping newest production run $newest"
+          echo "$runs" | jq -r '.[] | select(.status == "in_progress" or .status == "queued" or .status == "waiting") | .databaseId' | while read -r id; do
+            if [ "$id" != "$newest" ]; then
+              echo "Canceling obsolete V150 run $id"
+              gh run cancel "$id" -R "$GH_REPO" || true
+            fi
+          done
