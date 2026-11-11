@@ -1,0 +1,62 @@
+name: V151 cinematic static rendering gate
+
+"on":
+  push:
+    branches: [v151-cinematic-restoration, main]
+    paths:
+      - 'shared/v151/src/lib/promotion.tsx'
+      - 'shared/v151/content/art-direction.json'
+      - '.github/workflows/v151-cinematic-static-gate.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    defaults:
+      run:
+        working-directory: shared/v151
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Create minimal cinematic project
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p src/lib src/scenes src/projects scripts content
+          cp ../v124/package.json package.json
+          cp ../v124/tsconfig.json tsconfig.json
+          cp ../v124/vite.config.ts vite.config.ts
+          cp ../v124/headless.html headless.html
+          cp ../v124/src/headless.ts src/headless.ts
+          cp ../v124/src/types.d.ts src/types.d.ts
+          cp src/lib/promotion.tsx src/lib/chapter.tsx
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const scenes=JSON.parse(fs.readFileSync('content/art-direction.json','utf8')).scenes;
+          if(scenes.length!==64||new Set(scenes.map(s=>s.id)).size!==64)throw Error('Missing 64 story-specific scenes');
+          if(new Set(scenes.map(s=>s.kind)).size<14)throw Error('Insufficient visual diversity');
+          fs.writeFileSync('content/render-data.json',JSON.stringify({slides:scenes.slice(0,5).map(s=>({...s,ch:'prologue'}))}));
+          fs.writeFileSync('content/render-timing.json',JSON.stringify({slides:scenes.slice(0,5).map(()=>({duration:2,subs:[]}))}));
+          fs.writeFileSync('src/scenes/prologue.tsx',
+            "import {createChapterScene} from '../lib/chapter';\nimport data from '../../content/render-data.json';\nimport timing from '../../content/render-timing.json';\nexport default createChapterScene('prologue',data,timing);\n");
+          fs.writeFileSync('src/projects/prologue.ts',
+            "import {makeProject} from '@motion-canvas/core';\nimport scene from '../scenes/prologue?scene';\nexport default makeProject({scenes:[scene]});\n");
+          console.log('Static gate: authored scenes='+scenes.length+', unique visual families='+new Set(scenes.map(s=>s.kind)).size);
+          NODE
+      - name: Install node dependencies with retry
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            if npm install --no-audit --no-fund; then exit 0; fi
+            echo "npm transient failure attempt ${attempt}" >&2
+            npm cache clean --force || true
+            sleep "$((attempt * 5))"
+          done
+          exit 1
+      - name: Static TypeScript and production Vite build
+        run: npm run build
