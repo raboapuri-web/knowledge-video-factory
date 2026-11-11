@@ -258,6 +258,56 @@
       "fit_review": "pending_manual_visual_check"
     },
     {
+      "scene": "S009",
+      "status": "collected",
+      "file": "assets/collected/S009.jpg",
+      "asset_count": 2,
+      "required_panels": 2,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Deep_Discoverer_manipulator_arm_NOAAS_Okeanos_Explorer_(R_337)_25_April_2015.png",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Deep_Discoverer_manipulator_arm_NOAAS_Okeanos_Explorer_(R_337)_25_April_2015.png",
+          "credit": "File:Deep Discoverer manipulator arm NOAAS Okeanos Explorer (R 337) 25 April 2015.png by NOAA Office of Ocean Exploration and Research, Exploring Puerto Rico’s Seamounts, Trenches, and Troughs, Public Domain, via https://commons.wikimedia.org/wiki/File:Deep_Discoverer_manipulator_arm_NOAAS_Okeanos_Explorer_(R_337)_25_April_2015.png",
+          "license": "Public Domain",
+          "license_url": "",
+          "title": "S009-PA.png",
+          "source_dimensions": [
+            1000,
+            563
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "NOAA Office of Ocean Exploration and Research, Exploring Puerto Rico’s Seamounts, Trenches, and Troughs",
+          "panel_file": "assets/panels/collected/S009-PA.png"
+        },
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Expn1670_(28287731865).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Expn1670_(28287731865).jpg",
+          "credit": "Expn1670 (28287731865).jpg by NOAA Photo Library, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Expn1670_(28287731865).jpg",
+          "license": "CC BY 2.0",
+          "license_url": "",
+          "title": "S009-PB.jpg",
+          "source_dimensions": [
+            1920,
+            1080
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "NOAA Photo Library",
+          "panel_file": "assets/panels/collected/S009-PB.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "67d463e870e73d2fe264268b9f6e3b8a78986b5a0bde7e91ab33d81244ee8df8",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S009-PA.png",
+        "assets/panels/collected/S009-PB.jpg"
+      ]
+    },
+    {
       "scene": "S010",
       "status": "collected",
       "file": "assets/collected/S010.jpg",
@@ -454,6 +504,62 @@
       "fit_review": "pending_manual_visual_check"
     },
     {
+      "scene": "S016",
+      "status": "collected",
+      "file": "assets/collected/S016.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S016.jpg",
+          "reason": "Alicella giganteaの実写はCommonsでは全てCC BY-SA 4.0のみ（継承条件のため不採用）。PD/CC BY範囲は分布図とイラストのみのため生成で補充",
+          "method": "AI-generated, according to handoff record",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "133b4be6801e1cbe91fa1aa242e09e86163c7e1606c1a40d850f29fcfcd44d41",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S016.jpg"
+      ]
+    },
+    {
+      "scene": "S017",
+      "status": "collected",
+      "file": "assets/collected/S017.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S017.jpg",
+          "reason": "同上。手に乗せたスケール写真もCC BY-SAのみのため生成で補充",
+          "method": "AI-generated, according to handoff record",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "d91cd142a79b724d91aee953bcf45a2d23aad8e6247c9ba0354ba66760a0c3bb",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S017.jpg"
+      ]
+    },
+    {
       "scene": "S018",
       "status": "collected",
       "file": "assets/collected/S018.jpg",
@@ -553,7 +659,7 @@
       "scene": "S024",
       "status": "collected",
       "file": "assets/collected/S024.jpg",
-      "asset_count": 1,
+      "asset_count": 2,
       "required_panels": 2,
       "sources": [
         {
@@ -568,10 +674,31 @@
             1080
           ],
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit."
+        },
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Polar_Bear_(19630655471).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Polar_Bear_(19630655471).jpg",
+          "credit": "Christopher Michel",
+          "license": "CC BY 2.0",
+          "license_url": "",
+          "title": "S024-PA.jpg",
+          "source_dimensions": [
+            5023,
+            3415
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "File:Polar Bear (19630655471).jpg by Christopher Michel, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Polar_Bear_(19630655471).jpg",
+          "panel_file": "assets/panels/collected/S024-PA.jpg"
         }
       ],
-      "sha256": "5fa9512de4c433a0cdc4476fb91059915ec31e22c0e993d77565c35f967e75f6",
-      "fit_review": "pending_manual_visual_check"
+      "generated_panels": [],
+      "sha256": "d5aa8af208f2ec4138d900dcf61ba1fd40bf506780b3e1a56aebf7b7d49945c3",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": []
     },
     {
       "scene": "S025",
@@ -620,6 +747,40 @@
       ],
       "sha256": "0e4b9802328cd8a41d3e740364000cdec161a3584932b4a9155b5cc7d25a8968",
       "fit_review": "pending_manual_visual_check"
+    },
+    {
+      "scene": "S028",
+      "status": "collected",
+      "file": "assets/collected/S028.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_(MNHN-IU-2013-887).jpeg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Bathynomus_(MNHN-IU-2013-887).jpeg",
+          "credit": "Chan T. Y. & Lin C.W.",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S028.jpg",
+          "source_dimensions": [
+            4288,
+            2848
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "File:Bathynomus (MNHN-IU-2013-887).jpeg by Chan T. Y. & Lin C.W., CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_(MNHN-IU-2013-887).jpeg",
+          "panel_file": "assets/panels/collected/S028.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "253a1e62ca5beabd005c032b0a28eaf5a1ade9bd2e711205237e7f26f81830a1",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S028.jpg"
+      ]
     },
     {
       "scene": "S029",
@@ -694,6 +855,40 @@
       "fit_review": "pending_manual_visual_check"
     },
     {
+      "scene": "S032",
+      "status": "collected",
+      "file": "assets/collected/S032.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_colour_in_life_(Fig._1).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_colour_in_life_(Fig._1).jpg",
+          "credit": "Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S032.jpg",
+          "source_dimensions": [
+            1975,
+            1453
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "File:Bathynomus jamesi colour in life (Fig. 1).jpg by Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_colour_in_life_(Fig._1).jpg",
+          "panel_file": "assets/panels/collected/S032.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "f95f00bc2217c287c5f906a0e52ff90eaa1667aa3d1bc90c622aaf409d260f57",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S032.jpg"
+      ]
+    },
+    {
       "scene": "S033",
       "status": "collected",
       "file": "assets/collected/S033.jpg",
@@ -734,25 +929,135 @@
       "scene": "S034",
       "status": "collected",
       "file": "assets/collected/S034.jpg",
-      "asset_count": 1,
+      "asset_count": 2,
       "required_panels": 2,
       "sources": [
         {
-          "source_page": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/",
-          "media_url": "https://oceanexplorer.noaa.gov/wp-content/uploads/2026/09/ex2606-dive04-arthropod.mp4",
-          "credit": "NOAA Ocean Exploration, 2026 American Samoa ROV + Mapping Exploration",
-          "license": "Public Domain (NOAA; source-site terms, credit per caption)",
-          "license_url": "https://oceanexplorer.noaa.gov/about/kit/",
-          "title": "HD version (mp4, 35.7 MB)",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Marine_snow.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Marine_snow.jpg",
+          "credit": "Marine snow.jpg by NOAA National Ocean Service, Public domain, via https://commons.wikimedia.org/wiki/File:Marine_snow.jpg",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S034-PA.jpg",
+          "source_dimensions": [
+            720,
+            720
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "NOAA National Ocean Service",
+          "panel_file": "assets/panels/collected/S034-PA.jpg"
+        },
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Expn0686_(14526221693).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Expn0686_(14526221693).jpg",
+          "credit": "Expn0686 (14526221693).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expn0686_(14526221693).jpg",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S034-PB.jpg",
           "source_dimensions": [
             1920,
             1080
           ],
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit."
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "NOAA Photo Library",
+          "panel_file": "assets/panels/collected/S034-PB.jpg"
         }
       ],
-      "sha256": "89f586012a1347e4302e886441faf315236e665de68d42fef685f3c576f3af13",
-      "fit_review": "pending_manual_visual_check"
+      "generated_panels": [],
+      "sha256": "1ba6d11aa1f80a06c0c730bf556e0a21d6dbf4f10eb1ee310cf54a7019b74889",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S034-PA.jpg",
+        "assets/panels/collected/S034-PB.jpg"
+      ]
+    },
+    {
+      "scene": "S035",
+      "status": "collected",
+      "file": "assets/collected/S035.jpg",
+      "asset_count": 2,
+      "required_panels": 2,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Cyclothone-hires.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Cyclothone-hires.jpg",
+          "credit": "NOAA Office of Ocean Exploration and Research",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S035.jpg",
+          "source_dimensions": [
+            1920,
+            1080
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "Cyclothone-hires.jpg by NOAA Office of Ocean Exploration and Research, Public domain, via https://commons.wikimedia.org/wiki/File:Cyclothone-hires.jpg",
+          "panel_file": "assets/panels/collected/S035.jpg"
+        },
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2922)_001.jpeg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2922)_001.jpeg",
+          "credit": "Corbari L.",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S035-PB.jpg",
+          "source_dimensions": [
+            4288,
+            2848
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "File:Bathynomus giganteus (MNHN-IU-2013-2922) 001.jpeg by Corbari L., CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2922)_001.jpeg",
+          "panel_file": "assets/panels/collected/S035-PB.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "41bd3fdc4314210f024cd92fc924f7b3124a7dc293577cf50f99683c07c2c42e",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S035.jpg",
+        "assets/panels/collected/S035-PB.jpg"
+      ]
+    },
+    {
+      "scene": "S036",
+      "status": "collected",
+      "file": "assets/collected/S036.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Marinesnow-splash.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Marinesnow-splash.jpg",
+          "credit": "NOAA National Ocean Service",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S036.jpg",
+          "source_dimensions": [
+            1280,
+            720
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "Marinesnow-splash.jpg by NOAA National Ocean Service, Public domain, via https://commons.wikimedia.org/wiki/File:Marinesnow-splash.jpg",
+          "panel_file": "assets/panels/collected/S036.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "21d45ca51876033dcfaf8d7689755e89c3b8dc2e933d0ee7fa59e6ee2cdf0538",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S036.jpg"
+      ]
     },
     {
       "scene": "S037",
@@ -779,6 +1084,356 @@
       "fit_review": "pending_manual_visual_check"
     },
     {
+      "scene": "S038",
+      "status": "collected",
+      "file": "assets/collected/S038.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Food_web_in_the_Gulf_of_Naples_in_eutrophic_and_oligotrophic_summer_conditions_-_oo_297117.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Food_web_in_the_Gulf_of_Naples_in_eutrophic_and_oligotrophic_summer_conditions_-_oo_297117.jpg",
+          "credit": "Food web in the Gulf of Naples in eutrophic and oligotrophic summer conditions - oo 297117.jpg by Zingone A, D’Alelio D, Mazzocchi MG, Montresor M, Sarno D, LTER-MC team (2019), CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Food_web_in_the_Gulf_of_Naples_in_eutrophic_and_oligotrophic_summer_conditions_-_oo_297117.jpg",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S038.jpg",
+          "source_dimensions": [
+            1512,
+            1329
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "Zingone A, D’Alelio D, Mazzocchi MG, Montresor M, Sarno D, LTER-MC team (2019)",
+          "panel_file": "assets/panels/collected/S038.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "104b8daf3785ab63f9b7b2a05445d49d3273cbc0c42ce99d83d201243650452e",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S038.jpg"
+      ]
+    },
+    {
+      "scene": "S039",
+      "status": "collected",
+      "file": "assets/collected/S039.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S039.jpg",
+          "reason": "マリンスノー接写の distinct な実写がPD/CC BY候補にないため生成",
+          "method": "AI-generated according to master_credits.json",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "1ae4aeb1dce04f2a3df85b396f22bbd6d8cc1287c6ed0c7bb058e03f492ed325",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S039.jpg"
+      ]
+    },
+    {
+      "scene": "S040",
+      "status": "collected",
+      "file": "assets/collected/S040.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S040.jpg",
+          "reason": "マリンスノーのPD/CC BY候補は実質2点のみでS034-PA/S036に充当済み。3点目の distinct な実写がないため生成で補充",
+          "method": "AI-generated, according to handoff record",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "d916bc3c05c1f58ac6d8bd6cd9d401d88fd92e8944574c50e914ef3f053e8c6d",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S040.jpg"
+      ]
+    },
+    {
+      "scene": "S041",
+      "status": "collected",
+      "file": "assets/collected/S041.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Whalefall_hires.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Whalefall_hires.jpg",
+          "credit": "Craig Smith NOAA",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S041.jpg",
+          "source_dimensions": [
+            2048,
+            1536
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "Whalefall hires.jpg by Craig Smith NOAA, Public domain, via https://commons.wikimedia.org/wiki/File:Whalefall_hires.jpg",
+          "panel_file": "assets/panels/collected/S041.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "0ee42da70698196211a3413ce03862c01ade60da9d5e99bc4b7d8899d33d1dec",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S041.jpg"
+      ]
+    },
+    {
+      "scene": "S042",
+      "status": "collected",
+      "file": "assets/collected/S042.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_Octopuses_(49050941487).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_Octopuses_(49050941487).jpg",
+          "credit": "National Marine Sanctuaries",
+          "license": "CC BY 2.0",
+          "license_url": "",
+          "title": "S042.jpg",
+          "source_dimensions": [
+            1851,
+            1093
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "MBNMS Whale Fall Octopuses (49050941487).jpg by National Marine Sanctuaries, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_Octopuses_(49050941487).jpg",
+          "panel_file": "assets/panels/collected/S042.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "97fd0e33f66f10ddb370289132f1303928cffff75846c2bf5edbfa4923e89a1d",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S042.jpg"
+      ]
+    },
+    {
+      "scene": "S043",
+      "status": "collected",
+      "file": "assets/collected/S043.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
+          "credit": "MBNMS Whale Fall at Davidson Seamount (49639154888).jpg by National Marine Sanctuaries, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
+          "license": "CC BY 2.0",
+          "license_url": "",
+          "title": "S043.jpg",
+          "source_dimensions": [
+            1920,
+            1080
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "National Marine Sanctuaries",
+          "panel_file": "assets/panels/collected/S043.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "a288d588c0cea4f273398def0d462e1667f6a632ecdc6ee801ef6ffbb1a238ae",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S043.jpg"
+      ]
+    },
+    {
+      "scene": "S044",
+      "status": "collected",
+      "file": "assets/collected/S044.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
+          "credit": "National Marine Sanctuaries",
+          "license": "CC BY 2.0",
+          "license_url": "",
+          "title": "S044-R.jpg",
+          "source_dimensions": [
+            1920,
+            1080
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "File:MBNMS Whale Fall at Davidson Seamount (49639154888).jpg by National Marine Sanctuaries, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
+          "panel_file": "assets/panels/collected/S044-R.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "7fefd450f40d3b81c00c63b65fdd53b951b378645683e8e61ccb22d1b9c4de31",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S044-R.jpg"
+      ]
+    },
+    {
+      "scene": "S045",
+      "status": "collected",
+      "file": "assets/collected/S045.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S045.jpg",
+          "reason": "ダイオウグソクムシの摂食行動の実写がPD/CC BY候補にない（標本写真のみ）ため生成",
+          "method": "AI-generated according to master_credits.json",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "27463f4d483c9e26fbb677833037427120fffbd243dddefc3c1701da5efac57b",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S045.jpg"
+      ]
+    },
+    {
+      "scene": "S046",
+      "status": "collected",
+      "file": "assets/collected/S046.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S046.jpg",
+          "reason": "同上。摂食中の口器・脚の接写がPD/CC BY候補にないため生成",
+          "method": "AI-generated according to master_credits.json",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "3143df81bcf78492426211bb8fb9afdf725d6728c898d789d3bd7f5b8198453a",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S046.jpg"
+      ]
+    },
+    {
+      "scene": "S047",
+      "status": "collected",
+      "file": "assets/collected/S047.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://www.flickr.com/photos/98193606@N00/3989766534",
+          "media_url": "https://www.flickr.com/photos/98193606@N00/3989766534",
+          "credit": "vauvau",
+          "license": "CC BY 2.0",
+          "license_url": "",
+          "title": "S047.jpg",
+          "source_dimensions": [
+            1024,
+            686
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "Hong Kong Supermarket in Chinatown by vauvau, CC BY 2.0, via https://www.flickr.com/photos/98193606@N00/3989766534",
+          "panel_file": "assets/panels/collected/S047.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "5095410a87e8d972124b87ebe6ff1d8afcf18f5f6f009a83d60d1c730989c97b",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S047.jpg"
+      ]
+    },
+    {
+      "scene": "S048",
+      "status": "collected",
+      "file": "assets/collected/S048.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://www.flickr.com/photos/28040596@N08/3040275901",
+          "media_url": "https://www.flickr.com/photos/28040596@N08/3040275901",
+          "credit": "Rubbermaid Products",
+          "license": "CC BY 2.0",
+          "license_url": "",
+          "title": "S048-R.jpg",
+          "source_dimensions": [
+            768,
+            1024
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "Empty Pantry by Rubbermaid Products, CC BY 2.0, via https://www.flickr.com/photos/28040596@N08/3040275901",
+          "panel_file": "assets/panels/collected/S048-R.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "266f34a4c540dff7435a250d7eae41b4ea65fdcb408e0b5c20fee1e20b162c1e",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S048-R.jpg"
+      ]
+    },
+    {
       "scene": "S049",
       "status": "collected",
       "file": "assets/collected/S049.jpg",
@@ -803,28 +1458,425 @@
       "fit_review": "pending_manual_visual_check"
     },
     {
-      "scene": "S062",
+      "scene": "S050",
       "status": "collected",
-      "file": "assets/collected/S062.jpg",
+      "file": "assets/collected/S050.jpg",
       "asset_count": 1,
-      "required_panels": 2,
+      "required_panels": 1,
       "sources": [
         {
-          "source_page": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-express-ex2301-gallery-media-ex2301-dive06-fish/",
-          "media_url": "https://oceanexplorer.noaa.gov/wp-content/uploads/2023/04/ex2301-dive06-fish-hires.jpg",
-          "credit": "NOAA Ocean Exploration, 2023 Shakedown + EXPRESS West Coast Exploration",
-          "license": "Public Domain (NOAA; source-site terms, credit per caption)",
-          "license_url": "https://oceanexplorer.noaa.gov/about/kit/",
-          "title": "Download largest version (jpg, 1.0 MB)",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_dorsal_views_(Fig._2).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_dorsal_views_(Fig._2).jpg",
+          "credit": "Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S050.jpg",
+          "source_dimensions": [
+            1830,
+            2259
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "File:Bathynomus jamesi dorsal views (Fig. 2).jpg by Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_jamesi_dorsal_views_(Fig._2).jpg",
+          "panel_file": "assets/panels/collected/S050.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "bbeb625d7f30a05a186dd3234a38eb5c14f84589d8df209cae42cba22ac001b2",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S050.jpg"
+      ]
+    },
+    {
+      "scene": "S051",
+      "status": "collected",
+      "file": "assets/collected/S051.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/w/index.php?curid=159664702",
+          "media_url": "https://commons.wikimedia.org/w/index.php?curid=159664702",
+          "credit": "Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S051.jpg",
+          "source_dimensions": [
+            1816,
+            2334
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "Bathynomus vaderi holotype and Bathynomus jamesi closeups (Fig. 9) by Peter K. L. Ng, Conni M. Sidabalok, Thanh Son Nguyen, CC BY 4.0, via https://commons.wikimedia.org/w/index.php?curid=159664702",
+          "panel_file": "assets/panels/collected/S051.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "7d1a014e916be9b5a83fa108bcf2222e5a7b74825f870dbbf83a18ec83af31da",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S051.jpg"
+      ]
+    },
+    {
+      "scene": "S052",
+      "status": "collected",
+      "file": "assets/collected/S052.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Melanocetus_johnsonii1.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Melanocetus_johnsonii1.jpg",
+          "credit": "Melanocetus johnsonii1.jpg by Ryan Somma, CC BY 2.0, via https://commons.wikimedia.org/wiki/File:Melanocetus_johnsonii1.jpg",
+          "license": "CC BY 2.0",
+          "license_url": "",
+          "title": "S052.jpg",
+          "source_dimensions": [
+            1024,
+            683
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "Ryan Somma",
+          "panel_file": "assets/panels/collected/S052.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "26dc47276f92fd199a6923931e852a8510135cd1dd8f0b2c1038d3078a31b907",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S052.jpg"
+      ]
+    },
+    {
+      "scene": "S053",
+      "status": "collected",
+      "file": "assets/collected/S053.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Expn0031_(14318884118).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Expn0031_(14318884118).jpg",
+          "credit": "Expn0031 (14318884118).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expn0031_(14318884118).jpg",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S053.jpg",
           "source_dimensions": [
             1920,
             1080
           ],
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit."
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "NOAA Photo Library",
+          "panel_file": "assets/panels/collected/S053.jpg"
         }
       ],
-      "sha256": "c1adf386148637827b98952c807c8609cccaa0c2a26c1d0734bb38e076654c0b",
-      "fit_review": "pending_manual_visual_check"
+      "generated_panels": [],
+      "sha256": "5a161e06ed5c1de40f8f54b6d4d78f1a7f272f3eff4961528dbaa6072bdce470",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S053.jpg"
+      ]
+    },
+    {
+      "scene": "S054",
+      "status": "collected",
+      "file": "assets/collected/S054.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S054.jpg",
+          "reason": "Alicellaの海底での実写はCC BY-SAのみ。CC BY図版内写真はS081-PAに充当したため生成",
+          "method": "AI-generated according to master_credits.json",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "ec6ff8e2473f984665ae0c990c7691c41a46e992f41f74f2610b560a6061b972",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S054.jpg"
+      ]
+    },
+    {
+      "scene": "S055",
+      "status": "collected",
+      "file": "assets/collected/S055.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S055.jpg",
+          "reason": "Alicellaのスケール比較実写はCC BY-SAのみのため生成",
+          "method": "AI-generated according to master_credits.json",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "35d721e00423e0f04befe59a58ad682c3ae24f1b5fc6553e91502eadd62143b1",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S055.jpg"
+      ]
+    },
+    {
+      "scene": "S056",
+      "status": "collected",
+      "file": "assets/collected/S056.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S056.jpg",
+          "reason": "Alicellaの摂食実写はCC BY-SAのみのため生成",
+          "method": "AI-generated according to master_credits.json",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "d77fa328d8402d8c2dab979759850a4821a00e3e3bb97b6c0a864432fa90551a",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S056.jpg"
+      ]
+    },
+    {
+      "scene": "S057",
+      "status": "collected",
+      "file": "assets/collected/S057.jpg",
+      "asset_count": 2,
+      "required_panels": 2,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Expl0397_-_Flickr_-_NOAA_Photo_Library.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Expl0397_-_Flickr_-_NOAA_Photo_Library.jpg",
+          "credit": "Expl0397 - Flickr - NOAA Photo Library.jpg by Russ Hopcroft. Credit: Hidden Ocean 2005 Expedition: NOAA Office of Ocean Exploration., Public domain, via https://commons.wikimedia.org/wiki/File:Expl0397_-_Flickr_-_NOAA_Photo_Library.jpg",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S057-PB.jpg",
+          "source_dimensions": [
+            2264,
+            3236
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "Russ Hopcroft. Credit: Hidden Ocean 2005 Expedition: NOAA Office of Ocean Exploration.",
+          "panel_file": "assets/panels/collected/S057-PB.jpg"
+        }
+      ],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S057.jpg",
+          "reason": "同上。Alicellaパネルを生成で補充（もう一方のパネルは収集済みの小型ヨコエビ）",
+          "method": "AI-generated according to master_credits.json",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "5e7e287d0fdfee1b9fa856bbc50e6003ac337726e649030865d8b6d2055c90b2",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S057.jpg",
+        "assets/panels/collected/S057-PB.jpg"
+      ]
+    },
+    {
+      "scene": "S058",
+      "status": "collected",
+      "file": "assets/collected/S058.jpg",
+      "asset_count": 2,
+      "required_panels": 2,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Expl6382_(9734088377).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Expl6382_(9734088377).jpg",
+          "credit": "Expl6382 (9734088377).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expl6382_(9734088377).jpg",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S058-PA.jpg",
+          "source_dimensions": [
+            1920,
+            1080
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "NOAA Photo Library",
+          "panel_file": "assets/panels/collected/S058-PA.jpg"
+        },
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Zoanthids_and_barnacles.jpeg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Zoanthids_and_barnacles.jpeg",
+          "credit": "File:Zoanthids and barnacles.jpeg by Paresh Poriya (Saurashtra University), CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Zoanthids_and_barnacles.jpeg",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S058-PB.jpg",
+          "source_dimensions": [
+            3648,
+            2736
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "Paresh Poriya (Saurashtra University)",
+          "panel_file": "assets/panels/collected/S058-PB.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "0b7a3e66cadfd58cd62d1c30f7998a98950fa62dc9d7ff5dc846b375bcf1a359",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S058-PA.jpg",
+        "assets/panels/collected/S058-PB.jpg"
+      ]
+    },
+    {
+      "scene": "S059",
+      "status": "collected",
+      "file": "assets/collected/S059.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S059.jpg",
+          "reason": "Generated: collection attempts exhausted (429 throttling, only 7-10 candidates) for the deep-sea biodiversity seafloor screen.",
+          "method": "AI-generated, according to generation_record.json",
+          "original_dimensions": [
+            2048,
+            1100
+          ]
+        }
+      ],
+      "sha256": "c790e0312905ef69910b09f8a1e65b792f6cb02d3422dc0d67cc6c7f0053b9b0",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S059.jpg"
+      ]
+    },
+    {
+      "scene": "S061",
+      "status": "collected",
+      "file": "assets/collected/S061.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S061.jpg",
+          "reason": "深海カニの脱皮の実写がPD/CC BY候補にない（浜辺のカブトガニの殻と料理写真のみ）ため生成",
+          "method": "AI-generated according to master_credits.json",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "9b2b5377415439a3d983f4944cb4074392b343a2103ce7b4e87b7a6175b91676",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S061.jpg"
+      ]
+    },
+    {
+      "scene": "S062",
+      "status": "collected",
+      "file": "assets/collected/S062.jpg",
+      "asset_count": 2,
+      "required_panels": 2,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Argyrops_filamentosus_(Ifremer_00537-64869_-_9187).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Argyrops_filamentosus_(Ifremer_00537-64869_-_9187).jpg",
+          "credit": "File:Argyrops filamentosus (Ifremer 00537-64869 - 9187).jpg by Marc Taquet, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Argyrops_filamentosus_(Ifremer_00537-64869_-_9187).jpg",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S062-PA.jpg",
+          "source_dimensions": [
+            2976,
+            1988
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "Marc Taquet",
+          "panel_file": "assets/panels/collected/S062-PA.jpg"
+        },
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Crabe_rouge_des_profondeurs_(Chaceon_affinis)_(Ifremer_00575-68701).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Crabe_rouge_des_profondeurs_(Chaceon_affinis)_(Ifremer_00575-68701).jpg",
+          "credit": "Crabe rouge des profondeurs (Chaceon affinis) (Ifremer 00575-68701).jpg by null, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Crabe_rouge_des_profondeurs_(Chaceon_affinis)_(Ifremer_00575-68701).jpg",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S062-PB.jpg",
+          "source_dimensions": [
+            3072,
+            2304
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "null",
+          "panel_file": "assets/panels/collected/S062-PB.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "df78ed5b553a08a81c02b84af3daa5589e2c0922aea4c434e2d9207f0d4db27b",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S062-PA.jpg",
+        "assets/panels/collected/S062-PB.jpg"
+      ]
     },
     {
       "scene": "S063",
@@ -851,6 +1903,164 @@
       "fit_review": "pending_manual_visual_check"
     },
     {
+      "scene": "S064",
+      "status": "collected",
+      "file": "assets/collected/S064.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Expl9749_(14318998877).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Expl9749_(14318998877).jpg",
+          "credit": "Expl9749 (14318998877).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expl9749_(14318998877).jpg",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S064.jpg",
+          "source_dimensions": [
+            1920,
+            1080
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "NOAA Photo Library",
+          "panel_file": "assets/panels/collected/S064.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "8e9d01352620cf298f669671a3a6e3cdc596f18e63d97d74dcb26483ff258abd",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S064.jpg"
+      ]
+    },
+    {
+      "scene": "S067",
+      "status": "collected",
+      "file": "assets/collected/S067.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:2019-03-03_20-06-50_Sonne_SO268-1_020ROV02_nurLogo_klein_original(1).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:2019-03-03_20-06-50_Sonne_SO268-1_020ROV02_nurLogo_klein_original(1).jpg",
+          "credit": "ROV KIEL 6000, GEOMAR",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S067.jpg",
+          "source_dimensions": [
+            6544,
+            3680
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "File:2019-03-03 20-06-50 Sonne SO268-1 020ROV02 nurLogo klein original(1).jpg by ROV KIEL 6000, GEOMAR, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:2019-03-03_20-06-50_Sonne_SO268-1_020ROV02_nurLogo_klein_original(1).jpg",
+          "panel_file": "assets/panels/collected/S067.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "bddcf1aa91ed02e2ff516cb04bbf014be549d2b929e5247d171ea61de2994577",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S067.jpg"
+      ]
+    },
+    {
+      "scene": "S068",
+      "status": "collected",
+      "file": "assets/collected/S068.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S068.jpg",
+          "reason": "Generated: a collected Public Domain image existed but its source record could not be identified after two recovery passes, so it was dropped and generated instead.",
+          "method": "AI-generated, according to generation_record.json",
+          "original_dimensions": [
+            2048,
+            1100
+          ]
+        }
+      ],
+      "sha256": "a4186989862e3da22ee5d57284539c31332b0249d2f507308763166fb65e35d2",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S068.jpg"
+      ]
+    },
+    {
+      "scene": "S069",
+      "status": "collected",
+      "file": "assets/collected/S069.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Bathysaurus_mollis_NOAA.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Bathysaurus_mollis_NOAA.jpg",
+          "credit": "Bathysaurus mollis NOAA.jpg by NOAA Okeanos Explorer, Public domain, via https://commons.wikimedia.org/wiki/File:Bathysaurus_mollis_NOAA.jpg",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S069.jpg",
+          "source_dimensions": [
+            1920,
+            1080
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "NOAA Okeanos Explorer",
+          "panel_file": "assets/panels/collected/S069.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "63c96b449d040fe14db3da2aca641a66ced0a231b165636ff4f77bf8faa3b157",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S069.jpg"
+      ]
+    },
+    {
+      "scene": "S073",
+      "status": "collected",
+      "file": "assets/collected/S073.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S073.jpg",
+          "reason": "海洋の酸素分布図がPD/CC BY候補にない（窒素循環図のみ）のため、文字なし模式図を生成",
+          "method": "AI-generated according to master_credits.json",
+          "original_dimensions": [
+            1120,
+            2240
+          ]
+        }
+      ],
+      "sha256": "9fba2ab010fadebf1ce6c8fb69a0cb4c50bc2f25ee99d4d12711b8497477957f",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S073.jpg"
+      ]
+    },
+    {
       "scene": "S075",
       "status": "collected",
       "file": "assets/collected/S075.jpg",
@@ -875,10 +2085,44 @@
       "fit_review": "pending_manual_visual_check"
     },
     {
+      "scene": "S076",
+      "status": "collected",
+      "file": "assets/collected/S076.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2920)_002.jpeg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2920)_002.jpeg",
+          "credit": "Corbari L.",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S076.jpg",
+          "source_dimensions": [
+            2508,
+            2452
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "File:Bathynomus giganteus (MNHN-IU-2013-2920) 002.jpeg by Corbari L., CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2920)_002.jpeg",
+          "panel_file": "assets/panels/collected/S076.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "61b7c82995739f9119d48b7c5eaef3042f47e1cca1ceae2e9581a377a78f5580",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S076.jpg"
+      ]
+    },
+    {
       "scene": "S077",
       "status": "collected",
       "file": "assets/collected/S077.jpg",
-      "asset_count": 1,
+      "asset_count": 3,
       "required_panels": 3,
       "sources": [
         {
@@ -893,40 +2137,370 @@
             1080
           ],
           "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained."
+        },
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Example_of_mesopelagic_catch.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Example_of_mesopelagic_catch.jpg",
+          "credit": "File:Example of mesopelagic catch.jpg by HulloThere, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Example_of_mesopelagic_catch.jpg",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S077-PB.jpg",
+          "source_dimensions": [
+            2048,
+            1536
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "HulloThere",
+          "panel_file": "assets/panels/collected/S077-PB.jpg"
+        },
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Expl2412_(9737304152).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Expl2412_(9737304152).jpg",
+          "credit": "Expl2412 (9737304152).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expl2412_(9737304152).jpg",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S077-PC.jpg",
+          "source_dimensions": [
+            1920,
+            1080
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "NOAA Photo Library",
+          "panel_file": "assets/panels/collected/S077-PC.jpg"
         }
       ],
-      "sha256": "cddb5f26706c1bc2f9a9dbeb832fa0a0bedfc2da2bd1fa9f21c24cdfe7487eca",
-      "fit_review": "pending_manual_visual_check"
+      "generated_panels": [],
+      "sha256": "940e9fd23677f947d7f03b7ef24ee60dac58bdb760659e2cf84445f0efcfd482",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S077-PB.jpg",
+        "assets/panels/collected/S077-PC.jpg"
+      ]
+    },
+    {
+      "scene": "S078",
+      "status": "collected",
+      "file": "assets/collected/S078.jpg",
+      "asset_count": 2,
+      "required_panels": 2,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-i.png",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-i.png",
+          "credit": "Unidentified amphipod - journal.pone.0053590.g003-i.png by Bienhold C, Pop Ristova P, Wenzhöfer F, Dittmar T, Boetius A, CC BY 2.5, via https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-i.png",
+          "license": "CC BY 2.5",
+          "license_url": "",
+          "title": "S078-PB.jpg",
+          "source_dimensions": [
+            307,
+            222
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "Bienhold C, Pop Ristova P, Wenzhöfer F, Dittmar T, Boetius A",
+          "panel_file": "assets/panels/collected/S078-PB.jpg"
+        }
+      ],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S078-PA.jpg",
+          "reason": "Alicella実写はCC BY-SAのみ。CC BY図版内写真はS081-PAに充当したため生成",
+          "method": "AI-generated according to master_credits.json",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "9ce5920de0d3e4dfc128178815f3b7aff2906f2bf87d23c1b8d31a6afa3d7bde",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S078-PA.jpg",
+        "assets/panels/collected/S078-PB.jpg"
+      ]
+    },
+    {
+      "scene": "S079",
+      "status": "collected",
+      "file": "assets/collected/S079.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:2019-04-10_17-28-09_Sonne_SO268-2_118ROV17_OnlyLogo_klein_original(1).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:2019-04-10_17-28-09_Sonne_SO268-2_118ROV17_OnlyLogo_klein_original(1).jpg",
+          "credit": "ROV KIEL 6000, GEOMAR",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S079.jpg",
+          "source_dimensions": [
+            6544,
+            3680
+          ],
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "File:2019-04-10 17-28-09 Sonne SO268-2 118ROV17 OnlyLogo klein original(1).jpg by ROV KIEL 6000, GEOMAR, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:2019-04-10_17-28-09_Sonne_SO268-2_118ROV17_OnlyLogo_klein_original(1).jpg",
+          "panel_file": "assets/panels/collected/S079.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "5235bc3652f5d334a71e0639276820b715f21eb037078bbd833df673c836a30b",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S079.jpg"
+      ]
+    },
+    {
+      "scene": "S080",
+      "status": "collected",
+      "file": "assets/collected/S080.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Unidentified_holothurian.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Unidentified_holothurian.jpg",
+          "credit": "Unidentified holothurian.jpg by NOAA Okeanos Explorer, Public domain, via https://commons.wikimedia.org/wiki/File:Unidentified_holothurian.jpg",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S080.jpg",
+          "source_dimensions": [
+            960,
+            588
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "NOAA Okeanos Explorer",
+          "panel_file": "assets/panels/collected/S080.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "c37c200a3c58eec78c3f93191f5a2419438a084d6c7b07a9de3ad302e5eeb457",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S080.jpg"
+      ]
+    },
+    {
+      "scene": "S081",
+      "status": "collected",
+      "file": "assets/collected/S081.jpg",
+      "asset_count": 2,
+      "required_panels": 2,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Alicella_Sampling_sites.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Alicella_Sampling_sites.jpg",
+          "credit": "Alicella Sampling sites.jpg (specimen photo crop) by Paige J. Maroni, Yakufu Niyazi, and Alan Jamieson, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Alicella_Sampling_sites.jpg",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S081-PA.jpg",
+          "source_dimensions": [
+            480,
+            277
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "Paige J. Maroni, Yakufu Niyazi, and Alan Jamieson",
+          "panel_file": "assets/panels/collected/S081-PA.jpg"
+        },
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-k.png",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-k.png",
+          "credit": "Unidentified amphipod - journal.pone.0053590.g003-k.png by Bienhold C, Pop Ristova P, Wenzhöfer F, Dittmar T, Boetius A, CC BY 2.5, via https://commons.wikimedia.org/wiki/File:Unidentified_amphipod_-_journal.pone.0053590.g003-k.png",
+          "license": "CC BY 2.5",
+          "license_url": "",
+          "title": "S081-PB.jpg",
+          "source_dimensions": [
+            302,
+            225
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "Bienhold C, Pop Ristova P, Wenzhöfer F, Dittmar T, Boetius A",
+          "panel_file": "assets/panels/collected/S081-PB.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "048154c12fcf91161e3d6076b733b0cb56a8c5744356d44f5ea5d9f6becef23a",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S081-PA.jpg",
+        "assets/panels/collected/S081-PB.jpg"
+      ]
     },
     {
       "scene": "S082",
       "status": "collected",
       "file": "assets/collected/S082.jpg",
-      "asset_count": 1,
+      "asset_count": 2,
       "required_panels": 2,
       "sources": [
         {
-          "source_page": "https://earthobservatory.nasa.gov/images/149384/coloring-the-south-atlantic",
-          "media_url": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/149000/149384/sambloomzm_amo_202224_lrg.jpg",
-          "credit": "NASA Earth Observatory / Lauren Dauphin",
-          "license": "Public Domain (NASA; reproduction guidelines)",
-          "license_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
-          "title": "sambloomzm_amo_202224_lrg.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Ocean_phytoplankton_bloom_feed_by_the_Amazon_River.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Ocean_phytoplankton_bloom_feed_by_the_Amazon_River.jpg",
+          "credit": "NASA Goddard Space Flight Center",
+          "license": "Public Domain",
+          "license_url": "",
+          "title": "S082-PA.jpg",
           "source_dimensions": [
-            2652,
-            2480
+            1280,
+            720
           ],
-          "rights_basis": "NASA source page identifies this image as NASA-produced; no third-party copyright notice."
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "credit_line": "File:Ocean phytoplankton bloom feed by the Amazon River.jpg by NASA Goddard Space Flight Center, Public Domain, via https://commons.wikimedia.org/wiki/File:Ocean_phytoplankton_bloom_feed_by_the_Amazon_River.jpg",
+          "panel_file": "assets/panels/collected/S082-PA.jpg"
         }
       ],
-      "sha256": "74608058e8d186fe46d404ab6b3be4ef94e39f70064fe7bb2b6ebc6ca09605d0",
-      "fit_review": "pending_manual_visual_check"
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S082-PB.jpg",
+          "reason": "従来パネルが海面の衛星画像でPAと重複し、海底側の対比になっていなかった。深海底の distinct な実写候補がないため生成で補充",
+          "method": "AI-generated, according to handoff record",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "3e8f18e2232abfc8e672c42a055466c47b6901f0a73c5142371724e0d204bbf9",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S082-PA.jpg",
+        "assets/panels/ai-generated/S082-PB.jpg"
+      ]
+    },
+    {
+      "scene": "S083",
+      "status": "collected",
+      "file": "assets/collected/S083.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_hi-res.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_hi-res.jpg",
+          "credit": "Bathynomus giganteus hi-res.jpg by NOAA, Public domain, via https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_hi-res.jpg",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S083.jpg",
+          "source_dimensions": [
+            1920,
+            1080
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "NOAA",
+          "panel_file": "assets/panels/collected/S083.jpg"
+        }
+      ],
+      "generated_panels": [],
+      "sha256": "c6aa4f8d540c0b77b69ce0fa3586b500ebfba866a53667a3ace6784cb5f03b1e",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S083.jpg"
+      ]
+    },
+    {
+      "scene": "S084",
+      "status": "collected",
+      "file": "assets/collected/S084.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S084-R.jpg",
+          "reason": "広い暗い深海底の実写がPD/CC BY候補にない（地図・夕景・陸上岩のみ）ため生成で補充",
+          "method": "AI-generated, according to handoff record",
+          "original_dimensions": [
+            2352,
+            1008
+          ]
+        }
+      ],
+      "sha256": "df267b0c27dece218ea5f3eecf9c78f392391968b02a03d9cfe38fe6305da859",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S084-R.jpg"
+      ]
+    },
+    {
+      "scene": "S085",
+      "status": "collected",
+      "file": "assets/collected/S085.jpg",
+      "asset_count": 2,
+      "required_panels": 2,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Expl5622_(9734254059).jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Expl5622_(9734254059).jpg",
+          "credit": "Expl5622 (9734254059).jpg by NOAA Photo Library, Public domain, via https://commons.wikimedia.org/wiki/File:Expl5622_(9734254059).jpg",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S085-PB.jpg",
+          "source_dimensions": [
+            1920,
+            1080
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "NOAA Photo Library",
+          "panel_file": "assets/panels/collected/S085-PB.jpg"
+        }
+      ],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S085-PA.jpg",
+          "reason": "海底へ落ちるマリンスノーの distinct な実写が候補枯渇のため生成",
+          "method": "AI-generated according to master_credits.json",
+          "original_dimensions": [
+            1920,
+            1280
+          ]
+        }
+      ],
+      "sha256": "ff3b8064cfc7a43da7fa78a0552760e18b3e10e065984c4bb4dd020d42dbae5e",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S085-PA.jpg",
+        "assets/panels/collected/S085-PB.jpg"
+      ]
     },
     {
       "scene": "S086",
       "status": "collected",
       "file": "assets/collected/S086.jpg",
-      "asset_count": 1,
+      "asset_count": 2,
       "required_panels": 2,
       "sources": [
         {
@@ -941,913 +2515,115 @@
             1080
           ],
           "rights_basis": "NASA source page identifies this image as NASA-produced; no third-party copyright notice."
+        },
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Expl690144489x800x800.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Expl690144489x800x800.jpg",
+          "credit": "Expl690144489x800x800.jpg by NOAA Okeanos Explorer Program, Mid-Cayman Rise Expedition 2011, Public domain, via https://commons.wikimedia.org/wiki/File:Expl690144489x800x800.jpg",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S086-PB.jpg",
+          "source_dimensions": [
+            800,
+            450
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "NOAA Okeanos Explorer Program, Mid-Cayman Rise Expedition 2011",
+          "panel_file": "assets/panels/collected/S086-PB.jpg"
         }
       ],
-      "sha256": "77dbd1bd41b5352ed43fe381ae4137aecd1e48bf54097f7b225f52c499e38c7c",
-      "fit_review": "pending_manual_visual_check"
-    }
-  ],
-  "missing": [
-    {
-      "scene": "S009",
-      "search_en": "deep sea ROV illuminated animal giant isopod",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-at-work/",
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/"
+      "generated_panels": [],
+      "sha256": "5b8eead4ccc5035141541a6db954f700bf8d3f40d8a526106517f4909990058f",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
       ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (1024, 576) below 1920x1080",
-        "image resolution (1024, 665) below 1920x1080",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S016",
-      "search_en": "Alicella gigantea full body amphipod 7000m",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:7000m_Super-G_in_hand.jpg"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": []
-    },
-    {
-      "scene": "S017",
-      "search_en": "Alicella gigantea amphipod in human hand scale",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_in_hand.jpg"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/2/2f/Alicella_gigantea_in_hand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-      ]
-    },
-    {
-      "scene": "S028",
-      "search_en": "giant isopod walking crawling moving on seafloor video",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/video-playlist-ex1711-giant-isopod/",
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1907-dailyupdates-nov18-media-dive11-isopod/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "video still is below the required resolution or could not be extracted",
-        "video still is below the required resolution or could not be extracted",
-        "video still is below the required resolution or could not be extracted",
-        "video still is below the required resolution or could not be extracted",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S032",
-      "search_en": "Bathynomus jamesi specimen Fig 1B morphology genome paper",
-      "sources_attempted": [
-        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9107163/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (708, 826) below 1920x1080",
-        "image resolution (780, 665) below 1920x1080",
-        "image resolution (779, 462) below 1920x1080",
-        "image resolution (780, 603) below 1920x1080",
-        "image resolution (780, 647) below 1920x1080",
-        "image resolution (780, 775) below 1920x1080"
-      ]
-    },
-    {
-      "scene": "S035",
-      "search_en": "small deep sea bristlemouth fish and large giant isopod size contrast",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg",
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (1024, 576) below 1920x1080",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S036",
-      "search_en": "marine snow falling particles underwater deep sea",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_(Ifremer_00401-51200).jpg",
-        "https://oceanexplorer.noaa.gov/ocean-fact/marinesnow/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/9/9b/Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_%28Ifremer_00401-51200%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "video still is below the required resolution or could not be extracted",
-        "image resolution (380, 285) below 1920x1080",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S038",
-      "search_en": "marine food web phytoplankton zooplankton fish diagram",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Arctic_marine_food_web.jpg"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": []
-    },
-    {
-      "scene": "S039",
-      "search_en": "close up marine snow particles falling underwater",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_(Ifremer_00401-51200).jpg",
-        "https://oceanexplorer.noaa.gov/ocean-fact/marinesnow/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/9/9b/Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_%28Ifremer_00401-51200%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "video still is below the required resolution or could not be extracted",
-        "image resolution (380, 285) below 1920x1080",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S040",
-      "search_en": "marine snow particles deep seafloor falling",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/ocean-fact/marinesnow/",
-        "https://commons.wikimedia.org/wiki/File:Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_(Ifremer_00401-51200).jpg"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/9/9b/Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_%28Ifremer_00401-51200%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "video still is below the required resolution or could not be extracted",
-        "image resolution (380, 285) below 1920x1080",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S041",
-      "search_en": "whale fall skeleton deep sea seabed ROV light",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Whalefall_hires.jpg",
-        "https://commons.wikimedia.org/wiki/Category:Whale_fall"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": []
-    },
-    {
-      "scene": "S042",
-      "search_en": "whale fall scavengers octopus crabs on skeleton deep sea",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg",
-        "https://commons.wikimedia.org/wiki/Category:Whale_fall"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": []
-    },
-    {
-      "scene": "S043",
-      "search_en": "whale fall octopuses scavengers skeleton close view",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_Octopuses_(49050941487).jpg",
-        "https://commons.wikimedia.org/wiki/Category:Whale_fall"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": []
-    },
-    {
-      "scene": "S044",
-      "search_en": "whale fall skeleton later succession scavengers deep sea",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/Category:Whale_fall",
-        "https://commons.wikimedia.org/wiki/File:Whalefall_hires.jpg"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": []
-    },
-    {
-      "scene": "S045",
-      "search_en": "giant isopod feeding eating fish head close up",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1907-dailyupdates-nov18-media-dive11-isopod/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "video still is below the required resolution or could not be extracted",
-        "video still is below the required resolution or could not be extracted",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S046",
-      "search_en": "giant isopod feeding mouthparts fish head closeup",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1907-dailyupdates-nov18-media-dive11-isopod/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "video still is below the required resolution or could not be extracted",
-        "video still is below the required resolution or could not be extracted",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S047",
-      "search_en": "supermarket shelves stocked food groceries aisle",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Supermarket_shelves.jpg"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": []
-    },
-    {
-      "scene": "S048",
-      "search_en": "sparse empty supermarket food shelves",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Empty_shelves_at_Yonghui_Supermarket_before_closing.jpg",
-        "https://commons.wikimedia.org/wiki/Category:Empty_shelves"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": []
-    },
-    {
-      "scene": "S050",
-      "search_en": "Bathynomus jamesi genome paper Fig 1 morphology specimen image",
-      "sources_attempted": [
-        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9107163/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (708, 826) below 1920x1080",
-        "image resolution (780, 665) below 1920x1080",
-        "image resolution (779, 462) below 1920x1080",
-        "image resolution (780, 603) below 1920x1080",
-        "image resolution (780, 647) below 1920x1080",
-        "image resolution (780, 775) below 1920x1080"
-      ]
-    },
-    {
-      "scene": "S051",
-      "search_en": "Bathynomus jamesi Fig 5 stomach digestive organs tissue analysis",
-      "sources_attempted": [
-        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9107163/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (708, 826) below 1920x1080",
-        "image resolution (780, 665) below 1920x1080",
-        "image resolution (779, 462) below 1920x1080",
-        "image resolution (780, 603) below 1920x1080",
-        "image resolution (780, 647) below 1920x1080",
-        "image resolution (780, 775) below 1920x1080"
-      ]
-    },
-    {
-      "scene": "S052",
-      "search_en": "deep sea shark large predator fish dark underwater",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/Category:Deep-sea_sharks",
-        "https://oceanexplorer.noaa.gov/multimedia/deep-sea-shark/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (1024, 576) below 1920x1080",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S053",
-      "search_en": "deep sea predator fish small crustacean prey",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Ophidiid_fish.jpg",
-        "https://commons.wikimedia.org/wiki/Category:Deep-sea_fish",
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-seascape-alaska-ex2304-gallery-media-dive07-crab-eating/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "video still is below the required resolution or could not be extracted",
-        "video still is below the required resolution or could not be extracted",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S054",
-      "search_en": "Alicella gigantea full body deep sea amphipod",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/4/45/Alicella_Sampling_sites.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/6/6a/Alicella_gigantea_from_6700m_deep.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/3/3a/Alicella_gigantea_from_6700m_deep_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/7/7b/Alicella_gigantea_from_6200m.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/2/2f/Alicella_gigantea_in_hand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/3/35/Alicella_gigantea.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/7/72/Alicella_gigantea_feeding.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/5/5f/Live_Alicella_gigantea_feeding.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-      ]
-    },
-    {
-      "scene": "S055",
-      "search_en": "Alicella gigantea in human hand size comparison",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_in_hand.jpg",
-        "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/2/2f/Alicella_gigantea_in_hand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/6/6a/Alicella_gigantea_from_6700m_deep.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/3/3a/Alicella_gigantea_from_6700m_deep_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/4/45/Alicella_Sampling_sites.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/7/7b/Alicella_gigantea_from_6200m.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/3/35/Alicella_gigantea.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/7/72/Alicella_gigantea_feeding.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/5/5f/Live_Alicella_gigantea_feeding.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-      ]
-    },
-    {
-      "scene": "S056",
-      "search_en": "live Alicella gigantea feeding amphipod",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Live_Alicella_gigantea_feeding.jpg"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": []
-    },
-    {
-      "scene": "S057",
-      "search_en": "Alicella gigantea giant amphipod compared with small amphipod",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
-        "https://commons.wikimedia.org/wiki/File:Ceradocus_sellickensis,_Amphipod_no._J_18004.jpg"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/4/45/Alicella_Sampling_sites.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/6/6a/Alicella_gigantea_from_6700m_deep.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/3/3a/Alicella_gigantea_from_6700m_deep_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/7/7b/Alicella_gigantea_from_6200m.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/2/2f/Alicella_gigantea_in_hand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/3/35/Alicella_gigantea.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/7/72/Alicella_gigantea_feeding.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/5/5f/Live_Alicella_gigantea_feeding.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-      ]
-    },
-    {
-      "scene": "S058",
-      "search_en": "tiny deep sea fish bristlemouth and amphipod arthropod",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive08-tripod-fish/",
-        "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (1024, 576) below 1920x1080",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S059",
-      "search_en": "deep sea biodiversity seafloor coral crinoid sponge animals",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/crinoid-and-coral/",
-        "https://oceanexplorer.noaa.gov/multimedia/seafloor/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (1024, 576) below 1920x1080",
-        "image resolution (1024, 683) below 1920x1080",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S061",
-      "search_en": "crab molting ecdysis shell shedding crustacean",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Ecdysis_Pachygrapsus_crassipes.jpg"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": []
-    },
-    {
-      "scene": "S064",
-      "search_en": "deep sea predator and small prey eel feeding fish",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/daily-image-media-20211225/",
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-seascape-alaska-ex2304-gallery-media-dive07-crab-eating/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "media too small",
-        "image resolution (1024, 576) below 1920x1080",
-        "video still is below the required resolution or could not be extracted",
-        "video still is below the required resolution or could not be extracted"
-      ]
-    },
-    {
-      "scene": "S067",
-      "search_en": "deep sea ROV seafloor biodiversity lights",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-at-work/",
-        "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-5/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (1024, 576) below 1920x1080",
-        "image resolution (1024, 665) below 1920x1080",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S068",
-      "search_en": "deep sea environment oxygen levels habitat seafloor",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/seafloor/",
-        "https://oceanexplorer.noaa.gov/multimedia/crinoid-and-coral/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (1024, 576) below 1920x1080",
-        "image resolution (1024, 683) below 1920x1080",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S069",
-      "search_en": "deep sea fish head gills close up detailed fish",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/Category:Deep-sea_fish",
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-express-ex2301-gallery-media-ex2301-dive06-fish/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (1024, 576) below 1920x1080",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S073",
-      "search_en": "ocean oxygen minimum zone distribution map",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Oxygen_Minimum_Zone_(OMZ).pdf"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": []
-    },
-    {
-      "scene": "S076",
-      "search_en": "Bathynomus giganteus abdomen underside body specimen",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2920)_001.jpeg",
-        "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "429 Client Error: Too many requests (76af2b0) for url: https://upload.wikimedia.org/wikipedia/commons/8/88/Bathynomus_giganteus_A._Milne-Edwards%2C_1879_in_Museu_de_Zoologia_da_USP_%28University_of_S%C3%A3o_Paulo_Zoology_Museum%29%2C_SP%2C_Brazil.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/d/d4/Bathynomus_giganteus_%28YPM_IZ_078000%29.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests (76af2b0) for url: https://upload.wikimedia.org/wikipedia/commons/4/4b/Bathynomus_%2810.3897-zookeys.947.53906%29_Figure_4.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests (76af2b0) for url: https://upload.wikimedia.org/wikipedia/commons/1/18/Giant_isopod.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/0/06/Bathynomus_giganteus_%28MNHN-IU-2013-2920%29_002.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests (76af2b0) for url: https://upload.wikimedia.org/wikipedia/commons/4/44/Bathynomus_giganteus_%28YPM_IZ_071595%29.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "image resolution (1280, 720) below 1920x1080",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/2/2c/Bathynomus_giganteus_dorsal_-_MBA.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-      ]
-    },
-    {
-      "scene": "S078",
-      "search_en": "Alicella gigantea and small deep sea fish size comparison",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive08-tripod-fish/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/4/45/Alicella_Sampling_sites.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/6/6a/Alicella_gigantea_from_6700m_deep.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/3/3a/Alicella_gigantea_from_6700m_deep_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/7/7b/Alicella_gigantea_from_6200m.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/2/2f/Alicella_gigantea_in_hand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/3/35/Alicella_gigantea.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/7/72/Alicella_gigantea_feeding.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/5/5f/Live_Alicella_gigantea_feeding.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-      ]
-    },
-    {
-      "scene": "S079",
-      "search_en": "deep sea sea cucumber crinoid resting on seafloor",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-22voyage-to-the-ridge-gallery-media-dive10-seacuke/",
-        "https://oceanexplorer.noaa.gov/multimedia/crinoid-and-coral/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (1024, 576) below 1920x1080",
-        "video still is below the required resolution or could not be extracted",
-        "video still is below the required resolution or could not be extracted",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S080",
-      "search_en": "sea cucumber swimming deep sea underwater video",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-22voyage-to-the-ridge-gallery-media-dive10-seacuke/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "video still is below the required resolution or could not be extracted",
-        "video still is below the required resolution or could not be extracted",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S081",
-      "search_en": "Alicella gigantea and small amphipod comparison",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
-        "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/4/45/Alicella_Sampling_sites.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/6/6a/Alicella_gigantea_from_6700m_deep.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/3/3a/Alicella_gigantea_from_6700m_deep_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/7/7b/Alicella_gigantea_from_6200m.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/2/2f/Alicella_gigantea_in_hand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/3/35/Alicella_gigantea.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/7/72/Alicella_gigantea_feeding.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/5/5f/Live_Alicella_gigantea_feeding.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-      ]
-    },
-    {
-      "scene": "S083",
-      "search_en": "giant isopod crawling walking seafloor video Bathynomus",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/video-playlist-ex1711-giant-isopod/",
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1907-dailyupdates-nov18-media-dive11-isopod/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "video still is below the required resolution or could not be extracted",
-        "video still is below the required resolution or could not be extracted",
-        "video still is below the required resolution or could not be extracted",
-        "video still is below the required resolution or could not be extracted",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S084",
-      "search_en": "wide dark abyssal seafloor distant ROV lights",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-at-work/",
-        "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-5/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (1024, 576) below 1920x1080",
-        "image resolution (1024, 665) below 1920x1080",
-        "media too small"
-      ]
-    },
-    {
-      "scene": "S085",
-      "search_en": "marine snow and small deep sea organisms on seafloor",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_(Ifremer_00401-51200).jpg",
-        "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive13-bristlemouth/"
-      ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "429 Client Error: Too many requests - please contact noc@wikimedia.org to discuss a less disruptive approach or instead use thumbnail images in sizes listed on https://w.wiki/GHai. (0c640b1) for url: https://upload.wikimedia.org/wikipedia/commons/9/9b/Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_%28Ifremer_00401-51200%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "media too small",
-        "image resolution (1024, 576) below 1920x1080"
+      "panel_references": [
+        "assets/panels/collected/S086-PB.jpg"
       ]
     },
     {
       "scene": "S087",
-      "search_en": "large giant isopod and tiny deep sea bristlemouth fish size contrast",
-      "sources_attempted": [
-        "https://commons.wikimedia.org/wiki/File:Giant_Isopod_(18443864634).jpg",
-        "https://commons.wikimedia.org/wiki/File:Ophidiid_fish.jpg"
+      "status": "collected",
+      "file": "assets/collected/S087.jpg",
+      "asset_count": 2,
+      "required_panels": 2,
+      "sources": [
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Paralithodes_camtschaticus_running_on_Kola_Bay_seafloor.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Paralithodes_camtschaticus_running_on_Kola_Bay_seafloor.jpg",
+          "credit": "Paralithodes camtschaticus running on Kola Bay seafloor.jpg by Dr. Aleksey Zuyev, Public domain, via https://commons.wikimedia.org/wiki/File:Paralithodes_camtschaticus_running_on_Kola_Bay_seafloor.jpg",
+          "license": "Public domain",
+          "license_url": "",
+          "title": "S087.jpg",
+          "source_dimensions": [
+            2065,
+            1350
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "Dr. Aleksey Zuyev",
+          "panel_file": "assets/panels/collected/S087.jpg"
+        },
+        {
+          "source_page": "https://commons.wikimedia.org/wiki/File:Bathystylodactylus_cf._bathyalis_(10.3897-zookeys.646.10969)_Figure_1.jpg",
+          "media_url": "https://commons.wikimedia.org/wiki/File:Bathystylodactylus_cf._bathyalis_(10.3897-zookeys.646.10969)_Figure_1.jpg",
+          "credit": "Bathystylodactylus cf. bathyalis (10.3897-zookeys.646.10969) Figure 1.jpg by [Photo: NOAA] Wicksten M, De Grave S, France S, Kelley C (2017) Presumed filter-feeding in a deep-sea benthic shrimp (Decapoda, Caridea, Stylodactylidae), with records of the deepest occurrence of carideans. ZooKeys 646: 17-23. https://doi.org/10.3897/zookeys.646.10969, CC BY 4.0, via https://commons.wikimedia.org/wiki/File:Bathystylodactylus_cf._bathyalis_(10.3897-zookeys.646.10969)_Figure_1.jpg",
+          "license": "CC BY 4.0",
+          "license_url": "",
+          "title": "S087-PB.jpg",
+          "source_dimensions": [
+            1512,
+            851
+          ],
+          "rights_basis": "According to supplied master_credits.json",
+          "author": "[Photo: NOAA] Wicksten M, De Grave S, France S, Kelley C (2017) Presumed filter-feeding in a deep-sea benthic shrimp (Decapoda, Caridea, Stylodactylidae), with records of the deepest occurrence of carideans. ZooKeys 646: 17-23. https://doi.org/10.3897/zookeys.646.10969",
+          "panel_file": "assets/panels/collected/S087-PB.jpg"
+        }
       ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": []
+      "generated_panels": [],
+      "sha256": "5a7f3852f57e8004b3b6b6f74c60ebe1b81f3705cf01f2c002ec8412b7309811",
+      "fit_review": "approved_v3_reaudit",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/collected/S087.jpg",
+        "assets/panels/collected/S087-PB.jpg"
+      ]
     },
     {
       "scene": "S088",
-      "search_en": "wide abyssal plain deep sea ROV lights distant seafloor",
-      "sources_attempted": [
-        "https://oceanexplorer.noaa.gov/multimedia/seafloor/",
-        "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-at-work/"
+      "status": "collected",
+      "file": "assets/collected/S088.jpg",
+      "asset_count": 1,
+      "required_panels": 1,
+      "sources": [],
+      "generated_panels": [
+        {
+          "file": "assets/panels/ai-generated/S088.jpg",
+          "reason": "同上。深海平原の遠景実写がないため生成で補充",
+          "method": "AI-generated, according to handoff record",
+          "original_dimensions": [
+            2352,
+            1008
+          ]
+        }
       ],
-      "reason": "No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
-      "download_errors": [
-        "image resolution (1024, 683) below 1920x1080",
-        "media too small",
-        "image resolution (1024, 665) below 1920x1080"
+      "sha256": "3817d9fc5ebd000d8090c8e956217d19f3f4a321449d31fd825b9b9ac75ac5a3",
+      "fit_review": "pending_manual_visual_check",
+      "render_resolution": [
+        1920,
+        1080
+      ],
+      "panel_references": [
+        "assets/panels/ai-generated/S088.jpg"
       ]
     }
   ],
-  "composition_warnings": [
-    {
-      "scene": "S009",
-      "required_panels": 2,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S016",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S017",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S024",
-      "required_panels": 2,
-      "available_panels": 1,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S028",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S032",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S034",
-      "required_panels": 2,
-      "available_panels": 1,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S035",
-      "required_panels": 2,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S036",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S038",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S039",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S040",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S041",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S042",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S043",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S044",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S045",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S046",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S047",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S048",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S050",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S051",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S052",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S053",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S054",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S055",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S056",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S057",
-      "required_panels": 2,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S058",
-      "required_panels": 2,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S059",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S061",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S062",
-      "required_panels": 2,
-      "available_panels": 1,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S064",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S067",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S068",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S069",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S073",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S076",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S077",
-      "required_panels": 3,
-      "available_panels": 1,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S078",
-      "required_panels": 2,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S079",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S080",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S081",
-      "required_panels": 2,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S082",
-      "required_panels": 2,
-      "available_panels": 1,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S083",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S084",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S085",
-      "required_panels": 2,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S086",
-      "required_panels": 2,
-      "available_panels": 1,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S087",
-      "required_panels": 2,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    },
-    {
-      "scene": "S088",
-      "required_panels": 1,
-      "available_panels": 0,
-      "reason": "Source design calls for a comparison/collage but fewer independently licensed images were found."
-    }
-  ],
+  "missing": [],
+  "composition_warnings": [],
   "rights_skipped": [],
   "rejected_candidates": [
     {
@@ -2136,387 +2912,38 @@
   ],
   "contact_sheet": "assets/contact-sheets/contact-sheet-01.jpg",
   "visual_audit": {
-    "replacements": [
-      {
-        "scene": "S001",
-        "reason": "3分割のうち中央に文字入りNOAAポスターが混入し、指定の3生物写真になっていない",
-        "method": "再収集"
-      },
-      {
-        "scene": "S002",
-        "reason": "小型生物を複数見せる設計に対し、単一のウミシダ写真",
-        "method": "再収集"
-      },
-      {
-        "scene": "S003",
-        "reason": "ヨコエビ比較ではなく地図・統計図",
-        "method": "再収集"
-      },
-      {
-        "scene": "S004",
-        "reason": "深海底ではなく船上のROV写真",
-        "method": "再収集"
-      },
-      {
-        "scene": "S008",
-        "reason": "水圧図・潜水艇ではなくクラゲ写真",
-        "method": "再収集"
-      },
-      {
-        "scene": "S009",
-        "reason": "ROVだけで、同画面に見せる指定の深海生物がない",
-        "method": "再収集"
-      },
-      {
-        "scene": "S014",
-        "reason": "実写指定に対して標本の線画",
-        "method": "再収集"
-      },
-      {
-        "scene": "S015",
-        "reason": "カニ写真が重複し、ダイオウイカがない",
-        "method": "再収集"
-      },
-      {
-        "scene": "S018",
-        "reason": "水柱の生物・海底遠景ではなくROVの接写",
-        "method": "再収集"
-      },
-      {
-        "scene": "S021",
-        "reason": "被写体が確認できない黒い画面",
-        "method": "再収集"
-      },
-      {
-        "scene": "S024",
-        "reason": "ホッキョクグマがなく、指定の左右対比になっていない",
-        "method": "再収集"
-      },
-      {
-        "scene": "S025",
-        "reason": "研究報告書の表紙",
-        "method": "再収集"
-      },
-      {
-        "scene": "S027",
-        "reason": "ダイオウグソクムシが写っていない空の海底",
-        "method": "再収集"
-      },
-      {
-        "scene": "S028",
-        "reason": "移動するダイオウグソクムシが写っていない空の海底",
-        "method": "再収集"
-      },
-      {
-        "scene": "S030",
-        "reason": "被写体が確認できない無地の画面",
-        "method": "再収集"
-      },
-      {
-        "scene": "S031",
-        "reason": "飼育中のダイオウグソクムシではなく空の海底",
-        "method": "再収集"
-      },
-      {
-        "scene": "S033",
-        "reason": "海面ブルームと深海底の対比ではなく、台風画像と書籍表紙",
-        "method": "再収集"
-      },
-      {
-        "scene": "S034",
-        "reason": "マリンスノー・小型生物が判別できない暗い画面",
-        "method": "再収集"
-      },
-      {
-        "scene": "S035",
-        "reason": "指定の魚・等脚類比較ではなく、書籍タイトルページが混入",
-        "method": "再収集"
-      },
-      {
-        "scene": "S036",
-        "reason": "書籍のタイトルページ",
-        "method": "再収集"
-      },
-      {
-        "scene": "S037",
-        "reason": "植物プランクトンブルームではなく渦巻く雲の衛星画像",
-        "method": "再収集"
-      },
-      {
-        "scene": "S038",
-        "reason": "食物網図ではなくイソギンチャク写真",
-        "method": "再収集"
-      },
-      {
-        "scene": "S039",
-        "reason": "被写体が判別できない暗い画面",
-        "method": "再収集"
-      },
-      {
-        "scene": "S040",
-        "reason": "マリンスノーではなくサンゴ写真",
-        "method": "再収集"
-      },
-      {
-        "scene": "S041",
-        "reason": "鯨骨映像に字幕・ロゴが焼き込まれている",
-        "method": "再収集"
-      },
-      {
-        "scene": "S042",
-        "reason": "鯨骨の周囲の生物ではなく採集用ROV・機材",
-        "method": "再収集"
-      },
-      {
-        "scene": "S043",
-        "reason": "捕食・採餌する生物ではなく骨回収場面",
-        "method": "再収集"
-      },
-      {
-        "scene": "S045",
-        "reason": "ダイオウグソクムシではなく別種の小型ヨコエビ",
-        "method": "再収集"
-      },
-      {
-        "scene": "S046",
-        "reason": "餌を食べる等脚類ではなく空の海底",
-        "method": "再収集"
-      },
-      {
-        "scene": "S047",
-        "reason": "食料棚ではなく赤い無地の面",
-        "method": "再収集"
-      },
-      {
-        "scene": "S048",
-        "reason": "文章だけのPDFページ",
-        "method": "再収集"
-      },
-      {
-        "scene": "S052",
-        "reason": "深海捕食魚ではなくエイ",
-        "method": "再収集"
-      },
-      {
-        "scene": "S053",
-        "reason": "捕食魚・獲物ではなくウミシダ",
-        "method": "再収集"
-      },
-      {
-        "scene": "S054",
-        "reason": "研究論文の表紙・本文ページ",
-        "method": "再収集"
-      },
-      {
-        "scene": "S057",
-        "reason": "ヨコエビ比較ではなくサンゴ写真",
-        "method": "再収集"
-      },
-      {
-        "scene": "S058",
-        "reason": "小型深海生物ではなく海底とエイの画像",
-        "method": "再収集"
-      },
-      {
-        "scene": "S059",
-        "reason": "複数種の深海生物ではなく単一のウミシダ",
-        "method": "再収集"
-      },
-      {
-        "scene": "S061",
-        "reason": "脱皮ではなく水槽内のカニ写真",
-        "method": "再収集"
-      },
-      {
-        "scene": "S062",
-        "reason": "魚と甲殻類の比較ではなくエイ",
-        "method": "再収集"
-      },
-      {
-        "scene": "S064",
-        "reason": "研究論文の本文ページ",
-        "method": "再収集"
-      },
-      {
-        "scene": "S068",
-        "reason": "酸素分布・深海環境の図版ではなく卵を抱えたカニ",
-        "method": "再収集"
-      },
-      {
-        "scene": "S069",
-        "reason": "魚の接写ではなく書籍・刊行物の表紙",
-        "method": "再収集"
-      },
-      {
-        "scene": "S073",
-        "reason": "酸素分布図ではなく卵を抱えたカニ",
-        "method": "再収集"
-      },
-      {
-        "scene": "S075",
-        "reason": "ダイオウグソクムシではなく惑星比較図",
-        "method": "再収集"
-      },
-      {
-        "scene": "S077",
-        "reason": "小型生物ではなく生物が判別できない海底",
-        "method": "再収集"
-      },
-      {
-        "scene": "S083",
-        "reason": "移動する等脚類ではなく空の海底",
-        "method": "再収集"
-      },
-      {
-        "scene": "S084",
-        "reason": "深海底の遠景ではなくタコの接写",
-        "method": "再収集"
-      },
-      {
-        "scene": "S085",
-        "reason": "研究論文の表紙・本文ページ",
-        "method": "再収集"
-      },
-      {
-        "scene": "S086",
-        "reason": "書籍のページ・文字画像",
-        "method": "再収集"
-      },
-      {
-        "scene": "S087",
-        "reason": "研究論文の表紙・本文ページ",
-        "method": "再収集"
-      }
+    "status": "passed_v3_local_reaudit",
+    "notes": "The 27 previously blocked scenes were re-audited after applying v3 delta replacements. No blocking design mismatches remain under the user-approved constraints (AI fallback allowed where documented; upscaling allowed; S081-PA paper figure crop accepted; S073 generated schematic accepted).",
+    "cleared_scenes": [
+      "S009",
+      "S034",
+      "S038",
+      "S039",
+      "S043",
+      "S045",
+      "S046",
+      "S052",
+      "S053",
+      "S054",
+      "S055",
+      "S056",
+      "S057",
+      "S058",
+      "S061",
+      "S062",
+      "S064",
+      "S069",
+      "S073",
+      "S077",
+      "S078",
+      "S080",
+      "S081",
+      "S083",
+      "S085",
+      "S086",
+      "S087"
     ],
-    "missing_screens": [
-      {
-        "scene": "S032",
-        "reason": "前回の収集工程で適合素材を取得できず、画像ファイルが存在しない",
-        "method": "再収集。適合・権利・解像度を満たす素材がなければ生成"
-      },
-      {
-        "scene": "S049",
-        "reason": "前回の収集工程で適合素材を取得できず、画像ファイルが存在しない",
-        "method": "再収集。適合・権利・解像度を満たす素材がなければ生成"
-      },
-      {
-        "scene": "S050",
-        "reason": "前回の収集工程で適合素材を取得できず、画像ファイルが存在しない",
-        "method": "再収集。適合・権利・解像度を満たす素材がなければ生成"
-      },
-      {
-        "scene": "S051",
-        "reason": "前回の収集工程で適合素材を取得できず、画像ファイルが存在しない",
-        "method": "再収集。適合・権利・解像度を満たす素材がなければ生成"
-      },
-      {
-        "scene": "S055",
-        "reason": "前回の収集工程で適合素材を取得できず、画像ファイルが存在しない",
-        "method": "再収集。適合・権利・解像度を満たす素材がなければ生成"
-      },
-      {
-        "scene": "S056",
-        "reason": "前回の収集工程で適合素材を取得できず、画像ファイルが存在しない",
-        "method": "再収集。適合・権利・解像度を満たす素材がなければ生成"
-      },
-      {
-        "scene": "S063",
-        "reason": "前回の収集工程で適合素材を取得できず、画像ファイルが存在しない",
-        "method": "再収集。適合・権利・解像度を満たす素材がなければ生成"
-      },
-      {
-        "scene": "S076",
-        "reason": "前回の収集工程で適合素材を取得できず、画像ファイルが存在しない",
-        "method": "再収集。適合・権利・解像度を満たす素材がなければ生成"
-      },
-      {
-        "scene": "S078",
-        "reason": "前回の収集工程で適合素材を取得できず、画像ファイルが存在しない",
-        "method": "再収集。適合・権利・解像度を満たす素材がなければ生成"
-      },
-      {
-        "scene": "S079",
-        "reason": "前回の収集工程で適合素材を取得できず、画像ファイルが存在しない",
-        "method": "再収集。適合・権利・解像度を満たす素材がなければ生成"
-      },
-      {
-        "scene": "S080",
-        "reason": "前回の収集工程で適合素材を取得できず、画像ファイルが存在しない",
-        "method": "再収集。適合・権利・解像度を満たす素材がなければ生成"
-      },
-      {
-        "scene": "S081",
-        "reason": "前回の収集工程で適合素材を取得できず、画像ファイルが存在しない",
-        "method": "再収集。適合・権利・解像度を満たす素材がなければ生成"
-      },
-      {
-        "scene": "S088",
-        "reason": "前回の収集工程で適合素材を取得できず、画像ファイルが存在しない",
-        "method": "再収集。適合・権利・解像度を満たす素材がなければ生成"
-      }
-    ],
-    "retained_candidates": [
-      {
-        "scene": "S005",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S006",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S007",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S010",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S011",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S012",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S013",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S016",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S017",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S019",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S020",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S029",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S044",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S067",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      },
-      {
-        "scene": "S082",
-        "status": "内容適合候補。再収集工程で権利と元解像度を再検証"
-      }
-    ]
+    "remaining_blocking_scenes": []
   },
   "rights_policy": {
     "commons": "Use only per-file Public Domain, CC0, CC BY, or CC BY-SA licenses; credit and license URLs retained.",
@@ -2524,5 +2951,6 @@
     "nasa": "Use only NASA-credited images without third-party copyright markings; NASA reproduction guidelines retained.",
     "unsplash": "Use only source pages that display Unsplash License terms; creator and license retained.",
     "open_access_research": "Use only article figures covered by verified CC BY 4.0 and without third-party credit-line exceptions."
-  }
+  },
+  "new_handoff": "v153_fix3_delta.zip applied on top of v2 review package"
 }
