@@ -44,22 +44,25 @@ import time
 import requests
 from PIL import Image, ImageDraw
 
-USER_AGENT = "KangaeruYoruRightsCollector/2.0 (rights-gated research use)"
+USER_AGENT = "KangaeruYoruRightsCollector/3.0 (rights-gated research use)"
 COMMONS_API = "https://commons.wikimedia.org/w/api.php"
 OPENVERSE_API = "https://api.openverse.org/v1/images/"
 
-# HTTP behaviour (set from CLI in main). v1 lesson from Actions run
-# 42960388082: the Commons API itself returned 429 for 10 of 40 screens and
-# the single rights-passing download also hit 429, because requests were
-# fired back-to-back with no retry. v2 paces every request and retries
-# 429/503 with backoff (honouring Retry-After) instead of giving up or
-# stopping a host for the whole run.
-HTTP_CFG = {"pace": 1.0, "retries": 3, "retry_base": 5.0}
+# HTTP behaviour (set from CLI in main). v1 lesson (run 42960388082):
+# no pacing/retry -> Commons 429s killed the run at 0/40. v2 lesson
+# (run 42963127300, cancelled by the user after 2h17m): retries were
+# effectively unbounded in wall-clock terms (Retry-After up to 120s per
+# retry, several requests per screen), so the run could not finish in a
+# reasonable time and, because outputs were written only at the end, a
+# kill would have lost everything. v3 therefore: caps every retry delay,
+# gives each screen and the whole run a hard deadline, and persists
+# manifest/audit after EVERY screen.
+HTTP_CFG = {"pace": 0.6, "retries": 2, "retry_base": 3.0, "retry_cap": 20.0}
 _last_request_at = [0.0]
 
 
 def http_get(url, params=None, timeout=60):
-    """GET with pacing + bounded retry on 429/503. Returns Response."""
+    """GET with pacing + tightly bounded retry on 429/503."""
     attempt = 0
     while True:
         wait = HTTP_CFG["pace"] - (time.monotonic() - _last_request_at[0])
@@ -73,9 +76,10 @@ def http_get(url, params=None, timeout=60):
         if resp.status_code in (429, 503) and attempt < HTTP_CFG["retries"]:
             retry_after = resp.headers.get("Retry-After", "")
             if retry_after.isdigit():
-                delay = min(float(retry_after), 120.0)
+                delay = min(float(retry_after), 30.0)
             else:
-                delay = HTTP_CFG["retry_base"] * (3 ** attempt)
+                delay = min(HTTP_CFG["retry_base"] * (3 ** attempt),
+                            HTTP_CFG["retry_cap"])
             time.sleep(delay)
             attempt += 1
             continue
@@ -301,16 +305,27 @@ def main():
                     help="comma list: commons,openverse")
     ap.add_argument("--max-download-attempts", type=int, default=5,
                     help="per-screen cap so a failing host is not hammered")
-    ap.add_argument("--pace", type=float, default=1.0,
+    ap.add_argument("--pace", type=float, default=0.6,
                     help="minimum seconds between HTTP requests")
-    ap.add_argument("--retries", type=int, default=3,
+    ap.add_argument("--retries", type=int, default=2,
                     help="retries per request on HTTP 429/503")
-    ap.add_argument("--retry-base", type=float, default=5.0,
+    ap.add_argument("--retry-base", type=float, default=3.0,
                     help="base seconds for exponential backoff on 429/503")
+    ap.add_argument("--retry-cap", type=float, default=20.0,
+                    help="maximum seconds for any single retry delay")
+    ap.add_argument("--screen-deadline", type=float, default=150.0,
+                    help="seconds after which a screen is given up as missing")
+    ap.add_argument("--run-deadline", type=float, default=2700.0,
+                    help="seconds after which remaining screens are marked missing")
     args = ap.parse_args()
     HTTP_CFG.update({"pace": args.pace, "retries": args.retries,
-                     "retry_base": args.retry_base})
+                     "retry_base": args.retry_base, "retry_cap": args.retry_cap})
+    try:
+        sys.stdout.reconfigure(line_buffering=True)
+    except Exception:
+        pass
     use_sources = [s.strip() for s in args.sources.split(",") if s.strip()]
+    run_started = time.monotonic()
 
     with open(args.screens, encoding="utf-8") as f:
         screens = json.load(f)
@@ -327,13 +342,56 @@ def main():
                     previous[e["id"]] = e
 
     entries, audit, seen_hashes = [], [], set()
-    for screen in screens:
+
+    def write_outputs(complete=False):
+        """Persist manifest/audit/credits/contact sheet from current state.
+        Called after every screen so a killed run keeps finished work."""
+        counts = {}
+        for e in entries:
+            counts[e["status"]] = counts.get(e["status"], 0) + 1
+        manifest = {
+            "version": "rights-collector-3.0",
+            "license_rule": "fail-closed: PD/CC0/CC BY (credit) only; NC/ND/SA/unknown rejected before download",
+            "min_size": [args.min_width, args.min_height],
+            "vision_enabled": bool(args.vision),
+            "complete": complete,
+            "total_screens": len(entries),
+            "counts": counts,
+            "screens": entries,
+        }
+        with open(manifest_path, "w", encoding="utf-8") as f:
+            json.dump(manifest, f, ensure_ascii=False, indent=2)
+        with open(os.path.join(args.out, "audit.json"), "w", encoding="utf-8") as f:
+            json.dump(audit, f, ensure_ascii=False, indent=2)
+        with open(os.path.join(args.out, "credits.txt"), "w", encoding="utf-8") as f:
+            for e in entries:
+                if e.get("credit"):
+                    f.write(f"{e['id']}: {e['credit']}\n")
+        try:
+            make_contact_sheet(entries, os.path.join(args.out, "contact_sheet.jpg"))
+        except Exception:
+            pass
+        return counts
+
+    for idx, screen in enumerate(screens):
         sid = screen["id"]
+        if time.monotonic() - run_started > args.run_deadline:
+            for rest in screens[idx:]:
+                entries.append({"id": rest["id"], "query": rest["query"],
+                                "subject": rest.get("subject", rest["query"]),
+                                "status": "missing", "file": "",
+                                "rights_checked": False,
+                                "deadline_reason": "run_deadline_exceeded"})
+                print(f"{rest['id']}: missing (run deadline)", flush=True)
+            break
         if sid in previous:
             entries.append(previous[sid])
             seen_hashes.add(previous[sid].get("sha256", ""))
-            print(f"{sid}: resume, already collected")
+            print(f"{sid}: resume, already collected", flush=True)
+            write_outputs()
             continue
+        screen_started = time.monotonic()
+        print(f"{sid}: start ({idx + 1}/{len(screens)})", flush=True)
 
         query = screen["query"]
         subject = screen.get("subject", query)
@@ -355,6 +413,10 @@ def main():
             if fn is None:
                 continue
             for variant in variants:
+                if time.monotonic() - screen_started > args.screen_deadline:
+                    audit.append({"screen": sid, "stage": "deadline",
+                                  "reasons": ["screen_deadline_exceeded"]})
+                    break
                 try:
                     found = fn(variant, args.per_screen_candidates)
                 except Exception as exc:  # source outage must not kill the run
@@ -383,6 +445,12 @@ def main():
                 screen_reasons[key] = screen_reasons.get(key, 0) + 1
 
         for cand in candidates:
+            if time.monotonic() - screen_started > args.screen_deadline:
+                audit.append({"screen": sid, "stage": "deadline",
+                              "reasons": ["screen_deadline_exceeded"]})
+                screen_reasons["screen_deadline_exceeded"] = \
+                    screen_reasons.get("screen_deadline_exceeded", 0) + 1
+                break
             rec = {"screen": sid, **{k: cand.get(k, "") for k in
                      ("source", "title", "source_page", "license", "license_url", "author")}}
             ok, reasons = rights_gate(cand, allow_sa=args.allow_sa)
@@ -483,7 +551,9 @@ def main():
                 },
                 "visual_verification": {"status": "not_checked_basic_only"},
             }
-            if args.vision:
+            if args.vision and time.monotonic() - screen_started > args.screen_deadline:
+                chosen["visual_verification"] = {"status": "skipped_deadline"}
+            elif args.vision:
                 try:
                     v = vision_check(path, subject, args.vision_model)
                 except Exception as exc:
@@ -511,33 +581,12 @@ def main():
             print(f"{sid}: missing (candidates={len(candidates)}, reasons: {top or 'none'})")
         else:
             entries.append(chosen)
-            print(f"{sid}: {chosen['status']} <- {chosen['license']} / {chosen['source']}")
+            print(f"{sid}: {chosen['status']} <- {chosen['license']} / {chosen['source']}", flush=True)
+        write_outputs()
 
-    counts = {}
-    for e in entries:
-        counts[e["status"]] = counts.get(e["status"], 0) + 1
+    counts = write_outputs(complete=True)
     total = len(entries)
     assert sum(counts.values()) == total, "count mismatch"
-
-    manifest = {
-        "version": "rights-collector-2.0",
-        "license_rule": "fail-closed: PD/CC0/CC BY (credit) only; NC/ND/SA/unknown rejected before download",
-        "min_size": [args.min_width, args.min_height],
-        "vision_enabled": bool(args.vision),
-        "total_screens": total,
-        "counts": counts,
-        "screens": entries,
-    }
-    with open(manifest_path, "w", encoding="utf-8") as f:
-        json.dump(manifest, f, ensure_ascii=False, indent=2)
-    with open(os.path.join(args.out, "audit.json"), "w", encoding="utf-8") as f:
-        json.dump(audit, f, ensure_ascii=False, indent=2)
-    with open(os.path.join(args.out, "credits.txt"), "w", encoding="utf-8") as f:
-        for e in entries:
-            if e.get("credit"):
-                f.write(f"{e['id']}: {e['credit']}\n")
-    make_contact_sheet(entries, os.path.join(args.out, "contact_sheet.jpg"))
-
     print(json.dumps({"total": total, "counts": counts}, ensure_ascii=False))
     return 0
 
