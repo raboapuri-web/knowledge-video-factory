@@ -69,9 +69,14 @@ jobs:
         with:
           node-version: '22'
       - name: Install system packages
-        run: command -v ffmpeg && ffmpeg -version | head -1
-          command -v fc-list || true
-          echo "Japanese font comes from @fontsource/noto-sans-jp npm dependency; skip slow apt installation"
+        run: |
+          npm install --prefix "$RUNNER_TEMP/v150-media" --no-audit --no-fund @ffmpeg-installer/ffmpeg @ffprobe-installer/ffprobe
+          mkdir -p "$RUNNER_TEMP/v150-bin"
+          ln -sf "$(node -p "require(process.env.RUNNER_TEMP+'/v150-media/node_modules/@ffmpeg-installer/ffmpeg').path")" "$RUNNER_TEMP/v150-bin/ffmpeg"
+          ln -sf "$(node -p "require(process.env.RUNNER_TEMP+'/v150-media/node_modules/@ffprobe-installer/ffprobe').path")" "$RUNNER_TEMP/v150-bin/ffprobe"
+          "$RUNNER_TEMP/v150-bin/ffmpeg" -version | head -1
+          "$RUNNER_TEMP/v150-bin/ffprobe" -version | head -1
+          echo "$RUNNER_TEMP/v150-bin" >> "$GITHUB_PATH"
       - name: Setup Motion Canvas with original V150 cinematic renderer
         run: |
           mkdir -p src/scenes src/projects src/lib scripts
@@ -143,7 +148,14 @@ jobs:
         with:
           node-version: '22'
       - name: Install ffmpeg
-        run: command -v ffmpeg && ffmpeg -version | head -1
+        run: |
+          npm install --prefix "$RUNNER_TEMP/v150-media" --no-audit --no-fund @ffmpeg-installer/ffmpeg @ffprobe-installer/ffprobe
+          mkdir -p "$RUNNER_TEMP/v150-bin"
+          ln -sf "$(node -p "require(process.env.RUNNER_TEMP+'/v150-media/node_modules/@ffmpeg-installer/ffmpeg').path")" "$RUNNER_TEMP/v150-bin/ffmpeg"
+          ln -sf "$(node -p "require(process.env.RUNNER_TEMP+'/v150-media/node_modules/@ffprobe-installer/ffprobe').path")" "$RUNNER_TEMP/v150-bin/ffprobe"
+          "$RUNNER_TEMP/v150-bin/ffmpeg" -version | head -1
+          "$RUNNER_TEMP/v150-bin/ffprobe" -version | head -1
+          echo "$RUNNER_TEMP/v150-bin" >> "$GITHUB_PATH"
       - name: Download chapter segments
         uses: actions/download-artifact@v4
         with:
