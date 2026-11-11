@@ -44,9 +44,42 @@ import time
 import requests
 from PIL import Image, ImageDraw
 
-USER_AGENT = "KangaeruYoruRightsCollector/1.0 (rights-gated research use)"
+USER_AGENT = "KangaeruYoruRightsCollector/2.0 (rights-gated research use)"
 COMMONS_API = "https://commons.wikimedia.org/w/api.php"
 OPENVERSE_API = "https://api.openverse.org/v1/images/"
+
+# HTTP behaviour (set from CLI in main). v1 lesson from Actions run
+# 42960388082: the Commons API itself returned 429 for 10 of 40 screens and
+# the single rights-passing download also hit 429, because requests were
+# fired back-to-back with no retry. v2 paces every request and retries
+# 429/503 with backoff (honouring Retry-After) instead of giving up or
+# stopping a host for the whole run.
+HTTP_CFG = {"pace": 1.0, "retries": 3, "retry_base": 5.0}
+_last_request_at = [0.0]
+
+
+def http_get(url, params=None, timeout=60):
+    """GET with pacing + bounded retry on 429/503. Returns Response."""
+    attempt = 0
+    while True:
+        wait = HTTP_CFG["pace"] - (time.monotonic() - _last_request_at[0])
+        if wait > 0:
+            time.sleep(wait)
+        try:
+            resp = requests.get(url, params=params,
+                                headers={"User-Agent": USER_AGENT}, timeout=timeout)
+        finally:
+            _last_request_at[0] = time.monotonic()
+        if resp.status_code in (429, 503) and attempt < HTTP_CFG["retries"]:
+            retry_after = resp.headers.get("Retry-After", "")
+            if retry_after.isdigit():
+                delay = min(float(retry_after), 120.0)
+            else:
+                delay = HTTP_CFG["retry_base"] * (3 ** attempt)
+            time.sleep(delay)
+            attempt += 1
+            continue
+        return resp
 
 # ---------------------------------------------------------------- rights gate
 
@@ -137,7 +170,7 @@ def search_commons(query, limit):
         "prop": "imageinfo",
         "iiprop": "url|size|mime|extmetadata",
     }
-    r = requests.get(COMMONS_API, params=params, headers={"User-Agent": USER_AGENT}, timeout=60)
+    r = http_get(COMMONS_API, params=params, timeout=60)
     r.raise_for_status()
     pages = (r.json().get("query") or {}).get("pages") or {}
     out = []
@@ -169,7 +202,7 @@ def search_openverse(query, limit):
     # the per-item gate still verifies every candidate before download.
     params = {"q": query, "page_size": min(limit, 20), "filter_dead": "false",
               "license": "by,cc0,pdm"}
-    r = requests.get(OPENVERSE_API, params=params, headers={"User-Agent": USER_AGENT}, timeout=60)
+    r = http_get(OPENVERSE_API, params=params, timeout=60)
     r.raise_for_status()
     out = []
     for item in r.json().get("results") or []:
@@ -268,9 +301,16 @@ def main():
                     help="comma list: commons,openverse")
     ap.add_argument("--max-download-attempts", type=int, default=5,
                     help="per-screen cap so a failing host is not hammered")
+    ap.add_argument("--pace", type=float, default=1.0,
+                    help="minimum seconds between HTTP requests")
+    ap.add_argument("--retries", type=int, default=3,
+                    help="retries per request on HTTP 429/503")
+    ap.add_argument("--retry-base", type=float, default=5.0,
+                    help="base seconds for exponential backoff on 429/503")
     args = ap.parse_args()
+    HTTP_CFG.update({"pace": args.pace, "retries": args.retries,
+                     "retry_base": args.retry_base})
     use_sources = [s.strip() for s in args.sources.split(",") if s.strip()]
-    rate_limited_hosts = set()
 
     with open(args.screens, encoding="utf-8") as f:
         screens = json.load(f)
@@ -297,28 +337,52 @@ def main():
 
         query = screen["query"]
         subject = screen.get("subject", query)
+        # Progressive query relaxation: the curated queries are long AND-ed
+        # keyword strings that often return zero results. Fall back to the
+        # first 4, then first 2 terms per source, and record every search
+        # outcome so "no candidates" is distinguishable from "search failed".
+        terms = query.split()
+        variants = [query]
+        if len(terms) > 4:
+            variants.append(" ".join(terms[:4]))
+        if len(terms) > 2:
+            variants.append(" ".join(terms[:2]))
         candidates = []
+        seen_urls = set()
         source_fns = {"commons": search_commons, "openverse": search_openverse}
         for name in use_sources:
             fn = source_fns.get(name)
             if fn is None:
                 continue
-            try:
-                candidates.extend(fn(query, args.per_screen_candidates))
-            except Exception as exc:  # source outage must not kill the run
-                audit.append({"screen": sid, "source": name, "error": str(exc)})
-            time.sleep(0.3)
+            for variant in variants:
+                try:
+                    found = fn(variant, args.per_screen_candidates)
+                except Exception as exc:  # source outage must not kill the run
+                    audit.append({"screen": sid, "source": name, "stage": "search",
+                                  "query_used": variant, "error": str(exc)[:300]})
+                    found = None
+                if found is None:
+                    continue
+                audit.append({"screen": sid, "source": name, "stage": "search",
+                              "query_used": variant, "found": len(found)})
+                for cand in found:
+                    url = cand.get("image_url", "")
+                    if url and url not in seen_urls:
+                        seen_urls.add(url)
+                        candidates.append(cand)
+                if found:
+                    break
 
         chosen = None
         download_attempts = 0
+        screen_reasons = {}
+
+        def note_reason(rec):
+            for r in rec.get("reasons", []):
+                key = re.sub(r"_\d+x\d+$", "", r)
+                screen_reasons[key] = screen_reasons.get(key, 0) + 1
+
         for cand in candidates:
-            from urllib.parse import urlparse
-            host = urlparse(cand.get("image_url", "")).netloc
-            if host in rate_limited_hosts:
-                audit.append({"screen": sid, "source": cand.get("source", ""),
-                              "title": cand.get("title", ""), "result": "skipped_rate_limited",
-                              "reasons": [f"host_rate_limited_earlier_{host}"]})
-                continue
             rec = {"screen": sid, **{k: cand.get(k, "") for k in
                      ("source", "title", "source_page", "license", "license_url", "author")}}
             ok, reasons = rights_gate(cand, allow_sa=args.allow_sa)
@@ -327,16 +391,19 @@ def main():
                 rec["result"] = "rejected_rights"
                 rec["reasons"] = reasons
                 audit.append(rec)
+                note_reason(rec)
                 continue
             if cand.get("mime") and cand["mime"] not in ("image/jpeg", "image/png", "image/webp"):
                 rec["result"] = "rejected_basic"
                 rec["reasons"] = [f"mime_{cand['mime']}"]
                 audit.append(rec)
+                note_reason(rec)
                 continue
             if cand.get("width", 0) and (cand["width"] < args.min_width or cand["height"] < args.min_height):
                 rec["result"] = "rejected_basic"
                 rec["reasons"] = [f"too_small_{cand['width']}x{cand['height']}"]
                 audit.append(rec)
+                note_reason(rec)
                 continue
 
             # Rights gate passed -> only now is downloading allowed.
@@ -344,19 +411,19 @@ def main():
                 rec["result"] = "skipped_attempt_cap"
                 rec["reasons"] = ["max_download_attempts_reached"]
                 audit.append(rec)
+                note_reason(rec)
                 break
             download_attempts += 1
             try:
                 clean_url = cand["image_url"].split("?")[0]
-                resp = requests.get(clean_url, headers={"User-Agent": USER_AGENT}, timeout=120)
+                resp = http_get(clean_url, timeout=120)
                 if resp.status_code == 429:
-                    # Respect the provider limit: stop using this host for the
-                    # rest of the run instead of retrying through candidates.
-                    from urllib.parse import urlparse as _up
-                    rate_limited_hosts.add(_up(clean_url).netloc)
+                    # http_get already retried with backoff; a still-429 here
+                    # rejects this candidate only, never the whole host/run.
                     rec["result"] = "rejected_download"
-                    rec["reasons"] = ["http_429_rate_limited_host_stopped_for_run"]
+                    rec["reasons"] = ["http_429_after_retries"]
                     audit.append(rec)
+                    note_reason(rec)
                     continue
                 resp.raise_for_status()
                 data = resp.content
@@ -368,11 +435,13 @@ def main():
                     rec["result"] = "rejected_basic"
                     rec["reasons"] = [f"actual_too_small_{w}x{h}"]
                     audit.append(rec)
+                    note_reason(rec)
                     continue
             except Exception as exc:
                 rec["result"] = "rejected_download"
                 rec["reasons"] = [str(exc)[:200]]
                 audit.append(rec)
+                note_reason(rec)
                 continue
 
             sha = hashlib.sha256(data).hexdigest()
@@ -380,6 +449,7 @@ def main():
                 rec["result"] = "rejected_basic"
                 rec["reasons"] = ["duplicate_image"]
                 audit.append(rec)
+                note_reason(rec)
                 continue
 
             ext = {"JPEG": ".jpg", "PNG": ".png", "WEBP": ".webp"}[im.format]
@@ -436,11 +506,12 @@ def main():
         if chosen is None:
             entries.append({"id": sid, "query": query, "subject": subject,
                             "status": "missing", "file": "", "rights_checked": False})
-            print(f"{sid}: missing (no candidate passed the gates)")
+            top = ", ".join(f"{k}:{v}" for k, v in
+                            sorted(screen_reasons.items(), key=lambda kv: -kv[1])[:4])
+            print(f"{sid}: missing (candidates={len(candidates)}, reasons: {top or 'none'})")
         else:
             entries.append(chosen)
             print(f"{sid}: {chosen['status']} <- {chosen['license']} / {chosen['source']}")
-        time.sleep(0.3)
 
     counts = {}
     for e in entries:
@@ -449,7 +520,7 @@ def main():
     assert sum(counts.values()) == total, "count mismatch"
 
     manifest = {
-        "version": "rights-collector-1.0",
+        "version": "rights-collector-2.0",
         "license_rule": "fail-closed: PD/CC0/CC BY (credit) only; NC/ND/SA/unknown rejected before download",
         "min_size": [args.min_width, args.min_height],
         "vision_enabled": bool(args.vision),
