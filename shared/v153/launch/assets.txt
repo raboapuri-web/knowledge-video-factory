@@ -1,1 +1,3 @@
 Retry after tightening source-to-subject matching, correcting PMC9107163 CC BY 4.0 handling, and excluding OET/NOAA images unless sourced through a verified Commons license.
+
+Audit rerun: 2026-11-11. Recollect all 78 source scenes using curated per-screen/per-panel sources; reject text-only pages and non-matching subjects; require original source resolution >=1920x1080; create four labeled contact-sheet pages for all 88 screens. Do not render chapters or finalize before explicit human approval.
