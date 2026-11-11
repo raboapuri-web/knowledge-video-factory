@@ -1,0 +1,89 @@
+name: V153 Final Contact Sheet Repair
+
+on:
+  push:
+    branches:
+      - v153-deep-sea-gigantism-photo-slides-20261111
+    paths:
+      - shared/v153/launch/contact-sheet-repair.txt
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v153-contact-sheet-repair-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout V153 production branch
+        uses: actions/checkout@v4
+        with:
+          ref: v153-deep-sea-gigantism-photo-slides-20261111
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install OpenCV and Pillow for exact scene sampling
+        run: python -m pip install --no-input --timeout 30 --retries 3 opencv-python-headless Pillow
+
+      - name: Download the completed V153 master artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: v153-deep-sea-gigantism-master
+          path: work/master
+          run-id: "43058410774"
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+
+      - name: Download the six chapter timing reports
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v153-segment-*
+          path: work/segments
+          merge-multiple: true
+          run-id: "43058410774"
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+
+      - name: Build one labelled midpoint frame for every scene and update QA
+        run: |
+          set -euo pipefail
+          python shared/v153/scripts/repair_contact_sheet.py \
+            --video work/master/output/v153-deep-sea-gigantism-final.mp4 \
+            --segments-dir work/segments \
+            --output work/master/output/v153-contact-sheet.jpg \
+            --qa work/master/qa/final.json \
+            --production-report work/master/production_report.json \
+            --audit work/master/qa/contact-sheet-audit.json
+
+      - name: Upload corrected contact sheet and audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: v153-deep-sea-gigantism-contact-sheet-corrected
+          path: |
+            work/master/output/v153-contact-sheet.jpg
+            work/master/qa/final.json
+            work/master/qa/contact-sheet-audit.json
+            work/master/production_report.json
+          retention-days: 21
+          compression-level: 0
+
+      - name: Replace the malformed contact sheet in the published release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release upload v153-deep-sea-gigantism-43058410774 \
+            work/master/output/v153-contact-sheet.jpg \
+            work/master/qa/final.json \
+            work/master/production_report.json \
+            work/master/qa/contact-sheet-audit.json \
+            --clobber --repo "$GITHUB_REPOSITORY"
