@@ -37,11 +37,11 @@ const CHAPTER_ORDER = [
 const VOICEVOX_URL = (process.env.VOICEVOX_URL || 'http://127.0.0.1:50021')
   .replace(/\/+$/, '');
 const VOICEVOX_SPEAKER = Number.parseInt(
-  process.env.VOICEVOX_SPEAKER || '47',
+  process.env.VOICEVOX_SPEAKER || '13',
   10,
 );
 const VOICEVOX_SPEED = Number.parseFloat(
-  process.env.VOICEVOX_SPEED || '1.15',
+  process.env.VOICEVOX_SPEED || '1.10',
 );
 
 const REQUEST_TIMEOUT_MS = Number.parseInt(
