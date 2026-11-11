@@ -61,7 +61,7 @@ export function buildDesign(s:any):Design{
       <Txt text={()=>sig().toFixed(1)+'%'} x={-35} y={12} fontFamily={SF} fontSize={258} fontWeight={700} fill={C.rust}/>
       <Rect width={1210} height={4} y={174} fill={C.gold}/>
       {rise(txt('仕事の情報は、親密な人間関係から届くとは限らない',0,247,49,C.paper,1450))}
-      {rise(txt('GRANOVETTER  /  1973',0,371,29,C.gold,800,false))}
+      {rise(txt('GRANOVETTER  /  1973',0,341,29,C.gold,800,false))}
     </Node>;
   }else if(n===58){
     art=<Node>
@@ -91,16 +91,16 @@ export function buildDesign(s:any):Design{
     art=<Node>
       {rise(txt('転職情報を得た相手との接触頻度',0,-334,61,C.paper,1490))}
       {values.map((v,i)=>{
-        const y=-165+i*170,w=v*14;
-        const r=createRef<Rect>();bars.push({ref:r,w,x:-130+w/2});
+        const y=-165+i*170,w=v*10;
+        const r=createRef<Rect>();bars.push({ref:r,w,x:-255+w/2});
         return <Node key={'b'+i}>
           {txt(labels[i],-595,y,38,C.secondary,480,false)}
-          <Rect x={-130} y={y} width={920} height={85} radius={4} fill={C.panel} opacity={0.8}/>
-          <Rect ref={r} x={-130} y={y} width={0} height={85} radius={4} fill={i===0?C.dim:i===1?C.rust:C.teal}/>
+          <Rect x={88} y={y} width={685} height={85} radius={4} fill={C.panel} opacity={0.8}/>
+          <Rect ref={r} x={-255} y={y} width={0} height={85} radius={4} fill={i===0?C.dim:i===1?C.rust:C.teal}/>
           {txt(v.toFixed(1)+'%',600,y,72,i===0?C.paper:i===1?C.rust:C.teal,380,false)}
         </Node>;
       })}
-      {rise(txt('頻繁には会わない相手  83.4%',0,370,47,C.gold,1400,false))}
+      {rise(txt('頻繁には会わない相手  83.4%',0,325,47,C.gold,1400,false))}
     </Node>;
   }else if(n===30 || n===31 || n===52){
     const value=n===52?83.4:n===31?60:2000;
@@ -211,7 +211,7 @@ export function buildDesign(s:any):Design{
         <Circle x={-480} y={-38+i*130} width={37} height={37} fill={C.rust}/>
         {txt(v,110,-38+i*130,57,C.dark,890)}
       </Node>))}
-      {rise(txt('だが、転職は情報だけでは決まらない',0,361,44,C.gold,1440))}
+      {rise(txt('だが、転職は情報だけでは決まらない',0,331,44,C.gold,1440))}
     </Node>;
   }else if(n===36){
     art=<Node>
@@ -220,7 +220,7 @@ export function buildDesign(s:any):Design{
       {human(-400,50,C.paper,1.75,true)}
       <Circle x={-400} y={-35} width={475} height={475} stroke={C.gold} lineWidth={6} opacity={.40}/>
       {rise(card(d[0]||'新しい環境でやっていけるだろうか',340,-23,875,290,C.rust,'?'))}
-      {rise(txt('情報はある。勇気はどうする？',0,359,50,C.gold,1410))}
+      {rise(txt('情報はある。勇気はどうする？',0,328,50,C.gold,1410))}
     </Node>;
   }else if(n===38){
     art=<Node>{rise(txt('親友が知っているのは、履歴書の外側だ',0,-339,63,C.paper,1560))}
@@ -239,8 +239,8 @@ export function buildDesign(s:any):Design{
       <Circle x={-325} y={16} width={15} height={15} fill={C.paper}/>
       <Rect x={455} y={75} width={590} height={390} radius={44} stroke={C.rust} lineWidth={12}/>
       <Rect x={455} y={-135} width={355} height={116} fill={C.rust} radius={50}/>
-      {rise(txt('新しい世界',-430,348,49,C.teal,540))}
-      {rise(txt('戻れる場所',465,348,49,C.rust,540))}
+      {rise(txt('新しい世界',-430,318,49,C.teal,540))}
+      {rise(txt('戻れる場所',465,318,49,C.rust,540))}
     </Node>;
   }else if(n===42){
     art=<Node>{rise(txt('同じ学校にいた二人が、別の世界へ',0,-349,63,C.paper,1550))}
@@ -268,7 +268,7 @@ export function buildDesign(s:any):Design{
       <Rect width={465} height={536} x={-293} y={-13} fill={C.panel}/>
       <Rect width={453} height={536} x={225} y={-13} fill={C.bg} stroke={C.gold} lineWidth={8} rotation={-12}/>
       {draw([[230,0],[655,-75]],C.gold,11)}
-      {rise(txt('知らない世界への扉を閉ざさない',0,359,51,C.gold,1490))}
+      {rise(txt('知らない世界への扉を閉ざさない',0,318,51,C.gold,1490))}
     </Node>;
   }else if(n===55){
     art=<Node>{rise(txt('自分の意志で選んでいるつもりでも',0,-351,64,C.paper,1550))}
@@ -282,8 +282,8 @@ export function buildDesign(s:any):Design{
     art=<Node>{rise(txt('もう一度、誰かの世界を聞いてみる',0,-343,67,C.paper,1560))}
       {human(-560,0,C.teal,1.5,true)}{human(570,0,C.rust,1.5,true)}
       {draw([[-389,-95],[385,-95]],C.gold,12)}
-      {rise(card(d[0]||'何年も会っていない知人',-445,320,775,117,C.teal))}
-      {rise(card(d[1]||'普段は話さない人',455,320,775,117,C.rust))}
+      {rise(card(d[0]||'何年も会っていない知人',-445,290,775,100,C.teal))}
+      {rise(card(d[1]||'普段は話さない人',455,290,775,100,C.rust))}
     </Node>;
   }else if(ids(n,[4,5,8,11,12,13,34,35,36,37,38,41,42,43,45,50,57])){
     const people=ids(n,[4,8,13,34,37,38,41,42,43]);
