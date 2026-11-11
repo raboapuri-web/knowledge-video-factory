@@ -199,49 +199,75 @@ def page_candidates(url, query):
     PAGE_CACHE[url]=[dict(x) for x in items]
     return items
 
-def candidates_for(scene, source_url):
+def candidates_for(scene, source_url, query=None):
     host=urlparse(source_url).netloc.lower()
+    q=query or scene.get("search_en","")
     if "commons.wikimedia.org" in host:
-        items=commons_candidates(source_url,scene.get("search_en",""))
+        items=commons_candidates(source_url,q)
     else:
-        items=page_candidates(source_url,scene.get("search_en",""))
+        items=page_candidates(source_url,q)
     if scene["id"] in {"S041","S042","S043","S044"}:
         banned=["poster","distribution of known","map of known","diagram","infographic","chart"]
         items=[x for x in items if not any(t in (x.get("title","")+" "+x.get("media_url","")).lower() for t in banned)]
     return items
 
-def video_frame(video_path,out_path,scene_index,media_key):
+def video_frame(video_path,out_path,scene_index,media_key,min_width=1920,min_height=1080):
     try:
+        probe=json.loads(subprocess.check_output(["ffprobe","-v","error","-select_streams","v:0","-show_entries","stream=width,height","-of","json",str(video_path)],text=True))
+        stream=(probe.get("streams") or [{}])[0]
+        width=int(stream.get("width",0)); height=int(stream.get("height",0))
+        if width<min_width or height<min_height:
+            raise ValueError(f"video resolution {width}x{height} below {min_width}x{min_height}")
         d=float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nw=1:nk=1",str(video_path)],text=True).strip())
-        # Spread repeated still extractions through the source video rather than using the same opening frame.
+        # Reusing a source video is allowed only as distinct still frames; spread extraction through the clip.
         n=media_usage.get(media_key,0); media_usage[media_key]=n+1
-        t=max(0.2,min(d-0.5,d*(0.12+0.16*(n%5))))
+        t=max(0.2,min(d-0.5,d*(0.10+0.13*(n%7))))
         subprocess.run(["ffmpeg","-y","-loglevel","error","-ss",str(t),"-i",str(video_path),"-frames:v","1","-q:v","2",str(out_path)],check=True)
-        return out_path.is_file() and out_path.stat().st_size>5000
+        if out_path.is_file() and out_path.stat().st_size>5000:
+            with Image.open(out_path) as im: c_dims=im.size
+            return c_dims[0]>=min_width and c_dims[1]>=min_height
+        return False
     except Exception:
         return False
 
-def download_candidate(c,scene_id,slot):
+def download_candidate(c,scene_id,slot,min_width=1920,min_height=1080):
     url=c["media_url"]; suffix=ext(url) or ".jpg"
     temp=RAW/f"{scene_id}_{slot}.source{suffix}"
     try:
-        r=SESSION.get(url,timeout=90,stream=True); r.raise_for_status()
+        r=SESSION.get(url,timeout=120,stream=True); r.raise_for_status()
         with open(temp,"wb") as f:
             for chunk in r.iter_content(1024*256):
                 if chunk: f.write(chunk)
         if temp.stat().st_size<5000: raise ValueError("media too small")
         out=RAW/f"{scene_id}_{slot}.jpg"
         if suffix in {".mp4",".mov",".webm"}:
-            if not video_frame(temp,out,int(scene_id[1:]),url): raise ValueError("could not extract a still frame")
+            if not video_frame(temp,out,int(scene_id[1:]),url,min_width,min_height):
+                raise ValueError("video still is below the required resolution or could not be extracted")
+            with Image.open(out) as im: c["source_dimensions"]=list(im.size)
             temp.unlink(missing_ok=True)
+        elif suffix==".pdf":
+            prefix=RAW/f"{scene_id}_{slot}.pdfpage"
+            subprocess.run(["pdftoppm","-f","1","-l","1","-r","300","-jpeg",str(temp),str(prefix)],check=True)
+            rendered=Path(str(prefix)+"-1.jpg")
+            if not rendered.exists(): raise ValueError("could not render PDF figure")
+            with Image.open(rendered) as im:
+                im.load()
+                if im.width<min_width or im.height<min_height:
+                    raise ValueError(f"PDF figure resolution {im.size} below {min_width}x{min_height}")
+                c["source_dimensions"]=list(im.size)
+                im.convert("RGB").save(out,quality=94)
+            rendered.unlink(missing_ok=True); temp.unlink(missing_ok=True)
         else:
             with Image.open(temp) as im:
                 im.load()
-                if min(im.size)<280: raise ValueError(f"low resolution {im.size}")
+                if im.width<min_width or im.height<min_height:
+                    raise ValueError(f"image resolution {im.size} below {min_width}x{min_height}")
+                c["source_dimensions"]=list(im.size)
                 im.convert("RGB").save(out,quality=94)
             temp.unlink(missing_ok=True)
         return out
     except Exception as e:
+        c["download_error"]=str(e)
         temp.unlink(missing_ok=True)
         return None
 
@@ -256,10 +282,12 @@ def fit_image(path,size):
         bg.paste(fg,((size[0]-fg.width)//2,(size[1]-fg.height)//2))
         return bg
 
-def compose(paths,scene,out):
+def compose(paths,scene,out,required_override=None):
     desc=scene["image_description"]
-    if "3分割" in desc: n=3
-    elif any(k in desc for k in ["比較","並べる","並置","対比","左右","同じ画面"]): n=2
+    if required_override:
+        n=int(required_override)
+    elif "3分割" in desc: n=3
+    elif any(k in desc for k in ["比較","並べる","並置","対比","左右","同じ画面","横並び"]): n=2
     else: n=1
     chosen=paths[:n]
     if len(chosen)<n:
@@ -309,75 +337,97 @@ def make_contact_sheet():
 
 for idx,scene in enumerate(BOARD["scenes"],1):
     if scene["mode"]!="収集": continue
+    override=OVERRIDES.get(scene["id"],{})
+    query=override.get("query",scene.get("search_en",""))
+    source_specs=override.get("sources",scene.get("sources",[]))
     candidates=[]
-    if scene["id"]=="S001":
-        for src in scene.get("sources",[]):
-            label=src.get("label","").lower()
-            if "isopod" in label:
-                primary=page_candidates(src["url"],"giant isopod")
-                candidates.extend(primary[:1] if primary else commons_candidates("https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus","giant isopod")[:1])
-            elif "spidercrab" in label:
-                candidates.extend(commons_candidates(src["url"],"giant Japanese spider crab")[:1])
-            elif "squid" in label and "noaa" not in label:
-                candidates.extend(commons_candidates(src["url"],"giant squid specimen")[:1])
-    else:
-        for src in scene.get("sources",[]):
-            candidates.extend(candidates_for(scene,src["url"]))
+    for spec in source_specs:
+        if isinstance(spec,str):
+            spec={"url":spec}
+        if not spec.get("url"): continue
+        items=candidates_for(scene,spec["url"],query)
+        for item in items:
+            if spec.get("credit_override"): item["credit"]=spec["credit_override"]
+            if spec.get("license_override"): item["license"]=spec["license_override"]
+            if spec.get("license_url_override"): item["license_url"]=spec["license_url_override"]
+            if spec.get("rights_basis"): item["rights_basis"]=spec["rights_basis"]
+            if spec.get("title_override"): item["title"]=spec["title_override"]
+            candidates.append(item)
     if not candidates:
         candidates.extend(fallback_commons(scene))
-    # deduplicate while preserving ranked order
-    seen=set(); ranked=[]
+    # Deduplicate while preserving the most relevant/high-resolution candidate.
+    ranked_by_url={}
     for c in candidates:
-        if c["media_url"] not in seen:
-            seen.add(c["media_url"]); ranked.append(c)
-    ranked.sort(key=lambda x:x.get("rank",0),reverse=True)
-    # Collect up to three different images only when the screen design explicitly asks for a collage/comparison.
+        old=ranked_by_url.get(c["media_url"])
+        if old is None or (c.get("rank",0),c.get("width",0)*c.get("height",0))>(old.get("rank",0),old.get("width",0)*old.get("height",0)):
+            ranked_by_url[c["media_url"]]=c
+    ranked=list(ranked_by_url.values())
+    ranked.sort(key=lambda x:(x.get("rank",0),x.get("width",0)*x.get("height",0)),reverse=True)
     desc=scene["image_description"]
-    required=3 if "3分割" in desc else (2 if any(k in desc for k in ["比較","並べる","対比","左右","同じ画面"]) else 1)
+    inferred=3 if "3分割" in desc else (2 if any(k in desc for k in ["比較","並べる","並置","対比","左右","同じ画面","横並び"]) else 1)
+    required=int(override.get("panels",inferred))
     selected=[]; paths=[]; attempted=[]; selected_pages=set()
     for c in ranked:
         if len(paths)>=required: break
-        if c["media_url"] in attempted or c["media_url"] in used_media: continue
+        is_video=c.get("kind")=="video"
+        if c["media_url"] in attempted or (c["media_url"] in used_media and not is_video): continue
         if required>1 and c["source_page"] in selected_pages: continue
         attempted.append(c["media_url"])
-        p=download_candidate(c,scene["id"],len(paths)+1)
+        p=download_candidate(c,scene["id"],len(paths)+1,1920,1080)
         if p:
-            selected.append(c); paths.append(p); selected_pages.add(c["source_page"]); used_media.add(c["media_url"])
-    # If first pass did not find any source, make a specific Commons search for the supplied English query.
-    if len(paths)<required and scene.get("search_en"):
-        extra=commons_candidates("https://commons.wikimedia.org/",scene["search_en"])
+            selected.append(c); paths.append(p); selected_pages.add(c["source_page"])
+            if not is_video: used_media.add(c["media_url"])
+    # If curated source pages did not yield enough licensed, high-resolution images, try a focused Commons search.
+    if len(paths)<required and query:
+        extra=commons_candidates("https://commons.wikimedia.org/",query)
         for c in extra:
             if len(paths)>=required: break
-            if c["media_url"] in attempted or c["media_url"] in used_media: continue
+            if c["media_url"] in attempted or (c["media_url"] in used_media and c.get("kind")!="video"): continue
             if required>1 and c["source_page"] in selected_pages: continue
             attempted.append(c["media_url"])
-            p=download_candidate(c,scene["id"],len(paths)+1)
+            p=download_candidate(c,scene["id"],len(paths)+1,1920,1080)
             if p:
-                selected.append(c); paths.append(p); selected_pages.add(c["source_page"]); used_media.add(c["media_url"])
+                selected.append(c); paths.append(p); selected_pages.add(c["source_page"])
+                if c.get("kind")!="video": used_media.add(c["media_url"])
     final=ASSET_DIR/f"{scene['id']}.jpg"
     try:
-        ok=compose(paths,scene,final)
+        ok=compose(paths,scene,final,required)
     except Exception as e:
         ok=False
-        report["missing"].append({"scene":scene["id"],"search_en":scene.get("search_en"),
-            "sources_attempted":[x["url"] for x in scene.get("sources",[])],
+        report["missing"].append({"scene":scene["id"],"search_en":query,
+            "sources_attempted":[(x if isinstance(x,str) else x.get("url","")) for x in source_specs],
             "reason":"Image composition failed: "+repr(e)})
     if ok:
         credits=[]
         for c in selected:
             credits.append({"source_page":c["source_page"],"media_url":c["media_url"],"credit":c["credit"],
-                            "license":c["license"],"license_url":c.get("license_url",""),"title":c.get("title","")})
+                            "license":c["license"],"license_url":c.get("license_url",""),"title":c.get("title",""),
+                            "source_dimensions":c.get("source_dimensions"),"rights_basis":c.get("rights_basis","")})
         record={"scene":scene["id"],"status":"collected","file":str(final.relative_to(ROOT)),
                 "asset_count":len(paths),"required_panels":required,"sources":credits,
-                "sha256":hashlib.sha256(final.read_bytes()).hexdigest()}
+                "sha256":hashlib.sha256(final.read_bytes()).hexdigest(),
+                "fit_review":"pending_manual_visual_check"}
         report["collected"].append(record)
     else:
-        report["missing"].append({"scene":scene["id"],"search_en":scene.get("search_en"),
-            "sources_attempted":[x["url"] for x in scene.get("sources",[])],
-            "reason":"No suitable still image with a verified/acceptable reuse basis could be downloaded."})
+        attempted_errors=[c.get("download_error") for c in ranked if c.get("download_error")]
+        report["missing"].append({"scene":scene["id"],"search_en":query,
+            "sources_attempted":[(x if isinstance(x,str) else x.get("url","")) for x in source_specs],
+            "reason":"No suitable still image with a verified reuse basis and at least 1920x1080 source resolution could be downloaded.",
+            "download_errors":attempted_errors[:8]})
     if idx%10==0:
         print(json.dumps({"collection_progress":idx,"collected":len(report["collected"]),"missing":len(report["missing"])},ensure_ascii=False),flush=True)
 
+# The ten diagram scenes are intentionally generated as original, text-free conceptual illustrations.
+report["generated"]=[]
+for s in BOARD["scenes"]:
+    if s["mode"]!="生成": continue
+    p=ROOT/"assets/generated"/(s["id"]+".png")
+    if p.is_file():
+        with Image.open(p) as im: dims=list(im.size)
+        report["generated"].append({"scene":s["id"],"status":"generated","file":str(p.relative_to(ROOT)),
+            "resolution":dims,"method":"Original SVG vector illustration rendered locally with CairoSVG",
+            "reason":"The canonical screen design explicitly calls for a conceptual diagram; an existing licensed photograph would not communicate the specified relationship clearly.",
+            "external_image_api":False,"cost_usd":0.0,"sha256":hashlib.sha256(p.read_bytes()).hexdigest()})
 contact_sheet=make_contact_sheet()
 report["contact_sheet"]=contact_sheet
 (ROOT/"assets/asset_manifest.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
