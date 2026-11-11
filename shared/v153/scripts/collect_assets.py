@@ -10,7 +10,8 @@ from PIL import Image, ImageOps, ImageFilter, ImageDraw, ImageFont
 ROOT=Path(__file__).resolve().parents[1]
 BOARD=json.loads((ROOT/"content/board.json").read_text(encoding="utf-8"))
 OVERRIDES_PATH=ROOT/"assets/asset_overrides.json"
-OVERRIDES=json.loads(OVERRIDES_PATH.read_text(encoding="utf-8")) if OVERRIDES_PATH.exists() else {}
+OVERRIDE_DATA=json.loads(OVERRIDES_PATH.read_text(encoding="utf-8")) if OVERRIDES_PATH.exists() else {}
+OVERRIDES=OVERRIDE_DATA.get("scenes",OVERRIDE_DATA)
 ASSET_DIR=ROOT/"assets/collected"; RAW=ROOT/"assets/raw"
 ASSET_DIR.mkdir(parents=True,exist_ok=True); RAW.mkdir(parents=True,exist_ok=True)
 API="https://commons.wikimedia.org/w/api.php"
