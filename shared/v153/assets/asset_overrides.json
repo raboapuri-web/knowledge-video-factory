@@ -18,7 +18,8 @@
           "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)",
           "query": "giant squid Architeuthis specimen"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S002": {
       "query": "small deep sea jellyfish fish arthropod tiny marine animals",
@@ -42,7 +43,8 @@
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
           "query": "deep sea amphipod tiny crustacean"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S003": {
       "query": "small shallow water amphipod Alicella gigantea giant amphipod",
@@ -56,7 +58,8 @@
           "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
           "query": "Alicella gigantea giant amphipod"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S004": {
       "query": "deep sea ROV lights dark abyssal seafloor",
@@ -137,7 +140,8 @@
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
           "query": "giant isopod deep sea animal"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S010": {
       "query": "Bathynomus giganteus full body dorsal view",
@@ -165,7 +169,8 @@
           "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus",
           "query": "Bathynomus giganteus giant isopod"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S012": {
       "query": "Japanese spider crab Macrocheira kaempferi full body spread legs",
@@ -204,7 +209,8 @@
           "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)",
           "query": "Architeuthis giant squid specimen"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S015": {
       "query": "Japanese spider crab and giant squid side by side",
@@ -218,7 +224,8 @@
           "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)",
           "query": "Architeuthis giant squid specimen"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S018": {
       "query": "deep ocean water column dark abyssal depth ROV lights",
@@ -268,7 +275,8 @@
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Polar_bear_aka_Ursus_maritimus.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:A_polar_bear.jpg",
+          "query": "A polar bear white Ursus maritimus Arctic"
         }
       ]
     },
@@ -287,16 +295,15 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Polar_bear_aka_Ursus_maritimus.jpg",
-          "query": "polar bear full body Arctic"
+          "url": "https://commons.wikimedia.org/wiki/File:A_polar_bear.jpg",
+          "query": "A polar bear white Ursus maritimus Arctic"
         },
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/deep-sea-shark/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "deep sea fish crab underwater"
+          "url": "https://commons.wikimedia.org/wiki/Category:Deep-sea_fish",
+          "query": "deep sea fish"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S025": {
       "query": "cold deep sea fish dark ocean deep sea shark",
@@ -387,11 +394,14 @@
       "sources": [
         {
           "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9107163/",
-          "credit_override": "Zhang et al. (2022), BMC Biology",
-          "rights_basis": "Article states CC BY 4.0; selected figure captions do not identify third-party material.",
-          "license_url_override": "https://creativecommons.org/licenses/by/4.0/"
+          "query": "Bathynomus jamesi Fig 1B morphology",
+          "license_override": "CC BY 4.0",
+          "license_url_override": "https://creativecommons.org/licenses/by/4.0/",
+          "rights_basis": "The article explicitly states a Creative Commons Attribution 4.0 International License at lines 163–165; selected figure must not have a third-party credit-line exception."
         }
-      ]
+      ],
+      "allow_diagram": true,
+      "allow_reuse": true
     },
     "S033": {
       "query": "phytoplankton bloom Gulf of Aden NASA deep sea seafloor",
@@ -410,7 +420,8 @@
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
           "query": "deep sea seafloor ROV"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S034": {
       "query": "marine snow organic matter small organisms deep seafloor",
@@ -426,7 +437,8 @@
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
           "query": "tiny deep sea arthropod"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S035": {
       "query": "small deep sea bristlemouth fish and large giant isopod size contrast",
@@ -442,21 +454,23 @@
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
           "query": "Bathynomus giganteus giant isopod"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S036": {
       "query": "marine snow falling particles underwater deep sea",
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_(Ifremer_00401-51200).jpg"
+          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/",
+          "query": "marine snow particles tiny arthropod deep sea"
         },
         {
-          "url": "https://oceanexplorer.noaa.gov/ocean-fact/marinesnow/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "url": "https://commons.wikimedia.org/wiki/File:Marine_snow.jpg",
+          "query": "marine snow organic particles"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S037": {
       "query": "phytoplankton bloom satellite ocean color NASA",
@@ -475,7 +489,12 @@
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Arctic_marine_food_web.jpg"
+          "url": "https://www.noaa.gov/education/resource-collections/marine-life/aquatic-food-webs",
+          "query": "marine aquatic food web phytoplankton zooplankton fish"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Role_of_micronekton_in_pelagic_food_webs.png",
+          "query": "role of micronekton pelagic food webs"
         }
       ],
       "allow_diagram": true
@@ -485,76 +504,74 @@
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_(Ifremer_00401-51200).jpg"
+          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/",
+          "query": "marine snow particles tiny arthropod deep sea"
         },
         {
-          "url": "https://oceanexplorer.noaa.gov/ocean-fact/marinesnow/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "url": "https://commons.wikimedia.org/wiki/File:Marine_snow.jpg",
+          "query": "marine snow organic particles"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S040": {
       "query": "marine snow particles deep seafloor falling",
       "panels": 1,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/ocean-fact/marinesnow/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/",
+          "query": "marine snow particles tiny arthropod deep sea"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_(Ifremer_00401-51200).jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Marine_snow.jpg",
+          "query": "marine snow organic particles"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S041": {
       "query": "whale fall skeleton deep sea seabed ROV light",
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Whalefall_hires.jpg"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/Category:Whale_fall"
+          "url": "https://commons.wikimedia.org/wiki/File:Whalefall_hires.jpg",
+          "query": "whale fall skeleton full view"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S042": {
       "query": "whale fall scavengers octopus crabs on skeleton deep sea",
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_at_Davidson_Seamount_(49639154888).jpg"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/Category:Whale_fall"
+          "url": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_Octopuses_(49050941487).jpg",
+          "query": "whale fall octopuses crabs scavengers"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S043": {
       "query": "whale fall octopuses scavengers skeleton close view",
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_Octopuses_(49050941487).jpg"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/Category:Whale_fall"
+          "url": "https://commons.wikimedia.org/wiki/File:MBNMS_Whale_Fall_Octopuses_(49050941487).jpg",
+          "query": "whale fall octopuses scavenging"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S044": {
       "query": "whale fall skeleton later succession scavengers deep sea",
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Whale_fall"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/File:Whalefall_hires.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Whalefall_hires.jpg",
+          "query": "whale fall bones skeleton"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S045": {
       "query": "giant isopod feeding eating fish head close up",
@@ -562,28 +579,37 @@
       "sources": [
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1907-dailyupdates-nov18-media-dive11-isopod/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "query": "giant isopod feeding fish carcass"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus",
+          "query": "Bathynomus giganteus feeding"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S046": {
       "query": "giant isopod feeding mouthparts fish head closeup",
       "panels": 1,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1907-dailyupdates-nov18-media-dive11-isopod/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "url": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2922)_003.jpeg",
+          "query": "Bathynomus giganteus close up mouthparts"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus",
+          "query": "giant isopod close up feeding"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S047": {
       "query": "supermarket shelves stocked food groceries aisle",
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Supermarket_shelves.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Supermarket_shelves.jpg",
+          "query": "stocked supermarket grocery shelves"
         }
       ]
     },
@@ -592,10 +618,8 @@
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Empty_shelves_at_Yonghui_Supermarket_before_closing.jpg"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/Category:Empty_shelves"
+          "url": "https://commons.wikimedia.org/wiki/File:Empty-Shelves-P1630832.jpg",
+          "query": "empty supermarket shelves"
         }
       ]
     },
@@ -614,11 +638,14 @@
       "sources": [
         {
           "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9107163/",
-          "credit_override": "Zhang et al. (2022), BMC Biology",
-          "rights_basis": "Article states CC BY 4.0; selected figure captions do not identify third-party material.",
-          "license_url_override": "https://creativecommons.org/licenses/by/4.0/"
+          "query": "Bathynomus jamesi Fig 5 digestive organs",
+          "license_override": "CC BY 4.0",
+          "license_url_override": "https://creativecommons.org/licenses/by/4.0/",
+          "rights_basis": "The article explicitly states a Creative Commons Attribution 4.0 International License at lines 163–165; selected figure must not have a third-party credit-line exception."
         }
-      ]
+      ],
+      "allow_diagram": true,
+      "allow_reuse": true
     },
     "S051": {
       "query": "Bathynomus jamesi Fig 5 stomach digestive organs tissue analysis",
@@ -626,11 +653,14 @@
       "sources": [
         {
           "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9107163/",
-          "credit_override": "Zhang et al. (2022), BMC Biology",
-          "rights_basis": "Article states CC BY 4.0; selected figure captions do not identify third-party material.",
-          "license_url_override": "https://creativecommons.org/licenses/by/4.0/"
+          "query": "Bathynomus jamesi Fig 5 digestive organs",
+          "license_override": "CC BY 4.0",
+          "license_url_override": "https://creativecommons.org/licenses/by/4.0/",
+          "rights_basis": "The article explicitly states a Creative Commons Attribution 4.0 International License at lines 163–165; selected figure must not have a third-party credit-line exception."
         }
-      ]
+      ],
+      "allow_diagram": true,
+      "allow_reuse": true
     },
     "S052": {
       "query": "deep sea shark large predator fish dark underwater",
@@ -669,44 +699,61 @@
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_from_6200m.jpg",
+          "query": "Alicella gigantea from 6200m specimen"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
+          "query": "Alicella gigantea giant amphipod"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S055": {
       "query": "Alicella gigantea in human hand size comparison",
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_in_hand.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_in_hand.jpg",
+          "query": "Alicella gigantea in human hand size"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
+          "url": "https://commons.wikimedia.org/wiki/File:7000m_Super-G_in_hand.jpg",
+          "query": "Alicella gigantea in hand scale"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S056": {
       "query": "live Alicella gigantea feeding amphipod",
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Live_Alicella_gigantea_feeding.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Live_Alicella_gigantea_feeding.jpg",
+          "query": "Live Alicella gigantea feeding"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_feeding.jpg",
+          "query": "Alicella gigantea feeding"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S057": {
       "query": "Alicella gigantea giant amphipod compared with small amphipod",
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
+          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_Japan_Trench_2022.jpg",
           "query": "Alicella gigantea giant amphipod"
         },
         {
           "url": "https://commons.wikimedia.org/wiki/File:Ceradocus_sellickensis,_Amphipod_no._J_18004.jpg",
-          "query": "small amphipod shallow water"
+          "query": "small shallow water amphipod"
         }
-      ]
+      ],
+      "panel_sources": true,
+      "allow_reuse": true
     },
     "S058": {
       "query": "tiny deep sea fish bristlemouth and amphipod arthropod",
@@ -722,7 +769,8 @@
           "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg",
           "query": "deep sea amphipod crustacean"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S059": {
       "query": "deep sea biodiversity seafloor coral crinoid sponge animals",
@@ -750,7 +798,8 @@
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Ecdysis_Pachygrapsus_crassipes.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Ecdysis_Pachygrapsus_crassipes.jpg",
+          "query": "crab ecdysis molting shell"
         }
       ]
     },
@@ -770,7 +819,8 @@
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
           "query": "deep sea crab crustacean"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S063": {
       "query": "deep sea predator hunting small fish squid feeding",
@@ -820,15 +870,14 @@
       "sources": [
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-at-work/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "query": "deep sea ROV submersible dark abyssal seafloor"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-5/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "query": "deep sea ROV lights seafloor"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S068": {
       "query": "deep sea environment oxygen levels habitat seafloor",
@@ -878,7 +927,8 @@
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Oxygen_Minimum_Zone_(OMZ).pdf"
+          "url": "https://commons.wikimedia.org/wiki/File:How_Oxygen_minimum_zones_form_in_the_ocean.svg",
+          "query": "ocean oxygen minimum zone formation diagram"
         }
       ],
       "allow_pdf": true,
@@ -906,12 +956,15 @@
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2920)_001.jpeg"
+          "url": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2922)_002.jpeg",
+          "query": "Bathynomus giganteus underside specimen"
         },
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus"
+          "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus",
+          "query": "Bathynomus giganteus giant isopod"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S077": {
       "query": "small deep sea animals bristlemouth fish arthropod crinoid",
@@ -935,64 +988,62 @@
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
           "query": "deep sea crinoid coral small marine animal"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S078": {
       "query": "Alicella gigantea and small deep sea fish size comparison",
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
+          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_from_6200m.jpg",
           "query": "Alicella gigantea giant amphipod"
         },
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive08-tripod-fish/",
-          "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "bristlemouth small deep sea fish"
+          "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg",
+          "query": "small amphipod"
         }
-      ]
+      ],
+      "panel_sources": true,
+      "allow_reuse": true
     },
     "S079": {
       "query": "deep sea sea cucumber crinoid resting on seafloor",
       "panels": 1,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-22voyage-to-the-ridge-gallery-media-dive10-seacuke/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
-        },
-        {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/crinoid-and-coral/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "url": "https://commons.wikimedia.org/wiki/File:Ex1402-dive06_red_animal.webm",
+          "query": "deep sea sea cucumber swimming"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S080": {
       "query": "sea cucumber swimming deep sea underwater video",
       "panels": 1,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-22voyage-to-the-ridge-gallery-media-dive10-seacuke/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "url": "https://commons.wikimedia.org/wiki/File:Ex1402-dive06_red_animal.webm",
+          "query": "Enypniastes deep sea sea cucumber swimming"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S081": {
       "query": "Alicella gigantea and small amphipod comparison",
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
-          "query": "Alicella gigantea giant amphipod"
+          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_in_hand.jpg",
+          "query": "Alicella gigantea large amphipod"
         },
         {
           "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg",
-          "query": "small amphipod crustacean"
+          "query": "small amphipod"
         }
-      ]
+      ],
+      "panel_sources": true,
+      "allow_reuse": true
     },
     "S082": {
       "query": "phytoplankton bloom bright sunlit ocean surface deep sea floor",
@@ -1012,7 +1063,8 @@
           "query": "deep sea abyssal seafloor"
         }
       ],
-      "allow_diagram": true
+      "allow_diagram": true,
+      "panel_sources": true
     },
     "S083": {
       "query": "giant isopod crawling walking seafloor video Bathynomus",
@@ -1020,15 +1072,14 @@
       "sources": [
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/video-playlist-ex1711-giant-isopod/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "query": "giant isopod moving walking video"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex1907-dailyupdates-nov18-media-dive11-isopod/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "query": "giant isopod walking seafloor"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S084": {
       "query": "wide dark abyssal seafloor distant ROV lights",
@@ -1036,31 +1087,30 @@
       "sources": [
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-at-work/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "query": "deep sea ROV submersible dark abyssal seafloor"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-5/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "query": "deep sea ROV lights seafloor"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S085": {
       "query": "marine snow and small deep sea organisms on seafloor",
       "panels": 2,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_(Ifremer_00401-51200).jpg",
-          "query": "marine snow particles falling underwater"
+          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/",
+          "query": "marine snow particles tiny arthropod deep sea"
         },
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive13-bristlemouth/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "small deep sea organism bristlemouth"
+          "url": "https://commons.wikimedia.org/wiki/File:Marine_snow.jpg",
+          "query": "marine snow organic particles"
         }
-      ]
+      ],
+      "panel_sources": true,
+      "allow_reuse": true
     },
     "S086": {
       "query": "satellite phytoplankton bloom bright ocean surface deep abyssal sea floor",
@@ -1079,7 +1129,8 @@
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
           "query": "dark deep sea floor ROV"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S087": {
       "query": "large giant isopod and tiny deep sea bristlemouth fish size contrast",
@@ -1093,41 +1144,53 @@
           "url": "https://commons.wikimedia.org/wiki/File:Ophidiid_fish.jpg",
           "query": "bristlemouth small deep sea fish"
         }
-      ]
+      ],
+      "panel_sources": true
     },
     "S088": {
       "query": "wide abyssal plain deep sea ROV lights distant seafloor",
       "panels": 1,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/seafloor/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "url": "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-at-work/",
+          "query": "deep sea ROV submersible dark abyssal seafloor"
         },
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-at-work/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "url": "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-5/",
+          "query": "deep sea ROV lights seafloor"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S016": {
       "query": "Alicella gigantea full body amphipod 7000m",
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:7000m_Super-G_in_hand.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_Japan_Trench_2022.jpg",
+          "query": "Alicella gigantea Japan Trench specimen"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
+          "query": "Alicella gigantea amphipod"
         }
-      ]
+      ],
+      "allow_reuse": true
     },
     "S017": {
       "query": "Alicella gigantea amphipod in human hand scale",
       "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_in_hand.jpg"
+          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_in_hand.jpg",
+          "query": "Alicella gigantea in hand size comparison"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
+          "query": "Alicella gigantea specimen"
         }
-      ]
+      ],
+      "allow_reuse": true
     }
   }
 }
