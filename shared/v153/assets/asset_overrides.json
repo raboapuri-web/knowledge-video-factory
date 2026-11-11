@@ -408,13 +408,11 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive13-bristlemouth/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
+          "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
         }
       ]
@@ -678,8 +676,8 @@
       "panels": 2,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive13-bristlemouth/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive08-tripod-fish/",
+          "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
         },
         {
@@ -881,18 +879,18 @@
       "panels": 3,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive13-bristlemouth/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/",
+          "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
         },
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-22voyage-to-the-ridge-gallery-media-dive10-seacuke/",
+          "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
         },
         {
           "url": "https://oceanexplorer.noaa.gov/multimedia/crinoid-and-coral/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
+          "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
         }
       ]
@@ -905,8 +903,8 @@
           "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea"
         },
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive13-bristlemouth/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive08-tripod-fish/",
+          "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
         }
       ]
@@ -1038,9 +1036,7 @@
           "url": "https://commons.wikimedia.org/wiki/File:Giant_Isopod_(18443864634).jpg"
         },
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive13-bristlemouth/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+          "url": "https://commons.wikimedia.org/wiki/File:Ophidiid_fish.jpg"
         }
       ]
     },
@@ -1057,6 +1053,24 @@
           "url": "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-at-work/",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
           "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
+        }
+      ]
+    },
+    "S016": {
+      "query": "Alicella gigantea full body amphipod 7000m",
+      "panels": 1,
+      "sources": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:7000m_Super-G_in_hand.jpg"
+        }
+      ]
+    },
+    "S017": {
+      "query": "Alicella gigantea amphipod in human hand scale",
+      "panels": 1,
+      "sources": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_in_hand.jpg"
         }
       ]
     }
