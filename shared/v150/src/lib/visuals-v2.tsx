@@ -131,6 +131,160 @@ export function buildDesign(s:any):Design{
         {card(d[1]||'知人：異世界への橋',455,324,655,110,C.rust)}</Node>):
         rise(txt(n===28?'強い絆だけでは、社会はつながらない':n===56?'見えている世界からしか選べない':n===20?'一本の細い線が、情報を運ぶ':d[0]||'橋が生まれる',0,340,48,C.gold,1460))}
     </Node>;
+  }else if(ids(n,[5,45,50])){
+    // Three tactile postcards: a colleague, an old friend, another worldview.
+    art=<Node>
+      {rise(txt(s.heading,0,-347,65,C.paper,1490))}
+      {d.slice(0,3).map((entry,i)=>{
+        const x=-530+i*530,y=i===1?10:-13,ang=i===0?-3:i===2?3:0;
+        return rise(<Node key={'postcard'+i} x={x} y={y} rotation={ang}>
+          <Rect width={480} height={535} radius={8} fill={C.paper}/>
+          <Rect width={442} height={335} y={-72} radius={5} fill={i===0?C.teal:i===1?C.blue:C.rust} opacity={.78}/>
+          <Circle y={-165} width={137} height={137} fill={C.paper} opacity={.85}/>
+          <Rect y={-40} width={220} height={120} radius={60} fill={C.paper} opacity={.85}/>
+          {txt('0'+(i+1),-168,-198,30,C.dark,110,false)}
+          {txt(entry,0,188,39,C.dark,406)}
+        </Node>);
+      })}
+    </Node>;
+  }else if(n===8){
+    art=<Node>{rise(txt(s.heading,0,-336,64,C.paper,1400))}
+      <Circle width={680} height={680} y={60} stroke={C.teal} lineWidth={3} opacity={.38}/>
+      {human(-395,35,C.teal,1.4)}{human(0,-120,C.teal,1.37,true)}{human(395,35,C.teal,1.4)}
+      {draw([[-320,17],[0,-143],[320,17],[-320,17]],C.gold,6)}
+      {rise(txt('友人たちは、同じ世界を共有している',0,341,50,C.paper,1450))}
+    </Node>;
+  }else if(n===11){
+    art=<Node>{rise(txt('異なる業界から来た、もう一人',0,-322,66,C.paper,1480))}
+      {human(-450,0,C.teal,1.5,true)}{human(475,0,C.rust,1.5,true)}
+      <Circle x={-450} width={490} height={490} stroke={C.teal} lineWidth={5} opacity={.45}/>
+      <Circle x={475} width={490} height={490} stroke={C.rust} lineWidth={5} opacity={.45}/>
+      {draw([[-150,-36],[168,-36]],C.gold,8)}
+      {rise(txt('同じ日常では、見えない情報がある',0,335,51,C.gold,1500))}
+    </Node>;
+  }else if(n===12){
+    art=<Node>
+      {rise(txt('何気ない一言が、未来を変える',0,-340,64,C.paper,1550))}
+      <Rect width={1450} height={445} y={-6} radius={28} fill={C.paper}/>
+      {rise(txt('“',-641,-183,135,C.rust,150,false))}
+      {rise(txt(d[0]||'',0,-13,63,C.dark,1285))}
+      {rise(txt('— たまに会う知人',430,168,35,C.blue,540,false))}
+      {draw([[-100,261],[0,321],[100,261]],C.gold,10)}
+    </Node>;
+  }else if(n===19){
+    art=<Node>{rise(txt('社会は、小さな集団の集合である',0,-350,61,C.paper,1510))}
+      {mesh(-515,35,leftPts.slice(0,5),C.teal,1)}
+      {mesh(0,35,leftPts.slice(0,5),C.blue,1)}
+      {mesh(515,35,leftPts.slice(0,5),C.rust,1)}
+      {rise(txt('学校',-495,311,53,C.teal,310))}
+      {rise(txt('仕事',15,311,53,C.paper,310))}
+      {rise(txt('趣味',540,311,53,C.rust,310))}
+    </Node>;
+  }else if(n===29){
+    art=<Node>{rise(txt('相関関係は、原因の証明ではない',0,-350,65,C.paper,1510))}
+      <Rect x={-300} y={7} width={670} height={515} fill={C.panel} stroke={C.line} lineWidth={3}/>
+      <Line points={[[-605,205],[-605,-205]]} stroke={C.paper} lineWidth={5}/>
+      <Line points={[[-605,205],[15,205]]} stroke={C.paper} lineWidth={5}/>
+      {Array.from({length:21},(_,i)=>{
+        const x=-552+(i%7)*79,y=162-((i*11)%7)*45-((i%7)*24);
+        return <Circle key={'scatter'+i} x={x} y={y} width={19} height={19} fill={i%2?C.teal:C.gold}/>;
+      })}
+      {rise(txt('相関 ≠ 因果',475,-17,87,C.rust,720))}
+      {rise(txt('つながりが転職に効いたのか？',380,213,43,C.paper,720))}
+    </Node>;
+  }else if(n===34){
+    art=<Node>{rise(txt('親友を捨てて、人脈を増やす？',0,-340,69,C.paper,1520))}
+      <Node x={-440} y={30}>
+        {Array.from({length:81},(_,i)=><Circle key={'contacts'+i} x={(i%9-4)*55} y={(Math.floor(i/9)-4)*48} width={14} height={14} fill={C.dim}/>)}
+      </Node>
+      <Rect width={6} height={485} fill={C.line}/>
+      {human(470,-10,C.teal,2,true)}
+      {rise(txt('数の多さ',-420,339,48,C.secondary,570))}
+      {rise(txt('関係の深さ',460,339,48,C.gold,570))}
+    </Node>;
+  }else if(n===35){
+    art=<Node>{rise(txt('目の前に、魅力的な仕事がある',0,-339,66,C.paper,1490))}
+      <Rect width={1280} height={520} fill={C.paper} radius={16} rotation={-1.5}/>
+      <Rect x={-495} y={-180} width={150} height={110} radius={9} fill={C.teal}/>
+      {txt('JOB OFFER',-180,-196,60,C.dark,760,false)}
+      {d.slice(0,3).map((v,i)=>rise(<Node key={'job'+i}>
+        <Circle x={-480} y={-38+i*130} width={37} height={37} fill={C.rust}/>
+        {txt(v,110,-38+i*130,57,C.dark,890)}
+      </Node>))}
+      {rise(txt('だが、転職は情報だけでは決まらない',0,361,44,C.gold,1440))}
+    </Node>;
+  }else if(n===36){
+    art=<Node>
+      {halo(-20,15,800,C.rust,.20)}
+      {rise(txt('それでも、決断の前には不安がある',0,-346,64,C.paper,1530))}
+      {human(-400,50,C.paper,1.75,true)}
+      <Circle x={-400} y={-35} width={475} height={475} stroke={C.gold} lineWidth={6} opacity={.40}/>
+      {rise(card(d[0]||'新しい環境でやっていけるだろうか',340,-23,875,290,C.rust,'?'))}
+      {rise(txt('情報はある。勇気はどうする？',0,359,50,C.gold,1410))}
+    </Node>;
+  }else if(n===38){
+    art=<Node>{rise(txt('親友が知っているのは、履歴書の外側だ',0,-339,63,C.paper,1560))}
+      {human(-540,20,C.teal,1.65,true)}
+      {d.slice(0,3).map((v,i)=>rise(<Node key={'memory'+i}>
+        <Rect x={260} y={-180+i*176} width={930} height={148} fill={C.panel} stroke={i===1?C.gold:C.teal} lineWidth={2} radius={9}/>
+        <Rect x={-130} y={-180+i*176} width={9} height={118} fill={C.rust}/>
+        {txt(v,260,-180+i*176,46,C.paper,810)}
+      </Node>))}
+    </Node>;
+  }else if(n===41){
+    art=<Node>{rise(txt('出会いは扉を開き、友情は帰る場所を作る',0,-340,58,C.paper,1550))}
+      <Rect x={-445} y={15} width={420} height={570} fill={'#253845'} stroke={C.teal} lineWidth={8} radius={8}/>
+      <Rect x={-445} y={12} width={320} height={492} fill={C.bg} stroke={C.gold} lineWidth={5}/>
+      {draw([[-540,70],[-250,-30]],C.gold,10)}
+      <Circle x={-325} y={16} width={15} height={15} fill={C.paper}/>
+      <Rect x={455} y={75} width={590} height={390} radius={44} stroke={C.rust} lineWidth={12}/>
+      <Rect x={455} y={-135} width={355} height={116} fill={C.rust} radius={50}/>
+      {rise(txt('新しい世界',-430,348,49,C.teal,540))}
+      {rise(txt('戻れる場所',465,348,49,C.rust,540))}
+    </Node>;
+  }else if(n===42){
+    art=<Node>{rise(txt('同じ学校にいた二人が、別の世界へ',0,-349,63,C.paper,1550))}
+      {human(0,-70,C.paper,1.1,true)}
+      {draw([[0,20],[-500,190]],C.teal,10)}
+      {draw([[0,20],[500,190]],C.rust,10)}
+      {human(-520,185,C.teal,1.3)}{human(520,185,C.rust,1.3)}
+      {rise(txt('会社員',-520,351,48,C.teal,580))}
+      {rise(txt('海外で働く',520,351,48,C.rust,580))}
+    </Node>;
+  }else if(n===43 || n===44){
+    art=<Node>{rise(txt(s.heading,0,-347,65,C.paper,1510))}
+      <Line points={[[-710,0],[710,0]]} stroke={C.line} lineWidth={11}/>
+      {draw([[-710,0],[710,0]],C.gold,6)}
+      {[-620,0,620].map((x,i)=><Node key={'timeline'+i}>
+        <Circle x={x} width={i===1?66:49} height={i===1?66:49} fill={i===1?C.gold:i===0?C.teal:C.rust}/>
+        {rise(txt(i===0?'同じ世界':i===1?'別々の時間':'新しい経験',x,101,45,i===0?C.teal:i===1?C.gold:C.rust,530))}
+      </Node>)}
+      {rise(txt(d[0]||'違う経験が、再び交差する',0,307,47,C.paper,1420))}
+    </Node>;
+  }else if(n===49){
+    art=<Node>
+      {rise(txt('人脈を増やすことが目的ではない',0,-341,65,C.paper,1540))}
+      <Rect width={1070} height={555} x={-30} y={-14} stroke={C.line} lineWidth={13} radius={12}/>
+      <Rect width={465} height={536} x={-293} y={-13} fill={C.panel}/>
+      <Rect width={453} height={536} x={225} y={-13} fill={C.bg} stroke={C.gold} lineWidth={8} rotation={-12}/>
+      {draw([[230,0],[655,-75]],C.gold,11)}
+      {rise(txt('知らない世界への扉を閉ざさない',0,359,51,C.gold,1490))}
+    </Node>;
+  }else if(n===55){
+    art=<Node>{rise(txt('自分の意志で選んでいるつもりでも',0,-351,64,C.paper,1550))}
+      {human(0,-162,C.paper,.95,true)}
+      {draw([[0,-65],[0,25],[-570,110]],C.teal,8)}
+      {draw([[0,25],[0,110]],C.gold,8)}
+      {draw([[0,25],[570,110]],C.rust,8)}
+      {d.slice(0,3).map((v,i)=>rise(card(v,(-1+i)*540,269,475,190,i===0?C.teal:i===1?C.gold:C.rust,String(i+1))))}
+    </Node>;
+  }else if(n===57){
+    art=<Node>{rise(txt('もう一度、誰かの世界を聞いてみる',0,-343,67,C.paper,1560))}
+      {human(-560,0,C.teal,1.5,true)}{human(570,0,C.rust,1.5,true)}
+      {draw([[-389,-95],[385,-95]],C.gold,12)}
+      {rise(card(d[0]||'何年も会っていない知人',-445,320,775,117,C.teal))}
+      {rise(card(d[1]||'普段は話さない人',455,320,775,117,C.rust))}
+    </Node>;
   }else if(ids(n,[4,5,8,11,12,13,34,35,36,37,38,41,42,43,45,50,57])){
     const people=ids(n,[4,8,13,34,37,38,41,42,43]);
     art=<Node>
