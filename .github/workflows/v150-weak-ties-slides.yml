@@ -69,7 +69,9 @@ jobs:
         with:
           node-version: '22'
       - name: Install system packages
-        run: timeout 300 sudo apt-get install -y -qq fonts-noto-cjk fontconfig ffmpeg
+        run: command -v ffmpeg && ffmpeg -version | head -1
+          command -v fc-list || true
+          echo "Japanese font comes from @fontsource/noto-sans-jp npm dependency; skip slow apt installation"
       - name: Setup Motion Canvas with original V150 cinematic renderer
         run: |
           mkdir -p src/scenes src/projects src/lib scripts
@@ -141,7 +143,7 @@ jobs:
         with:
           node-version: '22'
       - name: Install ffmpeg
-        run: timeout 300 sudo apt-get install -y -qq ffmpeg
+        run: command -v ffmpeg && ffmpeg -version | head -1
       - name: Download chapter segments
         uses: actions/download-artifact@v4
         with:
