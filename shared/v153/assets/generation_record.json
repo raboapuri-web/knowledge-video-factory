@@ -1,6 +1,6 @@
 {
   "S016": {
-    "file": "handoff_package/images/S016.jpg",
+    "file": "assets/panels/ai-generated/S016.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -10,7 +10,7 @@
     "sha256_12": "2f61b548b821"
   },
   "S017": {
-    "file": "handoff_package/images/S017.jpg",
+    "file": "assets/panels/ai-generated/S017.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -20,7 +20,7 @@
     "sha256_12": "6f0fe7150f66"
   },
   "S046": {
-    "file": "fix3/S046.jpg",
+    "file": "assets/panels/ai-generated/S046.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -30,7 +30,7 @@
     "sha256_12": "b7001aad2b55"
   },
   "S054": {
-    "file": "fix3/S054.jpg",
+    "file": "assets/panels/ai-generated/S054.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -40,7 +40,7 @@
     "sha256_12": "4afb09895514"
   },
   "S057": {
-    "file": "handoff_package/images/S057.jpg",
+    "file": "assets/panels/ai-generated/S057.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -50,7 +50,7 @@
     "sha256_12": "cd63b1b827cc"
   },
   "S073": {
-    "file": "fix3/S073.jpg",
+    "file": "assets/panels/ai-generated/S073.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -60,7 +60,7 @@
     "sha256_12": "9c842f13f86c"
   },
   "S055": {
-    "file": "fix3/S055.jpg",
+    "file": "assets/panels/ai-generated/S055.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -70,7 +70,7 @@
     "sha256_12": "226341a60343"
   },
   "S056": {
-    "file": "fix3/S056.jpg",
+    "file": "assets/panels/ai-generated/S056.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -80,7 +80,7 @@
     "sha256_12": "b97cf0c70c7f"
   },
   "S039": {
-    "file": "fix3/S039.jpg",
+    "file": "assets/panels/ai-generated/S039.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -90,7 +90,7 @@
     "sha256_12": "52cf50b225c1"
   },
   "S040": {
-    "file": "handoff_package/images/S040.jpg",
+    "file": "assets/panels/ai-generated/S040.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -100,7 +100,7 @@
     "sha256_12": "6bbe372ff6ed"
   },
   "S045": {
-    "file": "fix3/S045.jpg",
+    "file": "assets/panels/ai-generated/S045.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -110,7 +110,7 @@
     "sha256_12": "77ec6e1c571a"
   },
   "S061": {
-    "file": "fix3/S061.jpg",
+    "file": "assets/panels/ai-generated/S061.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -120,7 +120,7 @@
     "sha256_12": "95fbd46baecb"
   },
   "S088": {
-    "file": "handoff_package/images/S088.jpg",
+    "file": "assets/panels/ai-generated/S088.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -130,7 +130,7 @@
     "sha256_12": "7f3418f2962c"
   },
   "S084-R": {
-    "file": "handoff_package/images/S084-R.jpg",
+    "file": "assets/panels/ai-generated/S084-R.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -140,7 +140,7 @@
     "sha256_12": "076efcc2d57c"
   },
   "S085-PA": {
-    "file": "fix3/S085-PA.jpg",
+    "file": "assets/panels/ai-generated/S085-PA.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -150,7 +150,7 @@
     "sha256_12": "500e0ade22d4"
   },
   "S082-PB": {
-    "file": "handoff_package/images/S082-PB.jpg",
+    "file": "assets/panels/ai-generated/S082-PB.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -160,7 +160,7 @@
     "sha256_12": "94ab92d0e5e0"
   },
   "S078-PA": {
-    "file": "fix3/S078-PA.jpg",
+    "file": "assets/panels/ai-generated/S078-PA.jpg",
     "license": "AI-generated",
     "author": "Muse (image generation)",
     "source_page": "",
@@ -168,5 +168,23 @@
     "origin": "generated (fit replacement 2026-11-11)",
     "reason": "Alicella実写はCC BY-SAのみ。CC BY図版内写真はS081-PAに充当したため生成",
     "sha256_12": "f783a3e967f6"
+  },
+  "S059": {
+    "file": "assets/panels/ai-generated/S059.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S059.jpg - AI生成画像（収集候補枯渇・権利/被写体条件により補充）",
+    "origin": "generated (v153 v2/v3 handoff)",
+    "reason": "Generated: collection attempts exhausted (429 throttling, only 7-10 candidates) for the deep-sea biodiversity seafloor screen."
+  },
+  "S068": {
+    "file": "assets/panels/ai-generated/S068.jpg",
+    "license": "AI-generated",
+    "author": "Muse (image generation)",
+    "source_page": "",
+    "credit": "S068.jpg - AI生成画像（収集候補枯渇・権利/被写体条件により補充）",
+    "origin": "generated (v153 v2/v3 handoff)",
+    "reason": "Generated: a collected Public Domain image existed but its source record could not be identified after two recovery passes, so it was dropped and generated instead."
   }
 }
