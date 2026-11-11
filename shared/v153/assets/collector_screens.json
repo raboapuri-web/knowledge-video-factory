@@ -1,0 +1,202 @@
+[
+  {
+    "id": "S016",
+    "query": "Alicella gigantea full body amphipod 7000m",
+    "subject": "深海巨大症の代表例としてAlicella giganteaの全身写真。透明感のある体と長い脚が見えるもの。"
+  },
+  {
+    "id": "S017",
+    "query": "Alicella gigantea amphipod in human hand scale",
+    "subject": "Alicella giganteaを人の手、採集器具、または定規と一緒に写した写真。体長30cm級の大きさが伝わる構図。"
+  },
+  {
+    "id": "S028",
+    "query": "giant isopod walking crawling moving on seafloor video",
+    "subject": "海底をゆっくり移動するダイオウグソクムシ。動きが確認できる短い映像を選ぶ。"
+  },
+  {
+    "id": "S035",
+    "query": "small deep sea bristlemouth fish and large giant isopod size contrast",
+    "subject": "小型の深海生物と大型の深海生物を同じ画面に並べ、サイズが一様ではないことを見せる。"
+  },
+  {
+    "id": "S036",
+    "query": "marine snow falling particles underwater deep sea",
+    "subject": "海面から海底へ沈む粒子の映像。水中を白い粒子がゆっくり落ちていくNOAAのマリンスノー映像。"
+  },
+  {
+    "id": "S038",
+    "query": "marine food web phytoplankton zooplankton fish energy flow diagram",
+    "subject": "植物プランクトンから動物プランクトン、小魚、大型魚へつながる既存の海洋食物網図版。NOAAのAquatic Food Webs図を優先する。"
+  },
+  {
+    "id": "S039",
+    "query": "close up marine snow particles falling underwater",
+    "subject": "水中に漂う植物プランクトン由来の粒子、死骸、排泄物などを含むマリンスノーの接写映像。"
+  },
+  {
+    "id": "S040",
+    "query": "marine snow particles deep seafloor falling",
+    "subject": "NOAAが公開するマリンスノーの深海映像。粒子が雪のように落ち続ける長めのカット。"
+  },
+  {
+    "id": "S041",
+    "query": "whale fall skeleton deep sea seabed ROV light",
+    "subject": "深海底に沈んだクジラの骨格をROVのライトが照らす引きの映像。"
+  },
+  {
+    "id": "S042",
+    "query": "whale fall scavengers octopus crabs on skeleton deep sea",
+    "subject": "鯨骨の周囲に魚、タコ、カニなどが集まっている実際の映像。"
+  },
+  {
+    "id": "S043",
+    "query": "whale fall octopuses scavengers skeleton close view",
+    "subject": "鯨骨の周囲で複数の生物が餌を食べているカット。可能なら2019年の発見時映像を使う。"
+  },
+  {
+    "id": "S044",
+    "query": "whale fall skeleton later succession scavengers deep sea",
+    "subject": "鯨骨の異なる部位に集まる生物や、時間経過で変化した鯨骨の映像。"
+  },
+  {
+    "id": "S045",
+    "query": "giant isopod feeding eating fish head close up",
+    "subject": "魚の頭を食べるダイオウグソクムシの映像。餌に集まる行動を大きくトリミングする。"
+  },
+  {
+    "id": "S046",
+    "query": "giant isopod feeding mouthparts fish head closeup",
+    "subject": "ダイオウグソクムシが餌を食べる接写。口器・前脚・腹部が見えるカット。"
+  },
+  {
+    "id": "S047",
+    "query": "supermarket shelves stocked food groceries aisle",
+    "subject": "食料が豊富に並ぶコンビニまたはスーパーマーケットの棚。人が自由に商品を選べる視点の写真。"
+  },
+  {
+    "id": "S048",
+    "query": "sparse empty supermarket food shelves",
+    "subject": "食料が少ない備蓄庫や空に近い棚の写真。過剰に悲惨な表現ではなく、在庫が限られた状態を見せる。"
+  },
+  {
+    "id": "S050",
+    "query": "Bathynomus jamesi genome paper Fig 1 morphology specimen image",
+    "subject": "2022年のBathynomus jamesiゲノム研究の論文ページ、または論文中の個体写真とFig.1を表示。図の権利表記を必ず確認。"
+  },
+  {
+    "id": "S051",
+    "query": "Bathynomus jamesi Fig 5 stomach digestive organs tissue analysis",
+    "subject": "論文Fig.1Bの胃・脂肪体の説明に対応する個体写真、または論文中の消化器官・組織解析図。"
+  },
+  {
+    "id": "S052",
+    "query": "deep sea shark large predator fish dark underwater",
+    "subject": "深海魚やサメなど、深海で捕食者となる大型魚の実写。口や歯が分かるが過度に恐怖演出しないカット。"
+  },
+  {
+    "id": "S053",
+    "query": "deep sea predator fish small crustacean prey",
+    "subject": "小型の甲殻類を狙う魚、または大型魚が海底を泳ぐ映像。"
+  },
+  {
+    "id": "S054",
+    "query": "Alicella gigantea full body deep sea amphipod",
+    "subject": "Alicella giganteaの全身を、背景の海底または標本背景とともに見せる。"
+  },
+  {
+    "id": "S057",
+    "query": "Alicella gigantea giant amphipod compared with small amphipod",
+    "subject": "Alicella giganteaと一般的な小型ヨコエビを同じ画面に並べる。サイズ差を示すため、片方だけ極端に拡大しない。"
+  },
+  {
+    "id": "S058",
+    "query": "tiny deep sea fish bristlemouth and amphipod arthropod",
+    "subject": "深海にいる小型の魚や節足動物の実写。小ささが分かるよう、海底やROVライトとの対比を残す。"
+  },
+  {
+    "id": "S059",
+    "query": "deep sea biodiversity seafloor coral crinoid sponge animals",
+    "subject": "深海の海底地形と、そこに暮らす複数種の生物を映したROV映像。"
+  },
+  {
+    "id": "S061",
+    "query": "crab molting ecdysis shell shedding crustacean",
+    "subject": "脱皮直後のカニ、または脱皮殻と新しい個体が分かる写真。タカアシガニに限らず甲殻類の脱皮を示す。"
+  },
+  {
+    "id": "S064",
+    "query": "deep sea predator and small prey eel feeding fish",
+    "subject": "深海底で捕食者と小型生物が同じ画面にいる映像。捕食の瞬間でなくてもよい。"
+  },
+  {
+    "id": "S067",
+    "query": "deep sea ROV seafloor biodiversity lights",
+    "subject": "深海の海底地形と、そこに暮らす複数種の生物を映したROV映像。"
+  },
+  {
+    "id": "S068",
+    "query": "deep sea environment oxygen levels habitat seafloor",
+    "subject": "異なる深海環境の海底写真や、深海の酸素分布を示す公的な海洋図版。"
+  },
+  {
+    "id": "S069",
+    "query": "deep sea fish head gills close up detailed fish",
+    "subject": "深海魚のエラや、ROVライトの中を泳ぐ魚の頭部の接写。"
+  },
+  {
+    "id": "S073",
+    "query": "ocean oxygen minimum zone distribution diagram map",
+    "subject": "海洋の酸素分布を示す公的な図版、または深海の異なる海域の実写を選び、酸素量が一様ではないことを視覚化する。"
+  },
+  {
+    "id": "S076",
+    "query": "Bathynomus giganteus abdomen underside body specimen",
+    "subject": "ダイオウグソクムシの腹部・全身の実写。体の大きさが分かる斜め上からの写真。"
+  },
+  {
+    "id": "S078",
+    "query": "Alicella gigantea and small deep sea fish size comparison",
+    "subject": "Alicella giganteaと小型の深海魚・小型節足動物を並べた実写コラージュ。"
+  },
+  {
+    "id": "S079",
+    "query": "deep sea sea cucumber crinoid resting on seafloor",
+    "subject": "深海の生物が海底で餌を待つ様子。ナマコ、ウミシダ、等脚類など動きの少ない生物を選ぶ。"
+  },
+  {
+    "id": "S080",
+    "query": "sea cucumber swimming deep sea underwater video",
+    "subject": "低温の深海をゆっくり移動するナマコまたは深海魚。画面の余白が大きい映像。"
+  },
+  {
+    "id": "S081",
+    "query": "Alicella gigantea and small amphipod comparison",
+    "subject": "Alicella giganteaと小型の深海魚・小型節足動物を並べた実写コラージュ。"
+  },
+  {
+    "id": "S083",
+    "query": "giant isopod crawling walking seafloor video Bathynomus",
+    "subject": "海底をゆっくり移動するダイオウグソクムシ。動きが確認できる短い映像を選ぶ。"
+  },
+  {
+    "id": "S084",
+    "query": "wide dark abyssal seafloor distant ROV lights",
+    "subject": "光の届かない広い深海底を、遠くに小さくROVライトが見える引きの映像で締める。"
+  },
+  {
+    "id": "S085",
+    "query": "marine snow and small deep sea organisms on seafloor",
+    "subject": "マリンスノーが落ちる暗い海底と、そこにいる小型生物を引きで見せる。"
+  },
+  {
+    "id": "S087",
+    "query": "large giant isopod and tiny deep sea bristlemouth fish size contrast",
+    "subject": "深海の大型生物と小型生物を同じ海底環境の別カットで交互に見せる。"
+  },
+  {
+    "id": "S088",
+    "query": "wide abyssal plain deep sea ROV lights distant seafloor",
+    "subject": "広大な深海底の遠景。海底の地形と遠くのROVライトだけが見える、暗く静かな映像。"
+  }
+]
