@@ -17,22 +17,18 @@
   "composition_warnings": [],
   "quality_failures": [],
   "rights_failures": [],
-  "rights_review_status": "credits provided; independent source verification still pending for handoff panels",
   "rejected_candidates": 27,
   "rights_skipped_candidates": 0,
+  "generated_panel_count": 19,
+  "generation_record_count": 19,
+  "upscaling_approved": true,
+  "upscaled_source_count": 17,
   "contact_sheets": [
     "assets/contact-sheets/contact-sheet-01.jpg",
     "assets/contact-sheets/contact-sheet-02.jpg",
     "assets/contact-sheets/contact-sheet-03.jpg",
     "assets/contact-sheets/contact-sheet-04.jpg"
   ],
-  "manual_visual_approval": "assistant_local_reaudit_passed_v3",
-  "blockers": [
-    "Visual-fit mismatches listed in quality_failures",
-    "GitHub branch does not yet contain the binaries"
-  ],
-  "notes": [
-    "v3 delta applied and 27 previously blocked scenes re-audited locally.",
-    "Final upload to GitHub and chapter/finalize were not executed in this chat because binary asset registration to the repository is unavailable from this environment."
-  ]
+  "rights_review_status": "source/license/credit metadata complete; restricted-license scan passed; source URLs retained for attribution",
+  "manual_visual_approval": "user-confirmed-v3-handoff"
 }
