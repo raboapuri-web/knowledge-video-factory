@@ -485,7 +485,7 @@
       ]
     },
     "S038": {
-      "query": "marine food web phytoplankton zooplankton fish diagram",
+      "query": "marine food web phytoplankton zooplankton fish energy flow diagram",
       "panels": 1,
       "sources": [
         {
@@ -494,7 +494,7 @@
         },
         {
           "url": "https://commons.wikimedia.org/wiki/File:Role_of_micronekton_in_pelagic_food_webs.png",
-          "query": "role of micronekton pelagic food webs"
+          "query": "micronekton pelagic food web energy flow"
         }
       ],
       "allow_diagram": true
@@ -923,14 +923,9 @@
       "sources": []
     },
     "S073": {
-      "query": "ocean oxygen minimum zone distribution map",
+      "query": "ocean oxygen minimum zone distribution diagram map",
       "panels": 1,
-      "sources": [
-        {
-          "url": "https://commons.wikimedia.org/wiki/File:How_Oxygen_minimum_zones_form_in_the_ocean.svg",
-          "query": "ocean oxygen minimum zone formation diagram"
-        }
-      ],
+      "sources": [],
       "allow_pdf": true,
       "allow_diagram": true
     },
