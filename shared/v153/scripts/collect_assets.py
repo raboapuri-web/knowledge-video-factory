@@ -32,10 +32,12 @@ def ext(url): return Path(urlparse(url).path).suffix.lower()
 def allowed_commons(meta):
     lic=str(meta.get("LicenseShortName",{}).get("value","")).strip().lower()
     url=str(meta.get("LicenseUrl",{}).get("value","")).lower()
-    ok=("public domain" in lic or lic in {"pd","cc0"} or lic.startswith("cc0")
-        or lic.startswith("cc by ") or lic.startswith("cc by-sa ")
-        or "creativecommons.org/licenses/by/" in url or "creativecommons.org/licenses/by-sa/" in url
-        or "creativecommons.org/publicdomain/zero" in url)
+    # Monetized video use excludes non-commercial and no-derivatives licenses.
+    restricted=any(term in lic for term in ["-nc","-nd","noncommercial","non-commercial","no derivatives"])
+    cc_open=(lic.startswith("cc by ") or lic.startswith("cc by-sa "))
+    cc_url=("creativecommons.org/licenses/by/" in url or "creativecommons.org/licenses/by-sa/" in url)
+    ok=(("public domain" in lic or lic in {"pd","cc0"} or lic.startswith("cc0")
+         or cc_open or cc_url or "creativecommons.org/publicdomain/zero" in url) and not restricted)
     return ok, lic or "unverified", url
 def commons_candidates(source_url, query):
     parsed=urlparse(source_url)
