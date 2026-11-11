@@ -22,7 +22,7 @@ used_media=set()
 media_usage={}
 PAGE_CACHE={}
 COMMONS_CACHE={}
-report={"collected":[],"missing":[],"composition_warnings":[],"rights_skipped":[]}
+report={"collected":[],"missing":[],"composition_warnings":[],"rights_skipped":[],"rejected_candidates":[]}
 def norm(s): return re.sub(r"[^a-z0-9]+"," ",str(s).lower())
 def tokens(s): return {x for x in norm(s).split() if len(x)>2 and x not in {"the","and","for","with","from","photo","video","image","deep","sea","ocean","noaa","commons"}}
 def score(text,query):
@@ -331,22 +331,55 @@ def fallback_commons(scene):
     return []
 
 def make_contact_sheet():
-    files=sorted(ASSET_DIR.glob("S[0-9][0-9][0-9].jpg"))
-    if not files: return None
-    cols=6; cw,ch=320,180; label_h=28
-    rows=(len(files)+cols-1)//cols
-    sheet=Image.new("RGB",(cols*cw,rows*(ch+label_h)),(5,15,25))
-    draw=ImageDraw.Draw(sheet); font=ImageFont.load_default()
-    for i,p in enumerate(files):
-        with Image.open(p) as im:
-            thumb=ImageOps.fit(im.convert("RGB"),(cw,ch),method=Image.Resampling.LANCZOS)
-        x=(i%cols)*cw; y=(i//cols)*(ch+label_h)
-        sheet.paste(thumb,(x,y))
-        draw.rectangle((x,y+ch,x+cw,y+ch+label_h),fill=(5,15,25))
-        draw.text((x+8,y+ch+6),p.stem,fill=(240,240,240),font=font)
-    dest=ASSET_DIR/"collection-contact-sheet.jpg"
-    sheet.save(dest,"JPEG",quality=90,optimize=True)
-    return str(dest.relative_to(ROOT))
+    log_path=ROOT/"assets/replacement_log.json"
+    log=json.loads(log_path.read_text(encoding="utf-8")) if log_path.exists() else {}
+    replaced={x["scene"] for x in log.get("replacements",[])}
+    previously_missing={x["scene"] for x in log.get("missing_screens",[])}
+    out_dir=ROOT/"assets/contact-sheets"
+    out_dir.mkdir(parents=True,exist_ok=True)
+    cols,rows=4,6; cw,ch=480,270; label_h=42; header_h=54
+    try:
+        font=ImageFont.truetype("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",22)
+        header_font=ImageFont.truetype("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",25)
+    except Exception:
+        font=ImageFont.load_default(); header_font=font
+    scene_rows=BOARD["scenes"]
+    outputs=[]
+    for page in range(4):
+        group=scene_rows[page*22:(page+1)*22]
+        sheet=Image.new("RGB",(cols*cw,header_h+rows*(ch+label_h)),(8,15,26))
+        draw=ImageDraw.Draw(sheet)
+        draw.text((18,12),f"V153 ASSET REVIEW  |  {group[0]['id']}–{group[-1]['id']}  |  {len(group)} screens",
+                  fill=(245,245,245),font=header_font)
+        for i,scene in enumerate(group):
+            sid=scene["id"]
+            photo=ASSET_DIR/f"{sid}.jpg"
+            diagram=ROOT/"assets/generated"/f"{sid}.png"
+            generated_replacement=ROOT/"assets/generated_replacements"/f"{sid}.png"
+            if scene["mode"]=="生成" and diagram.is_file():
+                p=diagram; status="GENERATED"
+            elif photo.is_file():
+                p=photo
+                status="REPLACED" if sid in replaced else ("NEW" if sid in previously_missing else "PHOTO")
+            elif generated_replacement.is_file():
+                p=generated_replacement; status="AI GENERATED"
+            else:
+                p=None; status="MISSING"
+            if p:
+                with Image.open(p) as im:
+                    thumb=ImageOps.fit(im.convert("RGB"),(cw,ch),method=Image.Resampling.LANCZOS)
+            else:
+                thumb=Image.new("RGB",(cw,ch),(58,27,31))
+                td=ImageDraw.Draw(thumb)
+                td.text((cw//2-58,ch//2-15),"NO ASSET",fill=(255,220,220),font=header_font)
+            x=(i%cols)*cw; y=header_h+(i//cols)*(ch+label_h)
+            sheet.paste(thumb,(x,y))
+            draw.rectangle((x,y+ch,x+cw,y+ch+label_h),fill=(8,15,26))
+            draw.text((x+12,y+7),f"{sid}  [{status}]",fill=(255,255,255),font=font)
+        dest=out_dir/f"contact-sheet-{page+1:02d}.jpg"
+        sheet.save(dest,"JPEG",quality=92,optimize=True)
+        outputs.append(str(dest.relative_to(ROOT)))
+    return outputs
 
 for idx,scene in enumerate(BOARD["scenes"],1):
     if scene["mode"]!="収集": continue
@@ -358,8 +391,14 @@ for idx,scene in enumerate(BOARD["scenes"],1):
         if isinstance(spec,str):
             spec={"url":spec}
         if not spec.get("url"): continue
-        items=candidates_for(scene,spec["url"],query)
+        items=candidates_for(scene,spec["url"],spec.get("query",query))
         for item in items:
+            title_text=(str(item.get("title",""))+" "+str(item.get("description",""))).lower()
+            if item.get("kind")=="pdf" and not override.get("allow_pdf",False):
+                continue
+            if not override.get("allow_diagram",False) and any(t in title_text for t in ["poster","book cover","book page","title page","research paper","journal article","article page","report cover","document cover","guide to aqua"]):
+                report["rejected_candidates"].append({"scene":scene["id"],"title":item.get("title",""),"reason":"Document/poster/title-page candidate is not a usable photographic still."})
+                continue
             if spec.get("credit_override"): item["credit"]=spec["credit_override"]
             if spec.get("license_override"): item["license"]=spec["license_override"]
             if spec.get("license_url_override"): item["license_url"]=spec["license_url_override"]
@@ -441,8 +480,15 @@ for s in BOARD["scenes"]:
             "resolution":dims,"method":"Original SVG vector illustration rendered locally with CairoSVG",
             "reason":"The canonical screen design explicitly calls for a conceptual diagram; an existing licensed photograph would not communicate the specified relationship clearly.",
             "external_image_api":False,"cost_usd":0.0,"sha256":hashlib.sha256(p.read_bytes()).hexdigest()})
-contact_sheet=make_contact_sheet()
-report["contact_sheet"]=contact_sheet
+contact_sheets=make_contact_sheet()
+report["contact_sheets"]=contact_sheets
+report["contact_sheet"]=contact_sheets[0] if contact_sheets else None
+log_path=ROOT/"assets/replacement_log.json"
+if log_path.exists():
+    audit_log=json.loads(log_path.read_text(encoding="utf-8"))
+    report["visual_audit"]={"replacements":audit_log.get("replacements",[]),
+                            "missing_screens":audit_log.get("missing_screens",[]),
+                            "retained_candidates":audit_log.get("retained_candidates",[])}
 report["rights_policy"]={
  "commons":"Use only per-file Public Domain, CC0, CC BY, or CC BY-SA licenses; credit and license URLs retained.",
  "noaa":"NOAA Ocean Exploration media are public domain unless the individual caption marks copyright/restrictions; caption credit retained.",
