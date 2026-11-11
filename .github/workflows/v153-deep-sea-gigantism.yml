@@ -137,17 +137,19 @@ jobs:
       - name: Ensure FFmpeg and Japanese fonts
         run: |
           set -euo pipefail
+          export DEBIAN_FRONTEND=noninteractive
           if ! command -v ffmpeg >/dev/null 2>&1; then
-            sudo apt-get install -y --no-install-recommends ffmpeg
+            timeout 180s sudo -E apt-get install -y --no-install-recommends ffmpeg
           fi
           if ! command -v fc-match >/dev/null 2>&1; then
-            sudo apt-get install -y --no-install-recommends fontconfig
+            timeout 180s sudo -E apt-get install -y --no-install-recommends fontconfig
           fi
-          if ! fc-match "Noto Sans CJK JP" | grep -qi "Noto Sans CJK"; then
-            sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+          FONT_MATCH="$(fc-match -f '%{family}' 'Noto Sans CJK JP' || true)"
+          echo "Japanese font match: $FONT_MATCH"
+          if ! printf '%s' "$FONT_MATCH" | grep -qi "Noto Sans CJK"; then
+            timeout 180s sudo -E apt-get install -y --no-install-recommends fonts-noto-cjk
           fi
-          python -m pip install requests Pillow
-          fc-cache -f
+          python -m pip install --no-input --timeout 30 --retries 2 requests Pillow
           ffmpeg -version | head -1
           fc-match "Noto Sans CJK JP"
       - name: Download the verified 88-screen asset package
