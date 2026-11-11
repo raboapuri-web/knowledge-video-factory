@@ -45,7 +45,7 @@ function artwork(s:any):Art{
  };
  const stroke=(points:number[][],color=C.teal,width=5)=>{
   const ref=createRef<Line>();strokes.push(ref);
-  return <Line ref={ref} points={points} stroke={color} lineWidth={width} end={0}
+  return <Line ref={ref} points={points as any} stroke={color} lineWidth={width} end={0}
    lineCap={'round'} lineJoin={'round'}/>;
  };
  const bar=(x:number,y:number,w:number,h:number,color:string)=>{
