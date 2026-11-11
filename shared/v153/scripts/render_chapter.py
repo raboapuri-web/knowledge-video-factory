@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Still-image documentary renderer: gentle zoom/pan, bottom-centre subtitles, Aoyama narration."""
-import json, subprocess, sys
+import json, subprocess, sys, os
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 BOARD=json.loads((ROOT/"content/board.json").read_text(encoding="utf-8"))
@@ -12,6 +12,7 @@ def main(chapter):
     voice=json.loads((ROOT/"media"/f"voice-report-{chapter}.json").read_text(encoding="utf-8"))
     by_id={x["scene"]:x for x in voice["scenes"]}
     out=ROOT/"output"/chapter; out.mkdir(parents=True,exist_ok=True)
+    font_dir=os.getenv("V153_FONTS_DIR",str(Path.home()/".local/share/fonts"))
     concat=out/"concat.txt"; lines=[]; scene_reports=[]
     scenes=[s for s in BOARD["scenes"] if spec["start"]<=int(s["id"][1:])<=spec["end"]]
     for s in scenes:
@@ -37,7 +38,7 @@ def main(chapter):
         ass_rel=ass.relative_to(ROOT).as_posix()
         vf=(f"scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,"
             f"zoompan=z='{z}':x='{x}':y='{y}':d=1:s=1920x1080:fps=30,"
-            f"ass={ass_rel}")
+            f"ass={ass_rel}:fontsdir={font_dir}")
         dest=out/(sid+".mp4")
         cmd=["ffmpeg","-y","-loglevel","error","-loop","1","-framerate","30","-i",str(img),
              "-i",str(wav),"-vf",vf,"-t",str(duration),"-r","30","-fps_mode","cfr",
