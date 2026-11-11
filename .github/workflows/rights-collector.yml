@@ -13,6 +13,7 @@ jobs:
   collect:
     name: Collect and audit licensed images
     runs-on: ubuntu-latest
+    timeout-minutes: 75
     steps:
       - name: Check out the production branch
         uses: actions/checkout@v4
