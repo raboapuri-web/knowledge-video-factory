@@ -9,6 +9,8 @@ from PIL import Image, ImageOps, ImageFilter, ImageDraw, ImageFont
 
 ROOT=Path(__file__).resolve().parents[1]
 BOARD=json.loads((ROOT/"content/board.json").read_text(encoding="utf-8"))
+OVERRIDES_PATH=ROOT/"assets/asset_overrides.json"
+OVERRIDES=json.loads(OVERRIDES_PATH.read_text(encoding="utf-8")) if OVERRIDES_PATH.exists() else {}
 ASSET_DIR=ROOT/"assets/collected"; RAW=ROOT/"assets/raw"
 ASSET_DIR.mkdir(parents=True,exist_ok=True); RAW.mkdir(parents=True,exist_ok=True)
 API="https://commons.wikimedia.org/w/api.php"
@@ -36,53 +38,78 @@ def allowed_commons(meta):
     return ok, lic or "unverified", url
 def commons_candidates(source_url, query):
     parsed=urlparse(source_url)
-    cache_key=("category",source_url) if "Category:" in source_url else ("search",source_url,query)
+    path=unquote(parsed.path)
+    is_file="/wiki/File:" in path or "/wiki/File%3A" in parsed.path
+    is_category="Category:" in source_url
+    cache_key=("file",source_url) if is_file else (("category",source_url) if is_category else ("search",source_url,query))
     if cache_key in COMMONS_CACHE:
         cached=[dict(x) for x in COMMONS_CACHE[cache_key]]
-        for item in cached: item["rank"]=score(item.get("title","")+" "+item.get("source_page",""),query)
-        return cached
-    cat=None
-    if "Category:" in source_url:
+        for item in cached:
+            item["rank"]=score(item.get("title","")+" "+item.get("description",""),query)
+        return sorted(cached,key=lambda x:(x.get("rank",0),x.get("width",0)*x.get("height",0)),reverse=True)
+    params={"action":"query","format":"json","prop":"imageinfo","iiprop":"url|extmetadata","iiurlwidth":3000}
+    if is_file:
+        title=path.split("/wiki/",1)[1].replace("_"," ")
+        params["titles"]=title
+    elif is_category:
         cat=unquote(source_url.split("Category:",1)[1].split("#",1)[0]).replace("_"," ")
-    params={"action":"query","format":"json","prop":"imageinfo","iiprop":"url|extmetadata","iiurlwidth":2200}
-    if cat:
-        params.update({"generator":"categorymembers","gcmtitle":"Category:"+cat,"gcmtype":"file","gcmnamespace":6,"gcmlimit":60})
+        params.update({"generator":"categorymembers","gcmtitle":"Category:"+cat,"gcmtype":"file","gcmnamespace":6,"gcmlimit":80})
     else:
         q=query or unquote(parsed.path.split("/")[-1])
-        params.update({"generator":"search","gsrsearch":q,"gsrnamespace":6,"gsrlimit":30})
+        params.update({"generator":"search","gsrsearch":q,"gsrnamespace":6,"gsrlimit":50})
     try:
         data=SESSION.get(API,params=params,timeout=45).json()
     except Exception:
         COMMONS_CACHE[cache_key]=[]
         return []
+    pages=(data.get("query",{}).get("pages",{}) or {}).values()
     out=[]
-    for page in (data.get("query",{}).get("pages",{}) or {}).values():
+    for page in pages:
         info=(page.get("imageinfo") or [{}])[0]
         meta=info.get("extmetadata",{})
         ok,lic,licurl=allowed_commons(meta)
         if not ok: continue
+        original=info.get("url","")
+        thumb=info.get("thumburl","")
+        suffix=ext(original)
+        if suffix==".pdf":
+            media=original
+            kind="pdf"
+        elif suffix==".svg":
+            media=thumb or original
+            kind="image"
+        else:
+            media=thumb or original
+            kind="video" if ext(media) in {".mp4",".mov",".webm"} else "image"
+        if not media or ext(media) not in {".jpg",".jpeg",".png",".webp",".mp4",".mov",".webm",".pdf"}: continue
         title=page.get("title","")
-        media=info.get("thumburl") or info.get("url")
-        if not media or ext(media) not in {".jpg",".jpeg",".png",".webp"}: continue
-        author=meta.get("Artist",{}).get("value","")
+        artist=meta.get("Artist",{}).get("value","")
         desc=meta.get("ImageDescription",{}).get("value","")
+        credit=re.sub("<[^>]+>","",str(artist))
+        width=info.get("thumbwidth") or info.get("width") or 0
+        height=info.get("thumbheight") or info.get("height") or 0
         out.append({"media_url":media,"source_page":"https://commons.wikimedia.org/wiki/"+title.replace(" ","_"),
-                    "title":title,"credit":re.sub("<[^>]+>","",str(author)),"license":lic,
-                    "license_url":licurl,"kind":"image","rank":score(title+" "+str(desc),query)})
-    out.sort(key=lambda x:x["rank"],reverse=True)
+                    "title":title,"description":re.sub("<[^>]+>"," ",str(desc)),
+                    "credit":credit,"license":lic,"license_url":licurl,"kind":kind,
+                    "width":int(width or 0),"height":int(height or 0),
+                    "rank":score(title+" "+str(desc),query)})
+    out.sort(key=lambda x:(x["rank"],x.get("width",0)*x.get("height",0)),reverse=True)
     COMMONS_CACHE[cache_key]=[dict(x) for x in out]
     return out
 
 def page_candidates(url, query):
     if url in PAGE_CACHE:
         items=[dict(x) for x in PAGE_CACHE[url]]
-        for item in items: item["rank"]=score(item.get("title","")+" "+item.get("media_url",""),query)
-        items.sort(key=lambda x:x.get("rank",0),reverse=True)
+        for item in items:
+            item["rank"]=score(item.get("title","")+" "+item.get("description","")+" "+item.get("media_url",""),query)
+        items.sort(key=lambda x:(x.get("rank",0),1 if "largest" in x.get("title","").lower() or "hd version" in x.get("title","").lower() else 0),reverse=True)
         return items
     host=urlparse(url).netloc.lower()
     if "nautiluslive.org" in host:
-        report["rights_skipped"].append({"url":url,"reason":"Ocean Exploration Trust page is copyright-protected; no reuse permission supplied."})
+        report["rights_skipped"].append({"url":url,"reason":"Ocean Exploration Trust page explicitly reserves copyright; no independent reuse license was supplied."})
         return []
+    if "commons.wikimedia.org" in host:
+        return commons_candidates(url,query)
     try:
         res=SESSION.get(url,timeout=45); res.raise_for_status()
     except Exception as e:
@@ -90,71 +117,85 @@ def page_candidates(url, query):
     soup=BeautifulSoup(res.text,"html.parser")
     page_text=soup.get_text(" ",strip=True)
     credit=""
-    m=re.search(r"\bCredit\s+(.{2,180}?)(?:\s+Download|\s+Related Expedition|\s+Related Content|$)",page_text,re.I)
+    m=re.search(r"\bCredit\s+(.{2,220}?)(?:\s+Download|\s+Related Expedition|\s+Related Content|$)",page_text,re.I)
     if m: credit=m.group(1).strip()
-    # Conservatively reject media explicitly credited to third parties unless the file itself has a permissive Commons license.
-    if "noaa.gov" in host:
-        third=["edie widder","nathan robinson","oceaneering","ocean exploration trust","oet","uaf","university of alaska"]
-        if any(x in credit.lower() for x in third) or "oet/noaa" in page_text.lower() or "photo: oet/noaa" in page_text.lower():
-            report["rights_skipped"].append({"url":url,"credit":credit,"reason":"NOAA page identifies third-party media credit; separate reuse permission is not established."})
+    copyright_marked=bool(re.search(r"\bcopyright(?:ed)?\b|all rights reserved|permission required|not for reuse",page_text,re.I))
+    license_name=""; license_url=""
+    if "oceanexplorer.noaa.gov" in host or "noaa.gov" in host:
+        if copyright_marked:
+            report["rights_skipped"].append({"url":url,"credit":credit,"reason":"NOAA source page contains an explicit copyright/reuse restriction; excluded."})
             return []
-        if credit and "noaa" not in credit.lower():
-            report["rights_skipped"].append({"url":url,"credit":credit,"reason":"NOAA-hosted page has no NOAA public-domain credit."})
-            return []
+        license_name="Public Domain (NOAA; source-site terms, credit per caption)"
+        license_url="https://oceanexplorer.noaa.gov/faqs/"
+        if "oceanexplorer.noaa.gov" in host:
+            license_url="https://oceanexplorer.noaa.gov/about/kit/"
     elif "nasa.gov" in host or "gsfc.nasa.gov" in host:
-        if credit and "nasa" not in credit.lower():
-            report["rights_skipped"].append({"url":url,"credit":credit,"reason":"NASA-hosted page has a non-NASA media credit."})
+        if copyright_marked or (credit and "nasa" not in credit.lower()):
+            report["rights_skipped"].append({"url":url,"credit":credit,"reason":"NASA source does not establish NASA-only/public-domain reuse for this image."})
             return []
+        license_name="Public Domain (NASA; reproduction guidelines)"
+        license_url="https://www.nasa.gov/nasa-brand-center/images-and-media/"
     elif "pmc.ncbi.nlm.nih.gov" in host or "biomedcentral.com" in host:
-        # PMC9107163, the 2022 Bathynomus jamesi genome article, is verified CC BY 4.0.
         if "PMC9107163" not in url and not re.search(r"Creative Commons Attribution|CC BY 4\.0|CC-BY",page_text,re.I):
             report["rights_skipped"].append({"url":url,"reason":"Article-level CC BY reuse could not be verified from page text."})
             return []
-    elif "unsplash.com" in host:
-        pass
-    elif "commons.wikimedia.org" in host:
-        return commons_candidates(url,query)
-    elif "noaa.gov" not in host:
-        # Non-NOAA/non-Commons pages need an explicit open license in the page itself.
-        if not re.search(r"CC BY|Creative Commons Attribution|Public Domain|public domain",page_text,re.I):
-            report["rights_skipped"].append({"url":url,"reason":"No explicit permissive license/public-domain statement found."})
+        if not re.search(r"Creative Commons Attribution 4\.0|CC BY 4\.0",page_text,re.I):
+            report["rights_skipped"].append({"url":url,"reason":"CC BY 4.0 license statement not found on article page."})
             return []
+        license_name="CC BY 4.0"
+        license_url="https://creativecommons.org/licenses/by/4.0/"
+    elif "unsplash.com" in host:
+        if not re.search(r"Unsplash License|free to use under the Unsplash",page_text,re.I):
+            report["rights_skipped"].append({"url":url,"reason":"Unsplash reuse terms could not be verified on the source page."})
+            return []
+        license_name="Unsplash License"
+        license_url="https://unsplash.com/license"
+    else:
+        if copyright_marked or not re.search(r"CC BY|Creative Commons Attribution|Public Domain|public domain",page_text,re.I):
+            report["rights_skipped"].append({"url":url,"reason":"No explicit permissive license/public-domain statement found on source page."})
+            return []
+        license_name="CC BY 4.0 / source-page terms"
+        license_url=""
+
     items=[]
-    def add(media, label=""):
+    def add(media,label="",priority=0):
         if not media: return
         media=urljoin(url,media.split(" ")[0].strip())
-        if ext(media) not in {".jpg",".jpeg",".png",".webp",".mp4",".mov",".webm"}: return
+        suffix=ext(media)
+        if suffix not in {".jpg",".jpeg",".png",".webp",".mp4",".mov",".webm",".pdf"}: return
         if any(x in media.lower() for x in ["logo","icon","facebook","twitter","instagram","placeholder"]): return
-        if "PMC9107163" in url:
-            lic="CC BY 4.0"; lic_url="https://creativecommons.org/licenses/by/4.0/"
-        elif "noaa.gov" in host:
-            lic="Public Domain (NOAA)"; lic_url="https://oceanexplorer.noaa.gov/about/kit-specs/"
-        elif "nasa.gov" in host:
-            lic="NASA public-domain candidate"; lic_url=""
-        elif "unsplash.com" in host:
-            lic="Unsplash License"; lic_url="https://unsplash.com/license"
-        else:
-            lic="CC BY 4.0 / site terms"; lic_url=""
+        if "images.unsplash.com" in media:
+            # Request the largest practical Unsplash rendition; the source page and license remain unchanged.
+            from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
+            u=urlsplit(media); q=dict(parse_qsl(u.query,keep_blank_values=True))
+            q.update({"w":"4000","q":"90","fit":"max","fm":"jpg"})
+            media=urlunsplit((u.scheme,u.netloc,u.path,urlencode(q),u.fragment))
         items.append({"media_url":media,"source_page":url,"title":label or media.rsplit("/",1)[-1],
-                      "credit":credit or host,"license":lic,"license_url":lic_url,
-                      "kind":"video" if ext(media) in {".mp4",".mov",".webm"} else "image",
-                      "rank":score(label+" "+media,query)})
+                      "description":label,"credit":credit or host,"license":license_name,
+                      "license_url":license_url,
+                      "kind":"pdf" if suffix==".pdf" else ("video" if suffix in {".mp4",".mov",".webm"} else "image"),
+                      "rank":score(label+" "+media,query)+priority})
     for meta in soup.select('meta[property="og:image"],meta[name="twitter:image"]'):
-        add(meta.get("content",""),meta.get("content",""))
-    for node in soup.select("video,source"):
-        add(node.get("src",""),node.get("title",""))
+        add(meta.get("content",""),meta.get("content",""),0)
     for a in soup.select("a[href]"):
-        href=a.get("href",""); label=a.get_text(" ",strip=True)
-        if ext(href) in {".jpg",".jpeg",".png",".webp",".mp4",".mov",".webm"}: add(href,label)
+        href=a.get("href","")
+        if ext(href) not in {".jpg",".jpeg",".png",".webp",".mp4",".mov",".webm",".pdf"}: continue
+        label=a.get_text(" ",strip=True)
+        parent=a.parent
+        im=a.find("img") or (parent.find("img") if parent else None)
+        if im:
+            label=(label+" "+im.get("alt","")+" "+im.get("title","")).strip()
+        priority=80 if re.search(r"largest|original file|download.*hd|hd version",label,re.I) else 0
+        add(href,label,priority)
     for im in soup.select("img[src],img[data-src]"):
         src=im.get("data-src") or im.get("src")
-        add(src,im.get("alt",""))
-    # deduplicate and rank by semantic match; prefer direct downloads over thumbnails when scores tie
+        add(src,(im.get("alt","")+" "+im.get("title","")).strip(),0)
     unique={}
     for it in items:
-        unique[it["media_url"]]=it
+        if it["media_url"] not in unique or it["rank"]>unique[it["media_url"]]["rank"]:
+            unique[it["media_url"]]=it
     items=list(unique.values())
-    items.sort(key=lambda x:(x["rank"], 1 if "hires" in x["media_url"].lower() else 0),reverse=True)
+    items.sort(key=lambda x:(x["rank"],1 if "largest" in x["title"].lower() or "hd version" in x["title"].lower() else 0),reverse=True)
     PAGE_CACHE[url]=[dict(x) for x in items]
     return items
 
