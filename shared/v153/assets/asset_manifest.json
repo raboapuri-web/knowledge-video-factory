@@ -2774,7 +2774,7 @@
       "method": "Original SVG vector illustration rendered locally with CairoSVG",
       "reason": "The canonical screen design explicitly calls for a conceptual diagram; an existing licensed photograph would not communicate the specified relationship clearly.",
       "external_image_api": false,
-      "cost_usd": 0.0,
+      "cost_usd": 0,
       "sha256": "237959e3a0d96946c415b5989d5fa1f14805c3b01b8b650f2af1263e27bb3c04"
     },
     {
@@ -2788,7 +2788,7 @@
       "method": "Original SVG vector illustration rendered locally with CairoSVG",
       "reason": "The canonical screen design explicitly calls for a conceptual diagram; an existing licensed photograph would not communicate the specified relationship clearly.",
       "external_image_api": false,
-      "cost_usd": 0.0,
+      "cost_usd": 0,
       "sha256": "0a4a2081034ecd3ec6f0dabfbbdfa4724ca1cdcf7a08e51944eb60ab21a534f2"
     },
     {
@@ -2802,7 +2802,7 @@
       "method": "Original SVG vector illustration rendered locally with CairoSVG",
       "reason": "The canonical screen design explicitly calls for a conceptual diagram; an existing licensed photograph would not communicate the specified relationship clearly.",
       "external_image_api": false,
-      "cost_usd": 0.0,
+      "cost_usd": 0,
       "sha256": "1279bdef13f7f58d08f41fabe1792fab19bd06704db99cc66833664c6430ead4"
     },
     {
@@ -2816,7 +2816,7 @@
       "method": "Original SVG vector illustration rendered locally with CairoSVG",
       "reason": "The canonical screen design explicitly calls for a conceptual diagram; an existing licensed photograph would not communicate the specified relationship clearly.",
       "external_image_api": false,
-      "cost_usd": 0.0,
+      "cost_usd": 0,
       "sha256": "fa911b09d6f50205190dcd930958589f08a71110d4051aa94c1aec6bac6ca660"
     },
     {
@@ -2830,7 +2830,7 @@
       "method": "Original SVG vector illustration rendered locally with CairoSVG",
       "reason": "The canonical screen design explicitly calls for a conceptual diagram; an existing licensed photograph would not communicate the specified relationship clearly.",
       "external_image_api": false,
-      "cost_usd": 0.0,
+      "cost_usd": 0,
       "sha256": "f25233492bd076cd4bac1b14a6e0ab87e4b583acd6778dfa1ba8ee7caff403d3"
     },
     {
@@ -2844,7 +2844,7 @@
       "method": "Original SVG vector illustration rendered locally with CairoSVG",
       "reason": "The canonical screen design explicitly calls for a conceptual diagram; an existing licensed photograph would not communicate the specified relationship clearly.",
       "external_image_api": false,
-      "cost_usd": 0.0,
+      "cost_usd": 0,
       "sha256": "fb1efd256b5d6233d94c9ae1436361537b0fc0d92a95e33709afcf5450f4da1c"
     },
     {
@@ -2858,7 +2858,7 @@
       "method": "Original SVG vector illustration rendered locally with CairoSVG",
       "reason": "The canonical screen design explicitly calls for a conceptual diagram; an existing licensed photograph would not communicate the specified relationship clearly.",
       "external_image_api": false,
-      "cost_usd": 0.0,
+      "cost_usd": 0,
       "sha256": "c94e669a8bc89379c37201df1b46c0cd981b916b542aa198024ae204d18427ce"
     },
     {
@@ -2872,7 +2872,7 @@
       "method": "Original SVG vector illustration rendered locally with CairoSVG",
       "reason": "The canonical screen design explicitly calls for a conceptual diagram; an existing licensed photograph would not communicate the specified relationship clearly.",
       "external_image_api": false,
-      "cost_usd": 0.0,
+      "cost_usd": 0,
       "sha256": "035b66cf8cfa57259c4d3c32100541f3d1419203a0d846dd6f7e10485d9f9c4f"
     },
     {
@@ -2886,7 +2886,7 @@
       "method": "Original SVG vector illustration rendered locally with CairoSVG",
       "reason": "The canonical screen design explicitly calls for a conceptual diagram; an existing licensed photograph would not communicate the specified relationship clearly.",
       "external_image_api": false,
-      "cost_usd": 0.0,
+      "cost_usd": 0,
       "sha256": "4510fcf7eead575d5c10998426ad379fd2246b0b2b975d6782c3193ce52223b4"
     },
     {
@@ -2900,7 +2900,7 @@
       "method": "Original SVG vector illustration rendered locally with CairoSVG",
       "reason": "The canonical screen design explicitly calls for a conceptual diagram; an existing licensed photograph would not communicate the specified relationship clearly.",
       "external_image_api": false,
-      "cost_usd": 0.0,
+      "cost_usd": 0,
       "sha256": "7e941c013e99c8af41721f384549ad2c7d97df541a7e2181f620f659017c0ac4"
     }
   ],
@@ -2952,5 +2952,13 @@
     "unsplash": "Use only source pages that display Unsplash License terms; creator and license retained.",
     "open_access_research": "Use only article figures covered by verified CC BY 4.0 and without third-party credit-line exceptions."
   },
-  "new_handoff": "v153_fix3_delta.zip applied on top of v2 review package"
+  "new_handoff": "v153_fix3_delta.zip applied on top of v2 review package",
+  "upscaling_approved": true,
+  "upscaling_approval_note": "The user explicitly approved upscaling source panels below 1920x1080. Final scene composites must still be 1920x1080.",
+  "render_resolution": [
+    1920,
+    1080
+  ],
+  "generated_panel_count": 19,
+  "generation_record_count": 19
 }
