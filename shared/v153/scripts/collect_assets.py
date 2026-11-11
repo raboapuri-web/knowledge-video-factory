@@ -119,19 +119,19 @@ def page_candidates(url, query):
     credit=""
     m=re.search(r"\bCredit\s+(.{2,220}?)(?:\s+Download|\s+Related Expedition|\s+Related Content|$)",page_text,re.I)
     if m: credit=m.group(1).strip()
-    copyright_marked=bool(re.search(r"\bcopyright(?:ed)?\b|all rights reserved|permission required|not for reuse",page_text,re.I))
+    copyright_marked=bool(re.search(r"\bcopyright(?:ed)?\b|all rights reserved|permission required|not for reuse",credit,re.I))
     license_name=""; license_url=""
     if "oceanexplorer.noaa.gov" in host or "noaa.gov" in host:
         if copyright_marked:
-            report["rights_skipped"].append({"url":url,"credit":credit,"reason":"NOAA source page contains an explicit copyright/reuse restriction; excluded."})
+            report["rights_skipped"].append({"url":url,"credit":credit,"reason":"NOAA image/video caption explicitly marks copyright or reuse restrictions; excluded."})
             return []
         license_name="Public Domain (NOAA; source-site terms, credit per caption)"
         license_url="https://oceanexplorer.noaa.gov/faqs/"
         if "oceanexplorer.noaa.gov" in host:
             license_url="https://oceanexplorer.noaa.gov/about/kit/"
     elif "nasa.gov" in host or "gsfc.nasa.gov" in host:
-        if copyright_marked or (credit and "nasa" not in credit.lower()):
-            report["rights_skipped"].append({"url":url,"credit":credit,"reason":"NASA source does not establish NASA-only/public-domain reuse for this image."})
+        if copyright_marked:
+            report["rights_skipped"].append({"url":url,"credit":credit,"reason":"NASA source page marks copyright/reuse restrictions."})
             return []
         license_name="Public Domain (NASA; reproduction guidelines)"
         license_url="https://www.nasa.gov/nasa-brand-center/images-and-media/"
@@ -164,6 +164,18 @@ def page_candidates(url, query):
         suffix=ext(media)
         if suffix not in {".jpg",".jpeg",".png",".webp",".mp4",".mov",".webm",".pdf"}: return
         if any(x in media.lower() for x in ["logo","icon","facebook","twitter","instagram","placeholder"]): return
+        label_credit=""
+        cm=re.search(r"Credit\s*:?\s*([^|]{2,160})",label,re.I)
+        if cm: label_credit=cm.group(1).strip()
+        candidate_credit=label_credit or credit or host
+        if ("oceanexplorer.noaa.gov" in host or "noaa.gov" in host) and re.search(r"\bcopyright(?:ed)?\b|all rights reserved|permission required|not for reuse",label,re.I):
+            report["rights_skipped"].append({"url":url,"credit":candidate_credit,"reason":"The specific NOAA media caption explicitly marks copyright/reuse restrictions."})
+            return
+        if ("nasa.gov" in host or "gsfc.nasa.gov" in host) and candidate_credit and "nasa" not in candidate_credit.lower():
+            # NASA SVS pages can contain third-party assets; keep only the individual NASA-credited item.
+            if not ("nasa" in label.lower() and "credit" in label.lower()):
+                return
+            candidate_credit=label_credit or "NASA"
         if "images.unsplash.com" in media:
             # Request the largest practical Unsplash rendition; the source page and license remain unchanged.
             from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
@@ -171,7 +183,7 @@ def page_candidates(url, query):
             q.update({"w":"4000","q":"90","fit":"max","fm":"jpg"})
             media=urlunsplit((u.scheme,u.netloc,u.path,urlencode(q),u.fragment))
         items.append({"media_url":media,"source_page":url,"title":label or media.rsplit("/",1)[-1],
-                      "description":label,"credit":credit or host,"license":license_name,
+                      "description":label,"credit":candidate_credit,"license":license_name,
                       "license_url":license_url,
                       "kind":"pdf" if suffix==".pdf" else ("video" if suffix in {".mp4",".mov",".webm"} else "image"),
                       "rank":score(label+" "+media,query)+priority})
@@ -430,8 +442,15 @@ for s in BOARD["scenes"]:
             "external_image_api":False,"cost_usd":0.0,"sha256":hashlib.sha256(p.read_bytes()).hexdigest()})
 contact_sheet=make_contact_sheet()
 report["contact_sheet"]=contact_sheet
+report["rights_policy"]={
+ "commons":"Use only per-file Public Domain, CC0, CC BY, or CC BY-SA licenses; credit and license URLs retained.",
+ "noaa":"NOAA Ocean Exploration media are public domain unless the individual caption marks copyright/restrictions; caption credit retained.",
+ "nasa":"Use only NASA-credited images without third-party copyright markings; NASA reproduction guidelines retained.",
+ "unsplash":"Use only source pages that display Unsplash License terms; creator and license retained.",
+ "open_access_research":"Use only article figures covered by verified CC BY 4.0 and without third-party credit-line exceptions."
+}
 (ROOT/"assets/asset_manifest.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
-sources=["NOAA multimedia usage guidance: https://oceanexplorer.noaa.gov/about/kit-specs/"]
+sources=["NOAA Ocean Exploration reuse terms: https://oceanexplorer.noaa.gov/faqs/","NOAA Ocean Exploration media kit: https://oceanexplorer.noaa.gov/about/kit/","NASA image reproduction guidelines: https://www.nasa.gov/nasa-brand-center/images-and-media/"]
 for rec in report["collected"]:
     for a in rec["sources"]:
         line=f"{rec['scene']} | {a['title']} | {a['credit']} | {a['license']} | {a['source_page']} | {a['license_url']}"
