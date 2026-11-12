@@ -12,7 +12,7 @@ SPEED=float(os.getenv("VOICEVOX_SPEED","1.10"))
 INTONATION=float(os.getenv("VOICEVOX_INTONATION","1.0"))
 OUT=ROOT/"media"; OUT.mkdir(exist_ok=True)
 
-CHAPTER_HEADING_RE=re.compile(r"^\\s*##\\s*(?:プロローグ|第[0-9０-９]+章|エピローグ)(?:\\s*[｜|：:]\\s*|\\s+).+$")
+CHAPTER_HEADING_RE=re.compile(r"^\s*##\s*(?:プロローグ|第[0-9０-９]+章|エピローグ)(?:\s*[｜|：:]\s*|\s+).+$")
 
 def clean_markup(s):
     kept=[]; removed=[]
@@ -21,8 +21,8 @@ def clean_markup(s):
             removed.append(line.strip())
         else:
             kept.append(line)
-    s="\\n".join(kept)
-    s=re.sub(r"(?m)^##\\s*","",s)
+    s="\n".join(kept)
+    s=re.sub(r"(?m)^##\s*","",s)
     s=s.replace("**","")
     return s.strip(), removed
 
