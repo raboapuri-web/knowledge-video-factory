@@ -1,1 +1,2 @@
 approved-static-ffmpeg-v1
+render-approved=true
