@@ -24,3 +24,6 @@ Disallowed: CC BY-SA, NC, ND, rights unknown, no-reuse/All rights reserved, or i
 No image assets have been collected or approved in this storyboard commit. `sources` are empty and every scene is marked `未収集・権利未確認`.
 
 **Do not start chapter jobs or finalization until all 90 scene assets pass rights review and full-size visual-fit review.**
+## TTS QA note
+
+- S001 contains the source-script phrase 「少し」. The format specification flags a possible Aoyama Ryusei misreading. The approved narration text is unchanged in this storyboard; verify the actual synthesized pronunciation during audio QA and only alter the script with explicit approval.
