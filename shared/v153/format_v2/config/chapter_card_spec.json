@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "project": "V153 なぜ深海の生き物は巨大化するのか？",
+  "resolution": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30
+  },
+  "duration_policy": {
+    "minimum_duration_sec": 4.0,
+    "formula": "max(4.0, start_delay + label_chars/cps + interline_delay + title_chars/cps + cursor_blink_duration + final_hold)",
+    "start_delay_sec": 0.25,
+    "interline_delay_sec": 0.15,
+    "final_hold_sec": 1.0
+  },
+  "typing": {
+    "characters_per_second": 9.0,
+    "cursor_glyph": "▌",
+    "cursor_blink_hz": 2.0,
+    "cursor_blink_duration_sec": 0.6,
+    "sfx_file": "audio/type_key.wav",
+    "sfx_per_character": true,
+    "sfx_gain": 0.45,
+    "narration": false
+  },
+  "text": {
+    "font_family": "Noto Sans CJK JP",
+    "font_file_runtime": "$V153_FONTS_DIR/NotoSansCJKjp-Regular.otf",
+    "label_font_size_px": 44,
+    "title_font_size_px": 66,
+    "title_min_font_size_px": 56,
+    "max_text_width_px": 1320,
+    "center_x_px": 1220,
+    "label_center_y_px": 405,
+    "title_center_y_px": 520,
+    "label_color": "#C9A56B",
+    "title_color": "#F1E7D0",
+    "outline_color": "#6E4D1B",
+    "shadow_color": "#000000",
+    "outline_width_px": 2,
+    "shadow_offset_px": [
+      3,
+      4
+    ],
+    "letter_spacing_px": 0,
+    "subtitle_reserved_area_px": 130
+  },
+  "subtitle_band": {
+    "x": 0,
+    "y": 950,
+    "width": 1920,
+    "height": 130,
+    "color": "#000000",
+    "opacity": 1.0
+  },
+  "cards": [
+    {
+      "chapter": "prologue",
+      "label": "プロローグ",
+      "title": "海の底には、サイズの常識が通用しない",
+      "background_file": "assets/chapter_cards/backgrounds/prologue_bg.png"
+    },
+    {
+      "chapter": "chapter1",
+      "label": "第1章",
+      "title": "深海には、なぜ規格外の生物がいるのか",
+      "background_file": "assets/chapter_cards/backgrounds/chapter1_bg.png"
+    },
+    {
+      "chapter": "chapter2",
+      "label": "第2章",
+      "title": "寒い場所では、生き物は大きくなる？",
+      "background_file": "assets/chapter_cards/backgrounds/chapter2_bg.png"
+    },
+    {
+      "chapter": "chapter3",
+      "label": "第3章",
+      "title": "食べ物が少ない世界で、巨大な体は武器になる",
+      "background_file": "assets/chapter_cards/backgrounds/chapter3_bg.png"
+    },
+    {
+      "chapter": "chapter4",
+      "label": "第4章",
+      "title": "巨大化できる生物と、巨大化できない生物",
+      "background_file": "assets/chapter_cards/backgrounds/chapter4_bg.png"
+    },
+    {
+      "chapter": "epilogue",
+      "label": "エピローグ",
+      "title": "大きさは、生き残るための答えにすぎない",
+      "background_file": "assets/chapter_cards/backgrounds/epilogue_bg.png"
+    }
+  ]
+}
