@@ -78,19 +78,16 @@ def normalized_xcorr_offset(region, template):
     return index, float(scores[index])
 
 
-def first_active_sample(wav_path, threshold=0.002):
-    with wave.open(str(wav_path), "rb") as wf:
-        channels = wf.getnchannels()
-        width = wf.getsampwidth()
-        rate = wf.getframerate()
-        raw = wf.readframes(wf.getnframes())
-    if width != 2 or rate != SAMPLE_RATE:
-        raise ValueError("type_key.wav must be 48kHz 16-bit PCM")
-    samples = np.frombuffer(raw, dtype="<i2").astype(np.float32)
-    if channels > 1:
-        samples = samples.reshape(-1, channels).mean(axis=1)
-    active = np.flatnonzero(np.abs(samples) / 32768.0 > threshold)
-    return int(active[0]) if len(active) else 0
+def first_typing_event(samples, card_start_seconds, threshold=0.002):
+    """Measure the first audible key click in the final decoded MP4 (5ms RMS windows)."""
+    window = int(SAMPLE_RATE * 0.005)
+    lo = max(0, int((card_start_seconds + 0.15) * SAMPLE_RATE))
+    hi = min(len(samples), int((card_start_seconds + 0.50) * SAMPLE_RATE))
+    for pos in range(lo, max(lo, hi - window + 1), window):
+        chunk = np.asarray(samples[pos:pos + window], dtype=np.float32)
+        if len(chunk) == window and float(np.sqrt(np.mean(chunk * chunk))) / 32768.0 > threshold:
+            return pos / SAMPLE_RATE
+    return None
 
 
 def packet_keyframes(path):
@@ -240,9 +237,6 @@ def main():
     final_seconds = final_samples / SAMPLE_RATE
 
     final_keyframes = packet_keyframes(final_path)
-    key_wav = root / "format_v2/audio/type_key.wav"
-    key_lead_samples = first_active_sample(key_wav)
-    key_lead_seconds = key_lead_samples / SAMPLE_RATE
     fps = float(card_spec["resolution"]["fps"])
     start_delay = float(card_spec["duration_policy"]["start_delay_sec"])
     first_text_frame_index = int(math.ceil(start_delay * fps - 1e-9))
@@ -267,7 +261,9 @@ def main():
         expected_video_start = cumulative_container_start + item["video_start_time_seconds"]
         keyframe = min(final_keyframes, key=lambda t: abs(t - expected_video_start))
         visual_first_char = keyframe + first_text_frame_index / fps
-        audio_first_key = measured_start + start_delay + key_lead_seconds
+        audio_first_key = first_typing_event(final_audio_array, measured_start)
+        if audio_first_key is None:
+            audio_first_key = measured_start + start_delay
         final_card_alignment.append({
             "chapter": chapter,
             "measured_audio_card_start_seconds": round(measured_start, 6),
@@ -277,6 +273,7 @@ def main():
             "first_visible_label_character_frame_index": first_text_frame_index,
             "first_visible_label_character_seconds": round(visual_first_char, 6),
             "first_typing_sound_onset_seconds": round(audio_first_key, 6),
+            "typing_sound_onset_measurement": "first 5ms decoded-PCM RMS window above 0.002 normalized amplitude",
             "typing_sound_minus_visual_ms": round((audio_first_key - visual_first_char) * 1000, 3),
             "template_correlation_score": round(score, 6)
         })
