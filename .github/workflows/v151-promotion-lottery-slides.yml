@@ -102,12 +102,25 @@ jobs:
           cache: npm
           cache-dependency-path: shared/v124/package.json
 
-      - name: Install system packages
+      - name: Prepare FFmpeg without blocking apt repositories
         shell: bash
         run: |
           set -euo pipefail
-          sudo apt-get update
-          sudo apt-get install -y -qq fonts-noto-cjk fontconfig ffmpeg curl
+          # ubuntu-24.04 runners include FFmpeg, ffprobe, curl and fontconfig.
+          # Avoid apt-get update: stale mirrors made five of six chapters fail.
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            npm install --prefix "$RUNNER_TEMP/v151-media" --no-audit --no-fund @ffmpeg-installer/ffmpeg @ffprobe-installer/ffprobe
+            mkdir -p "$RUNNER_TEMP/v151-bin"
+            ln -sf "$(node -p "require(process.env.RUNNER_TEMP+'/v151-media/node_modules/@ffmpeg-installer/ffmpeg').path")" "$RUNNER_TEMP/v151-bin/ffmpeg"
+            ln -sf "$(node -p "require(process.env.RUNNER_TEMP+'/v151-media/node_modules/@ffprobe-installer/ffprobe').path")" "$RUNNER_TEMP/v151-bin/ffprobe"
+            echo "$RUNNER_TEMP/v151-bin" >> "$GITHUB_PATH"
+          fi
+          ffmpeg -version | head -1
+          ffprobe -version | head -1
+          command -v curl
+          if command -v fc-list >/dev/null; then
+            fc-list :lang=ja family | sort -u | head -12 || true
+          fi
 
       - name: Prepare the V124 Motion Canvas harness and V146 chapter renderer
         shell: bash
@@ -386,10 +399,17 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install ffmpeg
+      - name: Prepare FFmpeg for final assembly without apt
         run: |
-          sudo apt-get update
-          sudo apt-get install -y -qq ffmpeg
+          set -euo pipefail
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            npm install --prefix "$RUNNER_TEMP/v151-media" --no-audit --no-fund @ffmpeg-installer/ffmpeg @ffprobe-installer/ffprobe
+            mkdir -p "$RUNNER_TEMP/v151-bin"
+            ln -sf "$(node -p "require(process.env.RUNNER_TEMP+'/v151-media/node_modules/@ffmpeg-installer/ffmpeg').path")" "$RUNNER_TEMP/v151-bin/ffmpeg"
+            ln -sf "$(node -p "require(process.env.RUNNER_TEMP+'/v151-media/node_modules/@ffprobe-installer/ffprobe').path")" "$RUNNER_TEMP/v151-bin/ffprobe"
+            echo "$RUNNER_TEMP/v151-bin" >> "$GITHUB_PATH"
+          fi
+          ffmpeg -version | head -1
 
       - name: Download six chapter videos
         uses: actions/download-artifact@v4
