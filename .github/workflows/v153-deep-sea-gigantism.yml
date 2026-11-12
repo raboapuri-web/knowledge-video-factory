@@ -2,7 +2,7 @@ name: V153 Deep-Sea Gigantism Photo Documentary — format v2
 
 on:
   push:
-    branches: [v153-deep-sea-gigantism-photo-slides-20261111]
+    branches: [v153-deep-sea-gigantism-photo-slides-20261111, v153-deep-sea-title-narration-fix-20261112]
     paths:
       - 'shared/v153/launch/assets.txt'
       - 'shared/v153/launch/render.txt'
@@ -10,6 +10,7 @@ on:
       - 'shared/v153/scripts/check_assets.py'
       - 'shared/v153/scripts/render_chapter.py'
       - 'shared/v153/scripts/synth.py'
+      - 'shared/v153/scripts/validate_chapter_narration.py'
       - 'shared/v153/format_v2/**'
       - '.github/workflows/v153-deep-sea-gigantism.yml'
   workflow_dispatch:
@@ -172,12 +173,18 @@ jobs:
             sleep 2
           done
           curl -fsS http://127.0.0.1:50021/version
-      - name: Synthesize exact scene narration and subtitle cues
+      - name: Synthesize exact scene narration and subtitle cues with chapter title lines excluded
         working-directory: shared/v153
         run: |
           set -euo pipefail
           python scripts/synth.py "$CHAPTER"
           test -s "media/voice-report-$CHAPTER.json"
+      - name: Validate chapter headings are excluded and body text is unchanged
+        working-directory: shared/v153
+        run: |
+          set -euo pipefail
+          python scripts/validate_chapter_narration.py "$CHAPTER"
+          test -s "media/narration-qa-$CHAPTER.json"
       - name: Render scenes with board motion, opaque subtitle band and typed chapter card
         working-directory: shared/v153
         run: |
@@ -191,6 +198,7 @@ jobs:
           mkdir -p artifact
           cp "output/v153-$CHAPTER.mp4" "artifact/v153-$CHAPTER.mp4"
           cp "media/voice-report-$CHAPTER.json" "artifact/voice-report-$CHAPTER.json"
+          cp "media/narration-qa-$CHAPTER.json" "artifact/narration-qa-$CHAPTER.json"
           cp "output/render-$CHAPTER.json" "artifact/render-$CHAPTER.json"
       - name: Upload chapter MP4 and timing reports
         uses: actions/upload-artifact@v4
