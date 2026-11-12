@@ -12,29 +12,30 @@
   "rules": {
     "default_zoom_in": "1.00 -> 1.20",
     "zoom_out": "1.20 -> 1.00",
-    "pan_scale": "fixed 1.06; camera traverses the full available crop window (about 6% of frame width/height)",
+    "pan_scale": "fixed 1.20; camera traverses the full available crop window from edge to edge (about 16.7% of frame width/height)",
     "diagram_scenes": "static or gentle zoom 1.00 -> 1.04",
     "pan_semantics": "pan_right/pan_left describe camera travel across the still image, not the apparent motion of image pixels",
     "repetition_guard": "the same motion is never assigned to three consecutive scenes",
     "subtitle_safe_area": "bottom 130 px reserved for opaque black subtitle band; keep important visual content above it",
-    "diagram_motion_override": "If a board hint says pan but the image is a chart/diagram, the v2 readability rule wins: static or 1.00 -> 1.04 gentle zoom."
+    "diagram_motion_override": "If a board hint says pan but the image is a chart/diagram, the v2 readability rule wins: static or 1.00 -> 1.04 gentle zoom.",
+    "pan_camera_travel": "pan_right: camera_from_x 0 -> 1; pan_left: 1 -> 0; pan_down: camera_from_y 0 -> 1; pan_up: 1 -> 0; scale fixed at 1.20"
   },
   "entries": [
     {
       "scene_id": "S001",
       "chapter": "prologue",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -42,7 +43,7 @@
       "scene_id": "S002",
       "chapter": "prologue",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -60,17 +61,17 @@
       "scene_id": "S003",
       "chapter": "prologue",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -78,7 +79,7 @@
       "scene_id": "S004",
       "chapter": "prologue",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -97,7 +98,7 @@
       "chapter": "prologue",
       "motion": "zoom_out",
       "scale_from": 1.2,
-      "scale_to": 1.0,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -114,17 +115,17 @@
       "scene_id": "S006",
       "chapter": "prologue",
       "motion": "pan_down",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
         0.5,
-        0.0
+        0
       ],
       "camera_to": [
         0.5,
-        1.0
+        1
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -132,8 +133,8 @@
       "scene_id": "S007",
       "chapter": "chapter1",
       "motion": "static",
-      "scale_from": 1.0,
-      "scale_to": 1.0,
+      "scale_from": 1,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -150,7 +151,7 @@
       "scene_id": "S008",
       "chapter": "chapter1",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.04,
       "camera_from": [
         0.5,
@@ -168,17 +169,17 @@
       "scene_id": "S009",
       "chapter": "chapter1",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -186,7 +187,7 @@
       "scene_id": "S010",
       "chapter": "chapter1",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -204,17 +205,17 @@
       "scene_id": "S011",
       "chapter": "chapter1",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -222,7 +223,7 @@
       "scene_id": "S012",
       "chapter": "chapter1",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -240,17 +241,17 @@
       "scene_id": "S013",
       "chapter": "chapter1",
       "motion": "pan_left",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        1.0,
+        1,
         0.5
       ],
       "camera_to": [
-        0.0,
+        0,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -258,17 +259,17 @@
       "scene_id": "S014",
       "chapter": "chapter1",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -276,17 +277,17 @@
       "scene_id": "S015",
       "chapter": "chapter1",
       "motion": "pan_left",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        1.0,
+        1,
         0.5
       ],
       "camera_to": [
-        0.0,
+        0,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -294,7 +295,7 @@
       "scene_id": "S016",
       "chapter": "chapter1",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -312,8 +313,8 @@
       "scene_id": "S017",
       "chapter": "chapter1",
       "motion": "static",
-      "scale_from": 1.0,
-      "scale_to": 1.0,
+      "scale_from": 1,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -330,17 +331,17 @@
       "scene_id": "S018",
       "chapter": "chapter1",
       "motion": "pan_up",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
         0.5,
-        1.0
+        1
       ],
       "camera_to": [
         0.5,
-        0.0
+        0
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "図の関係の流れに沿ってゆっくりパン（5〜7%程度）。字幕を隠す位置へ重要要素を置かない。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -348,7 +349,7 @@
       "scene_id": "S019",
       "chapter": "chapter2",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -366,17 +367,17 @@
       "scene_id": "S020",
       "chapter": "chapter2",
       "motion": "pan_left",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        1.0,
+        1,
         0.5
       ],
       "camera_to": [
-        0.0,
+        0,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -384,7 +385,7 @@
       "scene_id": "S021",
       "chapter": "chapter2",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -402,8 +403,8 @@
       "scene_id": "S022",
       "chapter": "chapter2",
       "motion": "static",
-      "scale_from": 1.0,
-      "scale_to": 1.0,
+      "scale_from": 1,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -420,7 +421,7 @@
       "scene_id": "S023",
       "chapter": "chapter2",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -438,17 +439,17 @@
       "scene_id": "S024",
       "chapter": "chapter2",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -456,7 +457,7 @@
       "scene_id": "S025",
       "chapter": "chapter2",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -474,8 +475,8 @@
       "scene_id": "S026",
       "chapter": "chapter2",
       "motion": "static",
-      "scale_from": 1.0,
-      "scale_to": 1.0,
+      "scale_from": 1,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -492,7 +493,7 @@
       "scene_id": "S027",
       "chapter": "chapter2",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -510,17 +511,17 @@
       "scene_id": "S028",
       "chapter": "chapter2",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -528,7 +529,7 @@
       "scene_id": "S029",
       "chapter": "chapter2",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -547,7 +548,7 @@
       "chapter": "chapter2",
       "motion": "zoom_out",
       "scale_from": 1.2,
-      "scale_to": 1.0,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -564,17 +565,17 @@
       "scene_id": "S031",
       "chapter": "chapter2",
       "motion": "pan_left",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        1.0,
+        1,
         0.5
       ],
       "camera_to": [
-        0.0,
+        0,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -582,7 +583,7 @@
       "scene_id": "S032",
       "chapter": "chapter2",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -600,17 +601,17 @@
       "scene_id": "S033",
       "chapter": "chapter2",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -618,17 +619,17 @@
       "scene_id": "S034",
       "chapter": "chapter2",
       "motion": "pan_down",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
         0.5,
-        0.0
+        0
       ],
       "camera_to": [
         0.5,
-        1.0
+        1
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -636,7 +637,7 @@
       "scene_id": "S035",
       "chapter": "chapter2",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -654,17 +655,17 @@
       "scene_id": "S036",
       "chapter": "chapter3",
       "motion": "pan_down",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
         0.5,
-        0.0
+        0
       ],
       "camera_to": [
         0.5,
-        1.0
+        1
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -673,7 +674,7 @@
       "chapter": "chapter3",
       "motion": "zoom_out",
       "scale_from": 1.2,
-      "scale_to": 1.0,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -690,8 +691,8 @@
       "scene_id": "S038",
       "chapter": "chapter3",
       "motion": "static",
-      "scale_from": 1.0,
-      "scale_to": 1.0,
+      "scale_from": 1,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -708,7 +709,7 @@
       "scene_id": "S039",
       "chapter": "chapter3",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -726,17 +727,17 @@
       "scene_id": "S040",
       "chapter": "chapter3",
       "motion": "pan_down",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
         0.5,
-        0.0
+        0
       ],
       "camera_to": [
         0.5,
-        1.0
+        1
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -745,7 +746,7 @@
       "chapter": "chapter3",
       "motion": "zoom_out",
       "scale_from": 1.2,
-      "scale_to": 1.0,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -762,17 +763,17 @@
       "scene_id": "S042",
       "chapter": "chapter3",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -780,7 +781,7 @@
       "scene_id": "S043",
       "chapter": "chapter3",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -798,17 +799,17 @@
       "scene_id": "S044",
       "chapter": "chapter3",
       "motion": "pan_left",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        1.0,
+        1,
         0.5
       ],
       "camera_to": [
-        0.0,
+        0,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -816,7 +817,7 @@
       "scene_id": "S045",
       "chapter": "chapter3",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -834,17 +835,17 @@
       "scene_id": "S046",
       "chapter": "chapter3",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "生物の特徴が見える部分へゆっくりズームイン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -852,17 +853,17 @@
       "scene_id": "S047",
       "chapter": "chapter3",
       "motion": "pan_left",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        1.0,
+        1,
         0.5
       ],
       "camera_to": [
-        0.0,
+        0,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -870,17 +871,17 @@
       "scene_id": "S048",
       "chapter": "chapter3",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -888,7 +889,7 @@
       "scene_id": "S049",
       "chapter": "chapter3",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -906,8 +907,8 @@
       "scene_id": "S050",
       "chapter": "chapter3",
       "motion": "static",
-      "scale_from": 1.0,
-      "scale_to": 1.0,
+      "scale_from": 1,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -924,7 +925,7 @@
       "scene_id": "S051",
       "chapter": "chapter3",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.04,
       "camera_from": [
         0.5,
@@ -942,7 +943,7 @@
       "scene_id": "S052",
       "chapter": "chapter3",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -960,17 +961,17 @@
       "scene_id": "S053",
       "chapter": "chapter3",
       "motion": "pan_left",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        1.0,
+        1,
         0.5
       ],
       "camera_to": [
-        0.0,
+        0,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -978,7 +979,7 @@
       "scene_id": "S054",
       "chapter": "chapter3",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -996,17 +997,17 @@
       "scene_id": "S055",
       "chapter": "chapter3",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -1014,7 +1015,7 @@
       "scene_id": "S056",
       "chapter": "chapter3",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -1032,17 +1033,17 @@
       "scene_id": "S057",
       "chapter": "chapter3",
       "motion": "pan_left",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        1.0,
+        1,
         0.5
       ],
       "camera_to": [
-        0.0,
+        0,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -1050,17 +1051,17 @@
       "scene_id": "S058",
       "chapter": "chapter3",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -1069,7 +1070,7 @@
       "chapter": "chapter4",
       "motion": "zoom_out",
       "scale_from": 1.2,
-      "scale_to": 1.0,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -1086,8 +1087,8 @@
       "scene_id": "S060",
       "chapter": "chapter4",
       "motion": "static",
-      "scale_from": 1.0,
-      "scale_to": 1.0,
+      "scale_from": 1,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -1104,7 +1105,7 @@
       "scene_id": "S061",
       "chapter": "chapter4",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -1122,17 +1123,17 @@
       "scene_id": "S062",
       "chapter": "chapter4",
       "motion": "pan_left",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        1.0,
+        1,
         0.5
       ],
       "camera_to": [
-        0.0,
+        0,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -1140,7 +1141,7 @@
       "scene_id": "S063",
       "chapter": "chapter4",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -1158,17 +1159,17 @@
       "scene_id": "S064",
       "chapter": "chapter4",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -1176,8 +1177,8 @@
       "scene_id": "S065",
       "chapter": "chapter4",
       "motion": "static",
-      "scale_from": 1.0,
-      "scale_to": 1.0,
+      "scale_from": 1,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -1194,7 +1195,7 @@
       "scene_id": "S066",
       "chapter": "chapter4",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -1212,7 +1213,7 @@
       "scene_id": "S067",
       "chapter": "chapter4",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -1230,8 +1231,8 @@
       "scene_id": "S068",
       "chapter": "chapter4",
       "motion": "static",
-      "scale_from": 1.0,
-      "scale_to": 1.0,
+      "scale_from": 1,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -1248,7 +1249,7 @@
       "scene_id": "S069",
       "chapter": "chapter4",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -1266,8 +1267,8 @@
       "scene_id": "S070",
       "chapter": "chapter4",
       "motion": "static",
-      "scale_from": 1.0,
-      "scale_to": 1.0,
+      "scale_from": 1,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -1284,7 +1285,7 @@
       "scene_id": "S071",
       "chapter": "chapter4",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.04,
       "camera_from": [
         0.5,
@@ -1302,8 +1303,8 @@
       "scene_id": "S072",
       "chapter": "chapter4",
       "motion": "static",
-      "scale_from": 1.0,
-      "scale_to": 1.0,
+      "scale_from": 1,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -1320,7 +1321,7 @@
       "scene_id": "S073",
       "chapter": "chapter4",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.04,
       "camera_from": [
         0.5,
@@ -1338,8 +1339,8 @@
       "scene_id": "S074",
       "chapter": "chapter4",
       "motion": "static",
-      "scale_from": 1.0,
-      "scale_to": 1.0,
+      "scale_from": 1,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -1356,7 +1357,7 @@
       "scene_id": "S075",
       "chapter": "chapter4",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -1374,17 +1375,17 @@
       "scene_id": "S076",
       "chapter": "chapter4",
       "motion": "pan_left",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        1.0,
+        1,
         0.5
       ],
       "camera_to": [
-        0.0,
+        0,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "生物の特徴が見える部分へゆっくりズームイン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -1392,7 +1393,7 @@
       "scene_id": "S077",
       "chapter": "chapter4",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -1410,17 +1411,17 @@
       "scene_id": "S078",
       "chapter": "chapter4",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -1428,7 +1429,7 @@
       "scene_id": "S079",
       "chapter": "epilogue",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -1446,17 +1447,17 @@
       "scene_id": "S080",
       "chapter": "epilogue",
       "motion": "pan_left",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        1.0,
+        1,
         0.5
       ],
       "camera_to": [
-        0.0,
+        0,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -1464,17 +1465,17 @@
       "scene_id": "S081",
       "chapter": "epilogue",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -1482,17 +1483,17 @@
       "scene_id": "S082",
       "chapter": "epilogue",
       "motion": "pan_down",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
         0.5,
-        0.0
+        0
       ],
       "camera_to": [
         0.5,
-        1.0
+        1
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -1500,7 +1501,7 @@
       "scene_id": "S083",
       "chapter": "epilogue",
       "motion": "zoom_in",
-      "scale_from": 1.0,
+      "scale_from": 1,
       "scale_to": 1.2,
       "camera_from": [
         0.5,
@@ -1519,7 +1520,7 @@
       "chapter": "epilogue",
       "motion": "zoom_out",
       "scale_from": 1.2,
-      "scale_to": 1.0,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
@@ -1536,17 +1537,17 @@
       "scene_id": "S085",
       "chapter": "epilogue",
       "motion": "pan_down",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
         0.5,
-        0.0
+        0
       ],
       "camera_to": [
         0.5,
-        1.0
+        1
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "広い画から主役またはROVライトへゆっくりズームイン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -1554,17 +1555,17 @@
       "scene_id": "S086",
       "chapter": "epilogue",
       "motion": "pan_right",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        0.0,
+        0,
         0.5
       ],
       "camera_to": [
-        1.0,
+        1,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "左から右へゆっくりパンし、比較対象を順に見せる（画面幅の5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -1572,17 +1573,17 @@
       "scene_id": "S087",
       "chapter": "epilogue",
       "motion": "pan_left",
-      "scale_from": 1.06,
-      "scale_to": 1.06,
+      "scale_from": 1.2,
+      "scale_to": 1.2,
       "camera_from": [
-        1.0,
+        1,
         0.5
       ],
       "camera_to": [
-        0.0,
+        0,
         0.5
       ],
-      "intensity": "slow_pan_6_percent",
+      "intensity": "full_pan_16_7_percent",
       "board_motion_hint": "主役へゆっくりズームイン、または画面内を短く横パン（5〜7%程度）。",
       "motion_rationale": "横長構図・比較対象・移動／落下の方向を追うため、カメラをゆっくり移動。"
     },
@@ -1591,7 +1592,7 @@
       "chapter": "epilogue",
       "motion": "zoom_out",
       "scale_from": 1.2,
-      "scale_to": 1.0,
+      "scale_to": 1,
       "camera_from": [
         0.5,
         0.5
