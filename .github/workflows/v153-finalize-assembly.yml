@@ -1,0 +1,77 @@
+name: V153 Deep-Sea Assembly-Only Timeline Repair
+
+on:
+  push:
+    branches: [v153-deep-sea-single-image-fix-20261112]
+    paths:
+      - 'shared/v153/scripts/finalize_assembly.py'
+      - '.github/workflows/v153-finalize-assembly.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v153-finalize-assembly-\${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  assemble:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install the pinned FFmpeg toolchain
+        run: bash shared/v153/scripts/install_media_tools.sh
+
+      - name: Download the six existing chapter MP4 artifacts (no scene or chapter rendering)
+        uses: actions/download-artifact@v4
+        with:
+          artifact-ids: 13919726282,13920210075,13920130696,13920175894,13919074757,13919383673
+          path: shared/v153/segments
+          merge-multiple: true
+          github-token: \${{ github.token }}
+          repository: \${{ github.repository }}
+          run-id: 43164736663
+
+      - name: Install local decoded-audio QA and Japanese transcription dependencies
+        run: python -m pip install --no-input --timeout 30 --retries 3 numpy faster-whisper
+
+      - name: Reassemble existing chapters and verify the final MP4 by full decode
+        run: |
+          set -euo pipefail
+          python shared/v153/scripts/finalize_assembly.py
+          test -s shared/v153/output/v153-deep-sea-gigantism-final.mp4
+          test -s shared/v153/qa/final-assembly-timeline-audit.json
+          test -s shared/v153/production_report.json
+
+      - name: Upload the repaired final MP4 and full timeline audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: v153-deep-sea-gigantism-assembly-fixed
+          path: |
+            shared/v153/output/v153-deep-sea-gigantism-final.mp4
+            shared/v153/qa/final-assembly-timeline-audit.json
+            shared/v153/production_report.json
+          retention-days: 21
+          compression-level: 0
+
+      - name: Publish the repaired final MP4 as a new GitHub Release
+        working-directory: shared/v153
+        env:
+          GH_TOKEN: \${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="v153-deep-sea-gigantism-\${{ github.run_id }}"
+          gh release create "$TAG" \
+            output/v153-deep-sea-gigantism-final.mp4 \
+            qa/final-assembly-timeline-audit.json \
+            production_report.json \
+            --repo "\${{ github.repository }}" \
+            --title "考える夜｜なぜ深海の生き物は巨大化するのか？ 完成動画（assembly timeline fix）" \
+            --notes "Assembly-only timeline repair. The six existing chapter MP4s and all scene assets were reused unchanged. Video packets are stream-copied; AAC audio is timestamp-resampled and re-encoded to remove cumulative shortened-packet decoder padding. No BGM was added or mixed."
