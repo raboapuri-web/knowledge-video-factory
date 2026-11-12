@@ -1,1 +1,4 @@
-repair-contact-sheet-88-scenes-v2
+repair-contact-sheet-88-scenes-v3
+master_run_id=43147115302
+include_six_chapter_card_offsets=true
+include_six_chapter_card_contact_sheet=true
