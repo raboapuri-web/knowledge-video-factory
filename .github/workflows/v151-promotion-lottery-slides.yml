@@ -114,9 +114,10 @@ jobs:
             ln -sf "$(node -p "require(process.env.RUNNER_TEMP+'/v151-media/node_modules/@ffmpeg-installer/ffmpeg').path")" "$RUNNER_TEMP/v151-bin/ffmpeg"
             ln -sf "$(node -p "require(process.env.RUNNER_TEMP+'/v151-media/node_modules/@ffprobe-installer/ffprobe').path")" "$RUNNER_TEMP/v151-bin/ffprobe"
             echo "$RUNNER_TEMP/v151-bin" >> "$GITHUB_PATH"
+            export PATH="$RUNNER_TEMP/v151-bin:$PATH"
           fi
-          ffmpeg -version | head -1
-          ffprobe -version | head -1
+          ffmpeg -version | sed -n '1p'
+          ffprobe -version | sed -n '1p'
           command -v curl
           if command -v fc-list >/dev/null; then
             fc-list :lang=ja family | sort -u | head -12 || true
@@ -408,8 +409,9 @@ jobs:
             ln -sf "$(node -p "require(process.env.RUNNER_TEMP+'/v151-media/node_modules/@ffmpeg-installer/ffmpeg').path")" "$RUNNER_TEMP/v151-bin/ffmpeg"
             ln -sf "$(node -p "require(process.env.RUNNER_TEMP+'/v151-media/node_modules/@ffprobe-installer/ffprobe').path")" "$RUNNER_TEMP/v151-bin/ffprobe"
             echo "$RUNNER_TEMP/v151-bin" >> "$GITHUB_PATH"
+            export PATH="$RUNNER_TEMP/v151-bin:$PATH"
           fi
-          ffmpeg -version | head -1
+          ffmpeg -version | sed -n '1p'
 
       - name: Download six chapter videos
         uses: actions/download-artifact@v4
