@@ -2,7 +2,7 @@ name: V153 Deep-Sea Gigantism Photo Documentary — format v2
 
 on:
   push:
-    branches: [v153-deep-sea-gigantism-photo-slides-20261111, v153-deep-sea-title-narration-fix-20261112]
+    branches: [v153-deep-sea-gigantism-photo-slides-20261111, v153-deep-sea-title-narration-fix-20261112, v153-deep-sea-single-image-fix-20261112]
     paths:
       - 'shared/v153/launch/assets.txt'
       - 'shared/v153/launch/render.txt'
