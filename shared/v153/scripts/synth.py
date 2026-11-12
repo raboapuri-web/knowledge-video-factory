@@ -12,10 +12,19 @@ SPEED=float(os.getenv("VOICEVOX_SPEED","1.10"))
 INTONATION=float(os.getenv("VOICEVOX_INTONATION","1.0"))
 OUT=ROOT/"media"; OUT.mkdir(exist_ok=True)
 
+CHAPTER_HEADING_RE=re.compile(r"^\\s*##\\s*(?:プロローグ|第[0-9０-９]+章|エピローグ)(?:\\s*[｜|：:]\\s*|\\s+).+$")
+
 def clean_markup(s):
-    s=re.sub(r"(?m)^##\s*","",s)
+    kept=[]; removed=[]
+    for line in s.splitlines():
+        if CHAPTER_HEADING_RE.match(line):
+            removed.append(line.strip())
+        else:
+            kept.append(line)
+    s="\\n".join(kept)
+    s=re.sub(r"(?m)^##\\s*","",s)
     s=s.replace("**","")
-    return s.strip()
+    return s.strip(), removed
 
 def split_cues(text):
     out=[]
@@ -108,7 +117,7 @@ def wav_duration(path):
     with wave.open(str(path),"rb") as w: return w.getnframes()/float(w.getframerate())
 
 def synth_scene(scene):
-    text=clean_markup(scene["script"])
+    text, removed_headings=clean_markup(scene["script"])
     qres=requests.post(BASE+"/audio_query",params={"text":text,"speaker":SPEAKER},timeout=120); qres.raise_for_status(); query=qres.json()
     query.update({"speedScale":SPEED,"intonationScale":INTONATION,"prePhonemeLength":0.08,"postPhonemeLength":0.18})
     res=requests.post(BASE+"/synthesis",params={"speaker":SPEAKER},json=query,timeout=240); res.raise_for_status()
@@ -119,7 +128,8 @@ def synth_scene(scene):
     cues=split_cues(text); timing=make_cue_times(text,cues,query,duration); write_ass(timing,captions/(scene["id"]+".ass"))
     return {"scene":scene["id"],"wav":str(wav.relative_to(ROOT)),"duration":round(duration,4),"cue_count":len(timing),
             "captions":timing,"speaker":"VOICEVOX:青山龍星","speaker_id":SPEAKER,"speed":SPEED,"intonation":INTONATION,
-            "timing_method":"VOICEVOX audio_query mora durations mapped approximately by source character positions and rescaled to WAV","narration_text":text}
+            "timing_method":"VOICEVOX audio_query mora durations mapped approximately by source character positions and rescaled to WAV",
+            "narration_text":text,"removed_chapter_headings":removed_headings}
 
 def main():
     import sys
