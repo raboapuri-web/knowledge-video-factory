@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   repair:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
       - name: Checkout V153 production branch
@@ -39,7 +39,7 @@ jobs:
         with:
           name: v153-deep-sea-gigantism-master
           path: work/master
-          run-id: "43058410774"
+          run-id: "43147115302"
           github-token: ${{ github.token }}
           repository: ${{ github.repository }}
 
@@ -49,41 +49,27 @@ jobs:
           pattern: v153-segment-*
           path: work/segments
           merge-multiple: true
-          run-id: "43058410774"
+          run-id: "43147115302"
           github-token: ${{ github.token }}
           repository: ${{ github.repository }}
 
-      - name: Build one labelled midpoint frame for every scene and update QA
-        run: |
-          set -euo pipefail
-          python shared/v153/scripts/repair_contact_sheet.py \
-            --video work/master/output/v153-deep-sea-gigantism-final.mp4 \
-            --segments-dir work/segments \
-            --output work/master/output/v153-contact-sheet.jpg \
-            --qa work/master/qa/final.json \
-            --production-report work/master/production_report.json \
-            --audit work/master/qa/contact-sheet-audit.json
+      - name: Build 88 scene midpoints and six chapter-card frames from the final MP4
+        run: python shared/v153/scripts/repair_contact_sheet.py --video work/master/output/v153-deep-sea-gigantism-final.mp4 --segments-dir work/segments --output work/master/output/v153-contact-sheet.jpg --chapter-cards-output work/master/output/v153-chapter-cards-contact-sheet.jpg --qa work/master/qa/final.json --production-report work/master/production_report.json --audit work/master/qa/contact-sheet-audit.json
 
-      - name: Upload corrected contact sheet and audit
+      - name: Upload corrected contact sheets and audit
         uses: actions/upload-artifact@v4
         with:
           name: v153-deep-sea-gigantism-contact-sheet-corrected
           path: |
             work/master/output/v153-contact-sheet.jpg
+            work/master/output/v153-chapter-cards-contact-sheet.jpg
             work/master/qa/final.json
             work/master/qa/contact-sheet-audit.json
             work/master/production_report.json
           retention-days: 21
           compression-level: 0
 
-      - name: Replace the malformed contact sheet in the published release
+      - name: Replace the malformed contact sheet and QA assets in the published release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          gh release upload v153-deep-sea-gigantism-43058410774 \
-            work/master/output/v153-contact-sheet.jpg \
-            work/master/qa/final.json \
-            work/master/production_report.json \
-            work/master/qa/contact-sheet-audit.json \
-            --clobber --repo "$GITHUB_REPOSITORY"
+        run: gh release upload v153-deep-sea-gigantism-43147115302 work/master/output/v153-contact-sheet.jpg work/master/output/v153-chapter-cards-contact-sheet.jpg work/master/qa/final.json work/master/production_report.json work/master/qa/contact-sheet-audit.json --clobber --repo "$GITHUB_REPOSITORY"
