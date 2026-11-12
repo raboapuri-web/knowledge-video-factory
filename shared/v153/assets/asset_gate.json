@@ -19,10 +19,10 @@
   "rights_failures": [],
   "rejected_candidates": 27,
   "rights_skipped_candidates": 0,
-  "generated_panel_count": 19,
+  "generated_panel_count": 22,
   "generation_record_count": 19,
   "upscaling_approved": true,
-  "upscaled_source_count": 17,
+  "upscaled_source_count": 9,
   "contact_sheets": [
     "assets/contact-sheets/contact-sheet-01.jpg",
     "assets/contact-sheets/contact-sheet-02.jpg",
@@ -30,5 +30,30 @@
     "assets/contact-sheets/contact-sheet-04.jpg"
   ],
   "rights_review_status": "source/license/credit metadata complete; restricted-license scan passed; source URLs retained for attribution",
-  "manual_visual_approval": "user-confirmed-v3-handoff"
+  "manual_visual_approval": "user-requested-single-image-replacements; final-MP4 frame QA follows",
+  "single_image_target_ids": [
+    "S001",
+    "S002",
+    "S003",
+    "S009",
+    "S011",
+    "S014",
+    "S015",
+    "S024",
+    "S033",
+    "S034",
+    "S035",
+    "S057",
+    "S058",
+    "S062",
+    "S077",
+    "S078",
+    "S081",
+    "S082",
+    "S085",
+    "S086",
+    "S087"
+  ],
+  "single_image_target_failures": [],
+  "remaining_multi_panel_scenes": []
 }
