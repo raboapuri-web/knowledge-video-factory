@@ -284,12 +284,22 @@ def main():
 
     thresholds = [0.001, 0.002, 0.005, 0.01, 0.02]
     last_active = {}
-    audio_abs = np.abs(np.asarray(final_audio_array, dtype=np.int32))
+    def last_active_index(samples, threshold):
+        limit = int(round(threshold * 32768))
+        chunk_size = 1_000_000
+        for end_idx in range(len(samples), 0, -chunk_size):
+            start_idx = max(0, end_idx - chunk_size)
+            chunk = np.asarray(samples[start_idx:end_idx], dtype=np.int32)
+            hits = np.flatnonzero(np.abs(chunk) > limit)
+            if len(hits):
+                return start_idx + int(hits[-1])
+        return 0
+
     for threshold in thresholds:
-        idx = np.flatnonzero(audio_abs > int(round(threshold * 32768)))
-        end = (int(idx[-1]) / SAMPLE_RATE) if len(idx) else 0.0
+        last_idx = last_active_index(final_audio_array, threshold)
+        end = last_idx / SAMPLE_RATE
         last_active[str(threshold)] = {
-            "last_active_sample": int(idx[-1]) if len(idx) else 0,
+            "last_active_sample": last_idx,
             "last_active_seconds": round(end, 6),
             "decoded_tail_silence_seconds": round(final_seconds - end, 6),
             "silence_until_video_end_seconds": round(
