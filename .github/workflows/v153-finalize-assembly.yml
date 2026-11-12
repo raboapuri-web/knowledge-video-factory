@@ -12,7 +12,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: v153-finalize-assembly-\${{ github.ref }}
+  group: v153-finalize-assembly-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -35,8 +35,8 @@ jobs:
           artifact-ids: 13919726282,13920210075,13920130696,13920175894,13919074757,13919383673
           path: shared/v153/segments
           merge-multiple: true
-          github-token: \${{ github.token }}
-          repository: \${{ github.repository }}
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
           run-id: 43164736663
 
       - name: Install local decoded-audio QA and Japanese transcription dependencies
@@ -64,14 +64,14 @@ jobs:
       - name: Publish the repaired final MP4 as a new GitHub Release
         working-directory: shared/v153
         env:
-          GH_TOKEN: \${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          TAG="v153-deep-sea-gigantism-\${{ github.run_id }}"
+          TAG="v153-deep-sea-gigantism-${{ github.run_id }}"
           gh release create "$TAG" \
             output/v153-deep-sea-gigantism-final.mp4 \
             qa/final-assembly-timeline-audit.json \
             production_report.json \
-            --repo "\${{ github.repository }}" \
+            --repo "${{ github.repository }}" \
             --title "考える夜｜なぜ深海の生き物は巨大化するのか？ 完成動画（assembly timeline fix）" \
             --notes "Assembly-only timeline repair. The six existing chapter MP4s and all scene assets were reused unchanged. Video packets are stream-copied; AAC audio is timestamp-resampled and re-encoded to remove cumulative shortened-packet decoder padding. No BGM was added or mixed."
