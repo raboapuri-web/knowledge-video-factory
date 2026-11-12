@@ -1,2 +1,4 @@
 approved-static-ffmpeg-v1
 render-approved=true
+chapter-heading-exclusion=true
+narration-body-preservation-qa=true
