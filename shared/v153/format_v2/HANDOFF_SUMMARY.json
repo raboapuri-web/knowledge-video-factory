@@ -1,0 +1,24 @@
+{
+  "zip_package": "v153_format_v2_remaining_deliverables.zip",
+  "scene_count": 88,
+  "motion_counts": {
+    "pan_down": 6,
+    "pan_left": 12,
+    "pan_right": 17,
+    "pan_up": 1,
+    "static": 12,
+    "zoom_in": 33,
+    "zoom_out": 7
+  },
+  "three_consecutive_motion_repeats": false,
+  "audio": {
+    "file": "shared/v153/format_v2/audio/type_key.wav",
+    "sample_rate_hz": 48000,
+    "channels": 1,
+    "sample_width_bits": 16,
+    "duration_sec": 0.078
+  },
+  "chapter_cards": 6,
+  "images_in_zip": false,
+  "note": "Chapter background images are delivered separately; place six chapter-specific PNGs at the paths in README.md."
+}
