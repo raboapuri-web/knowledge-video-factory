@@ -1,4 +1,4 @@
-name: V153 Deep-Sea Gigantism Photo Documentary
+name: V153 Deep-Sea Gigantism Photo Documentary — format v2
 
 on:
   push:
@@ -8,9 +8,17 @@ on:
       - 'shared/v153/launch/render.txt'
       - 'shared/v153/scripts/collect_assets.py'
       - 'shared/v153/scripts/check_assets.py'
-      - 'shared/v153/assets/asset_overrides.json'
-      - 'shared/v153/assets/replacement_log.json'
+      - 'shared/v153/scripts/render_chapter.py'
+      - 'shared/v153/scripts/synth.py'
+      - 'shared/v153/format_v2/**'
+      - '.github/workflows/v153-deep-sea-gigantism.yml'
   workflow_dispatch:
+    inputs:
+      render_approved:
+        description: 'Run VOICEVOX + full render (requires approved assets and all six card backgrounds)'
+        required: true
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -23,7 +31,7 @@ concurrency:
 jobs:
   assets:
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -36,57 +44,52 @@ jobs:
           python - <<'PY'
           import json, os
           from pathlib import Path
-          root=Path(".")
-          manifest=json.loads((root/"assets/asset_manifest.json").read_text(encoding="utf-8"))
-          gate=json.loads((root/"assets/asset_gate.json").read_text(encoding="utf-8"))
-          collected=manifest.get("collected",[])
-          generated=manifest.get("generated",[])
-          sheets=manifest.get("contact_sheets",[])
-          valid=(gate.get("passed") is True and len(collected)==78 and len(generated)==10 and len(sheets)==4
-                 and not manifest.get("missing") and not manifest.get("composition_warnings"))
-          valid=valid and all((root/x.get("file","")).is_file() for x in collected)
-          valid=valid and all((root/x.get("file","")).is_file() for x in generated)
+          root=Path('.')
+          manifest=json.loads((root/'assets/asset_manifest.json').read_text(encoding='utf-8'))
+          gate=json.loads((root/'assets/asset_gate.json').read_text(encoding='utf-8'))
+          collected=manifest.get('collected',[])
+          generated=manifest.get('generated',[])
+          sheets=manifest.get('contact_sheets',[])
+          valid=(gate.get('passed') is True and len(collected)==78 and len(generated)==10 and len(sheets)==4
+                 and not manifest.get('missing') and not manifest.get('composition_warnings'))
+          valid=valid and all((root/x.get('file','')).is_file() for x in collected)
+          valid=valid and all((root/x.get('file','')).is_file() for x in generated)
           valid=valid and all((root/x).is_file() for x in sheets)
-          valid=valid and len(list((root/"assets/panels/collected").glob("*.*")))==43
-          valid=valid and len(list((root/"assets/panels/ai-generated").glob("*.*")))==19
-          with open(os.environ["GITHUB_OUTPUT"],"a",encoding="utf-8") as f:
-              f.write("registered="+("true" if valid else "false")+"\n")
-          print("REGISTERED_HANDOFF="+str(valid))
+          valid=valid and len(list((root/'assets/panels/collected').glob('*.*')))==43
+          valid=valid and len(list((root/'assets/panels/ai-generated').glob('*.*')))==19
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:
+              f.write('registered='+('true' if valid else 'false')+'\n')
+          print('REGISTERED_HANDOFF='+str(valid))
           PY
-      - name: Install media tools and Japanese fonts only when acquisition is needed
+      - name: Install static media tools and collection dependencies only when acquisition is needed
         if: steps.handoff.outputs.registered != 'true'
         run: |
           set -euo pipefail
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends ffmpeg fonts-noto-cjk fontconfig
-          python -m pip install --upgrade pip
-          python -m pip install requests beautifulsoup4 Pillow cairosvg
-          ffmpeg -version | head -1
-          fc-cache -f
+          bash shared/v153/scripts/install_media_tools.sh
+          python -m pip install --no-input --timeout 30 --retries 3 requests beautifulsoup4 Pillow cairosvg
       - name: Install Pillow for registered asset verification
         if: steps.handoff.outputs.registered == 'true'
-        run: python -m pip install Pillow
-      - name: Verify the exact 88-screen source
+        run: python -m pip install --no-input Pillow
+      - name: Verify the exact 88-screen source and format-v2 handoff files
         working-directory: shared/v153
         run: |
           set -euo pipefail
           python scripts/preflight.py
+          python format_v2/scripts/validate_motion_map.py
+          test -s format_v2/config/chapter_card_spec.json
+          test -s format_v2/audio/type_key.wav
       - name: Generate the ten specified diagrams when no registered handoff exists
         if: steps.handoff.outputs.registered != 'true'
         working-directory: shared/v153
-        run: |
-          set -euo pipefail
-          python scripts/generate_diagrams.py
+        run: python scripts/generate_diagrams.py
       - name: Acquire 78 source stills only when no registered handoff exists
         if: steps.handoff.outputs.registered != 'true'
         working-directory: shared/v153
-        run: |
-          set -euo pipefail
-          python scripts/collect_assets.py
-      - name: Require all 78 collection scenes and all 10 specified diagrams; no generated animal-photo substitutions
+        run: python scripts/collect_assets.py
+      - name: Require all 78 collection scenes and all 10 specified diagrams
         working-directory: shared/v153
         run: python scripts/check_assets.py
-      - name: Upload source assets and acquisition evidence even if the rights/coverage gate stops production
+      - name: Upload source assets and acquisition evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -98,23 +101,26 @@ jobs:
             shared/v153/SOURCES.txt
           retention-days: 21
           compression-level: 0
-      - name: Publish the asset manifest, rights audit and contact sheet to the production branch
+      - name: Publish the asset manifest, rights audit and contact sheets to the production branch
         if: always()
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           for f in shared/v153/assets/asset_manifest.json shared/v153/assets/asset_gate.json shared/v153/assets/replacement_log.json shared/v153/SOURCES.txt; do
             if [ -f "$f" ]; then git add "$f"; fi
           done
           if [ -d shared/v153/assets/contact-sheets ]; then git add shared/v153/assets/contact-sheets/; fi
           if ! git diff --cached --quiet; then
-            git commit -m "[asset-report] Publish source asset manifest and rights audit"
+            git commit -m '[asset-report] Publish source asset manifest and rights audit'
             git push origin HEAD
           fi
 
   chapter:
-    if: contains(github.event.head_commit.message, '[render-approved]')
+    if: >-
+      needs.assets.result == 'success' &&
+      ((github.event_name == 'push' && contains(github.event.head_commit.message, '[render-approved]')) ||
+       (github.event_name == 'workflow_dispatch' && inputs.render_approved == true))
     needs: assets
     runs-on: ubuntu-24.04
     timeout-minutes: 180
@@ -134,7 +140,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install pinned static FFmpeg and Noto Sans CJK JP without apt
+      - name: Install pinned static FFmpeg and Noto Sans CJK JP
         run: |
           set -euo pipefail
           bash shared/v153/scripts/install_media_tools.sh
@@ -144,6 +150,15 @@ jobs:
         with:
           name: v153-assets-and-source-audit
           path: shared/v153
+      - name: Validate format-v2 motion assignments and chapter card assets
+        working-directory: shared/v153
+        run: |
+          set -euo pipefail
+          python format_v2/scripts/validate_motion_map.py
+          for c in prologue chapter1 chapter2 chapter3 chapter4 epilogue; do
+            test -s "format_v2/assets/chapter_cards/backgrounds/${c}_bg.png"
+          done
+          test -s format_v2/audio/type_key.wav
       - name: Start local VOICEVOX CPU engine
         run: |
           set -euo pipefail
@@ -151,19 +166,19 @@ jobs:
           docker run -d --rm -p 127.0.0.1:50021:50021 --name voicevox voicevox/voicevox_engine:cpu-latest
           for i in {1..150}; do
             if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null; then
-              echo "VOICEVOX_READY"
+              echo 'VOICEVOX_READY'
               break
             fi
             sleep 2
           done
           curl -fsS http://127.0.0.1:50021/version
-      - name: Synthesize exact scene narration and bottom-centre subtitle cues
+      - name: Synthesize exact scene narration and subtitle cues
         working-directory: shared/v153
         run: |
           set -euo pipefail
           python scripts/synth.py "$CHAPTER"
           test -s "media/voice-report-$CHAPTER.json"
-      - name: Render 1920x1080 still-image chapter with gentle 100-to-106 percent zoom/pan
+      - name: Render scenes with board motion, opaque subtitle band and typed chapter card
         working-directory: shared/v153
         run: |
           set -euo pipefail
@@ -176,7 +191,8 @@ jobs:
           mkdir -p artifact
           cp "output/v153-$CHAPTER.mp4" "artifact/v153-$CHAPTER.mp4"
           cp "media/voice-report-$CHAPTER.json" "artifact/voice-report-$CHAPTER.json"
-      - name: Upload chapter MP4 and voice timing report
+          cp "output/render-$CHAPTER.json" "artifact/render-$CHAPTER.json"
+      - name: Upload chapter MP4 and timing reports
         uses: actions/upload-artifact@v4
         with:
           name: v153-segment-${{ matrix.chapter }}
@@ -185,8 +201,8 @@ jobs:
           compression-level: 0
 
   finalize:
-    if: contains(github.event.head_commit.message, '[render-approved]') && needs.chapter.result == 'success'
-    needs: chapter
+    if: needs.chapter.result == 'success'
+    needs: [assets, chapter]
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -194,9 +210,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install pinned static FFmpeg and Noto Sans CJK JP for final assembly
+      - name: Install pinned static FFmpeg and Noto Sans CJK JP
         run: bash shared/v153/scripts/install_media_tools.sh
-      - name: Download the verified source asset package for final QA and credits
+      - name: Download verified source assets and credits
         uses: actions/download-artifact@v4
         with:
           name: v153-assets-and-source-audit
@@ -220,7 +236,7 @@ jobs:
           done
           ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat-final.txt -c copy -movflags +faststart output/v153-deep-sea-gigantism-final.mp4
           ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 output/v153-deep-sea-gigantism-final.mp4
-      - name: Create contact sheet and verify the final master
+      - name: Create final-MP4 contact sheet and run QA
         working-directory: shared/v153
         run: |
           set -euo pipefail
@@ -230,7 +246,7 @@ jobs:
           python scripts/qa.py output/v153-deep-sea-gigantism-final.mp4
           test -s qa/final.json
           test -s production_report.json
-      - name: Upload final MP4, contact sheet, source credits and QA report
+      - name: Upload final MP4, contact sheet, credits and QA report
         uses: actions/upload-artifact@v4
         with:
           name: v153-deep-sea-gigantism-master
@@ -257,4 +273,4 @@ jobs:
             SOURCES.txt \
             --repo "${{ github.repository }}" \
             --title "考える夜｜なぜ深海の生き物は巨大化するのか？ 完成動画" \
-            --notes "88-screen still-image documentary, 78 collected source screens and 10 specified conceptual diagrams, 1920x1080 30fps, VOICEVOX:青山龍星, bottom-centre subtitles, gentle still-image zoom/pan. Asset sources, credits and QA report included."
+            --notes "88-screen still-image documentary, V2 slow Ken Burns motion, typed chapter cards, 1920x1080 30fps, VOICEVOX:青山龍星, opaque bottom subtitle band, source credits and QA report included."
