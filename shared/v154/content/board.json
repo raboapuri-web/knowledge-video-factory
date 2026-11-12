@@ -355,7 +355,8 @@
       "sources": [],
       "narration_char_count": 75,
       "estimated_duration_sec": 14.29,
-      "rights_gate": "pending"
+      "rights_gate": "pending",
+      "tts_reading_watch": true
     },
     {
       "id": "S002",
@@ -2314,6 +2315,13 @@
       "narration_char_count": 86,
       "estimated_duration_sec": 16.38,
       "rights_gate": "pending"
+    }
+  ],
+  "tts_reading_watch": [
+    {
+      "scene_id": "S001",
+      "phrase": "少し",
+      "note": "format_v2_spec.md §5 の青山龍星読み上げ注意に該当する。承認済み台本の文字列は画面設計で変更せず、VOICEVOX生成後の読みQAで確認する。修正が必要な場合は台本側の承認を得てから対応する。"
     }
   ]
 }
