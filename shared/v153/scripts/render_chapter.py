@@ -6,6 +6,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 FORMAT=ROOT/"format_v2"
 BOARD=json.loads((ROOT/"content/board.json").read_text(encoding="utf-8"))
+ASSET_MANIFEST=json.loads((ROOT/"assets/asset_manifest.json").read_text(encoding="utf-8"))
+COLLECTED_ASSET_BY_ID={x["scene"]:x for x in ASSET_MANIFEST.get("collected",[])}
 MOTION=json.loads((FORMAT/"config/scene_motion_map.json").read_text(encoding="utf-8"))
 CHAPTER_SPEC=json.loads((FORMAT/"config/chapter_card_spec.json").read_text(encoding="utf-8"))
 MOTION_BY_ID={x["scene_id"]:x for x in MOTION["entries"]}
@@ -55,7 +57,13 @@ def main(chapter):
         if sid not in MOTION_BY_ID: raise KeyError("missing motion assignment for "+sid)
         if sid not in by_id: raise KeyError("missing voice timing for "+sid)
         timing=by_id[sid]
-        img=(ROOT/"assets/collected"/(sid+".jpg")) if s["mode"]=="収集" else (ROOT/"assets/generated"/(sid+".png"))
+        if s["mode"]=="収集":
+            asset_rec=COLLECTED_ASSET_BY_ID.get(sid)
+            if not asset_rec:
+                raise KeyError(f"Missing collected asset manifest record for {sid}")
+            img=ROOT/(asset_rec.get("file") or f"assets/collected/{sid}.jpg")
+        else:
+            img=ROOT/"assets/generated"/(sid+".png")
         wav=ROOT/"media/speech"/(sid+".wav")
         ass=ROOT/"media/captions"/(sid+".ass")
         for f in (img,wav,ass):

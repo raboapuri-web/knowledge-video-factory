@@ -9,6 +9,8 @@ on:
       - 'shared/v153/scripts/collect_assets.py'
       - 'shared/v153/scripts/check_assets.py'
       - 'shared/v153/scripts/render_chapter.py'
+      - 'shared/v153/scripts/qa.py'
+      - 'shared/v153/scripts/repair_contact_sheet.py'
       - 'shared/v153/scripts/synth.py'
       - 'shared/v153/scripts/validate_chapter_narration.py'
       - 'shared/v153/format_v2/**'
@@ -244,14 +246,18 @@ jobs:
           done
           ffmpeg -y -loglevel error -f concat -safe 0 -i output/concat-final.txt -c copy -movflags +faststart output/v153-deep-sea-gigantism-final.mp4
           ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 output/v153-deep-sea-gigantism-final.mp4
-      - name: Create final-MP4 contact sheet and run QA
+      - name: Install final-frame contact-sheet dependencies
+        working-directory: shared/v153
+        run: python -m pip install --no-input --timeout 30 --retries 2 Pillow opencv-python-headless
+      - name: Create scene-by-scene contact sheet from final MP4 and run QA
         working-directory: shared/v153
         run: |
           set -euo pipefail
-          D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 output/v153-deep-sea-gigantism-final.mp4)
-          I=$(python3 -c "print(max(1.0, float('$D')/48))")
-          ffmpeg -y -loglevel error -i output/v153-deep-sea-gigantism-final.mp4 -vf "fps=1/$I,scale=320:-1,tile=8x6:padding=4:margin=4" -frames:v 1 output/v153-contact-sheet.jpg
           python scripts/qa.py output/v153-deep-sea-gigantism-final.mp4
+          python scripts/repair_contact_sheet.py --video output/v153-deep-sea-gigantism-final.mp4 --segments-dir segments --output output/v153-contact-sheet.jpg --chapter-cards-output output/v153-chapter-cards-contact-sheet.jpg --qa qa/final.json --production-report production_report.json --audit qa/final-frame-audit.json
+          test -s output/v153-contact-sheet.jpg
+          test -s output/v153-chapter-cards-contact-sheet.jpg
+          test -s qa/final-frame-audit.json
           test -s qa/final.json
           test -s production_report.json
       - name: Upload final MP4, contact sheet, credits and QA report
@@ -261,8 +267,10 @@ jobs:
           path: |
             shared/v153/output/v153-deep-sea-gigantism-final.mp4
             shared/v153/output/v153-contact-sheet.jpg
+            shared/v153/output/v153-chapter-cards-contact-sheet.jpg
             shared/v153/production_report.json
             shared/v153/qa/final.json
+            shared/v153/qa/final-frame-audit.json
             shared/v153/SOURCES.txt
           retention-days: 21
           compression-level: 0

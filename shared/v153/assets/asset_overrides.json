@@ -4,62 +4,41 @@
   "scenes": {
     "S001": {
       "query": "giant isopod Japanese spider crab giant squid",
-      "panels": 3,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus",
-          "query": "giant isopod Bathynomus giganteus"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi",
-          "query": "Japanese spider crab Macrocheira kaempferi"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)",
-          "query": "giant squid Architeuthis specimen"
+          "url": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2920)_001.jpeg",
+          "query": "File:Bathynomus giganteus (MNHN-IU-2013-2920) 001.jpeg",
+          "rights_basis": "Existing registered asset; source and license recorded in asset_manifest.json.",
+          "license_url_override": "https://creativecommons.org/licenses/by/4.0"
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/collected/S029.jpg",
+      "reuse_existing": true
     },
     "S002": {
       "query": "small deep sea jellyfish fish arthropod tiny marine animals",
-      "panels": 3,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive08-tripod-fish/",
+          "query": "Download largest version (jpg, 1.5 MB)",
           "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "deep sea jellyfish"
-        },
-        {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive13-bristlemouth/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "deep sea fish small species"
-        },
-        {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/crinoid-and-coral/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "deep sea amphipod tiny crustacean"
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/collected/S020.jpg",
+      "reuse_existing": true
     },
     "S003": {
       "query": "small shallow water amphipod Alicella gigantea giant amphipod",
-      "panels": 2,
-      "sources": [
-        {
-          "url": "https://commons.wikimedia.org/wiki/File:Ceradocus_sellickensis,_Amphipod_no._J_18004.jpg",
-          "query": "small shallow water amphipod"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/Category:Alicella_gigantea",
-          "query": "Alicella gigantea giant amphipod"
-        }
-      ],
-      "panel_sources": true
+      "panels": 1,
+      "sources": [],
+      "panel_sources": false,
+      "selected_existing_file": "assets/panels/ai-generated/S017.jpg",
+      "reuse_existing": true
     },
     "S004": {
       "query": "deep sea ROV lights dark abyssal seafloor",
@@ -126,22 +105,18 @@
     },
     "S009": {
       "query": "deep sea ROV illuminated animal giant isopod",
-      "panels": 2,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/deep-discoverer-at-work/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "deep sea ROV underwater lights"
-        },
-        {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "giant isopod deep sea animal"
+          "url": "https://commons.wikimedia.org/wiki/File:Expn1670_(28287731865).jpg",
+          "query": "S009-PB.jpg",
+          "rights_basis": "According to supplied master_credits.json",
+          "license_url_override": "https://creativecommons.org/licenses/by/2.0/"
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/panels/collected/S009-PB.jpg",
+      "reuse_existing": true
     },
     "S010": {
       "query": "Bathynomus giganteus full body dorsal view",
@@ -159,18 +134,18 @@
     },
     "S011": {
       "query": "common pillbug Armadillidium vulgare and giant isopod comparison",
-      "panels": 2,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Armadillidium_vulgare",
-          "query": "Armadillidium vulgare pillbug"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus",
-          "query": "Bathynomus giganteus giant isopod"
+          "url": "https://commons.wikimedia.org/wiki/File:Bathynomus_giganteus_(MNHN-IU-2013-2922)_002.jpeg",
+          "query": "File:Bathynomus giganteus (MNHN-IU-2013-2922) 002.jpeg",
+          "rights_basis": "Existing registered asset; source and license recorded in asset_manifest.json.",
+          "license_url_override": "https://creativecommons.org/licenses/by/4.0"
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/collected/S031.jpg",
+      "reuse_existing": true
     },
     "S012": {
       "query": "Japanese spider crab Macrocheira kaempferi full body spread legs",
@@ -195,37 +170,33 @@
     },
     "S014": {
       "query": "giant isopod spider crab giant squid three species collage",
-      "panels": 3,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Bathynomus_giganteus",
-          "query": "Bathynomus giganteus giant isopod"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi",
-          "query": "Macrocheira kaempferi Japanese spider crab"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)",
-          "query": "Architeuthis giant squid specimen"
+          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/",
+          "query": "Download largest version (jpg, 1.1 MB)",
+          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
+          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/"
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/collected/S005.jpg",
+      "reuse_existing": true
     },
     "S015": {
       "query": "Japanese spider crab and giant squid side by side",
-      "panels": 2,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/Category:Macrocheira_kaempferi",
-          "query": "Macrocheira kaempferi Japanese spider crab"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/Category:Architeuthis_dux_(National_Museum_of_Nature_and_Science,_Tokyo)",
-          "query": "Architeuthis giant squid specimen"
+          "url": "https://commons.wikimedia.org/wiki/File:Crabe_rouge_des_profondeurs_(Chaceon_affinis)_(Ifremer_00575-68701).jpg",
+          "query": "S062-PB.jpg",
+          "rights_basis": "According to supplied master_credits.json",
+          "license_url_override": "https://creativecommons.org/licenses/by/4.0/"
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/panels/collected/S062-PB.jpg",
+      "reuse_existing": true
     },
     "S018": {
       "query": "deep ocean water column dark abyssal depth ROV lights",
@@ -292,18 +263,18 @@
     },
     "S024": {
       "query": "polar bear compared with deep sea fish crab",
-      "panels": 2,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:A_polar_bear.jpg",
-          "query": "A polar bear white Ursus maritimus Arctic"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/Category:Deep-sea_fish",
-          "query": "deep sea fish"
+          "url": "https://commons.wikimedia.org/wiki/File:Polar_Bear_(19630655471).jpg",
+          "query": "S024-PA.jpg",
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "license_url_override": "https://creativecommons.org/licenses/by/2.0/"
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/panels/collected/S024-PA.jpg",
+      "reuse_existing": true
     },
     "S025": {
       "query": "cold deep sea fish dark ocean deep sea shark",
@@ -405,57 +376,48 @@
     },
     "S033": {
       "query": "phytoplankton bloom Gulf of Aden NASA deep sea seafloor",
-      "panels": 2,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://svs.gsfc.nasa.gov/13021/",
-          "credit_override": "NASA's Earth Observatory",
-          "rights_basis": "NASA SVS image caption credits NASA's Earth Observatory; selected bloom image has no third-party credit.",
-          "license_url_override": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
-          "query": "NASA phytoplankton bloom satellite ocean surface"
-        },
-        {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/seafloor/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "deep sea seafloor ROV"
+          "url": "https://svs.gsfc.nasa.gov/11835/",
+          "query": "c-1920.jpg (1920x1080) [583.4 KB]",
+          "rights_basis": "NASA SVS image credit identifies NASA/GSFC/Norman Kuring; no third-party restriction for selected image.",
+          "license_url_override": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/collected/S037.jpg",
+      "reuse_existing": true
     },
     "S034": {
       "query": "marine snow organic matter small organisms deep seafloor",
-      "panels": 2,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Chemin%C3%A9e_hydrothermale_sous_une_pluie_de_neige_marine_(Ifremer_00401-51200).jpg",
-          "query": "marine snow organic particles underwater"
-        },
-        {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "tiny deep sea arthropod"
+          "url": "https://commons.wikimedia.org/wiki/File:Expn0686_(14526221693).jpg",
+          "query": "S034-PB.jpg",
+          "rights_basis": "According to supplied master_credits.json",
+          "license_url_override": ""
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/panels/collected/S034-PB.jpg",
+      "reuse_existing": true
     },
     "S035": {
       "query": "small deep sea bristlemouth fish and large giant isopod size contrast",
-      "panels": 2,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg",
-          "query": "bristlemouth deep sea fish"
-        },
-        {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive09-isopod/",
-          "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "Bathynomus giganteus giant isopod"
+          "url": "https://commons.wikimedia.org/wiki/File:Cyclothone-hires.jpg",
+          "query": "S035.jpg",
+          "rights_basis": "According to supplied master_credits.json; independent source permission not rechecked",
+          "license_url_override": ""
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/panels/collected/S035.jpg",
+      "reuse_existing": true
     },
     "S036": {
       "query": "marine snow falling particles underwater deep sea",
@@ -741,36 +703,27 @@
     },
     "S057": {
       "query": "Alicella gigantea giant amphipod compared with small amphipod",
-      "panels": 2,
-      "sources": [
-        {
-          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_Japan_Trench_2022.jpg",
-          "query": "Alicella gigantea giant amphipod"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/File:Ceradocus_sellickensis,_Amphipod_no._J_18004.jpg",
-          "query": "small shallow water amphipod"
-        }
-      ],
-      "panel_sources": true,
-      "allow_reuse": true
+      "panels": 1,
+      "sources": [],
+      "panel_sources": false,
+      "allow_reuse": true,
+      "selected_existing_file": "assets/panels/ai-generated/S057.jpg",
+      "reuse_existing": true
     },
     "S058": {
       "query": "tiny deep sea fish bristlemouth and amphipod arthropod",
-      "panels": 2,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-ex2107-gallery-media-dive08-tripod-fish/",
-          "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "bristlemouth deep sea fish"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg",
-          "query": "deep sea amphipod crustacean"
+          "url": "https://commons.wikimedia.org/wiki/File:Expl6382_(9734088377).jpg",
+          "query": "S058-PA.jpg",
+          "rights_basis": "According to supplied master_credits.json",
+          "license_url_override": ""
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/panels/collected/S058-PA.jpg",
+      "reuse_existing": true
     },
     "S059": {
       "query": "deep sea biodiversity seafloor coral crinoid sponge animals",
@@ -805,22 +758,18 @@
     },
     "S062": {
       "query": "deep sea fish and crab crustacean side by side",
-      "panels": 2,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-express-ex2301-gallery-media-ex2301-dive06-fish/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "deep sea fish swimming"
-        },
-        {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-seascape-alaska-ex2304-gallery-media-dive07-crab-eating/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "deep sea crab crustacean"
+          "url": "https://commons.wikimedia.org/wiki/File:Argyrops_filamentosus_(Ifremer_00537-64869_-_9187).jpg",
+          "query": "S062-PA.jpg",
+          "rights_basis": "According to supplied master_credits.json",
+          "license_url_override": "https://creativecommons.org/licenses/by/4.0/"
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/panels/collected/S062-PA.jpg",
+      "reuse_existing": true
     },
     "S063": {
       "query": "deep sea predator hunting small fish squid feeding",
@@ -963,44 +912,27 @@
     },
     "S077": {
       "query": "small deep sea animals bristlemouth fish arthropod crinoid",
-      "panels": 3,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/variety-of-marine-life/",
-          "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "bristlemouth small deep sea fish"
-        },
-        {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/okeanos-explorations-22voyage-to-the-ridge-gallery-media-dive10-seacuke/",
-          "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "tiny deep sea arthropod"
-        },
-        {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/crinoid-and-coral/",
-          "rights_basis": "NOAA media kit/FAQ permits reuse unless individual caption marks copyright; caption credit retained.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "deep sea crinoid coral small marine animal"
+          "url": "https://commons.wikimedia.org/wiki/File:Expl2412_(9737304152).jpg",
+          "query": "S077-PC.jpg",
+          "rights_basis": "According to supplied master_credits.json",
+          "license_url_override": ""
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/panels/collected/S077-PC.jpg",
+      "reuse_existing": true
     },
     "S078": {
       "query": "Alicella gigantea and small deep sea fish size comparison",
-      "panels": 2,
-      "sources": [
-        {
-          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_from_6200m.jpg",
-          "query": "Alicella gigantea giant amphipod"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg",
-          "query": "small amphipod"
-        }
-      ],
-      "panel_sources": true,
-      "allow_reuse": true
+      "panels": 1,
+      "sources": [],
+      "panel_sources": false,
+      "allow_reuse": true,
+      "selected_existing_file": "assets/panels/ai-generated/S078-PA.jpg",
+      "reuse_existing": true
     },
     "S079": {
       "query": "deep sea sea cucumber crinoid resting on seafloor",
@@ -1026,40 +958,21 @@
     },
     "S081": {
       "query": "Alicella gigantea and small amphipod comparison",
-      "panels": 2,
-      "sources": [
-        {
-          "url": "https://commons.wikimedia.org/wiki/File:Alicella_gigantea_in_hand.jpg",
-          "query": "Alicella gigantea large amphipod"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/File:Stegocephalidae_amphipod.jpg",
-          "query": "small amphipod"
-        }
-      ],
-      "panel_sources": true,
-      "allow_reuse": true
+      "panels": 1,
+      "sources": [],
+      "panel_sources": false,
+      "allow_reuse": true,
+      "selected_existing_file": "assets/panels/ai-generated/S016.jpg",
+      "reuse_existing": true
     },
     "S082": {
       "query": "phytoplankton bloom bright sunlit ocean surface deep sea floor",
-      "panels": 2,
-      "sources": [
-        {
-          "url": "https://earthobservatory.nasa.gov/images/149384/coloring-the-south-atlantic",
-          "credit_override": "NASA Earth Observatory / Lauren Dauphin",
-          "rights_basis": "NASA source page identifies this image as NASA-produced; no third-party copyright notice.",
-          "license_url_override": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
-          "query": "NASA phytoplankton bloom satellite ocean surface"
-        },
-        {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/seafloor/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "deep sea abyssal seafloor"
-        }
-      ],
+      "panels": 1,
+      "sources": [],
       "allow_diagram": true,
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/panels/ai-generated/S082-PB.jpg",
+      "reuse_existing": true
     },
     "S083": {
       "query": "giant isopod crawling walking seafloor video Bathynomus",
@@ -1093,54 +1006,35 @@
     },
     "S085": {
       "query": "marine snow and small deep sea organisms on seafloor",
-      "panels": 2,
-      "sources": [
-        {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/tiny-arthropod/",
-          "query": "marine snow particles tiny arthropod deep sea"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/File:Marine_snow.jpg",
-          "query": "marine snow organic particles"
-        }
-      ],
-      "panel_sources": true,
-      "allow_reuse": true
+      "panels": 1,
+      "sources": [],
+      "panel_sources": false,
+      "allow_reuse": true,
+      "selected_existing_file": "assets/panels/ai-generated/S085-PA.jpg",
+      "reuse_existing": true
     },
     "S086": {
       "query": "satellite phytoplankton bloom bright ocean surface deep abyssal sea floor",
-      "panels": 2,
-      "sources": [
-        {
-          "url": "https://svs.gsfc.nasa.gov/11835/",
-          "credit_override": "NASA/GSFC/Norman Kuring",
-          "rights_basis": "NASA source page identifies this image as NASA-produced; no third-party copyright notice.",
-          "license_url_override": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
-          "query": "NASA phytoplankton bloom bright ocean surface"
-        },
-        {
-          "url": "https://oceanexplorer.noaa.gov/multimedia/seafloor/",
-          "rights_basis": "NOAA Ocean Exploration media kit/FAQ: reuse permitted unless the individual caption marks copyright; retain caption credit.",
-          "license_url_override": "https://oceanexplorer.noaa.gov/about/kit/",
-          "query": "dark deep sea floor ROV"
-        }
-      ],
-      "panel_sources": true
+      "panels": 1,
+      "sources": [],
+      "panel_sources": false,
+      "selected_existing_file": "assets/panels/ai-generated/S068.jpg",
+      "reuse_existing": true
     },
     "S087": {
       "query": "large giant isopod and tiny deep sea bristlemouth fish size contrast",
-      "panels": 2,
+      "panels": 1,
       "sources": [
         {
-          "url": "https://commons.wikimedia.org/wiki/File:Giant_Isopod_(18443864634).jpg",
-          "query": "Bathynomus giganteus giant isopod"
-        },
-        {
-          "url": "https://commons.wikimedia.org/wiki/File:Ophidiid_fish.jpg",
-          "query": "bristlemouth small deep sea fish"
+          "url": "https://commons.wikimedia.org/wiki/File:Expn0031_(14318884118).jpg",
+          "query": "S053.jpg",
+          "rights_basis": "According to supplied master_credits.json",
+          "license_url_override": ""
         }
       ],
-      "panel_sources": true
+      "panel_sources": false,
+      "selected_existing_file": "assets/collected/S053.jpg",
+      "reuse_existing": true
     },
     "S088": {
       "query": "wide abyssal plain deep sea ROV lights distant seafloor",

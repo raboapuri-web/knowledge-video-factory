@@ -8,6 +8,7 @@ def probe(path):
     return json.loads(subprocess.check_output(["ffprobe","-v","error","-show_streams","-show_format","-of","json",str(path)],text=True))
 
 CHAPTER_ORDER=["prologue","chapter1","chapter2","chapter3","chapter4","epilogue"]
+SINGLE_IMAGE_TARGETS=["S001","S002","S003","S009","S011","S014","S015","S024","S033","S034","S035","S057","S058","S062","S077","S078","S081","S082","S085","S086","S087"]
 
 def load_chapter_narration_qa():
     chapters=[]; errors=[]
@@ -56,6 +57,24 @@ def main(final=None):
         duration=float(meta["format"]["duration"])
         chapter_narration=load_chapter_narration_qa()
         report["chapter_narration"]=chapter_narration
+        collected_by_scene={x["scene"]:x for x in ASSETS.get("collected",[])}
+        single_image_targets=[]
+        single_image_target_failures=[]
+        for sid in SINGLE_IMAGE_TARGETS:
+            rec=collected_by_scene.get(sid)
+            if not rec:
+                single_image_target_failures.append({"scene":sid,"reason":"missing manifest record"})
+                continue
+            rel=rec.get("file") or f"assets/collected/{sid}.jpg"
+            exists=(ROOT/rel).is_file()
+            item={"scene":sid,"asset_count":rec.get("asset_count"),"required_panels":rec.get("required_panels"),"file":rel,"exists":exists}
+            single_image_targets.append(item)
+            if rec.get("asset_count")!=1 or rec.get("required_panels")!=1 or not exists:
+                single_image_target_failures.append({"scene":sid,"reason":"single-image asset validation failed","file":rel})
+        remaining_multi_panel_scenes=[x.get("scene") for x in ASSETS.get("collected",[]) if x.get("asset_count")!=1 or x.get("required_panels")!=1]
+        report["single_image_targets"]=single_image_targets
+        report["single_image_target_failures"]=single_image_target_failures
+        report["remaining_multi_panel_scenes"]=remaining_multi_panel_scenes
         checks={"video_exists":path.is_file() and path.stat().st_size>500000,
                 "video_1920x1080":v.get("width")==1920 and v.get("height")==1080,
                 "video_30fps":v.get("r_frame_rate")=="30/1",
@@ -65,7 +84,9 @@ def main(final=None):
                 "chapter_headings_excluded_from_voice_and_subtitles":chapter_narration["passed"] and chapter_narration["removed_heading_count"]==6,
                 "chapter_first_subtitles_are_body":chapter_narration["passed"] and all(x.get("first_subtitle_is_body") is True for x in chapter_narration["chapters"]),
                 "no_missing_assets":not ASSETS.get("missing"),
-                "no_unresolved_compositions":not ASSETS.get("composition_warnings")}
+                "no_unresolved_compositions":not ASSETS.get("composition_warnings"),
+                "single_image_targets_21":len(single_image_targets)==len(SINGLE_IMAGE_TARGETS) and not single_image_target_failures,
+                "no_remaining_multi_panel_assets":not remaining_multi_panel_scenes}
         report.update({"duration_seconds":duration,"duration_minutes":round(duration/60,2),
                        "file_size_bytes":path.stat().st_size,"format":"MP4 H.264/AAC","checks":checks,"passed":all(checks.values())})
         report["cost_estimate"]={"openai_api_usd":0,"voicevox_api_usd":0,"asset_download_api_usd":0,

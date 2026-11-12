@@ -11,6 +11,7 @@ credits=json.loads((ROOT/"assets/master_credits.json").read_text(encoding="utf-8
 scenes=board["scenes"]
 collect_ids=[s["id"] for s in scenes if s["mode"]=="収集"]
 generated_ids=[s["id"] for s in scenes if s["mode"]=="生成"]
+SINGLE_IMAGE_TARGETS=["S001","S002","S003","S009","S011","S014","S015","S024","S033","S034","S035","S057","S058","S062","S077","S078","S081","S082","S085","S086","S087"]
 collected={x["scene"]:x for x in manifest.get("collected",[])}
 generated={x["scene"]:x for x in manifest.get("generated",[])}
 missing=[sid for sid in collect_ids if sid not in collected]
@@ -64,6 +65,8 @@ for sid in collect_ids:
             quality_failures.append({"scene":sid,"reason":"Final composite unreadable","detail":str(e)})
     if rec.get("asset_count",0)!=rec.get("required_panels",1):
         quality_failures.append({"scene":sid,"reason":"Incomplete comparison/collage panel count"})
+    if rec.get("asset_count")!=1 or rec.get("required_panels")!=1:
+        quality_failures.append({"scene":sid,"reason":"Single-image policy requires exactly one image per collected scene","asset_count":rec.get("asset_count"),"required_panels":rec.get("required_panels")})
     sources=rec.get("sources") or []
     generated_panels=rec.get("generated_panels") or []
     if not sources and not generated_panels:
@@ -153,8 +156,10 @@ if len(manifest.get("contact_sheets",[]))!=4:
 if missing_panels:
     quality_failures.extend({"scene":x["scene"],"reason":"Referenced panel file missing","file":x["file"]} for x in missing_panels)
 
+single_image_target_failures=[sid for sid in SINGLE_IMAGE_TARGETS if sid not in collected or collected[sid].get("asset_count")!=1 or collected[sid].get("required_panels")!=1]
+remaining_multi_panel_scenes=[sid for sid,rec in collected.items() if rec.get("asset_count")!=1 or rec.get("required_panels")!=1]
 report={
- "passed":not missing and not generated_missing and not generated_unlogged and not missing_sheets and not quality_failures and not rights_failures,
+ "passed":not missing and not generated_missing and not generated_unlogged and not missing_sheets and not quality_failures and not rights_failures and not single_image_target_failures and not remaining_multi_panel_scenes,
  "required":{"screens":88,"collected":78,"generated_diagrams":10,"contact_sheet_pages":4},
  "actual":{"collected":len(collected),"generated_diagrams":len(generated)-len(generated_missing),"contact_sheet_pages":len(manifest.get("contact_sheets",[]))},
  "missing_collection_scenes":missing,
@@ -171,7 +176,10 @@ report={
  "upscaled_source_count":upscaled_source_count,
  "contact_sheets":manifest.get("contact_sheets",[]),
  "rights_review_status":"source/license/credit metadata complete; restricted-license scan passed; source URLs retained for attribution",
- "manual_visual_approval":"user-confirmed-v3-handoff"
+ "manual_visual_approval":"user-requested-single-image-replacements; final-MP4 frame QA follows",
+ "single_image_target_ids":SINGLE_IMAGE_TARGETS,
+ "single_image_target_failures":single_image_target_failures,
+ "remaining_multi_panel_scenes":remaining_multi_panel_scenes
 }
 (ROOT/"assets/asset_gate.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps(report,ensure_ascii=False,indent=2))
