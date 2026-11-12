@@ -15,7 +15,7 @@ import numpy as np
 
 ORDER = ["prologue", "chapter1", "chapter2", "chapter3", "chapter4", "epilogue"]
 SAMPLE_RATE = 48000
-PCM_CODEC = "pcm_s16le"
+PCM_CODEC = "s16le"
 
 
 def run(cmd, **kwargs):
