@@ -1,0 +1,133 @@
+name: V153 S088 audio verification (VOICEVOX + faster-whisper)
+
+on:
+  push:
+    branches: [v153-deep-sea-single-image-fix-20261112]
+    paths:
+      - '.github/workflows/verify-v153-s088-audio.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify-s088:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_ID: '13'
+      VOICEVOX_SPEED: '1.10'
+      VOICEVOX_INTONATION: '1.0'
+      RELEASE_TAG: v153-deep-sea-gigantism-43164736663
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v153-deep-sea-single-image-fix-20261112
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FFmpeg and Python dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python -m pip install --no-input requests faster-whisper
+      - name: Download the exact V5 final MP4
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 -o source-v5.mp4 "https://github.com/${{ github.repository }}/releases/download/${RELEASE_TAG}/v153-deep-sea-gigantism-final.mp4"
+          ffprobe -v error -show_entries format=duration,size -of json source-v5.mp4 > source-v5-probe.json
+      - name: Start VOICEVOX CPU engine with the production settings
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 --name voicevox voicevox/voicevox_engine:cpu-latest
+          for i in {1..150}; do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null; then break; fi
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:50021/version | tee voicevox-version.txt
+      - name: Extract V5 final S088 audio and synthesize S088 once
+        run: |
+          set -euo pipefail
+          cat > verify_s088.py <<'PY'
+          import json, os, re, requests, subprocess, wave
+          from pathlib import Path
+          ROOT=Path("shared/v153")
+          board=json.loads((ROOT/"content/board.json").read_text(encoding="utf-8"))
+          scene=next(s for s in board["scenes"] if s["id"]=="S088")
+          text=scene["script"].strip()
+          lines=[x.strip() for x in text.splitlines() if x.strip()]
+          base=os.environ["VOICEVOX_URL"]
+          speaker=int(os.environ["VOICEVOX_SPEAKER_ID"])
+          speed=float(os.environ["VOICEVOX_SPEED"])
+          intonation=float(os.environ["VOICEVOX_INTONATION"])
+          def query(t):
+              r=requests.post(base+"/audio_query",params={"text":t,"speaker":speaker},timeout=120); r.raise_for_status()
+              q=r.json(); q.update({"speedScale":speed,"intonationScale":intonation,"prePhonemeLength":0.08,"postPhonemeLength":0.18})
+              return q
+          full_query=query(text)
+          Path("S088_audio_query.json").write_text(json.dumps(full_query,ensure_ascii=False,indent=2),encoding="utf-8")
+          per_sentence=[]
+          for idx,line in enumerate(lines,1):
+              q=query(line)
+              mora=sum(float(m.get("consonant_length") or 0)+float(m.get("vowel_length") or 0)
+                       for p in q.get("accent_phrases",[]) for m in p.get("moras",[]))
+              pause=sum(float(p["pause_mora"].get("consonant_length") or 0)+float(p["pause_mora"].get("vowel_length") or 0)
+                        for p in q.get("accent_phrases",[]) if p.get("pause_mora"))
+              per_sentence.append({"sentence":idx,"text":line,"mora_phoneme_seconds":mora,"pause_mora_seconds":pause,
+                                    "predicted_total_seconds":mora+pause,"audio_query":q})
+          Path("S088_sentence_predictions.json").write_text(json.dumps(per_sentence,ensure_ascii=False,indent=2),encoding="utf-8")
+          r=requests.post(base+"/synthesis",params={"speaker":speaker},json=full_query,timeout=240); r.raise_for_status()
+          if not r.content.startswith(b"RIFF"): raise RuntimeError("VOICEVOX returned invalid WAV")
+          Path("S088_regenerated.wav").write_bytes(r.content)
+          with wave.open("S088_regenerated.wav","rb") as w:
+              dur=w.getnframes()/w.getframerate()
+          Path("S088_synthesis_metadata.json").write_text(json.dumps({
+              "scene":"S088","script":text,"speaker_id":speaker,"speed":speed,"intonation":intonation,
+              "prePhonemeLength":0.08,"postPhonemeLength":0.18,"wav_duration_seconds":dur,
+              "sample_rate":wave.open("S088_regenerated.wav","rb").getframerate(),
+              "sentence_predictions":[{k:v for k,v in x.items() if k!="audio_query"} for x in per_sentence]
+          },ensure_ascii=False,indent=2),encoding="utf-8")
+          PY
+          python verify_s088.py
+          # S088 is the final 6.997042 seconds of the V5 master; retain original-rate PCM.
+          ffmpeg -y -sseof -6.997042 -i source-v5.mp4 -vn -ac 1 -ar 48000 -c:a pcm_s16le S088_v5_extracted.wav -loglevel error
+          ffprobe -v error -show_entries format=duration -of json S088_v5_extracted.wav > S088_v5_extracted_probe.json
+      - name: Transcribe both WAV files with the same open-source Japanese ASR
+        run: |
+          cat > transcribe.py <<'PY'
+          import json
+          from faster_whisper import WhisperModel
+          model_name="small"
+          model=WhisperModel(model_name,device="cpu",compute_type="int8")
+          out={}
+          for name,path in [("v5_extracted","S088_v5_extracted.wav"),("regenerated","S088_regenerated.wav")]:
+              segments,info=model.transcribe(path,language="ja",task="transcribe",beam_size=5,
+                                              vad_filter=False,condition_on_previous_text=False)
+              rows=[]
+              for s in segments:
+                  rows.append({"start":s.start,"end":s.end,"text":s.text,
+                               "avg_logprob":s.avg_logprob,"no_speech_prob":s.no_speech_prob,
+                               "compression_ratio":s.compression_ratio})
+              out[name]={"model":model_name,"language":info.language,"language_probability":info.language_probability,
+                         "segments":rows,"transcript":"".join(x["text"] for x in rows)}
+          json.dump(out,open("S088_transcription.json","w",encoding="utf-8"),ensure_ascii=False,indent=2)
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+          python transcribe.py
+      - name: Upload complete S088-only verification evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: v153-s088-audio-verification
+          path: |
+            S088_regenerated.wav
+            S088_audio_query.json
+            S088_sentence_predictions.json
+            S088_synthesis_metadata.json
+            S088_v5_extracted.wav
+            S088_v5_extracted_probe.json
+            S088_transcription.json
+            source-v5-probe.json
+            voicevox-version.txt
+          retention-days: 30
+          compression-level: 0
