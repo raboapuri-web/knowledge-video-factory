@@ -79,6 +79,7 @@ def main():
     spec=json.loads(SPEC_PATH.read_text(encoding="utf-8"))
     card=next((x for x in spec["cards"] if x["chapter"]==args.chapter),None)
     if not card: raise SystemExit("chapter card not found: "+args.chapter)
+    if args.chapter not in {x["chapter"] for x in spec["cards"]}: raise SystemExit("unknown chapter: "+args.chapter)
     allowed = {x["chapter"] for x in spec["cards"]}
     if args.chapter not in allowed: raise SystemExit("unknown chapter: "+args.chapter)
     bg=FORMAT_ROOT/card["background_file"]
@@ -126,7 +127,7 @@ def main():
         total_frames=frames
         vf=("[0:v]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,"
             f"zoompan=z='min(1+0.02*on/{total_frames},1.02)':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s=1920x1080:fps={fps}[bg];"
-            "[bg][1:v]overlay=0:0:shortest=1,drawbox=x=0:y=950:w=1920:h=130:color=black:t=fill[v]")
+            "[bg][1:v]overlay=0:0:shortest=1,[v]")
         cmd=[args.ffmpeg,"-y","-loglevel","error","-loop","1","-framerate",str(fps),"-i",str(bg),
              "-framerate",str(fps),"-i",str(overlay_dir/"%05d.png"),"-i",str(audio),
              "-filter_complex",vf,"-map","[v]","-map","2:a","-t",f"{duration:.3f}",
@@ -136,7 +137,7 @@ def main():
         subprocess.run(cmd,check=True)
     if not out_mp4.is_file() or out_mp4.stat().st_size<20000: raise RuntimeError("chapter card render failed")
     report={"chapter":args.chapter,"file":str(out_mp4.relative_to(V154_ROOT)),"duration_sec":round(duration,3),"typing_cps":cps,"label":label,"title":title,"narration":False,"subtitle":False}
-    (output_dir/f"chapter-card-{args.chapter}.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    (output_dir/f"chapter-card-{args.chapter}.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(report,ensure_ascii=False))
 
 if __name__=="__main__": main()
