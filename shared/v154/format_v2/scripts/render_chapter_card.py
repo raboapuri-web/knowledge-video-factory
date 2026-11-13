@@ -127,7 +127,7 @@ def main():
         total_frames=frames
         vf=("[0:v]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,"
             f"zoompan=z='min(1+0.02*on/{total_frames},1.02)':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s=1920x1080:fps={fps}[bg];"
-            "[bg][1:v]overlay=0:0:shortest=1,[v]")
+            "[bg][1:v]overlay=0:0:shortest=1[v]")
         cmd=[args.ffmpeg,"-y","-loglevel","error","-loop","1","-framerate",str(fps),"-i",str(bg),
              "-framerate",str(fps),"-i",str(overlay_dir/"%05d.png"),"-i",str(audio),
              "-filter_complex",vf,"-map","[v]","-map","2:a","-t",f"{duration:.3f}",
