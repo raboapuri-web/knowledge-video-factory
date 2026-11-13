@@ -29,6 +29,8 @@ jobs:
           python-version: "3.11"
       - name: Install image inspection dependency
         run: python -m pip install --no-input Pillow
+      - name: Syntax-check production scripts
+        run: python -m py_compile shared/v154/scripts/preflight.py shared/v154/scripts/synth.py shared/v154/scripts/validate_chapter_narration.py shared/v154/scripts/render_chapter.py shared/v154/format_v2/scripts/render_chapter_card.py shared/v154/scripts/finalize.py
       - name: Verify approved assets, chapter cards and motion map
         run: python shared/v154/scripts/preflight.py
       - name: Upload preflight evidence

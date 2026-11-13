@@ -68,6 +68,13 @@ def main():
         })
         concat_lines.append("file '"+str(video.resolve())+"'")
     if all_scenes!=EXPECTED_SCENES: raise RuntimeError(f"Expected S001-S090 exactly once; got {len(all_scenes)} scenes")
+    board=json.loads((ROOT/"content"/"board.json").read_text(encoding="utf-8"))
+    expected_s090=next(x["script"] for x in board["scenes"] if x["id"]=="S090")
+    last_voice=voice["scenes"][-1]
+    last_caption_end=float(last_voice["captions"][-1]["end"]) if last_voice.get("captions") else -1.0
+    last_audio_duration=float(last_voice["duration"])
+    last_scene_complete=(last_voice.get("scene")=="S090" and last_voice.get("narration_text")==expected_s090 and abs(last_caption_end-last_audio_duration)<=0.02)
+    if not last_scene_complete: raise RuntimeError("S090 final narration/caption completion check failed")
     if any(motion_seq[i]==motion_seq[i-1]==motion_seq[i-2] for i in range(2,len(motion_seq))):
         raise RuntimeError("Three consecutive scenes use the same motion")
     concat.write_text("\n".join(concat_lines)+"\n",encoding="utf-8")
@@ -85,6 +92,7 @@ def main():
         "chapter_card_count_8":sum(1 for x in timeline if x["kind"]=="chapter_card")==8,
         "scene_order_S001_to_S090":all_scenes==EXPECTED_SCENES,
         "no_three_consecutive_motion_repeats":True,
+        "final_scene_S090_complete":last_scene_complete,
         "video_1920x1080":video_stream.get("width")==1920 and video_stream.get("height")==1080,
         "video_30fps":video_stream.get("r_frame_rate")=="30/1",
         "video_h264":video_stream.get("codec_name")=="h264",
@@ -141,6 +149,8 @@ def main():
         "contact_sheet":str(scene_sheet_path.relative_to(ROOT)),
         "chapter_cards_contact_sheet":str(card_sheet_path.relative_to(ROOT)),
         "subtitle_band_black_ratio_min":round(band_min,4),
+        "final_scene_audio_duration_seconds":round(last_audio_duration,4),
+        "final_scene_caption_end_seconds":round(last_caption_end,4),
         "checks":checks
     }
     (out/"production_report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
