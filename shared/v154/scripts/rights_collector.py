@@ -23,7 +23,7 @@ Suitability gates:
 Usage:
   python3 collector.py --screens screens.json --out out_dir [--vision]
                        [--min-width 1920] [--min-height 1080]
-                       [--allow-sa] [--per-screen-candidates 20] [--resume]
+ [--per-screen-candidates 20] [--resume]
 
 screens.json format:
   [{"id": "S032", "query": "giant isopod", "subject": "a giant isopod on the deep sea floor"},
@@ -95,11 +95,11 @@ def classify_license(raw):
         return ("", False, "missing_license")
     text = re.sub(r"<[^>]+>", " ", str(raw))
     text = html.unescape(text).strip().lower()
-    text = re.sub(r"\\s+", " ", text)
+    text = re.sub(r"\s+", " ", text)
 
-    if "noncommercial" in text or "non-commercial" in text or re.search(r"\\bnc\\b", text) or "-nc" in text:
+    if "noncommercial" in text or "non-commercial" in text or re.search(r"\bnc\b", text) or "-nc" in text:
         return (text, False, "license_nc_excluded")
-    if "no derivatives" in text or "noderivs" in text or re.search(r"\\bnd\\b", text) or "-nd" in text:
+    if "no derivatives" in text or "noderivs" in text or re.search(r"\bnd\b", text) or "-nd" in text:
         return (text, False, "license_nd_excluded")
     if "share alike" in text or "share-alike" in text or "cc by-sa" in text or "-sa" in text:
         return (text, False, "license_sa_excluded")
@@ -110,8 +110,8 @@ def classify_license(raw):
         return ("CC0", True, "")
     if text in ("public domain", "pd") or text.startswith("public domain ") or text.startswith("pd-") or text.startswith("pdm"):
         return ("Public Domain", True, "")
-    if re.fullmatch(r"cc by(?:\\s+\\d\\.\\d)?(?:\\s+international)?", text):
-        version = re.search(r"\\d\\.\\d", text)
+    if re.fullmatch(r"cc by(?:\s+\d\.\d)?(?:\s+international)?", text):
+        version = re.search(r"\d\.\d", text)
         return ("CC BY" + (" " + version.group(0) if version else ""), True, "")
     return (text, False, "license_not_whitelisted")
 
@@ -217,11 +217,11 @@ def vision_check(image_path, subject, model):
     img.save(buf, format="JPEG", quality=80)
     b64 = base64.b64encode(buf.getvalue()).decode()
     prompt = (
-        "You inspect one still image for a narration video.\\n"
-        f"Expected subject: {subject}\\n"
+        "You inspect one still image for a narration video.\n"
+        f"Expected subject: {subject}\n"
         "Return JSON only with: is_match (bool), has_burned_in_text (bool), "
         "has_logo (bool), has_watermark (bool), is_document_page (bool), "
-        "actual_subject (str), reason (str), confidence (0..1).\\n"
+        "actual_subject (str), reason (str), confidence (0..1).\n"
         "Reject any visible or burned-in words, captions, labels, logos, "
         "watermarks, signatures, UI overlays, or screenshots of text. "
         "Do not infer a location or species from a caption; judge the visible image."
