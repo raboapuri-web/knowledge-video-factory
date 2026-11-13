@@ -11,6 +11,7 @@ The user approved the final 90-image visual/material gate on 2026-11-13. Product
 - scripts/synth.py: VOICEVOX narration and subtitle timing; S001 TTS-only reading replacement.
 - scripts/render_chapter.py: renders a chapter from assets/final only.
 - scripts/finalize.py: assembles the master, creates final-frame contact sheets and runs QA.
+- scripts/install_media_tools.sh: installs the pinned static FFmpeg build (SHA-256 a0968bcb...) and Noto Sans CJK JP.
 
 ## Rendering
 - 90 scenes, 8 chapter cards.
