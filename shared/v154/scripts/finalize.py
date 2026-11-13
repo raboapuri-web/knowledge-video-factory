@@ -144,8 +144,8 @@ def main():
     (out/"motion_30fps_qa.json").write_text(json.dumps(continuous_motion_qa,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     checks["motion_all_moving_scenes_change_every_sampled_frame"]=continuous_motion_qa["passed"]
     if not continuous_motion_qa["passed"]:
-        sample=continuous_motion_qa["failures"][:3]
-        raise RuntimeError("30fps motion continuity QA failed: "+json.dumps(sample,ensure_ascii=False)[:2400])
+        failure_examples=continuous_motion_qa["failures"][:3]
+        raise RuntimeError("30fps motion continuity QA failed: "+json.dumps(failure_examples,ensure_ascii=False)[:2400])
     checks["scene_contact_sheet_90_frames"]=len(thumbs)==90
     checks["chapter_card_contact_sheet_8_frames"]=len(card_thumbs)==8
     if not checks["scene_contact_sheet_90_frames"] or not checks["chapter_card_contact_sheet_8_frames"]:
