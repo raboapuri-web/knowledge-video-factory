@@ -27,7 +27,7 @@ def main():
         errors.append("format_v2/config/chapter_card_spec.json missing")
     else:
         card_spec=json.loads(card_spec_path.read_text(encoding="utf-8"))
-        if [x.get("chapter") for x in card_spec.get("cards",[])] != [x.get("chapter") for x in chapters]:
+        if [x.get("chapter") for x in card_spec.get("cards",[])] != [x.get("id") for x in chapters]:
             errors.append("chapter-card spec does not match board chapter order")
         for x in card_spec.get("cards",[]):
             bg=(ROOT/"format_v2"/x.get("background_file","")).resolve()
