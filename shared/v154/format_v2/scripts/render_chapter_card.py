@@ -33,7 +33,7 @@ def fit_title_font(path, text, max_width, base_size, min_size):
 def visible_prefix(text, count):
     out=[]; seen=0
     for ch in text:
-        if ch=="\\n":
+        if ch==chr(10):
             if seen<=count: out.append(ch)
         else:
             if seen>=count: break
@@ -108,7 +108,7 @@ def main():
     start_delay=float(d["start_delay_sec"]); inter=float(d["interline_delay_sec"])
     label_time=len(label)/cps
     title_start=start_delay+label_time+inter
-    typing_end=title_start+len(title.replace("\\n",""))/cps
+    typing_end=title_start+len(title.replace(chr(10),""))/cps
     cursor_dur=float(t["cursor_blink_duration_sec"])
     hold=float(d["final_hold_sec"])
     duration=max(float(d["minimum_duration_sec"]),typing_end+cursor_dur+hold)
@@ -121,7 +121,7 @@ def main():
     shadow=(0,0,0,190)
     center_x=int(tx["center_x_px"]); label_y=int(tx["label_center_y_px"]); title_y=int(tx["title_center_y_px"])
     key_times=[start_delay+i/cps for i in range(len(label))]
-    key_times += [title_start+i/cps for i,ch in enumerate(title) if ch!="\\n"]
+    key_times += [title_start+i/cps for i,ch in enumerate(title) if ch!=chr(10)]
     output_dir=V154_ROOT/"output"; output_dir.mkdir(parents=True,exist_ok=True)
     out_mp4=output_dir/f"chapter-card-{args.chapter}.mp4"
     with tempfile.TemporaryDirectory(prefix=f"v153-card-{args.chapter}-") as td:
@@ -129,7 +129,7 @@ def main():
         for frame in range(frames):
             now=frame/fps
             label_n=0 if now<start_delay else min(len(label),int((now-start_delay)*cps)+1)
-            title_n=0 if now<title_start else min(len(title.replace("\\n","")),int((now-title_start)*cps)+1)
+            title_n=0 if now<title_start else min(len(title.replace(chr(10),"")),int((now-title_start)*cps)+1)
             cursor=False
             if title_n==len(title) and typing_end <= now < typing_end+cursor_dur:
                 cursor=(int((now-typing_end)*t["cursor_blink_hz"]*2)%2)==0
