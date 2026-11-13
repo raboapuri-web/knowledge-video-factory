@@ -20,6 +20,20 @@ def main():
         errors.append("board must contain S001-S090 in exact order")
     if len(chapters)!=8 or len(cards)!=8:
         errors.append(f"expected 8 chapters and 8 chapter cards; got {len(chapters)}/{len(cards)}")
+    if not next((s for s in scenes if s.get("id")=="S001"),{}).get("tts_reading_watch"):
+        errors.append("S001 tts_reading_watch flag is missing")
+    card_spec_path=ROOT/"format_v2"/"config"/"chapter_card_spec.json"
+    if not card_spec_path.is_file():
+        errors.append("format_v2/config/chapter_card_spec.json missing")
+    else:
+        card_spec=json.loads(card_spec_path.read_text(encoding="utf-8"))
+        if [x.get("chapter") for x in card_spec.get("cards",[])] != [x.get("chapter") for x in chapters]:
+            errors.append("chapter-card spec does not match board chapter order")
+        for x in card_spec.get("cards",[]):
+            bg=(ROOT/"format_v2"/x.get("background_file","")).resolve()
+            if not bg.is_file(): errors.append(f"missing chapter-card background: {bg}")
+        sfx=(ROOT/"format_v2"/card_spec.get("typing",{}).get("sfx_file","")).resolve()
+        if not sfx.is_file(): errors.append(f"missing chapter-card typing sound: {sfx}")
     manifest=ASSETS/"ASSET_MANIFEST.md"
     if not manifest.is_file():
         errors.append("assets/final/ASSET_MANIFEST.md missing")

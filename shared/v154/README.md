@@ -1,29 +1,26 @@
 # V154 — 池の水をぜんぶ抜いた。その後、池はどうなったのか？
 
-## Status
-Storyboard and collector setup complete. The 47-screen photo collection is triggered separately; chapter rendering and finalization remain prohibited in this phase.
+## Production status
+The user approved the final 90-image visual/material gate on 2026-11-13. Production uses only assets/final/S001.jpg–S090.jpg. The earlier collector gate is retained as historical collection status and is not the render authorization.
 
 ## Deliverables
-- `content/board.json`: canonical structured storyboard; 90 narration scenes and 8 separate chapter cards.
-- `画面一覧.md`: complete human-readable scene list with exact narration, image direction, motion, and asset category.
-- `content/storyboard.csv`: spreadsheet-friendly scene list.
+- content/board.json: canonical storyboard with 90 narration scenes and 8 separate chapter cards.
+- content/format_v2_spec.md: production format specification.
+- assets/final/: 90 user-approved final JPG stills and ASSET_MANIFEST.md.
+- scripts/preflight.py: validates the final image package and builds the 90-scene motion map.
+- scripts/synth.py: VOICEVOX narration and subtitle timing; S001 TTS-only reading replacement.
+- scripts/render_chapter.py: renders a chapter from assets/final only.
+- scripts/finalize.py: assembles the master, creates final-frame contact sheets and runs QA.
 
-## Screen design
-- Narration scenes: 90 (S001–S090)
-- Chapter cards: 8, about 4 seconds each; title text is excluded from both TTS and subtitles.
-- Source narration: 6,908 characters; estimated total duration including cards: about 22.5 minutes (preliminary estimate only).
-- Asset plan: 54 photo-collection scenes / 36 generated-diagram scenes.
-- One scene = one image. No split panels or multi-image collages.
-- Motion: 1.20 baseline; pan at 1.20 with about 16.7% travel; static only for legibility-sensitive diagrams, up to 1.04.
-- Voice: VOICEVOX 青山龍星 (speaker ID 13).
-- Subtitles: fixed opaque black band, full width, about 130px high at 1080p; white centered text.
+## Rendering
+- 90 scenes, 8 chapter cards.
+- One image per scene; Ken Burns motion uses 1.20 baseline and no three consecutive identical motions.
+- Five low-resolution/portrait images (S018, S028, S032, S057, S090) use the same image as a blurred background and centered sharp foreground.
+- Voice: VOICEVOX 青山龍星, speaker ID 13.
+- Chapter cards: silent typed titles with original typing SFX and existing approved moon-character backgrounds.
+- Subtitles: fixed opaque black band at bottom, about 130px high at 1080p.
+- Output: 1920x1080, 30fps, H.264/AAC MP4.
+- BGM intentionally omitted at the user's request; Muse will handle any later audio post-production.
 
-## Rights gate
-Allowed: Public Domain, CC0, and CC BY only. Source page, author, license, and license URL (for CC licenses) must be recorded.
-Disallowed: CC BY-SA, NC, ND, rights unknown, no-reuse/All rights reserved, or images whose reuse conditions cannot be verified.
-The collection target is the 47 IDs in `assets/collector_screens.json`; pre-secured S014, S021, S028, S037, S043, S053, and S063 are excluded. Only candidates passing both the rights gate and OpenAI Vision checks may be registered as `cleared`. Image dimensions are unrestricted. The collector's output is not a rendering approval.
-
-**Do not start chapter jobs or finalization. This task is limited to photo collection and registration. `assets/asset_gate.json` keeps `render_allowed: false` regardless of collection completeness.**
-## TTS QA note
-
-- S001 contains the source-script phrase 「少し」. The format specification flags a possible Aoyama Ryusei misreading. The approved narration text is unchanged in this storyboard; verify the actual synthesized pronunciation during audio QA and only alter the script with explicit approval.
+## Production gate
+The dedicated render preflight verifies all 90 JPGs in assets/final, the asset manifest, chapter-card resources, and motion assignments. It writes assets/render_gate.json. The legacy rights-collector asset_gate.json is preserved separately and does not control this explicitly approved final-assets handoff.

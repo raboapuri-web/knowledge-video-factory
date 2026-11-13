@@ -1,0 +1,172 @@
+name: V154 Pond Recovery — format v2 production
+
+on:
+  push:
+    branches:
+      - v154-pond-recovery-storyboard-20261113
+    paths:
+      - shared/v154/launch/render_approved.txt
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v154-pond-recovery-production
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    name: Verify 90 approved final images and production inputs
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v154-pond-recovery-storyboard-20261113
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install image inspection dependency
+        run: python -m pip install --no-input Pillow
+      - name: Verify approved assets, chapter cards and motion map
+        run: python shared/v154/scripts/preflight.py
+      - name: Upload preflight evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: v154-production-preflight
+          path: |
+            shared/v154/assets/render_gate.json
+            shared/v154/content/audit.json
+            shared/v154/format_v2/config/scene_motion_map.json
+          retention-days: 21
+
+  chapter:
+    name: Render ${{ matrix.chapter }}
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, epilogue]
+    env:
+      CHAPTER: ${{ matrix.chapter }}
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_ID: "13"
+      VOICEVOX_SPEED: "1.10"
+      VOICEVOX_INTONATION: "1.0"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v154-pond-recovery-storyboard-20261113
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Python dependencies
+        run: python -m pip install --no-input requests Pillow
+      - name: Install pinned static FFmpeg and Noto Sans CJK JP
+        run: bash shared/v153/scripts/install_media_tools.sh
+      - name: Re-verify inputs and materialize V154 motion map
+        run: python shared/v154/scripts/preflight.py
+      - name: Start VOICEVOX CPU engine
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 --name voicevox voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 180); do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null; then
+              echo "VOICEVOX ready"
+              exit 0
+            fi
+            sleep 2
+          done
+          docker logs voicevox
+          exit 1
+      - name: Synthesize exact narration and subtitle timings
+        run: python shared/v154/scripts/synth.py "$CHAPTER"
+      - name: Validate body text, title exclusion and S001 reading
+        run: python shared/v154/scripts/validate_chapter_narration.py "$CHAPTER"
+      - name: Render chapter card and scenes from assets/final only
+        run: python shared/v154/scripts/render_chapter.py "$CHAPTER"
+      - name: Prepare chapter artifact
+        run: |
+          set -euo pipefail
+          mkdir -p shared/v154/artifact
+          cp "shared/v154/output/v154-$CHAPTER.mp4" shared/v154/artifact/
+          cp "shared/v154/output/render-$CHAPTER.json" shared/v154/artifact/
+          cp "shared/v154/output/chapter-card-$CHAPTER.json" shared/v154/artifact/
+          cp "shared/v154/media/voice-report-$CHAPTER.json" shared/v154/artifact/
+          cp "shared/v154/media/narration-qa-$CHAPTER.json" shared/v154/artifact/
+      - name: Upload rendered chapter and QA reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: v154-segment-${{ matrix.chapter }}
+          path: shared/v154/artifact/*
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+  finalize:
+    name: Assemble, QA and publish V154 master
+    needs: [preflight, chapter]
+    if: needs.chapter.result == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      RELEASE_TAG: v154-pond-recovery-${{ github.run_id }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v154-pond-recovery-storyboard-20261113
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Python QA dependencies
+        run: python -m pip install --no-input Pillow opencv-python-headless
+      - name: Install pinned static FFmpeg and Noto Sans CJK JP
+        run: bash shared/v153/scripts/install_media_tools.sh
+      - name: Download all eight chapter renders and reports
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v154-segment-*
+          path: shared/v154/segments
+          merge-multiple: true
+      - name: Assemble final MP4 and run full technical/frame QA
+        run: python shared/v154/scripts/finalize.py --segments-dir shared/v154/segments
+      - name: Publish final MP4 and evidence as GitHub Release
+        run: |
+          set -euo pipefail
+          gh release create "$RELEASE_TAG" shared/v154/output/v154-pond-recovery-final.mp4 shared/v154/output/v154-contact-sheet.jpg shared/v154/output/v154-chapter-cards-contact-sheet.jpg shared/v154/output/production_report.json shared/v154/output/final_qa.json shared/v154/output/CREDITS.txt --repo "$GITHUB_REPOSITORY" --title "考える夜｜池の水をぜんぶ抜いた。その後、池はどうなったのか？" --notes "90 scenes and 8 typed chapter cards. 1920x1080, 30fps, H.264/AAC, VOICEVOX:青山龍星. Uses only shared/v154/assets/final/S001.jpg-S090.jpg. S018/S028/S032/S057/S090 use a blurred duplicate background with a centered sharp original. No BGM, as requested. Includes contact sheets, credits and technical QA." --latest
+      - name: Upload master and QA package
+        uses: actions/upload-artifact@v4
+        with:
+          name: v154-pond-recovery-master
+          path: |
+            shared/v154/output/v154-pond-recovery-final.mp4
+            shared/v154/output/v154-contact-sheet.jpg
+            shared/v154/output/v154-chapter-cards-contact-sheet.jpg
+            shared/v154/output/production_report.json
+            shared/v154/output/final_qa.json
+            shared/v154/output/CREDITS.txt
+          retention-days: 30
+          compression-level: 0
+      - name: Write production summary
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          p=json.load(open("shared/v154/output/production_report.json",encoding="utf-8"))
+          print("# V154 production complete")
+          print()
+          print(f"- Release tag: {p['release_tag']}")
+          print(f"- Duration: {p['duration_hms']} ({p['duration_seconds']} sec)")
+          print(f"- Format: {p['resolution']} / {p['fps']} / {p['video_codec']} / {p['audio_codec']}")
+          print("- BGM: none")
+          print()
+          print("| Chapter | Start | Narration starts | Duration |")
+          print("|---|---:|---:|---:|")
+          for c in p["chapter_start_times"]:
+              print(f"| {c['title']} | {c['start_time']} | {c['narration_start_time']} | {c['chapter_duration_seconds']:.1f}s |")
+          PY
