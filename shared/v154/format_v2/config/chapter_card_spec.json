@@ -26,12 +26,12 @@
     "font_family": "Noto Sans CJK JP",
     "font_file_runtime": "$V153_FONTS_DIR/NotoSansCJKjp-Regular.otf",
     "label_font_size_px": 44,
-    "title_font_size_px": 66,
-    "title_min_font_size_px": 56,
-    "max_text_width_px": 1320,
+    "title_font_size_px": 62,
+    "title_min_font_size_px": 48,
+    "max_text_width_px": 1500,
     "center_x_px": 1220,
     "label_center_y_px": 405,
-    "title_center_y_px": 520,
+    "title_center_y_px": 555,
     "label_color": "#C9A56B",
     "title_color": "#F1E7D0",
     "outline_color": "#6E4D1B",
@@ -51,49 +51,49 @@
     {
       "chapter": "prologue",
       "label": "プロローグ",
-      "title": "池の水をぜんぶ抜いた。その後、池はどうなったのか？",
+      "title": "池の水をぜんぶ抜いた。\nその後、池はどうなったのか？",
       "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/prologue_bg.png"
     },
     {
       "chapter": "chapter1",
       "label": "第1章",
-      "title": "池の水を抜くという、昔からある大作戦",
+      "title": "池の水を抜くという、\n昔からある大作戦",
       "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/chapter1_bg.png"
     },
     {
       "chapter": "chapter2",
       "label": "第2章",
-      "title": "50年前に消えた植物が、池の底から帰ってきた",
+      "title": "50年前に消えた植物が、\n池の底から帰ってきた",
       "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/chapter2_bg.png"
     },
     {
       "chapter": "chapter3",
       "label": "第3章",
-      "title": "天敵を取り除いたら、今度は別の生き物が増え始めた",
+      "title": "天敵を取り除いたら、\n今度は別の生き物が増え始めた",
       "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/chapter3_bg.png"
     },
     {
       "chapter": "chapter4",
       "label": "第4章",
-      "title": "守るはずの魚が、次々と死んでいった",
+      "title": "守るはずの魚が、\n次々と死んでいった",
       "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/chapter4_bg.png"
     },
     {
       "chapter": "chapter5",
       "label": "第5章",
-      "title": "水を戻した瞬間、池は再び人間の影響を受け始める",
+      "title": "水を戻した瞬間、\n池は再び人間の影響を受け始める",
       "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/chapter1_bg.png"
     },
     {
       "chapter": "chapter6",
       "label": "第6章",
-      "title": "池を守るとは、何を守ることなのか",
+      "title": "池を守るとは、\n何を守ることなのか",
       "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/chapter2_bg.png"
     },
     {
       "chapter": "epilogue",
       "label": "エピローグ",
-      "title": "池に水が戻った日、仕事は終わっていない",
+      "title": "池に水が戻った日、\n仕事は終わっていない",
       "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/epilogue_bg.png"
     }
   ]

@@ -22,16 +22,34 @@ def load_font(path, size):
     return ImageFont.truetype(path, size=size)
 
 def fit_title_font(path, text, max_width, base_size, min_size):
+    lines = text.splitlines() or [text]
     size = base_size
-    while size > min_size:
+    while size >= min_size:
         f = load_font(path, size)
-        box = f.getbbox(text)
-        if box[2]-box[0] <= max_width: return f
+        if max(f.getlength(line) for line in lines) <= max_width: return f
         size -= 1
-    f = load_font(path, min_size)
-    if f.getlength(text) > max_width:
-        raise ValueError(f"Chapter title is too wide even at {min_size}px: {text}")
-    return f
+    raise ValueError(f"Chapter title is too wide even at {min_size}px: {text}")
+
+def visible_prefix(text, count):
+    out=[]; seen=0
+    for ch in text:
+        if ch=="\\n":
+            if seen<=count: out.append(ch)
+        else:
+            if seen>=count: break
+            out.append(ch); seen+=1
+    return "".join(out)
+
+def draw_centered_multiline(draw, xy, text, font, fill, outline, shadow, outline_width=2):
+    x,y=xy
+    spacing=8
+    bbox=draw.multiline_textbbox((0,0),text,font=font,spacing=spacing,align="center",stroke_width=outline_width)
+    w=bbox[2]-bbox[0]; h=bbox[3]-bbox[1]
+    pos=(x-w/2-bbox[0],y-h/2-bbox[1])
+    draw.multiline_text((pos[0]+3,pos[1]+4),text,font=font,fill=shadow,spacing=spacing,align="center",
+                        stroke_width=outline_width+1,stroke_fill=shadow)
+    draw.multiline_text(pos,text,font=font,fill=fill,spacing=spacing,align="center",
+                        stroke_width=outline_width,stroke_fill=outline)
 
 def draw_centered(draw, xy, text, font, fill, outline, shadow, outline_width=2):
     x,y = xy
@@ -90,7 +108,7 @@ def main():
     start_delay=float(d["start_delay_sec"]); inter=float(d["interline_delay_sec"])
     label_time=len(label)/cps
     title_start=start_delay+label_time+inter
-    typing_end=title_start+len(title)/cps
+    typing_end=title_start+len(title.replace("\\n",""))/cps
     cursor_dur=float(t["cursor_blink_duration_sec"])
     hold=float(d["final_hold_sec"])
     duration=max(float(d["minimum_duration_sec"]),typing_end+cursor_dur+hold)
@@ -103,7 +121,7 @@ def main():
     shadow=(0,0,0,190)
     center_x=int(tx["center_x_px"]); label_y=int(tx["label_center_y_px"]); title_y=int(tx["title_center_y_px"])
     key_times=[start_delay+i/cps for i in range(len(label))]
-    key_times += [title_start+i/cps for i in range(len(title))]
+    key_times += [title_start+i/cps for i,ch in enumerate(title) if ch!="\\n"]
     output_dir=V154_ROOT/"output"; output_dir.mkdir(parents=True,exist_ok=True)
     out_mp4=output_dir/f"chapter-card-{args.chapter}.mp4"
     with tempfile.TemporaryDirectory(prefix=f"v153-card-{args.chapter}-") as td:
@@ -111,7 +129,7 @@ def main():
         for frame in range(frames):
             now=frame/fps
             label_n=0 if now<start_delay else min(len(label),int((now-start_delay)*cps)+1)
-            title_n=0 if now<title_start else min(len(title),int((now-title_start)*cps)+1)
+            title_n=0 if now<title_start else min(len(title.replace("\\n","")),int((now-title_start)*cps)+1)
             cursor=False
             if title_n==len(title) and typing_end <= now < typing_end+cursor_dur:
                 cursor=(int((now-typing_end)*t["cursor_blink_hz"]*2)%2)==0
@@ -119,8 +137,8 @@ def main():
             if label_n:
                 draw_centered(draw,(center_x,label_y),label[:label_n],label_font,label_rgb,outline,shadow,int(tx["outline_width_px"]))
             if title_n:
-                visible=title[:title_n]+(t["cursor_glyph"] if cursor else "")
-                draw_centered(draw,(center_x,title_y),visible,title_font,title_rgb,outline,shadow,int(tx["outline_width_px"]))
+                visible=visible_prefix(title,title_n)+(t["cursor_glyph"] if cursor else "")
+                draw_centered_multiline(draw,(center_x,title_y),visible,title_font,title_rgb,outline,shadow,int(tx["outline_width_px"]))
             overlay.save(overlay_dir/f"{frame:05d}.png",compress_level=1)
         audio=td/"typing.wav"
         write_typing_audio(audio,FORMAT_ROOT/t["sfx_file"],duration,key_times,float(t["sfx_gain"]))
