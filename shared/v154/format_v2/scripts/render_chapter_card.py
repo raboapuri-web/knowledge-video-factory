@@ -154,7 +154,7 @@ def main():
              "-shortest","-movflags","+faststart",str(out_mp4)]
         subprocess.run(cmd,check=True)
     if not out_mp4.is_file() or out_mp4.stat().st_size<20000: raise RuntimeError("chapter card render failed")
-    report={"chapter":args.chapter,"file":str(out_mp4.relative_to(V154_ROOT)),"duration_sec":round(duration,3),"typing_cps":cps,"label":label,"title":title,"narration":False,"subtitle":False}
+    report={"chapter":args.chapter,"file":str(out_mp4.relative_to(V154_ROOT)),"duration_sec":round(duration,3),"typing_cps":cps,"label":label,"title":title.replace(chr(10)," "),"title_lines":title.splitlines(),"narration":False,"subtitle":False}
     (output_dir/f"chapter-card-{args.chapter}.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(report,ensure_ascii=False))
 
