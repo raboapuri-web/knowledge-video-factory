@@ -4,4 +4,5 @@ branch=v154-pond-recovery-storyboard-20261113
 asset_source=shared/v154/assets/final/S001.jpg-S090.jpg
 render_format=format_v2
 bgm=none
-retry=2
+retry=3
+ffmpeg_sha256=a0968bcb1a697c248d684853a69bee25dc63b03efe08a9c9d2242a4a48cf0a5f
