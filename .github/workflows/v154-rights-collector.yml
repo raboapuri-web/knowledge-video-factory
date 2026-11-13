@@ -1,0 +1,111 @@
+name: V154 Rights-Gated Photo Collection
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - v154-pond-recovery-storyboard-20261113
+    paths:
+      - shared/v154/launch/collector_run.txt
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v154-rights-collector
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    name: Collect, verify and register 47 V154 stills
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Check out V154 production branch
+        uses: actions/checkout@v4
+        with:
+          ref: v154-pond-recovery-storyboard-20261113
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install rights collector dependencies
+        run: python -m pip install --no-input --timeout 30 --retries 3 requests Pillow
+
+      - name: Validate collector inputs and syntax
+        run: |
+          set -euo pipefail
+          python -m py_compile shared/v154/scripts/rights_collector.py shared/v154/scripts/register_collection.py
+          python - <<'PY'
+          import json
+          p = "shared/v154/assets/collector_screens.json"
+          screens = json.load(open(p, encoding="utf-8"))
+          assert len(screens) == 47, f"expected 47 screens, got {len(screens)}"
+          ids = [x["id"] for x in screens]
+          assert len(ids) == len(set(ids)), "duplicate screen IDs"
+          excluded = {"S014","S021","S028","S037","S043","S053","S063"}
+          assert not (set(ids) & excluded), "pre-cleared screens must not be recollected"
+          assert all(x.get("query") and x.get("subject") for x in screens)
+          print(f"Input OK: {len(ids)} unique target screens; reserved assets excluded.")
+          PY
+
+      - name: Run strict rights-gated collector with Vision
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_VISION_MODEL: gpt-4o-mini
+        run: |
+          set -euo pipefail
+          python shared/v154/scripts/rights_collector.py \
+            --screens shared/v154/assets/collector_screens.json \
+            --out shared/v154/collector_out \
+            --vision \
+            --vision-model gpt-4o-mini \
+            --min-width 0 \
+            --min-height 0 \
+            --per-screen-candidates 25 \
+            --max-download-attempts 6 \
+            --screen-deadline 180 \
+            --run-deadline 4800 \
+            --pace 0.6 \
+            --retries 2 \
+            --retry-base 3 \
+            --retry-cap 20
+
+      - name: Preserve raw collector evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v154-rights-collector-${{ github.run_id }}
+          path: shared/v154/collector_out/
+          if-no-files-found: ignore
+          retention-days: 21
+          compression-level: 0
+
+      - name: Register only rights-cleared and Vision-approved images
+        if: always()
+        run: python shared/v154/scripts/register_collection.py
+
+      - name: Commit images, manifest, credits and audit to V154
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '4189823+github-actions[bot]@users.noreply.github.com'
+          git add shared/v154/assets
+          if git diff --cached --quiet; then
+            echo 'No asset registration changes.'
+          else
+            git commit -m 'Register V154 rights-cleared image collection'
+            git push origin HEAD:v154-pond-recovery-storyboard-20261113
+          fi
+
+      - name: Publish collection status in run summary
+        if: always()
+        run: |
+          if test -f shared/v154/assets/collection_status.md; then
+            cat shared/v154/assets/collection_status.md >> "$GITHUB_STEP_SUMMARY"
+          fi
