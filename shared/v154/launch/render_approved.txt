@@ -1,0 +1,6 @@
+approved=true
+video_id=v154
+branch=v154-pond-recovery-storyboard-20261113
+asset_source=shared/v154/assets/final/S001.jpg-S090.jpg
+render_format=format_v2
+bgm=none
