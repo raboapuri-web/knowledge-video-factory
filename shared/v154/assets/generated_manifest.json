@@ -416,5 +416,35 @@
       "composition": "one original unpartitioned 1920x1080 SVG canvas"
     }
   ],
-  "note": "This is a separate generated-asset register. Existing photo collection, rights audit and render gate are untouched. S012/S015 photo substitutes remain chat attachments until their PNG binaries are uploaded."
+  "note": "36 SVG illustration files are committed. S012/S015 original PNG substitute files are attached in this chat; GitHub PNG upload has not been completed. Existing photo collection and render gate remain unchanged.",
+  "chat_attached_photo_substitutes": [
+    {
+      "scene_id": "S012",
+      "asset_type": "generated_photo_substitute",
+      "generation_reason": "source_photo_unavailable",
+      "format": "png",
+      "file_name": "S012.png",
+      "image_size": "1672x941",
+      "registration_status": "chat_attachment_not_in_github",
+      "chat_path": "sandbox:/mnt/data/v154_photo_substitutes_2/S012.png",
+      "description": "池底に積もった落ち葉と土砂を水中から見た実写風画像",
+      "sha256_prefix": "749d040e19cd1f8b3dcb",
+      "generated": true,
+      "source_license": "original generated image; no third-party photo used"
+    },
+    {
+      "scene_id": "S015",
+      "asset_type": "generated_photo_substitute",
+      "generation_reason": "source_photo_unavailable",
+      "format": "png",
+      "file_name": "S015.png",
+      "image_size": "1672x941",
+      "registration_status": "chat_attachment_not_in_github",
+      "chat_path": "sandbox:/mnt/data/v154_photo_substitutes_2/S015.png",
+      "description": "太陽光が差し込む澄んだ池に水草が育つ実写風画像",
+      "sha256_prefix": "6469d1701749e2698cb2",
+      "generated": true,
+      "source_license": "original generated image; no third-party photo used"
+    }
+  ]
 }

@@ -475,5 +475,364 @@
       "rights_checked": false,
       "deadline_reason": "run_deadline_exceeded"
     }
-  ]
+  ],
+  "generated_assets_count": 36,
+  "generated_assets_manifest": "assets/generated_manifest.json",
+  "generated_assets": [
+    {
+      "scene_id": "S004",
+      "file": "assets/generated/S004.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S005",
+      "file": "assets/generated/S005.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S008",
+      "file": "assets/generated/S008.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S009",
+      "file": "assets/generated/S009.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S013",
+      "file": "assets/generated/S013.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S019",
+      "file": "assets/generated/S019.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S020",
+      "file": "assets/generated/S020.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S026",
+      "file": "assets/generated/S026.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S029",
+      "file": "assets/generated/S029.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S033",
+      "file": "assets/generated/S033.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S034",
+      "file": "assets/generated/S034.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S039",
+      "file": "assets/generated/S039.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S040",
+      "file": "assets/generated/S040.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S041",
+      "file": "assets/generated/S041.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S044",
+      "file": "assets/generated/S044.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S051",
+      "file": "assets/generated/S051.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S055",
+      "file": "assets/generated/S055.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S056",
+      "file": "assets/generated/S056.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S058",
+      "file": "assets/generated/S058.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S061",
+      "file": "assets/generated/S061.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S064",
+      "file": "assets/generated/S064.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S065",
+      "file": "assets/generated/S065.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S067",
+      "file": "assets/generated/S067.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S069",
+      "file": "assets/generated/S069.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S070",
+      "file": "assets/generated/S070.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S071",
+      "file": "assets/generated/S071.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S073",
+      "file": "assets/generated/S073.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S074",
+      "file": "assets/generated/S074.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S075",
+      "file": "assets/generated/S075.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S076",
+      "file": "assets/generated/S076.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S077",
+      "file": "assets/generated/S077.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S079",
+      "file": "assets/generated/S079.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S080",
+      "file": "assets/generated/S080.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S083",
+      "file": "assets/generated/S083.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S085",
+      "file": "assets/generated/S085.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    },
+    {
+      "scene_id": "S086",
+      "file": "assets/generated/S086.svg",
+      "kind": "generated_illustration",
+      "status": "generated_pending_visual_review",
+      "format": "svg",
+      "canvas": "1920x1080",
+      "source": "original programmatic generation"
+    }
+  ],
+  "generated_photo_substitutes": [
+    {
+      "scene_id": "S012",
+      "asset_type": "generated_photo_substitute",
+      "generation_reason": "source_photo_unavailable",
+      "format": "png",
+      "file_name": "S012.png",
+      "image_size": "1672x941",
+      "registration_status": "chat_attachment_not_in_github",
+      "description": "池底に積もった落ち葉と土砂を水中から見た実写風画像",
+      "sha256_prefix": "749d040e19cd1f8b3dcb",
+      "generated": true,
+      "source_license": "original generated image; no third-party photo used",
+      "delivery": "chat_attachment_only"
+    },
+    {
+      "scene_id": "S015",
+      "asset_type": "generated_photo_substitute",
+      "generation_reason": "source_photo_unavailable",
+      "format": "png",
+      "file_name": "S015.png",
+      "image_size": "1672x941",
+      "registration_status": "chat_attachment_not_in_github",
+      "description": "太陽光が差し込む澄んだ池に水草が育つ実写風画像",
+      "sha256_prefix": "6469d1701749e2698cb2",
+      "generated": true,
+      "source_license": "original generated image; no third-party photo used",
+      "delivery": "chat_attachment_only"
+    }
+  ],
+  "generated_assets_collection_notes": "Separate from the Muse-side 47-scene photo collection. PNG S012/S015 are not yet in this GitHub repository. Do not infer render readiness."
 }
