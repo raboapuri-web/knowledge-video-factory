@@ -31,11 +31,12 @@ def _sample_window(cap, start_sec: float, count: int = 26) -> dict:
         previous = gray
     data = np.asarray(differences, dtype=np.float64)
     q25, q50, q75, q90 = [float(np.percentile(data, q)) for q in (25, 50, 75, 90)]
-    threshold = max(0.035, 0.10 * q75)
+    threshold = max(0.003, 0.10 * q75)
     low = int(np.sum(data < threshold))
+    # Relative threshold avoids false positives on dark / low-contrast sources.
     # Accept a single near-zero transition due to codec/texture; reject
     # frame-hold patterns (e.g. two of every three frames unchanged).
-    passed = (low <= 1 and q50 >= 0.06 and
+    passed = (low <= 1 and q50 >= 0.012 and
               q90 / max(q25, 1e-5) <= 6.0)
     return {
         "start_seconds": round(start_sec, 3),
