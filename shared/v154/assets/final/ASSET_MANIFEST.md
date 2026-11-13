@@ -4,7 +4,8 @@
 内訳：写真18画面／生成72画面（生成はすべて Muse が新規生成し目視確認済み。ChatGPT生成のSVG36枚と S012/S015 の出所不明画像は不採用）。
 
 ## レイアウト注意
-- S018, S028, S032, S057, S090（写真）は小さい/縦型のため、そのまま敷かず「同じ画像をぼかして背景に敷き、中央にシャープな本体を置く」見せ方で処理すること。他の画面で画面に敷けない場合も同方式。
+- S018, S028, S032, S057（写真）は小さい/縦型のため、そのまま敷かず「同じ画像をぼかして背景に敷き、中央にシャープな本体を置く」見せ方で処理すること。他の画面で画面に敷けない場合も同方式。
+- S090は差し替え済みの2048×1152横長画像のため、通常の全画面表示とし、ぼかし背景処理は行わない。
 - S009（生成）には白い縁が入っている。そのまま使用可。
 - S048, S050（生成）には日本語風の看板が含まれるが装飾扱いで可。
 - 字幕帯は画面最下部 約130px。重要な被写体はそこに置かない（生成済み画像はその前提で作られている）。
@@ -30,7 +31,7 @@
 - S053: File:Healthy Habitats (5716174475).jpg by USFWSmidwest, Public Domain, via https://commons.wikimedia.org/wiki/File:Healthy_Habitats_(5716174475).jpg
 - S057: Fishing nets, Essaouira, Morocco by Dimitry B, CC BY 2.0, via https://www.flickr.com/photos/61533954@N00/13485216763
 - S063: カダヤシ, カダヤシ（タップミンノー）, alevin, barkaleci, dai to ue, gambouse, gambuse, gambusia, gambusie, gambusino, gambuzia, gambuzia pospolita, gambuzie, gambuzija, guayacón mosquito, gupi, harilik gambuusia, mosquitofish, mosquito fish, western mosquitofish by Samuel Brown, CC BY 4.0, via https://www.inaturalist.org/photos/32903829
-- S090: August midnight in downtown Reykjavik, Iceland by o palsson, CC BY 2.0, via https://www.flickr.com/photos/45713725@N00/5120508384
+- S090: Replacement image (moonlit Japanese pond, 2048×1152) supplied in commit 81e5460. Source/author/license metadata was not included in the replacement handoff.
 
 ## 進行許可
 素材ゲートは本人の目視OKを取得済み（2026-11-13）。chapter/finalize の動画工程に進んでよい。完成したら Release に上げて報告すること。BGM は付けない（Muse が後処理する）。

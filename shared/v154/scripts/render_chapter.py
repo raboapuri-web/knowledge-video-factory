@@ -9,7 +9,7 @@ BOARD=json.loads((ROOT/"content"/"board.json").read_text(encoding="utf-8"))
 MOTION=json.loads((FORMAT/"config"/"scene_motion_map.json").read_text(encoding="utf-8"))
 CHAPTER_SPEC=json.loads((FORMAT/"config"/"chapter_card_spec.json").read_text(encoding="utf-8"))
 MOTION_BY_ID={x["scene_id"]:x for x in MOTION["entries"]}
-SPECIAL_BLUR={"S018","S028","S032","S057","S090"}
+SPECIAL_BLUR={"S018","S028","S032","S057"}
 
 def run(cmd): subprocess.run(cmd,check=True)
 def esc(p): return str(p).replace("\\","\\\\").replace(":","\\:").replace("'","\\'")

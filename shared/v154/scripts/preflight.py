@@ -7,7 +7,7 @@ from PIL import Image
 ROOT=Path(__file__).resolve().parents[1]
 BOARD=json.loads((ROOT/"content/board.json").read_text(encoding="utf-8"))
 ASSETS=ROOT/"assets"/"final"
-SPECIAL_BLUR={"S018","S028","S032","S057","S090"}
+SPECIAL_BLUR={"S018","S028","S032","S057"}
 EXPECTED=[f"S{i:03d}" for i in range(1,91)]
 ALLOWED={"zoom_in","zoom_out","pan_right","pan_left","pan_up","pan_down","static"}
 

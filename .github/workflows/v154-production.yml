@@ -141,7 +141,7 @@ jobs:
       - name: Publish final MP4 and evidence as GitHub Release
         run: |
           set -euo pipefail
-          gh release create "$RELEASE_TAG" shared/v154/output/v154-pond-recovery-final.mp4 shared/v154/output/v154-contact-sheet.jpg shared/v154/output/v154-chapter-cards-contact-sheet.jpg shared/v154/output/production_report.json shared/v154/output/final_qa.json shared/v154/output/CREDITS.txt --repo "$GITHUB_REPOSITORY" --title "考える夜｜池の水をぜんぶ抜いた。その後、池はどうなったのか？" --notes "90 scenes and 8 typed chapter cards. 1920x1080, 30fps, H.264/AAC, VOICEVOX:青山龍星. Uses only shared/v154/assets/final/S001.jpg-S090.jpg. S018/S028/S032/S057/S090 use a blurred duplicate background with a centered sharp original. No BGM, as requested. Includes contact sheets, credits and technical QA." --latest
+          gh release create "$RELEASE_TAG" shared/v154/output/v154-pond-recovery-final.mp4 shared/v154/output/v154-contact-sheet.jpg shared/v154/output/v154-chapter-cards-contact-sheet.jpg shared/v154/output/production_report.json shared/v154/output/final_qa.json shared/v154/output/CREDITS.txt --repo "$GITHUB_REPOSITORY" --title "考える夜｜池の水をぜんぶ抜いた。その後、池はどうなったのか？" --notes "90 scenes and 8 typed chapter cards. 1920x1080, 30fps, H.264/AAC, VOICEVOX:青山龍星. Uses only shared/v154/assets/final/S001.jpg-S090.jpg. S018/S028/S032/S057 use a blurred duplicate background with a centered sharp original. S090 uses the replacement 2048x1152 landscape image full-screen with no blur treatment. No BGM, as requested. Includes contact sheets, credits and technical QA." --latest
       - name: Upload master and QA package
         uses: actions/upload-artifact@v4
         with:

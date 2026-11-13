@@ -30,7 +30,7 @@ def main():
     args=ap.parse_args()
     segdir=Path(args.segments_dir)
     out=ROOT/"output"; out.mkdir(parents=True,exist_ok=True)
-    timeline=[]; chapter_rows=[]; all_scenes=[]; motion_seq=[]; elapsed=0.0
+    timeline=[]; chapter_rows=[]; all_scenes=[]; motion_seq=[]; scene_layouts={}; elapsed=0.0
     concat=out/"concat-final.txt"; concat_lines=[]
     for chapter in CHAPTERS:
         video=segdir/f"v154-{chapter}.mp4"
@@ -56,7 +56,7 @@ def main():
             if r["scene"]!=v["scene"]: raise RuntimeError(f"{chapter}: scene order mismatch")
             d=float(r["duration"])
             timeline.append({"kind":"scene","chapter":chapter,"scene":r["scene"],"start":elapsed,"end":elapsed+d,"duration":d,"motion":r["motion"]})
-            all_scenes.append(r["scene"]); motion_seq.append(r["motion"]); elapsed+=d
+            all_scenes.append(r["scene"]); scene_layouts[r["scene"]]=r.get("layout"); motion_seq.append(r["motion"]); elapsed+=d
         chapter_rows.append({
             "chapter":chapter,"title":card["title"],"label":card["label"],
             "start_seconds":round(chapter_start,3),"start_time":clock(chapter_start),
@@ -68,6 +68,10 @@ def main():
         })
         concat_lines.append("file '"+str(video.resolve())+"'")
     if all_scenes!=EXPECTED_SCENES: raise RuntimeError(f"Expected S001-S090 exactly once; got {len(all_scenes)} scenes")
+    expected_blur={"S018","S028","S032","S057"}
+    actual_blur={sid for sid,layout in scene_layouts.items() if layout=="blurred_background_plus_centered_sharp_image"}
+    if actual_blur!=expected_blur: raise RuntimeError(f"Blur-layout targets mismatch: expected {sorted(expected_blur)}, got {sorted(actual_blur)}")
+    if scene_layouts.get("S090")!="single_image_full_frame": raise RuntimeError(f"S090 must use single_image_full_frame, got {scene_layouts.get(chr(83)+chr(48)+chr(57)+chr(48))}")
     board=json.loads((ROOT/"content"/"board.json").read_text(encoding="utf-8"))
     expected_s090=next(x["script"] for x in board["scenes"] if x["id"]=="S090")
     last_voice=voice["scenes"][-1]
@@ -93,6 +97,8 @@ def main():
         "scene_order_S001_to_S090":all_scenes==EXPECTED_SCENES,
         "no_three_consecutive_motion_repeats":True,
         "final_scene_S090_complete":last_scene_complete,
+        "blur_layout_targets_exactly_four":actual_blur==expected_blur,
+        "S090_full_frame_single_image":scene_layouts.get("S090")=="single_image_full_frame",
         "video_1920x1080":video_stream.get("width")==1920 and video_stream.get("height")==1080,
         "video_30fps":video_stream.get("r_frame_rate")=="30/1",
         "video_h264":video_stream.get("codec_name")=="h264",
@@ -143,7 +149,8 @@ def main():
         "audio_codec":audio_stream.get("codec_name"),"audio_sample_rate":audio_stream.get("sample_rate"),
         "audio_channels":audio_stream.get("channels"),"bgm":"none (explicitly omitted per user instruction)",
         "image_source":"assets/final/S001.jpg-S090.jpg only",
-        "special_blur_background_scenes":["S018","S028","S032","S057","S090"],
+        "special_blur_background_scenes":["S018","S028","S032","S057"],
+        "S090_layout":scene_layouts.get("S090"),
         "chapter_start_times":chapter_rows,
         "scene_count":len(all_scenes),"chapter_card_count":len(card_thumbs),
         "contact_sheet":str(scene_sheet_path.relative_to(ROOT)),
