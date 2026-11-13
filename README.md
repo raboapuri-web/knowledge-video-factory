@@ -78,3 +78,7 @@ GitHub Actions実行後はエピソードごとのArtifactまたはGitHub Releas
 ## 関節付き2D会社員（React / Remotion）
 
 shared/asset-library/人物テンプレート/office-worker-rig.tsx にSVG製の現代男性会社員テンプレートを追加。肩・肘・股関節・膝・頭・上体を角度指定でき、待機・歩行・手を振る・指さす動きをRemotionフレームに同期させます。shared/asset-library/人物テンプレート/README.md に背景との合成例があります。V69の既存映像は変更せず、独立した OfficeWorkerRigPreview Compositionから動きを確認できます。
+
+## 恒久ルール：30fpsで滑らかなカメラモーション（2026-11-14）
+
+全エピソードのズームとパンは、**30fpsの各フレームで小数画素まで補間**する。3フレームに1回だけ動く、位置を整数画素に丸める、10fpsで生成して30fpsに複製する、といったフレームホールドは禁止。共通実装は `shared/motion/continuous_motion.py`、実フレームの連続差分QAは `shared/motion/continuous_motion_qa.py` を使用する。仕様と統合方法は `shared/motion/README.md` を参照。

@@ -6,6 +6,9 @@ import cv2
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT=Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0,str(ROOT.parent))
+from motion.continuous_motion_qa import audit_30fps_motion
 CHAPTERS=["prologue","chapter1","chapter2","chapter3","chapter4","chapter5","chapter6","epilogue"]
 EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,91)]
 
@@ -135,6 +138,14 @@ def main():
         x=(i%4)*480; y=(i//4)*298
         card_sheet.paste(im,(x,y)); cdraw.text((x+8,y+274),f"{item['chapter']}  {clock(item['start'])}",font=font,fill=(245,245,245))
     card_sheet_path=out/"v154-chapter-cards-contact-sheet.jpg"; card_sheet.save(card_sheet_path,quality=90,optimize=True)
+    # Verify decoded 30fps frame-to-frame motion across three windows of EVERY
+    # zoom/pan scene; fail if the source image is effectively held at 10fps.
+    continuous_motion_qa=audit_30fps_motion(final,timeline)
+    (out/"motion_30fps_qa.json").write_text(json.dumps(continuous_motion_qa,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    checks["motion_all_moving_scenes_change_every_sampled_frame"]=continuous_motion_qa["passed"]
+    if not continuous_motion_qa["passed"]:
+        sample=continuous_motion_qa["failures"][:3]
+        raise RuntimeError("30fps motion continuity QA failed: "+json.dumps(sample,ensure_ascii=False)[:2400])
     checks["scene_contact_sheet_90_frames"]=len(thumbs)==90
     checks["chapter_card_contact_sheet_8_frames"]=len(card_thumbs)==8
     if not checks["scene_contact_sheet_90_frames"] or not checks["chapter_card_contact_sheet_8_frames"]:
@@ -156,6 +167,9 @@ def main():
         "contact_sheet":str(scene_sheet_path.relative_to(ROOT)),
         "chapter_cards_contact_sheet":str(card_sheet_path.relative_to(ROOT)),
         "subtitle_band_black_ratio_min":round(band_min,4),
+        "motion_30fps_qa_file":"output/motion_30fps_qa.json",
+        "motion_moving_scenes_audited":continuous_motion_qa["moving_scenes_audited"],
+        "motion_adjacent_frame_pairs_audited":continuous_motion_qa["adjacent_frame_pairs_audited"],
         "final_scene_audio_duration_seconds":round(last_audio_duration,4),
         "final_scene_caption_end_seconds":round(last_caption_end,4),
         "checks":checks
@@ -164,7 +178,8 @@ def main():
     qa={"passed":all(checks.values()),"checks":checks,"video_duration_seconds":round(duration,3),
         "expected_timeline_seconds":round(expected,3),"duration_delta_seconds":round(delta,3),
         "subtitle_band_black_ratio_min":round(band_min,4),"scene_count":len(all_scenes),
-        "chapter_card_count":len(card_thumbs),"motion_sequence":motion_seq,"timeline":timeline}
+        "chapter_card_count":len(card_thumbs),"motion_sequence":motion_seq,"timeline":timeline,
+        "motion_continuity":{"passed":continuous_motion_qa["passed"],"moving_scenes_audited":continuous_motion_qa["moving_scenes_audited"],"adjacent_frame_pairs_audited":continuous_motion_qa["adjacent_frame_pairs_audited"],"details":"motion_30fps_qa.json"}}
     (out/"final_qa.json").write_text(json.dumps(qa,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     manifest=(ROOT/"assets"/"final"/"ASSET_MANIFEST.md").read_text(encoding="utf-8")
     credits=manifest+"\n\n## Audio / production\n- Narration: VOICEVOX:青山龍星\n- Chapter-card typing sound: original type_key.wav from the V153 format-v2 package\n- BGM: none (omitted as requested)\n"

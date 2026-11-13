@@ -11,12 +11,14 @@ The user approved the final 90-image visual/material gate on 2026-11-13. Product
 - scripts/synth.py: VOICEVOX narration and subtitle timing; S001 TTS-only reading replacement.
 - scripts/render_chapter.py: renders a chapter from assets/final only.
 - scripts/finalize.py: assembles the master, creates final-frame contact sheets and runs QA.
-- scripts/install_media_tools.sh: installs the pinned static FFmpeg build (SHA-256 a0968bcb...) and Noto Sans CJK JP.
+- scripts/install_media_tools.sh: installs the pinned static FFmpeg build (SHA-256 ed4f2e6c...) and Noto Sans CJK JP.
 
 ## Rendering
 - 90 scenes, 8 chapter cards.
 - One image per scene; Ken Burns motion uses 1.20 baseline and no three consecutive identical motions.
-- Five low-resolution/portrait images (S018, S028, S032, S057, S090) use the same image as a blurred background and centered sharp foreground.
+- Continuous 30fps camera motion is provided by the factory-wide `shared/motion/continuous_motion.py` module with per-frame fractional-pixel evaluation. See `shared/motion/README.md`.
+- Every moving scene is audited against actual decoded frames in `motion_30fps_qa.json` (three windows per scene).
+- Four low-resolution/portrait images (S018, S028, S032, S057) use the same image as a blurred background and centered sharp foreground; S090 uses its replacement landscape image full screen.
 - Voice: VOICEVOX 青山龍星, speaker ID 13.
 - Chapter cards: silent typed titles with original typing SFX and existing approved moon-character backgrounds.
 - Subtitles: fixed opaque black band at bottom, about 130px high at 1080p.

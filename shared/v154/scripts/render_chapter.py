@@ -8,23 +8,14 @@ FORMAT=ROOT/"format_v2"
 BOARD=json.loads((ROOT/"content"/"board.json").read_text(encoding="utf-8"))
 MOTION=json.loads((FORMAT/"config"/"scene_motion_map.json").read_text(encoding="utf-8"))
 CHAPTER_SPEC=json.loads((FORMAT/"config"/"chapter_card_spec.json").read_text(encoding="utf-8"))
+sys.path.insert(0,str(ROOT.parent))
+from motion.continuous_motion import motion_filter as continuous_motion_filter
 MOTION_BY_ID={x["scene_id"]:x for x in MOTION["entries"]}
 SPECIAL_BLUR={"S018","S028","S032","S057"}
 
 def run(cmd): subprocess.run(cmd,check=True)
 def esc(p): return str(p).replace("\\","\\\\").replace(":","\\:").replace("'","\\'")
 
-def motion_filter(e,frames):
-    m=e["motion"]; z0=float(e["scale_from"]); z1=float(e["scale_to"])
-    if m in ("zoom_in","zoom_out"):
-        z=f"{z0:.5f}+({z1-z0:.5f})*on/{frames}"; x="iw/2-iw/zoom/2"; y="ih/2-ih/zoom/2"
-    elif m=="static":
-        z="1.0"; x="iw/2-iw/zoom/2"; y="ih/2-ih/zoom/2"
-    else:
-        a=e["camera_from"]; b=e["camera_to"]; z=f"{z0:.5f}"
-        x=f"(iw-iw/zoom)*({a[0]:.5f}+({b[0]-a[0]:.5f})*on/{frames})"
-        y=f"(ih-ih/zoom)*({a[1]:.5f}+({b[1]-a[1]:.5f})*on/{frames})"
-    return f"zoompan=z='{z}':x='{x}':y='{y}':d=1:s=1920x1080:fps=30"
 
 def main(chapter):
     spec=next((x for x in BOARD["chapters"] if x["id"]==chapter),None)
@@ -54,7 +45,7 @@ def main(chapter):
         for f in (img,wav,ass):
             if not f.is_file(): raise FileNotFoundError(f)
         duration=float(by_id[sid]["duration"]); frames=max(1,int(round(duration*30)))
-        move=motion_filter(MOTION_BY_ID[sid],frames)
+        move=continuous_motion_filter(MOTION_BY_ID[sid],frames)
         ass_path=esc(ass); fonts_path=esc(Path(font_dir))
         if sid in SPECIAL_BLUR:
             vf=("[0:v]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,gblur=sigma=30[bg];"
@@ -80,7 +71,7 @@ def main(chapter):
         lines.append("file '"+str(dest.resolve())+"'")
         reports.append({"scene":sid,"duration":round(duration,4),"file":str(dest.relative_to(ROOT)),"motion":MOTION_BY_ID[sid]["motion"],
                         "scale_from":MOTION_BY_ID[sid]["scale_from"],"scale_to":MOTION_BY_ID[sid]["scale_to"],"layout":layout,
-                        "source_image":f"assets/final/{sid}.jpg"})
+                        "source_image":f"assets/final/{sid}.jpg","motion_renderer":"shared/motion/continuous_motion.py","motion_evaluation":"every decoded frame at 30fps, subpixel bilinear interpolation"})
         if len(reports)%5==0: print(json.dumps({"chapter":chapter,"rendered_scenes":len(reports),"total":len(scenes)},ensure_ascii=False),flush=True)
     concat.write_text("\n".join(lines)+"\n",encoding="utf-8")
     final=ROOT/"output"/f"v154-{chapter}.mp4"
