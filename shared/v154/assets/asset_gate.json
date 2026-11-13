@@ -1,0 +1,287 @@
+{
+  "passed": false,
+  "required_screens": 47,
+  "cleared_screens": 1,
+  "remaining_screens": [
+    {
+      "id": "S001",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S002",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S006",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S007",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S010",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S011",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S012",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S015",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S016",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S017",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S018",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S022",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S023",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S024",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S025",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S027",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S030",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S031",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S032",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S035",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S036",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S038",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S042",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S045",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S046",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S047",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S048",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S049",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S050",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S052",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S054",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S057",
+      "status": "missing",
+      "reason": "missing",
+      "file": ""
+    },
+    {
+      "id": "S059",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    },
+    {
+      "id": "S060",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    },
+    {
+      "id": "S062",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    },
+    {
+      "id": "S066",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    },
+    {
+      "id": "S068",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    },
+    {
+      "id": "S072",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    },
+    {
+      "id": "S078",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    },
+    {
+      "id": "S081",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    },
+    {
+      "id": "S082",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    },
+    {
+      "id": "S084",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    },
+    {
+      "id": "S087",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    },
+    {
+      "id": "S088",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    },
+    {
+      "id": "S089",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    },
+    {
+      "id": "S090",
+      "status": "missing",
+      "reason": "run_deadline_exceeded",
+      "file": ""
+    }
+  ],
+  "rights_policy": "PD / CC0 / CC BY only",
+  "vision_required": true,
+  "render_allowed": false,
+  "render_block_reason": "User explicitly requested collection and registration only; chapter/finalize were not run."
+}

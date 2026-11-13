@@ -1,0 +1,59 @@
+# V154 素材収集結果
+
+- 対象: 47画面
+- cleared: 1画面
+- 未充足: 46画面
+- 権利条件: Public Domain / CC0 / CC BY のみ
+- Vision: 被写体適合・焼き込み文字・ロゴ・ウォーターマークを確認
+- 画像サイズ制限: なし
+- chapter/finalize: 実行禁止（未実行）
+
+## 画面別ステータス
+
+- S001: **missing** — missing
+- S002: **missing** — missing
+- S003: **cleared**
+- S006: **missing** — missing
+- S007: **missing** — missing
+- S010: **missing** — missing
+- S011: **missing** — missing
+- S012: **missing** — missing
+- S015: **missing** — missing
+- S016: **missing** — missing
+- S017: **missing** — missing
+- S018: **missing** — missing
+- S022: **missing** — missing
+- S023: **missing** — missing
+- S024: **missing** — missing
+- S025: **missing** — missing
+- S027: **missing** — missing
+- S030: **missing** — missing
+- S031: **missing** — missing
+- S032: **missing** — missing
+- S035: **missing** — missing
+- S036: **missing** — missing
+- S038: **missing** — missing
+- S042: **missing** — missing
+- S045: **missing** — missing
+- S046: **missing** — missing
+- S047: **missing** — missing
+- S048: **missing** — missing
+- S049: **missing** — missing
+- S050: **missing** — missing
+- S052: **missing** — missing
+- S054: **missing** — missing
+- S057: **missing** — missing
+- S059: **missing** — run_deadline_exceeded
+- S060: **missing** — run_deadline_exceeded
+- S062: **missing** — run_deadline_exceeded
+- S066: **missing** — run_deadline_exceeded
+- S068: **missing** — run_deadline_exceeded
+- S072: **missing** — run_deadline_exceeded
+- S078: **missing** — run_deadline_exceeded
+- S081: **missing** — run_deadline_exceeded
+- S082: **missing** — run_deadline_exceeded
+- S084: **missing** — run_deadline_exceeded
+- S087: **missing** — run_deadline_exceeded
+- S088: **missing** — run_deadline_exceeded
+- S089: **missing** — run_deadline_exceeded
+- S090: **missing** — run_deadline_exceeded

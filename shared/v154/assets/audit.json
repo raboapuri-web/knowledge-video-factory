@@ -1,0 +1,5564 @@
+[
+  {
+    "screen": "S001",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Japan drained irrigation pond mud flat shallow pools fishing net kaibori",
+    "found": 0
+  },
+  {
+    "screen": "S001",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Japan drained irrigation pond",
+    "found": 0
+  },
+  {
+    "screen": "S001",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Japan drained",
+    "found": 25
+  },
+  {
+    "screen": "S001",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Japan drained irrigation pond mud flat shallow pools fishing net kaibori",
+    "found": 0
+  },
+  {
+    "screen": "S001",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Japan drained irrigation pond",
+    "found": 0
+  },
+  {
+    "screen": "S001",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Japan drained",
+    "found": 20
+  },
+  {
+    "screen": "S001",
+    "source": "wikimedia_commons",
+    "title": "File:Banner Metropolitan Area Outer Underground Discharge Channel catwalk.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Banner_Metropolitan_Area_Outer_Underground_Discharge_Channel_catwalk.jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "kaku shinya",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S001",
+    "source": "wikimedia_commons",
+    "title": "File:G-Cans (3745969987).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:G-Cans_(3745969987).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "urbzoo",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S001",
+    "source": "wikimedia_commons",
+    "title": "File:G-Cans (3745971891).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:G-Cans_(3745971891).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "urbzoo",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S001",
+    "source": "wikimedia_commons",
+    "title": "File:G-Cans (3745991501).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:G-Cans_(3745991501).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "urbzoo",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S001",
+    "source": "wikimedia_commons",
+    "title": "File:G-Cans (3745994603).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:G-Cans_(3745994603).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "urbzoo",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S001",
+    "source": "wikimedia_commons",
+    "title": "File:G-Cans (3746006815).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:G-Cans_(3746006815).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "urbzoo",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S001",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S002",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "pond drainage large freshwater fish lifted net muddy pond hands",
+    "found": 0
+  },
+  {
+    "screen": "S002",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "pond drainage large freshwater",
+    "found": 2
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "pond drainage large freshwater fish lifted net muddy pond hands",
+    "found": 0
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "pond drainage large freshwater",
+    "found": 0
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "pond drainage",
+    "found": 20
+  },
+  {
+    "screen": "S002",
+    "source": "wikimedia_commons",
+    "title": "File:A Peninsula of Pocosin.jpeg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:A_Peninsula_of_Pocosin.jpeg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "NASA Earth Observatory images by Joshua Stevens, using Landsat data from the U.S. Geological Survey. Story by Adam Voiland.",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S002",
+    "source": "wikimedia_commons",
+    "title": "File:Black-headed gull (Chroicocephalus ridibundus).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Black-headed_gull_(Chroicocephalus_ridibundus).jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "K0nvaliya",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "title": "Salt Pond Drainage area, just west of Cape Point on the south facing beaches 02-17-2021",
+    "source_page": "https://www.flickr.com/photos/106602675@N05/51764011242",
+    "license": "CC PDM 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "author": "CapeHatterasNPS",
+    "license_canonical": "cc pdm 1.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "title": "Salt Pond Drainage area on Feb. 22, 2021",
+    "source_page": "https://www.flickr.com/photos/106602675@N05/51765088753",
+    "license": "CC PDM 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "author": "CapeHatterasNPS",
+    "license_canonical": "cc pdm 1.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "title": "Steep swash beach by Walls pond drainage scheme, October 1981",
+    "source_page": "https://www.flickr.com/photos/139791896@N06/30200320286",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "Mary Gillham Archive Project",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image does not show a freshwater fish or a muddy pond."
+    ]
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "title": "scene pond drainage to river Lumber River SP Chalk Banks ncwetlands KG (33)",
+    "source_page": "https://www.flickr.com/photos/150964093@N06/36898106722",
+    "license": "CC CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "author": "ncwetlands.org",
+    "license_canonical": "cc cc0 1.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "title": "Пруд на мелиоративных каналах. Pond drainage canals. - panoramio",
+    "source_page": "https://commons.wikimedia.org/w/index.php?curid=57102708",
+    "license": "CC BY 3.0",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/",
+    "author": "Alex A",
+    "license_canonical": "CC BY 3.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "title": "Scene pond drainage to river Lumber River SP Chalk Banks ncwetlands KG (33)",
+    "source_page": "https://commons.wikimedia.org/w/index.php?curid=86956564",
+    "license": "CC CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en/",
+    "author": "ncwetlands.org",
+    "license_canonical": "cc cc0 1.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "title": "Jackson F Kimball State Park, Oregon",
+    "source_page": "https://www.flickr.com/photos/66741228@N05/52105402371",
+    "license": "CC PDM 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "author": "Bonnie Moreland (free images)",
+    "license_canonical": "cc pdm 1.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "title": "Abandoned Mine Drainage Ponds in Pitking County, CO (image IMG_4863)",
+    "source_page": "https://www.flickr.com/photos/89173169@N07/8142510326",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "USGS Unmanned Aircraft Systems",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "404 Client Error: Not Found for url: https://live.staticflickr.com/8047/8142510326_79bb931fb1_b.jpg"
+    ]
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "title": "Columbia Spotted Frog in Water",
+    "source_page": "https://www.flickr.com/photos/54430347@N04/5662433974",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "USFWS Pacific Southwest Region",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image shows a frog in water, not a large freshwater fish being lifted from a pond."
+    ]
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "title": "448. Water Parsnip",
+    "source_page": "https://www.flickr.com/photos/36783643@N05/3786577420",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "InAweofGod'sCreation",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "410 Client Error: Gone for url: https://live.staticflickr.com/2575/3786577420_e273c5d87c_b.jpg"
+    ]
+  },
+  {
+    "screen": "S002",
+    "source": "openverse",
+    "title": "Recessed areas slow and infiltrate water into soil on site",
+    "source_page": "https://www.flickr.com/photos/11233662@N02/2578681024",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "Pandorea...",
+    "license_canonical": "CC BY 2.0",
+    "result": "skipped_attempt_cap",
+    "reasons": [
+      "max_download_attempts_reached"
+    ]
+  },
+  {
+    "screen": "S003",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "calm pond mirror reflection sky trees water surface",
+    "found": 2
+  },
+  {
+    "screen": "S003",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "calm pond mirror reflection sky trees water surface",
+    "found": 0
+  },
+  {
+    "screen": "S003",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "calm pond mirror reflection",
+    "found": 20
+  },
+  {
+    "screen": "S003",
+    "source": "wikimedia_commons",
+    "title": "File:Pałac na Wyspie, Łazienki Królewskie w Warszawie, 2025, KsP 004.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pa%C5%82ac_na_Wyspie,_%C5%81azienki_Kr%C3%B3lewskie_w_Warszawie,_2025,_KsP_004.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "author": "Krzysztof Popławski",
+    "license_canonical": "CC BY 4.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S003",
+    "source": "wikimedia_commons",
+    "title": "File:Whispers of the Pond, Reflections Between Worlds.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Whispers_of_the_Pond,_Reflections_Between_Worlds.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Jemir Shamir",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S003",
+    "source": "openverse",
+    "title": "dawn of the sun reflections ashore an idyllic pond",
+    "source_page": "https://www.flickr.com/photos/9361468@N05/7172164846",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "quapan",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "404 Client Error: Not Found for url: https://live.staticflickr.com/7080/7172164846_b41cc930e7_b.jpg"
+    ]
+  },
+  {
+    "screen": "S003",
+    "source": "openverse",
+    "title": "Parallel",
+    "source_page": "https://www.flickr.com/photos/31246066@N04/4478016596",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "Ian Sane",
+    "license_canonical": "CC BY 2.0",
+    "result": "downloaded"
+  },
+  {
+    "screen": "S006",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Sunabachi Pond Inotaka Ryokuchi Nagoya Japan pond",
+    "found": 0
+  },
+  {
+    "screen": "S006",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Sunabachi Pond Inotaka Ryokuchi",
+    "found": 0
+  },
+  {
+    "screen": "S006",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Sunabachi Pond",
+    "found": 0
+  },
+  {
+    "screen": "S006",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Sunabachi Pond Inotaka Ryokuchi Nagoya Japan pond",
+    "found": 0
+  },
+  {
+    "screen": "S006",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Sunabachi Pond Inotaka Ryokuchi",
+    "found": 0
+  },
+  {
+    "screen": "S006",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Sunabachi Pond",
+    "found": 0
+  },
+  {
+    "screen": "S007",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Pond Tokyo aquatic plants underwater kaibori",
+    "found": 0
+  },
+  {
+    "screen": "S007",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Pond Tokyo aquatic",
+    "found": 0
+  },
+  {
+    "screen": "S007",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Pond",
+    "found": 25
+  },
+  {
+    "screen": "S007",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond Tokyo aquatic plants underwater kaibori",
+    "found": 0
+  },
+  {
+    "screen": "S007",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond Tokyo aquatic",
+    "found": 0
+  },
+  {
+    "screen": "S007",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond",
+    "found": 20
+  },
+  {
+    "screen": "S007",
+    "source": "wikimedia_commons",
+    "title": "File:100 views edo 087.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:100_views_edo_087.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Utagawa Hiroshige",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S007",
+    "source": "wikimedia_commons",
+    "title": "File:2018 Inokashira Park.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2018_Inokashira_Park.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kakidai",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S007",
+    "source": "wikimedia_commons",
+    "title": "File:Draining of Inokashira Pond panoramic.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Draining_of_Inokashira_Pond_panoramic.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Yasu ( talk )",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S007",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Benzaiten Shrine.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Benzaiten_Shrine.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Htanaungg",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S007",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park - Blossom over water1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_-_Blossom_over_water1.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "author": "J. Petersen",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S007",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park @ Kichijoji (9434339262).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_@_Kichijoji_(9434339262).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Guilhem Vellut from Annecy, France",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S007",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Cherry blossoms.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Cherry_blossoms.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Manish Prabhune",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S007",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Momiji.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Momiji.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Htanaungg",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S007",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Momiji 1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Momiji_1.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Htanaungg",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S007",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Pond.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Pond.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Htanaungg",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S007",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Teich.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Teich.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Saitô",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S007",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S010",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Japanese irrigation pond draining sluice gate water release mud",
+    "found": 0
+  },
+  {
+    "screen": "S010",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Japanese irrigation pond draining",
+    "found": 0
+  },
+  {
+    "screen": "S010",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Japanese irrigation",
+    "found": 25
+  },
+  {
+    "screen": "S010",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Japanese irrigation pond draining sluice gate water release mud",
+    "found": 0
+  },
+  {
+    "screen": "S010",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Japanese irrigation pond draining",
+    "found": 0
+  },
+  {
+    "screen": "S010",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Japanese irrigation",
+    "found": 20
+  },
+  {
+    "screen": "S010",
+    "source": "wikimedia_commons",
+    "title": "File:Farmers of forty centuries - Japanese irrigation foot-wheel.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Farmers_of_forty_centuries_-_Japanese_irrigation_foot-wheel.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Unknown photographer Unknown photographer",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S010",
+    "source": "wikimedia_commons",
+    "title": "File:Hand-dug irrigation tunnel at Zenba.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Hand-dug_irrigation_tunnel_at_Zenba.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Mzaki",
+    "license_canonical": "CC0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S010",
+    "source": "wikimedia_commons",
+    "title": "File:Heiwa Irrigation 1910 A.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Heiwa_Irrigation_1910_A.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "不明",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S010",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S011",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "traditional Japanese pond maintenance kaibori mud removal community",
+    "found": 0
+  },
+  {
+    "screen": "S011",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "traditional Japanese pond maintenance",
+    "found": 1
+  },
+  {
+    "screen": "S011",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "traditional Japanese pond maintenance kaibori mud removal community",
+    "found": 0
+  },
+  {
+    "screen": "S011",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "traditional Japanese pond maintenance",
+    "found": 1
+  },
+  {
+    "screen": "S011",
+    "source": "wikimedia_commons",
+    "title": "File:Gardens - Flickr - dalecruse.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Gardens_-_Flickr_-_dalecruse.jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Dale Cruse from San Francisco, CA, USA",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S011",
+    "source": "openverse",
+    "title": "Rikugien Garden",
+    "source_page": "https://www.flickr.com/photos/91873384@N04/54232515285",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "dalecruse",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image shows a scenic view of a pond surrounded by trees, with no local people or activities related to traditional maintenance visible."
+    ]
+  },
+  {
+    "screen": "S012",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "underwater pond bottom accumulated sediment leaf litter detritus",
+    "found": 0
+  },
+  {
+    "screen": "S012",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "underwater pond bottom accumulated",
+    "found": 0
+  },
+  {
+    "screen": "S012",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "underwater pond",
+    "found": 25
+  },
+  {
+    "screen": "S012",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "underwater pond bottom accumulated sediment leaf litter detritus",
+    "found": 0
+  },
+  {
+    "screen": "S012",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "underwater pond bottom accumulated",
+    "found": 0
+  },
+  {
+    "screen": "S012",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "underwater pond",
+    "found": 20
+  },
+  {
+    "screen": "S012",
+    "source": "wikimedia_commons",
+    "title": "File:Beket Pond Underwater plants.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Beket_Pond_Underwater_plants.JPG",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "DyPeMaP",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S012",
+    "source": "wikimedia_commons",
+    "title": "File:MareLambersart small pond Underwater02.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:MareLambersart_small_pond_Underwater02.JPG",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Lamiot",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S012",
+    "source": "wikimedia_commons",
+    "title": "File:MareLambersart small pond Underwater04.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:MareLambersart_small_pond_Underwater04.JPG",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Lamiot",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S012",
+    "source": "wikimedia_commons",
+    "title": "File:MareLambersart small pond Underwater05.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:MareLambersart_small_pond_Underwater05.JPG",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Lamiot",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S012",
+    "source": "wikimedia_commons",
+    "title": "File:Underwater-photography-pond-plants-1529207.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Underwater-photography-pond-plants-1529207.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Reto Gerber",
+    "license_canonical": "CC0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S012",
+    "source": "wikimedia_commons",
+    "title": "File:Underwater World, Singapore 2, Sentosa, Aug 06.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Underwater_World,_Singapore_2,_Sentosa,_Aug_06.JPG",
+    "license": "Copyrighted free use",
+    "license_url": "",
+    "author": "User:Sengkang",
+    "license_canonical": "copyrighted free use",
+    "result": "rejected_rights",
+    "reasons": [
+      "copyright_or_fair_use_excluded"
+    ]
+  },
+  {
+    "screen": "S012",
+    "source": "wikimedia_commons",
+    "title": "File:Underwater foliage. A small pond in the wood. (49019275516).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Underwater_foliage._A_small_pond_in_the_wood._(49019275516).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Paolo Gamba from Paris, France",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S012",
+    "source": "wikimedia_commons",
+    "title": "File:Underwater gratings - geograph.org.uk - 7449007.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Underwater_gratings_-_geograph.org.uk_-_7449007.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Neil Owen",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S012",
+    "source": "wikimedia_commons",
+    "title": "File:Underwater hedge at margin of Pen-y-fan Pond - geograph.org.uk - 6498961.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Underwater_hedge_at_margin_of_Pen-y-fan_Pond_-_geograph.org.uk_-_6498961.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "M J Roscoe",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S012",
+    "source": "wikimedia_commons",
+    "title": "File:Warwick DCS pond Underwater 1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Warwick_DCS_pond_Underwater_1.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "author": "Marshall-HTY",
+    "license_canonical": "CC BY 4.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S012",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "pond dredging mud removal clear underwater sunlight aquatic plants",
+    "found": 0
+  },
+  {
+    "screen": "S015",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "pond dredging mud removal",
+    "found": 0
+  },
+  {
+    "screen": "S015",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "pond dredging",
+    "found": 25
+  },
+  {
+    "screen": "S015",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "pond dredging mud removal clear underwater sunlight aquatic plants",
+    "found": 0
+  },
+  {
+    "screen": "S015",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "pond dredging mud removal",
+    "found": 0
+  },
+  {
+    "screen": "S015",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "pond dredging",
+    "found": 20
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Bridge across Flood Dredging Pond 20121215.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Bridge_across_Flood_Dredging_Pond_20121215.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "玄史生",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging Bredgar Pond - geograph.org.uk - 2464.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_Bredgar_Pond_-_geograph.org.uk_-_2464.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Penny Mayes",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging Sherbourne Pond - geograph.org.uk - 6283994.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_Sherbourne_Pond_-_geograph.org.uk_-_6283994.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Des Blenkinsopp",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging Townsend Pond, Great Gidding - geograph.org.uk - 2277548.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_Townsend_Pond,_Great_Gidding_-_geograph.org.uk_-_2277548.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Michael Trolove",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging Townsend Pond, Great Gidding - geograph.org.uk - 2277643.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_Townsend_Pond,_Great_Gidding_-_geograph.org.uk_-_2277643.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Michael Trolove",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging Townsend Pond, Great Gidding - geograph.org.uk - 2277729.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_Townsend_Pond,_Great_Gidding_-_geograph.org.uk_-_2277729.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Michael Trolove",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging a village pond - geograph.org.uk - 7287875.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_a_village_pond_-_geograph.org.uk_-_7287875.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Philip Halling",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging raft on Shibdon Pond - geograph.org.uk - 3800212.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_raft_on_Shibdon_Pond_-_geograph.org.uk_-_3800212.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Robert Graham",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging the Pond (16250567607).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_the_Pond_(16250567607).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Heath Alseike",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging the pond at Willoughby (1) - geograph.org.uk - 1537425.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_the_pond_at_Willoughby_(1)_-_geograph.org.uk_-_1537425.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Andy F",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging the pond at Willoughby (2) - geograph.org.uk - 1537428.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_the_pond_at_Willoughby_(2)_-_geograph.org.uk_-_1537428.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Andy F",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging the pond at Willoughby (3) - geograph.org.uk - 1537429.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_the_pond_at_Willoughby_(3)_-_geograph.org.uk_-_1537429.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Andy F",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging the pond at Willoughby (4) - geograph.org.uk - 1537431.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_the_pond_at_Willoughby_(4)_-_geograph.org.uk_-_1537431.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Andy F",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging the pond at Willoughby (5) - geograph.org.uk - 1537432.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_the_pond_at_Willoughby_(5)_-_geograph.org.uk_-_1537432.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Andy F",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging the pond at Willoughby (6) - geograph.org.uk - 1537435.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_the_pond_at_Willoughby_(6)_-_geograph.org.uk_-_1537435.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Andy F",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Dredging work on Half Mile Pond - geograph.org.uk - 5749062.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dredging_work_on_Half_Mile_Pond_-_geograph.org.uk_-_5749062.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Jonathan Hutchins",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Fishermen Angling at Flood Dredging Pond Shore 20121215a.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Fishermen_Angling_at_Flood_Dredging_Pond_Shore_20121215a.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "玄史生",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Flood Dredging Pond View from Slope 20121215a.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Flood_Dredging_Pond_View_from_Slope_20121215a.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "玄史生",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Nangang Park Flood Dredging Pond 20121215a.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Nangang_Park_Flood_Dredging_Pond_20121215a.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "玄史生",
+    "license_canonical": "CC0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Nangang Park Flood Dredging Pond 20121215b.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Nangang_Park_Flood_Dredging_Pond_20121215b.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "玄史生",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S015",
+    "source": "wikimedia_commons",
+    "title": "File:Paintshop Pond Dredging Project (4036519265).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Paintshop_Pond_Dredging_Project_(4036519265).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Massachusetts Dept. of Environmental Protection",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S015",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "drained pond basin workers digging mud drying pond bottom",
+    "found": 0
+  },
+  {
+    "screen": "S016",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "drained pond basin workers",
+    "found": 0
+  },
+  {
+    "screen": "S016",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "drained pond",
+    "found": 25
+  },
+  {
+    "screen": "S016",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "drained pond basin workers digging mud drying pond bottom",
+    "found": 0
+  },
+  {
+    "screen": "S016",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "drained pond basin workers",
+    "found": 0
+  },
+  {
+    "screen": "S016",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "drained pond",
+    "found": 20
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Bluegill Nests in a Drained Pond (51372008781).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Bluegill_Nests_in_a_Drained_Pond_(51372008781).jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "USFWS Mountain Prairie",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Costicles Pond drain - geograph.org.uk - 2831405.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Costicles_Pond_drain_-_geograph.org.uk_-_2831405.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Val Pollard",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained Higher Fish Pond - geograph.org.uk - 6652598.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_Higher_Fish_Pond_-_geograph.org.uk_-_6652598.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "T Eyre",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained Pond, Stantons Farm - geograph.org.uk - 1520778.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_Pond,_Stantons_Farm_-_geograph.org.uk_-_1520778.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Simon Carey",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained fish pond near Kock.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_fish_pond_near_Kock.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Von.grzanka",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained in 1935 Smalls Pond -c.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_in_1935_Smalls_Pond_-c.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Unknown author Unknown author",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained ornamental pond - geograph.org.uk - 2465909.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_ornamental_pond_-_geograph.org.uk_-_2465909.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Sandy B",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained ornamental pond - geograph.org.uk - 5957398.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_ornamental_pond_-_geograph.org.uk_-_5957398.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "N Chadwick",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained park pond, Hull - geograph.org.uk - 7731735.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_park_pond,_Hull_-_geograph.org.uk_-_7731735.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Paul Harrop",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained pond, Frankton - geograph.org.uk - 1127893.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_pond,_Frankton_-_geograph.org.uk_-_1127893.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Andy F",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained pond - North Waltham - geograph.org.uk - 8021160.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_pond_-_North_Waltham_-_geograph.org.uk_-_8021160.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Mr Ignavy",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained pond - geograph.org.uk - 2419859.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_pond_-_geograph.org.uk_-_2419859.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Russel Wills",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained pond above Gylen Park - geograph.org.uk - 2074877.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_pond_above_Gylen_Park_-_geograph.org.uk_-_2074877.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Sarah Charlesworth",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained pond at Broad Alley - geograph.org.uk - 227153.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_pond_at_Broad_Alley_-_geograph.org.uk_-_227153.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "David Stowell",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained pond at Water Mill Dam - geograph.org.uk - 7275055.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_pond_at_Water_Mill_Dam_-_geograph.org.uk_-_7275055.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Chris Morgan",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Drained pond by Boathouse Copse - geograph.org.uk - 1669571.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_pond_by_Boathouse_Copse_-_geograph.org.uk_-_1669571.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Mr Ignavy",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Fleet Pond - Drain - geograph.org.uk - 3372280.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Fleet_Pond_-_Drain_-_geograph.org.uk_-_3372280.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Colin Smith",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Frampton pond drain. - geograph.org.uk - 859868.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Frampton_pond_drain._-_geograph.org.uk_-_859868.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Mick Lobb",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Moffat Boating Pond drained - geograph.org.uk - 3352673.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Moffat_Boating_Pond_drained_-_geograph.org.uk_-_3352673.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Thomas Dick",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Richmond Park's Upper Pen Pond drained for work on outflow.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Richmond_Park%27s_Upper_Pen_Pond_drained_for_work_on_outflow.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Chiswick Chap",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S016",
+    "source": "wikimedia_commons",
+    "title": "File:Smalls Pond was drained in 1935.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Smalls_Pond_was_drained_in_1935.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Unknown author Unknown author",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S016",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S017",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "wet pond mud sediment close up plant seeds fragments macro",
+    "found": 0
+  },
+  {
+    "screen": "S017",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "wet pond mud sediment",
+    "found": 18
+  },
+  {
+    "screen": "S017",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "wet pond mud sediment close up plant seeds fragments macro",
+    "found": 0
+  },
+  {
+    "screen": "S017",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "wet pond mud sediment",
+    "found": 0
+  },
+  {
+    "screen": "S017",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "wet pond",
+    "found": 20
+  },
+  {
+    "screen": "S017",
+    "source": "wikimedia_commons",
+    "title": "File:Mudcracks along the shoreline of Storr's Lake (San Salvador Island, Bahamas) 10.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Mudcracks_along_the_shoreline_of_Storr%27s_Lake_(San_Salvador_Island,_Bahamas)_10.jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "James St. John",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S017",
+    "source": "wikimedia_commons",
+    "title": "File:Mudcracks along the shoreline of Storr's Lake (San Salvador Island, Bahamas) 11.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Mudcracks_along_the_shoreline_of_Storr%27s_Lake_(San_Salvador_Island,_Bahamas)_11.jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "James St. John",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S017",
+    "source": "wikimedia_commons",
+    "title": "File:Mudcracks along the shoreline of Storr's Lake (San Salvador Island, Bahamas) 12.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Mudcracks_along_the_shoreline_of_Storr%27s_Lake_(San_Salvador_Island,_Bahamas)_12.jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "James St. John",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S017",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S018",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "aquatic plant seed germinating muddy soil macro seedling",
+    "found": 0
+  },
+  {
+    "screen": "S018",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "aquatic plant seed germinating",
+    "found": 25
+  },
+  {
+    "screen": "S018",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "aquatic plant seed germinating muddy soil macro seedling",
+    "found": 0
+  },
+  {
+    "screen": "S018",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "aquatic plant seed germinating",
+    "found": 3
+  },
+  {
+    "screen": "S018",
+    "source": "wikimedia_commons",
+    "title": "File:Aquatic and wetland plants of southwestern United States (1972) (19128822614).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Aquatic_and_wetland_plants_of_southwestern_United_States_(1972)_(19128822614).jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Internet Archive Book Images",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S018",
+    "source": "wikimedia_commons",
+    "title": "File:Bud of Nelumbo nucifera.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Bud_of_Nelumbo_nucifera.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Mullookkaaran",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S018",
+    "source": "wikimedia_commons",
+    "title": "File:Ficus aurea (Florida strangler fig) (Sanibel Island, Florida, USA) 10 (25511160191).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Ficus_aurea_(Florida_strangler_fig)_(Sanibel_Island,_Florida,_USA)_10_(25511160191).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "James St. John",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S018",
+    "source": "wikimedia_commons",
+    "title": "File:Ficus aurea (Florida strangler fig) (Sanibel Island, Florida, USA) 11 (24973353434).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Ficus_aurea_(Florida_strangler_fig)_(Sanibel_Island,_Florida,_USA)_11_(24973353434).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "James St. John",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S018",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Park Tokyo postwar historical aerial photograph urban development",
+    "found": 0
+  },
+  {
+    "screen": "S022",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Park Tokyo postwar",
+    "found": 0
+  },
+  {
+    "screen": "S022",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Park",
+    "found": 25
+  },
+  {
+    "screen": "S022",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Park Tokyo postwar historical aerial photograph urban development",
+    "found": 0
+  },
+  {
+    "screen": "S022",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Park Tokyo postwar",
+    "found": 0
+  },
+  {
+    "screen": "S022",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Park",
+    "found": 20
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira-Park-Zoo Maingate.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira-Park-Zoo_Maingate.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "ソバ",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park PC053212.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_PC053212.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park PC053213.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_PC053213.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC052801.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC052801.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC052929.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC052929.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC052931.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC052931.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC052940.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC052940.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC052955.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC052955.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC052965.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC052965.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053036.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053036.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053045.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053045.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053078.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053078.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053119.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053119.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053130.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053130.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053178.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053178.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053194.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053194.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053197.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053197.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053203.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053203.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053204.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053204.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053205.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053205.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053206.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053206.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053209.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053209.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Zoo PC053218.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Zoo_PC053218.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kestrel",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira park pond 2024.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_park_pond_2024.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "ARandomName123",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "wikimedia_commons",
+    "title": "File:Inokasira Park.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokasira_Park.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "No machine-readable author provided. Los688 assumed (based on copyright claims).",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "openverse",
+    "title": "Inokashira park",
+    "source_page": "https://www.flickr.com/photos/97657657@N00/1933697995",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "tensaibuta",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image depicts a scenic view of a pond and trees rather than an aerial photograph of Inokashira Park during postwar urban development."
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "openverse",
+    "title": "Hanami at Inokashira Park 2013",
+    "source_page": "https://www.flickr.com/photos/31029865@N06/16701295521",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "Dick Thomas Johnson",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image features cherry blossoms and does not depict an aerial photograph or historical map of Inokashira Park."
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "openverse",
+    "title": "Hanami at Inokashira Park 2013",
+    "source_page": "https://www.flickr.com/photos/31029865@N06/16080250114",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "Dick Thomas Johnson",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image depicts a current recreational scene rather than a historical aerial photograph or map of the area during postwar urban development."
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "openverse",
+    "title": "Hanami at Inokashira Park 2013",
+    "source_page": "https://www.flickr.com/photos/31029865@N06/16082626943",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "Dick Thomas Johnson",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image depicts cherry blossoms around a pond with people enjoying boat rides, not a historical aerial photograph or map of the area around Inokashira Park during postwar urban development."
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "openverse",
+    "title": "Hanami at Inokashira Park 2013",
+    "source_page": "https://www.flickr.com/photos/31029865@N06/16080295174",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "Dick Thomas Johnson",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image depicts a modern scene rather than a historical aerial photograph or map-like aerial image. It shows recreational activities with boats and cherry blossoms."
+    ]
+  },
+  {
+    "screen": "S022",
+    "source": "openverse",
+    "title": "Hanami at Inokashira Park 2013",
+    "source_page": "https://www.flickr.com/photos/31029865@N06/16676658706",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "Dick Thomas Johnson",
+    "license_canonical": "CC BY 2.0",
+    "result": "skipped_attempt_cap",
+    "reasons": [
+      "max_download_attempts_reached"
+    ]
+  },
+  {
+    "screen": "S023",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Pond kaibori 2014 January March drained pond",
+    "found": 0
+  },
+  {
+    "screen": "S023",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Pond kaibori 2014",
+    "found": 1
+  },
+  {
+    "screen": "S023",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond kaibori 2014 January March drained pond",
+    "found": 0
+  },
+  {
+    "screen": "S023",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond kaibori 2014",
+    "found": 0
+  },
+  {
+    "screen": "S023",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond",
+    "found": 20
+  },
+  {
+    "screen": "S023",
+    "source": "wikimedia_commons",
+    "title": "File:Draining of Inokashira Pond panoramic.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Draining_of_Inokashira_Pond_panoramic.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Yasu ( talk )",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S023",
+    "source": "openverse",
+    "title": "Benten Shrine, Inokashira Pond - Utagawa Hiroshige",
+    "source_page": "https://www.flickr.com/photos/50620355@N07/9073400107",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "UCL News",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image is an illustration rather than a real archival photograph, and there are visible characters and text burned into the image."
+    ]
+  },
+  {
+    "screen": "S023",
+    "source": "openverse",
+    "title": "Sunset at Inokashira Pond",
+    "source_page": "https://www.flickr.com/photos/84326824@N00/6273114260",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "taiyofj",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image does not depict a lowered water level or the exposed pond bottom as expected, but rather shows water with lighting and reflections."
+    ]
+  },
+  {
+    "screen": "S023",
+    "source": "openverse",
+    "title": "井の頭池 Inokashira Pond",
+    "source_page": "https://www.flickr.com/photos/53360519@N04/5349296942",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "mrbriandesign",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image shows trees with autumn leaves and a water surface, but does not depict the exposed pond bottom of Inokashira Pond."
+    ]
+  },
+  {
+    "screen": "S023",
+    "source": "openverse",
+    "title": "井の頭池 Inokashira Pond",
+    "source_page": "https://www.flickr.com/photos/53360519@N04/5349292304",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "mrbriandesign",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image shows a pond with trees and green water but does not depict exposed pond bottom as required."
+    ]
+  },
+  {
+    "screen": "S023",
+    "source": "openverse",
+    "title": "井の頭池 Inokashira Pond",
+    "source_page": "https://www.flickr.com/photos/53360519@N04/5348688249",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "mrbriandesign",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The photograph shows a pond with reflections and autumn leaves but does not depict lowered water levels or the pond's bottom as specified."
+    ]
+  },
+  {
+    "screen": "S023",
+    "source": "openverse",
+    "title": "井の頭池 Inokashira Pond",
+    "source_page": "https://www.flickr.com/photos/53360519@N04/5348672225",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "mrbriandesign",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image depicts a pond with trees but does not show a lowered water level or an exposed pond bottom as expected."
+    ]
+  },
+  {
+    "screen": "S023",
+    "source": "openverse",
+    "title": "Birds at Inokashira pond",
+    "source_page": "https://www.flickr.com/photos/84326824@N00/6076690771",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "taiyofj",
+    "license_canonical": "CC BY 2.0",
+    "result": "skipped_attempt_cap",
+    "reasons": [
+      "max_download_attempts_reached"
+    ]
+  },
+  {
+    "screen": "S024",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Pond 2014 kaibori workers remove trash invasive fish",
+    "found": 0
+  },
+  {
+    "screen": "S024",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Pond 2014 kaibori",
+    "found": 1
+  },
+  {
+    "screen": "S024",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond 2014 kaibori workers remove trash invasive fish",
+    "found": 0
+  },
+  {
+    "screen": "S024",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond 2014 kaibori",
+    "found": 0
+  },
+  {
+    "screen": "S024",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond",
+    "found": 20
+  },
+  {
+    "screen": "S024",
+    "source": "wikimedia_commons",
+    "title": "File:Draining of Inokashira Pond panoramic.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Draining_of_Inokashira_Pond_panoramic.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Yasu ( talk )",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S024",
+    "source": "openverse",
+    "title": "Benten Shrine, Inokashira Pond - Utagawa Hiroshige",
+    "source_page": "https://www.flickr.com/photos/50620355@N07/9073400107",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "UCL News",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image is an artistic representation rather than a documentary photograph of the Inokashira Pond kaibori work."
+    ]
+  },
+  {
+    "screen": "S024",
+    "source": "openverse",
+    "title": "Sunset at Inokashira Pond",
+    "source_page": "https://www.flickr.com/photos/84326824@N00/6273114260",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "taiyofj",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image does not depict the Inokashira Pond kaibori work or workers removing trash or invasive organisms."
+    ]
+  },
+  {
+    "screen": "S024",
+    "source": "openverse",
+    "title": "井の頭池 Inokashira Pond",
+    "source_page": "https://www.flickr.com/photos/53360519@N04/5349296942",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "mrbriandesign",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image depicts a scenic landscape rather than workers involved in kaibori work."
+    ]
+  },
+  {
+    "screen": "S024",
+    "source": "openverse",
+    "title": "井の頭池 Inokashira Pond",
+    "source_page": "https://www.flickr.com/photos/53360519@N04/5349292304",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "mrbriandesign",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image does not depict the Inokashira Pond kaibori work or any workers. It shows a scenic view of a pond with trees."
+    ]
+  },
+  {
+    "screen": "S024",
+    "source": "openverse",
+    "title": "井の頭池 Inokashira Pond",
+    "source_page": "https://www.flickr.com/photos/53360519@N04/5348688249",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "mrbriandesign",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image does not depict workers or trash removal in the pond basin."
+    ]
+  },
+  {
+    "screen": "S024",
+    "source": "openverse",
+    "title": "井の頭池 Inokashira Pond",
+    "source_page": "https://www.flickr.com/photos/53360519@N04/5348672225",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "mrbriandesign",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The photo depicts a tranquil view of a pond and trees, and does not show workers removing trash or invasive organisms."
+    ]
+  },
+  {
+    "screen": "S024",
+    "source": "openverse",
+    "title": "Birds at Inokashira pond",
+    "source_page": "https://www.flickr.com/photos/84326824@N00/6076690771",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "taiyofj",
+    "license_canonical": "CC BY 2.0",
+    "result": "skipped_attempt_cap",
+    "reasons": [
+      "max_download_attempts_reached"
+    ]
+  },
+  {
+    "screen": "S025",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Chara charophyte Potamogeton perfoliatus aquatic plant close up",
+    "found": 0
+  },
+  {
+    "screen": "S025",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Chara charophyte Potamogeton perfoliatus",
+    "found": 0
+  },
+  {
+    "screen": "S025",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Chara charophyte",
+    "found": 25
+  },
+  {
+    "screen": "S025",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Chara charophyte Potamogeton perfoliatus aquatic plant close up",
+    "found": 0
+  },
+  {
+    "screen": "S025",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Chara charophyte Potamogeton perfoliatus",
+    "found": 0
+  },
+  {
+    "screen": "S025",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Chara charophyte",
+    "found": 0
+  },
+  {
+    "screen": "S025",
+    "source": "wikimedia_commons",
+    "title": "File:Algol AB movie imaged with the CHARA interferometer.gif",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Algol_AB_movie_imaged_with_the_CHARA_interferometer.gif",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Dr Fabien Baron, Dept. of Astronomy, University of Michigan, Ann Arbor, MI 48109-1090",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S025",
+    "source": "wikimedia_commons",
+    "title": "File:Chara, Chitwan.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Chara,_Chitwan.JPG",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Rajivkilanashrestha",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S025",
+    "source": "wikimedia_commons",
+    "title": "File:CharaFragilis.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:CharaFragilis.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Christian Fischer",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S025",
+    "source": "wikimedia_commons",
+    "title": "File:Chara - Flickr - treegrow (1).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Chara_-_Flickr_-_treegrow_(1).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Katja Schulz from Washington, D. C., USA",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S025",
+    "source": "wikimedia_commons",
+    "title": "File:Chara Sands before it rains - Kalarsky District, Zabaykalsky Krai, Siberia.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Chara_Sands_before_it_rains_-_Kalarsky_District,_Zabaykalsky_Krai,_Siberia.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Ellebedeva",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S025",
+    "source": "wikimedia_commons",
+    "title": "File:Chara antheridia.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Chara_antheridia.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Jon Houseman",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S025",
+    "source": "wikimedia_commons",
+    "title": "File:Chara baltica var. andina 16323017.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Chara_baltica_var._andina_16323017.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "author": "Annika Lindqvist",
+    "license_canonical": "CC BY 4.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S025",
+    "source": "wikimedia_commons",
+    "title": "File:Chara braunii 1.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Chara_braunii_1.JPG",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Show_ryu",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S025",
+    "source": "wikimedia_commons",
+    "title": "File:Chara coralllina var. kyusyuensis.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Chara_coralllina_var._kyusyuensis.JPG",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Show_ryu",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S025",
+    "source": "wikimedia_commons",
+    "title": "File:Chara fibrosa.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Chara_fibrosa.JPG",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Show_ryu",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S025",
+    "source": "wikimedia_commons",
+    "title": "File:Chara fossil.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Chara_fossil.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Ringwoodit",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S025",
+    "source": "wikimedia_commons",
+    "title": "File:Chara lupa.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Chara_lupa.JPG",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Pallastrelli",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S025",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S027",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "aquatic plant seeds sediment soil seed bank macro photograph",
+    "found": 0
+  },
+  {
+    "screen": "S027",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "aquatic plant seeds sediment",
+    "found": 1
+  },
+  {
+    "screen": "S027",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "aquatic plant seeds sediment soil seed bank macro photograph",
+    "found": 0
+  },
+  {
+    "screen": "S027",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "aquatic plant seeds sediment",
+    "found": 1
+  },
+  {
+    "screen": "S027",
+    "source": "wikimedia_commons",
+    "title": "File:20 Thousand Year Old Seed Clusters (b48eb07d-c1b7-4c32-bc9f-3bf4689e1881).JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:20_Thousand_Year_Old_Seed_Clusters_(b48eb07d-c1b7-4c32-bc9f-3bf4689e1881).JPG",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "NPS",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S027",
+    "source": "openverse",
+    "title": "Spiny naiad / Holly-leaved naiad (Najas marina L.)",
+    "source_page": "https://www.flickr.com/photos/203835554@N06/55319454985",
+    "license": "CC PDM 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "author": "mikkeldybdal.md",
+    "license_canonical": "cc pdm 1.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S030",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "clear pond underwater sunlight aquatic plants water clarity",
+    "found": 0
+  },
+  {
+    "screen": "S030",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "clear pond underwater sunlight",
+    "found": 0
+  },
+  {
+    "screen": "S030",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "clear pond",
+    "found": 25
+  },
+  {
+    "screen": "S030",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "clear pond underwater sunlight aquatic plants water clarity",
+    "found": 0
+  },
+  {
+    "screen": "S030",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "clear pond underwater sunlight",
+    "found": 0
+  },
+  {
+    "screen": "S030",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "clear pond",
+    "found": 20
+  },
+  {
+    "screen": "S030",
+    "source": "wikimedia_commons",
+    "title": "File:A \"clear\" mission (2795621).jpeg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:A_%22clear%22_mission_(2795621).jpeg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "U.S. Air Force image by Tech. Sgt. David Salanitri",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S030",
+    "source": "wikimedia_commons",
+    "title": "File:A cleared pond - geograph.org.uk - 5239882.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:A_cleared_pond_-_geograph.org.uk_-_5239882.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Mr Ignavy",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S030",
+    "source": "wikimedia_commons",
+    "title": "File:Adirondacks - Follensby Clear Pond - 01.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Adirondacks_-_Follensby_Clear_Pond_-_01.JPG",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Jarek Tuszyński",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S030",
+    "source": "wikimedia_commons",
+    "title": "File:Clear Pond in the Adirondack Mountains - panoramio.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Clear_Pond_in_the_Adirondack_Mountains_-_panoramio.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Idawriter",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S030",
+    "source": "wikimedia_commons",
+    "title": "File:Clear Springs Nature Preserve Pond.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Clear_Springs_Nature_Preserve_Pond.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Michiganguy123",
+    "license_canonical": "CC0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S030",
+    "source": "wikimedia_commons",
+    "title": "File:Clear pond - panoramio.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Clear_pond_-_panoramio.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "homeronz",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S030",
+    "source": "wikimedia_commons",
+    "title": "File:Clear pond with coconut trees and both side.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Clear_pond_with_coconut_trees_and_both_side.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Indhuja ramachandran",
+    "license_canonical": "CC0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S030",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S031",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "small freshwater fish hiding submerged aquatic vegetation underwater",
+    "found": 0
+  },
+  {
+    "screen": "S031",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "small freshwater fish hiding",
+    "found": 4
+  },
+  {
+    "screen": "S031",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "small freshwater fish hiding submerged aquatic vegetation underwater",
+    "found": 0
+  },
+  {
+    "screen": "S031",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "small freshwater fish hiding",
+    "found": 8
+  },
+  {
+    "screen": "S031",
+    "source": "wikimedia_commons",
+    "title": "File:Cascade Torrent Salamander (54070331419).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Cascade_Torrent_Salamander_(54070331419).jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "USFWS Pacific",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S031",
+    "source": "wikimedia_commons",
+    "title": "File:Coast watch (1979) (20658975685).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Coast_watch_(1979)_(20658975685).jpg",
+    "license": "No restrictions",
+    "license_url": "https://www.flickr.com/commons/usage/",
+    "author": "Internet Archive Book Images",
+    "license_canonical": "no restrictions",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S031",
+    "source": "wikimedia_commons",
+    "title": "File:Goldfish varieties and tropical aquarium fishes; a complete guide to aquaria and related subjects (1917) (14781288731).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Goldfish_varieties_and_tropical_aquarium_fishes;_a_complete_guide_to_aquaria_and_related_subjects_(1917)_(14781288731).jpg",
+    "license": "No restrictions",
+    "license_url": "https://www.flickr.com/commons/usage/",
+    "author": "Internet Archive Book Images",
+    "license_canonical": "no restrictions",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S031",
+    "source": "wikimedia_commons",
+    "title": "File:The aquarium - its inhabitants, structure, and management (1910) (19746631135).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:The_aquarium_-_its_inhabitants,_structure,_and_management_(1910)_(19746631135).jpg",
+    "license": "No restrictions",
+    "license_url": "https://www.flickr.com/commons/usage/",
+    "author": "Internet Archive Book Images",
+    "license_canonical": "no restrictions",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S031",
+    "source": "openverse",
+    "title": "Piranha window_0663",
+    "source_page": "https://www.flickr.com/photos/62126383@N00/3041129284",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "hoyasmeg",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image depicts an aquarium with fish but does not show small freshwater fish sheltering among dense submerged aquatic plants."
+    ]
+  },
+  {
+    "screen": "S031",
+    "source": "openverse",
+    "title": "Freshwater mussels in the Molalla River",
+    "source_page": "https://www.flickr.com/photos/50169152@N06/48958674107",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "BLM Oregon & Washington",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image shows freshwater mussels instead of small freshwater fish among aquatic plants."
+    ]
+  },
+  {
+    "screen": "S031",
+    "source": "openverse",
+    "title": "Freshwater mussels in the Molalla River",
+    "source_page": "https://www.flickr.com/photos/50169152@N06/48958676997",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "BLM Oregon & Washington",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image features people in water but does not show any small freshwater fish or dense submerged aquatic plants."
+    ]
+  },
+  {
+    "screen": "S031",
+    "source": "openverse",
+    "title": "Freshwater mussels in the Molalla River",
+    "source_page": "https://www.flickr.com/photos/50169152@N06/48958675962",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "BLM Oregon & Washington",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image shows a hand holding a shell and does not depict underwater fish or plants."
+    ]
+  },
+  {
+    "screen": "S031",
+    "source": "openverse",
+    "title": "Freshwater mussels in the Molalla River",
+    "source_page": "https://www.flickr.com/photos/50169152@N06/48957938618",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "BLM Oregon & Washington",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image does not show small freshwater fish or dense submerged aquatic plants."
+    ]
+  },
+  {
+    "screen": "S031",
+    "source": "openverse",
+    "title": "Freshwater mussels in the Molalla River",
+    "source_page": "https://www.flickr.com/photos/50169152@N06/48957939628",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "BLM Oregon & Washington",
+    "license_canonical": "CC BY 2.0",
+    "result": "skipped_attempt_cap",
+    "reasons": [
+      "max_download_attempts_reached"
+    ]
+  },
+  {
+    "screen": "S032",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Pseudorasbora parva fry juvenile fish little grebe chick pond",
+    "found": 0
+  },
+  {
+    "screen": "S032",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Pseudorasbora parva fry juvenile",
+    "found": 0
+  },
+  {
+    "screen": "S032",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Pseudorasbora parva",
+    "found": 25
+  },
+  {
+    "screen": "S032",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Pseudorasbora parva fry juvenile fish little grebe chick pond",
+    "found": 0
+  },
+  {
+    "screen": "S032",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Pseudorasbora parva fry juvenile",
+    "found": 0
+  },
+  {
+    "screen": "S032",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Pseudorasbora parva",
+    "found": 20
+  },
+  {
+    "screen": "S032",
+    "source": "wikimedia_commons",
+    "title": "File:Fishes in upper Kura and Aras river drainages (10.3897-zse.96.52241) Figure 4.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Fishes_in_upper_Kura_and_Aras_river_drainages_(10.3897-zse.96.52241)_Figure_4.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "author": "Kaya C, Bayçelebi E, Turan D (2020) Taxonomic assessment and distribution of fishes in upper Kura and Aras river drainages. Zoosystematics and Evolution 96(2): 325-344. https://doi.org/10.3897/zse.96.52241",
+    "license_canonical": "CC BY 4.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S032",
+    "source": "wikimedia_commons",
+    "title": "File:Hal - Pseudorasbora parva - 1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Hal_-_Pseudorasbora_parva_-_1.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Emőke Dénes",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S032",
+    "source": "wikimedia_commons",
+    "title": "File:Hal - Pseudorasbora parva - 2.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Hal_-_Pseudorasbora_parva_-_2.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Emőke Dénes",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S032",
+    "source": "wikimedia_commons",
+    "title": "File:Naturalis Biodiversity Center - RMNH.ART.139 - Pseudorasbora parva (Temminck and Schlegel) - Kawahara Keiga - 1823 - 1829 - Siebold Collection - pencil drawing - water colour.jpeg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Naturalis_Biodiversity_Center_-_RMNH.ART.139_-_Pseudorasbora_parva_(Temminck_and_Schlegel)_-_Kawahara_Keiga_-_1823_-_1829_-_Siebold_Collection_-_pencil_drawing_-_water_colour.jpeg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "(Temminck and Schlegel)",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S032",
+    "source": "wikimedia_commons",
+    "title": "File:Pse.par1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pse.par1.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Llyn Godionduon",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S032",
+    "source": "wikimedia_commons",
+    "title": "File:PseudorasboraParva.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:PseudorasboraParva.JPG",
+    "license": "CC BY-SA 2.5",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
+    "author": "Piet Spaans",
+    "license_canonical": "cc by-sa 2.5",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S032",
+    "source": "wikimedia_commons",
+    "title": "File:PseudorasboraParva2.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:PseudorasboraParva2.JPG",
+    "license": "CC BY-SA 2.5",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
+    "author": "Piet Spaans Viridiflavus",
+    "license_canonical": "cc by-sa 2.5",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S032",
+    "source": "wikimedia_commons",
+    "title": "File:Pseudorasbora parva(Hamamatsu,Shizuoka,Japan).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pseudorasbora_parva(Hamamatsu,Shizuoka,Japan).jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Seotaro",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S032",
+    "source": "wikimedia_commons",
+    "title": "File:Pseudorasbora parva(edited version).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pseudorasbora_parva(edited_version).jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Seotaro , (cleaned up and denoised by Estrilda , and edited by Laitche )",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S032",
+    "source": "wikimedia_commons",
+    "title": "File:Pseudorasbora parva, Dniester Estuary.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pseudorasbora_parva,_Dniester_Estuary.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Yuriy Kvach",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S032",
+    "source": "wikimedia_commons",
+    "title": "File:Pseudorasbora parva.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pseudorasbora_parva.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Seotaro , edited by Lycaon",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S032",
+    "source": "wikimedia_commons",
+    "title": "File:Pseudorasbora parva (10.3897-zoologia.35.e22162) Figure 1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pseudorasbora_parva_(10.3897-zoologia.35.e22162)_Figure_1.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "author": "Zhu D, Yang K, Sun N, Wang W, Zhou X (2018) Embryonic and larval development of the topmouth gudgeon, Pseudorasbora parva (Teleostei: Cyprinidae). Zoologia 35: 1-8. https://doi.org/10.3897/zoologia.35.e22162",
+    "license_canonical": "CC BY 4.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S032",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S035",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Pond Tokyo restored aquatic plants waterweed",
+    "found": 0
+  },
+  {
+    "screen": "S035",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Pond Tokyo restored",
+    "found": 0
+  },
+  {
+    "screen": "S035",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Pond",
+    "found": 25
+  },
+  {
+    "screen": "S035",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond Tokyo restored aquatic plants waterweed",
+    "found": 0
+  },
+  {
+    "screen": "S035",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond Tokyo restored",
+    "found": 0
+  },
+  {
+    "screen": "S035",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond",
+    "found": 20
+  },
+  {
+    "screen": "S035",
+    "source": "wikimedia_commons",
+    "title": "File:100 views edo 087.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:100_views_edo_087.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Utagawa Hiroshige",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S035",
+    "source": "wikimedia_commons",
+    "title": "File:2018 Inokashira Park.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2018_Inokashira_Park.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kakidai",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S035",
+    "source": "wikimedia_commons",
+    "title": "File:Draining of Inokashira Pond panoramic.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Draining_of_Inokashira_Pond_panoramic.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Yasu ( talk )",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S035",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Benzaiten Shrine.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Benzaiten_Shrine.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Htanaungg",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S035",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park - Blossom over water1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_-_Blossom_over_water1.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "author": "J. Petersen",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S035",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park @ Kichijoji (9434339262).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_@_Kichijoji_(9434339262).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Guilhem Vellut from Annecy, France",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S035",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Cherry blossoms.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Cherry_blossoms.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Manish Prabhune",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S035",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Momiji.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Momiji.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Htanaungg",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S035",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Momiji 1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Momiji_1.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Htanaungg",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S035",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Pond.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Pond.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Htanaungg",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S035",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Teich.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Teich.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Saitô",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S035",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S036",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Pseudorasbora parva juvenile topmouth gudgeon fry aquatic plants",
+    "found": 0
+  },
+  {
+    "screen": "S036",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Pseudorasbora parva juvenile topmouth",
+    "found": 0
+  },
+  {
+    "screen": "S036",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Pseudorasbora parva",
+    "found": 25
+  },
+  {
+    "screen": "S036",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Pseudorasbora parva juvenile topmouth gudgeon fry aquatic plants",
+    "found": 0
+  },
+  {
+    "screen": "S036",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Pseudorasbora parva juvenile topmouth",
+    "found": 0
+  },
+  {
+    "screen": "S036",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Pseudorasbora parva",
+    "found": 20
+  },
+  {
+    "screen": "S036",
+    "source": "wikimedia_commons",
+    "title": "File:Fishes in upper Kura and Aras river drainages (10.3897-zse.96.52241) Figure 4.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Fishes_in_upper_Kura_and_Aras_river_drainages_(10.3897-zse.96.52241)_Figure_4.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "author": "Kaya C, Bayçelebi E, Turan D (2020) Taxonomic assessment and distribution of fishes in upper Kura and Aras river drainages. Zoosystematics and Evolution 96(2): 325-344. https://doi.org/10.3897/zse.96.52241",
+    "license_canonical": "CC BY 4.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S036",
+    "source": "wikimedia_commons",
+    "title": "File:Hal - Pseudorasbora parva - 1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Hal_-_Pseudorasbora_parva_-_1.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Emőke Dénes",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S036",
+    "source": "wikimedia_commons",
+    "title": "File:Hal - Pseudorasbora parva - 2.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Hal_-_Pseudorasbora_parva_-_2.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Emőke Dénes",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S036",
+    "source": "wikimedia_commons",
+    "title": "File:Naturalis Biodiversity Center - RMNH.ART.139 - Pseudorasbora parva (Temminck and Schlegel) - Kawahara Keiga - 1823 - 1829 - Siebold Collection - pencil drawing - water colour.jpeg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Naturalis_Biodiversity_Center_-_RMNH.ART.139_-_Pseudorasbora_parva_(Temminck_and_Schlegel)_-_Kawahara_Keiga_-_1823_-_1829_-_Siebold_Collection_-_pencil_drawing_-_water_colour.jpeg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "(Temminck and Schlegel)",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S036",
+    "source": "wikimedia_commons",
+    "title": "File:Pse.par1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pse.par1.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Llyn Godionduon",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S036",
+    "source": "wikimedia_commons",
+    "title": "File:PseudorasboraParva.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:PseudorasboraParva.JPG",
+    "license": "CC BY-SA 2.5",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
+    "author": "Piet Spaans",
+    "license_canonical": "cc by-sa 2.5",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S036",
+    "source": "wikimedia_commons",
+    "title": "File:PseudorasboraParva2.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:PseudorasboraParva2.JPG",
+    "license": "CC BY-SA 2.5",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
+    "author": "Piet Spaans Viridiflavus",
+    "license_canonical": "cc by-sa 2.5",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S036",
+    "source": "wikimedia_commons",
+    "title": "File:Pseudorasbora parva(Hamamatsu,Shizuoka,Japan).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pseudorasbora_parva(Hamamatsu,Shizuoka,Japan).jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Seotaro",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S036",
+    "source": "wikimedia_commons",
+    "title": "File:Pseudorasbora parva(edited version).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pseudorasbora_parva(edited_version).jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Seotaro , (cleaned up and denoised by Estrilda , and edited by Laitche )",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S036",
+    "source": "wikimedia_commons",
+    "title": "File:Pseudorasbora parva, Dniester Estuary.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pseudorasbora_parva,_Dniester_Estuary.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Yuriy Kvach",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S036",
+    "source": "wikimedia_commons",
+    "title": "File:Pseudorasbora parva.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pseudorasbora_parva.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Seotaro , edited by Lycaon",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S036",
+    "source": "wikimedia_commons",
+    "title": "File:Pseudorasbora parva (10.3897-zoologia.35.e22162) Figure 1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pseudorasbora_parva_(10.3897-zoologia.35.e22162)_Figure_1.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "author": "Zhu D, Yang K, Sun N, Wang W, Zhou X (2018) Embryonic and larval development of the topmouth gudgeon, Pseudorasbora parva (Teleostei: Cyprinidae). Zoologia 35: 1-8. https://doi.org/10.3897/zoologia.35.e22162",
+    "license_canonical": "CC BY 4.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S036",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S038",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "red swamp crayfish Procambarus clarkii eating aquatic plant",
+    "found": 0
+  },
+  {
+    "screen": "S038",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "red swamp crayfish Procambarus",
+    "found": 25
+  },
+  {
+    "screen": "S038",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "red swamp crayfish Procambarus clarkii eating aquatic plant",
+    "found": 0
+  },
+  {
+    "screen": "S038",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "red swamp crayfish Procambarus",
+    "found": 20
+  },
+  {
+    "screen": "S038",
+    "source": "wikimedia_commons",
+    "title": "File:Blue morph, red swamp crayfish.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Blue_morph,_red_swamp_crayfish.jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Sarah Zukoff",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S038",
+    "source": "wikimedia_commons",
+    "title": "File:Crayfish(Astacus astacus).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Crayfish(Astacus_astacus).jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "author": "MarioM",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S038",
+    "source": "wikimedia_commons",
+    "title": "File:Krebs 1.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Krebs_1.JPG",
+    "license": "CC BY-SA 2.0 de",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en",
+    "author": "Benutzer:Lucarelli",
+    "license_canonical": "cc by-sa 2.0 de",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S038",
+    "source": "wikimedia_commons",
+    "title": "File:Orconectes limosus, Kamberkrebs.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Orconectes_limosus,_Kamberkrebs.JPG",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "A.Berger",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S038",
+    "source": "wikimedia_commons",
+    "title": "File:Procambarus clarkii-1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Procambarus_clarkii-1.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Eugene Zelenko",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S038",
+    "source": "wikimedia_commons",
+    "title": "File:Procambarus clarkii-2.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Procambarus_clarkii-2.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Eugene Zelenko",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S038",
+    "source": "wikimedia_commons",
+    "title": "File:Procambarus clarkii. White-clawed Crayfish (32290492333).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Procambarus_clarkii._White-clawed_Crayfish_(32290492333).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "gailhampshire from Cradley, Malvern, U.K",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S038",
+    "source": "wikimedia_commons",
+    "title": "File:Procambarus clarkii (10.1590-S0104-64972014002214) Figure 1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Procambarus_clarkii_(10.1590-S0104-64972014002214)_Figure_1.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "author": "Loureiro, T.G. et al . Red swamp crayfish: biology, ecology and invasion - an overview. Nauplius [online]. 2015, v. 23, n. 1 [Accessed 15 November 2021] , pp. 1-19",
+    "license_canonical": "CC BY 4.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S038",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S042",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Pond invasive fish crayfish survey removal volunteers",
+    "found": 0
+  },
+  {
+    "screen": "S042",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Pond invasive fish",
+    "found": 0
+  },
+  {
+    "screen": "S042",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Inokashira Pond",
+    "found": 25
+  },
+  {
+    "screen": "S042",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond invasive fish crayfish survey removal volunteers",
+    "found": 0
+  },
+  {
+    "screen": "S042",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond invasive fish",
+    "found": 0
+  },
+  {
+    "screen": "S042",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Inokashira Pond",
+    "found": 20
+  },
+  {
+    "screen": "S042",
+    "source": "wikimedia_commons",
+    "title": "File:100 views edo 087.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:100_views_edo_087.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Utagawa Hiroshige",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S042",
+    "source": "wikimedia_commons",
+    "title": "File:2018 Inokashira Park.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2018_Inokashira_Park.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Kakidai",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S042",
+    "source": "wikimedia_commons",
+    "title": "File:Draining of Inokashira Pond panoramic.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Draining_of_Inokashira_Pond_panoramic.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Yasu ( talk )",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S042",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Benzaiten Shrine.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Benzaiten_Shrine.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Htanaungg",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S042",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park - Blossom over water1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_-_Blossom_over_water1.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "author": "J. Petersen",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S042",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park @ Kichijoji (9434339262).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_@_Kichijoji_(9434339262).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Guilhem Vellut from Annecy, France",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S042",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Cherry blossoms.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Cherry_blossoms.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Manish Prabhune",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S042",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Momiji.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Momiji.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Htanaungg",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S042",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Park Momiji 1.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Park_Momiji_1.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Htanaungg",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S042",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Pond.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Pond.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Htanaungg",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S042",
+    "source": "wikimedia_commons",
+    "title": "File:Inokashira Teich.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Inokashira_Teich.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Saitô",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S042",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S045",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Kasamatsu Tonbo Tengoku pond draining volunteer conservation event Gifu",
+    "found": 0
+  },
+  {
+    "screen": "S045",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Kasamatsu Tonbo Tengoku pond",
+    "found": 0
+  },
+  {
+    "screen": "S045",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Kasamatsu Tonbo",
+    "found": 0
+  },
+  {
+    "screen": "S045",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Kasamatsu Tonbo Tengoku pond draining volunteer conservation event Gifu",
+    "found": 0
+  },
+  {
+    "screen": "S045",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Kasamatsu Tonbo Tengoku pond",
+    "found": 0
+  },
+  {
+    "screen": "S045",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Kasamatsu Tonbo",
+    "found": 0
+  },
+  {
+    "screen": "S046",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Kasamatsu Tonbo Tengoku biotope pond Gifu Japan wetland",
+    "found": 0
+  },
+  {
+    "screen": "S046",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Kasamatsu Tonbo Tengoku biotope",
+    "found": 0
+  },
+  {
+    "screen": "S046",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "Kasamatsu Tonbo",
+    "found": 0
+  },
+  {
+    "screen": "S046",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Kasamatsu Tonbo Tengoku biotope pond Gifu Japan wetland",
+    "found": 0
+  },
+  {
+    "screen": "S046",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Kasamatsu Tonbo Tengoku biotope",
+    "found": 0
+  },
+  {
+    "screen": "S046",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "Kasamatsu Tonbo",
+    "found": 0
+  },
+  {
+    "screen": "S047",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "dragonfly nymph larva underwater freshwater fish invasive species",
+    "found": 0
+  },
+  {
+    "screen": "S047",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "dragonfly nymph larva underwater",
+    "found": 25
+  },
+  {
+    "screen": "S047",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "dragonfly nymph larva underwater freshwater fish invasive species",
+    "found": 0
+  },
+  {
+    "screen": "S047",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "dragonfly nymph larva underwater",
+    "found": 1
+  },
+  {
+    "screen": "S047",
+    "source": "wikimedia_commons",
+    "title": "File:20240801 great egret with dragonfly nymph keeney cove PD208753.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:20240801_great_egret_with_dragonfly_nymph_keeney_cove_PD208753.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Paul Danese",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S047",
+    "source": "wikimedia_commons",
+    "title": "File:Anauxite - Dragonfly nymph molt (by).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Anauxite_-_Dragonfly_nymph_molt_(by).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Anauxite",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S047",
+    "source": "wikimedia_commons",
+    "title": "File:Brown hawker dragonfly (Aeshna grandis) dragonfly nymph late instar.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Brown_hawker_dragonfly_(Aeshna_grandis)_dragonfly_nymph_late_instar.JPG",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Charles J. Sharp",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S047",
+    "source": "wikimedia_commons",
+    "title": "File:Dragonfly-nymph-exoskeleton.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dragonfly-nymph-exoskeleton.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Jim Conrad",
+    "license_canonical": "Public Domain",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image shows a dragonfly exuvia on a leaf, not an underwater nymph or fish scene."
+    ]
+  },
+  {
+    "screen": "S047",
+    "source": "wikimedia_commons",
+    "title": "File:Dragonfly (nymph) (5886193050).png",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dragonfly_(nymph)_(5886193050).png",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Dave Huth from Allegany County, NY, USA",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S047",
+    "source": "wikimedia_commons",
+    "title": "File:Dragonfly Nymph Case (7064285549).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Dragonfly_Nymph_Case_(7064285549).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Ian Sutton from Oberon, Australia",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S047",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S048",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "large group community volunteers wading pond conservation event Japan",
+    "found": 0
+  },
+  {
+    "screen": "S048",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "large group community volunteers",
+    "found": 25
+  },
+  {
+    "screen": "S048",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "large group community volunteers wading pond conservation event Japan",
+    "found": 0
+  },
+  {
+    "screen": "S048",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "large group community volunteers",
+    "found": 20
+  },
+  {
+    "screen": "S048",
+    "source": "wikimedia_commons",
+    "title": "File:A group of law enforcement explorers standing around chatting.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:A_group_of_law_enforcement_explorers_standing_around_chatting.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Shane T. McCoy",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S048",
+    "source": "wikimedia_commons",
+    "title": "File:Antiprisma quadrado torcido.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Antiprisma_quadrado_torcido.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Exhibit made by MockUp Company, photo by Rodrigo.Argenton",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S048",
+    "source": "wikimedia_commons",
+    "title": "File:Group Excellence- Friends of Nevada Wilderness, Winnemucca District Office, NV (34012995713).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Group_Excellence-_Friends_of_Nevada_Wilderness,_Winnemucca_District_Office,_NV_(34012995713).jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "mypubliclands",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S048",
+    "source": "wikimedia_commons",
+    "title": "File:Group Excellence- Friends of Nevada Wilderness, Winnemucca District Office, NV (34436557030).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Group_Excellence-_Friends_of_Nevada_Wilderness,_Winnemucca_District_Office,_NV_(34436557030).jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "mypubliclands",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S048",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "pond volunteers wading searching catching fish muddy water conservation",
+    "found": 0
+  },
+  {
+    "screen": "S049",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "pond volunteers wading searching",
+    "found": 0
+  },
+  {
+    "screen": "S049",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "pond volunteers",
+    "found": 25
+  },
+  {
+    "screen": "S049",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "pond volunteers wading searching catching fish muddy water conservation",
+    "found": 0
+  },
+  {
+    "screen": "S049",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "pond volunteers wading searching",
+    "found": 0
+  },
+  {
+    "screen": "S049",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "pond volunteers",
+    "found": 20
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Earth Day Volunteers (14189279511).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Earth_Day_Volunteers_(14189279511).jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "USFWS Mountain-Prairie",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Karen Gillan as Amy Pond.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Karen_Gillan_as_Amy_Pond.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "alun.vega",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Koi pond in Kyoto.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Koi_pond_in_Kyoto.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Withlocals B.V.",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Lily pond and Observation tower at Volunteer Park, probably between 1908 and 1930 (SEATTLE 2074).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Lily_pond_and_Observation_tower_at_Volunteer_Park,_probably_between_1908_and_1930_(SEATTLE_2074).jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Unknown photographer Unknown photographer",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Normandy Pond - geograph.org.uk - 696937.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Normandy_Pond_-_geograph.org.uk_-_696937.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Nigel Cox",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Pond Baikal 01.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pond_Baikal_01.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Дмитрий Романенко (Dmitry Romanenko)",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Pond Baikal 02.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pond_Baikal_02.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Дмитрий Романенко (Dmitry Romanenko)",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Pond Baikal 03.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pond_Baikal_03.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Дмитрий Романенко (Dmitry Romanenko)",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Pond Baikal 04.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pond_Baikal_04.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Дмитрий Романенко (Dmitry Romanenko)",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Pond Baikal 06.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pond_Baikal_06.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Дмитрий Романенко (Dmitry Romanenko)",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Pond Baikal 07.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pond_Baikal_07.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Дмитрий Романенко (Dmitry Romanenko)",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Pond Baikal 09.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pond_Baikal_09.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Дмитрий Романенко (Dmitry Romanenko)",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Pond Baikal 10.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pond_Baikal_10.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Дмитрий Романенко (Dmitry Romanenko)",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Pond Baikal 12.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pond_Baikal_12.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Дмитрий Романенко (Dmitry Romanenko)",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Pond Vegetation at Ecchinswell - geograph.org.uk - 29284.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pond_Vegetation_at_Ecchinswell_-_geograph.org.uk_-_29284.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Pam Brophy",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Pond on Bramblefields local nature reserve - geograph.org.uk - 605220.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pond_on_Bramblefields_local_nature_reserve_-_geograph.org.uk_-_605220.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Keith Edkins",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Starr-991114-1168-Prosopis pallida-volunteers-Kealia Pond-Maui (24528355175).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Starr-991114-1168-Prosopis_pallida-volunteers-Kealia_Pond-Maui_(24528355175).jpg",
+    "license": "CC BY 3.0 us",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/us/deed.en",
+    "author": "Forest and Kim Starr",
+    "license_canonical": "cc by 3.0 us",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:The Eleventh Doctor and Amy Pond.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:The_Eleventh_Doctor_and_Amy_Pond.jpg",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "alun.vega",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S049",
+    "source": "wikimedia_commons",
+    "title": "File:Two Ponds Tuesday Volunteers 3 (48050954621).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Two_Ponds_Tuesday_Volunteers_3_(48050954621).jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "USFWS Mountain Prairie",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S049",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S050",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "fish holding containers buckets temporary storage pond survey",
+    "found": 0
+  },
+  {
+    "screen": "S050",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "fish holding containers buckets",
+    "found": 2
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "fish holding containers buckets temporary storage pond survey",
+    "found": 0
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "fish holding containers buckets",
+    "found": 0
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "fish holding",
+    "found": 20
+  },
+  {
+    "screen": "S050",
+    "source": "wikimedia_commons",
+    "title": "File:Bucket Tags - DPLA - 576b3652abc3409ddd16e7e599b15c12.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Bucket_Tags_-_DPLA_-_576b3652abc3409ddd16e7e599b15c12.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Department of the Interior. U.S. Fish and Wildlife Service. National Conservation Training Center. 10/1997-8888",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S050",
+    "source": "wikimedia_commons",
+    "title": "File:Le Christ chez Marthe et Marie - Joos Goemaere.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Le_Christ_chez_Marthe_et_Marie_-_Joos_Goemaere.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Joos Goemare",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "title": "1958. Fish holding box in Vinegar Creek. Spruce budworm control project. Malheur National Forest, Oregon.",
+    "source_page": "https://www.flickr.com/photos/151887236@N05/33137947816",
+    "license": "CC PDM 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "author": "USDA Forest Service",
+    "license_canonical": "cc pdm 1.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "title": "1958. Robert L. Furniss examines fish holding box used by Oregon Game Commission in Vinegar Creek on the Malheur National Forest to test the effect of 1958 western spruce budworm spray project on trout.",
+    "source_page": "https://www.flickr.com/photos/151887236@N05/32364506353",
+    "license": "CC PDM 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "author": "USDA Forest Service",
+    "license_canonical": "cc pdm 1.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "title": "1958. Fish holding box in Vinegar Creek on the Malheur National Forest. Western spruce budworm control project. Oregon.",
+    "source_page": "https://www.flickr.com/photos/151887236@N05/32334429434",
+    "license": "CC PDM 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "author": "USDA Forest Service",
+    "license_canonical": "cc pdm 1.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "title": "Man Fishing Holding Bottle Anders",
+    "source_page": "https://www.rawpixel.com/image/9023274/man-fishing-and-holding-bottle-anders-zorn",
+    "license": "CC CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "author": "artinstitutechicago",
+    "license_canonical": "cc cc0 1.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "title": "A warrior wearing armour riding on a mythical creature in the shape of a horse, but formed by a variety of animals, people, birds and fish, holding a snake in each hand. Gouache painting by an Indian painter.",
+    "source_page": "https://wellcomecollection.org/works/we7n89nr",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "author": "",
+    "license_canonical": "CC BY 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "missing_author"
+    ]
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "title": "",
+    "source_page": "https://www.flickr.com/photos/95286689@N00/917490678",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "michale",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image depicts jellyfish and silhouettes of people, not buckets or tubs for holding fish."
+    ]
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "title": "Moore Fish",
+    "source_page": "https://www.flickr.com/photos/44124348109@N01/368370",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "jurvetson",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image does not feature buckets or tubs used for holding fish caught during a pond survey."
+    ]
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "title": "Bald eagle with fish",
+    "source_page": "https://www.flickr.com/photos/43322816@N08/5277661905",
+    "license": "CC PDM 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "author": "U. S. Fish and Wildlife Service - Northeast Region",
+    "license_canonical": "cc pdm 1.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "title": "Kuroshio Sea - 2nd largest aquarium tank in the world",
+    "source_page": "https://www.flickr.com/photos/94571281@N00/3745603114",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "jonrawlinson",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image depicts an aquarium scene, not buckets or tubs used for holding fish."
+    ]
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "title": "Chinese Fishing Nets, Cochin, India",
+    "source_page": "https://www.flickr.com/photos/23510510@N03/6214144672",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "Tim Moffatt",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_vision",
+    "reasons": [
+      "The image does not depict the expected subject of buckets or tubs used for temporarily holding fish during a pond survey."
+    ]
+  },
+  {
+    "screen": "S050",
+    "source": "openverse",
+    "title": "Chavtastic Chips",
+    "source_page": "https://www.flickr.com/photos/62752875@N00/39199543",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "malias",
+    "license_canonical": "CC BY 2.0",
+    "result": "skipped_attempt_cap",
+    "reasons": [
+      "max_download_attempts_reached"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "freshwater fish identification field survey gloved hand fish guide",
+    "found": 0
+  },
+  {
+    "screen": "S052",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "freshwater fish identification field",
+    "found": 25
+  },
+  {
+    "screen": "S052",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "freshwater fish identification field survey gloved hand fish guide",
+    "found": 0
+  },
+  {
+    "screen": "S052",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "freshwater fish identification field",
+    "found": 0
+  },
+  {
+    "screen": "S052",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "freshwater fish",
+    "found": 20
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:American food and game fishes - a popular account of all the species found in America, north of the equator, with keys for ready identification, life histories and methods of capture (1902) (14596022519).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:American_food_and_game_fishes_-_a_popular_account_of_all_the_species_found_in_America,_north_of_the_equator,_with_keys_for_ready_identification,_life_histories_and_methods_of_capture_(1902)_(14596022519).jpg",
+    "license": "No restrictions",
+    "license_url": "https://www.flickr.com/commons/usage/",
+    "author": "Jordan, David Starr, 1851-1931; Evermann, Barton Warren, 1853-1932",
+    "license_canonical": "no restrictions",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:American food and game fishes - a popular account of all the species found in America, north of the equator, with keys for ready identification, life histories and methods of capture (1902) (14782320542).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:American_food_and_game_fishes_-_a_popular_account_of_all_the_species_found_in_America,_north_of_the_equator,_with_keys_for_ready_identification,_life_histories_and_methods_of_capture_(1902)_(14782320542).jpg",
+    "license": "No restrictions",
+    "license_url": "https://www.flickr.com/commons/usage/",
+    "author": "Jordan, David Starr, 1851-1931; Evermann, Barton Warren, 1853-1932",
+    "license_canonical": "no restrictions",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:American food and game fishes - a popular account of all the species found in America, north of the equator, with keys for ready identification, life histories and methods of capture (1902) (14782675215).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:American_food_and_game_fishes_-_a_popular_account_of_all_the_species_found_in_America,_north_of_the_equator,_with_keys_for_ready_identification,_life_histories_and_methods_of_capture_(1902)_(14782675215).jpg",
+    "license": "No restrictions",
+    "license_url": "https://www.flickr.com/commons/usage/",
+    "author": "Jordan, David Starr, 1851-1931; Evermann, Barton Warren, 1853-1932",
+    "license_canonical": "no restrictions",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:Boat-billed heron standing in grass - DPLA - 2497b9c8caed85bae13dcb738a8b3d01.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Boat-billed_heron_standing_in_grass_-_DPLA_-_2497b9c8caed85bae13dcb738a8b3d01.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Garst, Warren, 1922-2016, photographer",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:California fish and game (20513709075).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:California_fish_and_game_(20513709075).jpg",
+    "license": "No restrictions",
+    "license_url": "https://www.flickr.com/commons/usage/",
+    "author": "Internet Archive Book Images",
+    "license_canonical": "no restrictions",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:Ctmur u0.gif",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Ctmur_u0.gif",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Eccles, D.H., 1992 FAO species identification sheets for fishery purposes. Field guide to the freshwater fishes of Tanzania. https://www.fao.org/3/t0605e/t0605e00.htm",
+    "license_canonical": "cc by-sa 3.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:Giant otter walking in water - DPLA - 9537d5c76c26cbf69cdf2388e29b3636.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Giant_otter_walking_in_water_-_DPLA_-_9537d5c76c26cbf69cdf2388e29b3636.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Garst, Warren, 1922-2016, photographer",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:Giant otters standing near crocodile - DPLA - e843620961f45ae2841985d10dac6188.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Giant_otters_standing_near_crocodile_-_DPLA_-_e843620961f45ae2841985d10dac6188.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Garst, Warren, 1922-2016, photographer",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:Goldfish breeds and other aquarium fishes, their care and propagation - a guide to freshwater and marine aquaria, their fauna, flora and management. With 280 explanatory illustrations, printed with (14579722688).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Goldfish_breeds_and_other_aquarium_fishes,_their_care_and_propagation_-_a_guide_to_freshwater_and_marine_aquaria,_their_fauna,_flora_and_management._With_280_explanatory_illustrations,_printed_with_(14579722688).jpg",
+    "license": "No restrictions",
+    "license_url": "https://www.flickr.com/commons/usage/",
+    "author": "Internet Archive Book Images",
+    "license_canonical": "no restrictions",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:Goldfish breeds and other aquarium fishes, their care and propagation - a guide to freshwater and marine aquaria, their fauna, flora and management. With 280 explanatory illustrations, printed with (14579723108).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Goldfish_breeds_and_other_aquarium_fishes,_their_care_and_propagation_-_a_guide_to_freshwater_and_marine_aquaria,_their_fauna,_flora_and_management._With_280_explanatory_illustrations,_printed_with_(14579723108).jpg",
+    "license": "No restrictions",
+    "license_url": "https://www.flickr.com/commons/usage/",
+    "author": "Internet Archive Book Images",
+    "license_canonical": "no restrictions",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:Goldfish breeds and other aquarium fishes, their care and propagation - a guide to freshwater and marine aquaria, their fauna, flora and management. With 280 explanatory illustrations, printed with (14766376505).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Goldfish_breeds_and_other_aquarium_fishes,_their_care_and_propagation_-_a_guide_to_freshwater_and_marine_aquaria,_their_fauna,_flora_and_management._With_280_explanatory_illustrations,_printed_with_(14766376505).jpg",
+    "license": "No restrictions",
+    "license_url": "https://www.flickr.com/commons/usage/",
+    "author": "Internet Archive Book Images",
+    "license_canonical": "no restrictions",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:Goldfish breeds and other aquarium fishes, their care and propagation - a guide to freshwater and marine aquaria, their fauna, flora and management. With 280 explanatory illustrations, printed with (14766391845).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Goldfish_breeds_and_other_aquarium_fishes,_their_care_and_propagation_-_a_guide_to_freshwater_and_marine_aquaria,_their_fauna,_flora_and_management._With_280_explanatory_illustrations,_printed_with_(14766391845).jpg",
+    "license": "No restrictions",
+    "license_url": "https://www.flickr.com/commons/usage/",
+    "author": "Internet Archive Book Images",
+    "license_canonical": "no restrictions",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_not_whitelisted"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:Infant giant otter sitting on rock - DPLA - ec6484efbd3d00a6e51690181265a93a.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Infant_giant_otter_sitting_on_rock_-_DPLA_-_ec6484efbd3d00a6e51690181265a93a.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Garst, Warren, 1922-2016, photographer",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:Matériaux pour la faune du Congo (6298591245).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Mat%C3%A9riaux_pour_la_faune_du_Congo_(6298591245).jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Boulenger, George Albert; Green, J.; Smit, P. J.",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:Matériaux pour la faune du Congo (6299121746).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Mat%C3%A9riaux_pour_la_faune_du_Congo_(6299121746).jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Boulenger, George Albert; Green, J.; Smit, P. J.",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:Mississippi alligator lying with mouth open - DPLA - 6b7074b0b4044a535f5f27f6ad2adf39.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Mississippi_alligator_lying_with_mouth_open_-_DPLA_-_6b7074b0b4044a535f5f27f6ad2adf39.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Garst, Warren, 1922-2016, photographer",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S052",
+    "source": "wikimedia_commons",
+    "title": "File:Myomyrus macrodon Matériaux pour la faune du Congo (6298591245).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Myomyrus_macrodon_Mat%C3%A9riaux_pour_la_faune_du_Congo_(6298591245).jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Boulenger, George Albert; Green, J.; Smit, P. J.",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S052",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S054",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "freshwater fish conservation catch containers field recording survey",
+    "found": 0
+  },
+  {
+    "screen": "S054",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "freshwater fish conservation catch",
+    "found": 4
+  },
+  {
+    "screen": "S054",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "freshwater fish conservation catch containers field recording survey",
+    "found": 0
+  },
+  {
+    "screen": "S054",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "freshwater fish conservation catch",
+    "found": 6
+  },
+  {
+    "screen": "S054",
+    "source": "wikimedia_commons",
+    "title": "File:A full load of crabs makes the day complete! - DPLA - c385fc219460178d25c6202c4d9c769a.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:A_full_load_of_crabs_makes_the_day_complete!_-_DPLA_-_c385fc219460178d25c6202c4d9c769a.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Department of the Interior. U.S. Fish and Wildlife Service. National Conservation Training Center. 10/1997-8888",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S054",
+    "source": "wikimedia_commons",
+    "title": "File:FMIB 34646 Sword-Fish, 400 Lbs Weight.jpeg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:FMIB_34646_Sword-Fish,_400_Lbs_Weight.jpeg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Game and Fur-Bearing Animals. Canada. Commission of Conservation. Committee on Fisheries",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S054",
+    "source": "wikimedia_commons",
+    "title": "File:Rainbow Trout in Hand at Gechiak Creek - DPLA - 5df2fdd6c9e572be8b3b79b5a2450eca.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Rainbow_Trout_in_Hand_at_Gechiak_Creek_-_DPLA_-_5df2fdd6c9e572be8b3b79b5a2450eca.jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "Department of the Interior. U.S. Fish and Wildlife Service. National Conservation Training Center. 10/1997-8888",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S054",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  },
+  {
+    "screen": "S057",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "pond draining fishing nets empty fish holding tubs aeration equipment",
+    "found": 0
+  },
+  {
+    "screen": "S057",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "pond draining fishing nets",
+    "found": 0
+  },
+  {
+    "screen": "S057",
+    "source": "commons",
+    "stage": "search",
+    "query_used": "pond draining",
+    "found": 25
+  },
+  {
+    "screen": "S057",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "pond draining fishing nets empty fish holding tubs aeration equipment",
+    "found": 0
+  },
+  {
+    "screen": "S057",
+    "source": "openverse",
+    "stage": "search",
+    "query_used": "pond draining fishing nets",
+    "found": 6
+  },
+  {
+    "screen": "S057",
+    "source": "wikimedia_commons",
+    "title": "File:A Drain Pond 01.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:A_Drain_Pond_01.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Danjuma Anthony",
+    "license_canonical": "cc by-sa 4.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S057",
+    "source": "wikimedia_commons",
+    "title": "File:Burn draining Mill Pond - geograph.org.uk - 4837698.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Burn_draining_Mill_Pond_-_geograph.org.uk_-_4837698.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "valenta",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S057",
+    "source": "wikimedia_commons",
+    "title": "File:Drain at Fleet Pond - geograph.org.uk - 3370714.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drain_at_Fleet_Pond_-_geograph.org.uk_-_3370714.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Colin Smith",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S057",
+    "source": "wikimedia_commons",
+    "title": "File:Drained pond - geograph.org.uk - 2419859.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_pond_-_geograph.org.uk_-_2419859.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Russel Wills",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S057",
+    "source": "wikimedia_commons",
+    "title": "File:Drained pond at Broad Alley - geograph.org.uk - 227153.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Drained_pond_at_Broad_Alley_-_geograph.org.uk_-_227153.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "David Stowell",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S057",
+    "source": "wikimedia_commons",
+    "title": "File:Draining Fleet Pond - geograph.org.uk - 2804890.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Draining_Fleet_Pond_-_geograph.org.uk_-_2804890.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Sandy B",
+    "license_canonical": "cc by-sa 2.0",
+    "result": "rejected_rights",
+    "reasons": [
+      "license_sa_excluded"
+    ]
+  },
+  {
+    "screen": "S057",
+    "source": "wikimedia_commons",
+    "title": "File:Draining a Hatchery Pond (51270633231).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Draining_a_Hatchery_Pond_(51270633231).jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "USFWS Mountain-Prairie",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S057",
+    "source": "wikimedia_commons",
+    "title": "File:Draining a fish rearing pond (48727523837).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Draining_a_fish_rearing_pond_(48727523837).jpg",
+    "license": "Public domain",
+    "license_url": "",
+    "author": "USFWS Mountain-Prairie",
+    "license_canonical": "Public Domain",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S057",
+    "source": "wikimedia_commons",
+    "title": "File:Draining a hatchery pond (41350721142).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Draining_a_hatchery_pond_(41350721142).jpg",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "USFWS Mountain-Prairie",
+    "license_canonical": "CC BY 2.0",
+    "result": "rejected_download",
+    "reasons": [
+      "http_429_after_retries"
+    ]
+  },
+  {
+    "screen": "S057",
+    "stage": "deadline",
+    "reasons": [
+      "screen_deadline_exceeded"
+    ]
+  }
+]
