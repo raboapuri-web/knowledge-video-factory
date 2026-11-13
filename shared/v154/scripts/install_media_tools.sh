@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Pinned, prebuilt static FFmpeg. This avoids apt mirrors and their dependency downloads.
+# Pinned, prebuilt static FFmpeg (FFmpeg-Builds 2026-11-13 12:43 UTC release digest). This avoids apt mirrors and their dependency downloads.
 TOOLS_TMP="${RUNNER_TEMP:-/tmp}/v153-media-tools"
 BIN_DIR="${HOME}/.local/bin"
 FONT_DIR="${HOME}/.local/share/fonts"
 ARCHIVE="${TOOLS_TMP}/ffmpeg-linux64-gpl.tar.xz"
 FFMPEG_URL="https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz"
-FFMPEG_SHA256="a0968bcb1a697c248d684853a69bee25dc63b03efe08a9c9d2242a4a48cf0a5f"
+FFMPEG_SHA256="ed4f2e6c1c0dadafa840b7a87eacccba7be6ba30416241f3330ddb5830d51c5c"
 FONT_URL="https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf"
 FONT_GIT_BLOB_SHA1="f56224957fb13a81b4c14bac34f2f058a017f9fb"
 
