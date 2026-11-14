@@ -13,6 +13,10 @@ on:
         required: false
         default: ""
         type: string
+  push:
+    branches: [v155-human-body-defects-20261114]
+    paths:
+      - shared/v155/launch/generate_approved.txt
 
 permissions:
   contents: write
@@ -37,12 +41,18 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          python shared/v155/scripts/generate_images.py --limit "${{ inputs.limit }}" --only "${{ inputs.only }}"
+          LIMIT="${{ inputs.limit }}"
+          if [ -z "$LIMIT" ]; then
+            LIMIT=$(head -n 1 shared/v155/launch/generate_approved.txt 2>/dev/null || echo 0)
+          fi
+          LIMIT=$(echo "$LIMIT" | tr -d '[:space:]')
+          if [ -z "$LIMIT" ]; then LIMIT=0; fi
+          echo "limit=$LIMIT only=${{ inputs.only }}"
+          python shared/v155/scripts/generate_images.py --limit "$LIMIT" --only "${{ inputs.only }}"
       - name: Verify final assets
         run: |
           ls shared/v155/assets/final/*.jpg
           python - <<'PY'
-          import json
           from pathlib import Path
           from PIL import Image
           final = Path("shared/v155/assets/final")
