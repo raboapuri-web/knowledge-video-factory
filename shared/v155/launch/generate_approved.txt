@@ -1,5 +1,6 @@
 3
-# V155 image generation approved (smoke test).
+# V155 image generation approved (smoke test, retry 2).
 # First line = max new images in this run (0 = all remaining).
 # Images are generated sequentially with the OpenAI Images API by
 # shared/v155/scripts/generate_images.py and committed back to this branch.
+# retry 2: model auto-selection (dall-e-3 fallback) + fail fast.
