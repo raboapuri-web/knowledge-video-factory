@@ -1,0 +1,172 @@
+name: V155 あなたの知らない人体の欠陥5選 — format v2 production
+
+on:
+  push:
+    branches:
+      - v155-human-body-defects-20261114
+    paths:
+      - shared/v155/launch/render_approved.txt
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v155-human-body-defects-production
+  cancel-in-progress: false
+
+env:
+  RELEASE_TAG: v155-human-body-defects-${{ github.run_id }}
+
+jobs:
+  preflight:
+    name: Verify 88 approved final images and production inputs
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v155-human-body-defects-20261114
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install image inspection dependency
+        run: python -m pip install --no-input Pillow
+      - name: Syntax-check production scripts
+        run: python -m py_compile shared/v155/scripts/preflight.py shared/v155/scripts/synth.py shared/v155/scripts/validate_chapter_narration.py shared/v155/scripts/render_chapter.py shared/v155/format_v2/scripts/render_chapter_card.py shared/v155/scripts/finalize.py shared/v155/scripts/normalize_assets.py
+      - name: Run permanent subpixel motion regression unit tests
+        run: python -m unittest discover -s shared/motion/tests -p "test_*.py" -v
+      - name: Normalize final assets for rendering
+        run: python shared/v155/scripts/normalize_assets.py
+      - name: Verify approved assets, chapter cards and motion map
+        run: python shared/v155/scripts/preflight.py
+      - name: Upload preflight evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: v155-production-preflight
+          path: |
+            shared/v155/assets/render_gate.json
+            shared/v155/content/audit.json
+            shared/v155/format_v2/config/scene_motion_map.json
+          retention-days: 21
+
+  chapter:
+    name: Render ${{ matrix.chapter }}
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, epilogue]
+    env:
+      CHAPTER: ${{ matrix.chapter }}
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_ID: "13"
+      VOICEVOX_SPEED: "1.10"
+      VOICEVOX_INTONATION: "1.0"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v155-human-body-defects-20261114
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Python dependencies
+        run: python -m pip install --no-input requests Pillow
+      - name: Install media tools
+        run: bash shared/v155/scripts/install_media_tools.sh
+      - name: Normalize final assets for rendering
+        run: python shared/v155/scripts/normalize_assets.py
+      - name: Re-verify inputs and materialize motion map
+        run: python shared/v155/scripts/preflight.py
+      - name: Start VOICEVOX CPU engine
+        run: |
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 60); do
+            if curl -fsS "http://127.0.0.1:50021/version" >/dev/null; then
+              break
+            fi
+            sleep 5
+          done
+          curl -fsS "http://127.0.0.1:50021/version"
+      - name: Synthesize chapter narration and captions
+        run: python shared/v155/scripts/synth.py "$CHAPTER"
+      - name: Validate chapter narration
+        run: python shared/v155/scripts/validate_chapter_narration.py "$CHAPTER"
+      - name: Render chapter
+        run: python shared/v155/scripts/render_chapter.py "$CHAPTER"
+      - name: Prepare rendered chapter artifact
+        run: |
+          mkdir -p artifact
+          cp shared/v155/output/v155-${CHAPTER}.mp4 artifact/
+          cp shared/v155/output/render-${CHAPTER}.json artifact/
+          cp shared/v155/output/chapter-card-${CHAPTER}.mp4 artifact/
+          cp shared/v155/output/chapter-card-${CHAPTER}.json artifact/
+          cp shared/v155/media/voice-report-${CHAPTER}.json artifact/
+          cp shared/v155/media/narration-qa-${CHAPTER}.json artifact/
+      - name: Upload rendered chapter
+        uses: actions/upload-artifact@v4
+        with:
+          name: v155-chapter-${{ matrix.chapter }}
+          path: artifact
+          retention-days: 14
+          compression-level: 0
+
+  finalize:
+    name: Assemble, QA and publish V155 master
+    needs: [preflight, chapter]
+    if: ${{ needs.chapter.result == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      RELEASE_TAG: v155-human-body-defects-${{ github.run_id }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v155-human-body-defects-20261114
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Python QA dependencies
+        run: python -m pip install --no-input Pillow opencv-python-headless faster-whisper
+      - name: Install media tools
+        run: bash shared/v155/scripts/install_media_tools.sh
+      - name: Download chapter videos
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v155-chapter-*
+          path: shared/v155/output/f
+          merge-multiple: true
+      - name: Normalize final assets for rendering
+        run: python shared/v155/scripts/normalize_assets.py
+      - name: Assemble and QA final MP4
+        run: python shared/v155/scripts/finalize.py --segments-dir shared/v155/output/f
+        env:
+          RELEASE_TAG: ${{ env.RELEASE_TAG }}
+      - name: Upload final video
+        uses: actions/upload-artifact@v4
+        with:
+          name: v155-final-video
+          path: shared/v155/output/v155-human-body-defects-final.mp4
+          retention-days: 21
+          compression-level: 0
+      - name: Upload final QA bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: v155-final-qa
+          path: |
+            shared/v155/output/final_qa.json
+            shared/v155/output/production_report.json
+            shared/v155/output/motion_30fps_qa.json
+            shared/v155/output/CREDITS.txt
+            shared/v155/output/v155-contact-sheet.jpg
+            shared/v155/output/v155-chapter-cards-contact-sheet.jpg
+          retention-days: 21
+      - name: Publish GitHub Release
+        run: |
+          gh release create "$RELEASE_TAG" --title "あなたの知らない人体の欠陥5選" --notes-file shared/v155/output/final_qa.json shared/v155/output/v155-human-body-defects-final.mp4
