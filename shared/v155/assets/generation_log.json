@@ -1,0 +1,18 @@
+{
+  "model": "gpt-image-1.5",
+  "size": "1536x1024",
+  "scenes": {
+    "S001": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S002": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S003": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    }
+  }
+}
