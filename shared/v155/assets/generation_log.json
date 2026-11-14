@@ -93,6 +93,46 @@
     "S024": {
       "model": "gpt-image-1.5",
       "size": "1536x1024"
+    },
+    "S025": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S026": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S027": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S028": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S029": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S030": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S031": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S032": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S034": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S035": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
     }
   }
 }
