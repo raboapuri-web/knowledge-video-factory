@@ -1,0 +1,3120 @@
+{
+  "title": "あなたの知らない人体の欠陥5選",
+  "video_id": "V155",
+  "source_file": "jintai_kekkan_script_final_2026-11-14.txt",
+  "source_script_characters": 8470,
+  "source_script_sha256": "f63ee6f568e893b5c56877524c0ad6a4e550a7508a7ada68fd302240db07b1d4",
+  "spec": {
+    "scene_count": 88,
+    "chapter_card_count": 7,
+    "total_visual_screen_count": 95,
+    "photo_scene_count": 10,
+    "generated_scene_count": 78,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "voice": "VOICEVOX:青山龍星",
+    "voicevox_speaker_id": 13,
+    "subtitle_band": {
+      "position": "bottom",
+      "height_px": 130,
+      "width": "100%",
+      "background": "opaque black",
+      "text_color": "white",
+      "alignment": "center",
+      "fixed_layer": true
+    },
+    "motion_standard": {
+      "zoom_baseline": 1.2,
+      "pan_travel_percent": 16.7,
+      "frame_interpolation": "every frame at 30fps; subpixel interpolation; no frame hold"
+    },
+    "visual_policy": "one scene = one full-frame image; no multi-panel layouts; no embedded labels/text unless explicitly specified; subtitles are separate fixed layer",
+    "estimated_narration_duration_sec": 1264.18,
+    "estimated_total_duration_with_cards_and_endcard_sec": 1312.75,
+    "endcard": {
+      "file": "endcard_v1.png",
+      "duration_sec": 20,
+      "audio": "silent",
+      "placement": "immediately after main program",
+      "resolution": "1920x1080"
+    }
+  },
+  "chapters": [
+    {
+      "id": "prologue",
+      "label": "プロローグ",
+      "title": "人間の身体は、欠陥だらけの傑作である",
+      "start": 1,
+      "end": 7
+    },
+    {
+      "id": "chapter1",
+      "label": "第1章",
+      "title": "盲点を抱えた目",
+      "start": 8,
+      "end": 20
+    },
+    {
+      "id": "chapter2",
+      "label": "第2章",
+      "title": "食べ物と空気が交差する喉",
+      "start": 21,
+      "end": 32
+    },
+    {
+      "id": "chapter3",
+      "label": "第3章",
+      "title": "ビタミンCを作れない身体",
+      "start": 33,
+      "end": 46
+    },
+    {
+      "id": "chapter4",
+      "label": "第4章",
+      "title": "未完成のまま生まれる",
+      "start": 47,
+      "end": 64
+    },
+    {
+      "id": "chapter5",
+      "label": "第5章",
+      "title": "二本足が腰に残した代償",
+      "start": 65,
+      "end": 78
+    },
+    {
+      "id": "epilogue",
+      "label": "エピローグ",
+      "title": "人体は、完成していない",
+      "start": 79,
+      "end": 88
+    }
+  ],
+  "chapter_cards": [
+    {
+      "chapter": "prologue",
+      "label": "プロローグ",
+      "title": "人間の身体は、欠陥だらけの傑作である",
+      "duration_sec": 4.567,
+      "narration": false,
+      "subtitle": false,
+      "motion": "static",
+      "background_asset": "chapter_cards/prologue.png",
+      "background_design": "深い黒の夜空に、金色の三日月の読書キャラクター。静かな雲と星屑、金の微細な装飾。画面中央右に余白を残し、文字は後工程でタイピング表示する。",
+      "typing": {
+        "characters_per_second": 9,
+        "cursor_glyph": "▌",
+        "cursor_blink_hz": 2,
+        "cursor_blink_duration_sec": 0.6,
+        "final_hold_sec": 1.0,
+        "typing_sfx": "shared/v153/format_v2/audio/type_key.wav"
+      }
+    },
+    {
+      "chapter": "chapter1",
+      "label": "第1章",
+      "title": "盲点を抱えた目",
+      "duration_sec": 4.0,
+      "narration": false,
+      "subtitle": false,
+      "motion": "static",
+      "background_asset": "chapter_cards/chapter1.png",
+      "background_design": "同じ月のキャラクターが、金色の光に照らされた古い解剖学書を読む。黒×金の高級感、静かな夜、文字の余白を広く確保。",
+      "typing": {
+        "characters_per_second": 9,
+        "cursor_glyph": "▌",
+        "cursor_blink_hz": 2,
+        "cursor_blink_duration_sec": 0.6,
+        "final_hold_sec": 1.0,
+        "typing_sfx": "shared/v153/format_v2/audio/type_key.wav"
+      }
+    },
+    {
+      "chapter": "chapter2",
+      "label": "第2章",
+      "title": "食べ物と空気が交差する喉",
+      "duration_sec": 4.0,
+      "narration": false,
+      "subtitle": false,
+      "motion": "static",
+      "background_asset": "chapter_cards/chapter2.png",
+      "background_design": "同じ月のキャラクターと、喉の構造を連想させる細い金の曲線。暗い夜の背景、静謐で知的な黒×金。",
+      "typing": {
+        "characters_per_second": 9,
+        "cursor_glyph": "▌",
+        "cursor_blink_hz": 2,
+        "cursor_blink_duration_sec": 0.6,
+        "final_hold_sec": 1.0,
+        "typing_sfx": "shared/v153/format_v2/audio/type_key.wav"
+      }
+    },
+    {
+      "chapter": "chapter3",
+      "label": "第3章",
+      "title": "ビタミンCを作れない身体",
+      "duration_sec": 4.0,
+      "narration": false,
+      "subtitle": false,
+      "motion": "static",
+      "background_asset": "chapter_cards/chapter3.png",
+      "background_design": "同じ月のキャラクターと、果実を思わせる小さな金色の光点。黒×金、落ち着いた夜、タイトル文字の余白を確保。",
+      "typing": {
+        "characters_per_second": 9,
+        "cursor_glyph": "▌",
+        "cursor_blink_hz": 2,
+        "cursor_blink_duration_sec": 0.6,
+        "final_hold_sec": 1.0,
+        "typing_sfx": "shared/v153/format_v2/audio/type_key.wav"
+      }
+    },
+    {
+      "chapter": "chapter4",
+      "label": "第4章",
+      "title": "未完成のまま生まれる",
+      "duration_sec": 4.0,
+      "narration": false,
+      "subtitle": false,
+      "motion": "static",
+      "background_asset": "chapter_cards/chapter4.png",
+      "background_design": "同じ月のキャラクターと、柔らかな金色の光に包まれた小さなゆりかごのシルエット。黒×金、静かな夜、過度に感傷的にしない。",
+      "typing": {
+        "characters_per_second": 9,
+        "cursor_glyph": "▌",
+        "cursor_blink_hz": 2,
+        "cursor_blink_duration_sec": 0.6,
+        "final_hold_sec": 1.0,
+        "typing_sfx": "shared/v153/format_v2/audio/type_key.wav"
+      }
+    },
+    {
+      "chapter": "chapter5",
+      "label": "第5章",
+      "title": "二本足が腰に残した代償",
+      "duration_sec": 4.0,
+      "narration": false,
+      "subtitle": false,
+      "motion": "static",
+      "background_asset": "chapter_cards/chapter5.png",
+      "background_design": "同じ月のキャラクターと、背骨のS字を思わせる金色の曲線。黒×金、静かな夜、知的なエディトリアル。",
+      "typing": {
+        "characters_per_second": 9,
+        "cursor_glyph": "▌",
+        "cursor_blink_hz": 2,
+        "cursor_blink_duration_sec": 0.6,
+        "final_hold_sec": 1.0,
+        "typing_sfx": "shared/v153/format_v2/audio/type_key.wav"
+      }
+    },
+    {
+      "chapter": "epilogue",
+      "label": "エピローグ",
+      "title": "人体は、完成していない",
+      "duration_sec": 4.0,
+      "narration": false,
+      "subtitle": false,
+      "motion": "static",
+      "background_asset": "chapter_cards/epilogue.png",
+      "background_design": "同じ月のキャラクターが本を閉じ、遠くの夜明け前の地平を見つめる。黒×金、静かな夜、余白を広く取る。",
+      "typing": {
+        "characters_per_second": 9,
+        "cursor_glyph": "▌",
+        "cursor_blink_hz": 2,
+        "cursor_blink_duration_sec": 0.6,
+        "final_hold_sec": 1.0,
+        "typing_sfx": "shared/v153/format_v2/audio/type_key.wav"
+      }
+    }
+  ],
+  "scenes": [
+    {
+      "id": "S001",
+      "chapter": "prologue",
+      "source_line_range": [
+        5,
+        6
+      ],
+      "script": "人間の身体は、よくできている。\n目を開けば世界が見える。食べ物を口に入れれば栄養を吸収できる。二本の足で歩き、手を使い、言葉を話すこともできる。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "全身の人間を正面から見せる、精密な解剖学アトラス風の一枚。皮膚の輪郭の内側に主要器官と骨格が静かに透ける。身体の機能美と不完全さの両方を感じさせる。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／精密解剖図版",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 10.6,
+      "image_file": "assets/final/S001.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間の身体は、よくできている。\n目を開けば世界が見える。食べ物を口に入れれば栄養を吸収できる。二本の足で歩き、手を使い、言葉を話すこともできる。"
+    },
+    {
+      "id": "S002",
+      "chapter": "prologue",
+      "source_line_range": [
+        7,
+        9
+      ],
+      "script": "毎日、何も考えずに使っている身体だが、その仕組みを詳しく調べていくと、ずいぶん妙なことが見つかる。\n人間の目には、どうしても見えない場所がある。\n食べ物と空気が、同じ通路を通っている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人体のシルエットを中心に、目・喉・胃・骨盤・腰椎の位置だけが微かな金色の光で示される。複数パネルにはせず、一つの人体像に情報を集約する。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／知的エディトリアル",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 13.43,
+      "image_file": "assets/final/S002.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "毎日、何も考えずに使っている身体だが、その仕組みを詳しく調べていくと、ずいぶん妙なことが見つかる。\n人間の目には、どうしても見えない場所がある。\n食べ物と空気が、同じ通路を通っている。"
+    },
+    {
+      "id": "S003",
+      "chapter": "prologue",
+      "source_line_range": [
+        10,
+        12
+      ],
+      "script": "ビタミンCを、自分の身体で作ることすらできない。\n出産には大きな危険が伴い、生まれたばかりの赤ん坊は、自分の頭を支えることさえ難しい。\nそして、二本足で歩くために、腰には大きな負担がかかっている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の全身シルエットの周囲に、視覚・嚥下・栄養・出産・直立歩行を象徴する小さな立体モチーフが浮かぶ。コラージュではなく、単一の統合された彫刻的構図。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／象徴的な立体彫刻",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 14.33,
+      "image_file": "assets/final/S003.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "ビタミンCを、自分の身体で作ることすらできない。\n出産には大きな危険が伴い、生まれたばかりの赤ん坊は、自分の頭を支えることさえ難しい。\nそして、二本足で歩くために、腰には大きな負担がかかっている。"
+    },
+    {
+      "id": "S004",
+      "chapter": "prologue",
+      "source_line_range": [
+        13,
+        15
+      ],
+      "script": "これほど不便な身体なのに、人間は地球上のさまざまな環境に進出し、繁栄してきた。\nいったい、進化は何をしていたのだろう。\n1977年、フランスの生物学者フランソワ・ジャコブは、進化の働きを「工作」にたとえた。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "1970年代の生物学者の研究室を思わせる木製作業台。古い解剖学図版、工具、模型の部品が一つの画面に収まり、進化を工作にたとえる雰囲気を作る。人物の顔は描かない。",
+      "photo_request": null,
+      "design_axis": "実写風シネマティック情景／歴史的研究室",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 15.07,
+      "image_file": "assets/final/S004.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "これほど不便な身体なのに、人間は地球上のさまざまな環境に進出し、繁栄してきた。\nいったい、進化は何をしていたのだろう。\n1977年、フランスの生物学者フランソワ・ジャコブは、進化の働きを「工作」にたとえた。"
+    },
+    {
+      "id": "S005",
+      "chapter": "prologue",
+      "source_line_range": [
+        16,
+        17
+      ],
+      "script": "自然淘汰は、最初から完成図を持った技術者ではない。すでにある材料を使い、使えそうなものを組み合わせ、少しずつ手を加えていく工作者なのだという。\n考えてみれば、人間の身体も似たようなものだ。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "自然の素材から生物の形を少しずつ組み上げていく、精緻な生物学的工作台。骨格、細胞、器官の模型が一つの連続した構図に配置される。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／生物学的な工作台",
+      "motion": "pan_left",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          1,
+          0.5
+        ],
+        "camera_to": [
+          0,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 13.88,
+      "image_file": "assets/final/S005.jpg",
+      "tts_reading_watch": true,
+      "subtitle_text": "自然淘汰は、最初から完成図を持った技術者ではない。すでにある材料を使い、使えそうなものを組み合わせ、少しずつ手を加えていく工作者なのだという。\n考えてみれば、人間の身体も似たようなものだ。"
+    },
+    {
+      "id": "S006",
+      "chapter": "prologue",
+      "source_line_range": [
+        18,
+        19
+      ],
+      "script": "新しい機能を獲得しても、古い構造は簡単には消えない。ある能力を手に入れた結果、別の場所に不都合が生まれることもある。\n人体の欠陥とは、進化が失敗した証拠ではない。人間がある能力を手に入れるために、別の能力や安全性を犠牲にしてきた痕跡なのだ。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人体を古い建築物に見立て、古い配管や新しい配線が同居する透視表現。人間の身体の内部に過去の構造が残っていることを示す。文字やラベルなし。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／建築メタファー",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 17.76,
+      "image_file": "assets/final/S006.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "新しい機能を獲得しても、古い構造は簡単には消えない。ある能力を手に入れた結果、別の場所に不都合が生まれることもある。\n人体の欠陥とは、進化が失敗した証拠ではない。人間がある能力を手に入れるために、別の能力や安全性を犠牲にしてきた痕跡なのだ。"
+    },
+    {
+      "id": "S007",
+      "chapter": "prologue",
+      "source_line_range": [
+        20,
+        22
+      ],
+      "script": "もちろん、すべての欠陥が何かを得るために生じたわけではない。失われた機能や、過去から引き継いだ制約もある。\nそれらをまとめて見ていくと、人間という生き物が、どんな改修を繰り返してきたのかが見えてくる。\nまずは、毎日使っている目から始めよう。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "暗い背景の中に一つの人間の眼球が浮かび、眼球の奥に古い配線のような視神経が伸びている。次章の目の話へ自然につなぐ。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／静かな夜のマクロ",
+      "motion": "pan_up",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          1
+        ],
+        "camera_to": [
+          0.5,
+          0
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 17.61,
+      "image_file": "assets/final/S007.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "もちろん、すべての欠陥が何かを得るために生じたわけではない。失われた機能や、過去から引き継いだ制約もある。\nそれらをまとめて見ていくと、人間という生き物が、どんな改修を繰り返してきたのかが見えてくる。\nまずは、毎日使っている目から始めよう。"
+    },
+    {
+      "id": "S008",
+      "chapter": "chapter1",
+      "source_line_range": [
+        25,
+        27
+      ],
+      "script": "目は、人間の身体の中でも特に精密な器官だ。\n光が角膜を通り、瞳孔から入り、水晶体で屈折する。網膜に映し出された光の情報は、電気信号に変換され、視神経を通って脳へ送られる。\n私たちは、この仕組みによって色や形、距離や動きを認識している。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "眼球の精密な立体解剖図。角膜、瞳孔、水晶体、網膜、視神経の位置関係が正しく分かる側面断面。医療教科書のように清潔で読みやすい。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／眼球断面図",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 17.16,
+      "image_file": "assets/final/S008.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "目は、人間の身体の中でも特に精密な器官だ。\n光が角膜を通り、瞳孔から入り、水晶体で屈折する。網膜に映し出された光の情報は、電気信号に変換され、視神経を通って脳へ送られる。\n私たちは、この仕組みによって色や形、距離や動きを認識している。"
+    },
+    {
+      "id": "S009",
+      "chapter": "chapter1",
+      "source_line_range": [
+        28,
+        30
+      ],
+      "script": "ところが、人間の目には、最初から見えない場所が存在する。\nこれを盲点と呼ぶ。\n片目を閉じ、もう片方の目で一点を見つめる。少し離れた場所にある小さな印が、ある位置で突然消える。視線を動かさずにいると、確かにそこにあるはずの印が見えなくなる。",
+      "image_count": 1,
+      "asset_type": "photo",
+      "image_description": "片目を閉じ、壁や紙の一点を見つめて盲点テストをしている成人の手元と顔の一部。小さな印と注視点が同じ視野に入り、実験の様子が直感的に伝わる自然な写真。",
+      "photo_request": "片目を閉じ、壁や紙の一点を見つめて盲点テストをしている成人の手元と顔の一部。小さな印と注視点が同じ視野に入り、実験の様子が直感的に伝わる自然な写真。",
+      "design_axis": "実写ドキュメンタリー／日常の簡易実験",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 17.46,
+      "image_file": "assets/final/S009.jpg",
+      "tts_reading_watch": true,
+      "subtitle_text": "ところが、人間の目には、最初から見えない場所が存在する。\nこれを盲点と呼ぶ。\n片目を閉じ、もう片方の目で一点を見つめる。少し離れた場所にある小さな印が、ある位置で突然消える。視線を動かさずにいると、確かにそこにあるはずの印が見えなくなる。"
+    },
+    {
+      "id": "S010",
+      "chapter": "chapter1",
+      "source_line_range": [
+        31,
+        33
+      ],
+      "script": "目の故障ではない。\n人間の網膜には、光を感じ取る細胞が存在しない場所があるのだ。\n網膜の奥から脳へ向かう視神経は、眼球の外へ出ていかなければならない。その出口にあたる部分を視神経乳頭という。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "網膜の視神経乳頭を拡大した医学図版。網膜の血管と視神経が眼球外へ出る一点を明瞭に示し、光受容細胞がない領域を色面で示す。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／網膜の拡大図",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 13.88,
+      "image_file": "assets/final/S010.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "目の故障ではない。\n人間の網膜には、光を感じ取る細胞が存在しない場所があるのだ。\n網膜の奥から脳へ向かう視神経は、眼球の外へ出ていかなければならない。その出口にあたる部分を視神経乳頭という。"
+    },
+    {
+      "id": "S011",
+      "chapter": "chapter1",
+      "source_line_range": [
+        34,
+        36
+      ],
+      "script": "ここには光を受け取る細胞がない。\nそのため、光が当たっても情報として脳に送ることができない。これが盲点の正体だ。\nだが、もっと不思議なのは、その盲点が生まれる網膜の構造そのものにある。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "眼球の内側から見た網膜の一部。視神経が集まり眼球の外へ出ていく出口と、そこに光受容細胞がないことを単一の断面で示す。",
+      "photo_request": null,
+      "design_axis": "医学教科書／精密な網膜断面",
+      "motion": "pan_left",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          1,
+          0.5
+        ],
+        "camera_to": [
+          0,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 13.43,
+      "image_file": "assets/final/S011.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "ここには光を受け取る細胞がない。\nそのため、光が当たっても情報として脳に送ることができない。これが盲点の正体だ。\nだが、もっと不思議なのは、その盲点が生まれる網膜の構造そのものにある。"
+    },
+    {
+      "id": "S012",
+      "chapter": "chapter1",
+      "source_line_range": [
+        37,
+        39
+      ],
+      "script": "光を受け取る細胞には、桿体細胞と錐体細胞がある。\n桿体細胞は暗い場所での視覚を担い、錐体細胞は色や細かな形を識別する。\n普通に考えれば、光を受け取る細胞は、光が入ってくる方向を向いている方が合理的に見える。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "桿体細胞と錐体細胞を、形状の違いが分かる精密な細胞図版として描く。暗所視と色覚を担う細胞の違いを、色と形で直感的に示す。",
+      "photo_request": null,
+      "design_axis": "科学図版／細胞の精密イラスト",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 15.07,
+      "image_file": "assets/final/S012.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "光を受け取る細胞には、桿体細胞と錐体細胞がある。\n桿体細胞は暗い場所での視覚を担い、錐体細胞は色や細かな形を識別する。\n普通に考えれば、光を受け取る細胞は、光が入ってくる方向を向いている方が合理的に見える。"
+    },
+    {
+      "id": "S013",
+      "chapter": "chapter1",
+      "source_line_range": [
+        40,
+        42
+      ],
+      "script": "ところが、脊椎動物の網膜はそうなっていない。\n光受容細胞は、光が入ってくる方向とは反対側を向いている。\n目に入った光は、まず神経細胞などの透明な層を通り抜け、その奥にある光受容細胞に届く。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "脊椎動物の網膜を側面から切った一枚の断面図。光受容細胞が光の入射方向とは逆を向いている配置を明確に描く。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／網膜の層構造断面",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 13.73,
+      "image_file": "assets/final/S013.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "ところが、脊椎動物の網膜はそうなっていない。\n光受容細胞は、光が入ってくる方向とは反対側を向いている。\n目に入った光は、まず神経細胞などの透明な層を通り抜け、その奥にある光受容細胞に届く。"
+    },
+    {
+      "id": "S014",
+      "chapter": "chapter1",
+      "source_line_range": [
+        43,
+        45
+      ],
+      "script": "つまり、光を感じ取るために、いくつもの細胞の層を通過しなければならない構造になっているのだ。\nそして、視神経の線維も網膜の内側を走り、途中で眼球の外へ出ていく。\nこれが、盲点を生み出す原因の一つになっている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "網膜に入った光が神経細胞などの層を通過して奥の光受容細胞に届く様子と、視神経線維が網膜の内側を走って眼球の外へ出る様子を、一つの拡大断面図に統合する。光路と神経線維の配置が同時に分かる。",
+      "photo_request": null,
+      "design_axis": "科学図版／網膜の層構造と神経線維の断面",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 15.22,
+      "image_file": "assets/final/S014.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "つまり、光を感じ取るために、いくつもの細胞の層を通過しなければならない構造になっているのだ。\nそして、視神経の線維も網膜の内側を走り、途中で眼球の外へ出ていく。\nこれが、盲点を生み出す原因の一つになっている。"
+    },
+    {
+      "id": "S015",
+      "chapter": "chapter1",
+      "source_line_range": [
+        46,
+        48
+      ],
+      "script": "では、ほかの動物も同じ構造なのだろうか。\nここで、タコの目を見てみよう。\nタコの目は、人間の目と同じようにレンズを使って光を集める。外見だけを見ると、かなりよく似ている。",
+      "image_count": 1,
+      "asset_type": "photo",
+      "image_description": "タコの眼の極端なクローズアップ。虹彩に相当する部分と瞳の質感が鮮明で、海中の自然な光を受けた実物写真。タコの眼球だけを主役にする。",
+      "photo_request": "タコの眼の極端なクローズアップ。虹彩に相当する部分と瞳の質感が鮮明で、海中の自然な光を受けた実物写真。タコの眼球だけを主役にする。",
+      "design_axis": "実写マクロ／海洋生物の質感",
+      "motion": "pan_left",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          1,
+          0.5
+        ],
+        "camera_to": [
+          0,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 12.39,
+      "image_file": "assets/final/S015.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "では、ほかの動物も同じ構造なのだろうか。\nここで、タコの目を見てみよう。\nタコの目は、人間の目と同じようにレンズを使って光を集める。外見だけを見ると、かなりよく似ている。"
+    },
+    {
+      "id": "S016",
+      "chapter": "chapter1",
+      "source_line_range": [
+        49,
+        51
+      ],
+      "script": "しかし、網膜の構造は異なる。\nタコの網膜では、光受容細胞が光の方向を向いている。人間とは逆の配置だ。\nしかも、視神経が網膜を貫通する構造ではないため、人間のような盲点も生じない。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "タコの眼球を側面から切った科学図版。光受容細胞が光の入射方向を向いている配置を、簡潔で正確な構造として描く。",
+      "photo_request": null,
+      "design_axis": "科学図版／頭足類の網膜断面",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 12.99,
+      "image_file": "assets/final/S016.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "しかし、網膜の構造は異なる。\nタコの網膜では、光受容細胞が光の方向を向いている。人間とは逆の配置だ。\nしかも、視神経が網膜を貫通する構造ではないため、人間のような盲点も生じない。"
+    },
+    {
+      "id": "S017",
+      "chapter": "chapter1",
+      "source_line_range": [
+        52,
+        54
+      ],
+      "script": "同じように世界を見るための目なのに、その内部構造はまったく違う。\nもちろん、タコの目があらゆる面で人間より優れているわけではない。それぞれの生物が、それぞれの環境に適応した構造を持っている。\nだが、この違いは興味深い。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "タコの網膜と視神経の位置関係を示す精密な断面図。視神経が網膜を貫通しない構造が一目で分かる。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／頭足類の眼の構造図",
+      "motion": "pan_up",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          1
+        ],
+        "camera_to": [
+          0.5,
+          0
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 15.97,
+      "image_file": "assets/final/S017.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "同じように世界を見るための目なのに、その内部構造はまったく違う。\nもちろん、タコの目があらゆる面で人間より優れているわけではない。それぞれの生物が、それぞれの環境に適応した構造を持っている。\nだが、この違いは興味深い。"
+    },
+    {
+      "id": "S018",
+      "chapter": "chapter1",
+      "source_line_range": [
+        55,
+        56
+      ],
+      "script": "人間の目は、最初から理想的な設計図に従って作られたものではない。脊椎動物が長い時間をかけて受け継いできた構造を、そのまま引き継いでいる。\n進化は、過去の仕組みをすべて捨てて、新しいものを作り直すわけではない。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の眼球を、地層のように積み重なった進化の履歴の中に置く。眼の古い構造が現在まで残ることを象徴する単一の概念画。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／進化の地層",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 15.37,
+      "image_file": "assets/final/S018.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間の目は、最初から理想的な設計図に従って作られたものではない。脊椎動物が長い時間をかけて受け継いできた構造を、そのまま引き継いでいる。\n進化は、過去の仕組みをすべて捨てて、新しいものを作り直すわけではない。"
+    },
+    {
+      "id": "S019",
+      "chapter": "chapter1",
+      "source_line_range": [
+        57,
+        59
+      ],
+      "script": "すでにあるものを利用しながら、機能を付け加えていく。\nその結果、優れた視覚を手に入れながら、網膜の逆向き構造や盲点まで残してしまった。\n人間の目は、世界を見るために進化した。だが、その視界には進化の歴史そのものが残っている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の眼球の内部に古い構造と新しい機能が同居する様子を、精密な立体解剖図と古い設計図の質感で描く。",
+      "photo_request": null,
+      "design_axis": "科学エディトリアル／設計図と解剖図の融合",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 16.42,
+      "image_file": "assets/final/S019.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "すでにあるものを利用しながら、機能を付け加えていく。\nその結果、優れた視覚を手に入れながら、網膜の逆向き構造や盲点まで残してしまった。\n人間の目は、世界を見るために進化した。だが、その視界には進化の歴史そのものが残っている。"
+    },
+    {
+      "id": "S020",
+      "chapter": "chapter1",
+      "source_line_range": [
+        60,
+        62
+      ],
+      "script": "次は、もっと危険な構造だ。\n目のように見えない場所があるだけなら、まだいい。\n人間の首には、食べ物を飲み込んだだけで命に関わる危険が生まれる場所がある。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "暗い画面に人間の首から喉頭までの側面シルエット。喉の奥に食べ物と空気の通り道を示唆する二本の金色の流線が交差する。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／次章へのブリッジ",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 11.04,
+      "image_file": "assets/final/S020.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "次は、もっと危険な構造だ。\n目のように見えない場所があるだけなら、まだいい。\n人間の首には、食べ物を飲み込んだだけで命に関わる危険が生まれる場所がある。"
+    },
+    {
+      "id": "S021",
+      "chapter": "chapter2",
+      "source_line_range": [
+        65,
+        67
+      ],
+      "script": "食事中に、飲み物が変なところへ入ってむせたことがあるだろう。\n咳が出て、しばらく呼吸がしにくくなる。\nたいていは数秒で元に戻る。だが、あの瞬間に身体の中で何が起きているのかを考えると、少し恐ろしくなる。",
+      "image_count": 1,
+      "asset_type": "photo",
+      "image_description": "食卓で飲み物を飲んだ直後に軽くむせ、咳をしている成人。苦痛を誇張せず、日常で起こる誤嚥しかけの瞬間が分かる自然な写真。",
+      "photo_request": "食卓で飲み物を飲んだ直後に軽くむせ、咳をしている成人。苦痛を誇張せず、日常で起こる誤嚥しかけの瞬間が分かる自然な写真。",
+      "design_axis": "実写ドキュメンタリー／食卓の一瞬",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 14.78,
+      "image_file": "assets/final/S021.jpg",
+      "tts_reading_watch": true,
+      "subtitle_text": "食事中に、飲み物が変なところへ入ってむせたことがあるだろう。\n咳が出て、しばらく呼吸がしにくくなる。\nたいていは数秒で元に戻る。だが、あの瞬間に身体の中で何が起きているのかを考えると、少し恐ろしくなる。"
+    },
+    {
+      "id": "S022",
+      "chapter": "chapter2",
+      "source_line_range": [
+        68,
+        70
+      ],
+      "script": "人間の喉には、食べ物と空気が通る場所がある。\n鼻や口から入った空気は、咽頭を通り、喉頭から気管へ向かう。\n食べ物は口から入り、同じ咽頭を通って食道へ向かう。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の頭部と首を横から見た正確な矢状断面図。鼻腔、口腔、咽頭、喉頭、気管、食道の位置関係を明瞭に描く。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／頭頸部の矢状断面",
+      "motion": "pan_down",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0
+        ],
+        "camera_to": [
+          0.5,
+          1
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 11.34,
+      "image_file": "assets/final/S022.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間の喉には、食べ物と空気が通る場所がある。\n鼻や口から入った空気は、咽頭を通り、喉頭から気管へ向かう。\n食べ物は口から入り、同じ咽頭を通って食道へ向かう。"
+    },
+    {
+      "id": "S023",
+      "chapter": "chapter2",
+      "source_line_range": [
+        71,
+        73
+      ],
+      "script": "つまり、呼吸器と消化器の通路は、喉の奥で交差しているのだ。\n空気は肺へ行き、食べ物は胃へ行く。\n行き先はまったく違う。それなのに、途中までは同じ道路を使っている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "咽頭の奥で空気の通路と食べ物の通路が交差する構造を、頭頸部の単一断面図で見せる。肺へ向かう気管と胃へ向かう食道の方向を形状で区別する。",
+      "photo_request": null,
+      "design_axis": "医学教科書／呼吸器・消化器の解剖図",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 11.79,
+      "image_file": "assets/final/S023.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "つまり、呼吸器と消化器の通路は、喉の奥で交差しているのだ。\n空気は肺へ行き、食べ物は胃へ行く。\n行き先はまったく違う。それなのに、途中までは同じ道路を使っている。"
+    },
+    {
+      "id": "S024",
+      "chapter": "chapter2",
+      "source_line_range": [
+        74,
+        76
+      ],
+      "script": "この構造は、決して安全とは言えない。\n食べ物が誤って気管に入れば、誤嚥が起きる。大きな食べ物が気道を塞げば、窒息につながる。\n人間は、食事をするたびに、この危険を避けなければならない。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "食物片が誤って気管側へ進みかける瞬間を、非グロテスクな頭頸部断面図で示す。窒息リスクを理解できるが恐怖演出にはしない。",
+      "photo_request": null,
+      "design_axis": "医学図版／誤嚥の断面図",
+      "motion": "pan_left",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          1,
+          0.5
+        ],
+        "camera_to": [
+          0,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 13.43,
+      "image_file": "assets/final/S024.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "この構造は、決して安全とは言えない。\n食べ物が誤って気管に入れば、誤嚥が起きる。大きな食べ物が気道を塞げば、窒息につながる。\n人間は、食事をするたびに、この危険を避けなければならない。"
+    },
+    {
+      "id": "S025",
+      "chapter": "chapter2",
+      "source_line_range": [
+        77,
+        79
+      ],
+      "script": "そこで働いているのが、喉頭蓋や声帯、喉頭周辺の筋肉だ。\n食べ物を飲み込むとき、喉頭は上方へ移動する。声帯も閉じ、喉頭蓋などが連動して気道を保護する。\nこの複雑な動作によって、食べ物が肺へ入らないようにしている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "喉頭蓋、声帯、喉頭周辺の筋肉を拡大した精密な解剖図。各構造の形と接続が分かり、気道保護の役割を視覚化する。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／喉頭の精密解剖図",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 15.37,
+      "image_file": "assets/final/S025.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "そこで働いているのが、喉頭蓋や声帯、喉頭周辺の筋肉だ。\n食べ物を飲み込むとき、喉頭は上方へ移動する。声帯も閉じ、喉頭蓋などが連動して気道を保護する。\nこの複雑な動作によって、食べ物が肺へ入らないようにしている。"
+    },
+    {
+      "id": "S026",
+      "chapter": "chapter2",
+      "source_line_range": [
+        80,
+        82
+      ],
+      "script": "つまり、私たちは食べ物を飲み込むたびに、呼吸と嚥下という二つの機能を細かく調整しているのだ。\nでは、なぜ人間の喉はこんな構造になっているのか。\nその背景には、人間が獲得した発声能力がある。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "嚥下時に喉頭が上方へ移動し、声帯が閉じ、喉頭蓋が気道を保護する一瞬を示す頭頸部の単一断面図。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／嚥下運動の断面図",
+      "motion": "pan_up",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          1
+        ],
+        "camera_to": [
+          0.5,
+          0
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 13.73,
+      "image_file": "assets/final/S026.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "つまり、私たちは食べ物を飲み込むたびに、呼吸と嚥下という二つの機能を細かく調整しているのだ。\nでは、なぜ人間の喉はこんな構造になっているのか。\nその背景には、人間が獲得した発声能力がある。"
+    },
+    {
+      "id": "S027",
+      "chapter": "chapter2",
+      "source_line_range": [
+        83,
+        85
+      ],
+      "script": "人間の喉頭は、多くの哺乳類と比べて低い位置にある。\nこの配置は、口から喉にかけての声道の形状に影響を与える。声道の形が変われば、作り出せる音の種類も変わる。\n人間が複雑な音声を発するための解剖学的な条件の一つになっている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の頭頸部を横から見た解剖図。喉頭が低い位置にあることが分かるよう、口腔から気管までを一続きに描く。",
+      "photo_request": null,
+      "design_axis": "医学教科書／頭頸部側面図",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 16.27,
+      "image_file": "assets/final/S027.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間の喉頭は、多くの哺乳類と比べて低い位置にある。\nこの配置は、口から喉にかけての声道の形状に影響を与える。声道の形が変われば、作り出せる音の種類も変わる。\n人間が複雑な音声を発するための解剖学的な条件の一つになっている。"
+    },
+    {
+      "id": "S028",
+      "chapter": "chapter2",
+      "source_line_range": [
+        86,
+        88
+      ],
+      "script": "ただし、喉頭が低い動物は人間だけではない。\n2001年、研究者のフィッチとレヴィは、アカシカやダマジカにも喉頭の下降が見られることを報告した。\nシカは言葉を話さないが、喉頭を下げることで声道を長くし、鳴き声の共鳴を変化させる。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の声道を側面から切り、口腔・咽頭・喉頭の空間形状と音の共鳴を示す。音波は控えめな金色の線で表現する。",
+      "photo_request": null,
+      "design_axis": "科学図版／声道の解剖と音響",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 16.57,
+      "image_file": "assets/final/S028.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "ただし、喉頭が低い動物は人間だけではない。\n2001年、研究者のフィッチとレヴィは、アカシカやダマジカにも喉頭の下降が見られることを報告した。\nシカは言葉を話さないが、喉頭を下げることで声道を長くし、鳴き声の共鳴を変化させる。"
+    },
+    {
+      "id": "S029",
+      "chapter": "chapter2",
+      "source_line_range": [
+        89,
+        91
+      ],
+      "script": "喉頭の下降そのものが、人間の言語を生み出したわけではない。\n発声能力には、舌や唇、脳による制御など、さまざまな要素が関わっている。\nそれでも、人間の喉の構造が複数の機能を抱えていることは変わらない。",
+      "image_count": 1,
+      "asset_type": "photo",
+      "image_description": "アカシカまたはダマジカの雄が鳴いている瞬間の実物写真。首から頭部までが見え、口を開けた発声姿勢が分かる自然な野生動物写真。",
+      "photo_request": "アカシカまたはダマジカの雄が鳴いている瞬間の実物写真。首から頭部までが見え、口を開けた発声姿勢が分かる自然な野生動物写真。",
+      "design_axis": "実写野生動物／発声するシカ",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 14.48,
+      "image_file": "assets/final/S029.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "喉頭の下降そのものが、人間の言語を生み出したわけではない。\n発声能力には、舌や唇、脳による制御など、さまざまな要素が関わっている。\nそれでも、人間の喉の構造が複数の機能を抱えていることは変わらない。"
+    },
+    {
+      "id": "S030",
+      "chapter": "chapter2",
+      "source_line_range": [
+        92,
+        94
+      ],
+      "script": "呼吸をする。食べ物を飲み込む。声を出す。\nこれらを一つの狭い場所で処理しなければならない。\n便利な機能を集約した結果、調整しなければならない仕事まで増えてしまった。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "発声に関わる舌、唇、脳、声道を一人の頭部の中に統合した科学イラスト。複数パネルにせず、神経制御と発声器官の連携を一つの構図で示す。",
+      "photo_request": null,
+      "design_axis": "科学図版／発声器官と脳の連携",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 11.94,
+      "image_file": "assets/final/S030.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "呼吸をする。食べ物を飲み込む。声を出す。\nこれらを一つの狭い場所で処理しなければならない。\n便利な機能を集約した結果、調整しなければならない仕事まで増えてしまった。"
+    },
+    {
+      "id": "S031",
+      "chapter": "chapter2",
+      "source_line_range": [
+        95,
+        97
+      ],
+      "script": "工場の中に、複数の生産ラインを詰め込んだようなものだ。一つの設備を使い回せば場所は節約できる。だが、その設備に問題が起きれば、複数の工程が同時に止まってしまう。\n人間の喉は、そんな構造をしている。\n言葉を話すための喉は、食べ物を飲み込むための喉でもある。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "複数の生産ラインが一つの狭い設備を共有する工場の概念画。配管と機械の流れが一つのボトルネックに集まる。人体や文字は描かない。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／工場のボトルネック",
+      "motion": "pan_left",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          1,
+          0.5
+        ],
+        "camera_to": [
+          0,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 18.66,
+      "image_file": "assets/final/S031.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "工場の中に、複数の生産ラインを詰め込んだようなものだ。一つの設備を使い回せば場所は節約できる。だが、その設備に問題が起きれば、複数の工程が同時に止まってしまう。\n人間の喉は、そんな構造をしている。\n言葉を話すための喉は、食べ物を飲み込むための喉でもある。"
+    },
+    {
+      "id": "S032",
+      "chapter": "chapter2",
+      "source_line_range": [
+        98,
+        100
+      ],
+      "script": "人間は、言葉によって複雑な情報を共有できるようになった。だが、その身体の中では、今も食べ物と空気が同じ場所を通っている。\nそして、人体には、もっと根本的な機能を失ってしまった場所がある。\n人間は、生きるために必要な物質を、自分の身体で作ることさえできない。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "頭頸部の断面を暗い背景に浮かべ、空気と食べ物の流線が同じ咽頭を通る様子を示す。画面の端に、失われた機能を暗示する小さな代謝経路の光を置く。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／解剖図から次章へ",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 18.81,
+      "image_file": "assets/final/S032.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間は、言葉によって複雑な情報を共有できるようになった。だが、その身体の中では、今も食べ物と空気が同じ場所を通っている。\nそして、人体には、もっと根本的な機能を失ってしまった場所がある。\n人間は、生きるために必要な物質を、自分の身体で作ることさえできない。"
+    },
+    {
+      "id": "S033",
+      "chapter": "chapter3",
+      "source_line_range": [
+        103,
+        105
+      ],
+      "script": "スーパーに行けば、果物が並んでいる。\nオレンジ、キウイ、イチゴ。どれもビタミンCを含んでいる。\n私たちは、食べ物から栄養を摂取する。それは当たり前のことだ。",
+      "image_count": 1,
+      "asset_type": "photo",
+      "image_description": "明るいスーパーの果物売り場。オレンジ、キウイ、イチゴが鮮度よく並び、ビタミンCを含む果物だと直感的に分かる実物写真。値札やロゴは主役にしない。",
+      "photo_request": "明るいスーパーの果物売り場。オレンジ、キウイ、イチゴが鮮度よく並び、ビタミンCを含む果物だと直感的に分かる実物写真。値札やロゴは主役にしない。",
+      "design_axis": "実写ドキュメンタリー／スーパーの果物売り場",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 11.34,
+      "image_file": "assets/final/S033.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "スーパーに行けば、果物が並んでいる。\nオレンジ、キウイ、イチゴ。どれもビタミンCを含んでいる。\n私たちは、食べ物から栄養を摂取する。それは当たり前のことだ。"
+    },
+    {
+      "id": "S034",
+      "chapter": "chapter3",
+      "source_line_range": [
+        106,
+        108
+      ],
+      "script": "だが、ほかの動物と比べると、人間には少し妙な事情がある。\n人間は、ビタミンCを体内で合成できない。\nビタミンCは、コラーゲンの合成に必要な物質だ。コラーゲンは皮膚や血管、骨などを構成する結合組織に関わっている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の全身シルエットの横に、体内でビタミンC合成経路が途中で止まることを示す簡潔な代謝イラスト。文字ラベルは入れない。",
+      "photo_request": null,
+      "design_axis": "科学インフォグラフィック／代謝経路",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 15.37,
+      "image_file": "assets/final/S034.jpg",
+      "tts_reading_watch": true,
+      "subtitle_text": "だが、ほかの動物と比べると、人間には少し妙な事情がある。\n人間は、ビタミンCを体内で合成できない。\nビタミンCは、コラーゲンの合成に必要な物質だ。コラーゲンは皮膚や血管、骨などを構成する結合組織に関わっている。"
+    },
+    {
+      "id": "S035",
+      "chapter": "chapter3",
+      "source_line_range": [
+        109,
+        111
+      ],
+      "script": "傷が治ることや、血管の構造を保つことにも欠かせない。\n不足すれば壊血病を発症する。\n歯茎から出血し、皮膚に異常が現れ、傷が治りにくくなる。重症化すれば命にも関わる。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "皮膚、血管壁、骨の結合組織を一つの連続した医学図版として描く。コラーゲン線維が組織を支えている様子を拡大して見せる。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／結合組織の拡大図",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 11.94,
+      "image_file": "assets/final/S035.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "傷が治ることや、血管の構造を保つことにも欠かせない。\n不足すれば壊血病を発症する。\n歯茎から出血し、皮膚に異常が現れ、傷が治りにくくなる。重症化すれば命にも関わる。"
+    },
+    {
+      "id": "S036",
+      "chapter": "chapter3",
+      "source_line_range": [
+        112,
+        114
+      ],
+      "script": "生きていくために必要な物質なのに、人間はそれを自分で作れない。\n多くの動物は、体内でビタミンCを合成できる。\nブドウ糖などを材料にして、いくつかの化学反応を経てビタミンCを作る。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "壊血病の症状を示す非グロテスクな医学イラスト。歯茎の出血傾向、皮膚の点状出血、治りにくい傷を医療教材の落ち着いた表現で示す。",
+      "photo_request": null,
+      "design_axis": "医学図版／症状の教育イラスト",
+      "motion": "static",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 12.99,
+      "image_file": "assets/final/S036.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "生きていくために必要な物質なのに、人間はそれを自分で作れない。\n多くの動物は、体内でビタミンCを合成できる。\nブドウ糖などを材料にして、いくつかの化学反応を経てビタミンCを作る。"
+    },
+    {
+      "id": "S037",
+      "chapter": "chapter3",
+      "source_line_range": [
+        115,
+        117
+      ],
+      "script": "その最終段階で働くのが、GULOと呼ばれる酵素だ。\nところが、人間には、この酵素を正常に作るための機能がない。\n正確には、GULOを作る遺伝子そのものが、完全に消えてしまったわけではない。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "哺乳類の肝臓細胞内でブドウ糖からビタミンCへ至る合成経路を、単一の科学イラストで示す。分子と反応の流れが視覚的に追える。",
+      "photo_request": null,
+      "design_axis": "科学図版／代謝経路の模式図",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 13.73,
+      "image_file": "assets/final/S037.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "その最終段階で働くのが、GULOと呼ばれる酵素だ。\nところが、人間には、この酵素を正常に作るための機能がない。\n正確には、GULOを作る遺伝子そのものが、完全に消えてしまったわけではない。"
+    },
+    {
+      "id": "S038",
+      "chapter": "chapter3",
+      "source_line_range": [
+        118,
+        120
+      ],
+      "script": "DNAの中には、その痕跡が残っている。\nしかし、遺伝子の一部に変化が生じ、正常な酵素を作れなくなっている。\nこのように、かつて機能していた遺伝子が機能を失った状態を偽遺伝子と呼ぶ。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "GULO酵素が反応の最終段階を担うことを、酵素と基質の立体分子モデルで表現する。背景は暗く、分子の構造は明瞭にする。",
+      "photo_request": null,
+      "design_axis": "分子科学図版／酵素の立体モデル",
+      "motion": "pan_left",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          1,
+          0.5
+        ],
+        "camera_to": [
+          0,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 13.13,
+      "image_file": "assets/final/S038.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "DNAの中には、その痕跡が残っている。\nしかし、遺伝子の一部に変化が生じ、正常な酵素を作れなくなっている。\nこのように、かつて機能していた遺伝子が機能を失った状態を偽遺伝子と呼ぶ。"
+    },
+    {
+      "id": "S039",
+      "chapter": "chapter3",
+      "source_line_range": [
+        121,
+        122
+      ],
+      "script": "1999年、OhtaとNishikimiは、人間やチンパンジー、オランウータン、マカクのGULO遺伝子を比較した。\nその結果、これらの霊長類では、ビタミンC合成に必要な遺伝子が機能を失っていることが確認された。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間のDNA上に残るGULO遺伝子の領域を拡大した概念図。遺伝子全体が消えたのではなく、機能を失った痕跡が残ることを示す。",
+      "photo_request": null,
+      "design_axis": "分子科学図版／DNAと遺伝子領域",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 15.52,
+      "image_file": "assets/final/S039.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "1999年、OhtaとNishikimiは、人間やチンパンジー、オランウータン、マカクのGULO遺伝子を比較した。\nその結果、これらの霊長類では、ビタミンC合成に必要な遺伝子が機能を失っていることが確認された。"
+    },
+    {
+      "id": "S040",
+      "chapter": "chapter3",
+      "source_line_range": [
+        123,
+        126
+      ],
+      "script": "つまり、人間は昔からビタミンCを作れなかったわけではない。\n進化の歴史のどこかで、作る能力を失ったのだ。\nでは、なぜそんなことが起きたのだろう。\n一つの説明として考えられるのは、食物から十分なビタミンCを得られる環境だったということだ。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "DNA配列の一部に変化が生じ、機能を失った遺伝子のイメージ。壊れた断片ではなく、元の構造を残しながら働かなくなったことを示す。",
+      "photo_request": null,
+      "design_axis": "科学図版／偽遺伝子の概念図",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 17.16,
+      "image_file": "assets/final/S040.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "つまり、人間は昔からビタミンCを作れなかったわけではない。\n進化の歴史のどこかで、作る能力を失ったのだ。\nでは、なぜそんなことが起きたのだろう。\n一つの説明として考えられるのは、食物から十分なビタミンCを得られる環境だったということだ。"
+    },
+    {
+      "id": "S041",
+      "chapter": "chapter3",
+      "source_line_range": [
+        127,
+        128
+      ],
+      "script": "食事から必要な量を摂取できるのであれば、体内で合成する能力が失われても、すぐに生存できなくなるわけではない。\nその状態で生き残り、子孫を残せるのであれば、機能を失った遺伝子が残り続けることもある。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間、チンパンジー、オランウータン、マカクを一つの進化系統樹の上に配置し、共通するGULO機能喪失の痕跡をDNAの象徴で示す。",
+      "photo_request": null,
+      "design_axis": "科学インフォグラフィック／霊長類系統樹",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 14.48,
+      "image_file": "assets/final/S041.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "食事から必要な量を摂取できるのであれば、体内で合成する能力が失われても、すぐに生存できなくなるわけではない。\nその状態で生き残り、子孫を残せるのであれば、機能を失った遺伝子が残り続けることもある。"
+    },
+    {
+      "id": "S042",
+      "chapter": "chapter3",
+      "source_line_range": [
+        129,
+        130
+      ],
+      "script": "ただし、果物を多く食べていたから遺伝子が壊れた、と単純に説明できるわけではない。ビタミンCの合成経路とほかの代謝機能との関係など、別の仮説も研究されている。\nここで重要なのは、進化が必ずしも機能を増やしていく仕組みではないということだ。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "進化の時間軸の上で、かつて働いていたビタミンC合成経路が徐々に失われていく様子を、一枚の抽象的な生物学図版で描く。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／進化的機能喪失",
+      "motion": "pan_up",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          1
+        ],
+        "camera_to": [
+          0.5,
+          0
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 17.46,
+      "image_file": "assets/final/S042.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "ただし、果物を多く食べていたから遺伝子が壊れた、と単純に説明できるわけではない。ビタミンCの合成経路とほかの代謝機能との関係など、別の仮説も研究されている。\nここで重要なのは、進化が必ずしも機能を増やしていく仕組みではないということだ。"
+    },
+    {
+      "id": "S043",
+      "chapter": "chapter3",
+      "source_line_range": [
+        131,
+        133
+      ],
+      "script": "必要なものを新しく作ることもあれば、使わなくなった機能を失うこともある。\n人間は、自分の身体で作れないものを、食卓に外注している。\nこれは、経済の仕組みにも少し似ている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "果実が豊富な森林環境に暮らす初期霊長類を遠景で描き、食物から栄養を得られる環境という仮説を象徴する。因果を断定する文字は入れない。",
+      "photo_request": null,
+      "design_axis": "実写風自然情景／進化環境の再現イラスト",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 12.39,
+      "image_file": "assets/final/S043.jpg",
+      "tts_reading_watch": true,
+      "subtitle_text": "必要なものを新しく作ることもあれば、使わなくなった機能を失うこともある。\n人間は、自分の身体で作れないものを、食卓に外注している。\nこれは、経済の仕組みにも少し似ている。"
+    },
+    {
+      "id": "S044",
+      "chapter": "chapter3",
+      "source_line_range": [
+        134,
+        136
+      ],
+      "script": "自社で作っていたものを、外部から調達するようにすれば、内部の設備や人員を減らすことができる。\nその分、別の仕事に資源を回せる。\nだが、外部からの供給が止まれば、自分だけではどうにもならない。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "細胞内の代謝経路が複数に枝分かれし、ビタミンC合成以外の機能とも関わる複雑なネットワークを表す科学イラスト。",
+      "photo_request": null,
+      "design_axis": "科学インフォグラフィック／代謝ネットワーク",
+      "motion": "pan_left",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          1,
+          0.5
+        ],
+        "camera_to": [
+          0,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 13.88,
+      "image_file": "assets/final/S044.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "自社で作っていたものを、外部から調達するようにすれば、内部の設備や人員を減らすことができる。\nその分、別の仕事に資源を回せる。\nだが、外部からの供給が止まれば、自分だけではどうにもならない。"
+    },
+    {
+      "id": "S045",
+      "chapter": "chapter3",
+      "source_line_range": [
+        137,
+        139
+      ],
+      "script": "人間の身体も同じだ。\nビタミンCを作る機能を失った人間は、食べ物からそれを確保しなければならない。\n食べ物が豊富にある環境では問題にならない。だが、食料が不足すれば、その依存関係が弱点になる。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "工場の生産工程の一部を外部業者へ委託し、外から物資が届く様子を描いた概念画。自社の設備を減らす一方で供給に依存する構造を示す。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／外部委託の比喩",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 14.03,
+      "image_file": "assets/final/S045.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間の身体も同じだ。\nビタミンCを作る機能を失った人間は、食べ物からそれを確保しなければならない。\n食べ物が豊富にある環境では問題にならない。だが、食料が不足すれば、その依存関係が弱点になる。"
+    },
+    {
+      "id": "S046",
+      "chapter": "chapter3",
+      "source_line_range": [
+        140,
+        142
+      ],
+      "script": "人間は、何でも自分でできる万能な生物ではない。外部環境に依存しながら生きる生物なのだ。\nそして、食べ物から栄養を得るだけでは補えない問題もある。\n人間は、自分の子どもを産むという行為にも、ずいぶん大きな負担を抱えている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "食料の供給路が細くなり、食卓に必要な栄養が届かなくなる様子を一つの象徴的な構図で描く。画面奥には出産を示唆する柔らかな光を置く。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／供給依存と次章へのブリッジ",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 16.12,
+      "image_file": "assets/final/S046.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間は、何でも自分でできる万能な生物ではない。外部環境に依存しながら生きる生物なのだ。\nそして、食べ物から栄養を得るだけでは補えない問題もある。\n人間は、自分の子どもを産むという行為にも、ずいぶん大きな負担を抱えている。"
+    },
+    {
+      "id": "S047",
+      "chapter": "chapter4",
+      "source_line_range": [
+        145,
+        147
+      ],
+      "script": "人間の赤ん坊は、生まれたばかりの頃、ほとんど何もできない。\n自分で歩くこともできない。食べ物を探すこともできない。体温を保つことさえ、周囲の助けが必要になる。\n多くの哺乳類では、生まれた子どもが比較的早い段階で立ち上がり、歩き始める。",
+      "image_count": 1,
+      "asset_type": "photo",
+      "image_description": "生まれたばかりの人間の赤ん坊。首を自力で支えられず、仰向けに寝ている自然な姿。過度に演出せず、赤ん坊の小ささと未熟さが伝わる実物写真。",
+      "photo_request": "生まれたばかりの人間の赤ん坊。首を自力で支えられず、仰向けに寝ている自然な姿。過度に演出せず、赤ん坊の小ささと未熟さが伝わる実物写真。",
+      "design_axis": "実写ドキュメンタリー／新生児",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 17.16,
+      "image_file": "assets/final/S047.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間の赤ん坊は、生まれたばかりの頃、ほとんど何もできない。\n自分で歩くこともできない。食べ物を探すこともできない。体温を保つことさえ、周囲の助けが必要になる。\n多くの哺乳類では、生まれた子どもが比較的早い段階で立ち上がり、歩き始める。"
+    },
+    {
+      "id": "S048",
+      "chapter": "chapter4",
+      "source_line_range": [
+        148,
+        150
+      ],
+      "script": "シマウマの子どもは、生まれてからそれほど時間を置かずに立ち上がる。\nところが、人間の赤ん坊は違う。\n首がすわるまでにも時間がかかり、一人で歩けるようになるまでには、通常1年近くを要する。",
+      "image_count": 1,
+      "asset_type": "photo",
+      "image_description": "生まれて間もないシマウマの子どもが母親のそばで立ち上がっている実物写真。脚の細さと立位が分かる野生動物写真。",
+      "photo_request": "生まれて間もないシマウマの子どもが母親のそばで立ち上がっている実物写真。脚の細さと立位が分かる野生動物写真。",
+      "design_axis": "実写野生動物／出生直後のシマウマ",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 13.58,
+      "image_file": "assets/final/S048.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "シマウマの子どもは、生まれてからそれほど時間を置かずに立ち上がる。\nところが、人間の赤ん坊は違う。\n首がすわるまでにも時間がかかり、一人で歩けるようになるまでには、通常1年近くを要する。"
+    },
+    {
+      "id": "S049",
+      "chapter": "chapter4",
+      "source_line_range": [
+        151,
+        154
+      ],
+      "script": "人間は、ずいぶん未熟な状態で生まれてくる。\nその背景には、脳の大型化と出産の難しさがある。\n人間の脳は、ほかの霊長類と比べても大きい。\n脳が大きくなれば、それだけ胎児の頭も大きくなる。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の新生児の身体を、頭が大きく手足の制御が未熟な姿として医学教材風に描く。脳と運動機能の未成熟さを象徴する単一のイラスト。",
+      "photo_request": null,
+      "design_axis": "医学図版／新生児の発達段階",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 13.28,
+      "image_file": "assets/final/S049.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間は、ずいぶん未熟な状態で生まれてくる。\nその背景には、脳の大型化と出産の難しさがある。\n人間の脳は、ほかの霊長類と比べても大きい。\n脳が大きくなれば、それだけ胎児の頭も大きくなる。"
+    },
+    {
+      "id": "S050",
+      "chapter": "chapter4",
+      "source_line_range": [
+        155,
+        157
+      ],
+      "script": "ところが、人間は二本足で歩くために、骨盤の構造を変化させてきた。\n骨盤は、上半身の重さを支え、歩行時のバランスを保つための重要な構造だ。\nそして、同時に赤ん坊が通過する産道でもある。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "成人の人間の脳を頭蓋骨の中に大きく描き、霊長類の中で脳が大型化した特徴を表す。",
+      "photo_request": null,
+      "design_axis": "科学図版／脳の解剖",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 13.28,
+      "image_file": "assets/final/S050.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "ところが、人間は二本足で歩くために、骨盤の構造を変化させてきた。\n骨盤は、上半身の重さを支え、歩行時のバランスを保つための重要な構造だ。\nそして、同時に赤ん坊が通過する産道でもある。"
+    },
+    {
+      "id": "S051",
+      "chapter": "chapter4",
+      "source_line_range": [
+        158,
+        160
+      ],
+      "script": "ここに問題が生まれる。\n胎児の頭は大きくなっていく。一方で、産道には通過できる大きさの制約がある。\n人間の出産では、胎児は産道を通過する際に頭や身体の向きを変えていく。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "胎児の頭部と母体の子宮内の位置関係を示す、落ち着いた医学的な側面断面図。頭部の大きさを正確に強調する。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／胎児の頭部断面",
+      "motion": "pan_down",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0
+        ],
+        "camera_to": [
+          0.5,
+          1
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 12.24,
+      "image_file": "assets/final/S051.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "ここに問題が生まれる。\n胎児の頭は大きくなっていく。一方で、産道には通過できる大きさの制約がある。\n人間の出産では、胎児は産道を通過する際に頭や身体の向きを変えていく。"
+    },
+    {
+      "id": "S052",
+      "chapter": "chapter4",
+      "source_line_range": [
+        161,
+        163
+      ],
+      "script": "骨盤の入口と出口では、広い方向が異なるため、赤ん坊は回転しながら外へ出てくる。\nこれを回旋出産と呼ぶ。\n2021年のStansfieldらの研究でも、骨盤の形状と出産時の胎児の回転との関係が分析されている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "直立二足歩行に適応した人間の骨盤を正面から見た精密な骨格図。左右の腸骨、仙骨、恥骨の構造が分かる。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／骨盤の骨格図",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 15.07,
+      "image_file": "assets/final/S052.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "骨盤の入口と出口では、広い方向が異なるため、赤ん坊は回転しながら外へ出てくる。\nこれを回旋出産と呼ぶ。\n2021年のStansfieldらの研究でも、骨盤の形状と出産時の胎児の回転との関係が分析されている。"
+    },
+    {
+      "id": "S053",
+      "chapter": "chapter4",
+      "source_line_range": [
+        164,
+        166
+      ],
+      "script": "人間の出産は、胎児の頭と母体の骨盤がぎりぎりの関係にある、複雑な過程なのだ。\nこの問題は、進化人類学で「産科的ジレンマ」と呼ばれてきた。\n二本足で歩くための骨盤と、大きな脳を持つ胎児。その両方に適応しなければならない。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の骨盤を斜め上から見た単一の解剖図。骨盤が上半身を支える構造であると同時に、産道の入口でもあることを形状で示す。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／骨盤と産道",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 15.97,
+      "image_file": "assets/final/S053.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間の出産は、胎児の頭と母体の骨盤がぎりぎりの関係にある、複雑な過程なのだ。\nこの問題は、進化人類学で「産科的ジレンマ」と呼ばれてきた。\n二本足で歩くための骨盤と、大きな脳を持つ胎児。その両方に適応しなければならない。"
+    },
+    {
+      "id": "S054",
+      "chapter": "chapter4",
+      "source_line_range": [
+        167,
+        169
+      ],
+      "script": "人間は、歩くための身体と、産むための身体を同時に成立させなければならなかった。\nただし、出産の難しさを骨盤の狭さだけで説明することはできない。\n2012年、Dunsworthらは、母体のエネルギー消費に注目した仮説を発表した。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "胎児の頭部と母体の骨盤を一つの矢状断面図に収め、産道の通過可能な幅に制約があることを明確に描く。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／出産の断面図",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 16.57,
+      "image_file": "assets/final/S054.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間は、歩くための身体と、産むための身体を同時に成立させなければならなかった。\nただし、出産の難しさを骨盤の狭さだけで説明することはできない。\n2012年、Dunsworthらは、母体のエネルギー消費に注目した仮説を発表した。"
+    },
+    {
+      "id": "S055",
+      "chapter": "chapter4",
+      "source_line_range": [
+        170,
+        171
+      ],
+      "script": "妊娠後期になると、胎児の成長に必要なエネルギーは大きくなる。母体が妊娠を維持し、胎児を育てるための代謝的な負担には限界がある。\nつまり、人間の赤ん坊が生まれる時期は、骨盤の形状だけでなく、母体が供給できるエネルギーにも制約されているという考え方だ。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "胎児が産道を通過する際に頭部と身体の向きを変える一瞬を、母体骨盤の内部から見た医学イラストで示す。",
+      "photo_request": null,
+      "design_axis": "医学図版／回旋出産",
+      "motion": "pan_left",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          1,
+          0.5
+        ],
+        "camera_to": [
+          0,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 18.36,
+      "image_file": "assets/final/S055.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "妊娠後期になると、胎児の成長に必要なエネルギーは大きくなる。母体が妊娠を維持し、胎児を育てるための代謝的な負担には限界がある。\nつまり、人間の赤ん坊が生まれる時期は、骨盤の形状だけでなく、母体が供給できるエネルギーにも制約されているという考え方だ。"
+    },
+    {
+      "id": "S056",
+      "chapter": "chapter4",
+      "source_line_range": [
+        172,
+        172
+      ],
+      "script": "2023年のGrunstraらの研究も、出産の進化を骨盤の狭さだけで説明することに疑問を投げかけながら、複数の進化的制約が重なっていることを論じている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "骨盤の入口と出口を一つの立体骨盤モデルの中で表現し、広い方向が異なることを金色の軸で示す。分割画面にはしない。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／骨盤形状の立体図",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 11.34,
+      "image_file": "assets/final/S056.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "2023年のGrunstraらの研究も、出産の進化を骨盤の狭さだけで説明することに疑問を投げかけながら、複数の進化的制約が重なっていることを論じている。"
+    },
+    {
+      "id": "S057",
+      "chapter": "chapter4",
+      "source_line_range": [
+        173,
+        174
+      ],
+      "script": "人間の出産は、一つの理由で難しくなったわけではない。\n大きな脳、骨盤の構造、母体のエネルギー、胎児の成長。さまざまな条件が絡み合っている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の骨盤と胎児の頭部の関係を大きく描いた一枚の科学図版。歩行に適した骨盤と出産時の通過制約の両方が視覚的に伝わる。",
+      "photo_request": null,      "design_axis": "科学エディトリアル／産科的ジレンマ",
+      "motion": "pan_up",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          1
+        ],
+        "camera_to": [
+          0.5,
+          0
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 10.15,
+      "image_file": "assets/final/S057.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間の出産は、一つの理由で難しくなったわけではない。\n大きな脳、骨盤の構造、母体のエネルギー、胎児の成長。さまざまな条件が絡み合っている。"
+    },
+    {
+      "id": "S058",
+      "chapter": "chapter4",
+      "source_line_range": [
+        175,
+        177
+      ],
+      "script": "そして、その結果として生まれてくる赤ん坊は、非常に未熟な状態にある。\nDunsworthらの研究によれば、人間の新生児の脳は、成人の脳の大きさの30％未満しかない。\nチンパンジーでは、およそ40％に達する。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "妊娠後期の母体を側面から描き、胎児・胎盤・母体のエネルギー供給が一体となっている様子を表す医学的なイラスト。",
+      "photo_request": null,
+      "design_axis": "医学図版／母体と胎児の代謝",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 15.07,
+      "image_file": "assets/final/S058.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "そして、その結果として生まれてくる赤ん坊は、非常に未熟な状態にある。\nDunsworthらの研究によれば、人間の新生児の脳は、成人の脳の大きさの30％未満しかない。\nチンパンジーでは、およそ40％に達する。"
+    },
+    {
+      "id": "S059",
+      "chapter": "chapter4",
+      "source_line_range": [
+        178,
+        180
+      ],
+      "script": "人間は、生まれた後も長い時間をかけて脳を発達させていく。\nここで、もう一つ面白い問題がある。\nこれほど無力な赤ん坊を、どうやって育ててきたのか。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "母体から胎児へ酸素と栄養が送られる様子を、血管と胎盤の断面を通して描く。エネルギー供給の限界を光量の減衰で象徴する。",
+      "photo_request": null,
+      "design_axis": "科学図版／胎盤とエネルギー供給",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 10.45,
+      "image_file": "assets/final/S059.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間は、生まれた後も長い時間をかけて脳を発達させていく。\nここで、もう一つ面白い問題がある。\nこれほど無力な赤ん坊を、どうやって育ててきたのか。"
+    },
+    {
+      "id": "S060",
+      "chapter": "chapter4",
+      "source_line_range": [
+        181,
+        182
+      ],
+      "script": "人間の子育ては、母親一人だけで完結するものではない。\n父親や祖父母、親族、周囲の人々が子どもの世話に関わる。人間は、他者の助けを借りながら子どもを育てる協力繁殖という特徴を持っている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "脳の大型化、骨盤の形、母体のエネルギー、胎児の成長という複数の要因が一つの人体像に集まる概念図。パネル分割や文字ラベルは使わない。",
+      "photo_request": null,
+      "design_axis": "科学インフォグラフィック／複数制約の統合",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 13.58,
+      "image_file": "assets/final/S060.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間の子育ては、母親一人だけで完結するものではない。\n父親や祖父母、親族、周囲の人々が子どもの世話に関わる。人間は、他者の助けを借りながら子どもを育てる協力繁殖という特徴を持っている。"
+    },
+    {
+      "id": "S061",
+      "chapter": "chapter4",
+      "source_line_range": [
+        183,
+        184
+      ],
+      "script": "2009年、Burkart、Hrdy、van Schaikは、協力繁殖と人間の認知能力の進化との関係を論じた。\n他者と子どもを育てる生活様式が、向社会性や協力する能力の進化と結びついてきたという仮説だ。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の新生児の脳を頭蓋骨の中に小さく描き、成人の脳へ成長する余地を視覚的に示す。医療教材の清潔な断面図。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／脳の発達比較",
+      "motion": "pan_left",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          1,
+          0.5
+        ],
+        "camera_to": [
+          0,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 14.93,
+      "image_file": "assets/final/S061.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "2009年、Burkart、Hrdy、van Schaikは、協力繁殖と人間の認知能力の進化との関係を論じた。\n他者と子どもを育てる生活様式が、向社会性や協力する能力の進化と結びついてきたという仮説だ。"
+    },
+    {
+      "id": "S062",
+      "chapter": "chapter4",
+      "source_line_range": [
+        185,
+        186
+      ],
+      "script": "もちろん、赤ん坊が無力だから人間社会が生まれた、と単純に言い切ることはできない。\nだが、人間の子どもが長い時間にわたって他者の助けを必要とすることは、人間の社会を考えるうえで重要な条件になっている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "幼い人間の脳が生後に大きく発達していく様子を、頭部の輪郭と神経ネットワークの広がりで表現する一枚の科学イラスト。",
+      "photo_request": null,
+      "design_axis": "科学図版／脳発達の可視化",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 14.63,
+      "image_file": "assets/final/S062.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "もちろん、赤ん坊が無力だから人間社会が生まれた、と単純に言い切ることはできない。\nだが、人間の子どもが長い時間にわたって他者の助けを必要とすることは、人間の社会を考えるうえで重要な条件になっている。"
+    },
+    {
+      "id": "S063",
+      "chapter": "chapter4",
+      "source_line_range": [
+        187,
+        189
+      ],
+      "script": "人間の赤ん坊は、完成してから生まれるのではない。育つ時間ごと生まれてくる。\n個体だけを見れば、これは大きな弱点だ。\nしかし、人間はその弱点を、他者との協力によって補ってきた。",
+      "image_count": 1,
+      "asset_type": "photo",
+      "image_description": "赤ん坊を母親だけでなく父親や祖父母など複数の家族が一緒に世話している自然な写真。抱く、見守る、あやすなど複数の手が関わる様子が一枚に収まる。",
+      "photo_request": "赤ん坊を母親だけでなく父親や祖父母など複数の家族が一緒に世話している自然な写真。抱く、見守る、あやすなど複数の手が関わる様子が一枚に収まる。",
+      "design_axis": "実写ドキュメンタリー／複数の養育者",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 12.69,
+      "image_file": "assets/final/S063.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間の赤ん坊は、完成してから生まれるのではない。育つ時間ごと生まれてくる。\n個体だけを見れば、これは大きな弱点だ。\nしかし、人間はその弱点を、他者との協力によって補ってきた。"
+    },
+    {
+      "id": "S064",
+      "chapter": "chapter4",
+      "source_line_range": [
+        190,
+        192
+      ],
+      "script": "家族や共同体は、単なる文化的な習慣ではない。人間という生物が抱えた制約に対する、一つの解決方法でもある。\nそして、二本足で立つという進化は、もう一つの場所にも負担を残している。\n人間の身体を支えている、腰だ。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "一人の赤ん坊を中心に、親族や共同体の人々が輪のように支える象徴的な一枚。人々の顔は主役にせず、協力のネットワークを静かな黒×金で表現する。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／協力繁殖",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 15.22,
+      "image_file": "assets/final/S064.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "家族や共同体は、単なる文化的な習慣ではない。人間という生物が抱えた制約に対する、一つの解決方法でもある。\nそして、二本足で立つという進化は、もう一つの場所にも負担を残している。\n人間の身体を支えている、腰だ。"
+    },
+    {
+      "id": "S065",
+      "chapter": "chapter5",
+      "source_line_range": [
+        195,
+        197
+      ],
+      "script": "人間は、二本の足で立っている。\n普段は何も考えずに歩いているが、これは動物の世界では特別なことだ。\n四本の足で身体を支える動物と違い、人間は二本の足の上に、頭と胴体を積み重ねている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間が二本の足で直立する全身像。頭と胴体が二本の脚の上に積み重なる重心の配置を、精密な人体シルエットで表す。",
+      "photo_request": null,
+      "design_axis": "科学図版／二足歩行の全身構造",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 13.28,
+      "image_file": "assets/final/S065.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間は、二本の足で立っている。\n普段は何も考えずに歩いているが、これは動物の世界では特別なことだ。\n四本の足で身体を支える動物と違い、人間は二本の足の上に、頭と胴体を積み重ねている。"
+    },
+    {
+      "id": "S066",
+      "chapter": "chapter5",
+      "source_line_range": [
+        198,
+        200
+      ],
+      "script": "上半身の重さを、限られた面積で支えなければならない。\nそのために重要な役割を果たしているのが、背骨だ。\n人間の背骨を横から見ると、緩やかなS字を描いている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "直立した人体の足元と上半身の重さの流れを一枚で描き、限られた支持面積で全身を支える構造を示す。",
+      "photo_request": null,
+      "design_axis": "科学インフォグラフィック／重心と支持基底面",
+      "motion": "pan_up",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          1
+        ],
+        "camera_to": [
+          0.5,
+          0
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 11.34,
+      "image_file": "assets/final/S066.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "上半身の重さを、限られた面積で支えなければならない。\nそのために重要な役割を果たしているのが、背骨だ。\n人間の背骨を横から見ると、緩やかなS字を描いている。"
+    },
+    {
+      "id": "S067",
+      "chapter": "chapter5",
+      "source_line_range": [
+        201,
+        204
+      ],
+      "script": "首の部分は前方へ、胸の部分は後方へ、そして腰の部分は再び前方へ湾曲している。\n特に腰の部分にある前方への湾曲を、腰椎前弯という。\nこの形には意味がある。\n上半身の重心を骨盤や股関節の上に配置し、直立した姿勢を安定させるためだ。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の背骨を横から見た精密な医学図版。頸椎・胸椎・腰椎の自然なS字カーブが明確に分かる。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／脊柱の側面図",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 16.42,
+      "image_file": "assets/final/S067.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "首の部分は前方へ、胸の部分は後方へ、そして腰の部分は再び前方へ湾曲している。\n特に腰の部分にある前方への湾曲を、腰椎前弯という。\nこの形には意味がある。\n上半身の重心を骨盤や股関節の上に配置し、直立した姿勢を安定させるためだ。"
+    },
+    {
+      "id": "S068",
+      "chapter": "chapter5",
+      "source_line_range": [
+        205,
+        207
+      ],
+      "script": "2007年、Whitcome、Shapiro、Liebermanは、人類の進化における腰椎前弯の役割を研究した。\n腰椎の数や長さ、椎骨の形状などが、二足歩行に適応してきたことを示している。\nつまり、背骨のS字は、二本足で立つために獲得した重要な特徴なのだ。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "腰椎前弯を拡大した側面解剖図。腰椎が前方へ湾曲し、骨盤の上に重心を配置する構造が分かる。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／腰椎前弯の拡大図",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 18.81,
+      "image_file": "assets/final/S068.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "2007年、Whitcome、Shapiro、Liebermanは、人類の進化における腰椎前弯の役割を研究した。\n腰椎の数や長さ、椎骨の形状などが、二足歩行に適応してきたことを示している。\nつまり、背骨のS字は、二本足で立つために獲得した重要な特徴なのだ。"
+    },
+    {
+      "id": "S069",
+      "chapter": "chapter5",
+      "source_line_range": [
+        208,
+        210
+      ],
+      "script": "ところが、この構造には負担もある。\n上半身の重さは、背骨を通して骨盤や脚に伝わる。\n腰椎は、姿勢を保ちながら身体を動かし、歩くたびに変化する力を受け止めなければならない。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "直立姿勢の骨格を横から見た図に、頭部から骨盤・股関節へ落ちる重心線を一本の金色の線で示す。",
+      "photo_request": null,
+      "design_axis": "科学図版／重心線と骨格",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 12.39,
+      "image_file": "assets/final/S069.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "ところが、この構造には負担もある。\n上半身の重さは、背骨を通して骨盤や脚に伝わる。\n腰椎は、姿勢を保ちながら身体を動かし、歩くたびに変化する力を受け止めなければならない。"
+    },
+    {
+      "id": "S070",
+      "chapter": "chapter5",
+      "source_line_range": [
+        211,
+        213
+      ],
+      "script": "立っているときも、座っているときも、身体のバランスを維持するために働き続けている。\n人間の腰は、便利な構造であると同時に、負担が集中する場所でもある。\nそして、現代人はこの場所に、かなりの問題を抱えている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "腰椎の椎骨、椎間板、関節突起を立体的に描く精密な解剖図。2007年の腰椎前弯研究を視覚的に支える。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／腰椎の立体解剖",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 15.07,
+      "image_file": "assets/final/S070.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "立っているときも、座っているときも、身体のバランスを維持するために働き続けている。\n人間の腰は、便利な構造であると同時に、負担が集中する場所でもある。\nそして、現代人はこの場所に、かなりの問題を抱えている。"
+    },
+    {
+      "id": "S071",
+      "chapter": "chapter5",
+      "source_line_range": [
+        214,
+        216
+      ],
+      "script": "世界保健機関によれば、2020年に腰痛を抱えていた人は、世界で約6億1,900万人に達した。\n2050年には、約8億4,300万人になると推計されている。\n腰痛は、世界で最も大きな障害負担を生み出している健康問題の一つだ。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "上半身の重量が腰椎から骨盤、脚へ伝わる力学を、脊柱の断面と金色の圧力線で示す。",
+      "photo_request": null,
+      "design_axis": "科学図版／脊柱の荷重力学",
+      "motion": "pan_left",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          1,
+          0.5
+        ],
+        "camera_to": [
+          0,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 16.27,
+      "image_file": "assets/final/S071.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "世界保健機関によれば、2020年に腰痛を抱えていた人は、世界で約6億1,900万人に達した。\n2050年には、約8億4,300万人になると推計されている。\n腰痛は、世界で最も大きな障害負担を生み出している健康問題の一つだ。"
+    },
+    {
+      "id": "S072",
+      "chapter": "chapter5",
+      "source_line_range": [
+        217,
+        219
+      ],
+      "script": "ただし、ここで注意したいことがある。\n腰痛のすべてが、二足歩行のせいではない。\nWHOによれば、腰痛のおよそ90％は、特定の病気や構造的な原因を特定できない非特異的腰痛に分類される。",
+      "image_count": 1,
+      "asset_type": "photo",
+      "image_description": "腰のあたりに手を当て、痛みや負担を感じている成人。表情は過剰に苦しませず、腰部が主役になる自然な実写写真。",
+      "photo_request": "腰のあたりに手を当て、痛みや負担を感じている成人。表情は過剰に苦しませず、腰部が主役になる自然な実写写真。",
+      "design_axis": "実写ドキュメンタリー／腰痛に悩む人物",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 13.28,
+      "image_file": "assets/final/S072.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "ただし、ここで注意したいことがある。\n腰痛のすべてが、二足歩行のせいではない。\nWHOによれば、腰痛のおよそ90％は、特定の病気や構造的な原因を特定できない非特異的腰痛に分類される。"
+    },
+    {
+      "id": "S073",
+      "chapter": "chapter5",
+      "source_line_range": [
+        220,
+        222
+      ],
+      "script": "加齢、運動不足、肥満、喫煙、仕事上の身体的な負荷など、さまざまな要因が関わっている。\nつまり、人間の腰痛をすべて進化の欠陥に押しつけることはできない。\nそれでも、二本足で歩くために背骨が特殊な形へと変化してきたことは事実だ。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "地球を背景に、腰痛を抱える人々のシルエットが世界各地に広がる概念図。数値を文字として埋め込まず、世界規模の問題を視覚化する。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／世界規模の健康負担",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 16.42,
+      "image_file": "assets/final/S073.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "加齢、運動不足、肥満、喫煙、仕事上の身体的な負荷など、さまざまな要因が関わっている。\nつまり、人間の腰痛をすべて進化の欠陥に押しつけることはできない。\nそれでも、二本足で歩くために背骨が特殊な形へと変化してきたことは事実だ。"
+    },
+    {
+      "id": "S074",
+      "chapter": "chapter5",
+      "source_line_range": [
+        223,
+        225
+      ],
+      "script": "人間は、二本足で立つことで両手を自由にした。\n道具を使い、物を運び、遠くまで移動できるようになった。\n視線を高く保ち、周囲を見渡すこともできる。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人々のシルエットが遠景へ向かって増えていく構図。将来の腰痛負担の増加予測を、文字なしの視覚的な増加として示す。",
+      "photo_request": null,
+      "design_axis": "科学インフォグラフィック／将来推計の増加",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 10.45,
+      "image_file": "assets/final/S074.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間は、二本足で立つことで両手を自由にした。\n道具を使い、物を運び、遠くまで移動できるようになった。\n視線を高く保ち、周囲を見渡すこともできる。"
+    },
+    {
+      "id": "S075",
+      "chapter": "chapter5",
+      "source_line_range": [
+        226,
+        228
+      ],
+      "script": "その能力の裏側で、背骨は身体全体の重量を支えるための構造へと変化してきた。\nそして、その構造は、現代の生活環境の中でも使われ続けている。\n長時間座り、運動する機会が減り、身体を動かさない生活を送る人もいる。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人体の腰部を中心に、原因が一つに定まらない痛みのイメージを、筋肉・関節・神経・生活要因の複数の細い線で示す。",
+      "photo_request": null,
+      "design_axis": "医学図版／非特異的腰痛",
+      "motion": "pan_down",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0
+        ],
+        "camera_to": [
+          0.5,
+          1
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 15.07,
+      "image_file": "assets/final/S075.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "その能力の裏側で、背骨は身体全体の重量を支えるための構造へと変化してきた。\nそして、その構造は、現代の生活環境の中でも使われ続けている。\n長時間座り、運動する機会が減り、身体を動かさない生活を送る人もいる。"
+    },
+    {
+      "id": "S076",
+      "chapter": "chapter5",
+      "source_line_range": [
+        229,
+        231
+      ],
+      "script": "人間の身体が進化してきた環境と、現在の生活環境は同じではない。\n腰のS字は、欠陥ではない。二本足で立つための工夫が、負担の集中点にもなったのだ。\n目は、光を受け取るために奇妙な構造を残した。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "腰部を中心に、加齢、運動不足、肥満、喫煙、仕事上の負荷を象徴する複数の要素が一人の人体の周囲に集まる単一構図。",
+      "photo_request": null,
+      "design_axis": "科学エディトリアル／多因子リスク",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 13.88,
+      "image_file": "assets/final/S076.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間の身体が進化してきた環境と、現在の生活環境は同じではない。\n腰のS字は、欠陥ではない。二本足で立つための工夫が、負担の集中点にもなったのだ。\n目は、光を受け取るために奇妙な構造を残した。"
+    },
+    {
+      "id": "S077",
+      "chapter": "chapter5",
+      "source_line_range": [
+        232,
+        234
+      ],
+      "script": "喉は、呼吸と食事と発声を一つの場所で処理している。\n人間は、ビタミンCを作る遺伝子の機能を失った。\n大きな脳を持つために、出産と育児には長い時間と他者の助けが必要になった。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "二足歩行する人間が両手で道具や荷物を運び、遠くを見渡す姿。直立歩行がもたらした能力を静かな歴史的情景として描く。",
+      "photo_request": null,
+      "design_axis": "実写風シネマティック情景／人類進化の再現",
+      "motion": "pan_left",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          1,
+          0.5
+        ],
+        "camera_to": [
+          0,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 12.54,
+      "image_file": "assets/final/S077.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "喉は、呼吸と食事と発声を一つの場所で処理している。\n人間は、ビタミンCを作る遺伝子の機能を失った。\n大きな脳を持つために、出産と育児には長い時間と他者の助けが必要になった。"
+    },
+    {
+      "id": "S078",
+      "chapter": "chapter5",
+      "source_line_range": [
+        235,
+        237
+      ],
+      "script": "そして、二本足で立つために、腰には負担がかかっている。\nどれも、人間が獲得してきた能力と無関係ではない。\nだが、これらを単なる失敗として片付けてしまうと、進化の本当の姿を見誤ることになる。",
+      "image_count": 1,
+      "asset_type": "photo",
+      "image_description": "現代のオフィスで長時間座ってパソコン作業をする成人。背中から腰にかけての姿勢が分かり、座位中心の生活を示す自然な写真。",
+      "photo_request": "現代のオフィスで長時間座ってパソコン作業をする成人。背中から腰にかけての姿勢が分かり、座位中心の生活を示す自然な写真。",
+      "design_axis": "実写ドキュメンタリー／長時間のデスクワーク",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 13.73,
+      "image_file": "assets/final/S078.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "そして、二本足で立つために、腰には負担がかかっている。\nどれも、人間が獲得してきた能力と無関係ではない。\nだが、これらを単なる失敗として片付けてしまうと、進化の本当の姿を見誤ることになる。"
+    },
+    {
+      "id": "S079",
+      "chapter": "epilogue",
+      "source_line_range": [
+        240,
+        243
+      ],
+      "script": "人間の身体には、さまざまな欠陥がある。\n目には盲点があり、網膜は光の方向とは逆を向いている。\n喉では、食べ物と空気が同じ通路を共有している。\nビタミンCを作る機能は失われ、食事に依存しなければならない。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の全身像を中心に、盲点のある目、喉の交差、ビタミンC合成の欠落を象徴する器官の特徴が一体化した医学的な概念図。",
+      "photo_request": null,
+      "design_axis": "科学エディトリアル／人体の欠陥総覧",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 14.63,
+      "image_file": "assets/final/S079.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間の身体には、さまざまな欠陥がある。\n目には盲点があり、網膜は光の方向とは逆を向いている。\n喉では、食べ物と空気が同じ通路を共有している。\nビタミンCを作る機能は失われ、食事に依存しなければならない。"
+    },
+    {
+      "id": "S080",
+      "chapter": "epilogue",
+      "source_line_range": [
+        244,
+        246
+      ],
+      "script": "大きな脳を持つ代わりに、出産は複雑になり、赤ん坊は長い時間をかけて成長する。\n二本足で歩くために、背骨には独特の湾曲が生まれ、腰には負担がかかる。\nこうして並べてみると、人間の身体はずいぶん不器用な仕組みでできている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人間の全身像に大きな脳、骨盤、背骨のS字カーブを組み込んだ一枚の解剖学図版。出産と直立歩行の制約をまとめる。",
+      "photo_request": null,
+      "design_axis": "医学アトラス／全身構造の総覧",
+      "motion": "pan_right",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0,
+          0.5
+        ],
+        "camera_to": [
+          1,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 15.97,
+      "image_file": "assets/final/S080.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "大きな脳を持つ代わりに、出産は複雑になり、赤ん坊は長い時間をかけて成長する。\n二本足で歩くために、背骨には独特の湾曲が生まれ、腰には負担がかかる。\nこうして並べてみると、人間の身体はずいぶん不器用な仕組みでできている。"
+    },
+    {
+      "id": "S081",
+      "chapter": "epilogue",
+      "source_line_range": [
+        247,
+        248
+      ],
+      "script": "だが、進化は完璧な身体を作るための工程ではない。\n自然淘汰は、未来の人間が腰痛に悩まないように設計しているわけではない。いつか人間が宇宙へ行くことを考えて、目や骨盤を作ったわけでもない。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "完璧な機械の設計図ではなく、長い時間をかけて継ぎ足された人体の設計図を黒い背景に浮かべる。完成形を目指していない進化を表す。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／未完成の設計図",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 13.73,
+      "image_file": "assets/final/S081.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "だが、進化は完璧な身体を作るための工程ではない。\n自然淘汰は、未来の人間が腰痛に悩まないように設計しているわけではない。いつか人間が宇宙へ行くことを考えて、目や骨盤を作ったわけでもない。"
+    },
+    {
+      "id": "S082",
+      "chapter": "epilogue",
+      "source_line_range": [
+        249,
+        251
+      ],
+      "script": "その時代、その環境で生き残るために必要だった変化が積み重なり、現在の身体ができあがった。\n古い構造を引き継ぎ、使えるものを利用し、失われた機能を残したまま、別の機能を発達させる。\nそれが進化の姿なのだ。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "太古の自然環境の中で、生き残るための小さな変化が積み重なっていく様子を一枚の時間の流れとして描く。",
+      "photo_request": null,
+      "design_axis": "実写風シネマティック情景／進化の時間",
+      "motion": "pan_left",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          1,
+          0.5
+        ],
+        "camera_to": [
+          0,
+          0.5
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 14.78,
+      "image_file": "assets/final/S082.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "その時代、その環境で生き残るために必要だった変化が積み重なり、現在の身体ができあがった。\n古い構造を引き継ぎ、使えるものを利用し、失われた機能を残したまま、別の機能を発達させる。\nそれが進化の姿なのだ。"
+    },
+    {
+      "id": "S083",
+      "chapter": "epilogue",
+      "source_line_range": [
+        252,
+        253
+      ],
+      "script": "人間は、完璧だから繁栄したのではない。不完全な身体を抱えながら、その欠陥を補う方法を見つけてきたのだ。\n医学は出産の危険を減らし、栄養学は食事によって失われた機能を補う。眼科医療は視覚の問題を改善し、道具や技術は身体の限界を広げてきた。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人体の内部に古い骨格や配線のような神経構造が残り、その上に新しい機能が重なる建築的な透視表現。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／古い構造の継承",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 17.46,
+      "image_file": "assets/final/S083.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間は、完璧だから繁栄したのではない。不完全な身体を抱えながら、その欠陥を補う方法を見つけてきたのだ。\n医学は出産の危険を減らし、栄養学は食事によって失われた機能を補う。眼科医療は視覚の問題を改善し、道具や技術は身体の限界を広げてきた。"
+    },
+    {
+      "id": "S084",
+      "chapter": "epilogue",
+      "source_line_range": [
+        254,
+        255
+      ],
+      "script": "人間は、自分の身体の不完全さを理解し、その不完全さと付き合う方法を増やしてきた。\nそう考えると、人体は完成された機械というより、今も改修が続いている建物に近いのかもしれない。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "不完全な人体を支える医療器具、栄養、眼鏡、道具が一人の人体像の周囲に配置された一枚の概念画。人間が欠陥を補ってきたことを示す。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／補完技術の象徴",
+      "motion": "pan_up",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          1
+        ],
+        "camera_to": [
+          0.5,
+          0
+        ],
+        "travel_percent": 16.7
+      },
+      "estimated_duration_sec": 12.84,
+      "image_file": "assets/final/S084.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "人間は、自分の身体の不完全さを理解し、その不完全さと付き合う方法を増やしてきた。\nそう考えると、人体は完成された機械というより、今も改修が続いている建物に近いのかもしれない。"
+    },
+    {
+      "id": "S085",
+      "chapter": "epilogue",
+      "source_line_range": [
+        256,
+        257
+      ],
+      "script": "何億年も前の構造が残り、その上に新しい機能が積み重なっている。壁の裏側には、昔の配線がそのまま残っている。普段は問題なく動いているが、よく調べると、ずいぶん無理のある設計になっている。\nそれでも、建物は立ち続けている。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "医療、栄養、眼科、道具の技術が人間の身体の限界を少しずつ広げる様子を、単一の人体シルエットに統合した図版。",
+      "photo_request": null,
+      "design_axis": "科学エディトリアル／人間による改修",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 16.12,
+      "image_file": "assets/final/S085.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "何億年も前の構造が残り、その上に新しい機能が積み重なっている。壁の裏側には、昔の配線がそのまま残っている。普段は問題なく動いているが、よく調べると、ずいぶん無理のある設計になっている。\nそれでも、建物は立ち続けている。"
+    },
+    {
+      "id": "S086",
+      "chapter": "epilogue",
+      "source_line_range": [
+        258,
+        259
+      ],
+      "script": "もし、人間の身体を一つだけ設計し直せるとしたら、どこを直すだろう。\n盲点のない目か。食べ物が絶対に気管へ入らない喉か。ビタミンCを自分で作れる身体か。それとも、出産の危険も腰痛もない身体か。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "古い建物の壁の断面に、古い配線と新しい配線が重なり、補修跡が残る。建物全体は立ち続けている。人体を直接描かない静かな比喩画。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／改修され続ける建物",
+      "motion": "static",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 14.03,
+      "image_file": "assets/final/S086.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "もし、人間の身体を一つだけ設計し直せるとしたら、どこを直すだろう。\n盲点のない目か。食べ物が絶対に気管へ入らない喉か。ビタミンCを自分で作れる身体か。それとも、出産の危険も腰痛もない身体か。"
+    },
+    {
+      "id": "S087",
+      "chapter": "epilogue",
+      "source_line_range": [
+        260,
+        262
+      ],
+      "script": "だが、その欠陥を取り除いたとき、今ある能力まで失われるとしたら、何を選ぶのだろう。\n人間の身体は、完成していない。\nそして、進化には、最初から完成を約束する設計図など存在しない。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "人体を設計し直す選択を象徴する一枚。眼、喉、栄養、骨盤、腰の形をした金色の部品が、中央の人体シルエットの周囲に浮かぶ。失う能力と得る能力の緊張を表現する。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／設計選択のメタファー",
+      "motion": "zoom_in",
+      "motion_parameters": {
+        "scale_from": 1.0,
+        "scale_to": 1.2,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 12.99,
+      "image_file": "assets/final/S087.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "だが、その欠陥を取り除いたとき、今ある能力まで失われるとしたら、何を選ぶのだろう。\n人間の身体は、完成していない。\nそして、進化には、最初から完成を約束する設計図など存在しない。"
+    },
+    {
+      "id": "S088",
+      "chapter": "epilogue",
+      "source_line_range": [
+        263,
+        265
+      ],
+      "script": "さあ、もう一度考えてみよう。\n私たちが欠陥だと思っているものは、本当に取り除くべきものなのか。\n今夜も、当たり前がひとつ減りました。",
+      "image_count": 1,
+      "asset_type": "generated",
+      "image_description": "未完成の人体の設計図が静かな夜の暗闇に浮かび、最後に小さな金色の光が残る。画面下部は字幕帯のために暗く単純に保つ。",
+      "photo_request": null,
+      "design_axis": "黒×金の概念表現／静かな夜のエピローグ",
+      "motion": "zoom_out",
+      "motion_parameters": {
+        "scale_from": 1.2,
+        "scale_to": 1.0,
+        "camera_from": [
+          0.5,
+          0.5
+        ],
+        "camera_to": [
+          0.5,
+          0.5
+        ]
+      },
+      "estimated_duration_sec": 9.55,
+      "image_file": "assets/final/S088.jpg",
+      "tts_reading_watch": false,
+      "subtitle_text": "さあ、もう一度考えてみよう。\n私たちが欠陥だと思っているものは、本当に取り除くべきものなのか。\n今夜も、当たり前がひとつ減りました。"
+    }
+  ],
+  "asset_handoff": {
+    "photo_assets": "Muse supplies photo files after board creation. No photo search, download, or source/license selection is performed in this board stage.",
+    "photo_scene_ids": [
+      "S009",
+      "S015",
+      "S021",      "S029",
+      "S033",
+      "S047",
+      "S048",
+      "S063",
+      "S072",
+      "S078"
+    ],
+    "photo_upload_expected_directory": "shared/v155/assets/incoming_photos/",
+    "photo_expected_normalized_path": "shared/v155/assets/final/S###.jpg",
+    "photo_source_and_license_record": "Muse records source, author, and permitted license after obtaining the photo; do not mark as cleared before evidence is supplied.",
+    "generated_asset_method": "ChatGPT high-quality image generation, one image at a time, strictly sequentially. Complete each generation before starting the next.",
+    "generated_scene_ids": [
+      "S001",
+      "S002",
+      "S003",
+      "S004",
+      "S005",
+      "S006",
+      "S007",
+      "S008",
+      "S010",
+      "S011",
+      "S012",
+      "S013",
+      "S014",
+      "S016",
+      "S017",
+      "S018",
+      "S019",
+      "S020",
+      "S022",
+      "S023",
+      "S024",
+      "S025",
+      "S026",
+      "S027",
+      "S028",
+      "S030",
+      "S031",
+      "S032",
+      "S034",
+      "S035",
+      "S036",
+      "S037",
+      "S038",
+      "S039",
+      "S040",
+      "S041",
+      "S042",
+      "S043",
+      "S044",
+      "S045",
+      "S046",
+      "S049",
+      "S050",
+      "S051",
+      "S052",
+      "S053",
+      "S054",
+      "S055",
+      "S056",
+      "S057",
+      "S058",
+      "S059",
+      "S060",
+      "S061",
+      "S062",
+      "S064",
+      "S065",
+      "S066",
+      "S067",
+      "S068",
+      "S069",
+      "S070",
+      "S071",
+      "S073",
+      "S074",
+      "S075",
+      "S076",
+      "S077",
+      "S079",
+      "S080",
+      "S081",
+      "S082",
+      "S083",
+      "S084",
+      "S085",
+      "S086",
+      "S087",
+      "S088"
+    ],
+    "generated_output_expected_directory": "shared/v155/assets/generated_original/",
+    "render_asset_directory": "shared/v155/assets/final/",
+    "generated_images_require_no_external_source_license": "true"
+  },
+  "chapter_card_style": {
+    "global": "黒×金・静かな夜・高級感。既存の考える夜の月キャラクターを必ず使用。タイトルは後工程で1文字ずつ表示し、画像自体に文字を生成しない。",
+    "backgrounds": "chapter_cards/*.png",
+    "motion": "static background; text typing overlay only",
+    "audio": "shared/v153/format_v2/audio/type_key.wav, one keystroke per character",
+    "narration": false,
+    "subtitle": false
+  },
+  "endcard_input": {
+    "file": "endcard_v1.png",
+    "sha256": "05054e3e11c6691f31cc526e2f8efcb351f460546d2225abb6079ba9721d29cb",
+    "resolution": [
+      1920,
+      1080
+    ]
+  },
+  "qa_preflight": {
+    "all_scene_ids_contiguous": true,
+    "all_scenes_one_image": true,
+    "script_characters_match_source": true,
+    "all_motions_allowed": true,
+    "no_three_consecutive_same_motion": true,
+    "no_chapter_heading_in_tts_or_subtitle": true,
+    "chapter_card_titles_excluded_from_narration": true,
+    "photo_rights_not_asserted_before_muse_handoff": true
+  }
+}
