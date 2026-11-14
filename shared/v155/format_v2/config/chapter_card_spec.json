@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "project": "V155 あなたの知らない人体の欠陥5選",
+  "resolution": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30
+  },
+  "duration_policy": {
+    "minimum_duration_sec": 4,
+    "start_delay_sec": 0.25,
+    "interline_delay_sec": 0.15,
+    "final_hold_sec": 1
+  },
+  "typing": {
+    "characters_per_second": 9,
+    "cursor_glyph": "▌",
+    "cursor_blink_hz": 2,
+    "cursor_blink_duration_sec": 0.6,
+    "sfx_file": "../../v153/format_v2/audio/type_key.wav",
+    "sfx_per_character": true,
+    "sfx_gain": 0.45,
+    "narration": false
+  },
+  "text": {
+    "font_family": "Noto Sans CJK JP",
+    "font_file_runtime": "$V153_FONTS_DIR/NotoSansCJKjp-Regular.otf",
+    "label_font_size_px": 44,
+    "title_font_size_px": 62,
+    "title_min_font_size_px": 48,
+    "max_text_width_px": 1500,
+    "center_x_px": 1220,
+    "label_center_y_px": 405,
+    "title_center_y_px": 555,
+    "label_color": "#C9A56B",
+    "title_color": "#F1E7D0",
+    "outline_color": "#6E4D1B",
+    "shadow_color": "#000000",
+    "outline_width_px": 2,
+    "shadow_offset_px": [
+      3,
+      4
+    ],
+    "letter_spacing_px": 0,
+    "subtitle_reserved_area_px": 130
+  },
+  "subtitle_band": {
+    "enabled": false
+  },
+  "cards": [
+    {
+      "chapter": "prologue",
+      "label": "プロローグ",
+      "title": "人間の身体は、欠陥だらけの傑作である",
+      "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/prologue_bg.png"
+    },
+    {
+      "chapter": "chapter1",
+      "label": "第1章",
+      "title": "盲点を抱えた目",
+      "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/chapter1_bg.png"
+    },
+    {
+      "chapter": "chapter2",
+      "label": "第2章",
+      "title": "食べ物と空気が交差する喉",
+      "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/chapter2_bg.png"
+    },
+    {
+      "chapter": "chapter3",
+      "label": "第3章",
+      "title": "ビタミンCを作れない身体",
+      "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/chapter3_bg.png"
+    },
+    {
+      "chapter": "chapter4",
+      "label": "第4章",
+      "title": "未完成のまま生まれる",
+      "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/chapter4_bg.png"
+    },
+    {
+      "chapter": "chapter5",
+      "label": "第5章",
+      "title": "二本足が腰に残した代償",
+      "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/chapter1_bg.png"
+    },
+    {
+      "chapter": "epilogue",
+      "label": "エピローグ",
+      "title": "人体は、完成していない",
+      "background_file": "../../v153/format_v2/assets/chapter_cards/backgrounds/epilogue_bg.png"
+    }
+  ]
+}
