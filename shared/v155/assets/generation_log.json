@@ -53,6 +53,46 @@
     "S013": {
       "model": "gpt-image-1.5",
       "size": "1536x1024"
+    },
+    "S014": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S016": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S017": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S018": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S019": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S020": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S021": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S022": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S023": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S024": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
     }
   }
 }
