@@ -1,0 +1,65 @@
+name: V155 Generate Images
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Max new images in this run (0 = all remaining)"
+        required: false
+        default: "3"
+        type: string
+      only:
+        description: "Comma-separated scene IDs to generate (empty = in scene order)"
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    name: Generate V155 images (OpenAI, sequential)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: v155-human-body-defects-20261114
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Pillow
+        run: python -m pip install --no-input Pillow
+      - name: Generate images sequentially
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python shared/v155/scripts/generate_images.py --limit "${{ inputs.limit }}" --only "${{ inputs.only }}"
+      - name: Verify final assets
+        run: |
+          ls shared/v155/assets/final/*.jpg
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          final = Path("shared/v155/assets/final")
+          jpgs = sorted(final.glob("*.jpg"))
+          print(f"jpg_count={len(jpgs)}")
+          bad = []
+          for p in jpgs:
+              with Image.open(p) as im:
+                  if im.format != "JPEG" or im.width < 1280 or im.height < 720:
+                      bad.append((p.name, im.format, im.size))
+          print(f"bad={bad}")
+          assert not bad, bad
+          PY
+      - name: Push any remaining images
+        run: |
+          git config user.name "v155-image-bot"
+          git config user.email "v155-image-bot@users.noreply.github.com"
+          git add shared/v155/assets/final shared/v155/assets/generation_log.json || true
+          git diff --cached --quiet || git commit -m "V155: generate images (workflow remainder)"
+          git push || true
