@@ -1,0 +1,20 @@
+{
+ "note": "V155 final asset decisions by Muse (2026-11-14). This map OVERRIDES board.json asset_type.",
+ "photos": [
+  "S015",
+  "S033",
+  "S047",
+  "S048",
+  "S063"
+ ],
+ "switched_to_generated": {
+  "S009": "No rights-clear photo of a blind-spot test exists; generate per board image_description.",
+  "S021": "No rights-clear natural photo of a person choking on a drink found (Openverse unreachable, Commons only illustrations); generate photoreal.",
+  "S029": "Rights-clear bellowing-stag photos not found (available ones are CC BY-SA, not permitted); generate photoreal.",
+  "S072": "No rights-clear photo of a person holding their lower back in pain found; generate photoreal.",
+  "S078": "No rights-clear modern office-worker photo found in permitted licenses; generate photoreal."
+ },
+ "generated_total": 83,
+ "photo_total": 5,
+ "scenes_total": 88
+}
