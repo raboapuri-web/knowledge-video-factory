@@ -169,4 +169,4 @@ jobs:
           retention-days: 21
       - name: Publish GitHub Release
         run: |
-          gh release create "$RELEASE_TAG" --title "あなたの知らない人体の欠陥5選" --notes-file shared/v155/output/final_qa.json shared/v155/output/v155-human-body-defects-final.mp4
+          gh release create "$RELEASE_TAG" --title "あなたの知らない人体の欠陥5選" --notes "V155 あなたの知らない人体の欠陥5選 — 総尺 約22分16秒、1920x1080 / 30fps、シーン88・章カード7、終了画面20秒（無音）、最終文の音声検証・モーションQA・全デコード合格。詳細は final_qa.json（成果物 v155-final-qa）を参照。" shared/v155/output/v155-human-body-defects-final.mp4
