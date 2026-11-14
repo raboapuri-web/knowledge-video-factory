@@ -5,8 +5,14 @@ Reads board.json (image_description / design_axis per scene) and
 final_asset_map.json (which overrides board.json asset_type: the 5 photos
 S015/S033/S047/S048/S063 stay photos, S009/S021/S029/S072/S078 switch to
 generated). Generates ONE image per scene, sequentially, in scene order,
-saves shared/v155/assets/final/Sxxx.jpg (JPEG, 1536x1024) and commits
-progress back to the branch every 10 images so a failed run loses nothing.
+saves shared/v155/assets/final/Sxxx.jpg and commits progress back to the
+branch every 10 images so a failed run loses nothing.
+
+The image model is picked from the API key's own model list (GET /v1/models),
+preference: gpt-image-1, gpt-image-1.5, gpt-image-1-mini, dall-e-3.
+Set V155_IMAGE_MODEL to force a model. A scene that still fails after
+3 attempts stops the run immediately (fail fast) instead of grinding
+through the remaining scenes with the same systematic error.
 """
 import argparse
 import base64
@@ -26,8 +32,35 @@ FINAL_MAP = ROOT / "final_asset_map.json"
 MANIFEST = ROOT / "assets" / "generated_manifest.json"
 OUT_DIR = ROOT / "assets" / "final"
 LOG = ROOT / "assets" / "generation_log.json"
-MODEL = os.environ.get("V155_IMAGE_MODEL", "gpt-image-1")
-SIZE = "1536x1024"
+PREFERRED_MODELS = ["gpt-image-1", "gpt-image-1.5", "gpt-image-1-mini", "dall-e-3"]
+
+
+def pick_model(api_key):
+    forced = os.environ.get("V155_IMAGE_MODEL", "")
+    if forced:
+        return forced
+    req = urllib.request.Request(
+        "https://api.openai.com/v1/models",
+        headers={"Authorization": f"Bearer {api_key}"}, method="GET")
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            data = json.loads(resp.read().decode())
+    except Exception as e:
+        print(f"WARNING model list lookup failed ({e}); defaulting to gpt-image-1", flush=True)
+        return "gpt-image-1"
+    available = {m.get("id") for m in data.get("data", [])}
+    image_models = sorted(m for m in available if "image" in m or m.startswith("dall-e"))
+    print(f"image models available to this key: {image_models}", flush=True)
+    for cand in PREFERRED_MODELS:
+        if cand in available:
+            return cand
+    raise RuntimeError(f"No supported image model for this key. Available image models: {image_models}")
+
+
+def image_params(model):
+    if model == "dall-e-3":
+        return {"size": "1792x1024", "quality": "standard", "response_format": "b64_json"}
+    return {"size": "1536x1024", "quality": "medium"}
 
 
 def load_targets():
@@ -61,8 +94,10 @@ def build_prompt(scene):
     )
 
 
-def call_openai(prompt, api_key):
-    body = json.dumps({"model": MODEL, "prompt": prompt, "size": SIZE, "quality": "medium", "n": 1}).encode()
+def call_openai(prompt, api_key, model):
+    params = {"model": model, "prompt": prompt, "n": 1}
+    params.update(image_params(model))
+    body = json.dumps(params).encode()
     req = urllib.request.Request(
         "https://api.openai.com/v1/images/generations", data=body,
         headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}, method="POST")
@@ -72,9 +107,14 @@ def call_openai(prompt, api_key):
     except urllib.error.HTTPError as e:
         raise RuntimeError(f"OpenAI HTTP {e.code}: {e.read().decode(errors='replace')[:500]}")
     items = data.get("data") or []
-    if not items or not items[0].get("b64_json"):
+    if not items:
         raise RuntimeError(f"OpenAI response without image data: {str(data)[:500]}")
-    return base64.b64decode(items[0]["b64_json"])
+    if items[0].get("b64_json"):
+        return base64.b64decode(items[0]["b64_json"])
+    if items[0].get("url"):
+        with urllib.request.urlopen(items[0]["url"], timeout=120) as r:
+            return r.read()
+    raise RuntimeError(f"OpenAI response without image data: {str(data)[:500]}")
 
 
 def valid_jpeg(path):
@@ -118,13 +158,20 @@ def main():
     if not api_key:
         print("ERROR: OPENAI_API_KEY is not set", file=sys.stderr)
         return 2
+    try:
+        model = pick_model(api_key)
+    except Exception as e:
+        print(f"ERROR: {e}", file=sys.stderr)
+        return 2
+    print(f"model={model} params={image_params(model)}", flush=True)
     scenes = load_targets()
     if args.only:
         wanted = {x.strip() for x in args.only.split(",") if x.strip()}
         scenes = [s for s in scenes if s["id"] in wanted]
-    print(f"targets={len(scenes)} model={MODEL} size={SIZE}", flush=True)
+    print(f"targets={len(scenes)}", flush=True)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    log = json.loads(LOG.read_text(encoding="utf-8")) if LOG.exists() else {"model": MODEL, "size": SIZE, "scenes": {}}
+    log = json.loads(LOG.read_text(encoding="utf-8")) if LOG.exists() else {"model": model, "size": image_params(model)["size"], "scenes": {}}
+    log["model"] = model
     made, skipped, failed = [], [], []
     pending_push = []
     for scene in scenes:
@@ -139,7 +186,7 @@ def main():
         for attempt in range(1, 4):
             try:
                 print(f"[{sid}] generating attempt {attempt} ...", flush=True)
-                raw = call_openai(build_prompt(scene), api_key)
+                raw = call_openai(build_prompt(scene), api_key, model)
                 if save_jpeg(raw, out):
                     ok = True
                     break
@@ -149,7 +196,7 @@ def main():
                 time.sleep(10 * attempt)
         if ok:
             made.append(sid)
-            log["scenes"][sid] = {"model": MODEL, "size": SIZE}
+            log["scenes"][sid] = {"model": model, "size": image_params(model)["size"]}
             LOG.write_text(json.dumps(log, ensure_ascii=False, indent=2), encoding="utf-8")
             pending_push += [str(out), str(LOG)]
             if args.push_every and len(made) % args.push_every == 0:
@@ -157,6 +204,8 @@ def main():
                 pending_push = []
         else:
             failed.append(sid)
+            print(f"[{sid}] FAILED after 3 attempts; stopping run (fail fast).", flush=True)
+            break
         time.sleep(2)
     if pending_push:
         git_push(pending_push, f"V155: generate images {made[0] if made else ''}..{made[-1] if made else ''} ({len(made)} new)")
