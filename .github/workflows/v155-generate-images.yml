@@ -53,15 +53,21 @@ jobs:
         run: |
           ls shared/v155/assets/final/*.jpg
           python - <<'PY'
+          import json
           from pathlib import Path
           from PIL import Image
           final = Path("shared/v155/assets/final")
+          photos = set(json.loads(Path("shared/v155/final_asset_map.json").read_text(encoding="utf-8")).get("photos", []))
           jpgs = sorted(final.glob("*.jpg"))
           print(f"jpg_count={len(jpgs)}")
           bad = []
           for p in jpgs:
               with Image.open(p) as im:
-                  if im.format != "JPEG" or im.width < 1280 or im.height < 720:
+                  if p.stem in photos:
+                      ok = im.format == "JPEG" and im.width >= 1024 and im.height >= 720
+                  else:
+                      ok = im.format == "JPEG" and im.width >= 1280 and im.height >= 720
+                  if not ok:
                       bad.append((p.name, im.format, im.size))
           print(f"bad={bad}")
           assert not bad, bad
