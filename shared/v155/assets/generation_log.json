@@ -133,6 +133,34 @@
     "S035": {
       "model": "gpt-image-1.5",
       "size": "1536x1024"
+    },
+    "S036": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S037": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S038": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S039": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S040": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S041": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
+    },
+    "S042": {
+      "model": "gpt-image-1.5",
+      "size": "1536x1024"
     }
   }
 }
