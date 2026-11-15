@@ -31,7 +31,7 @@ jobs:
         run: python shared/v157/render/render.py preflight
 
   chapter:
-    name: "Synthesize and render \${{ matrix.chapter }}"
+    name: "Synthesize and render ${{ matrix.chapter }}"
     needs: preflight
     runs-on: ubuntu-24.04
     timeout-minutes: 240
@@ -83,12 +83,12 @@ jobs:
           test "$ready" -eq 1
           curl -fsS http://127.0.0.1:50021/speakers | python -c 'import json,sys; x=json.load(sys.stdin); print("VOICEVOX ready",len(x),"speakers")'
       - name: Generate all chapter WAVs at 48kHz and render 30fps image clips
-        run: python -u shared/v157/render/render.py chapter "\${{ matrix.chapter }}"
+        run: python -u shared/v157/render/render.py chapter "${{ matrix.chapter }}"
       - name: Upload chapter video, lossless PCM, and frame manifest
         uses: actions/upload-artifact@v4
         with:
-          name: v157-chapter-\${{ matrix.chapter }}
-          path: shared/v157/output/\${{ matrix.chapter }}/
+          name: v157-chapter-${{ matrix.chapter }}
+          path: shared/v157/output/${{ matrix.chapter }}/
           if-no-files-found: error
           compression-level: 0
           retention-days: 14
@@ -144,15 +144,15 @@ jobs:
           compression-level: 0
       - name: Create GitHub Release
         env:
-          GH_TOKEN: \${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
-          TAG="v157-brine-pool-\${{ github.run_id }}"
+          TAG="v157-brine-pool-${{ github.run_id }}"
           MOVIE="shared/v157/output/final/V157_brine_pool_master_1080p30.mp4"
           REPORT="shared/v157/output/final/qa.json"
           gh release create "$TAG" \
-            --target "\${{ github.sha }}" \
+            --target "${{ github.sha }}" \
             --title "V157 海底には「湖」がある？！ブラインプール" \
             --notes "162 scenes, eight exact chapter cards; 1920x1080/30fps H.264; VOICEVOX 青山龍星 13 1.10x; one AAC encode from 48kHz PCM; 20-second silent end card; complete decode QA. BGM mixed separately under license terms." \
             "$MOVIE" "$REPORT"
