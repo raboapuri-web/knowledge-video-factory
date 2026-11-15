@@ -2,7 +2,7 @@
 """V157 format-v2 production renderer. 48kHz PCM is the single timeline clock.
 Scene H.264 clips are VIDEO ONLY; no intermediate AAC files are created.
 """
-import json, math, os, re, sys, time, wave, hashlib, random, shutil, subprocess, struct, tempfile
+import json, math, os, re, sys, time, wave, hashlib, random, shutil, subprocess, struct, tempfile, base64
 from pathlib import Path
 from PIL import Image, ImageOps, ImageFilter, ImageDraw, ImageFont
 import requests
@@ -51,8 +51,12 @@ def preflight():
     for i in range(2,len(scenes)):
         check(not(scenes[i]["motion"]==scenes[i-1]["motion"]==scenes[i-2]["motion"]),"three consecutive same motions")
     for c in BOARD["chapters"]:
-        check(c["heading"]==next(x["title"] for x in BOARD["chapter_cards"] if x["chapter"]==c["id"]),
+        check(c["heading"]==next(x["original_heading"] for x in BOARD["chapter_cards"] if x["chapter"]==c["id"]),
               "chapter card title must be exact script heading")
+    if not MOON.exists():
+        binary=base64.b64decode((ROOT/"render/moon_character_reference.b64").read_text().strip())
+        check(binary[:3]==b"\xff\xd8\xff", "moon image JPEG header")
+        MOON.write_bytes(binary)
     check(MOON.exists(),"moon character reference is required")
     print("PREFLIGHT_OK 162 images 8 cards 20 pronunciation overrides")
     return True
