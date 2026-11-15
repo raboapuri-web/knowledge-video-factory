@@ -1,0 +1,158 @@
+name: V157 Brine Pool / format-v2 1080p full render
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - v157-brine-pool-board-20261115
+    paths:
+      - ".github/workflows/v157-brine-pool-render.yml"
+      - "shared/v157/render/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v157-brine-pool-final-production
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    name: Validate 162 finalized images and immutable board
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --quiet pillow requests
+      - name: Check input sources and motion rules
+        run: python shared/v157/render/render.py preflight
+
+  chapter:
+    name: "Synthesize and render \${{ matrix.chapter }}"
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        chapter:
+          - prologue
+          - chapter1
+          - chapter2
+          - chapter3
+          - chapter4
+          - chapter5
+          - chapter6
+          - epilogue
+    env:
+      VOICEVOX_URL: http://127.0.0.1:50021
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Prepare Japanese fonts and FFmpeg
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v ffmpeg
+          command -v ffprobe
+          if ! fc-match "Noto Serif CJK JP" | grep -iq Noto; then
+            sudo apt-get update -qq
+            sudo apt-get install -y fonts-noto-cjk
+          fi
+          fc-match "Noto Serif CJK JP"
+      - run: python -m pip install --quiet pillow requests
+      - name: Start full VOICEVOX engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name v157-voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          ready=0
+          for attempt in $(seq 1 100); do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null 2>&1; then
+              ready=1;break
+            fi
+            sleep 2
+          done
+          test "$ready" -eq 1
+          curl -fsS http://127.0.0.1:50021/speakers | python -c 'import json,sys; x=json.load(sys.stdin); print("VOICEVOX ready",len(x),"speakers")'
+      - name: Generate all chapter WAVs at 48kHz and render 30fps image clips
+        run: python -u shared/v157/render/render.py chapter "\${{ matrix.chapter }}"
+      - name: Upload chapter video, lossless PCM, and frame manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: v157-chapter-\${{ matrix.chapter }}
+          path: shared/v157/output/\${{ matrix.chapter }}/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+
+  finalize:
+    name: One-time AAC encode / decode QA / Release
+    needs: chapter
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --quiet pillow requests
+      - name: Ensure Japanese fonts are installed
+        shell: bash
+        run: |
+          if ! fc-match "Noto Serif CJK JP" | grep -iq Noto; then
+            sudo apt-get update -qq && sudo apt-get install -y fonts-noto-cjk
+          fi
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v157-chapter-*
+          path: shared/v157/artifact-download
+          merge-multiple: false
+      - name: Restore 8 separate chapter deliverables
+        shell: bash
+        run: |
+          set -euo pipefail
+          for chapter in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do
+            mkdir -p "shared/v157/output/$chapter"
+            cp "shared/v157/artifact-download/v157-chapter-$chapter/"* "shared/v157/output/$chapter/"
+            test -s "shared/v157/output/$chapter/chapter.mp4"
+            test -s "shared/v157/output/$chapter/chapter.wav"
+            test -s "shared/v157/output/$chapter/timing.json"
+          done
+      - name: Final assembly with ONE AAC encode and complete audio/video decode
+        run: python -u shared/v157/render/render.py finalize
+      - name: Publish QA report
+        shell: bash
+        run: |
+          cat shared/v157/output/final/qa.json
+          sha256sum shared/v157/output/final/V157_brine_pool_master_1080p30.mp4
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 shared/v157/output/final/V157_brine_pool_master_1080p30.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: V157-Brine-Pool-1080p-final-and-QA
+          path: |
+            shared/v157/output/final/V157_brine_pool_master_1080p30.mp4
+            shared/v157/output/final/qa.json
+          retention-days: 30
+          compression-level: 0
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: \${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="v157-brine-pool-\${{ github.run_id }}"
+          MOVIE="shared/v157/output/final/V157_brine_pool_master_1080p30.mp4"
+          REPORT="shared/v157/output/final/qa.json"
+          gh release create "$TAG" \
+            --target "\${{ github.sha }}" \
+            --title "V157 海底には「湖」がある？！ブラインプール" \
+            --notes "162 scenes, eight exact chapter cards; 1920x1080/30fps H.264; VOICEVOX 青山龍星 13 1.10x; one AAC encode from 48kHz PCM; 20-second silent end card; complete decode QA. BGM mixed separately under license terms." \
+            "$MOVIE" "$REPORT"
