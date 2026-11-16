@@ -1,0 +1,156 @@
+name: V158 Planet Survival - production 48k PCM and MP4 overlay
+on:
+  push:
+    branches: [v158-wakusei-survival-board-20261116]
+    paths:
+      - '.github/workflows/v158-wakusei-survival.yml'
+      - 'shared/v158/scripts/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: v158-production-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install verified static media tools
+        run: bash shared/v158/scripts/install_media_tools.sh
+      - name: Install Python dependencies
+        run: python -m pip install --no-input --timeout 30 --retries 2 requests Pillow
+      - name: Validate board, full asset inventory, and MP4 override
+        run: python shared/v158/scripts/render_v158.py --validate
+      - name: Validate actual MP4 plays as muted 1080p/30fps with fixed caption band
+        run: |
+          set -euo pipefail
+          ffmpeg -y -hide_banner -loglevel error -ss 1 -i shared/v158/assets/final/S085.mp4 -an -vf 'fps=30,scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,drawbox=x=0:y=950:w=1920:h=130:color=black:t=fill' -frames:v 30 -c:v libx264 -preset ultrafast -pix_fmt yuv420p /tmp/v158-s085-silent-test.mp4
+          test -s /tmp/v158-s085-silent-test.mp4
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=nb_frames -of csv=p=0 /tmp/v158-s085-silent-test.mp4)" = 30
+          if ffprobe -v error -select_streams a -show_entries stream=index -of csv=p=0 /tmp/v158-s085-silent-test.mp4 | grep -q .; then exit 1; fi
+          echo "S085_MP4_PRIORITY_AND_MUTED_VIDEO_TEST_PASS"
+  chapter:
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, epilogue]
+    env:
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_ID: '13'
+      VOICEVOX_SPEED: '1.10'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install verified static FFmpeg and font
+        run: bash shared/v158/scripts/install_media_tools.sh
+      - name: Install Python libraries
+        run: python -m pip install --no-input --timeout 30 --retries 2 requests Pillow
+      - name: Launch VOICEVOX 青山龍星 CPU voice server
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox-v158 -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          ready=0
+          for i in $(seq 1 180); do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null 2>&1; then ready=1; break; fi
+            sleep 2
+          done
+          test "$ready" = 1
+          curl -fsS http://127.0.0.1:50021/version
+      - name: Synthesize exact narration and render individual full-frame scenes
+        env:
+          V158_CHAPTER: ${{ matrix.chapter }}
+        run: |
+          set -euo pipefail
+          python shared/v158/scripts/render_v158.py --chapter "$V158_CHAPTER"
+      - name: Stage chapter MP4 and original 48kHz uncompressed PCM (NO per-scene AAC)
+        env:
+          V158_CHAPTER: ${{ matrix.chapter }}
+        run: |
+          set -euo pipefail
+          D="shared/v158/output/$V158_CHAPTER"
+          mkdir -p "shared/v158/artifacts/$V158_CHAPTER"
+          cp "$D/v158-$V158_CHAPTER.mp4" "shared/v158/artifacts/$V158_CHAPTER/"
+          cp "$D/pcm-$V158_CHAPTER.wav" "shared/v158/artifacts/$V158_CHAPTER/"
+          cp "$D/report.json" "shared/v158/artifacts/$V158_CHAPTER/"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v158-chapter-${{ matrix.chapter }}
+          path: shared/v158/artifacts/${{ matrix.chapter }}/
+          retention-days: 14
+          compression-level: 0
+  finalize:
+    needs: chapter
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install verified static FFmpeg and fonts
+        run: bash shared/v158/scripts/install_media_tools.sh
+      - name: Install Pillow for end card
+        run: python -m pip install --no-input --timeout 30 --retries 2 Pillow
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v158-chapter-*
+          path: /tmp/v158-chapter-artifacts
+      - name: Assemble eight chapters and preserve PCM
+        run: |
+          set -euo pipefail
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 epilogue; do
+            src="/tmp/v158-chapter-artifacts/v158-chapter-$c"
+            dst="shared/v158/output/$c"
+            test -s "$src/v158-$c.mp4"
+            test -s "$src/pcm-$c.wav"
+            test -s "$src/report.json"
+            mkdir -p "$dst"
+            cp "$src/v158-$c.mp4" "$src/pcm-$c.wav" "$src/report.json" "$dst/"
+          done
+          python shared/v158/scripts/render_v158.py --finalize
+      - name: Confirm finalize QA passes, hash and per-chapter boundaries
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          f=Path('shared/v158/output/finalize.json')
+          r=json.loads(f.read_text())
+          for k,v in r['checks'].items():print(('PASS' if v else 'FAIL'),k)
+          for c in r['chapter_boundaries']:print(c['chapter'],c['start_hhmmss'],c['duration_seconds'])
+          print('size_bytes',r['file_size_bytes'],'sha256',r['sha256'],'duration_sec',r['duration_probe_seconds'])
+          assert r['status']=='pass' and all(r['checks'].values())
+          PY
+          cd shared/v158/output
+          sha256sum v158-wakusei-survival-final.mp4 | tee SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v158-planet-survival-final-master
+          path: |
+            shared/v158/output/v158-wakusei-survival-final.mp4
+            shared/v158/output/finalize.json
+            shared/v158/output/SHA256SUMS.txt
+          retention-days: 21
+          compression-level: 0
+      - name: Publish GitHub Release - master without licensed background music
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cd shared/v158/output
+          TAG="v158-wakusei-survival-${{ github.run_id }}"
+          gh release create "$TAG" v158-wakusei-survival-final.mp4 finalize.json SHA256SUMS.txt --repo "${{ github.repository }}" --target "${{ github.sha }}" --title "考える夜 V158｜人間が他の惑星で生き残れる時間" --notes "Master rendered at 1920x1080 30fps, VOICEVOX:青山龍星, 100 scenes, 8 silent-narration typed chapter cards, S085 video (NASA/GSFC/SDO Public Domain) preferred over JPG, exactly one AAC encode after 48 kHz PCM join, 20-second end screen. This is the master WITHOUT BGM; Muse will separately audit, apply licensed BGM, and verify the finished mix."
+          echo "RELEASE_URL=https://github.com/${{ github.repository }}/releases/tag/$TAG" >> "$GITHUB_STEP_SUMMARY"
