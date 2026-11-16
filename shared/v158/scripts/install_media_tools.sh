@@ -7,7 +7,7 @@ BIN_DIR="${HOME}/.local/bin"
 FONT_DIR="${HOME}/.local/share/fonts"
 ARCHIVE="${TOOLS_TMP}/ffmpeg-linux64-gpl.tar.xz"
 FFMPEG_URL="https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz"
-FFMPEG_SHA256="f6f8a35568815b7a99e0c513d7c6593262422986047068db190980c4bc186865"
+FFMPEG_SHA256="dd925be102f41bfb23e98e20a564b5c8aa397ead9d0228ef7046213129884fb9"
 FONT_URL="https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf"
 FONT_GIT_BLOB_SHA1="f56224957fb13a81b4c14bac34f2f058a017f9fb"
 
