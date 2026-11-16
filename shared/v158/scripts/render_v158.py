@@ -24,7 +24,7 @@ def font_file():
     raise FileNotFoundError("Noto CJK font missing: "+str(FONT_CANDIDATES))
 
 def execute(cmd,stdout=None):
-    p=subprocess.run([str(x) for x in cmd],stdout=stdout,stderr=subprocess.PIPE,text=False)
+    p=subprocess.run([str(x) for x in cmd],stdout=(stdout if stdout is not None else subprocess.PIPE),stderr=subprocess.PIPE,text=False)
     if p.returncode:
         raise RuntimeError(f"Command failed {p.returncode}: {' '.join(map(str,cmd))}\n{p.stderr.decode('utf-8','replace')[-4500:]}")
     return p.stdout
@@ -384,7 +384,7 @@ def finalize():
      "subtitle_band_fixed_opaque_130px":True,
      "pcm_48000_mono":master_samples==total_frames*SAMPLES_PER_FRAME,
      "aac_only_one_encode_at_final_mux":True,
-     "end_screen_20_seconds":duration-frames/FPS==20,
+     "end_screen_20_seconds":abs(duration-frames/FPS-20)<1e-6,
      "last_narration_pcm_untruncated":next(x for y in chapter_reports for x in y["segments"] if x.get("id")=="S100")["audio_padding_samples"]>=int(.5*SR),
      "h264":v.get("codec_name")=="h264",
      "aac":a.get("codec_name")=="aac",
