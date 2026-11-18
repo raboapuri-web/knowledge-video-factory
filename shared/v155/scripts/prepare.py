@@ -41,22 +41,22 @@ def main():
  qstart=qt.index("            if duration < 2.0:")
  qend=qt.index("            passed = bool",qstart)
  qa_block="""            if duration < 0.3:
-                 failures.append({"scene": item["scene"], "reason": "scene too short to audit"})
-                 continue
-             if duration < 2.0:
-                 frame_count=max(8,min(26,int(max(0.1,duration-0.1)*FPS)))
-                 window_seconds=(frame_count-1)/FPS
-                 start=float(item["start"])+max(0.05,(duration-window_seconds)/2)
-                 windows=[_sample_window(cap,start,count=frame_count)]
-             else:
-                 window_seconds=26.0/FPS
-                 starts=[float(item["start"])+max(0.15,duration*p-window_seconds/2) for p in (0.20,0.50,0.80)]
-                 last_start=float(item["end"])-window_seconds-0.15
-                 starts=sorted(set(round(min(x,last_start),4) for x in starts))
-                 windows=[]
-                 for start in starts:
-                     try: windows.append(_sample_window(cap,start))
-                     except Exception as exc: windows.append({"start_seconds":round(start,3),"passed":False,"error":str(exc)})
+                failures.append({"scene": item["scene"], "reason": "scene too short to audit"})
+                continue
+            if duration < 2.0:
+                frame_count=max(8,min(26,int(max(0.1,duration-0.1)*FPS)))
+                window_seconds=(frame_count-1)/FPS
+                start=float(item["start"])+max(0.05,(duration-window_seconds)/2)
+                windows=[_sample_window(cap,start,count=frame_count)]
+            else:
+                window_seconds=26.0/FPS
+                starts=[float(item["start"])+max(0.15,duration*p-window_seconds/2) for p in (0.20,0.50,0.80)]
+                last_start=float(item["end"])-window_seconds-0.15
+                starts=sorted(set(round(min(x,last_start),4) for x in starts))
+                windows=[]
+                for start in starts:
+                    try: windows.append(_sample_window(cap,start))
+                    except Exception as exc: windows.append({"start_seconds":round(start,3),"passed":False,"error":str(exc)})
  """
  qt=qt[:qstart]+qa_block+qt[qend:]
  qt=qt.replace("three separate 26-frame windows per non-static scene; adjacent decoded frame luma differences, excluding subtitle band","three 26-frame windows for moving scenes >=2s; one duration-scaled window for shorter moving scenes; adjacent decoded frame luma differences")
