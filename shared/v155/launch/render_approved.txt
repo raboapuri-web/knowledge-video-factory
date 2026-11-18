@@ -1,0 +1,9 @@
+render: approved
+scene_id_scheme: S001-S084 sequential (see scene_id_map.md for board ID correspondence)
+bgm: none (mixed locally by Muse after delivery)
+chapter_cards: spec default (typing display + typing sound, moon character background, no narration)
+end_card: spec section 11, 20 seconds, assets/end_card.png design
+blur_background_scenes: S041, S071, S080 (board IDs 3-08, 6-05, E-02)
+subtitle_band: fixed black band at bottom (spec)
+voice: VOICEVOX Aoyama Ryusei speaker_id 13 speed 1.10
+output: 1920x1080 30fps
