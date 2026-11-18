@@ -40,26 +40,27 @@ def main():
  qa=motion_dst/"continuous_motion_qa.py"; qt=qa.read_text(encoding="utf-8")
  qstart=qt.index("            if duration < 2.0:")
  qend=qt.index("            passed = bool",qstart)
- qa_block="""            if duration < 0.3:
-                failures.append({"scene": item["scene"], "reason": "scene too short to audit"})
-                continue
-            if duration < 2.0:
-                frame_count=max(8,min(26,int(duration*FPS)-1))
-                window_seconds=(frame_count-1)/FPS
-                start=float(item["start"])+max(0.03,(duration-window_seconds)/2)
-                windows=[_sample_window(cap,start,count=frame_count)]
-            else:
-                window_seconds=26.0/FPS
-                starts=[float(item["start"])+max(0.15,duration*p-window_seconds/2) for p in (0.20,0.50,0.80)]
-                last_start=float(item["end"])-window_seconds-0.15
-                starts=sorted(set(round(min(x,last_start),4) for x in starts))
-                windows=[]
-                for start in starts:
-                    try:
-                        windows.append(_sample_window(cap,start))
-                    except Exception as exc:
-                        windows.append({"start_seconds":round(start,3),"passed":False,"error":str(exc)})
-"""
+ qa_block="\\n".join([
+  "            if duration < 0.3:",
+  "                failures.append({\"scene\": item[\"scene\"], \"reason\": \"scene too short to audit\"})",
+  "                continue",
+  "            if duration < 2.0:",
+  "                frame_count=max(8,min(26,int(duration*FPS)-1))",
+  "                window_seconds=(frame_count-1)/FPS",
+  "                start=float(item[\"start\"])+max(0.03,(duration-window_seconds)/2)",
+  "                windows=[_sample_window(cap,start,count=frame_count)]",
+  "            else:",
+  "                window_seconds=26.0/FPS",
+  "                starts=[float(item[\"start\"])+max(0.15,duration*p-window_seconds/2) for p in (0.20,0.50,0.80)]",
+  "                last_start=float(item[\"end\"])-window_seconds-0.15",
+  "                starts=sorted(set(round(min(x,last_start),4) for x in starts))",
+  "                windows=[]",
+  "                for start in starts:",
+  "                    try:",
+  "                        windows.append(_sample_window(cap,start))",
+  "                    except Exception as exc:",
+  "                        windows.append({\"start_seconds\":round(start,3),\"passed\":False,\"error\":str(exc)})",
+  ""])
  qt=qt[:qstart]+qa_block+qt[qend:]
  qt=qt.replace("three separate 26-frame windows per non-static scene; adjacent decoded frame luma differences, excluding subtitle band","three 26-frame windows for moving scenes >=2s; one duration-scaled window for shorter moving scenes; adjacent decoded frame luma differences")
  qa.write_text(qt,encoding="utf-8")
@@ -96,14 +97,16 @@ def main():
  ]
  for a,z in reps:
   src=src.replace(a,z)
- src=src.replace('final=out/"v155-sea-mysteries-final.mp4"','main=out/"v155-main.mp4"\\n    final=out/"v155-sea-mysteries-final.mp4"')
+ src=src.replace('final=out/"v155-sea-mysteries-final.mp4"','main=out/"v155-main.mp4"'+chr(10)+'    final=out/"v155-sea-mysteries-final.mp4"')
  marker='    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(final)])'
- add='''    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(main)])
-    endcard=out/"end-card.mp4"
-    run(["ffmpeg","-y","-loglevel","error","-loop","1","-framerate","30","-i",str(ROOT.parent/"assets"/"end_card.png"),"-f","lavfi","-i","anullsrc=channel_layout=mono:sample_rate=48000","-t","20","-vf","scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,format=yuv420p","-r","30","-fps_mode","cfr","-c:v","libx264","-preset","veryfast","-crf","19","-pix_fmt","yuv420p","-c:a","aac","-b:a","160k","-ar","48000","-ac","1","-shortest","-movflags","+faststart",str(endcard)])
-    fc=out/"concat-with-endcard.txt"
-    fc.write_text("file '"+str(main.resolve())+"'"+chr(10)+"file '"+str(endcard.resolve())+"'"+chr(10),encoding="utf-8")
-    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(fc),"-c","copy","-movflags","+faststart",str(final)])'''
+ add="\\n".join([
+  '    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(main)])',
+  '    endcard=out/"end-card.mp4"',
+  '    run(["ffmpeg","-y","-loglevel","error","-loop","1","-framerate","30","-i",str(ROOT.parent/"assets"/"end_card.png"),"-f","lavfi","-i","anullsrc=channel_layout=mono:sample_rate=48000","-t","20","-vf","scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,format=yuv420p","-r","30","-fps_mode","cfr","-c:v","libx264","-preset","veryfast","-crf","19","-pix_fmt","yuv420p","-c:a","aac","-b:a","160k","-ar","48000","-ac","1","-shortest","-movflags","+faststart",str(endcard)])',
+  '    fc=out/"concat-with-endcard.txt"',
+  '    fc.write_text("file \'"+str(main.resolve())+"\'"+chr(10)+"file \'"+str(endcard.resolve())+"\'"+chr(10),encoding="utf-8")',
+  '    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(fc),"-c","copy","-movflags","+faststart",str(final)])'
+ ])
  if marker not in src:
   raise SystemExit("finalizer concat marker not found")
  src=src.replace(marker,add)
