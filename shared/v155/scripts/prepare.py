@@ -40,7 +40,7 @@ def main():
  qa=motion_dst/"continuous_motion_qa.py"; qt=qa.read_text(encoding="utf-8")
  qstart=qt.index("            if duration < 2.0:")
  qend=qt.index("            passed = bool",qstart)
- qa_block="\\n".join([
+ qa_block="\n".join([
   "            if duration < 0.3:",
   "                failures.append({\"scene\": item[\"scene\"], \"reason\": \"scene too short to audit\"})",
   "                continue",
@@ -99,7 +99,7 @@ def main():
   src=src.replace(a,z)
  src=src.replace('final=out/"v155-sea-mysteries-final.mp4"','main=out/"v155-main.mp4"'+chr(10)+'    final=out/"v155-sea-mysteries-final.mp4"')
  marker='    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(final)])'
- add="\\n".join([
+ add="\n".join([
   '    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(main)])',
   '    endcard=out/"end-card.mp4"',
   '    run(["ffmpeg","-y","-loglevel","error","-loop","1","-framerate","30","-i",str(ROOT.parent/"assets"/"end_card.png"),"-f","lavfi","-i","anullsrc=channel_layout=mono:sample_rate=48000","-t","20","-vf","scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,format=yuv420p","-r","30","-fps_mode","cfr","-c:v","libx264","-preset","veryfast","-crf","19","-pix_fmt","yuv420p","-c:a","aac","-b:a","160k","-ar","48000","-ac","1","-shortest","-movflags","+faststart",str(endcard)])',
