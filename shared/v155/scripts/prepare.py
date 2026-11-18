@@ -12,13 +12,16 @@ def main():
  "chapters":[{"id":cid,"title":titles[i],"start":a,"end":z,"scene_count":z-a+1} for i,(cid,a,z) in enumerate(ranges)],
  "chapter_cards":[{"id":f"T{i+1:03d}","chapter":ranges[i][0],"title":titles[i]} for i in range(8)]}
  (RUNTIME/"content/board.json").write_text(json.dumps(compat,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+ # V154 finalizer expects an asset manifest beside the approved image set; derive it from the supplied credits.
+ credits=(BASE/"credits_collected.txt").read_text(encoding="utf-8")
+ (BASE/"assets/final/ASSET_MANIFEST.md").write_text("# V155 approved asset credits\\n\\n"+credits+"\\n",encoding="utf-8")
  final=RUNTIME/"assets/final"
  if final.is_symlink(): final.unlink()
  elif final.exists(): shutil.rmtree(final)
  final.symlink_to(BASE/"assets/final",target_is_directory=True)
  spec=json.loads((V154/"format_v2/config/chapter_card_spec.json").read_text(encoding="utf-8"))
  spec["project"]="V155 未だ解明されていない海の謎6選"; spec["typing"]["sfx_file"]="../../../v153/format_v2/audio/type_key.wav"
- spec["cards"]=[{"chapter":cid,"label":titles[i] if i in (0,7) else f"第{i}章","title":titles[i],"background_file":"../../assets/moon_character_reference.jpg"} for i,(cid,a,z) in enumerate(ranges)]
+ spec["cards"]=[{"chapter":cid,"label":"" if i in (0,7) else f"第{i}章","title":titles[i],"background_file":"../../assets/moon_character_reference.jpg"} for i,(cid,a,z) in enumerate(ranges)]
  (RUNTIME/"format_v2/config/chapter_card_spec.json").write_text(json.dumps(spec,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
  for name in ["synth.py","validate_chapter_narration.py","render_chapter.py","install_media_tools.sh"]: shutil.copy2(V154/"scripts"/name,RUNTIME/"scripts"/name)
  shutil.copy2(V154/"format_v2/scripts/render_chapter_card.py",RUNTIME/"format_v2/scripts/render_chapter_card.py")
