@@ -1,13 +1,6 @@
 name: V155 Sea Mysteries — format v2 production
 
 on:
-  push:
-    branches: [v155-sea-mysteries-production-20261118]
-    paths:
-      - '.github/workflows/v155-sea-mysteries-production.yml'
-      - 'shared/v155/launch/render_approved.txt'
-      - 'shared/v155/board.json'
-      - 'shared/v155/scripts/**'
   workflow_dispatch:
 
 permissions:
