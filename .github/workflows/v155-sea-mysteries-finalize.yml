@@ -1,0 +1,98 @@
+name: V155 Sea Mysteries — finalize approved chapter artifacts
+
+on:
+  push:
+    branches: [v155-sea-mysteries-production-20261118]
+    paths:
+      - '.github/workflows/v155-sea-mysteries-finalize.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v155-sea-mysteries-finalize-only
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    name: Assemble 8 approved chapter renders, QA and publish
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      SOURCE_RUN_ID: '44309659417'
+      RELEASE_TAG: v155-sea-mysteries-final-${{ github.run_id }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v155-sea-mysteries-production-20261118
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --no-input Pillow opencv-python-headless
+      - name: Prepare V155 finalizer and QA runtime
+        run: python shared/v155/scripts/prepare.py
+      - name: Install static FFmpeg and pinned Noto CJK font
+        run: |
+          set -euo pipefail
+          TMP="$RUNNER_TEMP/v155-media-tools"
+          BIN_DIR="$HOME/.local/bin"
+          FONT_DIR="$HOME/.local/share/fonts"
+          mkdir -p "$TMP/extract" "$BIN_DIR" "$FONT_DIR"
+          curl --fail --location --silent --show-error --retry 5 --retry-all-errors --retry-delay 3 --connect-timeout 30 --max-time 900 \
+            "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz" -o "$TMP/ffmpeg.tar.xz"
+          tar -xJf "$TMP/ffmpeg.tar.xz" -C "$TMP/extract"
+          FFMPEG="$(find "$TMP/extract" -type f -name ffmpeg -perm /111 -print -quit)"
+          FFPROBE="$(find "$TMP/extract" -type f -name ffprobe -perm /111 -print -quit)"
+          test -n "$FFMPEG" && test -n "$FFPROBE"
+          install -m 0755 "$FFMPEG" "$BIN_DIR/ffmpeg"
+          install -m 0755 "$FFPROBE" "$BIN_DIR/ffprobe"
+          echo "$BIN_DIR" >> "$GITHUB_PATH"
+          FONT="$FONT_DIR/NotoSansCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --retry 4 --retry-all-errors --retry-delay 2 --connect-timeout 20 --max-time 240 \
+            "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf" -o "$FONT"
+          test -s "$FONT"
+          test "$(stat -c%s "$FONT")" -gt 1000000
+          echo "V153_FONTS_DIR=$FONT_DIR" >> "$GITHUB_ENV"
+          "$BIN_DIR/ffmpeg" -version | head -n 1
+          "$BIN_DIR/ffprobe" -version | head -n 1
+      - name: Download the eight successful chapter artifacts from the render run
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ env.SOURCE_RUN_ID }}
+          github-token: ${{ github.token }}
+          pattern: v155-segment-*
+          path: shared/v155/runtime/segments
+          merge-multiple: true
+      - name: Assemble final MP4, append 20-second end card and run full QA
+        run: python shared/v155/runtime/scripts/finalize.py --segments-dir shared/v155/runtime/segments
+      - name: Publish final MP4 and QA evidence as GitHub Release
+        run: |
+          set -euo pipefail
+          gh release create "$RELEASE_TAG" \
+            shared/v155/runtime/output/v155-sea-mysteries-final.mp4 \
+            shared/v155/runtime/output/v155-contact-sheet.jpg \
+            shared/v155/runtime/output/v155-chapter-cards-contact-sheet.jpg \
+            shared/v155/runtime/output/production_report.json \
+            shared/v155/runtime/output/final_qa.json \
+            shared/v155/runtime/output/motion_30fps_qa.json \
+            shared/v155/runtime/output/CREDITS.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "考える夜｜未だ解明されていない海の謎6選" \
+            --notes "84 scenes, 8 typed chapter cards, and a silent 20-second end card. 1920x1080, 30fps, H.264/AAC, VOICEVOX:青山龍星. Full technical, subtitle, audio timing and continuous 30fps motion QA included. Blurred-background targets S041/S071/S080. No BGM." \
+            --latest
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v155-sea-mysteries-master
+          path: |
+            shared/v155/runtime/output/v155-sea-mysteries-final.mp4
+            shared/v155/runtime/output/v155-contact-sheet.jpg
+            shared/v155/runtime/output/v155-chapter-cards-contact-sheet.jpg
+            shared/v155/runtime/output/production_report.json
+            shared/v155/runtime/output/final_qa.json
+            shared/v155/runtime/output/motion_30fps_qa.json
+            shared/v155/runtime/output/CREDITS.txt
+          retention-days: 30
+          compression-level: 0
