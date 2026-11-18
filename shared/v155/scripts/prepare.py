@@ -58,7 +58,7 @@ def main():
     endcard=out/"end-card.mp4"
     run(["ffmpeg","-y","-loglevel","error","-loop","1","-framerate","30","-i",str(BASE/"assets"/"end_card.png"),"-f","lavfi","-i","anullsrc=channel_layout=mono:sample_rate=48000","-t","20","-vf","scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,format=yuv420p","-r","30","-fps_mode","cfr","-c:v","libx264","-preset","veryfast","-crf","19","-c:a","aac","-b:a","160k","-ar","48000","-ac","1","-shortest","-movflags","+faststart",str(endcard)])
     fc=out/"concat-with-endcard.txt"
-    fc.write_text("file '"+str(main.resolve())+"'\\\\nfile '"+str(endcard.resolve())+"'\\\\n",encoding="utf-8")
+    fc.write_text("file '"+str(main.resolve())+"'"+chr(10)+"file '"+str(endcard.resolve())+"'"+chr(10),encoding="utf-8")
     run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(fc),"-c","copy","-movflags","+faststart",str(final)])'''
  if marker not in src: raise SystemExit("finalizer concat insertion point missing")
  src=src.replace(marker,add)
