@@ -39,7 +39,7 @@ jobs:
       matrix:
         chapter: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, epilogue]
     env:
-      CHAPTER: \${{ matrix.chapter }}
+      CHAPTER: ${{ matrix.chapter }}
       VOICEVOX_URL: http://127.0.0.1:50021
       VOICEVOX_SPEAKER_ID: '13'
       VOICEVOX_SPEED: '1.10'
@@ -51,7 +51,12 @@ jobs:
         with: {python-version: '3.11'}
       - run: python -m pip install --no-input requests Pillow
       - run: python shared/v155/scripts/prepare.py
-      - run: bash shared/v155/runtime/scripts/install_media_tools.sh
+      - name: Install FFmpeg and Noto CJK runtime dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          echo "V153_FONTS_DIR=/usr/share/fonts/opentype/noto" >> "$GITHUB_ENV"
+          ffmpeg -version | head -n 1
       - name: Start VOICEVOX CPU engine
         run: |
           set -euo pipefail
@@ -75,7 +80,7 @@ jobs:
           cp shared/v155/runtime/media/narration-qa-"$CHAPTER".json shared/v155/runtime/artifact/
       - uses: actions/upload-artifact@v4
         with:
-          name: v155-segment-\${{ matrix.chapter }}
+          name: v155-segment-${{ matrix.chapter }}
           path: shared/v155/runtime/artifact/*
           if-no-files-found: error
           retention-days: 14
@@ -87,8 +92,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 75
     env:
-      RELEASE_TAG: v155-sea-mysteries-\${{ github.run_id }}
-      GH_TOKEN: \${{ github.token }}
+      RELEASE_TAG: v155-sea-mysteries-${{ github.run_id }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
         with: {ref: v155-sea-mysteries-production-20261118}
@@ -96,7 +101,12 @@ jobs:
         with: {python-version: '3.11'}
       - run: python -m pip install --no-input Pillow opencv-python-headless
       - run: python shared/v155/scripts/prepare.py
-      - run: bash shared/v155/runtime/scripts/install_media_tools.sh
+      - name: Install FFmpeg and Noto CJK runtime dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          echo "V153_FONTS_DIR=/usr/share/fonts/opentype/noto" >> "$GITHUB_ENV"
+          ffmpeg -version | head -n 1
       - uses: actions/download-artifact@v4
         with:
           pattern: v155-segment-*
