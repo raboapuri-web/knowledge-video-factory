@@ -62,6 +62,7 @@ def main():
     run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(fc),"-c","copy","-movflags","+faststart",str(final)])'''
  if marker not in src: raise SystemExit("finalizer concat insertion point missing")
  src=src.replace(marker,add)
+ src=src.replace('str(BASE/"assets"/"end_card.png")','str(ROOT.parent/"assets"/"end_card.png")')
  src=src.replace('"scene_count":len(all_scenes),"chapter_card_count":len(card_thumbs),','"scene_count":len(all_scenes),"chapter_card_count":len(card_thumbs),"end_card_duration_seconds":20,')
  (RUNTIME/"scripts/finalize.py").write_text(src,encoding="utf-8")
  print(json.dumps({"runtime":"shared/v155/runtime","scenes":84,"chapters":8}))
