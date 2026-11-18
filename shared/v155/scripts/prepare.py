@@ -44,9 +44,9 @@ def main():
                 failures.append({"scene": item["scene"], "reason": "scene too short to audit"})
                 continue
             if duration < 2.0:
-                frame_count=max(8,min(26,int(max(0.1,duration-0.1)*FPS)))
+                frame_count=max(8,min(26,int(duration*FPS)-1))
                 window_seconds=(frame_count-1)/FPS
-                start=float(item["start"])+max(0.05,(duration-window_seconds)/2)
+                start=float(item["start"])+max(0.03,(duration-window_seconds)/2)
                 windows=[_sample_window(cap,start,count=frame_count)]
             else:
                 window_seconds=26.0/FPS
@@ -55,9 +55,11 @@ def main():
                 starts=sorted(set(round(min(x,last_start),4) for x in starts))
                 windows=[]
                 for start in starts:
-                    try: windows.append(_sample_window(cap,start))
-                    except Exception as exc: windows.append({"start_seconds":round(start,3),"passed":False,"error":str(exc)})
- """
+                    try:
+                        windows.append(_sample_window(cap,start))
+                    except Exception as exc:
+                        windows.append({"start_seconds":round(start,3),"passed":False,"error":str(exc)})
+"""
  qt=qt[:qstart]+qa_block+qt[qend:]
  qt=qt.replace("three separate 26-frame windows per non-static scene; adjacent decoded frame luma differences, excluding subtitle band","three 26-frame windows for moving scenes >=2s; one duration-scaled window for shorter moving scenes; adjacent decoded frame luma differences")
  qa.write_text(qt,encoding="utf-8")
@@ -75,21 +77,37 @@ def main():
   entries.append({"scene_id":s["id"],"chapter":cid,"motion":m,"scale_from":z0,"scale_to":z1,"camera_from":p0,"camera_to":p1})
  (RUNTIME/"format_v2/config/scene_motion_map.json").write_text(json.dumps({"schema_version":"2.0","project":compat["title"],"scene_count":84,"render":{"width":1920,"height":1080,"fps":30,"zoompan_baseline":1.2,"pan_travel_percent":16.7},"entries":entries},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
  src=(V154/"scripts/finalize.py").read_text(encoding="utf-8")
- reps=[('EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,91)]','EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,85)]'),('v154-{chapter}.mp4','v155-{chapter}.mp4'),('{"S018","S028","S032","S057"}','{"S041","S071","S080"}'),('S090','S084'),('v154-pond-recovery-final.mp4','v155-sea-mysteries-final.mp4'),('v154-contact-sheet.jpg','v155-contact-sheet.jpg'),('v154-chapter-cards-contact-sheet.jpg','v155-chapter-cards-contact-sheet.jpg'),('len(thumbs)==90','len(thumbs)==84'),('scene_contact_sheet_90_frames','scene_contact_sheet_84_frames'),('"video_id":"v154","title":"池の水をぜんぶ抜いた。その後、池はどうなったのか？"','"video_id":"v155","title":"未だ解明されていない海の謎6選"'),('"image_source":"assets/final/S001.jpg-S090.jpg only"','"image_source":"assets/final/S001.jpg-S084.jpg only"'),('"special_blur_background_scenes":["S018","S028","S032","S057"]','"special_blur_background_scenes":["S041","S071","S080"]'),('expected=elapsed','expected=elapsed+20.0')]
- for a,z in reps: src=src.replace(a,z)
- src=src.replace('final=out/"v155-sea-mysteries-final.mp4"','main=out/"v155-main.mp4"\n    final=out/"v155-sea-mysteries-final.mp4"')
- marker='run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(final)])'
- add='''run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(main)])
+ reps=[
+  ('EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,91)]','EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,85)]'),
+  ('v154-{chapter}.mp4','v155-{chapter}.mp4'),
+  ('{"S018","S028","S032","S057"}','{"S041","S071","S080"}'),
+  ('S090','S084'),
+  ('v154-pond-recovery-final.mp4','v155-sea-mysteries-final.mp4'),
+  ('v154-contact-sheet.jpg','v155-contact-sheet.jpg'),
+  ('v154-chapter-cards-contact-sheet.jpg','v155-chapter-cards-contact-sheet.jpg'),
+  ('len(thumbs)==90','len(thumbs)==84'),
+  ('scene_contact_sheet_90_frames','scene_contact_sheet_84_frames'),
+  ('"video_id":"v154","title":"池の水をぜんぶ抜いた。その後、池はどうなったのか？"','"video_id":"v155","title":"未だ解明されていない海の謎6選"'),
+  ('"image_source":"assets/final/S001.jpg-S090.jpg only"','"image_source":"assets/final/S001.jpg-S084.jpg only"'),
+  ('"special_blur_background_scenes":["S018","S028","S032","S057"]','"special_blur_background_scenes":["S041","S071","S080"]'),
+  ('"scene_count_90":len(all_scenes)==90','"scene_count_84":len(all_scenes)==84'),
+  ('"blur_layout_targets_exactly_four"','"blur_layout_targets_exactly_three"'),
+  ('expected=elapsed','expected=elapsed+20.0')
+ ]
+ for a,z in reps:
+  src=src.replace(a,z)
+ src=src.replace('final=out/"v155-sea-mysteries-final.mp4"','main=out/"v155-main.mp4"\\n    final=out/"v155-sea-mysteries-final.mp4"')
+ marker='    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(final)])'
+ add='''    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(main)])
     endcard=out/"end-card.mp4"
-    run(["ffmpeg","-y","-loglevel","error","-loop","1","-framerate","30","-i",str(BASE/"assets"/"end_card.png"),"-f","lavfi","-i","anullsrc=channel_layout=mono:sample_rate=48000","-t","20","-vf","scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,format=yuv420p","-r","30","-fps_mode","cfr","-c:v","libx264","-preset","veryfast","-crf","19","-c:a","aac","-b:a","160k","-ar","48000","-ac","1","-shortest","-movflags","+faststart",str(endcard)])
+    run(["ffmpeg","-y","-loglevel","error","-loop","1","-framerate","30","-i",str(ROOT.parent/"assets"/"end_card.png"),"-f","lavfi","-i","anullsrc=channel_layout=mono:sample_rate=48000","-t","20","-vf","scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,format=yuv420p","-r","30","-fps_mode","cfr","-c:v","libx264","-preset","veryfast","-crf","19","-pix_fmt","yuv420p","-c:a","aac","-b:a","160k","-ar","48000","-ac","1","-shortest","-movflags","+faststart",str(endcard)])
     fc=out/"concat-with-endcard.txt"
     fc.write_text("file '"+str(main.resolve())+"'"+chr(10)+"file '"+str(endcard.resolve())+"'"+chr(10),encoding="utf-8")
     run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(fc),"-c","copy","-movflags","+faststart",str(final)])'''
- if marker not in src: raise SystemExit("finalizer concat insertion point missing")
+ if marker not in src:
+  raise SystemExit("finalizer concat marker not found")
  src=src.replace(marker,add)
- src=src.replace('str(BASE/"assets"/"end_card.png")','str(ROOT.parent/"assets"/"end_card.png")')
  src=src.replace('"scene_count":len(all_scenes),"chapter_card_count":len(card_thumbs),','"scene_count":len(all_scenes),"chapter_card_count":len(card_thumbs),"end_card_duration_seconds":20,')
- src=src.replace('"scene_count_90":len(all_scenes)==90','"scene_count_84":len(all_scenes)==84')
  (RUNTIME/"scripts/finalize.py").write_text(src,encoding="utf-8")
  print(json.dumps({"runtime":"shared/v155/runtime","scenes":84,"chapters":8}))
 if __name__=="__main__": main()
