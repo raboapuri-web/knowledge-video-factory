@@ -25,6 +25,14 @@ def main():
  (RUNTIME/"format_v2/config/chapter_card_spec.json").write_text(json.dumps(spec,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
  for name in ["synth.py","validate_chapter_narration.py","render_chapter.py","install_media_tools.sh"]: shutil.copy2(V154/"scripts"/name,RUNTIME/"scripts"/name)
  shutil.copy2(V154/"format_v2/scripts/render_chapter_card.py",RUNTIME/"format_v2/scripts/render_chapter_card.py")
+ # V155's approved S001 text does not contain the V153-specific "少し" reading exception.
+ validator=RUNTIME/"scripts/validate_chapter_narration.py"
+ vt=validator.read_text(encoding="utf-8")
+ start=vt.index('        if s["id"]=="S001":')
+ end=vt.index('        if not first_caption',start)
+ vt=vt[:start]+'        if v.get("tts_input_text")!=text: errors.append(s["id"]+": unexpected TTS-side text replacement")\\n'+vt[end:]
+ vt=vt.replace('"S001_tts_only_replacement":"少し → すこし" if any(s["id"]=="S001" for s in scenes) else None','"S001_tts_only_replacement":None')
+ validator.write_text(vt,encoding="utf-8")
  motion_src=BASE.parent/"motion"; motion_dst=BASE/"motion"
  if motion_dst.exists(): shutil.rmtree(motion_dst)
  shutil.copytree(motion_src,motion_dst)
