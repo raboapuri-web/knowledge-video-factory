@@ -14,7 +14,7 @@ permissions:
   contents: write
   actions: read
 concurrency:
-  group: v155-sea-mysteries-production-v2
+  group: v155-sea-mysteries-production-v3
   cancel-in-progress: false
 
 jobs:
@@ -64,7 +64,7 @@ jobs:
           ACTUAL="$(python - "$FONT" <<'PY'
           import hashlib, pathlib, sys
           p=pathlib.Path(sys.argv[1]); d=p.read_bytes()
-          print(hashlib.sha1(b"blob "+str(len(d)).encode()+b"\\0"+d).hexdigest())
+          print(hashlib.sha1(b"blob "+str(len(d)).encode()+bytes([0])+d).hexdigest())
           PY
           )"
           test "$ACTUAL" = "f56224957fb13a81b4c14bac34f2f058a017f9fb"
