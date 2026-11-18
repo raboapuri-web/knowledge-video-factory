@@ -1,0 +1,133 @@
+name: V155 Sea Mysteries — format v2 production
+
+on:
+  push:
+    branches: [v155-sea-mysteries-production-20261118]
+    paths:
+      - '.github/workflows/v155-sea-mysteries-production.yml'
+      - 'shared/v155/launch/render_approved.txt'
+      - 'shared/v155/board.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: v155-sea-mysteries-production
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: v155-sea-mysteries-production-20261118}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install --no-input Pillow
+      - run: python shared/v155/scripts/preflight.py
+      - run: python shared/v155/scripts/prepare.py
+
+  chapter:
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, epilogue]
+    env:
+      CHAPTER: \${{ matrix.chapter }}
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_ID: '13'
+      VOICEVOX_SPEED: '1.10'
+      VOICEVOX_INTONATION: '1.0'
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: v155-sea-mysteries-production-20261118}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install --no-input requests Pillow
+      - run: python shared/v155/scripts/prepare.py
+      - run: bash shared/v155/runtime/scripts/install_media_tools.sh
+      - name: Start VOICEVOX CPU engine
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 --name voicevox voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 180); do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox; exit 1
+      - run: python shared/v155/runtime/scripts/synth.py "$CHAPTER"
+      - run: python shared/v155/runtime/scripts/validate_chapter_narration.py "$CHAPTER"
+      - run: python shared/v155/runtime/scripts/render_chapter.py "$CHAPTER"
+      - name: Stage chapter outputs
+        run: |
+          mkdir -p shared/v155/runtime/artifact
+          cp shared/v155/runtime/output/v155-"$CHAPTER".mp4 shared/v155/runtime/artifact/
+          cp shared/v155/runtime/output/render-"$CHAPTER".json shared/v155/runtime/artifact/
+          cp shared/v155/runtime/output/chapter-card-"$CHAPTER".json shared/v155/runtime/artifact/
+          cp shared/v155/runtime/media/voice-report-"$CHAPTER".json shared/v155/runtime/artifact/
+          cp shared/v155/runtime/media/narration-qa-"$CHAPTER".json shared/v155/runtime/artifact/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v155-segment-\${{ matrix.chapter }}
+          path: shared/v155/runtime/artifact/*
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+  finalize:
+    needs: [preflight, chapter]
+    if: needs.chapter.result == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    env:
+      RELEASE_TAG: v155-sea-mysteries-\${{ github.run_id }}
+      GH_TOKEN: \${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: v155-sea-mysteries-production-20261118}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install --no-input Pillow opencv-python-headless
+      - run: python shared/v155/scripts/prepare.py
+      - run: bash shared/v155/runtime/scripts/install_media_tools.sh
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v155-segment-*
+          path: shared/v155/runtime/segments
+          merge-multiple: true
+      - run: python shared/v155/runtime/scripts/finalize.py --segments-dir shared/v155/runtime/segments
+      - name: Publish MP4 and QA evidence
+        run: |
+          set -euo pipefail
+          gh release create "$RELEASE_TAG" \
+            shared/v155/runtime/output/v155-sea-mysteries-final.mp4 \
+            shared/v155/runtime/output/v155-contact-sheet.jpg \
+            shared/v155/runtime/output/v155-chapter-cards-contact-sheet.jpg \
+            shared/v155/runtime/output/production_report.json \
+            shared/v155/runtime/output/final_qa.json \
+            shared/v155/runtime/output/motion_30fps_qa.json \
+            shared/v155/runtime/output/CREDITS.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "考える夜｜未だ解明されていない海の謎6選" \
+            --notes "84 scenes, 8 typed chapter cards, and a silent 20-second end card. 1920x1080, 30fps, H.264/AAC, VOICEVOX:青山龍星. 30fps subpixel motion; blurred-background targets S041/S071/S080. No BGM." \
+            --latest
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v155-sea-mysteries-master
+          path: |
+            shared/v155/runtime/output/v155-sea-mysteries-final.mp4
+            shared/v155/runtime/output/v155-contact-sheet.jpg
+            shared/v155/runtime/output/v155-chapter-cards-contact-sheet.jpg
+            shared/v155/runtime/output/production_report.json
+            shared/v155/runtime/output/final_qa.json
+            shared/v155/runtime/output/motion_30fps_qa.json
+            shared/v155/runtime/output/CREDITS.txt
+          retention-days: 30
+          compression-level: 0
