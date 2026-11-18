@@ -57,7 +57,6 @@ def main():
  add='''run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(main)])
     endcard=out/"end-card.mp4"
     run(["ffmpeg","-y","-loglevel","error","-loop","1","-framerate","30","-i",str(BASE/"assets"/"end_card.png"),"-f","lavfi","-i","anullsrc=channel_layout=mono:sample_rate=48000","-t","20","-vf","scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,format=yuv420p","-r","30","-fps_mode","cfr","-c:v","libx264","-preset","veryfast","-crf","19","-c:a","aac","-b:a","160k","-ar","48000","-ac","1","-shortest","-movflags","+faststart",str(endcard)])
- src=src.replace('"scene_count_90":len(all_scenes)==90','"scene_count_84":len(all_scenes)==84')
     fc=out/"concat-with-endcard.txt"
     fc.write_text("file '"+str(main.resolve())+"'"+chr(10)+"file '"+str(endcard.resolve())+"'"+chr(10),encoding="utf-8")
     run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(fc),"-c","copy","-movflags","+faststart",str(final)])'''
@@ -65,6 +64,7 @@ def main():
  src=src.replace(marker,add)
  src=src.replace('str(BASE/"assets"/"end_card.png")','str(ROOT.parent/"assets"/"end_card.png")')
  src=src.replace('"scene_count":len(all_scenes),"chapter_card_count":len(card_thumbs),','"scene_count":len(all_scenes),"chapter_card_count":len(card_thumbs),"end_card_duration_seconds":20,')
+ src=src.replace('"scene_count_90":len(all_scenes)==90','"scene_count_84":len(all_scenes)==84')
  (RUNTIME/"scripts/finalize.py").write_text(src,encoding="utf-8")
  print(json.dumps({"runtime":"shared/v155/runtime","scenes":84,"chapters":8}))
 if __name__=="__main__": main()
