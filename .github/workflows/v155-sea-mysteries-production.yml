@@ -14,7 +14,7 @@ permissions:
   contents: write
   actions: read
 concurrency:
-  group: v155-sea-mysteries-production-v6
+  group: v155-sea-mysteries-production-v7
   cancel-in-progress: false
 
 jobs:
