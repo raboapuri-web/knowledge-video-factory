@@ -30,7 +30,7 @@ def main():
  vt=validator.read_text(encoding="utf-8")
  start=vt.index('        if s["id"]=="S001":')
  end=vt.index('        if not first_caption',start)
- vt=vt[:start]+'        if v.get("tts_input_text")!=text: errors.append(s["id"]+": unexpected TTS-side text replacement")\\n'+vt[end:]
+ vt=vt[:start]+'        if v.get("tts_input_text")!=text: errors.append(s["id"]+": unexpected TTS-side text replacement")'+chr(10)+vt[end:]
  vt=vt.replace('"S001_tts_only_replacement":"少し → すこし" if any(s["id"]=="S001" for s in scenes) else None','"S001_tts_only_replacement":None')
  validator.write_text(vt,encoding="utf-8")
  motion_src=BASE.parent/"motion"; motion_dst=BASE/"motion"
