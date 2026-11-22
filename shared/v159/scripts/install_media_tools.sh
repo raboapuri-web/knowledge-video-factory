@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Pinned, prebuilt static FFmpeg. This avoids apt mirrors and their dependency downloads.
-TOOLS_TMP="${RUNNER_TEMP:-/tmp}/v158-media-tools"
+TOOLS_TMP="${RUNNER_TEMP:-/tmp}/v159-media-tools"
 BIN_DIR="${HOME}/.local/bin"
 FONT_DIR="${HOME}/.local/share/fonts"
 ARCHIVE="${TOOLS_TMP}/ffmpeg-linux64-gpl.tar.xz"
@@ -12,21 +12,24 @@ FONT_URL="https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda5
 FONT_GIT_BLOB_SHA1="f56224957fb13a81b4c14bac34f2f058a017f9fb"
 
 mkdir -p "$TOOLS_TMP/extract" "$BIN_DIR" "$FONT_DIR"
-echo "Downloading pinned FFmpeg static build from FFmpeg-Builds..."
-curl --fail --location --silent --show-error \
-  --retry 5 --retry-all-errors --retry-delay 3 \
-  --connect-timeout 30 --max-time 900 \
-  "$FFMPEG_URL" -o "$ARCHIVE"
-echo "${FFMPEG_SHA256}  ${ARCHIVE}" | sha256sum --check --status
-echo "FFmpeg archive SHA-256 verified."
-
-tar -xJf "$ARCHIVE" -C "$TOOLS_TMP/extract"
-FFMPEG_SOURCE="$(find "$TOOLS_TMP/extract" -type f -name ffmpeg -perm /111 -print -quit)"
-FFPROBE_SOURCE="$(find "$TOOLS_TMP/extract" -type f -name ffprobe -perm /111 -print -quit)"
-test -n "$FFMPEG_SOURCE"
-test -n "$FFPROBE_SOURCE"
-install -m 0755 "$FFMPEG_SOURCE" "$BIN_DIR/ffmpeg"
-install -m 0755 "$FFPROBE_SOURCE" "$BIN_DIR/ffprobe"
+if command -v ffmpeg >/dev/null 2>&1 && command -v ffprobe >/dev/null 2>&1; then
+  echo "Using the runner-provided FFmpeg/ffprobe binaries; no apt installation."
+else
+  echo "Downloading pinned FFmpeg static build from FFmpeg-Builds..."
+  curl --fail --location --silent --show-error \
+    --retry 5 --retry-all-errors --retry-delay 3 \
+    --connect-timeout 30 --max-time 900 \
+    "$FFMPEG_URL" -o "$ARCHIVE"
+  echo "${FFMPEG_SHA256}  ${ARCHIVE}" | sha256sum --check --status
+  echo "FFmpeg archive SHA-256 verified."
+  tar -xJf "$ARCHIVE" -C "$TOOLS_TMP/extract"
+  FFMPEG_SOURCE="$(find "$TOOLS_TMP/extract" -type f -name ffmpeg -perm /111 -print -quit)"
+  FFPROBE_SOURCE="$(find "$TOOLS_TMP/extract" -type f -name ffprobe -perm /111 -print -quit)"
+  test -n "$FFMPEG_SOURCE"
+  test -n "$FFPROBE_SOURCE"
+  install -m 0755 "$FFMPEG_SOURCE" "$BIN_DIR/ffmpeg"
+  install -m 0755 "$FFPROBE_SOURCE" "$BIN_DIR/ffprobe"
+fi
 
 echo "Downloading the pinned Noto Sans CJK JP font..."
 curl --fail --location --silent --show-error \
@@ -48,7 +51,7 @@ echo "Noto Sans CJK JP Git blob SHA-1 verified."
 
 # Make the binaries and font directory available to all following workflow steps.
 echo "$BIN_DIR" >> "$GITHUB_PATH"
-echo "V158_FONTS_DIR=$FONT_DIR" >> "$GITHUB_ENV"
+echo "V159_FONTS_DIR=$FONT_DIR" >> "$GITHUB_ENV"
 export PATH="$BIN_DIR:$PATH"
 
 if command -v fc-cache >/dev/null 2>&1; then
@@ -60,5 +63,5 @@ ffprobe -version | head -n 1
 ffmpeg -hide_banner -filters 2>&1 | grep -Eq '[[:space:]]ass[[:space:]]'
 ffmpeg -hide_banner -encoders 2>&1 | grep -q 'libx264'
 test -s "$FONT_DIR/NotoSansCJKjp-Regular.otf"
-echo "V158_MEDIA_TOOLS_READY"
+echo "V159_MEDIA_TOOLS_READY"
 rm -rf "$TOOLS_TMP"
