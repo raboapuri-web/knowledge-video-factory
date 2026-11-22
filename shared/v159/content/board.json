@@ -386,7 +386,7 @@
       "scene_index_in_chapter": 1,
       "narration": true,
       "subtitles": true,
-      "script": "\n地球上で最も大きな動物は何か。\n\n多くの人はシロナガスクジラを思い浮かべるはずだ。\n\n全長30メートルを超え、体重は200トン近くに達することもある。現在知られている動物の中では、史上最大の存在である。\n\nだが、地球の歴史を少しだけ遡ると、その常識が揺らぎ始める。\n\n",
+      "script": "\n\n地球上で最も大きな動物は何か。\n\n多くの人はシロナガスクジラを思い浮かべるはずだ。\n\n全長30メートルを超え、体重は200トン近くに達することもある。現在知られている動物の中では、史上最大の存在である。\n\nだが、地球の歴史を少しだけ遡ると、その常識が揺らぎ始める。\n\n",
       "material_type": "写真",
       "mode": "収集",
       "preferred_source": "博物館・大学・公的研究機関の化石標本、発掘現場、復元骨格の実写写真。再利用条件が確認できるものを優先",
@@ -3804,8 +3804,8 @@
   },
   "validation": {
     "script_normalization": "原文の動画タイトル行と章タイトル7行のみ除外。本文の字句・句読点・改行・空白を変更しない",
-    "narration_script_chars": 10487,
-    "source_narration_chars": 10487,
+    "narration_script_chars": 10488,
+    "source_narration_chars": 10488,
     "byte_identical_script_concatenation": true,
     "title_excluded_from_narration": true,
     "chapter_title_count": 7,
@@ -3833,6 +3833,7 @@
       "pan_down": 8
     },
     "motion_triple_repeat_count": 0,
-    "verification_state": "board-level structural checks only; assets, rights audit, audio and timing not yet produced"
+    "verification_state": "board-level structural checks only; assets, rights audit, audio and timing not yet produced",
+    "note": "S001 begins with the two source blank lines after excluded title and chapter headings; board script concatenation matches source body byte-for-byte."
   }
 }
