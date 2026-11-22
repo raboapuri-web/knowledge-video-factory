@@ -119,7 +119,9 @@ def validate():
     forbidden=("CC BY-SA","CC BY SA","NC","ND","All rights reserved")
     for s in scenes:
         c=credits[s["id"]]
-        assert c.get("page") and c.get("artist") is not None and c.get("license"),"Incomplete credit: "+s["id"]
+        assert c.get("artist") is not None and c.get("license"),"Incomplete credit: "+s["id"]
+        if c.get("license","").lower() not in ("generated","original"):
+            assert c.get("page"),"Missing source page: "+s["id"]
         lic=c["license"].upper()
         assert not any(x.upper() in lic for x in forbidden),"Forbidden license: "+s["id"]+" "+lic
     resolved={s["id"]:resolve_asset(s) for s in scenes}
