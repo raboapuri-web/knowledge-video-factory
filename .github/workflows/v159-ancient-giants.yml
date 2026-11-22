@@ -14,7 +14,7 @@ permissions:
 
 concurrency:
   group: v159-production-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   preflight:
