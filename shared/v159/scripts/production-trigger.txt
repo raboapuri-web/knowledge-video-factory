@@ -1,2 +1,3 @@
 V159 production run requested after asset and credit preflight. The v159-ancient-giants.yml workflow is path-triggered on this branch.
 Retry after bundling the verified FFmpeg installer in the V159 branch.
+Retry with runner-provided media binaries and V159 font environment.
