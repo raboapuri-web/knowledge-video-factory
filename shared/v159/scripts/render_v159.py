@@ -210,7 +210,7 @@ def render_video(src,dest,frames,ass_file,motion=None,video_input=False):
     if video_input:
         filters=["fps=30","scale=1920:1080:force_original_aspect_ratio=increase","crop=1920:1080"]
     else:
-        filters=["split=2[bg][fg]",
+        filters=["[0:v]split=2[bg][fg]",
                  "[bg]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,gblur=sigma=28[blur]",
                  "[fg]scale=1920:1080:force_original_aspect_ratio=decrease[sharp]",
                  "[blur][sharp]overlay=(W-w)/2:(H-h)/2[base]"]
@@ -411,12 +411,13 @@ def finalize():
     with wave.open(str(wav),"rb") as s:
         master_samples=s.getnframes()
     checks={
-     "all_scenes_102":sum(x["scene_count"] for x in chapter_reports)==102,\n     "all_102_scene_assets_present":len({x["asset"] for y in chapter_reports for x in y["segments"] if x["type"]=="scene"})==102,
+     "all_scenes_102":sum(x["scene_count"] for x in chapter_reports)==102,
+     "all_102_scene_assets_present":len({x["asset"] for y in chapter_reports for x in y["segments"] if x["type"]=="scene"})==102,
      "all_cards_7":len(chapter_reports)==7 and all(x["segments"][0]["type"]=="card" and x["segments"][0]["narration"] is False for x in chapter_reports),
      "headings_exact":all(x["segments"][0]["title"]==ch["title"] for x,ch in zip(chapter_reports,BOARD["chapters"])),
      "reading_override_exact_8":sum(x["occurrences"] for s in BOARD["scenes"] for x in s.get("reading_overrides",[]))==8,
      "video_assets_muted_without_motion":all(x["muted_video_source"] and x["motion_applied"]=="none (video playback)" for y in chapter_reports for x in y["segments"] if x["type"]=="scene" and x["muted_video_source"]),
-     "motion_no_three_consecutive":all(not (BOARD["scenes"][i]["motion"]==BOARD["scenes"][i-1]["motion"]==BOARD["scenes"][i-2]["motion"]) for i in range(2,100)),
+     "motion_no_three_consecutive":all(not (BOARD["scenes"][i]["motion"]==BOARD["scenes"][i-1]["motion"]==BOARD["scenes"][i-2]["motion"]) for i in range(2,len(BOARD["scenes"]))),
      "motion_every_frame_formula":True,
      "one_source_visual_per_scene":all(s["image_count"]==1 for s in BOARD["scenes"]),
      "subtitle_band_fixed_opaque_130px":True,
@@ -450,6 +451,12 @@ def finalize():
             "full_transcription_status":"not run; requires Muse listening/transcription of S100 final sentence",
             "asset_credit_note":"Per-scene credits and licenses are read from shared/v159/assets/photo_credits.json; verified for all 102 scene IDs."}
     (OUTPUT/"finalize.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    credits=json.loads((BASE/"assets"/"photo_credits.json").read_text(encoding="utf-8"))
+    credit_lines=["V159 素材クレジット",""]
+    for scene in BOARD["scenes"]:
+        c=credits[scene["id"]]
+        credit_lines.append(f'{scene["id"]} | {c.get("title","")} | {c.get("artist","")} | {c.get("license","")} | {c.get("page","")}')
+    (OUTPUT/"CREDITS.txt").write_text("\\n".join(credit_lines)+"\\n",encoding="utf-8")
     if not all(checks.values()):raise RuntimeError("V159 finalize checks failed: "+json.dumps(checks,ensure_ascii=False))
     print(json.dumps(report,ensure_ascii=False),flush=True)
 
