@@ -1,0 +1,153 @@
+name: V159 Ancient Giants - production 48k PCM and final AAC
+
+on:
+  push:
+    branches: [v159-ancient-giants-board-20261121]
+    paths:
+      - '.github/workflows/v159-ancient-giants.yml'
+      - 'shared/v159/scripts/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: v159-production-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install verified static media tools
+        run: bash shared/v158/scripts/install_media_tools.sh
+      - name: Install Python dependencies
+        run: python -m pip install --no-input --timeout 30 --retries 2 requests Pillow
+      - name: Validate V159 board, 102 assets, and credits
+        run: python shared/v159/scripts/render_v159.py --validate
+
+  chapter:
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, epilogue]
+    env:
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_ID: '13'
+      VOICEVOX_SPEED: '1.10'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install verified static FFmpeg and font
+        run: bash shared/v158/scripts/install_media_tools.sh
+      - name: Install Python libraries
+        run: python -m pip install --no-input --timeout 30 --retries 2 requests Pillow
+      - name: Launch VOICEVOX 青山龍星 CPU voice server
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox-v159 -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          ready=0
+          for i in $(seq 1 180); do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null 2>&1; then ready=1; break; fi
+            sleep 2
+          done
+          test "$ready" = 1
+          curl -fsS http://127.0.0.1:50021/version
+      - name: Synthesize narration and render individual full-frame scenes
+        env:
+          V159_CHAPTER: ${{ matrix.chapter }}
+        run: |
+          set -euo pipefail
+          python shared/v159/scripts/render_v159.py --chapter "$V159_CHAPTER"
+      - name: Stage chapter MP4 and original 48kHz uncompressed PCM
+        env:
+          V159_CHAPTER: ${{ matrix.chapter }}
+        run: |
+          set -euo pipefail
+          D="shared/v159/output/$V159_CHAPTER"
+          mkdir -p "shared/v159/artifacts/$V159_CHAPTER"
+          cp "$D/v159-$V159_CHAPTER.mp4" "$D/pcm-$V159_CHAPTER.wav" "$D/report.json" "shared/v159/artifacts/$V159_CHAPTER/"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v159-chapter-${{ matrix.chapter }}
+          path: shared/v159/artifacts/${{ matrix.chapter }}/
+          retention-days: 14
+          compression-level: 0
+
+  finalize:
+    needs: chapter
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install verified static FFmpeg and fonts
+        run: bash shared/v158/scripts/install_media_tools.sh
+      - name: Install Pillow
+        run: python -m pip install --no-input --timeout 30 --retries 2 Pillow
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v159-chapter-*
+          path: /tmp/v159-chapter-artifacts
+      - name: Assemble seven chapters and preserve PCM
+        run: |
+          set -euo pipefail
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 epilogue; do
+            src="/tmp/v159-chapter-artifacts/v159-chapter-$c"
+            dst="shared/v159/output/$c"
+            test -s "$src/v159-$c.mp4"
+            test -s "$src/pcm-$c.wav"
+            test -s "$src/report.json"
+            mkdir -p "$dst"
+            cp "$src/v159-$c.mp4" "$src/pcm-$c.wav" "$src/report.json" "$dst/"
+          done
+          python shared/v159/scripts/render_v159.py --finalize
+      - name: Confirm finalize QA, hash and chapter boundaries
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          f=Path('shared/v159/output/finalize.json')
+          r=json.loads(f.read_text())
+          for k,v in r['checks'].items(): print(('PASS' if v else 'FAIL'),k)
+          for c in r['chapter_boundaries']: print(c['chapter'],c['start_hhmmss'],c['duration_seconds'])
+          print('size_bytes',r['file_size_bytes'],'sha256',r['sha256'],'duration_sec',r['duration_probe_seconds'])
+          assert r['status']=='pass' and all(r['checks'].values())
+          PY
+          cd shared/v159/output
+          sha256sum v159-ancient-giants-final.mp4 | tee SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v159-ancient-giants-final-master
+          path: |
+            shared/v159/output/v159-ancient-giants-final.mp4
+            shared/v159/output/finalize.json
+            shared/v159/output/SHA256SUMS.txt
+            shared/v159/output/CREDITS.txt
+          retention-days: 21
+          compression-level: 0
+      - name: Publish GitHub Release - master without licensed background music
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cd shared/v159/output
+          TAG="v159-ancient-giants-${{ github.run_id }}"
+          gh release create "$TAG" v159-ancient-giants-final.mp4 finalize.json SHA256SUMS.txt CREDITS.txt --repo "${{ github.repository }}" --target "${{ github.sha }}" --title "考える夜 V159｜実在した古代の巨大生物ランキングTOP5" --notes "Master rendered at 1920x1080 30fps, VOICEVOX:青山龍星 (speaker 13, speed 1.10), 102 scenes, 7 silent-narration typed chapter cards, 48kHz PCM join with one final AAC encode, 20-second silent end screen. No licensed BGM is embedded; per project spec, Muse must separately apply licensed chapter BGM locally and verify the final mix."
+          echo "RELEASE_URL=https://github.com/${{ github.repository }}/releases/tag/$TAG" >> "$GITHUB_STEP_SUMMARY"
