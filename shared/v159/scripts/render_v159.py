@@ -400,7 +400,7 @@ def finalize():
     videos=[OUTPUT/ch["id"]/("v159-"+ch["id"]+".mp4") for ch in BOARD["chapters"]]+[endvideo]
     combined=OUTPUT/"v159-video-only.mp4"
     concat_video(videos,combined)
-    final=OUTPUT/"v159-wakusei-survival-final.mp4"
+    final=OUTPUT/"v159-ancient-giants-final.mp4"
     execute(["ffmpeg","-y","-hide_banner","-loglevel","error","-i",combined,"-i",wav,
              "-map","0:v:0","-map","1:a:0","-c:v","copy","-c:a","aac","-b:a","192k","-ar","48000","-ac","1",
              "-movflags","+faststart",final])
