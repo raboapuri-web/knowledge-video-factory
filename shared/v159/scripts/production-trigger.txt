@@ -4,3 +4,4 @@ Retry with runner-provided media binaries and V159 font environment.
 Retry V159 production with checksum-safe static FFmpeg and package fallback.
 Retry after correcting S001 TTS leading whitespace.
 Retry with direct Ubuntu FFmpeg package install.
+Retry after accepting generated-diagram credit records without source URLs.
