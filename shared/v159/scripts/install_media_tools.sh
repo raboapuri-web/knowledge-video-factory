@@ -12,25 +12,32 @@ FONT_URL="https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda5
 FONT_GIT_BLOB_SHA1="f56224957fb13a81b4c14bac34f2f058a017f9fb"
 
 mkdir -p "$TOOLS_TMP/extract" "$BIN_DIR" "$FONT_DIR"
-if command -v ffmpeg >/dev/null 2>&1 && command -v ffprobe >/dev/null 2>&1; then
-  echo "Using the runner-provided FFmpeg/ffprobe binaries; no apt installation."
+echo "Trying the pinned static FFmpeg archive first..."
+STATIC_OK=0
+if curl --fail --location --silent --show-error \
+    --retry 2 --retry-all-errors --retry-delay 2 \
+    --connect-timeout 20 --max-time 600 \
+    "$FFMPEG_URL" -o "$ARCHIVE"; then
+  if echo "${FFMPEG_SHA256}  ${ARCHIVE}" | sha256sum --check --status; then
+    tar -xJf "$ARCHIVE" -C "$TOOLS_TMP/extract"
+    FFMPEG_SOURCE="$(find "$TOOLS_TMP/extract" -type f -name ffmpeg -perm /111 -print -quit)"
+    FFPROBE_SOURCE="$(find "$TOOLS_TMP/extract" -type f -name ffprobe -perm /111 -print -quit)"
+    if [ -n "$FFMPEG_SOURCE" ] && [ -n "$FFPROBE_SOURCE" ]; then
+      install -m 0755 "$FFMPEG_SOURCE" "$BIN_DIR/ffmpeg"
+      install -m 0755 "$FFPROBE_SOURCE" "$BIN_DIR/ffprobe"
+      STATIC_OK=1
+      echo "Pinned static FFmpeg archive verified."
+    fi
+  else
+    echo "Static FFmpeg archive checksum changed; using Ubuntu runner packages as a fallback."
+  fi
 else
-  echo "Downloading pinned FFmpeg static build from FFmpeg-Builds..."
-  curl --fail --location --silent --show-error \
-    --retry 5 --retry-all-errors --retry-delay 3 \
-    --connect-timeout 30 --max-time 900 \
-    "$FFMPEG_URL" -o "$ARCHIVE"
-  echo "${FFMPEG_SHA256}  ${ARCHIVE}" | sha256sum --check --status
-  echo "FFmpeg archive SHA-256 verified."
-  tar -xJf "$ARCHIVE" -C "$TOOLS_TMP/extract"
-  FFMPEG_SOURCE="$(find "$TOOLS_TMP/extract" -type f -name ffmpeg -perm /111 -print -quit)"
-  FFPROBE_SOURCE="$(find "$TOOLS_TMP/extract" -type f -name ffprobe -perm /111 -print -quit)"
-  test -n "$FFMPEG_SOURCE"
-  test -n "$FFPROBE_SOURCE"
-  install -m 0755 "$FFMPEG_SOURCE" "$BIN_DIR/ffmpeg"
-  install -m 0755 "$FFPROBE_SOURCE" "$BIN_DIR/ffprobe"
+  echo "Static FFmpeg archive unavailable; using Ubuntu runner packages as a fallback."
 fi
-
+if [ "$STATIC_OK" != "1" ]; then
+  sudo apt-get update
+  sudo apt-get install -y ffmpeg
+fi
 echo "Downloading the pinned Noto Sans CJK JP font..."
 curl --fail --location --silent --show-error \
   --retry 5 --retry-all-errors --retry-delay 3 \
