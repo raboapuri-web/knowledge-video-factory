@@ -116,18 +116,10 @@ jobs:
         with: {python-version: '3.11'}
       - run: python -m pip install --no-input Pillow opencv-python-headless
       - run: python shared/v156/scripts/prepare.py
-      - name: Verify FFmpeg and install pinned Noto CJK font
+      - name: Verify FFmpeg for final assembly
         run: |
           set -euo pipefail
           command -v ffmpeg
-          FONT_DIR="$HOME/.local/share/fonts"
-          mkdir -p "$FONT_DIR"
-          FONT="$FONT_DIR/NotoSansCJKjp-Regular.otf"
-          curl --fail --location --silent --show-error --retry 4 --retry-all-errors --retry-delay 2 --connect-timeout 20 --max-time 240 \
-            "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf" -o "$FONT"
-          test -s "$FONT"
-          test "$(stat -c%s "$FONT")" -gt 1000000
-          echo "V153_FONTS_DIR=$FONT_DIR" >> "$GITHUB_ENV"
           ffmpeg -version | head -n 1
       - uses: actions/download-artifact@v4
         if: ${{ !contains(github.event.head_commit.message, '[finalize-only]') }}
