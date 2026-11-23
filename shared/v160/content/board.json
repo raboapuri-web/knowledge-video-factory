@@ -4,7 +4,7 @@
   "source_file": "v160_script_production.txt",
   "source_sha256": "44dbfde34cf885fc8c84c8e779af869ba0bccbde97ac4de0b22b9d9bdfe6ebec",
   "authoritative_spec": "format_v2_spec(6).md（本チャット添付・正本）",
-  "status": "board_review_pending; no asset gathering, generation, rendering or finalize authorized at this stage",
+  "status": "assets_registered; production_render_authorized",
   "created_at": "2026-11-23",
   "center_statement": "海底に都市があるという事実は、失われた文明の証拠ではない。沈んだ理由も、残された証拠の確かさも異なる場所を比べることで、私たちが歴史を知る方法そのものが問われる。",
   "spec": {
@@ -1025,7 +1025,7 @@
       "narration": true,
       "subtitles": true,
       "script": "\n\n発見から30年以上が経過しても、人工物か自然地形かという根本的な問いに、明確な結論は出ていない。現在はダイビングスポットとして知られ、海底の地形を実際に見ることもできる。",
-      "material_type": "映像素材",
+      "material_type": "写真",
       "mode": "収集",
       "preferred_source": "海底遺跡・潜水調査・船上からの観察を捉えた権利確認済み映像。音声は使用しない",
       "image_description": "「発見から30年以上が経過しても、人工物か自然地形かという根本的な問いに、明確な結論は」を視覚化。与那国島海底遺跡に関係する実物の遺跡・遺物・地形を主役にした単一画面。1920×1080・16:9、字幕用の下部130pxに重要被写体を置かない。分割・コラージュ・インセット・文字焼き込みは禁止。",
@@ -1041,9 +1041,12 @@
       "licensing_gate": "Public Domain / CC0 / 再利用許諾が明記されたCC BY等のみ。CC BY-SA・NC・ND・All rights reserved・可否不明は不可",
       "image_count": 1,
       "image_layout": "single_full_bleed",
-      "motion": null,
+      "motion": "pan_up",
       "motion_parameters": {
-        "video": "S0xx.mp4。ミュート再生、motionなし。尺に合わせトリミングまたはループ"
+        "scale": 1.2,
+        "travel": "edge_to_edge",
+        "travel_fraction": 0.1667,
+        "interpolation": "continuous_per_frame"
       },
       "estimated_duration_seconds": null,
       "tts_script": "\n\n発見から30年以上が経過しても、人工物か自然地形かという根本的な問いに、明確な結論は出ていない。現在はダイビングスポットとして知られ、海底の地形を実際に見ることもできる。",
@@ -1290,7 +1293,7 @@
       "narration": true,
       "subtitles": true,
       "script": "\n\n地質学者の推定では、1500年ごろには遺跡群のおよそ半分がすでに海面下にあったとされる。かつて地上にあった建物が、いつの間にか海底の景色になっていたわけだ。",
-      "material_type": "映像素材",
+      "material_type": "写真",
       "mode": "収集",
       "preferred_source": "海底遺跡・潜水調査・船上からの観察を捉えた権利確認済み映像。音声は使用しない",
       "image_description": "「地質学者の推定では、1500年ごろには遺跡群のおよそ半分がすでに海面下にあったとされ」を視覚化。バイア海底考古学公園に関係する実物の遺跡・遺物・地形を主役にした単一画面。1920×1080・16:9、字幕用の下部130pxに重要被写体を置かない。分割・コラージュ・インセット・文字焼き込みは禁止。",
@@ -1306,9 +1309,12 @@
       "licensing_gate": "Public Domain / CC0 / 再利用許諾が明記されたCC BY等のみ。CC BY-SA・NC・ND・All rights reserved・可否不明は不可",
       "image_count": 1,
       "image_layout": "single_full_bleed",
-      "motion": null,
+      "motion": "pan_right",
       "motion_parameters": {
-        "video": "S0xx.mp4。ミュート再生、motionなし。尺に合わせトリミングまたはループ"
+        "scale": 1.2,
+        "travel": "edge_to_edge",
+        "travel_fraction": 0.1667,
+        "interpolation": "continuous_per_frame"
       },
       "estimated_duration_seconds": null,
       "tts_script": "\n\n地質学者の推定では、1500年ごろには遺跡群のおよそ半分がすでに海面下にあったとされる。かつて地上にあった建物が、いつの間にか海底の景色になっていたわけだ。",
@@ -1354,7 +1360,7 @@
       "narration": true,
       "subtitles": true,
       "script": "ダイビングで遺跡を見学できるほか、船底がガラス張りになった船から海底を眺めることもできる。船内ではダイバーが撮影した映像をリアルタイムで流す仕組みも紹介されている。海に潜らなくても、都市の一部をのぞくことができるのだ。",
-      "material_type": "映像素材",
+      "material_type": "写真",
       "mode": "収集",
       "preferred_source": "海底遺跡・潜水調査・船上からの観察を捉えた権利確認済み映像。音声は使用しない",
       "image_description": "「ダイビングで遺跡を見学できるほか、船底がガラス張りになった船から海底を眺めることもで」を視覚化。バイア海底考古学公園に関係する実物の遺跡・遺物・地形を主役にした単一画面。1920×1080・16:9、字幕用の下部130pxに重要被写体を置かない。分割・コラージュ・インセット・文字焼き込みは禁止。",
@@ -1370,9 +1376,12 @@
       "licensing_gate": "Public Domain / CC0 / 再利用許諾が明記されたCC BY等のみ。CC BY-SA・NC・ND・All rights reserved・可否不明は不可",
       "image_count": 1,
       "image_layout": "single_full_bleed",
-      "motion": null,
+      "motion": "pan_left",
       "motion_parameters": {
-        "video": "S0xx.mp4。ミュート再生、motionなし。尺に合わせトリミングまたはループ"
+        "scale": 1.2,
+        "travel": "edge_to_edge",
+        "travel_fraction": 0.1667,
+        "interpolation": "continuous_per_frame"
       },
       "estimated_duration_seconds": null,
       "tts_script": "ダイビングで遺跡を見学できるほか、船底がガラス張りになった船から海底を眺めることもできる。船内ではダイバーが撮影した映像をリアルタイムで流す仕組みも紹介されている。海に潜らなくても、都市の一部をのぞくことができるのだ。",
@@ -1593,7 +1602,7 @@
       "narration": true,
       "subtitles": true,
       "script": "\n\n理由の一つは、水中の視界の悪さだった。ナイル川上流から流れ込む土砂によって海水は濁り、汚染も深刻だった。潮流は変わりやすく、海が荒れることもあり、潜水調査は容易ではなかった。",
-      "material_type": "映像素材",
+      "material_type": "写真",
       "mode": "収集",
       "preferred_source": "海底遺跡・潜水調査・船上からの観察を捉えた権利確認済み映像。音声は使用しない",
       "image_description": "「理由の一つは、水中の視界の悪さだった」を視覚化。アレクサンドリア海底遺跡に関係する実物の遺跡・遺物・地形を主役にした単一画面。1920×1080・16:9、字幕用の下部130pxに重要被写体を置かない。分割・コラージュ・インセット・文字焼き込みは禁止。",
@@ -1609,9 +1618,12 @@
       "licensing_gate": "Public Domain / CC0 / 再利用許諾が明記されたCC BY等のみ。CC BY-SA・NC・ND・All rights reserved・可否不明は不可",
       "image_count": 1,
       "image_layout": "single_full_bleed",
-      "motion": null,
+      "motion": "pan_left",
       "motion_parameters": {
-        "video": "S0xx.mp4。ミュート再生、motionなし。尺に合わせトリミングまたはループ"
+        "scale": 1.2,
+        "travel": "edge_to_edge",
+        "travel_fraction": 0.1667,
+        "interpolation": "continuous_per_frame"
       },
       "estimated_duration_seconds": null,
       "tts_script": "\n\n理由の一つは、水中の視界の悪さだった。ナイル川上流から流れ込む土砂によって海水は濁り、汚染も深刻だった。潮流は変わりやすく、海が荒れることもあり、潜水調査は容易ではなかった。",
@@ -3209,7 +3221,7 @@
       "narration": true,
       "subtitles": true,
       "script": "\n\nライオンシティは、現在ダイビングの対象にもなっている。観光客が湖底に潜り、かつての街並みを目にすることができる。水の中に残された建築物は、歴史的な資料であると同時に、都市を沈めた決定の痕跡でもある。",
-      "material_type": "映像素材",
+      "material_type": "写真",
       "mode": "収集",
       "preferred_source": "海底遺跡・潜水調査・船上からの観察を捉えた権利確認済み映像。音声は使用しない",
       "image_description": "「ライオンシティは、現在ダイビングの対象にもなっている」を視覚化。中国・千島湖の獅子城に関係する実物の遺跡・遺物・地形を主役にした単一画面。1920×1080・16:9、字幕用の下部130pxに重要被写体を置かない。分割・コラージュ・インセット・文字焼き込みは禁止。",
@@ -3225,9 +3237,11 @@
       "licensing_gate": "Public Domain / CC0 / 再利用許諾が明記されたCC BY等のみ。CC BY-SA・NC・ND・All rights reserved・可否不明は不可",
       "image_count": 1,
       "image_layout": "single_full_bleed",
-      "motion": null,
+      "motion": "zoom_in",
       "motion_parameters": {
-        "video": "S0xx.mp4。ミュート再生、motionなし。尺に合わせトリミングまたはループ"
+        "scale_start": 1,
+        "scale_end": 1.2,
+        "interpolation": "continuous_per_frame"
       },
       "estimated_duration_seconds": null,
       "tts_script": "\n\nライオンシティは、現在ダイビングの対象にもなっている。観光客が湖底に潜り、かつての街並みを目にすることができる。水の中に残された建築物は、歴史的な資料であると同時に、都市を沈めた決定の痕跡でもある。",
@@ -4151,6 +4165,27 @@
       "chapter6": 12,
       "chapter7": 14,
       "epilogue": 10
-    }
+    },
+    "motion_triple_repeat_count": 0,
+    "motion_counts": {
+      "zoom_in": 28,
+      "pan_right": 18,
+      "zoom_out": 24,
+      "pan_left": 17,
+      "pan_up": 9,
+      "pan_down": 8,
+      "static": 5
+    },
+    "byte_identical_script_concatenation": true,
+    "narration_script_chars": 9753,
+    "source_narration_chars": 9583,
+    "asset_file_expectation": "S001.jpg-S109.jpg; all still images; no MP4 assets",
+    "static_video_substitutions": [
+      "S018",
+      "S026",
+      "S028",
+      "S035",
+      "S083"
+    ]
   }
 }
