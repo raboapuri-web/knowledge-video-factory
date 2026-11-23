@@ -1,8 +1,8 @@
-name: V160 Ancient Giants - production 48k PCM and final AAC
+name: V160 Sunken Cities - production 48k PCM and final AAC
 
 on:
   push:
-    branches: [v160-sunken-cities-board-20261121]
+    branches: [v160-sunken-cities-board-20261123]
     paths:
       - '.github/workflows/v160-sunken-cities.yml'
       - 'shared/v160/scripts/**'
@@ -29,7 +29,7 @@ jobs:
         run: bash shared/v160/scripts/install_media_tools.sh
       - name: Install Python dependencies
         run: python -m pip install --no-input --timeout 30 --retries 2 requests Pillow
-      - name: Validate V160 board, 102 assets, and credits
+      - name: Validate V160 board, 109 still-image assets, and credits
         run: python shared/v160/scripts/render_v160.py --validate
 
   chapter:
@@ -40,7 +40,7 @@ jobs:
       fail-fast: false
       max-parallel: 4
       matrix:
-        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, epilogue]
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, chapter7, epilogue]
     env:
       VOICEVOX_URL: http://127.0.0.1:50021
       VOICEVOX_SPEAKER_ID: '13'
@@ -104,10 +104,10 @@ jobs:
         with:
           pattern: v160-chapter-*
           path: /tmp/v160-chapter-artifacts
-      - name: Assemble seven chapters and preserve PCM
+      - name: Assemble nine chapters and preserve PCM
         run: |
           set -euo pipefail
-          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 epilogue; do
+          for c in prologue chapter1 chapter2 chapter3 chapter4 chapter5 chapter6 chapter7 epilogue; do
             src="/tmp/v160-chapter-artifacts/v160-chapter-$c"
             dst="shared/v160/output/$c"
             test -s "$src/v160-$c.mp4"
@@ -149,5 +149,5 @@ jobs:
           set -euo pipefail
           cd shared/v160/output
           TAG="v160-sunken-cities-${{ github.run_id }}"
-          gh release create "$TAG" v160-sunken-cities-final.mp4 finalize.json SHA256SUMS.txt CREDITS.txt --repo "${{ github.repository }}" --target "${{ github.sha }}" --title "考える夜 V160｜実在した古代の巨大生物ランキングTOP5" --notes "Master rendered at 1920x1080 30fps, VOICEVOX:青山龍星 (speaker 13, speed 1.10), 102 scenes, 7 silent-narration typed chapter cards, 48kHz PCM join with one final AAC encode, 20-second silent end screen. No licensed BGM is embedded; per project spec, Muse must separately apply licensed chapter BGM locally and verify the final mix."
+          gh release create "$TAG" v160-sunken-cities-final.mp4 finalize.json SHA256SUMS.txt CREDITS.txt --repo "${{ github.repository }}" --target "${{ github.sha }}" --title "考える夜 V160｜人類未解明の謎...海の底で発見された「ありえない」古代都市7選" --notes "Master rendered at 1920x1080 30fps, VOICEVOX:青山龍星 (speaker 13, speed 1.10), 109 still-image scenes, 9 silent-narration typed chapter cards, 48kHz PCM join with one final AAC encode, 20-second silent end screen. No licensed BGM is embedded; per project spec, Muse must separately apply licensed chapter BGM locally and verify the final mix."
           echo "RELEASE_URL=https://github.com/${{ github.repository }}/releases/tag/$TAG" >> "$GITHUB_STEP_SUMMARY"
