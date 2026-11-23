@@ -155,7 +155,6 @@ def main():
       ('EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,91)]','EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,71)]'),
       ('v154-{chapter}.mp4','v156-{chapter}.mp4'),
       ('{"S018","S028","S032","S057"}','set()'),
-      ('S090','S070'),
       ('v154-pond-recovery-final.mp4','v156-oniyanma-final.mp4'),
       ('v154-contact-sheet.jpg','v156-contact-sheet.jpg'),
       ('v154-chapter-cards-contact-sheet.jpg','v156-chapter-cards-contact-sheet.jpg'),
@@ -177,6 +176,7 @@ def main():
     for old,new in replacements:
         if old not in src: raise RuntimeError(f"finalizer source fragment missing: {old}")
         src=src.replace(old,new)
+    src=src.replace("S090","S070")
     src=src.replace('final=out/"v156-oniyanma-final.mp4"',
                     'main=out/"v156-main.mp4"'+chr(10)+'    final=out/"v156-oniyanma-final.mp4"')
     marker='    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(final)])'
