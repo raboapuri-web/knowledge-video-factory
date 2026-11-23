@@ -39,7 +39,7 @@ def main():
  (RUNTIME/"format_v2/config/chapter_card_spec.json").write_text(json.dumps(spec,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
  for name in ["synth.py","validate_chapter_narration.py","render_chapter.py","install_media_tools.sh"]: shutil.copy2(V154/"scripts"/name,RUNTIME/"scripts"/name)
  shutil.copy2(V154/"format_v2/scripts/render_chapter_card.py",RUNTIME/"format_v2/scripts/render_chapter_card.py")
- # V155's approved S001 text does not contain the V153-specific "少し" reading exception.
+ # V156's approved S001 text does not contain the V153-specific "少し" reading exception.
  validator=RUNTIME/"scripts/validate_chapter_narration.py"
  vt=validator.read_text(encoding="utf-8")
  start=vt.index('        if s["id"]=="S001":')
@@ -50,7 +50,7 @@ def main():
  motion_src=BASE.parent/"motion"; motion_dst=BASE/"motion"
  if motion_dst.exists(): shutil.rmtree(motion_dst)
  shutil.copytree(motion_src,motion_dst)
- # V155 has two short moving scenes; audit them with one duration-scaled window instead of rejecting them.
+ # V156 has two short moving scenes; audit them with one duration-scaled window instead of rejecting them.
  qa=motion_dst/"continuous_motion_qa.py"; qt=qa.read_text(encoding="utf-8")
  qstart=qt.index("            if duration < 2.0:")
  qend=qt.index("            passed = bool",qstart)
@@ -126,5 +126,5 @@ def main():
  src=src.replace(marker,add)
  src=src.replace('"scene_count":len(all_scenes),"chapter_card_count":len(card_thumbs),','"scene_count":len(all_scenes),"chapter_card_count":len(card_thumbs),"end_card_duration_seconds":20,')
  (RUNTIME/"scripts/finalize.py").write_text(src,encoding="utf-8")
- print(json.dumps({"runtime":"shared/v155/runtime","scenes":84,"chapters":8}))
+ print(json.dumps({"runtime":"shared/v156/runtime","scenes":70,"chapters":8}))
 if __name__=="__main__": main()
