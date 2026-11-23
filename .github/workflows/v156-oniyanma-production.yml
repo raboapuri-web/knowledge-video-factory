@@ -2,6 +2,8 @@ name: V156 Oniyanma — format v2 production
 
 on:
   workflow_dispatch:
+  push:
+    branches: [v156-oniyanma-production-20261123]
 
 permissions:
   contents: write
