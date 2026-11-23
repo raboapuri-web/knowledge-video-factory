@@ -94,8 +94,8 @@ def main():
  src=(V154/"scripts/finalize.py").read_text(encoding="utf-8")
  reps=[
   ('EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,91)]','EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,71)]'),
-  ('v154-{chapter}.mp4','v155-{chapter}.mp4'),
-  ('{"S018","S028","S032","S057"}','{""}'),
+  ('v154-{chapter}.mp4','v156-{chapter}.mp4'),
+  ('{"S018","S028","S032","S057"}','set()'),
   ('S090','S070'),
   ('v154-pond-recovery-final.mp4','v156-oniyanma-final.mp4'),
   ('v154-contact-sheet.jpg','v156-contact-sheet.jpg'),
@@ -104,14 +104,14 @@ def main():
   ('scene_contact_sheet_90_frames','scene_contact_sheet_70_frames'),
   ('"video_id":"v154","title":"池の水をぜんぶ抜いた。その後、池はどうなったのか？"','"video_id":"v156","title":"オニヤンマはなぜ最強なのか"'),
   ('"image_source":"assets/final/S001.jpg-S090.jpg only"','"image_source":"assets/final/S001.jpg-S070.jpg only"'),
-  ('"special_blur_background_scenes":["S018","S028","S032","S057"]','"special_blur_background_scenes":["S041","S071","S080"]'),
-  ('"scene_count_90":len(all_scenes)==90','"scene_count_70":len(all_scenes)==84'),
+  ('"special_blur_background_scenes":["S018","S028","S032","S057"]','"special_blur_background_scenes":[]'),
+  ('"scene_count_90":len(all_scenes)==90','"scene_count_70":len(all_scenes)==70'),
   ('"blur_layout_targets_exactly_four"','"blur_layout_targets_none"'),
   ('expected=elapsed','expected=elapsed+20.0')
  ]
  for a,z in reps:
   src=src.replace(a,z)
- src=src.replace('final=out/"v155-sea-mysteries-final.mp4"','main=out/"v155-main.mp4"'+chr(10)+'    final=out/"v155-sea-mysteries-final.mp4"')
+ src=src.replace('final=out/"v156-oniyanma-final.mp4"','main=out/"v156-main.mp4"'+chr(10)+'    final=out/"v156-oniyanma-final.mp4"')
  marker='    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(final)])'
  add="\n".join([
   '    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(main)])',
