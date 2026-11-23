@@ -173,7 +173,6 @@ def main():
       ('Expected S001-S090 exactly once','Expected S001-S070 exactly once'),
       ('S090 must use single_image_full_frame','S070 must use single_image_full_frame'),
       ('S090 final narration/caption completion check failed','S070 final narration/caption completion check failed'),
-      ('S090 final narration/caption completion check failed','S070 final narration/caption completion check failed'),
     ]
     for old,new in replacements:
         if old not in src: raise RuntimeError(f"finalizer source fragment missing: {old}")
