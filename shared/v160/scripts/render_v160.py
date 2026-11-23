@@ -399,10 +399,10 @@ def finalize():
     endcard=draw_end_card()
     endvideo=OUTPUT/"end_screen.mp4"
     render_video(endcard,endvideo,20*FPS,None,motion="static")
-    videos=[OUTPUT/ch["id"]/("v159-"+ch["id"]+".mp4") for ch in BOARD["chapters"]]+[endvideo]
-    combined=OUTPUT/"v159-video-only.mp4"
+    videos=[OUTPUT/ch["id"]/("v160-"+ch["id"]+".mp4") for ch in BOARD["chapters"]]+[endvideo]
+    combined=OUTPUT/"v160-video-only.mp4"
     concat_video(videos,combined)
-    final=OUTPUT/"v159-ancient-giants-final.mp4"
+    final=OUTPUT/"v160-sunken-cities-final.mp4"
     execute(["ffmpeg","-y","-hide_banner","-loglevel","error","-i",combined,"-i",wav,
              "-map","0:v:0","-map","1:a:0","-c:v","copy","-c:a","aac","-b:a","192k","-ar","48000","-ac","1",
              "-movflags","+faststart",final])
@@ -413,12 +413,12 @@ def finalize():
     with wave.open(str(wav),"rb") as s:
         master_samples=s.getnframes()
     checks={
-     "all_scenes_102":sum(x["scene_count"] for x in chapter_reports)==109,
-     "all_102_scene_assets_present":len({x["asset"] for y in chapter_reports for x in y["segments"] if x["type"]=="scene"})==109,
-     "all_cards_7":len(chapter_reports)==9 and all(x["segments"][0]["type"]=="card" and x["segments"][0]["narration"] is False for x in chapter_reports),
+     "all_scenes_109":sum(x["scene_count"] for x in chapter_reports)==109,
+     "all_109_scene_assets_present":len({x["asset"] for y in chapter_reports for x in y["segments"] if x["type"]=="scene"})==109,
+     "all_cards_9":len(chapter_reports)==9 and all(x["segments"][0]["type"]=="card" and x["segments"][0]["narration"] is False for x in chapter_reports),
      "headings_exact":all(x["segments"][0]["title"]==ch["title"] for x,ch in zip(chapter_reports,BOARD["chapters"])),
      "reading_override_exact_3":sum(x["occurrences"] for s in BOARD["scenes"] for x in s.get("reading_overrides",[]))==3,
-     "video_assets_muted_without_motion":all(x["muted_video_source"] and x["motion_applied"]=="none (video playback)" for y in chapter_reports for x in y["segments"] if x["type"]=="scene" and x["muted_video_source"]),
+     "all_assets_are_static_jpg":all(x["asset"].endswith(".jpg") and not x["muted_video_source"] for y in chapter_reports for x in y["segments"] if x["type"]=="scene"),
      "motion_no_three_consecutive":all(not (BOARD["scenes"][i]["motion"]==BOARD["scenes"][i-1]["motion"]==BOARD["scenes"][i-2]["motion"]) for i in range(2,len(BOARD["scenes"]))),
      "motion_every_frame_formula":True,
      "one_source_visual_per_scene":all(s["image_count"]==1 for s in BOARD["scenes"]),
@@ -450,15 +450,15 @@ def finalize():
             "file_size_bytes":final.stat().st_size,"sha256":sha.hexdigest(),
             "audio_policy":"All scenes + chapter typing SFX concatenate as 48kHz mono PCM s16; final AAC encode once",
             "bgm_status":"not mixed; Muse performs licensed BGM mix separately",
-            "full_transcription_status":"not run; requires Muse listening/transcription of S100 final sentence",
-            "asset_credit_note":"Per-scene credits and licenses are read from shared/v159/assets/photo_credits.json; verified for all 102 scene IDs."}
+            "full_transcription_status":"not run; requires Muse listening/transcription of S109 final sentence",
+            "asset_credit_note":"Per-scene credits and licenses are read from shared/v160/assets/photo_credits.json; verified for all 109 scene IDs."}
     (OUTPUT/"finalize.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     credits=json.loads((BASE/"assets"/"photo_credits.json").read_text(encoding="utf-8"))
     credit_lines=["V160 素材クレジット",""]
     for scene in BOARD["scenes"]:
         c=credits[scene["id"]]
         credit_lines.append(f'{scene["id"]} | {c.get("title","")} | {c.get("artist","")} | {c.get("license","")} | {c.get("page","")}')
-    (OUTPUT/"CREDITS.txt").write_text("\\n".join(credit_lines)+"\\n",encoding="utf-8")
+    (OUTPUT/"CREDITS.txt").write_text("\n".join(credit_lines)+"\n",encoding="utf-8")
     if not all(checks.values()):raise RuntimeError("V160 finalize checks failed: "+json.dumps(checks,ensure_ascii=False))
     print(json.dumps(report,ensure_ascii=False),flush=True)
 
