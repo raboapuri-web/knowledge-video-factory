@@ -103,6 +103,7 @@ jobs:
           retention-days: 14
           compression-level: 0
 
+  # V161 recovery: reuse the ten original chapter artifacts; only finalization reruns.
   finalize:
     needs: [preflight, chapter]
     if: ${{ always() && needs.preflight.result == 'success' && (needs.chapter.result == 'success' || (needs.chapter.result == 'skipped' && contains(github.event.head_commit.message, '[finalize-v161]'))) }}
