@@ -69,7 +69,7 @@ def main():
     card_spec["project"]="V162 趣味が楽しめないのは「老化」じゃない『趣味のリハビリ術』4選"
     card_spec["typing"]["sfx_file"]="../../../v153/format_v2/audio/type_key.wav"
     card_spec["cards"]=[
-      {"chapter":cid,"label":("" if i in (0,9) else f"第{i}章"),
+      {"chapter":cid,"label":("" if i in (0,5) else f"第{i}章"),
        "title":title,"background_file":"../../assets/chapter_card_bg.png"}
       for i,(cid,title,_) in enumerate(CHAPTERS)
     ]
