@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from PIL import Image
 B=Path(__file__).resolve().parents[1]; b=json.loads((B/"board.json").read_text(encoding="utf-8")); s=b["scenes"]
-assert [x["scene_id"] for x in s]==[f"S{i:03d}" for i in range(1,143)]
+assert [x["scene_id"] for x in s]==[f"S{i:03d}" for i in range(1,150)]
 assert all(x.get("motion") in {"zoom_in","zoom_out","pan_right","pan_left","pan_up","pan_down","static"} for x in s)
 assert all(x.get("image_count")==1 for x in s)
 assert not any(s[i]["motion"]==s[i-1]["motion"]==s[i-2]["motion"] for i in range(2,len(s)))
