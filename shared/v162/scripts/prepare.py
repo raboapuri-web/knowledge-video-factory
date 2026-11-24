@@ -53,7 +53,7 @@ def main():
       "scenes":[{"id":s["id"],"script":s["narration"],"motion":s["motion"],"image_count":1,"tts_reading_watch":True} for s in scenes],
       "chapters":[{"id":cid,"title":title,"start":start,"end":end,"scene_count":end-start+1}
                   for (cid,title,_),(cid2,start,end) in zip(CHAPTERS,ranges)],
-      "chapter_cards":[{"id":f"T{i+1:03d}","chapter":ranges[i][0],"title":CHAPTERS[i][1]} for i in range(10)]
+      "chapter_cards":[{"id":f"T{i+1:03d}","chapter":ranges[i][0],"title":CHAPTERS[i][1]} for i in range(6)]
     }
     (RUNTIME/"content/board.json").write_text(json.dumps(compat,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
@@ -166,7 +166,7 @@ def main():
       ('EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,91)]','EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,143)]'),
       ('v154-{chapter}.mp4','v162-{chapter}.mp4'),
       ('{"S018","S028","S032","S057"}','set()'),
-      ('v154-pond-recovery-final.mp4','v162-oohariari-final.mp4'),
+      ('v154-pond-recovery-final.mp4','v162-shumi-rehab-final.mp4'),
       ('v154-contact-sheet.jpg','v162-contact-sheet.jpg'),
       ('v154-chapter-cards-contact-sheet.jpg','v162-chapter-cards-contact-sheet.jpg'),
       ('len(thumbs)==90','len(thumbs)==149'),
@@ -201,9 +201,9 @@ def main():
         '    if not last_scene_complete: raise RuntimeError(f"S149 completion check failed: scene={last_voice.get(\'scene\')}, text_match={last_voice.get(\'narration_text\')==expected_s149}, caption_match={re.sub(chr(92)+\'s+\',\'\',caption_text)==re.sub(chr(92)+\'s+\',\'\',expected_s149)}, caption_end={last_caption_end}, audio_duration={last_audio_duration}")')
 
     src=src.replace('CHAPTERS=["prologue","chapter1","chapter2","chapter3","chapter4","chapter5","chapter6","epilogue"]','CHAPTERS='+repr([x[0] for x in CHAPTERS]))
-    src=src.replace("chapter_card_count_8","chapter_card_count_6").replace("chapter_card_contact_sheet_8_frames","chapter_card_contact_sheet_6_frames").replace('if x["kind"]=="chapter_card")==8','if x["kind"]=="chapter_card")==10').replace("len(card_thumbs)==8","len(card_thumbs)==6").replace("9*132","9*132").replace("2*298","2*298").replace("chr(83)+chr(48)+chr(57)+chr(48)",repr("S149"))
-    src=src.replace('final=out/"v162-oohariari-final.mp4"',
-                    'main=out/"v162-main.mp4"'+chr(10)+'    final=out/"v162-oohariari-final.mp4"')
+    src=src.replace("chapter_card_count_8","chapter_card_count_6").replace("chapter_card_contact_sheet_8_frames","chapter_card_contact_sheet_6_frames").replace('if x["kind"]=="chapter_card")==8','if x["kind"]=="chapter_card")==6').replace("len(card_thumbs)==8","len(card_thumbs)==6").replace("9*132","9*132").replace("2*298","2*298").replace("chr(83)+chr(48)+chr(57)+chr(48)",repr("S149"))
+    src=src.replace('final=out/"v162-shumi-rehab-final.mp4"',
+                    'main=out/"v162-main.mp4"'+chr(10)+'    final=out/"v162-shumi-rehab-final.mp4"')
     marker='    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(final)])'
     if marker not in src: raise RuntimeError("finalizer concat marker not found")
     add="\n".join([
