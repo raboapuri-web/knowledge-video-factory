@@ -28,6 +28,7 @@ jobs:
       - run: python shared/v161/scripts/prepare.py
 
   chapter:
+    if: ${{ !contains(github.event.head_commit.message, '[finalize-v161]') }}
     needs: preflight
     runs-on: ubuntu-24.04
     timeout-minutes: 180
@@ -104,7 +105,7 @@ jobs:
 
   finalize:
     needs: [preflight, chapter]
-    if: ${{ needs.preflight.result == 'success' && needs.chapter.result == 'success' }}
+    if: ${{ always() && needs.preflight.result == 'success' && (needs.chapter.result == 'success' || (needs.chapter.result == 'skipped' && contains(github.event.head_commit.message, '[finalize-v161]'))) }}
     runs-on: ubuntu-24.04
     timeout-minutes: 75
     env:
@@ -135,7 +136,16 @@ jobs:
           "$BIN_DIR/ffmpeg" -version | head -n 1
           "$BIN_DIR/ffprobe" -version | head -n 1
       - uses: actions/download-artifact@v4
+        if: ${{ !contains(github.event.head_commit.message, '[finalize-v161]') }}
         with:
+          pattern: v161-segment-*
+          path: shared/v161/runtime/segments
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        if: ${{ contains(github.event.head_commit.message, '[finalize-v161]') }}
+        with:
+          github-token: ${{ github.token }}
+          run-id: 45349898674
           pattern: v161-segment-*
           path: shared/v161/runtime/segments
           merge-multiple: true
