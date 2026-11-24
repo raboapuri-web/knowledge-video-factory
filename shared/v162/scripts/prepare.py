@@ -43,7 +43,7 @@ def main():
             raise SystemExit(f"{cid}: chapter scenes must be non-empty and contiguous")
         ranges.append((cid,min(nums),max(nums)))
     covered=[n for _,start,end in ranges for n in range(start,end+1)]
-    if covered != list(range(1,143)):
+    if covered != list(range(1,150)):
         raise SystemExit("chapter mapping must cover S001-S149 in chapter order")
 
     for d in ["content","assets","format_v2/config","format_v2/scripts","scripts","media","output","segments"]:
