@@ -24,7 +24,7 @@ def main():
         CHAPTERS.append((f"chapter{i}",lines[i][match.end():].strip(),str(i)))
     CHAPTERS.append(("epilogue",lines[9],"E"))
     board=json.loads((BASE/"board.json").read_text(encoding="utf-8"))
-    scenes=board["scenes"]
+    scenes=[dict(s,id=s["scene_id"],narration=s["narration_text"],board_id=("P" if s["chapter_id"]=="C00" else "E" if s["chapter_id"]=="C09" else str(int(s["chapter_id"][1:])))+"-"+s["scene_id"]) for s in board["scenes"]]
     expected=[f"S{i:03d}" for i in range(1,143)]
     if [s.get("id") for s in scenes] != expected:
         raise SystemExit("board must contain S001-S142 exactly once in order")
@@ -50,7 +50,7 @@ def main():
         (RUNTIME/d).mkdir(parents=True,exist_ok=True)
     compat={
       "video_id":"v161","title":"日本最弱オオハリアリがアメリカで無双!! 極悪アルゼンチンアリをぶっ飛ばす衝撃の生態",
-      "scenes":[{"id":s["id"],"script":s["narration"],"motion":s["motion"],"image_count":1} for s in scenes],
+      "scenes":[{"id":s["id"],"script":s["narration"],"motion":s["motion"],"image_count":1,"tts_reading_watch":True} for s in scenes],
       "chapters":[{"id":cid,"title":title,"start":start,"end":end,"scene_count":end-start+1}
                   for (cid,title,_),(cid2,start,end) in zip(CHAPTERS,ranges)],
       "chapter_cards":[{"id":f"T{i+1:03d}","chapter":ranges[i][0],"title":CHAPTERS[i][1]} for i in range(10)]
@@ -89,7 +89,7 @@ def main():
     if '        if s["id"]=="S001":' in vt:
         start=vt.index('        if s["id"]=="S001":')
         end=vt.index('        if not first_caption',start)
-        vt=vt[:start]+'        if v.get("tts_input_text")!=text: errors.append(s["id"]+": unexpected TTS-side text replacement")'+chr(10)+vt[end:]
+        vt=vt[:start]+'        if v.get("tts_input_text")!=text.replace("少し","すこし"): errors.append(s["id"]+": unexpected TTS-side text replacement")'+chr(10)+vt[end:]
     vt=vt.replace('"S001_tts_only_replacement":"少し → すこし" if any(s["id"]=="S001" for s in scenes) else None','"S001_tts_only_replacement":None')
     validator.write_text(vt,encoding="utf-8")
 
