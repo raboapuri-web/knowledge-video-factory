@@ -182,6 +182,18 @@ def main():
         if old not in src: raise RuntimeError(f"finalizer source fragment missing: {old}")
         src=src.replace(old,new)
     src=src.replace("S090","S142").replace("expected_s090","expected_s142")
+
+    # Use precisely the same normalization as the synthesis and chapter QA.
+    src=src.replace("import argparse, json, os, subprocess","import argparse, json, os, subprocess, re")
+    src=src.replace('    expected_s142=next(x["script"] for x in board["scenes"] if x["id"]=="S142")',
+        '    raw_s142=next(x["script"] for x in board["scenes"] if x["id"]=="S142")'+chr(10)+
+        '    heading=re.compile(r"^\\s*##\\s*(?:プロローグ|第[0-9０-９]+章|エピローグ)(?:\\s*[｜|：:]\\s*|\\s+).+$")'+chr(10)+
+        '    expected_s142=re.sub(r"(?m)^##\\s*","",chr(10).join(line for line in raw_s142.splitlines() if not heading.match(line))).replace("**","").strip()')
+    src=src.replace('    if not last_scene_complete: raise RuntimeError("S142 final narration/caption completion check failed")',
+        '    caption_text="".join(c["text"] for c in last_voice.get("captions",[]))'+chr(10)+
+        '    last_scene_complete=last_scene_complete and re.sub(r"\\s+","",caption_text)==re.sub(r"\\s+","",expected_s142)'+chr(10)+
+        '    if not last_scene_complete: raise RuntimeError(f"S142 completion check failed: scene={last_voice.get(\'scene\')}, text_match={last_voice.get(\'narration_text\')==expected_s142}, caption_match={re.sub(chr(92)+\'s+\',\'\',caption_text)==re.sub(chr(92)+\'s+\',\'\',expected_s142)}, caption_end={last_caption_end}, audio_duration={last_audio_duration}")')
+
     src=src.replace('CHAPTERS=["prologue","chapter1","chapter2","chapter3","chapter4","chapter5","chapter6","epilogue"]','CHAPTERS='+repr([x[0] for x in CHAPTERS]))
     src=src.replace("chapter_card_count_8","chapter_card_count_10").replace("chapter_card_contact_sheet_8_frames","chapter_card_contact_sheet_10_frames").replace('if x["kind"]=="chapter_card")==8','if x["kind"]=="chapter_card")==10').replace("len(card_thumbs)==8","len(card_thumbs)==10").replace("9*132","15*132").replace("2*298","3*298").replace("chr(83)+chr(48)+chr(57)+chr(48)",repr("S142"))
     src=src.replace('final=out/"v161-oohariari-final.mp4"',
