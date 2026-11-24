@@ -2,6 +2,9 @@ name: V161 Oohariari — format v2 production
 
 on:
   workflow_dispatch:
+  push:
+    branches: [v161-oohariari-production-20261124]
+    paths: ['.github/workflows/v161-oohariari-production.yml']
 
 permissions:
   contents: write
@@ -12,7 +15,7 @@ concurrency:
 
 jobs:
   preflight:
-    if: ${{ github.ref == 'refs/heads/v161-oohariari-production-20261124' }}
+    if: ${{ github.ref == 'refs/heads/v161-oohariari-production-20261124' && (github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[render-v161]')) }}
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
