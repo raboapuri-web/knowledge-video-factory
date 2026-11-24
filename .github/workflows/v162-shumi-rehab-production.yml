@@ -109,7 +109,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 75
     env:
-      RELEASE_TAG: v162-oohariari-${{ github.run_id }}
+      RELEASE_TAG: v162-shumi-rehab-${{ github.run_id }}
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
@@ -145,7 +145,7 @@ jobs:
         run: |
           set -euo pipefail
           gh release create "$RELEASE_TAG" \
-            shared/v162/runtime/output/v162-oohariari-final.mp4 \
+            shared/v162/runtime/output/v162-shumi-rehab-final.mp4 \
             shared/v162/runtime/output/v162-contact-sheet.jpg \
             shared/v162/runtime/output/v162-chapter-cards-contact-sheet.jpg \
             shared/v162/runtime/output/production_report.json \
@@ -158,9 +158,9 @@ jobs:
             --latest
       - uses: actions/upload-artifact@v4
         with:
-          name: v162-oohariari-master
+          name: v162-shumi-rehab-master
           path: |
-            shared/v162/runtime/output/v162-oohariari-final.mp4
+            shared/v162/runtime/output/v162-shumi-rehab-final.mp4
             shared/v162/runtime/output/v162-contact-sheet.jpg
             shared/v162/runtime/output/v162-chapter-cards-contact-sheet.jpg
             shared/v162/runtime/output/production_report.json
