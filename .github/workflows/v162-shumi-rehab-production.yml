@@ -169,3 +169,5 @@ jobs:
             shared/v162/runtime/output/CREDITS.txt
           retention-days: 30
           compression-level: 0
+
+# V162 launch trigger: preflight first, then render only when preflight succeeds.
