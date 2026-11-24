@@ -25,7 +25,7 @@ def main():
     CHAPTERS.append(("epilogue",lines[5],"E"))
     board=json.loads((BASE/"board.json").read_text(encoding="utf-8"))
     scenes=[dict(s,id=s["scene_id"],narration=s["narration_text"],board_id=("P" if s["chapter_id"]=="C00" else "E" if s["chapter_id"]=="C05" else str(int(s["chapter_id"][1:])))+"-"+s["scene_id"]) for s in board["scenes"]]
-    expected=[f"S{i:03d}" for i in range(1,143)]
+    expected=[f"S{i:03d}" for i in range(1,150)]
     if [s.get("id") for s in scenes] != expected:
         raise SystemExit("board must contain S001-S149 exactly once in order")
     chapter_by_prefix={prefix:(cid,title) for cid,title,prefix in CHAPTERS}
@@ -163,7 +163,7 @@ def main():
 
     src=(V154/"scripts/finalize.py").read_text(encoding="utf-8")
     replacements=[
-      ('EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,91)]','EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,143)]'),
+      ('EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,91)]','EXPECTED_SCENES=[f"S{i:03d}" for i in range(1,150)]'),
       ('v154-{chapter}.mp4','v162-{chapter}.mp4'),
       ('{"S018","S028","S032","S057"}','set()'),
       ('v154-pond-recovery-final.mp4','v162-shumi-rehab-final.mp4'),
