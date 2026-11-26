@@ -201,7 +201,7 @@ def main():
         '    if not last_scene_complete: raise RuntimeError(f"S165 completion check failed: scene={last_voice.get(\'scene\')}, text_match={last_voice.get(\'narration_text\')==expected_s165}, caption_match={re.sub(chr(92)+\'s+\',\'\',caption_text)==re.sub(chr(92)+\'s+\',\'\',expected_s165)}, caption_end={last_caption_end}, audio_duration={last_audio_duration}")')
 
     src=src.replace('CHAPTERS=["prologue","chapter1","chapter2","chapter3","chapter4","chapter5","chapter6","epilogue"]','CHAPTERS='+repr([x[0] for x in CHAPTERS]))
-    src=src.replace("chapter_card_count_8","chapter_card_count_12").replace("chapter_card_contact_sheet_8_frames","chapter_card_contact_sheet_12_frames").replace('if x["kind"]=="chapter_card")==8','if x["kind"]=="chapter_card")==12').replace("len(card_thumbs)==8","len(card_thumbs)==6").replace("9*132","9*132").replace("2*298","4*298").replace("chr(83)+chr(48)+chr(57)+chr(48)",repr("S165"))
+    src=src.replace("chapter_card_count_8","chapter_card_count_12").replace("chapter_card_contact_sheet_8_frames","chapter_card_contact_sheet_12_frames").replace('if x["kind"]=="chapter_card")==8','if x["kind"]=="chapter_card")==12').replace("len(card_thumbs)==8","len(card_thumbs)==12").replace("9*132","17*132").replace("2*298","3*298").replace("chr(83)+chr(48)+chr(57)+chr(48)",repr("S165"))
     src=src.replace('final=out/"v164-suruga-deepsea-final.mp4"',
                     'main=out/"v164-main.mp4"'+chr(10)+'    final=out/"v164-suruga-deepsea-final.mp4"')
     marker='    run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(concat),"-c","copy","-movflags","+faststart",str(final)])'
