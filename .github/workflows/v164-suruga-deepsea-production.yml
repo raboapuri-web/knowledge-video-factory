@@ -2,6 +2,9 @@ name: V164 Kyosei Kakusei — format v2 production
 
 on:
   workflow_dispatch:
+  push:
+    branches: [v164-suruga-deepsea-production-20261126]
+    paths: ['.github/workflows/v164-suruga-deepsea-production.yml']
 
 permissions:
   contents: write
