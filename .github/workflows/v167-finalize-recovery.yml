@@ -1,0 +1,82 @@
+name: V167 finalize-only recovery
+on:
+  workflow_dispatch:
+  push:
+    branches: [v167-evolution-mysteries-production-20261127]
+    paths: ['.github/workflows/v167-finalize-recovery.yml']
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: v167-evolution-mysteries-production-v1
+  cancel-in-progress: false
+jobs:
+  finalize:
+    if: ${{ github.ref == 'refs/heads/v167-evolution-mysteries-production-20261127' && (github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[recover-v167]')) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    env:
+      RELEASE_TAG: v167-evolution-mysteries-46011617136
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install --no-input Pillow opencv-python-headless
+      - run: python shared/v167/scripts/prepare.py
+      - name: Install static FFmpeg for final assembly
+        run: |
+          set -euo pipefail
+          TMP="$RUNNER_TEMP/v167-final-media-tools"
+          BIN_DIR="$HOME/.local/bin"
+          mkdir -p "$TMP/extract" "$BIN_DIR"
+          curl --fail --location --silent --show-error --retry 5 --retry-all-errors --retry-delay 3 --connect-timeout 30 --max-time 900 \
+            "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz" -o "$TMP/ffmpeg.tar.xz"
+          tar -xJf "$TMP/ffmpeg.tar.xz" -C "$TMP/extract"
+          FFMPEG="$(find "$TMP/extract" -type f -name ffmpeg -perm /111 -print -quit)"
+          FFPROBE="$(find "$TMP/extract" -type f -name ffprobe -perm /111 -print -quit)"
+          test -n "$FFMPEG" && test -n "$FFPROBE"
+          install -m 0755 "$FFMPEG" "$BIN_DIR/ffmpeg"
+          install -m 0755 "$FFPROBE" "$BIN_DIR/ffprobe"
+          echo "$BIN_DIR" >> "$GITHUB_PATH"
+          "$BIN_DIR/ffmpeg" -version | head -n 1
+          "$BIN_DIR/ffprobe" -version | head -n 1
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 46011617136
+          pattern: v167-segment-*
+          path: shared/v167/runtime/segments
+          merge-multiple: true
+      - run: python shared/v167/scripts/recover_finalize.py
+      - run: python shared/v167/runtime/scripts/finalize.py --segments-dir shared/v167/runtime/segments
+      - name: Publish MP4 and QA evidence
+        run: |
+          set -euo pipefail
+          gh release create "$RELEASE_TAG" \
+            shared/v167/runtime/output/v167-evolution-mysteries-final.mp4 \
+            shared/v167/runtime/output/v167-contact-sheet.jpg \
+            shared/v167/runtime/output/v167-chapter-cards-contact-sheet.jpg \
+            shared/v167/runtime/output/production_report.json \
+            shared/v167/runtime/output/final_qa.json \
+            shared/v167/runtime/output/motion_30fps_qa.json \
+            shared/v167/runtime/output/CREDITS.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --target b1f4128a987bcdc138da1ce3fc698b488dd33493 \
+            --title "考える夜｜ガチで眠れなくなる「生物進化」の謎６選" \
+            --notes "8 typed chapter cards, and a silent 20-second end card. 1920x1080, 30fps, H.264/AAC, VOICEVOX:青山龍星 (speaker_id 13, speed 1.10). Smooth full-frame motion interpolation. No blurred-background scenes. No BGM; mixed locally by Muse." \
+            --latest
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v167-evolution-mysteries-master
+          path: |
+            shared/v167/runtime/output/v167-evolution-mysteries-final.mp4
+            shared/v167/runtime/output/v167-contact-sheet.jpg
+            shared/v167/runtime/output/v167-chapter-cards-contact-sheet.jpg
+            shared/v167/runtime/output/production_report.json
+            shared/v167/runtime/output/final_qa.json
+            shared/v167/runtime/output/motion_30fps_qa.json
+            shared/v167/runtime/output/CREDITS.txt
+          retention-days: 30
+          compression-level: 0
