@@ -2021,7 +2021,7 @@
    "chapter": "エピローグ",
    "chapter_id": "C08",
    "narration_text": "今夜も、当たり前がひとつ減りました。",
-   "motion": "pan_left",
+   "motion": "zoom_in",
    "image_instruction": "Photorealistic single image, 16:9 widescreen, no text, no logo, no cartoon characters. Quiet night sky with crescent moon over a calm Japanese lake, final closing scene, serene dark blue tones, moon in upper-center, reflective water, peaceful epilogue ending.",
    "search_query": "",
    "estimated_duration_seconds": 3.62,
