@@ -172,4 +172,4 @@ jobs:
 
 # V165 launch trigger: preflight first, then render only when preflight succeeds.
 
-# Re-launch after S164 fix (2026-11-27): board.json pan_left -> zoom_in.
+# Re-launch 2 after last-scene regroup (2026-11-27).
