@@ -3,7 +3,7 @@ name: V166 Dangerous Planets — format v2 production
 on:
   workflow_dispatch:
   push:
-    branches: [v166-dangerous-planets-production-20261125]
+    branches: [v166-dangerous-planets-production-20261127]
     paths: ['.github/workflows/v166-dangerous-planets-production.yml']
 
 permissions:
@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   preflight:
-    if: ${{ github.ref == 'refs/heads/v166-dangerous-planets-production-20261125' && (github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[render-v166]')) }}
+    if: ${{ github.ref == 'refs/heads/v166-dangerous-planets-production-20261127' && (github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[render-v166]')) }}
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
