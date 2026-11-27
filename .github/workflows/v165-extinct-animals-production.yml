@@ -1,0 +1,173 @@
+name: V165 Extinct Animals — format v2 production
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [v165-extinct-animals-production-20261127]
+    paths: ['.github/workflows/v165-extinct-animals-production.yml']
+
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: v165-extinct-animals-production-v7
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    if: ${{ github.ref == 'refs/heads/v165-extinct-animals-production-20261127' && (github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[render-v165]')) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install --no-input Pillow
+      - run: python shared/v165/scripts/preflight.py
+      - run: python shared/v165/scripts/prepare.py
+
+  chapter:
+    if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[render-v165]') }}
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        chapter: [prologue, chapter1, chapter2, chapter3, chapter4, chapter5, chapter6, chapter7, epilogue]
+    env:
+      CHAPTER: ${{ matrix.chapter }}
+      VOICEVOX_URL: http://127.0.0.1:50021
+      VOICEVOX_SPEAKER_ID: '13'
+      VOICEVOX_SPEED: '1.10'
+      VOICEVOX_INTONATION: '1.0'
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install --no-input requests Pillow
+      - run: python shared/v165/scripts/prepare.py
+      - name: Install static FFmpeg and pinned Noto CJK font
+        run: |
+          set -euo pipefail
+          TMP="$RUNNER_TEMP/v165-media-tools"
+          BIN_DIR="$HOME/.local/bin"
+          FONT_DIR="$HOME/.local/share/fonts"
+          mkdir -p "$TMP/extract" "$BIN_DIR" "$FONT_DIR"
+          curl --fail --location --silent --show-error --retry 5 --retry-all-errors --retry-delay 3 --connect-timeout 30 --max-time 900 \
+            "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz" -o "$TMP/ffmpeg.tar.xz"
+          tar -xJf "$TMP/ffmpeg.tar.xz" -C "$TMP/extract"
+          FFMPEG="$(find "$TMP/extract" -type f -name ffmpeg -perm /111 -print -quit)"
+          FFPROBE="$(find "$TMP/extract" -type f -name ffprobe -perm /111 -print -quit)"
+          test -n "$FFMPEG" && test -n "$FFPROBE"
+          install -m 0755 "$FFMPEG" "$BIN_DIR/ffmpeg"
+          install -m 0755 "$FFPROBE" "$BIN_DIR/ffprobe"
+          echo "$BIN_DIR" >> "$GITHUB_PATH"
+          FONT="$FONT_DIR/NotoSansCJKjp-Regular.otf"
+          curl --fail --location --silent --show-error --retry 4 --retry-all-errors --retry-delay 2 --connect-timeout 20 --max-time 240 \
+            "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf" -o "$FONT"
+          test -s "$FONT"
+          test "$(stat -c%s "$FONT")" -gt 1000000
+          echo "V153_FONTS_DIR=$FONT_DIR" >> "$GITHUB_ENV"
+          "$BIN_DIR/ffmpeg" -version | head -n 1
+          "$BIN_DIR/ffprobe" -version | head -n 1
+      - name: Start VOICEVOX CPU engine
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm -p 127.0.0.1:50021:50021 --name voicevox voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 180); do
+            if curl --connect-timeout 2 -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs voicevox; exit 1
+      - run: python shared/v165/runtime/scripts/synth.py "$CHAPTER"
+      - run: python shared/v165/runtime/scripts/validate_chapter_narration.py "$CHAPTER"
+      - run: python shared/v165/runtime/scripts/render_chapter.py "$CHAPTER"
+      - name: Stage chapter outputs
+        run: |
+          mkdir -p shared/v165/runtime/artifact
+          cp shared/v165/runtime/output/v165-"$CHAPTER".mp4 shared/v165/runtime/artifact/
+          cp shared/v165/runtime/output/render-"$CHAPTER".json shared/v165/runtime/artifact/
+          cp shared/v165/runtime/output/chapter-card-"$CHAPTER".json shared/v165/runtime/artifact/
+          cp shared/v165/runtime/media/voice-report-"$CHAPTER".json shared/v165/runtime/artifact/
+          cp shared/v165/runtime/media/narration-qa-"$CHAPTER".json shared/v165/runtime/artifact/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v165-segment-${{ matrix.chapter }}
+          path: shared/v165/runtime/artifact/*
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+  finalize:
+    needs: [preflight, chapter]
+    if: ${{ always() && needs.preflight.result == 'success' && needs.chapter.result == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    env:
+      RELEASE_TAG: v165-extinct-animals-${{ github.run_id }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install --no-input Pillow opencv-python-headless
+      - run: python shared/v165/scripts/prepare.py
+      - name: Install static FFmpeg for final assembly
+        run: |
+          set -euo pipefail
+          TMP="$RUNNER_TEMP/v165-final-media-tools"
+          BIN_DIR="$HOME/.local/bin"
+          mkdir -p "$TMP/extract" "$BIN_DIR"
+          curl --fail --location --silent --show-error --retry 5 --retry-all-errors --retry-delay 3 --connect-timeout 30 --max-time 900 \
+            "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz" -o "$TMP/ffmpeg.tar.xz"
+          tar -xJf "$TMP/ffmpeg.tar.xz" -C "$TMP/extract"
+          FFMPEG="$(find "$TMP/extract" -type f -name ffmpeg -perm /111 -print -quit)"
+          FFPROBE="$(find "$TMP/extract" -type f -name ffprobe -perm /111 -print -quit)"
+          test -n "$FFMPEG" && test -n "$FFPROBE"
+          install -m 0755 "$FFMPEG" "$BIN_DIR/ffmpeg"
+          install -m 0755 "$FFPROBE" "$BIN_DIR/ffprobe"
+          echo "$BIN_DIR" >> "$GITHUB_PATH"
+          "$BIN_DIR/ffmpeg" -version | head -n 1
+          "$BIN_DIR/ffprobe" -version | head -n 1
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v165-segment-*
+          path: shared/v165/runtime/segments
+          merge-multiple: true
+      - run: python shared/v165/runtime/scripts/finalize.py --segments-dir shared/v165/runtime/segments
+      - name: Publish MP4 and QA evidence
+        run: |
+          set -euo pipefail
+          gh release create "$RELEASE_TAG" \
+            shared/v165/runtime/output/v165-extinct-animals-final.mp4 \
+            shared/v165/runtime/output/v165-contact-sheet.jpg \
+            shared/v165/runtime/output/v165-chapter-cards-contact-sheet.jpg \
+            shared/v165/runtime/output/production_report.json \
+            shared/v165/runtime/output/final_qa.json \
+            shared/v165/runtime/output/motion_30fps_qa.json \
+            shared/v165/runtime/output/CREDITS.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "考える夜｜実は生存していた。近年発見された絶滅生物７選" \
+            --notes "164 scenes, 9 typed chapter cards, and a silent 20-second end card. 1920x1080, 30fps, H.264/AAC, VOICEVOX:青山龍星 (speaker_id 13, speed 1.10). Smooth full-frame motion interpolation. No blurred-background scenes. No BGM; mixed locally by Muse." \
+            --latest
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v165-extinct-animals-master
+          path: |
+            shared/v165/runtime/output/v165-extinct-animals-final.mp4
+            shared/v165/runtime/output/v165-contact-sheet.jpg
+            shared/v165/runtime/output/v165-chapter-cards-contact-sheet.jpg
+            shared/v165/runtime/output/production_report.json
+            shared/v165/runtime/output/final_qa.json
+            shared/v165/runtime/output/motion_30fps_qa.json
+            shared/v165/runtime/output/CREDITS.txt
+          retention-days: 30
+          compression-level: 0
+
+# V165 launch trigger: preflight first, then render only when preflight succeeds.
